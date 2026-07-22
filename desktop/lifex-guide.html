@@ -1,0 +1,1135 @@
+<title>LIFEX 初回面談 実践ガイド</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root {
+  --navy:    #1E3448;
+  --steel:   #3A6B8A;
+  --sage:    #3D6E55;
+  --amber:   #C47C2A;
+  --violet:  #6A5498;
+  --bg:      #ECF0F4;
+  --surface: #FFFFFF;
+  --alt:     #F4F7FA;
+  --text:    #1A2B38;
+  --muted:   #6A7A88;
+  --border:  #CDD5DE;
+  --ice:     #4A95B0;
+  --close:   #1E3448;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Yu Gothic UI', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.75;
+}
+/* ===== HEADER ===== */
+.site-header {
+  background: var(--navy);
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.header-badge {
+  background: var(--steel);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+.site-header h1 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #CCE0EE;
+  letter-spacing: .04em;
+  flex: 1;
+}
+.header-note {
+  font-size: 11px;
+  color: #6A90A8;
+  letter-spacing: .03em;
+}
+/* ===== TABS ===== */
+.tab-nav {
+  background: var(--navy);
+  padding: 0 32px;
+  display: flex;
+  gap: 2px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.tab-btn {
+  background: rgba(255,255,255,.08);
+  color: #8AAABF;
+  border: none;
+  padding: 11px 26px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 4px 4px 0 0;
+  letter-spacing: .04em;
+  transition: background .15s, color .15s;
+}
+.tab-btn:hover { background: rgba(255,255,255,.15); color: #fff; }
+.tab-btn.active { background: var(--bg); color: var(--navy); font-weight: 700; }
+
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* ===== GUIDE TAB ===== */
+.guide-wrap { max-width: 900px; margin: 0 auto; padding: 32px 24px; }
+
+.guide-notice {
+  background: #fff;
+  border-left: 4px solid var(--steel);
+  padding: 14px 18px;
+  border-radius: 0 5px 5px 0;
+  margin-bottom: 28px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.guide-notice strong { color: var(--text); }
+
+.flow-line {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ===== PHASE CARD ===== */
+.phase {
+  background: var(--surface);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(30,52,72,.07);
+  margin-bottom: 16px;
+}
+.phase-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 20px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  border-left: 5px solid transparent;
+}
+.phase--ice  .phase-head { border-left-color: var(--ice); }
+.phase--vis  .phase-head { border-left-color: var(--sage); }
+.phase--ins  .phase-head { border-left-color: var(--amber); }
+.phase--perf .phase-head { border-left-color: #2E7A5A; }
+.phase--diff .phase-head { border-left-color: var(--violet); }
+.phase--cls  .phase-head { border-left-color: var(--close); }
+
+.phase-badge {
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  padding: 2px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.phase--ice  .phase-badge { background: var(--ice); }
+.phase--vis  .phase-badge { background: var(--sage); }
+.phase--ins  .phase-badge { background: var(--amber); }
+.phase--perf .phase-badge { background: #2E7A5A; }
+.phase--diff .phase-badge { background: var(--violet); }
+.phase--cls  .phase-badge { background: var(--close); }
+
+.phase-title { font-size: 15px; font-weight: 600; flex: 1; }
+.phase-min { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.phase-chevron { font-size: 16px; color: var(--muted); transition: transform .2s; }
+.phase.open .phase-chevron { transform: rotate(180deg); }
+
+.phase-body {
+  display: none;
+  padding: 6px 20px 22px 25px;
+  border-top: 1px solid var(--border);
+}
+.phase.open .phase-body { display: block; }
+
+.phase-goal {
+  background: var(--alt);
+  border-radius: 4px;
+  padding: 11px 14px;
+  margin: 14px 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.phase-goal b { display: block; font-size: 10px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; margin-bottom: 3px; }
+
+.q-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin: 16px 0 8px;
+}
+.q-list { display: flex; flex-direction: column; gap: 8px; }
+
+.q-item {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 0 10px;
+  align-items: start;
+  background: var(--alt);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 11px 14px;
+  font-size: 14px;
+}
+.q-mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--steel);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.q-item.key-q { background: #FFF7EE; border-color: #E8BF7A; }
+.q-item.key-q .q-mark { background: var(--amber); }
+.q-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+.tip-box {
+  background: #EEF6F0;
+  border-left: 3px solid var(--sage);
+  padding: 10px 14px;
+  border-radius: 0 4px 4px 0;
+  font-size: 13px;
+  color: #234034;
+  margin-top: 14px;
+}
+.tip-box b { display: block; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--sage); margin-bottom: 3px; }
+
+.warn-box {
+  background: #FFF4EE;
+  border-left: 3px solid #C05030;
+  padding: 10px 14px;
+  border-radius: 0 4px 4px 0;
+  font-size: 13px;
+  color: #5A2010;
+  margin-top: 10px;
+}
+.warn-box b { display: block; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #C05030; margin-bottom: 3px; }
+
+.transition-box {
+  background: var(--navy);
+  color: #A8C0D0;
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-top: 18px;
+  line-height: 1.8;
+}
+.transition-box b { display: block; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #5A80A0; margin-bottom: 4px; }
+
+.checklist { display: flex; flex-direction: column; gap: 0; margin-top: 8px; }
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border-bottom: 1px dashed var(--border);
+  font-size: 13px;
+}
+.check-row:last-child { border-bottom: none; }
+.check-icon {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* ===== HEARING TAB ===== */
+.hearing-wrap { max-width: 800px; margin: 0 auto; padding: 32px 24px; }
+
+.print-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.print-toolbar p { font-size: 13px; color: var(--muted); }
+.btn-print {
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  letter-spacing: .04em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background .15s;
+}
+.btn-print:hover { background: var(--steel); }
+
+.hearing-sheet {
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(30,52,72,.1);
+}
+.sh-header {
+  background: var(--navy);
+  padding: 20px 28px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+.sh-title { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: .04em; }
+.sh-sub { font-size: 11px; color: #6A9AB8; margin-top: 2px; letter-spacing: .06em; }
+.sh-meta { display: flex; flex-direction: column; gap: 7px; align-items: flex-end; flex-shrink: 0; }
+.sh-meta-row { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #7AAABB; }
+.sh-line { width: 110px; border-bottom: 1px solid #3A5A70; }
+
+.sh-body { padding: 22px 28px; }
+
+.sh-section { margin-bottom: 24px; }
+.sh-section-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+}
+.sh-num {
+  background: var(--steel);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.sh-sec-name { font-size: 13px; font-weight: 700; letter-spacing: .05em; color: var(--navy); }
+.sh-sec-sub { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+.fg { display: grid; gap: 10px; }
+.fg-2 { grid-template-columns: 1fr 1fr; }
+.fg-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+.ff { display: flex; flex-direction: column; gap: 4px; }
+.fl { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: .05em; }
+.fi {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: 6px 4px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text);
+  background: transparent;
+  outline: none;
+  width: 100%;
+  transition: border-color .15s;
+}
+.fi:focus { border-color: var(--steel); }
+
+.fta {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--alt);
+  outline: none;
+  width: 100%;
+  resize: vertical;
+  transition: border-color .15s;
+  min-height: 64px;
+  line-height: 1.7;
+}
+.fta:focus { border-color: var(--steel); }
+
+.cb-group { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 4px; }
+.cb-item { display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer; }
+.cb-item input { width: 15px; height: 15px; accent-color: var(--steel); cursor: pointer; }
+
+.prio-table { width: 100%; }
+.prio-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px dashed var(--border);
+  gap: 12px;
+  font-size: 13px;
+}
+.prio-row:last-child { border-bottom: none; }
+.stars { display: flex; gap: 3px; }
+.star {
+  font-size: 20px;
+  color: var(--border);
+  cursor: pointer;
+  transition: color .1s;
+  line-height: 1;
+  user-select: none;
+}
+.star.on { color: #E8A020; }
+
+.sh-footer {
+  background: var(--alt);
+  border-top: 1px solid var(--border);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ===== PRINT ===== */
+@media print {
+  .tab-nav, .site-header, .print-toolbar { display: none !important; }
+  #pane-guide { display: none !important; }
+  #pane-hearing { display: block !important; }
+  .hearing-wrap { padding: 0; max-width: 100%; }
+  .hearing-sheet { box-shadow: none; border: 1px solid #bbb; }
+  body { background: #fff; font-size: 12px; }
+  .fta { background: #fff; border: 1px solid #ccc; }
+  .sh-footer { display: none; }
+  .fg-2, .fg-3 { display: grid; }
+}
+
+@media (max-width: 640px) {
+  .fg-2, .fg-3 { grid-template-columns: 1fr; }
+  .site-header { padding: 14px 16px; }
+  .tab-nav { padding: 0 16px; }
+  .guide-wrap, .hearing-wrap { padding: 20px 14px; }
+  .sh-body { padding: 18px 16px; }
+  .sh-header { flex-direction: column; align-items: flex-start; }
+}
+</style>
+
+<header class="site-header">
+  <span class="header-badge">LIFEX</span>
+  <h1>初回面談 実践ガイド</h1>
+  <span class="header-note">セミナー後 着座〜ヒアリング フロー</span>
+</header>
+
+<nav class="tab-nav">
+  <button class="tab-btn active" data-tab="guide">会話フロー ガイド</button>
+  <button class="tab-btn" data-tab="hearing">ヒアリングシート（印刷用）</button>
+</nav>
+
+<!-- ========== TAB 1: GUIDE ========== -->
+<div id="pane-guide" class="tab-pane active">
+  <div class="guide-wrap">
+
+    <div class="guide-notice">
+      <strong>このガイドの使い方：</strong>セミナー終了後、お客様に着座いただいたタイミングから使います。<br>
+      各フェーズを順に進めながら、<strong>「教える」ではなく「気づかせる」</strong>会話を心がけてください。<br>
+      価格・仕様の話は お客様自身が必要性を感じてから。補足資料（コスト比較など）はフェーズ6以降で使います。
+    </div>
+
+    <div class="flow-line">
+
+      <!-- PHASE 1: アイスブレイク -->
+      <div class="phase phase--ice open">
+        <div class="phase-head" onclick="togglePhase(this)">
+          <span class="phase-badge">PHASE 1</span>
+          <span class="phase-title">アイスブレイク</span>
+          <span class="phase-min">5〜10分</span>
+          <span class="phase-chevron">▾</span>
+        </div>
+        <div class="phase-body">
+          <div class="phase-goal">
+            <b>このフェーズのゴール</b>
+            緊張をほぐし、「この人なら話せる」と感じてもらう。信頼関係のベースをここで作る。
+          </div>
+
+          <div class="q-label">話題の切り口</div>
+          <div class="q-list">
+            <div class="q-item">
+              <div class="q-mark">Q</div>
+              <div>
+                「今日はどちらからお越しですか？お車でしたか？」
+                <div class="q-sub">道中の話から自然に入る。答えやすい質問でリラックスさせる。</div>
+              </div>
+            </div>
+            <div class="q-item">
+              <div class="q-mark">Q</div>
+              <div>
+                「今日のセミナー、いかがでしたか？気になった部分はありましたか？」
+                <div class="q-sub">セミナーへの感想を聞くことで、何に関心があるか自然につかめる。</div>
+              </div>
+            </div>
+            <div class="q-item">
+              <div class="q-mark">Q</div>
+              <div>
+                「お子さんは今おいくつですか？どんなお子さんですか？」
+                <div class="q-sub">家族の話は誰でも喜んで話す。写真を見せてもらえたら最高。</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <b>Point</b>
+            この段階でLIFEXの話・仕様の話は一切しない。相手の話を聞く比率8割を意識する。「そうなんですか」「それは大変でしたね」「いいですね」——相槌を大切に。
+          </div>
+
+          <div class="transition-box">
+            <b>次のフェーズへの橋渡し</b>
+            「せっかくですので、もう少しじっくりお話を聞かせていただいてもいいですか？今日のゴールは、○○様ご家族にとって"いい判断"ができるようにお手伝いすることですので。」
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 2: 理想の暮らし -->
+      <div class="phase phase--vis open">
+        <div class="phase-head" onclick="togglePhase(this)">
+          <span class="phase-badge">PHASE 2</span>
+          <span class="phase-title">理想の暮らしを聞く</span>
+          <span class="phase-min">15〜20分</span>
+          <span class="phase-chevron">▾</span>
+        </div>
+        <div class="phase-body">
+          <div class="phase-goal">
+            <b>このフェーズのゴール</b>
+            お客様自身の言葉で「叶えたい暮らし」を語ってもらう。ここで出てきたキーワードを、あとのフェーズで必ず使う。
+          </div>
+
+          <div class="q-label">聞くべき質問</div>
+          <div class="q-list">
+            <div class="q-item">
+              <div class="q-mark">Q</div>
+              <div>
+                「家を建てたいと思われたきっかけは何ですか？」
+                <div class="q-sub">動機を聞く。「子供が生まれた」「今の家が寒い」「賃貸がもったいない」など、後で共感できるポイントが出てくる。</div>
+              </div>
+            </div>
+            <div class="q-item">
+              <div class="q-mark">Q</div>
+              <div>
+                「今のお住まいで、一番不満に感じていることは何ですか？」
+                <div class="q-sub">ネガティブな動機を引き出す。「寒い」「光熱費が高い」「音が気になる」は性能の話に直結する。</div>
+              </div>
+            </div>
+            <div class="q-item key-q">
+              <div class="q-mark">Q</div>
+              <div>
+                「新しい家で、どんな生活がしたいですか？具体的に想像してみてください。」
+                <div class="q-sub">答えをメモする（ヒアリングシートに記入）。「子供が庭で遊べる」「家族がリビングに集まる」「老後も住める」——この言葉をあとで引用する。</div>
+              </div>
+            </div>
+            <div class="q-item key-q">
+              <div class="q-mark">Q</div>
+              <div>
+                「その家で、何年暮らしたいですか？」
+                <div class="q-sub">長期の視点を持ってもらう問いかけ。「30年・40年」が出てきたら「健康」「ランニングコスト」の話に自然につながる。</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <b>Point</b>
+            答えは必ずメモする。「それは素敵ですね」で肯定し続ける。修正や反論は絶対にしない。ここで出たキーワードが、このあとの会話の「軸」になる。
+          </div>
+
+          <div class="transition-box">
+            <b>次のフェーズへの橋渡し</b>
+            「○○様のおっしゃる暮らし、ぜひ実現してほしいです。その暮らしを30年・40年続けるために、少し確認させてください。」
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 3: 気づきを与える -->
+      <div class="phase phase--ins open">
+        <div class="phase-head" onclick="togglePhase(this)">
+          <span class="phase-badge">PHASE 3</span>
+          <span class="phase-title">気づきを与える問いかけ</span>
+          <span class="phase-min">20〜25分</span>
+          <span class="phase-chevron">▾</span>
+        </div>
+        <div class="phase-body">
+          <div class="phase-goal">
+            <b>このフェーズのゴール</b>
+            「家の性能の重要性」にお客様自身が気づく。教えるのではなく、質問によって「考えさせる」。このフェーズが最も重要。
+          </div>
+
+          <div class="warn-box">
+            <b>注意</b>
+            「うちはこういう性能があります」という話は、まだしない。質問して、お客様に考えてもらい、「そうなんですか！」を引き出すことだけ意識する。
+          </div>
+
+          <div class="q-label">空気・健康について</div>
+          <div class="q-list">
+            <div class="q-item key-q">
+              <div class="q-mark">Q</div>
+              <div>
+                「ご家族でアレルギーや花粉症、喘息をお持ちの方はいらっしゃいますか？」
+                <div class="q-sub">→ 「実は、新築でも換気の仕組みが正しくないと、室内の空気は改善されないんです。ご存知でしたか？」</div>
+              </div>
+            </div>
+            <div class="q-item key-q">
+              <div class="q-mark">Q</div>
+              <div>
+                「壁の中で結露が起きると、どうなると思いますか？」
+                <div class="q-sub">→ 「カビ・シロアリ・家の傷みに直結します。でも見えないから気づいたときには手遅れで。気密シートはその対策なんですが、建てる前に確認する方はほとんどいないんです。」</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="q-label" style="margin-top:16px">光熱費・快適さについて</div>
+          <div class="q-list">
+            <div class="q-item key-q">
+              <div class="q-mark">Q</div>
+              <div>
+                「今の家で、冬に廊下や洗面所が寒いと感じますか？」
+                <div class="q-sub">→ 「実は断熱と気密がセットになっていないと、暖房をかけていても温まらない家になります。今、光熱費は月どれくらいかかっていますか？」</div>
+              </div>
+            </div>
+            <div class="q-item key-q">
+              <div class="q-mark">Q</div>
+              <div>
+                「30年・40年住むとして、光熱費の総額を考えたことはありますか？」
+                <div class="q-sub">→ 「月2万円の差で、35年だと約840万円変わります。家の価格と同じくらい、住んでからのコストが大事なんです。」</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="q-label" style="margin-top:16px">地震・安全について</div>
+          <div class="q-list">
+            <div class="q-item key-q">
+              <div class="q-mark">Q</div>
+              <div>
+                「最近の地震のニュース、気になりますよね。"耐震等級3"という言葉は聞いたことがありますか？」
+                <div class="q-sub">→ 「耐震と制震って、実は違うんです。耐震だけだと揺れに"耐える"だけで、繰り返しの揺れには弱い。制震ダンパーがあると揺れを"吸収"します。」</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <b>Point</b>
+            お客様が「そうなんですか？」「知らなかった」と言ったら成功。答えを急がず、少し間をおいて考えてもらう。「怖い話」にならないよう、あくまで「大事な話」として穏やかに伝える。
+          </div>
+
+          <div class="transition-box">
+            <b>次のフェーズへの橋渡し</b>
+            「これ、家づくりで一番確認しなければいけないことなんです。さっき○○様が『（Phase2のキーワードを引用）』とおっしゃっていましたよね。実はそれを叶えるために、こういう性能が必要で——」
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 4: 性能を暮らしに繋げる -->
+      <div class="phase phase--perf open">
+        <div class="phase-head" onclick="togglePhase(this)">
+          <span class="phase-badge">PHASE 4</span>
+          <span class="phase-title">性能を「暮らし」に繋げる</span>
+          <span class="phase-min">10〜15分</span>
+          <span class="phase-chevron">▾</span>
+        </div>
+        <div class="phase-body">
+          <div class="phase-goal">
+            <b>このフェーズのゴール</b>
+            お客様の"叶えたい暮らし"と各性能項目を紐づける。「スペック説明」ではなく「あなたの夢を実現するための条件」として話す。
+          </div>
+
+          <div class="q-label">暮らしと性能の結びつけ方</div>
+          <div class="q-list">
+            <div class="q-item">
+              <div class="q-mark">→</div>
+              <div>
+                <strong>「健康に長く住みたい」</strong> とおっしゃっていましたね
+                <div class="q-sub">→ 第一種換気システム＋防湿気密シートが必須です。この2つがないと、新築でも空気の質は変わりません。</div>
+              </div>
+            </div>
+            <div class="q-item">
+              <div class="q-mark">→</div>
+              <div>
+                <strong>「光熱費を抑えたい」</strong> とおっしゃっていましたね
+                <div class="q-sub">→ 断熱性能（UA値）と気密性能（C値）がセットで高くないと意味がありません。片方だけでは効果が出ない。</div>
+              </div>
+            </div>
+            <div class="q-item">
+              <div class="q-mark">→</div>
+              <div>
+                <strong>「地震に強い家に住みたい」</strong> とおっしゃっていましたね
+                <div class="q-sub">→ 耐震等級3＋制震ダンパーがセットで必要です。等級だけでは繰り返しの揺れに対応できない。</div>
+              </div>
+            </div>
+            <div class="q-item">
+              <div class="q-mark">→</div>
+              <div>
+                <strong>「長く住み続けられる家」</strong> とおっしゃっていましたね
+                <div class="q-sub">→ 防蟻処理（ホウ酸）＋壁体内結露ゼロが前提です。見えない部分が家の寿命を決めます。</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <b>Point</b>
+            必ずPhase2で出てきたお客様の言葉を引用してから話す。「うちにはこれがあります」ではなく「○○様の希望を叶えるために、これが必要なんです」という順番を絶対に守る。
+          </div>
+
+          <div class="transition-box">
+            <b>次のフェーズへの橋渡し</b>
+            「ここまで話してみて、○○様はどう感じましたか？もし他社さんも見てみようと思われているなら、ぜひ確認してほしいことがあります。」
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 5: 他社への気づき -->
+      <div class="phase phase--diff open">
+        <div class="phase-head" onclick="togglePhase(this)">
+          <span class="phase-badge">PHASE 5</span>
+          <span class="phase-title">他社への問いかけ — 気づきを持ち帰ってもらう</span>
+          <span class="phase-min">5〜10分</span>
+          <span class="phase-chevron">▾</span>
+        </div>
+        <div class="phase-body">
+          <div class="phase-goal">
+            <b>このフェーズのゴール</b>
+            お客様が自分で他社に確認したくなる状態を作る。比較ではなく「判断基準を渡す」イメージで。
+          </div>
+
+          <div class="q-label">他社に確認してほしいこと（渡せるリスト）</div>
+          <div class="checklist" style="background:var(--alt);border-radius:5px;border:1px solid var(--border);overflow:hidden;">
+            <div class="check-row"><div class="check-icon"></div>気密シートは施工しますか？</div>
+            <div class="check-row"><div class="check-icon"></div>換気システムは第一種ですか？（熱交換型ですか？）</div>
+            <div class="check-row"><div class="check-icon"></div>耐震等級は何等級ですか？（許容応力度計算で出していますか？）</div>
+            <div class="check-row"><div class="check-icon"></div>制震ダンパーはついていますか？</div>
+            <div class="check-row"><div class="check-icon"></div>UA値とC値を数字で見せてもらえますか？</div>
+            <div class="check-row"><div class="check-icon"></div>防蟻処理は何を使いますか？（農薬系ですか、ホウ酸ですか？）</div>
+            <div class="check-row"><div class="check-icon"></div>壁体内結露の対策はどのようにしていますか？</div>
+          </div>
+
+          <div class="tip-box" style="margin-top:14px">
+            <b>Point</b>
+            「LIFEXはこれが全部できます」という言い方はしない。「この質問に全部答えてもらえる会社で建ててください。それが絶対条件です」という言い方に留める。お客様自身が気づく余白を残す。
+          </div>
+
+          <div class="warn-box">
+            <b>やってはいけないこと</b>
+            他社の悪口を言わない。「A社はここが弱い」という話をしない。あくまで「判断の軸を渡す」だけ。
+          </div>
+
+          <div class="transition-box">
+            <b>次のフェーズへの橋渡し</b>
+            「今日のお話を踏まえて、○○様のご家族にとっての"いい家"が少し具体的になりましたか？もし次のステップを一緒に考えていただけるなら、もう少し具体的なプランをお持ちします。」
+          </div>
+        </div>
+      </div>
+
+      <!-- PHASE 6: クロージング -->
+      <div class="phase phase--cls open">
+        <div class="phase-head" onclick="togglePhase(this)">
+          <span class="phase-badge">PHASE 6</span>
+          <span class="phase-title">LIFEXで進める意思決定へ</span>
+          <span class="phase-min">5〜10分</span>
+          <span class="phase-chevron">▾</span>
+        </div>
+        <div class="phase-body">
+          <div class="phase-goal">
+            <b>このフェーズのゴール（第一目標）</b>
+            今日の面談で「LIFEXで進めます」という意思決定をいただく。補足資料（コスト比較など）が必要であればここで使う。
+          </div>
+
+          <div class="q-list">
+            <div class="q-item key-q">
+              <div class="q-mark">Q</div>
+              <div>
+                「今日のお話を通じて、LIFEXで家を建てることをご検討いただけそうですか？」
+                <div class="q-sub">直接的に意思を確認する。ここを曖昧にしたまま終わらせない。</div>
+              </div>
+            </div>
+            <div class="q-item">
+              <div class="q-mark">→</div>
+              <div>
+                補足資料（光熱費・保険・防蟻のコスト比較）が必要であれば見せる
+                <div class="q-sub">「さっきのお話を数字でも確認してみますか？」という切り出しで。押し売りにならないよう、必要性を感じたときに出す。</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="warn-box" style="margin-top:16px">
+            <b>即決いただけなかった場合 — 必ずやること</b>
+            「今日は決められない」という場合、理由を曖昧にしたまま終わらせない。<br>
+            <strong>「何が一番気になっていますか？」と必ず聞く。</strong>
+          </div>
+
+          <div class="q-label" style="margin-top:16px">意思決定できない理由の引き出し方</div>
+          <div class="q-list">
+            <div class="q-item key-q">
+              <div class="q-mark">Q</div>
+              <div>
+                「今日すぐに決めにくい、一番の理由は何ですか？」
+                <div class="q-sub">答えをそのままメモする。「金額」「他社も見たい」「家族に相談」「まだ時期ではない」——それぞれで次回の対応が変わる。</div>
+              </div>
+            </div>
+            <div class="q-item key-q">
+              <div class="q-mark">Q</div>
+              <div>
+                「その不安が解消されたら、LIFEXで進める気持ちはありますか？」
+                <div class="q-sub">YESなら次回面談は「その不安を取り除く場」と明確に設定できる。NOなら別の理由が隠れている。</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tip-box" style="margin-top:14px">
+            <b>2回目面談の設定方法</b>
+            「では次回は、今日出た○○というご不安を一緒に解消する時間にしましょう。」と具体的に約束する。漠然と「また来てください」で終わらせない。次回の議題をお客様自身の言葉で決める。
+          </div>
+
+          <div class="tip-box">
+            <b>今日の面談終了後に必ずメモすること</b>
+            ①お客様が語った「叶えたい暮らし」のキーワード　②意思決定を妨げている不安の具体的な内容　③次回面談で解消すべきテーマ。この3点が次回の信頼構築の土台になる。
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /flow-line -->
+  </div><!-- /guide-wrap -->
+</div><!-- /pane-guide -->
+
+<!-- ========== TAB 2: HEARING SHEET ========== -->
+<div id="pane-hearing" class="tab-pane">
+  <div class="hearing-wrap">
+
+    <div class="print-toolbar">
+      <p>このシートを印刷して面談中に記入するか、画面上で入力してご使用ください。</p>
+      <button class="btn-print" onclick="window.print()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        印刷 / PDF保存
+      </button>
+    </div>
+
+    <div class="hearing-sheet">
+      <div class="sh-header">
+        <div>
+          <div class="sh-title">初回ヒアリングシート</div>
+          <div class="sh-sub">LIFEX — 初回面談記録</div>
+        </div>
+        <div class="sh-meta">
+          <div class="sh-meta-row">日付<div class="sh-line"></div></div>
+          <div class="sh-meta-row">担当<div class="sh-line"></div></div>
+          <div class="sh-meta-row">来店/オンライン<div class="sh-line"></div></div>
+        </div>
+      </div>
+
+      <div class="sh-body">
+
+        <!-- S1: 基本情報 -->
+        <div class="sh-section">
+          <div class="sh-section-head">
+            <div class="sh-num">1</div>
+            <div class="sh-sec-name">お客様の基本情報</div>
+          </div>
+          <div class="fg fg-2" style="margin-bottom:10px">
+            <div class="ff">
+              <span class="fl">お名前（ふりがな）</span>
+              <input class="fi" type="text" placeholder="例：田中 一郎（たなか いちろう）">
+            </div>
+            <div class="ff">
+              <span class="fl">連絡先（電話 / メール）</span>
+              <input class="fi" type="text" placeholder="">
+            </div>
+          </div>
+          <div class="fg fg-3">
+            <div class="ff">
+              <span class="fl">現在のお住まい</span>
+              <input class="fi" type="text" placeholder="例：大阪市住之江区">
+            </div>
+            <div class="ff">
+              <span class="fl">ご希望エリア</span>
+              <input class="fi" type="text" placeholder="例：堺市 周辺">
+            </div>
+            <div class="ff">
+              <span class="fl">土地の状況</span>
+              <input class="fi" type="text" placeholder="持っている / 探し中 / 未定">
+            </div>
+          </div>
+        </div>
+
+        <!-- S2: 家族構成 -->
+        <div class="sh-section">
+          <div class="sh-section-head">
+            <div class="sh-num">2</div>
+            <div class="sh-sec-name">ご家族構成</div>
+          </div>
+          <div class="fg fg-3" style="margin-bottom:10px">
+            <div class="ff">
+              <span class="fl">ご夫婦の年齢</span>
+              <input class="fi" type="text" placeholder="例：33歳 / 31歳">
+            </div>
+            <div class="ff">
+              <span class="fl">お子様（人数・年齢）</span>
+              <input class="fi" type="text" placeholder="例：2人（4歳・1歳）">
+            </div>
+            <div class="ff">
+              <span class="fl">同居予定のご家族</span>
+              <input class="fi" type="text" placeholder="例：なし / 義母">
+            </div>
+          </div>
+          <div class="fg fg-2">
+            <div class="ff">
+              <span class="fl">現在の住まい形態</span>
+              <div class="cb-group">
+                <label class="cb-item"><input type="checkbox">賃貸</label>
+                <label class="cb-item"><input type="checkbox">持ち家（戸建て）</label>
+                <label class="cb-item"><input type="checkbox">持ち家（マンション）</label>
+                <label class="cb-item"><input type="checkbox">実家</label>
+              </div>
+            </div>
+            <div class="ff">
+              <span class="fl">現在の家の築年数・月々の家賃/ローン</span>
+              <input class="fi" type="text" placeholder="例：築12年 / 月9.5万円">
+            </div>
+          </div>
+        </div>
+
+        <!-- S3: きっかけ・現在の不満 -->
+        <div class="sh-section">
+          <div class="sh-section-head">
+            <div class="sh-num">3</div>
+            <div class="sh-sec-name">家を建てたいと思ったきっかけ・今の家への不満</div>
+          </div>
+          <div class="ff" style="margin-bottom:10px">
+            <span class="fl">家を建てたいと思ったきっかけ（自由記入）</span>
+            <textarea class="fta" rows="2" placeholder="例：子供が生まれた、アパートが手狭になった、賃貸がもったいないと感じ始めた　など"></textarea>
+          </div>
+          <div class="ff">
+            <span class="fl">今の家で一番困っていること・不満（複数可）</span>
+            <div class="cb-group" style="margin-bottom:8px">
+              <label class="cb-item"><input type="checkbox">冬に寒い（廊下・洗面所）</label>
+              <label class="cb-item"><input type="checkbox">夏に暑い</label>
+              <label class="cb-item"><input type="checkbox">光熱費が高い</label>
+              <label class="cb-item"><input type="checkbox">部屋が狭い</label>
+              <label class="cb-item"><input type="checkbox">音が気になる</label>
+              <label class="cb-item"><input type="checkbox">収納が足りない</label>
+              <label class="cb-item"><input type="checkbox">結露・カビ</label>
+              <label class="cb-item"><input type="checkbox">地震が心配</label>
+            </div>
+            <input class="fi" type="text" placeholder="その他：">
+          </div>
+        </div>
+
+        <!-- S4: 理想の暮らし -->
+        <div class="sh-section">
+          <div class="sh-section-head">
+            <div class="sh-num">4</div>
+            <div class="sh-sec-name">理想の暮らし・マイホームへの想い</div>
+            <span class="sh-sec-sub">お客様の言葉をそのまま記入</span>
+          </div>
+          <div class="ff" style="margin-bottom:10px">
+            <span class="fl">新しい家でどんな生活がしたいですか？（できるだけ具体的に）</span>
+            <textarea class="fta" rows="3" placeholder="例：リビングに家族が集まれる広い家、子供が庭で遊べる、老後も夫婦2人でゆったり暮らせる　など"></textarea>
+          </div>
+          <div class="fg fg-2">
+            <div class="ff">
+              <span class="fl">その家で何年暮らしたいですか？</span>
+              <input class="fi" type="text" placeholder="例：35年以上 / ずっと">
+            </div>
+            <div class="ff">
+              <span class="fl">子供の独立後も視野に入れていますか？</span>
+              <div class="cb-group">
+                <label class="cb-item"><input type="checkbox">はい</label>
+                <label class="cb-item"><input type="checkbox">あまり考えていない</label>
+                <label class="cb-item"><input type="checkbox">まだわからない</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S5: 健康・快適さ -->
+        <div class="sh-section">
+          <div class="sh-section-head">
+            <div class="sh-num">5</div>
+            <div class="sh-sec-name">健康・快適さへの関心</div>
+          </div>
+          <div class="fg fg-2">
+            <div class="ff">
+              <span class="fl">アレルギー・花粉症・喘息（誰が？）</span>
+              <input class="fi" type="text" placeholder="例：子供（次女）が喘息ぎみ">
+            </div>
+            <div class="ff">
+              <span class="fl">今の光熱費（月平均）</span>
+              <input class="fi" type="text" placeholder="例：冬は2万5千円くらい">
+            </div>
+            <div class="ff">
+              <span class="fl">温度差（廊下・脱衣所）が気になりますか？</span>
+              <div class="cb-group">
+                <label class="cb-item"><input type="checkbox">かなり気になる</label>
+                <label class="cb-item"><input type="checkbox">少し気になる</label>
+                <label class="cb-item"><input type="checkbox">あまり気にならない</label>
+              </div>
+            </div>
+            <div class="ff">
+              <span class="fl">空気の質・換気への関心</span>
+              <div class="cb-group">
+                <label class="cb-item"><input type="checkbox">かなり気にしている</label>
+                <label class="cb-item"><input type="checkbox">少し気にしている</label>
+                <label class="cb-item"><input type="checkbox">特に考えていなかった</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S6: 優先順位 -->
+        <div class="sh-section">
+          <div class="sh-section-head">
+            <div class="sh-num">6</div>
+            <div class="sh-sec-name">家づくりの優先順位</div>
+            <span class="sh-sec-sub">★で重要度を評価（お客様に選んでもらう）</span>
+          </div>
+          <div class="prio-table">
+            <div class="prio-row">
+              <span>断熱性能・省エネ（光熱費が安い家）</span>
+              <div class="stars" data-group="prio">
+                <span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span>
+              </div>
+            </div>
+            <div class="prio-row">
+              <span>地震への強さ（耐震・制震）</span>
+              <div class="stars" data-group="prio">
+                <span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span>
+              </div>
+            </div>
+            <div class="prio-row">
+              <span>空気の質・健康（換気・気密）</span>
+              <div class="stars" data-group="prio">
+                <span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span>
+              </div>
+            </div>
+            <div class="prio-row">
+              <span>デザイン・間取り・外観</span>
+              <div class="stars" data-group="prio">
+                <span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span>
+              </div>
+            </div>
+            <div class="prio-row">
+              <span>建築費（初期コストを抑えたい）</span>
+              <div class="stars" data-group="prio">
+                <span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span>
+              </div>
+            </div>
+            <div class="prio-row">
+              <span>長期コスト（ランニングコストを抑えたい）</span>
+              <div class="stars" data-group="prio">
+                <span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span>
+              </div>
+            </div>
+            <div class="prio-row">
+              <span>アフターサービス・保証の充実</span>
+              <div class="stars" data-group="prio">
+                <span class="star" data-v="1">★</span><span class="star" data-v="2">★</span><span class="star" data-v="3">★</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S7: 予算・時期 -->
+        <div class="sh-section">
+          <div class="sh-section-head">
+            <div class="sh-num">7</div>
+            <div class="sh-sec-name">予算・建設時期</div>
+          </div>
+          <div class="fg fg-3">
+            <div class="ff">
+              <span class="fl">ご予算感（総額）</span>
+              <input class="fi" type="text" placeholder="例：3,000〜3,500万円">
+            </div>
+            <div class="ff">
+              <span class="fl">月々のお支払い希望</span>
+              <input class="fi" type="text" placeholder="例：10万円くらいまで">
+            </div>
+            <div class="ff">
+              <span class="fl">建設ご希望時期</span>
+              <input class="fi" type="text" placeholder="例：2年以内 / まだ未定">
+            </div>
+          </div>
+        </div>
+
+        <!-- S8: 気になること・メモ -->
+        <div class="sh-section">
+          <div class="sh-section-head">
+            <div class="sh-num">8</div>
+            <div class="sh-sec-name">気になること・今日のセミナーの感想・メモ</div>
+          </div>
+          <textarea class="fta" rows="4" placeholder="今日のセミナーで気になったこと、他社との比較ポイント、質問したいこと、スタッフ所感　など"></textarea>
+        </div>
+
+      </div><!-- /sh-body -->
+
+      <div class="sh-footer">
+        <span>LIFEX — 初回ヒアリングシート</span>
+        <span>このシートの内容は次回面談・プランニングに活用します</span>
+      </div>
+    </div><!-- /hearing-sheet -->
+  </div><!-- /hearing-wrap -->
+</div><!-- /pane-hearing -->
+
+<script>
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('pane-' + target).classList.add('active');
+  });
+});
+
+// Phase accordion
+function togglePhase(head) {
+  const phase = head.closest('.phase');
+  phase.classList.toggle('open');
+}
+
+// Star rating — each row is independent
+document.querySelectorAll('.stars').forEach(group => {
+  const stars = group.querySelectorAll('.star');
+  stars.forEach((star, idx) => {
+    star.addEventListener('click', () => {
+      const current = Array.from(stars).filter(s => s.classList.contains('on')).length;
+      const clickedVal = idx + 1;
+      // Toggle off if clicking same level
+      if (current === clickedVal) {
+        stars.forEach(s => s.classList.remove('on'));
+      } else {
+        stars.forEach((s, i) => s.classList.toggle('on', i < clickedVal));
+      }
+    });
+    star.addEventListener('mouseenter', () => {
+      stars.forEach((s, i) => s.classList.toggle('on', i <= idx));
+    });
+  });
+  group.addEventListener('mouseleave', () => {
+    // restore committed state — stored in data
+    const committed = parseInt(group.dataset.committed || '0');
+    stars.forEach((s, i) => s.classList.toggle('on', i < committed));
+  });
+  // Store committed value on click
+  stars.forEach((star, idx) => {
+    star.addEventListener('click', () => {
+      const current = parseInt(group.dataset.committed || '0');
+      group.dataset.committed = current === (idx + 1) ? '0' : String(idx + 1);
+    });
+  });
+});
+</script>

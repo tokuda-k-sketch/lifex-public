@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-HOUSE Strategic Methodology 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans JP', sans-serif; scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: slideUp 0.4s ease-out; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); }
+        .active-tab-btn { background-color: #1e293b !important; color: white !important; transform: scale(1.05); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: #334155 !important; }
+        .card-gradient { background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%); }
+    </style>
+</head>
+<body class="bg-[#f1f5f9] min-h-screen text-slate-800 antialiased pb-12 text-left">
+
+    <div class="max-w-4xl mx-auto px-4 py-8 md:py-16">
+        <!-- Top Branding -->
+        <header class="mb-12 flex flex-col md:flex-row justify-between items-center md:items-end gap-6">
+            <div>
+                <div class="inline-flex items-center px-4 py-1.5 bg-indigo-600 text-white text-[10px] font-black rounded-full mb-5 uppercase tracking-[0.4em] shadow-xl shadow-indigo-200">
+                    <span class="mr-2">●</span> G-HOUSE Authorized Hub
+                </div>
+                <h1 class="text-5xl md:text-6xl font-black text-slate-900 mb-3 tracking-tighter italic uppercase leading-none">FUJIMURA <span class="text-indigo-600">×</span> TOKUDA</h1>
+                <h2 class="text-2xl font-bold text-slate-700 mb-2 tracking-tight">Strategic Methodology</h2>
+                <p class="text-slate-400 font-medium text-sm italic tracking-wide">〜いえプロ不動産・Gハウス：最強連携教育マニュアル〜</p>
+            </div>
+            <div class="flex gap-3">
+                <div class="bg-white text-indigo-600 border border-indigo-100 px-5 py-3 rounded-2xl font-black text-[10px] shadow-lg uppercase tracking-widest">
+                    Final Master Edition
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Bar -->
+        <nav class="flex mb-10 bg-white p-2 rounded-[2.5rem] shadow-2xl shadow-slate-200/80 space-x-2 overflow-x-auto no-scrollbar border border-white sticky top-6 z-50 glass">
+            <button onclick="showTab(0)" class="nav-btn flex-1 min-w-[130px] py-4 px-2 rounded-[1.8rem] transition-all duration-500 active-tab-btn font-black text-[10px] uppercase tracking-tighter" data-index="0">Introduction</button>
+            <button onclick="showTab(1)" class="nav-btn flex-1 min-w-[100px] py-4 px-2 rounded-[1.8rem] transition-all duration-500 text-slate-400 hover:bg-slate-50 font-black text-[10px] uppercase tracking-tighter" data-index="1">Chapter 0</button>
+            <button onclick="showTab(2)" class="nav-btn flex-1 min-w-[100px] py-4 px-2 rounded-[1.8rem] transition-all duration-500 text-slate-400 hover:bg-slate-50 font-black text-[10px] uppercase tracking-tighter" data-index="2">Chapter 1</button>
+            <button onclick="showTab(3)" class="nav-btn flex-1 min-w-[100px] py-4 px-2 rounded-[1.8rem] transition-all duration-500 text-slate-400 hover:bg-slate-50 font-black text-[10px] uppercase tracking-tighter" data-index="3">Chapter 2</button>
+            <button onclick="showTab(4)" class="nav-btn flex-1 min-w-[100px] py-4 px-2 rounded-[1.8rem] transition-all duration-500 text-slate-400 hover:bg-slate-50 font-black text-[10px] uppercase tracking-tighter" data-index="4">Chapter 3</button>
+            <button onclick="showTab(5)" class="nav-btn flex-1 min-w-[100px] py-4 px-2 rounded-[1.8rem] transition-all duration-300 text-slate-400 hover:bg-slate-50 font-black text-[10px] uppercase tracking-tighter" data-index="5">Chapter 4</button>
+        </nav>
+
+        <!-- Main Display -->
+        <main class="bg-white rounded-[3.5rem] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.08)] overflow-hidden min-h-[650px] border border-white relative">
+            <div class="p-8 md:p-20">
+                
+                <!-- Tab 0: Introduction -->
+                <div id="tab-0" class="tab-content active space-y-12">
+                    <div>
+                        <span class="inline-block px-4 py-1.5 bg-indigo-50 text-indigo-700 text-[10px] font-black rounded-full uppercase tracking-[0.3em] border border-indigo-100 mb-4">Master Philosophy</span>
+                        <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter italic mt-2 uppercase leading-none">いえプロ不動産（Gハウス）の使命</h2>
+                    </div>
+                    
+                    <div class="bg-indigo-50 border-l-[6px] border-indigo-600 p-10 rounded-2xl card-gradient">
+                        <h4 class="text-indigo-900 font-black mb-5 text-2xl tracking-tight">注文住宅における「土地」の真意</h4>
+                        <p class="text-lg text-indigo-800 leading-relaxed font-bold mb-8">
+                            注文住宅には土地が必ず必要です。しかし、前提として<span class="underline decoration-indigo-300 decoration-4">「Gハウスの家には建てる価値がある」</span>という確信をお客様に持っていただかなければなりません。その価値が伝わらなければ、土地セット販売の建売で十分だからです。
+                        </p>
+                        <div class="grid grid-cols-3 gap-6">
+                            <div class="bg-white p-6 rounded-3xl shadow-md text-center border border-indigo-100 transform hover:scale-105 transition-transform">
+                                <span class="block text-indigo-600 font-black text-xl italic uppercase">Knowledge</span>
+                                <span class="text-[10px] font-bold text-slate-400">知識</span>
+                            </div>
+                            <div class="bg-white p-6 rounded-3xl shadow-md text-center border border-indigo-100 transform hover:scale-105 transition-transform">
+                                <span class="block text-indigo-600 font-black text-xl italic uppercase">Experience</span>
+                                <span class="text-[10px] font-bold text-slate-400">経験</span>
+                            </div>
+                            <div class="bg-white p-6 rounded-3xl shadow-md text-center border border-indigo-100 transform hover:scale-105 transition-transform">
+                                <span class="block text-indigo-600 font-black text-xl italic uppercase font-black">Preparation</span>
+                                <span class="text-[10px] font-bold text-slate-400">準備</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100 relative">
+                            <h5 class="font-black text-slate-900 mb-6 flex items-center uppercase tracking-widest text-lg italic">Mindset</h5>
+                            <p class="text-base text-slate-600 leading-relaxed font-medium mb-8">
+                                「お客様がGハウスの家でなければ不幸になってしまう」という状態にまで心酔させることがマストです。土地があるから家を建てるのではなく、<span class="text-indigo-600 font-black">「Gハウスで建てたいから土地を探す」</span>という順序へ導くこと。
+                            </p>
+                            <div class="bg-indigo-900 p-6 rounded-3xl text-sm font-black text-white shadow-xl italic text-center">
+                                "土地が決まる前に、Gハウスで建築することが決定している。" これがベストな状態です。
+                            </div>
+                        </div>
+                        <div class="bg-slate-900 text-white p-10 rounded-[3rem] shadow-2xl flex flex-col justify-center border-t-[12px] border-yellow-500">
+                            <h5 class="font-bold text-yellow-400 mb-5 text-xs uppercase tracking-[0.4em]">Method Background</h5>
+                            <p class="text-base text-slate-300 leading-relaxed font-medium italic">
+                                自らの力でこの「Gハウス指名」の状態を作り出すことが困難な担当者のために、この技術体系を伝授します。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 1: Chapter 0 -->
+                <div id="tab-1" class="tab-content space-y-12">
+                    <div class="border-b border-slate-100 pb-6">
+                        <span class="inline-block px-4 py-1.5 bg-indigo-50 text-indigo-700 text-[10px] font-black rounded-full uppercase tracking-[0.3em] border border-indigo-100 mb-4">Chapter 0</span>
+                        <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter italic mt-2 uppercase">土地購入に向けての準備項目</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div class="space-y-6">
+                            <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex items-start group hover:border-indigo-200 transition-colors">
+                                <div class="bg-indigo-100 text-indigo-600 p-5 rounded-3xl mr-6 font-black italic text-lg shrink-0 text-center min-w-[70px]">01</div>
+                                <div>
+                                    <h5 class="font-black text-slate-900 mb-2 text-lg italic">住宅ローンの事前審査</h5>
+                                    <p class="text-sm text-slate-500 leading-relaxed text-left">土地の買い付け証明には、事前審査の承認回答が必須です。審査は土地探しの「免許証」であることを徹底してください。</p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex items-start group hover:border-indigo-200 transition-colors">
+                                <div class="bg-indigo-100 text-indigo-600 p-5 rounded-3xl mr-6 font-black italic text-lg shrink-0 text-center min-w-[70px]">02</div>
+                                <div>
+                                    <h5 class="font-black text-slate-900 mb-2 text-lg italic text-left text-left">手付金の準備（現金）</h5>
+                                    <p class="text-sm text-slate-500 leading-relaxed text-left">目安は土地価格の5%〜10%。フルローンをご希望でも、契約日当日に支払う「現金」が必要です。</p>
+                                </div>
+                            </div>
+                            <div class="bg-orange-50 p-8 rounded-[2.5rem] border border-orange-100 flex items-start shadow-inner">
+                                <div class="bg-orange-100 text-orange-600 p-5 rounded-3xl mr-6 font-black italic text-lg shrink-0 text-center min-w-[70px]">03</div>
+                                <div>
+                                    <h5 class="font-black text-orange-900 mb-2 text-lg italic text-left">本申込のタイミング</h5>
+                                    <p class="text-sm text-orange-800 leading-relaxed text-left">ローンの本申込は、土地契約だけでなく<b>「建物の請負契約」締結後</b>になります。順序の周知を徹底してください。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-indigo-900 text-white p-12 rounded-[3.5rem] flex flex-col shadow-2xl border-b-[16px] border-yellow-500 relative overflow-hidden">
+                            <h5 class="font-black text-2xl tracking-tighter italic mb-10 text-yellow-400">プロが語る「手付金」の真意</h5>
+                            <div class="space-y-8 relative z-10">
+                                <div class="bg-white/5 p-6 rounded-3xl border border-white/10">
+                                    <p class="text-xs font-black text-indigo-300 mb-3 uppercase tracking-widest text-left">● 契約の拘束力を高める「盾」</p>
+                                    <p class="text-base text-indigo-50 font-medium text-left">売主が他者に心変わりした場合、「預かった手付金の倍額（手付倍返し）」を支払わなければ解除できません。顧客の権利を守る仕組みです。</p>
+                                </div>
+                                <div class="bg-white/5 p-6 rounded-3xl border border-white/10">
+                                    <p class="text-xs font-black text-indigo-300 mb-3 uppercase tracking-widest text-left">● 土地を確実に「守る」ための金額</p>
+                                    <p class="text-base text-indigo-50 font-medium text-left">少額すぎると売主は容易に契約を破棄できてしまいます。お客様が土地を確実に手にするための「防衛策」として相応の金額を預けるのです。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Chapter 1 -->
+                <div id="tab-2" class="tab-content space-y-12">
+                    <div class="border-b border-slate-100 pb-6">
+                        <span class="inline-block px-4 py-1.5 bg-indigo-50 text-indigo-700 text-[10px] font-black rounded-full uppercase tracking-[0.3em] border border-indigo-100 mb-4">Chapter 1</span>
+                        <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter italic mt-2 uppercase">「待ち」は顧客を不幸にする</h2>
+                    </div>
+                    <div class="bg-red-50 border-l-[8px] border-red-500 p-12 rounded-[2.5rem] text-red-900 shadow-xl leading-relaxed">
+                        <h4 class="font-black mb-4 text-2xl italic uppercase tracking-tighter text-left">The Infinite Waiting Trap</h4>
+                        「もっと良い物件が出るかも」と待った結果、本当に出たとしても人間は<b>「待ったことの効果」を勘違い</b>し、「もっと待てばさらに良いものが出る」と無限ループに陥ります。結果、金利上昇や買付競争に負ける実損を招きます。
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div class="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100 text-left">
+                            <h5 class="font-black text-slate-900 mb-8 text-xs uppercase tracking-[0.3em] border-b pb-5 italic">SPEED OBJECTIVE</h5>
+                            <ul class="space-y-6 text-base text-slate-600 font-bold">
+                                <li class="flex items-center text-left"><span class="w-3 h-3 bg-green-500 rounded-full mr-4 shadow-lg"></span>顧客を「検討疲れ」から守る</li>
+                                <li class="flex items-center text-left"><span class="w-3 h-3 bg-green-500 rounded-full mr-4 shadow-lg text-left"></span>買付競争での勝率を最大化する</li>
+                                <li class="flex items-center text-left text-left"><span class="w-3 h-3 bg-green-500 rounded-full mr-4 shadow-lg text-left text-left"></span>熱量が高い状態で納得の決断を下す</li>
+                            </ul>
+                        </div>
+                        <div class="bg-slate-900 p-12 rounded-[3rem] text-slate-300 text-base leading-relaxed border-l-[12px] border-indigo-500">
+                            <h5 class="font-black text-indigo-400 mb-5 uppercase tracking-[0.2em] italic">Professional Point</h5>
+                            「急かしている」のではなく、「他人に奪われるリスクを最小化している」というプロとしての誠実さを自覚させてください。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Chapter 2 -->
+                <div id="tab-3" class="tab-content space-y-12">
+                    <div class="border-b border-slate-100 pb-6 text-left">
+                        <span class="inline-block px-4 py-1.5 bg-indigo-50 text-indigo-700 text-[10px] font-black rounded-full uppercase tracking-[0.3em] border border-indigo-100 mb-4">Chapter 2</span>
+                        <h2 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter italic mt-2 uppercase">優先順位の「しつこい」確認</h2>
+                    </div>
+                    <div class="bg-indigo-950 text-white p-16 rounded-[4rem] shadow-2xl relative border-t-[12px] border-indigo-700 text-left text-left">
+                        <h4 class="text-4xl font-black mb-8 italic tracking-tighter text-yellow-400">土地60点 ＋ 設計40点 ＝ 100点</h4>
+                        <p class="text-indigo-100 text-lg mb-12 font-medium max-w-xl leading-relaxed text-left text-left">
+                            土地単体で100点を求めさせないことが鉄則です。「土地の欠点は設計の工夫で解決できる」ことを初日に言い切り、心理的ハードルを下げます。
+                        </p>
+                        <div class="flex items-center space-x-6 text-2xl font-mono bg-white/5 p-8 rounded-3xl w-fit border border-white/10 shadow-inner">
+                            <span class="font-black text-white italic">土地(60)</span>
+                            <span class="text-indigo-400 font-bold">+</span>
+                            <span class="font-black text-white italic text-left">設計(40)</span>
+                            <span class="text-indigo-400 font-bold">=</span>
+                            <span class="text-yellow-400 font-black uppercase tracking-widest text-left">Perfect(100)</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div class="bg-white border-2 border-dashed border-slate-200 p-10 rounded-[3rem] space-y-5 text-slate-700 text-left text-left">
+                            <h5 class="font-black text-slate-900 mb-4 uppercase tracking-[0.2em] italic">Core Checks</h5>
+                            <div class="flex justify-between border-b border-slate-100 pb-4 font-bold text-left"><span>1. 夫婦間の優先順位のズレを解消</span></div>
+                            <div class="flex justify-between border-b border-slate-100 pb-4 font-bold text-left text-left text-left"><span>2. 絶対に譲れない必須条件の特定</span></div>
+                            <div class="flex justify-between border-b border-slate-100 pb-4 font-bold text-left text-left text-left text-left"><span>3. 予算の限界と支払いのリアルを把握</span></div>
+                        </div>
+                        <div class="bg-yellow-400 p-10 rounded-[3rem] text-2xl text-slate-900 italic font-black flex items-center justify-center text-center shadow-xl rotate-1">
+                            「聞き役」で終わるな。<br>「整理役」になれ。
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: Chapter 3 -->
+                <div id="tab-4" class="tab-content space-y-12">
+                    <div class="border-b border-slate-100 pb-6 text-left">
+                        <span class="inline-block px-4 py-1.5 bg-indigo-50 text-indigo-700 text-[10px] font-black rounded-full uppercase tracking-[0.3em] border border-indigo-100 mb-4">Chapter 3</span>
+                        <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter italic mt-2 uppercase">エリア・予算を動かす提案力</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div class="bg-white border border-slate-100 rounded-[3rem] p-10 shadow-sm text-left">
+                            <h4 class="font-black text-slate-900 mb-5 italic text-xl uppercase tracking-wider text-left">Stock Lifestyle</h4>
+                            <p class="text-base text-slate-500 leading-relaxed font-medium text-left">
+                                「毎日買い物」から「週末まとめ買い ＋ パントリー・専用冷凍庫活用」へ。暮らし方をご提案すれば、不便な土地も「最高のプライベート空間」に変わります。
+                            </p>
+                        </div>
+                        <div class="bg-white border border-slate-100 rounded-[3rem] p-10 shadow-sm border-b-[12px] border-green-500 text-left">
+                            <h4 class="font-black text-slate-900 mb-6 italic text-xl uppercase tracking-wider text-left">100万円あたりの支払額例</h4>
+                            <div class="space-y-4 font-mono text-base text-slate-600 bg-slate-50 p-6 rounded-3xl shadow-inner text-left">
+                                <div class="flex justify-between border-b border-slate-100 pb-3 text-left"><span>35年返済：</span><span class="font-black text-indigo-600 text-left">約2,763円 / 月</span></div>
+                                <div class="flex justify-between text-left text-left"><span>50年返済：</span><span class="font-black text-indigo-600 text-left text-left">約2,058円 / 月</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-900 text-white p-12 rounded-[3.5rem] text-lg leading-relaxed italic border-l-[12px] border-yellow-500 shadow-2xl text-left">
+                        「過去、エリアにこだわって待ち続け、結局条件の悪い土地で妥協せざるを得なかった方々を私は見てきました。あなたにはそうなって欲しくありません。今の60点の土地を、設計で100点にする方法を共に考えましょう。」
+                    </div>
+                </div>
+
+                <!-- Tab 5: Chapter 4 -->
+                <div id="tab-5" class="tab-content space-y-12">
+                    <div class="border-b border-slate-100 pb-6 text-left">
+                        <span class="inline-block px-4 py-1.5 bg-indigo-50 text-indigo-700 text-[10px] font-black rounded-full uppercase tracking-[0.3em] border border-indigo-100 mb-4">Chapter 4</span>
+                        <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter italic mt-2 uppercase">切り返しトークスクリプト集</h2>
+                    </div>
+                    <div class="bg-slate-900 text-white p-12 rounded-[3.5rem] shadow-2xl border-b-4 border-indigo-500 mb-12">
+                        <h4 class="text-2xl font-black flex items-center mb-4 text-yellow-400 italic text-left">Professional Magic Scripts (20)</h4>
+                        <p class="text-base text-slate-300 leading-relaxed italic font-medium text-left">お客様の不安に寄り添い、Gハウスの設計士と共に理想を再定義する対話の技術体系です。</p>
+                    </div>
+                    <div id="scripts-container" class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                        <!-- JS renders -->
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Branding Footer -->
+            <div class="bg-slate-900 p-12 flex flex-col md:flex-row items-center justify-between gap-8 text-[11px] text-slate-500 font-mono tracking-[0.3em] uppercase border-t border-slate-800 text-left">
+                <div class="flex items-center text-indigo-400 font-black italic text-left">
+                    G-HOUSE OFFICIAL STRATEGY 2025
+                </div>
+                <div class="font-bold text-white opacity-80 uppercase bg-white/5 px-8 py-3 rounded-2xl border border-white/10 shadow-inner">
+                    Knowledge Hub: Master Edition
+                </div>
+            </div>
+        </main>
+
+        <footer class="mt-12 text-center text-slate-400 text-[10px] tracking-[0.5em] uppercase italic font-black pb-16">
+            &copy; 2025 Housing Strategy & Design Method. Authorized Master Resource.
+        </footer>
+    </div>
+
+    <script>
+        const scripts = [
+            { q: "駅から徒歩10分以内が良い", a: "朝の通勤時間を大切にされたいということですね。ちなみに駅に地下駐輪場があれば自転車で5分ほどになりますが、それであれば許容範囲に入りそうですか？歩く10分よりも、実は自転車5分の方が朝のゆとりが生まれることもあるんですよ。" },
+            { q: "スーパーが近くにないと困る", a: "日々のお買い物、大変ですよね。ちなみに今は週に何度くらい行かれますか？もしパントリーや専用冷凍庫を完備して、週1回のまとめ買いで済むような暮らしをご提案できたら、浮いたお時間はどのように使いたいですか？" },
+            { q: "土地の形が悪い（変形地）", a: "形が複雑だと不安ですよね。ですがご安心ください。Gハウスの設計士ならこの形を逆手に取って外部からの視線をシャットアウトしたプライベートな中庭を作ることができます。カーテンを閉めて暮らすよりずっと開放的ですよ。" },
+            { q: "北向きの土地は暗そう", a: "明るさは重要ですよね。ただ南向きだと道路からの視線が気になってカーテンを閉めっぱなしにする方も多いんです。北向きでも設計士が吹き抜けを計算して配置すれば、安定した光が差し込む家になりますよ。" },
+            { q: "予算を絶対に1円も上げたくない", a: "将来の支払いは慎重になりますよね。ただ、月々数千円の差で、35年間「本当はこうしたかった」と後悔し続けるコストは意外と大きいんです。1日わずか160円ほどで一生のストレスを解消できるとしたら、いかがでしょうか？" },
+            { q: "もっと良い土地が出るまで待ちたい", a: "慎重に選びたいお気持ち、よく分かります。ただ、待っている間の家賃や金利上昇リスクを計算すると、実は数百万単位の損失が確定してしまうんです。その不確かな出会いを待つ価値が本当にあるか、一度一緒に計算しませんか？" },
+            { q: "庭でBBQができる広さが欲しい", a: "ご家族での団らん、素敵ですね。その数回のために広い土地を維持するより、Gハウスの設計士とプライバシーの守られた使い勝手の良いインナーテラスを作って、より気軽にお家時間を楽しまれるのはいかがでしょうか？" },
+            { q: "親に反対されそうな場所だ", a: "親御さんのアドバイスも気になりますよね。ただ、実際に住み、ローンを支払っていくのはお客様自身です。今の住宅性能を正しくお伝えすれば、きっと親御さんも応援してくださるはずですよ。" },
+            { q: "土地が狭すぎる気がする", a: "Gハウスの設計士は無駄な廊下を徹底的に排除した効率的な間取りを得意としています。実際に住んでみると、数字上の平米数以上の広さと開放感を感じていただけるはずですよ。" },
+            { q: "騒音が気になる", a: "Gハウスの家は超高気密・高断熱仕様で防音性能も非常に高いんです。窓を閉めれば図書館のような静けさが保てるので、利便性と静かさを両立できるとしたら、かなりお得な選択肢になりませんか？" },
+            { q: "資産価値が落ちない土地が良い", a: "将来の価値、大切ですね。ただ建物にお金をかけず土地ばかり優先すると住み心地が犠牲になります。住みにくくて手放すのと、最高の家で一生幸せに暮らすのと、どちらが豊かな人生ですか？" },
+            { q: "周りの家が古くて見た目が悪い", a: "家の中からあえて古い建物が見えないように窓を配置するのも設計の技術です。Gハウスの設計士が空だけを美しく切り取る窓を作れば、土地代を抑えつつ最高の景色を手に入れることができますよ。" },
+            { q: "道路が狭くて車の出し入れが不安", a: "運転のしやすさは気になりますよね。ただ道路が狭いということは「通り抜けの車が来ない」というメリットでもあるんです。お子様の安全や静かな住環境として考えると、見え方も変わりませんか？" },
+            { q: "学区を絶対に変えたくない", a: "学校に通う期間は人生で見れば10年前後。これから35年以上住むお家の『快適さ』を犠牲にしてまでその学区に固執する必要があるか、長い目線で一度話し合ってみませんか？" },
+            { q: "カーテンを開けて暮らしたい", a: "南向きの道路面だと結局カーテンを閉めがちなんです。Gハウスの設計士が中庭や高窓を活用し、視線を気にせずカーテンなしで過ごせる空間を作るとしたら、ワクワクしませんか？" },
+            { q: "人気のエリア以外は考えられない", a: "土地代が高い分、建物へのこだわりを諦めることにならないか心配です。例えば一駅隣にして土地代を安く抑え、その分で「帰りたくなる最高の家」にする方が、理想に近くありませんか？" },
+            { q: "日当たりは絶対に妥協できない", a: "太陽の光は元気の源ですよね。ただ直射日光は家具を傷めることもあります。Gハウスの設計士が『反射光』を美しく採り入れる設計をすれば、理想的な明るさを実現できるんですよ。" },
+            { q: "高低差がある土地は怖そう", a: "見た目のインパクトがありますよね。でも実は、高低差があるからこそ得られる『最高の眺望』があるんです。設計士ならその段差を活かした他にはない面白い空間をデザインできますよ。" },
+            { q: "駐車場は3台分確保したい", a: "年に数回の来客のために土地代を数百万上乗せするのはもったいない気もします。近隣のコインパーキング代と土地代の35年ローン、どちらが賢い支出か比較してみませんか？" },
+            { q: "墓地や病院が近くて嫌だ", a: "病院や墓地がある場所は、将来にわたって高い建物が建つ可能性が極めて低いんです。一生涯、この日当たりと静けさが保証されているという点では、非常に希少な立地だとも言えるんですよ。" }
+        ];
+
+        function initScripts() {
+            const container = document.getElementById('scripts-container');
+            scripts.forEach((s, idx) => {
+                const div = document.createElement('div');
+                div.className = 'bg-white border border-slate-100 p-8 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-500 group';
+                div.innerHTML = `
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-red-50 text-red-600 text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-tighter">Case ${idx + 1}</span>
+                        <p class="text-sm font-black text-slate-800">${s.q}</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-[1.8rem] border border-slate-100 group-hover:bg-indigo-50 transition-colors duration-500">
+                        <p class="text-sm font-medium text-slate-600 leading-relaxed italic">「${s.a}」</p>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function showTab(index) {
+            document.querySelectorAll('.tab-content').forEach((tab, i) => {
+                tab.classList.toggle('active', i === index);
+            });
+            document.querySelectorAll('.nav-btn').forEach((btn, i) => {
+                if (i == index) {
+                    btn.classList.add('active-tab-btn');
+                    btn.classList.remove('text-slate-400', 'hover:bg-slate-50');
+                } else {
+                    btn.classList.remove('active-tab-btn');
+                    btn.classList.add('text-slate-400', 'hover:bg-slate-50');
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.addEventListener('DOMContentLoaded', initScripts);
+    </script>
+</body>
+</html>

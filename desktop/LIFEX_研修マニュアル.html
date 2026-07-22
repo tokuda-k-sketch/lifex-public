@@ -1,0 +1,876 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIFEX 価格の壁突破 実践研修マニュアル</title>
+<style>
+:root {
+  --green:  #0D6647;
+  --red:    #9E2A0A;
+  --amber:  #7A5200;
+  --text:   #1C1C1C;
+  --sub:    #4A4A4A;
+  --muted:  #888888;
+  --border: #D8D8D8;
+  --light:  #F5F5F5;
+  --faint-green: #F4FBF7;
+  --faint-red:   #FDF5F3;
+  --faint-amber: #FDFAF3;
+  --fj: "Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI","Meiryo",system-ui,sans-serif;
+  --fn: "SF Mono","Consolas","Courier New",monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #fff;
+  color: var(--text);
+  font-family: var(--fj);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+/* ── LAYOUT ── */
+.pg {
+  padding: 80px 48px;
+  border-top: 1px solid var(--border);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.pg:first-child { border-top: none; padding-top: 96px; }
+
+/* ── TYPE ── */
+.ey {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+h1 { font-size: clamp(28px, 4vw, 52px); font-weight: 900; line-height: 1.15; text-wrap: balance; letter-spacing: -.02em; }
+h2 { font-size: clamp(22px, 3vw, 36px); font-weight: 800; line-height: 1.25; text-wrap: balance; letter-spacing: -.01em; }
+h3 { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+.num { font-family: var(--fn); font-variant-numeric: tabular-nums; }
+
+/* ── HERO ── */
+.hero { padding-bottom: 80px; }
+.hero h1 { margin-bottom: 20px; }
+.hero-sub { font-size: 17px; color: var(--sub); max-width: 560px; margin-bottom: 52px; line-height: 1.8; }
+.kpi-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.kpi { background: #fff; padding: 24px 20px; }
+.kpi-val { font-size: 26px; font-weight: 900; color: var(--green); font-family: var(--fn); }
+.kpi-lbl { font-size: 12px; color: var(--muted); margin-top: 5px; }
+
+/* ── SECTION HEADER ── */
+.sh { margin-bottom: 40px; }
+.sh-num { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .15em; color: var(--muted); margin-bottom: 10px; }
+.sh h2 { border-left: 4px solid var(--green); padding-left: 16px; }
+.sh h2.red-border { border-left-color: var(--red); }
+.sh h2.amber-border { border-left-color: var(--amber); }
+
+/* ── SCRIPT CARDS ── */
+.ck {
+  border-left: 3px solid var(--red);
+  padding: 16px 20px;
+  background: var(--faint-red);
+  margin-bottom: 4px;
+}
+.ck-hd { font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--red); text-transform: uppercase; margin-bottom: 8px; }
+.ck p { font-size: 15px; font-weight: 700; color: var(--text); }
+
+.ce {
+  border-left: 3px solid var(--green);
+  padding: 14px 18px;
+  background: var(--faint-green);
+}
+.ce-hd { font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--green); text-transform: uppercase; margin-bottom: 7px; }
+.ce p, .ce div { font-size: 13px; color: var(--sub); line-height: 1.7; }
+
+.cc {
+  border-left: 3px solid var(--amber);
+  padding: 14px 18px;
+  background: var(--faint-amber);
+}
+.cc-hd { font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--amber); margin-bottom: 7px; }
+
+/* ── SCENE BOX ── */
+.scene {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--amber);
+  padding: 14px 18px;
+  background: var(--faint-amber);
+  font-size: 14px;
+}
+.scene-lbl { font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--amber); margin-bottom: 6px; }
+
+/* ── DIALOGUE ── */
+.dl { border: 1px solid var(--border); }
+.dl-hd {
+  background: var(--light);
+  padding: 10px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+.dl-bd { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+.ln { display: grid; grid-template-columns: 72px 1fr; gap: 14px; align-items: start; }
+.sp {
+  font-size: 10px; font-weight: 700; padding: 3px 0;
+  text-align: center; border: 1px solid var(--border); border-radius: 3px;
+  margin-top: 3px; color: var(--sub); background: #fff;
+}
+.sp-s { border-color: #aaa; color: var(--text); }
+.sp-c { color: var(--muted); }
+.lt { font-size: 14px; line-height: 1.8; }
+.lt-s { color: var(--text); }
+.lt-c { color: var(--muted); font-style: italic; }
+
+/* ── COMPARE GRID ── */
+.cg { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.cc-card { background: #fff; }
+.cc-hd { padding: 12px 16px; font-size: 13px; font-weight: 700; border-bottom: 1px solid var(--border); }
+.cc-rival .cc-hd { color: var(--red); }
+.cc-lifex .cc-hd { color: var(--green); }
+.cc-bd { padding: 16px; }
+.cr { display: flex; justify-content: space-between; align-items: baseline; padding: 7px 0; border-bottom: 1px solid #F0F0F0; font-size: 13px; }
+.cr:last-child { border-bottom: none; }
+.cl { color: var(--muted); }
+.cv { font-weight: 700; font-family: var(--fn); }
+.cv-bad { color: var(--red); }
+.cv-good { color: var(--green); }
+.ct { padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); }
+.ct-lbl { font-size: 12px; color: var(--sub); font-weight: 600; }
+.ct-val { font-size: 20px; font-weight: 900; font-family: var(--fn); }
+.cc-rival .ct-val { color: var(--red); }
+.cc-lifex .ct-val { color: var(--green); }
+
+/* ── RESULT BAND ── */
+.rb {
+  border: 1px solid var(--green);
+  padding: 28px 32px;
+  text-align: center;
+}
+.rb-main { font-size: clamp(28px, 4vw, 48px); font-weight: 900; color: var(--green); font-family: var(--fn); }
+.rb-sub { font-size: 14px; color: var(--sub); margin-top: 8px; }
+.rb-note { font-size: 13px; color: var(--green); margin-top: 10px; font-weight: 600; }
+
+/* ── BELS ── */
+.bels {
+  display: flex; align-items: center; gap: 20px;
+  border: 1px solid var(--border); padding: 18px 24px;
+}
+.bels-stars { font-size: 24px; letter-spacing: 2px; color: var(--amber); }
+.bels-lbl { font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--muted); margin-bottom: 4px; }
+.bels-ttl { font-size: 16px; font-weight: 800; color: var(--amber); }
+.bels-sb { font-size: 13px; color: var(--sub); margin-top: 3px; }
+
+/* ── FLOW ── */
+.flow { display: flex; align-items: stretch; border: 1px solid var(--border); overflow: hidden; }
+.fs { flex: 1; padding: 14px 8px; text-align: center; font-size: 12px; font-weight: 600; color: var(--sub); border-right: 1px solid var(--border); position: relative; }
+.fs:last-child { border-right: none; }
+.fs-n { font-size: 10px; color: var(--muted); letter-spacing: .1em; margin-bottom: 4px; }
+.fs-v { font-family: var(--fn); font-size: 13px; font-weight: 700; margin-top: 4px; }
+.fs-v.bad { color: var(--red); }
+.fs-v.good { color: var(--green); }
+
+/* ── TABLE ── */
+.dt { width: 100%; border-collapse: collapse; font-size: 13px; }
+.dt th { border-bottom: 2px solid var(--text); padding: 9px 12px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: .08em; color: var(--sub); }
+.dt td { padding: 11px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.dt tr:last-child td { border-bottom: none; }
+.dt .hi { font-weight: 700; font-family: var(--fn); }
+.dt .bad { color: var(--red); }
+.dt .good { color: var(--green); }
+.dt .nr td { background: var(--light); font-size: 12px; color: var(--sub); }
+.dt tfoot td { border-top: 2px solid var(--text); border-bottom: none; font-weight: 700; padding-top: 14px; }
+
+/* ── GRAND TOTAL ── */
+.gt { border: 1px solid var(--green); }
+.gt-hd { border-bottom: 1px solid var(--green); padding: 16px 24px; font-weight: 800; font-size: 15px; color: var(--green); }
+.gt-rows { padding: 0 24px; }
+.gt-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--border); gap: 16px; }
+.gt-row:last-child { border-bottom: none; }
+.gt-lbl { font-size: 14px; }
+.gt-val { font-family: var(--fn); font-weight: 800; font-size: 18px; color: var(--green); }
+.gt-ft { background: var(--green); padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; }
+.gt-tl { font-size: 15px; font-weight: 700; color: #fff; }
+.gt-tv { font-size: 30px; font-weight: 900; color: #fff; font-family: var(--fn); }
+
+/* ── HEALTH CALLOUT ── */
+.health-callout {
+  border: 1.5px solid var(--green);
+  padding: 28px 32px;
+  text-align: center;
+}
+.health-callout-hd { font-size: 13px; font-weight: 700; color: var(--green); letter-spacing: .08em; margin-bottom: 14px; }
+.health-callout-body { font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.8; }
+.health-callout-sub { font-size: 13px; color: var(--sub); margin-top: 12px; line-height: 1.7; }
+
+/* ── NOTICE ── */
+.notice-box {
+  border: 1px solid #C9A84C;
+  border-left: 5px solid var(--amber);
+  padding: 36px 40px;
+  background: var(--faint-amber);
+}
+.notice-hd {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  color: var(--amber);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.notice-body p {
+  font-size: 15px;
+  line-height: 2;
+  color: var(--text);
+  margin-bottom: 18px;
+}
+.notice-body p:last-child {
+  margin-bottom: 0;
+  border-top: 1px solid #D8BF7A;
+  padding-top: 18px;
+  font-weight: 700;
+}
+
+/* ── UTIL ── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.stk { display: flex; flex-direction: column; gap: 14px; }
+.sp20 { height: 20px; }
+.sp32 { height: 32px; }
+.sp48 { height: 48px; }
+.divider { height: 1px; background: var(--border); }
+.tbl-w { overflow-x: auto; }
+strong { font-weight: 700; }
+
+@media(max-width: 660px) {
+  .pg { padding: 56px 24px; }
+  .cg, .g2, .g3, .kpi-row { grid-template-columns: 1fr; }
+  .flow { flex-direction: column; }
+  .fs { border-right: none; border-bottom: 1px solid var(--border); }
+  .fs:last-child { border-bottom: none; }
+}
+
+@media print {
+  html, body {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .pg {
+    max-width: 100%;
+    padding: 32px 28px;
+    page-break-after: auto;
+    break-after: auto;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .dl, .cg, .g2, .g3, .dt, .gt, .flow, .notice-box {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .tbl-w { overflow: visible; }
+}
+</style>
+
+<!-- ═══════════════════ HERO ═══ -->
+<section class="pg hero">
+  <div class="ey">LIFEX 加盟店様 社内研修資料</div>
+  <h1>「お財布の真実」で<br>価格の壁を越える</h1>
+  <p class="hero-sub">他社批判ゼロ、電卓ひとつ、客観ファクトだけで<br>「高い…」の不安を納得へ変える<br>ロープレ台本付き実践マニュアル</p>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-val num">¥5,369,700</div><div class="kpi-lbl">光熱費 35年トータル差額</div></div>
+    <div class="kpi"><div class="kpi-val num">¥1,584,800</div><div class="kpi-lbl">保険料 35年節約額</div></div>
+    <div class="kpi"><div class="kpi-val num">¥670,000</div><div class="kpi-lbl">防蟻コスト回避額（30年）</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════ NOTICE ═══ -->
+<section class="pg">
+  <div class="notice-box">
+    <div class="notice-hd">この研修を始める前に ── 大切なことを確認する</div>
+    <div class="notice-body">
+      <p>LIFEXが本当に提供しているものは、光熱費でも保険料でもありません。毎朝起きたとき空気がきれいで、家族が健康でいられる住環境。子どもが素足で遊んで育つ空間の質。豊かな暮らしが積み重なる30年。そういうものを<strong>心から信じてお客様にお伝えできる担当者こそが、最終的にお客様の信頼を得ます</strong>。その土台は、過去の研修を通じて皆さんがすでにお持ちのものと理解しています。</p>
+      <p>ただ、価格に関するご質問を受けたとき、客観的なファクトと数字でお答えできるかどうかで、商談の質が変わります。本研修はその補助線としてご活用ください。「この知識をお持ちの担当者」と「そうでない担当者」では、お客様への説得力に明確な差が生まれます。</p>
+      <p>この内容をそのままお客様にプレゼンいただく必要はありません。ただ、頭に入れた上で商談に臨んでいただくことで、自然と余裕が生まれます。その余裕と確信が、お客様には「信頼」として伝わります。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SEC 0 ═══ -->
+<section class="pg">
+  <div class="ey">プロセス概要</div>
+  <div class="sh">
+    <div class="sh-num">SECTION 0</div>
+    <h2 class="amber-border">初回面談〜セミナー本編</h2>
+  </div>
+  <div class="scene">
+    <div class="scene-lbl">このセクションは別資料に委ねます</div>
+    オープニング・アイスブレイク、ニーズヒアリング、ブランドストーリー、セミナー本編は過去の研修に準じてご対応ください。本マニュアルはセミナー終了直後の場面から始まります。
+  </div>
+  <div class="sp48"></div>
+  <div class="ck">
+    <div class="ck-hd">本マニュアルの活用タイミング</div>
+    <p>「ありがとうございました。ちょっと…金額が気になってて。」<br><span style="font-size:13px;font-weight:400;color:var(--sub);">このお言葉が出た瞬間が活用のタイミングです。電卓とカンペシートをご準備ください。</span></p>
+  </div>
+</section>
+
+<!-- ═══════════════════ SEC 1 ═══ -->
+<section class="pg">
+  <div class="ey">第1章 ／ 光熱費の真実</div>
+  <div class="sh">
+    <div class="sh-num">SECTION 1</div>
+    <h2>お家の「燃費」の真実<br><span style="font-size:.65em;font-weight:700;color:var(--sub);">月々の実質支出 ＝ ローン ＋ 光熱費</span></h2>
+  </div>
+
+  <div class="scene">
+    <div class="scene-lbl">場面：セミナー終了後、お客様がプランを眺めているとき</div>
+    「金額的には…もう少し安いところも見てみようかな」という雰囲気を察知した際が、このフレームワークのご活用タイミングです。電卓とカンペシートをご準備ください。
+  </div>
+  <div class="sp32"></div>
+
+  <div class="ck">
+    <div class="ck-hd">言うべき核心メッセージ</div>
+    <p>「ローンだけ比べると高く見える。でも本当の支出は、ローン＋毎月の光熱費の合計です。電卓で一緒に見てみましょうか。」</p>
+  </div>
+  <div class="sp32"></div>
+
+  <div class="dl">
+    <div class="dl-hd">SPIN対話スクリプト ── アパート自己開示 → 問題発見 → 解決提示</div>
+    <div class="dl-bd">
+      <div class="ln">
+        <span class="sp sp-s">営 業</span>
+        <span class="lt lt-s">私も賃貸に住んでたときに気になってたんですが、〇〇様のご家族、今の電気代って月だいたいどれくらいかかってますか？</span>
+      </div>
+      <div class="ln">
+        <span class="sp sp-c">お客様</span>
+        <span class="lt lt-c">うーん…だいたい1万5千〜2万くらいですかね。</span>
+      </div>
+      <div class="ln">
+        <span class="sp sp-s">営 業</span>
+        <span class="lt lt-s">じゃあ電卓で一緒に計算してみましょうか。（電卓を取り出し）月2万円として…35年間住んだとすると420ヶ月ですよね。<strong>2万 × 420 ＝ 840万円</strong>。電気代だけで840万円がお財布から出ていく計算になります。</span>
+      </div>
+      <div class="ln">
+        <span class="sp sp-c">お客様</span>
+        <span class="lt lt-c">えっ…そんなに。言われてみると確かに。</span>
+      </div>
+      <div class="ln">
+        <span class="sp sp-s">営 業</span>
+        <span class="lt lt-s">月々のローンの差だけ比べると、一般的なお家の方が安く見える。でも<strong>本当に比べなきゃいけないのは「ローン＋光熱費の合計」</strong>なんです。正直に並べてみますね。（カンペシートをテーブルに出す）</span>
+      </div>
+    </div>
+  </div>
+  <div class="sp32"></div>
+
+  <h3 style="margin-bottom:16px;">電卓で示す5ステップ</h3>
+  <div class="flow">
+    <div class="fs"><div class="fs-n">STEP 1</div>競合ローン確認<div class="fs-v bad">62,773円/月</div></div>
+    <div class="fs"><div class="fs-n">STEP 2</div>競合電気代確認<div class="fs-v bad">18,000円/月</div></div>
+    <div class="fs"><div class="fs-n">STEP 3</div>合計を電卓で<div class="fs-v bad">80,773円/月</div></div>
+    <div class="fs"><div class="fs-n">STEP 4</div>LIFEX合計も<div class="fs-v good">67,988円/月</div></div>
+    <div class="fs"><div class="fs-n">STEP 5</div>差額を示す<div class="fs-v good">△12,785円/月</div></div>
+  </div>
+  <div class="sp32"></div>
+
+  <div class="cg">
+    <div class="cc-card cc-rival">
+      <div class="cc-hd">断熱等級4の一般的なお家（例）</div>
+      <div class="cc-bd">
+        <div class="cr"><span class="cl">断熱等級</span><span class="cv cv-bad">等級4（UA値 0.87）</span></div>
+        <div class="cr"><span class="cl">太陽光発電</span><span class="cv cv-bad">なし</span></div>
+        <div class="cr"><span class="cl">借入総額</span><span class="cv cv-bad">2,025万円</span></div>
+        <div class="cr"><span class="cl">月々ローン</span><span class="cv cv-bad num">62,773円</span></div>
+        <div class="cr"><span class="cl">月々光熱費</span><span class="cv cv-bad num">18,000円</span></div>
+      </div>
+      <div class="ct"><span class="ct-lbl">月々の実質支出</span><span class="ct-val num">80,773円</span></div>
+    </div>
+    <div class="cc-card cc-lifex">
+      <div class="cc-hd">LIFEX仕様（断熱等級6・太陽光標準）</div>
+      <div class="cc-bd">
+        <div class="cr"><span class="cl">断熱等級</span><span class="cv cv-good">等級6（UA値 0.46以下）</span></div>
+        <div class="cr"><span class="cl">太陽光発電</span><span class="cv cv-good">大容量・標準装備</span></div>
+        <div class="cr"><span class="cl">借入総額</span><span class="cv cv-good">2,315万円</span></div>
+        <div class="cr"><span class="cl">月々ローン</span><span class="cv cv-good num">66,507円</span></div>
+        <div class="cr"><span class="cl">月々光熱費（実測）</span><span class="cv cv-good num">1,481円</span></div>
+      </div>
+      <div class="ct"><span class="ct-lbl">月々の実質支出</span><span class="ct-val num">67,988円</span></div>
+    </div>
+  </div>
+
+  <div class="ce" style="margin-top:1px;">
+    <div class="ce-hd">光熱費 月1,481円の根拠</div>
+    <p>枚方茄子作モデルハウス<strong>年間実測実績</strong>：買電 5,750.6 kWh/年・売電 9,103 kWh/年。大容量太陽光の売電収入が光熱費を実質相殺し、月平均1,481円の負担となっています。</p>
+  </div>
+  <div class="sp32"></div>
+
+  <h3 style="margin-bottom:16px;">35年・生涯トータルシミュレーション</h3>
+  <div class="cc">
+    <div class="cc-hd">お客様と一緒に電卓で確認する——5つのステップ</div>
+    <div class="tbl-w">
+      <table class="dt">
+        <thead><tr><th>項目</th><th>断熱等級4（一般）</th><th>LIFEX仕様</th><th>LIFEXの経済メリット</th></tr></thead>
+        <tbody>
+          <tr><td>購入コスト</td><td class="hi bad">2,025万円</td><td class="hi good">2,315万円</td><td style="color:var(--red);">△290万円（高い）</td></tr>
+          <tr><td>月々の実質支出</td><td class="hi bad">80,773円/月</td><td class="hi good">67,988円/月</td><td class="good">△12,785円/月 少ない</td></tr>
+          <tr><td>35年（420ヶ月）の光熱費差額</td><td colspan="2" style="text-align:center;color:var(--muted);font-size:12px;">12,785円 × 420ヶ月</td><td class="hi good">＋5,369,700円</td></tr>
+          <tr class="nr"><td colspan="4">購入価格は290万円高いが、35年で536万円以上手元に残る → 差し引き約246万円の純粋な経済的メリット</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="sp20"></div>
+
+  <div class="rb">
+    <div style="font-size:13px;color:var(--muted);margin-bottom:6px;">LIFEXの方がお財布から出ていくお金が少ない</div>
+    <div class="rb-main num">毎月 △12,785円</div>
+    <div class="rb-note">35年間で 約536万円 手元に残る現金が多くなります</div>
+    <div style="margin-top:12px;font-size:13px;color:var(--sub);">「購入価格290万円高い」はずのLIFEXの方が、住んだ後に手元に残るお金は <strong>約246万円多くなる</strong> という客観的事実</div>
+  </div>
+  <div class="sp32"></div>
+
+  <div class="bels">
+    <div class="bels-stars">★★★★★★</div>
+    <div>
+      <div class="bels-lbl">第三者評価機関による客観認定</div>
+      <div class="bels-ttl">BELS（建築物省エネルギー性能表示制度）最高評価：★6つ</div>
+      <div class="bels-sb">「この低燃費は自社の主張ではなく、国が定めた第三者評価機関のお墨付きです」と添えてご案内いただくと、客観性がより際立ちます。</div>
+    </div>
+  </div>
+  <div class="sp32"></div>
+
+  <div class="dl">
+    <div class="dl-hd">クロージング・クエスチョン（光熱費章）</div>
+    <div class="dl-bd">
+      <div class="ln"><span class="sp sp-s">営 業</span><span class="lt lt-s">〇〇様、数字だけ正直に見ると…月々1万2千円以上、余分な支出が発生しない方と、毎月出ていく方。どちらがご家族にとって賢明な選択でしょうか？</span></div>
+      <div class="ln"><span class="sp sp-c">お客様</span><span class="lt lt-c">…確かに、そう見ると全然違いますね。</span></div>
+      <div class="ln"><span class="sp sp-s">営 業</span><span class="lt lt-s">実は、光熱費以外にも「住んでからお財布に関係してくる」ポイントが2〜3つあります。火災保険、シロアリ、それから壁の中の話。全部電卓で一緒に確認してみましょうか。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SEC 2 ═══ -->
+<section class="pg">
+  <div class="ey">第2章 ／ 火災保険・地震保険の真実</div>
+  <div class="sh">
+    <div class="sh-num">SECTION 2</div>
+    <h2 class="red-border">火災保険・地震保険の真実<br><span style="font-size:.65em;font-weight:700;color:var(--sub);">同じ補償内容・保険料は建物性能で決まる</span></h2>
+  </div>
+
+  <div class="ck">
+    <div class="ck-hd">言うべき核心メッセージ</div>
+    <p>「火災保険の金額は、補償内容ではなく建物の性能で決まります。同じ補償内容で、35年間に158万円もの差が出ます。」</p>
+  </div>
+  <div class="sp32"></div>
+
+  <div class="dl">
+    <div class="dl-hd">保険料トークスクリプト</div>
+    <div class="dl-bd">
+      <div class="ln"><span class="sp sp-s">営 業</span><span class="lt lt-s">〇〇様、火災保険って定期的に更新が必要ですよね。2024年10月以降は最長5年ごとの更新になっているのですが、実はこの保険料、補償内容だけじゃなくて<strong>建物の強さや燃えにくさ</strong>で大きく変わるってご存知でしたか？</span></div>
+      <div class="ln"><span class="sp sp-c">お客様</span><span class="lt lt-c">えっ、保険って一律じゃないんですか？</span></div>
+      <div class="ln"><span class="sp sp-s">営 業</span><span class="lt lt-s">そうなんですよ。保険会社は「燃えにくく・地震に強い家は事故リスクが低い」という理由で、公式に保険料を割引いてくれるんです。下の数字は5年分の一括保険料です。同じ補償内容（建物評価3,500万・家財300万・風水災フルカバー）で比べてみると——</span></div>
+    </div>
+  </div>
+  <div class="sp32"></div>
+
+  <div class="tbl-w">
+    <table class="dt">
+      <thead><tr><th>比較項目</th><th>一般工務店（例）</th><th>LIFEX仕様</th></tr></thead>
+      <tbody>
+        <tr><td>構造区分</td><td class="bad">H構造（木造・一般）</td><td class="good">T構造（省令準耐火構造）</td></tr>
+        <tr><td>耐震の計算方法</td><td class="bad">壁量計算（基準値のみ）</td><td class="good">許容応力度計算・全棟耐震等級3</td></tr>
+        <tr><td>耐震基準強度</td><td class="bad hi">基準の 1.6倍</td><td class="good hi">基準の 2.7倍</td></tr>
+        <tr><td>5年一括払い保険料</td><td class="bad hi">428,040円</td><td class="good hi">201,640円</td></tr>
+        <tr><td>5年ごとの差額（更新のたびに）</td><td colspan="2" style="text-align:center;font-weight:700;color:var(--green);">△ 226,400円 の節約</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td><strong>35年間（7回更新）累計差額</strong></td><td colspan="2" style="text-align:center;font-size:18px;color:var(--green);" class="num">△ 1,584,800円（約158万円）</td></tr>
+      </tfoot>
+    </table>
+  </div>
+  <div class="sp20"></div>
+
+  <div class="ce">
+    <div class="ce-hd">科学的根拠・補足知識</div>
+    <div class="stk">
+      <p><strong>省令準耐火構造</strong>：国土交通省の定める基準を満たし、一般木造より「燃え広がりにくい」と保険会社が正式認定。「T構造」として割引の根拠になります。</p>
+      <p><strong>許容応力度計算（構造計算）</strong>：骨組みの1本1本を個別に計算して耐震性を証明する方法。「耐震等級3相当」（＝計算なし）とは全く別物です。</p>
+      <p><strong>保険会社のお墨付き</strong>：「うちの営業が言っているのではなく、保険会社がリスクが低いと判断して割引いてくれている」という第三者の客観評価としてご活用いただくと、説得力が高まります。</p>
+    </div>
+  </div>
+  <div class="sp32"></div>
+
+  <div class="dl">
+    <div class="dl-hd">クロージング・クエスチョン（保険章）</div>
+    <div class="dl-bd">
+      <div class="ln"><span class="sp sp-s">営 業</span><span class="lt lt-s">補償内容は100%同じで、建物の性能の違いだけで35年間に158万円の差。これは保険会社が正式に認定している数字です。〇〇様はどちらが、賢いお金の使い方だと感じますか？</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SEC 3 ═══ -->
+<section class="pg">
+  <div class="ey">第3章 ／ 防蟻の真実</div>
+  <div class="sh">
+    <div class="sh-num">SECTION 3</div>
+    <h2 class="amber-border">シロアリ防蟻の真実<br><span style="font-size:.65em;font-weight:700;color:var(--sub);">「一生タダ」か「一生アパートの管理費」か</span></h2>
+  </div>
+
+  <div class="ck">
+    <div class="ck-hd">言うべき核心メッセージ</div>
+    <p>「農薬系は5年で揮発・分解し、5年ごとの再施工が一生義務になります。30年で60〜75万円。LIFEXのホウ酸塩は無機物なので分解しない＝一生0円です。」</p>
+  </div>
+  <div class="sp32"></div>
+
+  <div class="dl">
+    <div class="dl-hd">防蟻トークスクリプト</div>
+    <div class="dl-bd">
+      <div class="ln"><span class="sp sp-s">営 業</span><span class="lt lt-s">シロアリって怖いですよね。実は一般的な農薬系の防蟻処理って、5年で揮発・分解してしまうんです。知ってましたか？</span></div>
+      <div class="ln"><span class="sp sp-c">お客様</span><span class="lt lt-c">え、5年で効かなくなるんですか？</span></div>
+      <div class="ln"><span class="sp sp-s">営 業</span><span class="lt lt-s">そうなんです。だから5年ごとに業者を呼んで再施工しなきゃいけない。まるでアパートの管理費みたいに、ずっと出続ける。30年間で5〜6回、累計60〜75万円ほどです。</span></div>
+      <div class="ln"><span class="sp sp-c">お客様</span><span class="lt lt-c">それは知らなかった…</span></div>
+      <div class="ln"><span class="sp sp-s">営 業</span><span class="lt lt-s">LIFEXは<strong>ホウ酸塩（エコボロン）</strong>という天然鉱物系を標準採用しています。ホウ酸は無機物なので、農薬と違って揮発も分解もしない。水に濡れない限り効果は半永久的に持続。新築時の1回だけで、住んでからの再処理費用は一生0円です。しかも赤ちゃんがいるご家庭でも安全です。</span></div>
+    </div>
+  </div>
+  <div class="sp32"></div>
+
+  <div class="cg">
+    <div class="cc-card cc-rival">
+      <div class="cc-hd">農薬系防蟻（一般的）</div>
+      <div class="cc-bd">
+        <div class="cr"><span class="cl">成分</span><span class="cv cv-bad">有機農薬系</span></div>
+        <div class="cr"><span class="cl">有効期間</span><span class="cv cv-bad">5年で揮発・分解</span></div>
+        <div class="cr"><span class="cl">再施工</span><span class="cv cv-bad">5年ごとに必要（義務）</span></div>
+        <div class="cr"><span class="cl">安全性</span><span class="cv cv-bad">農薬系（要換気）</span></div>
+        <div class="cr"><span class="cl">30年累計コスト</span><span class="cv cv-bad">約60〜75万円</span></div>
+      </div>
+    </div>
+    <div class="cc-card cc-lifex">
+      <div class="cc-hd">ホウ酸塩エコボロン（LIFEX標準）</div>
+      <div class="cc-bd">
+        <div class="cr"><span class="cl">成分</span><span class="cv cv-good">天然鉱物系（無機物）</span></div>
+        <div class="cr"><span class="cl">有効期間</span><span class="cv cv-good">半永久的（分解しない）</span></div>
+        <div class="cr"><span class="cl">再施工</span><span class="cv cv-good">一生不要</span></div>
+        <div class="cr"><span class="cl">安全性</span><span class="cv cv-good">赤ちゃんにも安全</span></div>
+        <div class="cr"><span class="cl">30年累計コスト</span><span class="cv cv-good">0円（新築時1回のみ）</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ce" style="margin-top:1px;">
+    <div class="ce-hd">科学的根拠</div>
+    <p>ホウ酸（ホウ酸塩）は元素周期表に載る「無機物」のため、有機農薬のように微生物に分解されたり、熱や紫外線で揮発することがありません。人体には低濃度で安全（目薬にも使用）ですが、シロアリの消化器官には致死的に作用します。欧米ではシロアリ防蟻の主流として長年使用されています。</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ SEC 4 ═══ -->
+<section class="pg">
+  <div class="ey">第4章 ／ 壁体内結露と家族の健康</div>
+  <div class="sh">
+    <div class="sh-num">SECTION 4</div>
+    <h2 class="red-border">壁体内結露と、家族が毎日<br>呼吸する空気の話</h2>
+  </div>
+
+  <div class="ck">
+    <div class="ck-hd">言うべき核心メッセージ</div>
+    <p>「断熱等級4の一般的なお家では、壁の中で結露が起き、構造が腐ります。気づいたときには修繕では間に合わない——建て替えしか選択肢がありません。でも今日お伝えしたいのは、お金の話だけではありません。毎日お子様が呼吸する空気の話です。」</p>
+  </div>
+  <div class="sp32"></div>
+
+  <div class="dl">
+    <div class="dl-hd">トークスクリプト ── 学校区の話から入る</div>
+    <div class="dl-bd">
+      <div class="ln">
+        <span class="sp sp-s">営 業</span>
+        <span class="lt lt-s">〇〇様、お子様の学校区って調べましたか？</span>
+      </div>
+      <div class="ln">
+        <span class="sp sp-c">お客様</span>
+        <span class="lt lt-c">はい、やっぱり大事ですから。いろいろ調べました。</span>
+      </div>
+      <div class="ln">
+        <span class="sp sp-s">営 業</span>
+        <span class="lt lt-s">そうですよね。毎日通う学校の環境が子どもの成長に影響する、という感覚は自然ですよね。実は——毎日呼吸するお家の空気も、同じくらい大切な環境なんです。</span>
+      </div>
+      <div class="ln">
+        <span class="sp sp-c">お客様</span>
+        <span class="lt lt-c">…家の空気、ですか？</span>
+      </div>
+      <div class="ln">
+        <span class="sp sp-s">営 業</span>
+        <span class="lt lt-s">冬に窓ガラスで結露しますよね？あの現象が、断熱等級4の一般的なお家では<strong>「壁の中」</strong>で起きているんです。室温23℃・湿度50%の水蒸気が、壁体内の冷たい部分（5℃前後）に触れると、物理現象として100%結露します。防湿気密シートが入っていないと、これは避けられない自然の法則です。</span>
+      </div>
+      <div class="ln">
+        <span class="sp sp-c">お客様</span>
+        <span class="lt lt-c">壁の中で？気づかないじゃないですか…</span>
+      </div>
+      <div class="ln">
+        <span class="sp sp-s">営 業</span>
+        <span class="lt lt-s">そうなんです。壁の中でカビが繁殖しても、最初は見えない。でも室内の空気には、その胞子が漂い始めます。毎日、お子様が呼吸する空気に。子どもの免疫はまだ発達段階ですから、慢性的なカビへの暴露が気管支や呼吸器に影響することがあります。</span>
+      </div>
+      <div class="ln">
+        <span class="sp sp-c">お客様</span>
+        <span class="lt lt-c">…それは知らなかったです。そんな話、聞いたことなかった。</span>
+      </div>
+      <div class="ln">
+        <span class="sp sp-s">営 業</span>
+        <span class="lt lt-s">やがて柱が腐朽し、15〜20年後に床が沈んだり異臭がして初めて気づく。でもそのときには——修繕では手が届かず、<strong>建て替えしか選択肢がありません</strong>。お金の問題である前に、その間ずっとお子様が過ごしてきた環境の問題でもあるんです。</span>
+      </div>
+      <div class="ln">
+        <span class="sp sp-s">営 業</span>
+        <span class="lt lt-s">LIFEXは<strong>全棟に防湿気密シートを完全施工</strong>しています。湿気を最初から壁の外に出さない。カビの発生源を根元からゼロにして、常に新鮮な空気が循環するよう計画換気も設計する。これは数字では表しにくい、でもお子様の健康に直結する話です。</span>
+      </div>
+    </div>
+  </div>
+  <div class="sp32"></div>
+
+  <div class="health-callout">
+    <div class="health-callout-hd">お金に換算できない価値</div>
+    <p class="health-callout-body">学校区を調べるように、<br>毎日呼吸する空気環境を選ぶことができる。</p>
+    <p class="health-callout-sub">LIFEXへの投資は、光熱費・保険料・防蟻コストへの投資であると同時に、<br>お子様が毎日を過ごす<strong>空気の質への投資</strong>でもあります。<br>家族の健康を守る環境を整えることは、どんな費用対効果にも換算できない選択です。</p>
+  </div>
+  <div class="sp32"></div>
+
+  <h3 style="margin-bottom:16px;">結露リスクのタイムライン</h3>
+  <div class="tbl-w">
+    <table class="dt">
+      <thead><tr><th>経過年数</th><th>断熱等級4（防湿シートなし）</th><th>LIFEX仕様（防湿気密シート完全施工）</th></tr></thead>
+      <tbody>
+        <tr><td>新築〜</td><td class="bad">壁体内に結露リスクが潜在 ／ カビ胞子が室内空気に漂い始める可能性</td><td class="good">防湿気密シートで湿気をシャットアウト ／ 計画換気で新鮮な空気を循環</td></tr>
+        <tr><td>5〜10年目</td><td class="bad">腐朽菌が繁殖・断熱材の劣化が進行</td><td class="good">構造・断熱性能を新築時の状態で維持</td></tr>
+        <tr><td>10〜15年目</td><td class="bad">シロアリ発生。省エネ性能が著しく劣化</td><td class="good">健康的な室内空気環境が持続</td></tr>
+        <tr><td>15〜20年目</td><td class="bad hi">床が沈む・異臭 → 修繕では不可能<br><strong>建て替えしか選択肢なし（数百万〜数千万円・自己負担）</strong></td><td class="good hi">建て替えリスク：ゼロ</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="ce" style="margin-top:1px;">
+    <div class="ce-hd">結露の物理原理（科学的根拠）</div>
+    <p>空気中の水蒸気は「露点温度」以下に冷やされると液体に変わります（結露）。室温23℃・湿度50%の場合、露点は約12℃。断熱材の外側（壁体内）は冬場5℃前後になるため、防湿層がなければ必ず結露が発生します。これは物理法則であり、施工技術の問題ではありません。</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ CLOSING ═══ -->
+<section class="pg">
+  <div class="ey">まとめ ／ 生涯トータルコスト</div>
+  <div class="sh">
+    <div class="sh-num">CLOSING</div>
+    <h2>電卓で正直に並べると<br><span style="font-size:.65em;font-weight:700;color:var(--sub);">「本当の安さ」が見えてくる</span></h2>
+  </div>
+
+  <div class="gt">
+    <div class="gt-hd">LIFEXの性能差で発生しないコスト ── 35年間の支出削減効果（試算）</div>
+    <div class="gt-rows">
+      <div class="gt-row"><span class="gt-lbl">① 光熱費差額（月12,785円 × 420ヶ月）</span><span class="gt-val num">5,369,700円</span></div>
+      <div class="gt-row"><span class="gt-lbl">② 火災・地震保険料の節約（35年間）</span><span class="gt-val num">1,584,800円</span></div>
+      <div class="gt-row"><span class="gt-lbl">③ 防蟻・シロアリ再処理コスト回避（30年間）</span><span class="gt-val num">約 670,000円</span></div>
+      <div class="gt-row"><span class="gt-lbl">④ 建て替えリスク回避（壁体内結露）</span><span class="gt-val num">数百万〜数千万円</span></div>
+    </div>
+    <div class="gt-ft">
+      <span class="gt-tl">生涯トータル経済メリット（試算）<br><span style="font-size:11px;font-weight:400;opacity:.8;">※建て替えリスク回避・健康価値は数値化せず別途</span></span>
+      <span class="gt-tv num">約 762万円以上</span>
+    </div>
+  </div>
+  <div class="sp32"></div>
+
+  <div class="ck">
+    <div class="ck-hd">最後の核心メッセージ</div>
+    <p>「LIFEXは高い家を売っているのではありません。住んでから財布が痛まない家を、そして毎日お子様が健康に過ごせる空気環境を、ご提案しています。購入価格の差は290万円。でも住んでから約960万円以上、お財布に残る差があります。そして何より、お子様が毎日呼吸する空気は——数字には換算できません。どちらがご家族にとって本当の選択でしょうか？」</p>
+  </div>
+  <div class="sp32"></div>
+
+  <div class="dl">
+    <div class="dl-hd">最終クロージング・クエスチョン</div>
+    <div class="dl-bd">
+      <div class="ln"><span class="sp sp-s">営 業</span><span class="lt lt-s">〇〇様、ここまで全部、電卓で一緒に確認してきた数字ですよね。私たちの言葉じゃなくて、国の基準データと、保険会社の割引データと、実際の光熱費の実測データです。この数字を見て、〇〇様ご家族にとって本当に「お財布を守り、お子様の健康を守ってくれるお家」はどちらだと感じますか？</span></div>
+      <div class="ln"><span class="sp sp-s" style="color:var(--green);">営 業</span><span class="lt lt-s" style="color:var(--green);">（沈黙。お客様の言葉をお待ちください。）</span></div>
+    </div>
+  </div>
+  <div class="sp32"></div>
+
+  <div class="ce">
+    <div class="ce-hd">次のステップ</div>
+    <p>間取り提案・資金計画・詳細打ち合わせについては、別途プロセスに移行してください（本マニュアルの対象外）。</p>
+  </div>
+</section>
+
+<!-- ═══════════════════ REFERENCE ═══ -->
+<section class="pg">
+  <div class="ey">数値根拠・出典一覧</div>
+  <div class="sh">
+    <div class="sh-num">REFERENCE</div>
+    <h2>この資料の数字の根拠</h2>
+  </div>
+
+  <p style="font-size:14px;color:var(--sub);margin-bottom:48px;line-height:1.9;">本資料で使用した数値の根拠・前提条件の一覧です。「その数字はどこから？」と聞かれたときに即答できるよう、商談前に確認しておいてください。各数値はすべて試算・概算であり、実際の費用・料率は個別条件により異なります。</p>
+
+  <h3 style="margin-bottom:16px;padding-left:12px;border-left:3px solid var(--border);">共通の前提条件</h3>
+  <div class="tbl-w" style="margin-bottom:56px;">
+    <table class="dt">
+      <thead><tr><th>項目</th><th>前提条件・内容</th></tr></thead>
+      <tbody>
+        <tr><td>想定家族構成</td><td>4人家族（夫婦＋子ども2名）</td></tr>
+        <tr><td>想定延床面積</td><td>約30〜40坪（100〜130㎡）の木造2階建て</td></tr>
+        <tr><td>想定所在地</td><td>大阪府（省エネ6地域）を基準に試算</td></tr>
+        <tr><td>ローン試算期間</td><td>35年返済（420ヶ月）</td></tr>
+        <tr><td>データ基準時点</td><td>2024年度の公開データ・料率を参照</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-bottom:16px;padding-left:12px;border-left:3px solid var(--border);">第1章｜光熱費の根拠</h3>
+  <div class="tbl-w" style="margin-bottom:56px;">
+    <table class="dt">
+      <thead><tr><th style="width:22%;">数値</th><th style="width:34%;">根拠・参照元</th><th>前提・補足</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>LIFEX月々光熱費<br><strong class="num">1,481円/月</strong></td>
+          <td>枚方茄子作モデルハウス<br>2023年度通年実測値</td>
+          <td>買電5,750.6kWh／売電9,103kWh（年間）。大容量太陽光搭載による売電収入が買電費用を実質相殺した実績値。第三者計測。</td>
+        </tr>
+        <tr>
+          <td>一般的なお家の電気代<br><strong class="num">18,000円/月</strong></td>
+          <td>総務省「家計調査」／資源エネルギー庁「電力需給関連データ」</td>
+          <td>4人家族・月600kWh前後の使用量を想定。関西電力「従量電灯A」2024年4月以降の料金単価（第3段階）を参考に試算。</td>
+        </tr>
+        <tr>
+          <td>一般的なお家 月々ローン<br><strong class="num">62,773円/月</strong></td>
+          <td>住宅金融支援機構 フラット35<br>2024年度実行金利参考</td>
+          <td>借入総額2,025万円・35年返済・年利1.6%固定で試算。実際の金利は金融機関・審査・実行時期により異なる。</td>
+        </tr>
+        <tr>
+          <td>LIFEX 月々ローン<br><strong class="num">66,507円/月</strong></td>
+          <td>フラット35S（ZEH基準適合）<br>金利優遇適用で試算</td>
+          <td>借入総額2,315万円・35年返済・ZEH仕様による金利優遇（年利1.1%前後）を適用して試算。優遇内容は申請時の基準による。</td>
+        </tr>
+        <tr>
+          <td>断熱等級4 UA値<br><strong>0.87</strong></td>
+          <td>国土交通省「住宅の省エネルギー基準」<br>6地域・等級4の基準値</td>
+          <td>2025年以降の新築義務化前の旧来基準における上限値。</td>
+        </tr>
+        <tr>
+          <td>断熱等級6 UA値<br><strong>0.46以下</strong></td>
+          <td>国土交通省「住宅の省エネルギー基準」<br>6地域・等級6の基準値</td>
+          <td>LIFEX仕様は同基準を満たしBELS★6（最高評価）認定取得済み。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-bottom:16px;padding-left:12px;border-left:3px solid var(--border);">第2章｜火災保険・地震保険の根拠</h3>
+  <div class="tbl-w" style="margin-bottom:56px;">
+    <table class="dt">
+      <thead><tr><th style="width:22%;">数値</th><th style="width:34%;">根拠・参照元</th><th>前提・補足</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>H構造（一般木造）<br>5年保険料<br><strong class="num">428,040円</strong></td>
+          <td rowspan="2">国内大手損害保険会社<br>2024年度見積もりをもとに試算<br>（損害保険料率算出機構の参照料率に基づく）</td>
+          <td>所在地：大阪府 / 建物評価額3,500万円 / 家財300万円 / 補償：火災・落雷・爆発・風水災・盗難・破損等フルカバー / 地震保険付帯（評価額の50%）/ 保険期間：5年（2024年10月改定後の最長期間）</td>
+        </tr>
+        <tr>
+          <td>T構造（省令準耐火）<br>5年保険料<br><strong class="num">201,640円</strong></td>
+          <td>上記と同補償内容。省令準耐火構造認定取得・耐震等級3割引（10%）を適用した場合の試算。</td>
+        </tr>
+        <tr>
+          <td>35年累計差額<br><strong class="num">1,584,800円</strong></td>
+          <td>5年差額226,400円 × 7回更新</td>
+          <td>2024年10月の火災保険期間短縮（最長5年）以降の更新サイクルを前提。保険料は更新時に改定される場合がある。</td>
+        </tr>
+        <tr>
+          <td>T構造（省令準耐火）<br>の保険料区分根拠</td>
+          <td>損害保険料率算出機構<br>「火災保険・地震保険の概況」／<br>国土交通省告示第1653号（平成12年）</td>
+          <td>同告示の定める省令準耐火構造基準に適合した場合、保険会社がT構造として分類し割引率を適用する。</td>
+        </tr>
+        <tr>
+          <td>耐震等級3<br>（基準の2.7倍の強度）</td>
+          <td>許容応力度計算（第三者機関審査済み）<br>建築基準法施行令第82条</td>
+          <td>壁量計算のみの「耐震等級3相当」とは異なり、構造材1本1本を個別計算して証明。保険会社の割引審査でも区別される。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-bottom:16px;padding-left:12px;border-left:3px solid var(--border);">第3章｜防蟻の根拠</h3>
+  <div class="tbl-w" style="margin-bottom:56px;">
+    <table class="dt">
+      <thead><tr><th style="width:22%;">数値・主張</th><th style="width:34%;">根拠・参照元</th><th>前提・補足</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>農薬系防蟻の有効期間<br><strong>5年</strong></td>
+          <td>公益社団法人 日本しろあり対策協会<br>「防蟻処理に関する保証基準」</td>
+          <td>同協会加盟業者が発行する保証書の標準保証期間として5年が明記されている。期間経過後は効果が保証されない。</td>
+        </tr>
+        <tr>
+          <td>5年ごと再施工費用<br><strong class="num">10〜12.5万円/回</strong></td>
+          <td>日本しろあり対策協会<br>公開施工料金目安・複数業者見積参考</td>
+          <td>延床100〜130㎡・床下処理（土壌処理＋木部処理）の場合の標準的な料金帯。施工範囲・業者により変動する。</td>
+        </tr>
+        <tr>
+          <td>30年累計<br><strong class="num">60〜75万円</strong></td>
+          <td>上記単価 × 6回（5年ごと・新築後30年間）で計算</td>
+          <td>新築時の初回施工費用は含まず。物価上昇・料金改定は考慮していない。</td>
+        </tr>
+        <tr>
+          <td>ホウ酸塩（エコボロン）<br>の効果・半永久持続</td>
+          <td>日本ボレイト株式会社<br>「エコボロンPRO」製品仕様書・施工マニュアル</td>
+          <td>無機物（ホウ酸塩）のため微生物分解・熱・紫外線による揮発がない。水に直接触れない壁体内への施工が効果継続の前提。欧米では1950年代から使用実績あり。</td>
+        </tr>
+        <tr>
+          <td>ホウ酸の安全性根拠</td>
+          <td>日本薬局方（眼科用途への収載）／<br>コンタクトレンズ保存液・目薬への使用実績</td>
+          <td>低濃度では人体・哺乳類への毒性が極めて低い。シロアリ・ゴキブリなど昆虫類の消化器には致死的に作用する選択的毒性を持つ。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-bottom:16px;padding-left:12px;border-left:3px solid var(--border);">第4章｜壁体内結露・健康の根拠</h3>
+  <div class="tbl-w" style="margin-bottom:48px;">
+    <table class="dt">
+      <thead><tr><th style="width:22%;">数値・主張</th><th style="width:34%;">根拠・参照元</th><th>前提・補足</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>室温23℃・湿度50%での<br>露点温度 <strong>約12℃</strong></td>
+          <td>Magnus公式<br>（気象学・建築物理学の標準計算式）</td>
+          <td>壁体内温度が露点（12℃）以下に下がる冬期条件では、物理法則として防湿層がない限り必ず結露が発生する。</td>
+        </tr>
+        <tr>
+          <td>断熱等級4での<br>壁体内結露リスク</td>
+          <td>建築研究所「木造住宅の防露設計の手引き」<br>／ 国土交通省 住宅の品質確保促進法</td>
+          <td>防湿気密シートの施工基準は2003年の法改正で明文化。等級4仕様の在来工法では防湿層が省略されているケースが存在する。</td>
+        </tr>
+        <tr>
+          <td>カビ・結露と<br>健康被害の関連</td>
+          <td>厚生労働省「建築物環境衛生管理ガイドライン」<br>／ WHO「Housing and Health Guidelines（2018）」</td>
+          <td>室内カビへの慢性的な暴露と気管支炎・喘息・アレルギー性鼻炎のリスク増加の関連をWHOが公式に認定している。</td>
+        </tr>
+        <tr>
+          <td>腐朽が構造材に達した場合<br>修繕不可・建て替え必要</td>
+          <td>公益財団法人 住宅リフォーム・紛争処理支援センター<br>「住宅相談統計年報」</td>
+          <td>柱・梁など構造材の腐朽が進行した場合、部分補修では耐震性能を回復できず、建て替えを勧告するケースが多いと報告されている。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cc">
+    <div class="cc-hd">免責事項・使用上の注意</div>
+    <div class="stk" style="font-size:13px;color:var(--sub);line-height:2;">
+      <p>・本資料の数値はすべて試算・概算です。実際の光熱費・保険料・施工費用は、立地・家族構成・金融機関・保険会社・施工内容により異なります。</p>
+      <p>・保険料の試算は2024年度の料率・割引率をもとにしています。保険会社の審査・料率改定により変動しますので、お客様への提示前に必ず最新の見積もりを取得してください。</p>
+      <p>・ローン計算は参考金利による試算であり、実際の借入金利・返済額は各金融機関の審査結果によります。</p>
+      <p>・光熱費のLIFEX実測データは特定モデルハウスの年間実績です。入居後の実際の光熱費は生活スタイル・季節・電力料金の改定により変動します。</p>
+      <p>・本資料は社内研修用の参考資料です。お客様への数値提示にあたっては、必ず最新データで再確認の上、ご自身の言葉で説明してください。</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

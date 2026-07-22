@@ -1,0 +1,72 @@
+
+<h2 class="sr-only">福岡市7区の人口を視覚的な大きさで比較したカード一覧</h2>
+<div style="padding: 1rem 0; display: flex; flex-direction: column; gap: 10px;">
+</div>
+
+<script>
+const wards = [
+  { name: '西区',   pop: 298054 },
+  { name: '博多区', pop: 234112 },
+  { name: '早良区', pop: 218436 },
+  { name: '中央区', pop: 198210 },
+  { name: '東区',   pop: 178903 },
+  { name: '南区',   pop: 170425 },
+  { name: '城南区', pop: 136210 },
+];
+
+const max = wards[0].pop;
+const container = document.querySelector('div');
+
+wards.forEach((w, i) => {
+  const pct = Math.round(w.pop / max * 100);
+  const manPop = (w.pop / 10000).toFixed(1);
+  const sharePct = (w.pop / wards.reduce((s,x)=>s+x.pop,0) * 100).toFixed(1);
+  const isTop = i === 0;
+
+  const row = document.createElement('div');
+  row.style.cssText = `
+    background: var(--color-background-primary);
+    border: ${isTop ? '2px solid #185FA5' : '0.5px solid var(--color-border-tertiary)'};
+    border-radius: var(--border-radius-lg);
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  `;
+
+  const header = document.createElement('div');
+  header.style.cssText = 'display: flex; align-items: baseline; justify-content: space-between;';
+
+  const nameEl = document.createElement('span');
+  nameEl.style.cssText = `font-size: 15px; font-weight: 500; color: ${isTop ? '#185FA5' : 'var(--color-text-primary)'};`;
+  nameEl.textContent = w.name;
+
+  const popEl = document.createElement('span');
+  popEl.style.cssText = 'font-size: 14px; color: var(--color-text-secondary);';
+  popEl.textContent = `${manPop}万人（${sharePct}%）`;
+
+  header.appendChild(nameEl);
+  header.appendChild(popEl);
+
+  const track = document.createElement('div');
+  track.style.cssText = 'background: var(--color-background-secondary); border-radius: 4px; height: 10px; width: 100%;';
+
+  const fill = document.createElement('div');
+  fill.style.cssText = `
+    height: 10px;
+    border-radius: 4px;
+    width: ${pct}%;
+    background: ${isTop ? '#185FA5' : '#85B7EB'};
+  `;
+
+  track.appendChild(fill);
+  row.appendChild(header);
+  row.appendChild(track);
+  container.appendChild(row);
+});
+
+const note = document.createElement('p');
+note.style.cssText = 'font-size: 12px; color: var(--color-text-tertiary); text-align: right; margin: 4px 0 0;';
+note.textContent = '出典: 福岡市推計人口（2024年）';
+container.appendChild(note);
+</script>

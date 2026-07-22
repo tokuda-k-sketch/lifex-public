@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>施工管理スタッフ募集 - 合同会社TEXIA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: #b0b0b0;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .flyer {
+    width: 794px;
+    min-height: 1123px;
+    background: #ffffff;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #111827;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    padding: 50px 50px 46px;
+    background: linear-gradient(140deg, #e9e5dc 0%, #ede9e1 25%, #f4f1ec 55%, #faf8f5 100%);
+    overflow: hidden;
+    border-bottom: 1px solid #ddd9d0;
+  }
+
+  .hero-inner { position: relative; z-index: 2; max-width: 400px; }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #a05e08;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 30px;
+    height: 1.5px;
+    background: #a05e08;
+    flex-shrink: 0;
+  }
+
+  .hero-headline {
+    font-size: 52px;
+    font-weight: 900;
+    color: #0d1b3e;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+
+  .hero-headline em {
+    font-style: normal;
+    color: #b8690a;
+    position: relative;
+  }
+
+  .hero-rule {
+    width: 40px;
+    height: 3px;
+    background: #b8690a;
+    margin-bottom: 20px;
+    border-radius: 2px;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    color: #6b7280;
+    line-height: 1.9;
+  }
+
+  .hero-badge {
+    position: absolute;
+    left: 390px;
+    bottom: 46px;
+    z-index: 4;
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    background: #0d1b3e;
+    border: 2.5px solid #b8690a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hb-top  { font-size: 11px; font-weight: 500; color: #b8690a; letter-spacing:.06em; }
+  .hb-main { font-size: 23px; font-weight: 900; color: #fff; line-height: 1.1; }
+  .hb-bot  { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+
+  .hero-canvas {
+    position: absolute;
+    right: 0; top: 0;
+    height: 100%;
+    z-index: 1;
+  }
+
+  /* ── BENEFITS ── */
+  .benefits {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-top: 3.5px solid #b8690a;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .benefit-card {
+    padding: 22px 22px 20px;
+    border-right: 1px solid #e5e7eb;
+    position: relative;
+  }
+
+  .benefit-card:last-child { border-right: none; }
+
+  .ben-num {
+    font-size: 13px;
+    font-weight: 700;
+    color: #b8690a;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+    opacity: 0.7;
+  }
+
+  .benefit-icon-box {
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    background: #fef3c7;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .benefit-title { font-size: 15px; font-weight: 700; color: #0d1b3e; margin-bottom: 6px; }
+  .benefit-desc  { font-size: 13px; color: #6b7280; line-height: 1.75; }
+
+  /* ── BODY ── */
+  .body { padding: 26px 40px 0; }
+
+  .section-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 36px;
+    margin-bottom: 22px;
+  }
+
+  .sec-label {
+    font-size: 12px; font-weight: 700;
+    color: #a05e08;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #ede9e1;
+    display: flex; align-items: center; gap: 7px;
+  }
+
+  .sec-label::before {
+    content: '';
+    width: 3px; height: 11px;
+    background: #b8690a;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .info-list { list-style: none; font-size: 15px; color: #374151; }
+
+  .info-list li {
+    padding: 5px 0;
+    display: flex; align-items: flex-start; gap: 8px;
+    line-height: 1.55;
+  }
+
+  .info-list li::before { content:'—'; color:#b8690a; font-size:11px; flex-shrink:0; margin-top:1px; }
+
+  .req-items { display: flex; flex-direction: column; gap: 7px; }
+
+  .req-item { display: flex; align-items: center; gap: 8px; font-size: 14.5px; color: #374151; }
+
+  .req-check {
+    width: 18px; height: 18px;
+    background: #0d1b3e;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 9.5px; flex-shrink: 0;
+  }
+
+  .area-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .area-tag {
+    background: #faf8f5;
+    color: #374151; font-size: 14px; font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid #ddd9d0;
+  }
+
+  .work-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+
+  .w-badge {
+    background: #0d1b3e; color: white;
+    font-size: 13px; font-weight: 700;
+    padding: 6px 15px;
+    border-radius: 20px;
+  }
+
+  .w-badge.gold { background: #b8690a; }
+  .work-note { font-size: 14px; color: #9ca3af; margin-top: 9px; }
+
+  /* ── INCOME ── */
+  .income-block {
+    background: #faf8f5;
+    border: 1px solid #ddd9d0;
+    border-left: 4px solid #b8690a;
+    border-radius: 10px;
+    padding: 20px 22px;
+    margin-bottom: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .income-watermark {
+    position: absolute;
+    right: 16px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 90px; font-weight: 900;
+    color: rgba(184,105,10,0.06);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    pointer-events: none;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .income-label {
+    font-size: 12px; font-weight: 700;
+    color: #a05e08;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 7px;
+    position: relative; z-index: 1;
+  }
+
+  .income-label::before {
+    content: '';
+    width: 3px; height: 11px;
+    background: #b8690a; border-radius: 2px;
+  }
+
+  .income-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px; margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+
+  .income-item {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 9px 10px;
+    text-align: center;
+  }
+
+  .i-lbl  { font-size: 12px; color: #9ca3af; margin-bottom: 4px; }
+  .i-val  { font-size: 18px; font-weight: 700; color: #0d1b3e; }
+  .i-unit { font-size: 12px; color: #9ca3af; font-weight: 400; }
+
+  .income-result {
+    display: flex; align-items: center;
+    background: #fff;
+    border: 1px solid rgba(184,105,10,0.3);
+    border-radius: 6px;
+    padding: 14px 18px;
+    position: relative; z-index: 1;
+    gap: 16px;
+  }
+
+  .ir-label { font-size: 14px; color: #9ca3af; white-space: nowrap; }
+
+  .ir-val {
+    font-size: 38px; font-weight: 900;
+    color: #b8690a;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    flex: 1;
+  }
+
+  .ir-val span { font-size: 18px; font-weight: 700; }
+  .ir-note { font-size: 12px; color: #9ca3af; white-space: nowrap; }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 18px 40px 24px;
+    border-top: 1px solid #e5e7eb;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 4px;
+  }
+
+  .co-name { font-size: 21px; font-weight: 900; color: #0d1b3e; margin-bottom: 4px; letter-spacing: .03em; }
+  .co-info { font-size: 13px; color: #9ca3af; line-height: 1.9; }
+
+  @media print {
+    body { background:none; padding:0; }
+    .flyer { width:100%; min-height:auto; }
+  }
+</style>
+</head>
+<body>
+<div class="flyer">
+
+  <!-- HERO -->
+  <div class="hero">
+    <canvas id="heroCvs" class="hero-canvas" width="420" height="320"></canvas>
+
+    <div class="hero-inner">
+      <div class="hero-eyebrow">施工管理スタッフ募集</div>
+      <div class="hero-headline">
+        現場を離れても、<br>
+        あなたの<em>経験</em>は<br>
+        求められている。
+      </div>
+      <div class="hero-rule"></div>
+      <div class="hero-sub">
+        営業なし・出社なし・副業OK。<br>
+        リフォーム現場管理の経験を活かせる仕事です。
+      </div>
+    </div>
+
+    <div class="hero-badge">
+      <div class="hb-top">最高</div>
+      <div class="hb-main">月収<br>100万</div>
+      <div class="hb-bot">円 可能</div>
+    </div>
+  </div>
+
+  <!-- BENEFITS -->
+  <div class="benefits">
+    <div class="benefit-card">
+      <div class="ben-num">01</div>
+      <div class="benefit-icon-box">🏗️</div>
+      <div class="benefit-title">案件は会社が取る</div>
+      <div class="benefit-desc">不動産・大手取引先から安定供給。<br>営業は一切不要。</div>
+    </div>
+    <div class="benefit-card">
+      <div class="ben-num">02</div>
+      <div class="benefit-icon-box">🏠</div>
+      <div class="benefit-title">働き方は自由</div>
+      <div class="benefit-desc">出社義務なし・副業OK<br>仕事があるときだけ動く</div>
+    </div>
+    <div class="benefit-card">
+      <div class="ben-num">03</div>
+      <div class="benefit-icon-box">💴</div>
+      <div class="benefit-title">スキルが収入に直結</div>
+      <div class="benefit-desc">粗利の20%が報酬に<br>交通費は全額支給</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+    <div class="section-grid" style="margin-top:26px;">
+
+      <div>
+        <div class="sec-label">仕事内容</div>
+        <ul class="info-list">
+          <li>現場調査・材料発注・職人手配</li>
+          <li>工程管理・品質管理</li>
+          <li>見積作成（原価）</li>
+          <li style="color:#9ca3af;font-size:11.5px;">対象：マンション・戸建てのリフォーム</li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="sec-label">必須条件</div>
+        <div class="req-items">
+          <div class="req-item"><div class="req-check">✓</div>リフォーム現場管理経験（積算含む）</div>
+          <div class="req-item"><div class="req-check">✓</div>普通自動車免許（自家用車持ち込み）</div>
+          <div class="req-item"><div class="req-check">✓</div>PC保有</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-label">働き方</div>
+        <div class="work-badges">
+          <span class="w-badge">業務委託</span>
+          <span class="w-badge gold">出社義務なし</span>
+          <span class="w-badge">副業OK</span>
+        </div>
+        <div class="work-note">仕事があるときだけ稼働。</div>
+      </div>
+
+      <div>
+        <div class="sec-label">募集エリア</div>
+        <div class="area-tags">
+          <span class="area-tag">兵庫県東部</span>
+          <span class="area-tag">大阪府</span>
+          <span class="area-tag">京都府南部</span>
+          <span class="area-tag">奈良県西部</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sec-label" style="margin-bottom:14px;">報酬・収入モデル</div>
+    <div class="income-block">
+      <div class="income-watermark">686</div>
+      <div class="income-label">収入シミュレーション（実績ベース）</div>
+      <div class="income-grid">
+        <div class="income-item">
+          <div class="i-lbl">年間見積件数</div>
+          <div class="i-val">120<span class="i-unit">件</span></div>
+        </div>
+        <div class="income-item">
+          <div class="i-lbl">年間受注件数</div>
+          <div class="i-val">90<span class="i-unit">件</span></div>
+        </div>
+        <div class="income-item">
+          <div class="i-lbl">年間売上</div>
+          <div class="i-val">3.6<span class="i-unit">億円</span></div>
+        </div>
+        <div class="income-item">
+          <div class="i-lbl">平均粗利率</div>
+          <div class="i-val">28.6<span class="i-unit">%</span></div>
+        </div>
+      </div>
+      <div class="income-result">
+        <div class="ir-label">粗利20%報酬で</div>
+        <div class="ir-val">686<span>万円</span></div>
+        <div class="ir-note">予想年収 ＋交通費全額支給</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>
+      <div class="co-name">合同会社 TEXIA</div>
+      <div class="co-info">
+        〒663-8183　兵庫県西宮市里中町1丁目7番9エルム 里中102<br>
+        代表　西橋 正輝
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  var cvs = document.getElementById('heroCvs');
+  if(!cvs) return;
+  var heroEl = cvs.parentElement;
+  var cvH = heroEl.offsetHeight || 290;
+  var CW = 420;
+  cvs.width  = CW;
+  cvs.height = cvH;
+  var ctx = cvs.getContext('2d');
+
+  // ── 等角投影ヘルパー ──
+  var sc = 24, c30 = 0.866, s30 = 0.5;
+  var W = 6, D = 3, RH = 4.2; // 部屋サイズ（幅・奥行・高さ）
+
+  // 右上が主役になるよう大きく配置
+  var ox = CW * 0.56;
+  var oy = cvH * 0.38;
+
+  function pt(x, y, z) {
+    return { x: ox + (x - y)*c30*sc, y: oy - z*sc + (x + y)*s30*sc };
+  }
+
+  function poly(pts, fill, stroke, sw) {
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    for(var i=1;i<pts.length;i++) ctx.lineTo(pts[i].x, pts[i].y);
+    ctx.closePath();
+    if(fill)   { ctx.fillStyle=fill;    ctx.fill(); }
+    if(stroke) { ctx.strokeStyle=stroke; ctx.lineWidth=sw||1; ctx.stroke(); }
+  }
+
+  function ln(a, b, col, w) {
+    ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+    ctx.strokeStyle=col; ctx.lineWidth=w||1; ctx.stroke();
+  }
+
+  function interp(a, b, t) { return { x: a.x+(b.x-a.x)*t, y: a.y+(b.y-a.y)*t }; }
+
+  // ── 背景：扇形アーク（右上コーナー起点） ──
+  var acx = CW, acy = 0;
+  var mainR = cvH * 0.97;
+
+  // 外側補助アーク
+  [mainR+50, mainR+95, mainR+140].forEach(function(r, i) {
+    ctx.beginPath();
+    ctx.arc(acx, acy, r, Math.PI*0.5, Math.PI);
+    ctx.strokeStyle = 'rgba(184,105,10,' + [0.09,0.06,0.04][i] + ')';
+    ctx.lineWidth = 0.7; ctx.stroke();
+  });
+
+  // 扇形の薄いウォーム塗り
+  ctx.save();
+  ctx.beginPath(); ctx.moveTo(acx, acy);
+  ctx.arc(acx, acy, mainR, Math.PI*0.5, Math.PI);
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(190,175,152,0.14)'; ctx.fill();
+  ctx.restore();
+
+  // 内側アーク
+  [0.72, 0.52, 0.36, 0.22].forEach(function(t, i) {
+    ctx.beginPath();
+    ctx.arc(acx, acy, mainR*t, Math.PI*0.5, Math.PI);
+    ctx.strokeStyle = 'rgba(184,105,10,' + [0.08,0.06,0.05,0.04][i] + ')';
+    ctx.lineWidth = 0.5; ctx.stroke();
+  });
+
+  // ────────────────────────────────────
+  //  リフォーム中の部屋（等角図）
+  //  可視面：床・左壁(x=0)・奥壁(y=D)
+  // ────────────────────────────────────
+
+  // 1. 床（木フローリング）
+  poly([pt(0,0,0),pt(W,0,0),pt(W,D,0),pt(0,D,0)], '#c8a87a', '#8a6030', 0.9);
+  // フローリング板目
+  for(var fp=0.6; fp<W; fp+=0.6) {
+    ln(pt(fp,0,0.01), pt(fp,D,0.01), 'rgba(100,65,20,0.18)', 0.5);
+  }
+
+  // 床の一部：旧タイル（前右コーナー x=3..6, y=0..1.5）
+  for(var tx=3; tx<W; tx+=0.6) {
+    for(var ty=0; ty<1.6; ty+=0.6) {
+      var iso = (Math.floor((tx-3)/0.6)+Math.floor(ty/0.6)) % 2 === 0;
+      poly([pt(tx,ty,0.02),pt(Math.min(tx+0.6,W),ty,0.02),
+            pt(Math.min(tx+0.6,W),Math.min(ty+0.6,1.6),0.02),pt(tx,Math.min(ty+0.6,1.6),0.02)],
+           iso ? '#c0b8ae' : '#d8d2c8', 'rgba(100,88,72,0.22)', 0.35);
+    }
+  }
+
+  // 2. 左壁（x=0）: 下＝古い仕上げ、上＝塗装済み
+  poly([pt(0,0,0),pt(0,D,0),pt(0,D,1.3),pt(0,0,1.3)], '#c8b898', '#7a5828', 0.8);  // 古い
+  poly([pt(0,0,1.3),pt(0,D,1.3),pt(0,D,RH),pt(0,0,RH)], '#eeeae2', '#7a5828', 0.9); // 新塗装
+  ln(pt(0,0,1.3), pt(0,D,1.3), '#9a7040', 1.5); // 境目
+
+  // 左壁に窓（x=0, y=1.0..2.8, z=1.5..3.1）
+  var wy1=1.0, wy2=2.8, wz1=1.5, wz2=3.1;
+  poly([pt(0,wy1,wz1),pt(0,wy2,wz1),pt(0,wy2,wz2),pt(0,wy1,wz2)],
+       'rgba(130,185,215,0.38)', '#6a4820', 1.2);
+  ln(pt(0,wy1,(wz1+wz2)/2), pt(0,wy2,(wz1+wz2)/2), '#6a4820', 0.9);
+  ln(pt(0,(wy1+wy2)/2,wz1), pt(0,(wy1+wy2)/2,wz2), '#6a4820', 0.9);
+
+  // 3. 奥壁（y=D）: 左半分＝新塗装済み、右半分＝作業中（古い）
+  poly([pt(0,D,0),pt(3,D,0),pt(3,D,RH),pt(0,D,RH)], '#e4dcd0', '#7a5828', 0.9); // 完成
+  poly([pt(3,D,0),pt(W,D,0),pt(W,D,RH),pt(3,D,RH)], '#cec0a4', '#7a5828', 0.9); // 旧
+  ln(pt(3,D,0), pt(3,D,RH), '#b8690a', 1.3); // 塗り分け境目
+
+  // 幅木
+  poly([pt(0,D,0),pt(W,D,0),pt(W,D,0.28),pt(0,D,0.28)], '#b0a080', '#7a5828', 0.7);
+  poly([pt(0,0,0),pt(0,D,0),pt(0,D,0.28),pt(0,0,0.28)], '#b0a080', '#7a5828', 0.7);
+
+  // 4. 奥壁 右半分にペンキローラー跡（塗装中）
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(pt(3,D,0).x,pt(3,D,0).y); ctx.lineTo(pt(W,D,0).x,pt(W,D,0).y);
+  ctx.lineTo(pt(W,D,RH).x,pt(W,D,RH).y); ctx.lineTo(pt(3,D,RH).x,pt(3,D,RH).y);
+  ctx.closePath(); ctx.clip();
+  [3.8, 4.8].forEach(function(rx) {
+    var bot = pt(rx,D,0.4), top = pt(rx,D,RH-0.4);
+    var g = ctx.createLinearGradient(top.x,top.y,bot.x,bot.y);
+    g.addColorStop(0, 'rgba(228,220,208,0.95)');
+    g.addColorStop(1, 'rgba(228,220,208,0.55)');
+    ctx.beginPath(); ctx.moveTo(bot.x,bot.y); ctx.lineTo(top.x,top.y);
+    ctx.strokeStyle = g; ctx.lineWidth = 11; ctx.stroke();
+    ctx.strokeStyle = 'rgba(185,175,155,0.35)'; ctx.lineWidth = 0.6; ctx.stroke();
+  });
+  ctx.restore();
+
+  // 5. 脚立（A型・自立）
+  var lx=2.0, lsp=0.85, ly=D-0.5, lhR=2.8;
+  var ll = pt(lx-lsp, ly, 0), lr = pt(lx+lsp, ly, 0), ltop = pt(lx, ly-0.18, lhR);
+  ln(ll, ltop, '#8b5030', 2.5); ln(lr, ltop, '#8b5030', 2.5);
+  for(var rg=1;rg<=4;rg++) {
+    var t=rg/5;
+    ln(interp(ll,ltop,t), interp(lr,ltop,t), '#8b5030', 1.6);
+  }
+  // 開き止めバー
+  ln(interp(ll,ltop,0.5), interp(lr,ltop,0.5), '#6a3818', 2.0);
+  // 脚立の後ろ脚（A型）
+  var lbl = pt(lx-lsp*0.4, ly+0.5, 0), lbr = pt(lx+lsp*0.4, ly+0.5, 0);
+  ln(lbl, ltop, 'rgba(100,55,25,0.55)', 1.5);
+  ln(lbr, ltop, 'rgba(100,55,25,0.55)', 1.5);
+  ln(lbl, lbr, 'rgba(100,55,25,0.4)', 1.1);
+
+  // 6. ペンキバケツ（ゴールド＝ブランドカラー）
+  var pb = pt(lx-lsp-0.35, ly-0.2, 0);
+  // バケツ胴
+  ctx.fillStyle = '#b8690a';
+  ctx.beginPath(); ctx.ellipse(pb.x, pb.y, 8, 4.5, 0, 0, Math.PI*2); ctx.fill();
+  ctx.fillStyle = '#d47a0c';
+  ctx.beginPath(); ctx.ellipse(pb.x, pb.y-6, 8, 4.5, 0, 0, Math.PI*2); ctx.fill();
+  ctx.strokeStyle='#7a3a05'; ctx.lineWidth=0.9;
+  ctx.beginPath(); ctx.ellipse(pb.x,pb.y-6,8,4.5,0,0,Math.PI*2); ctx.stroke();
+  ln({x:pb.x-8,y:pb.y-1},{x:pb.x-8,y:pb.y-6},'#7a3a05',1);
+  ln({x:pb.x+8,y:pb.y-1},{x:pb.x+8,y:pb.y-6},'#7a3a05',1);
+  // 持ち手
+  ctx.beginPath(); ctx.moveTo(pb.x-6,pb.y-7); ctx.quadraticCurveTo(pb.x,pb.y-14,pb.x+6,pb.y-7);
+  ctx.strokeStyle='#5a2a00'; ctx.lineWidth=1.4; ctx.stroke();
+
+  // 7. ペンキローラー（壁の前に置かれている）
+  var ro = pt(W-0.5, D-0.12, 0.1);
+  // ハンドル
+  ln(ro, {x:ro.x+3,y:ro.y-18}, '#9a6030', 1.8);
+  // ローラーヘッド
+  ctx.fillStyle = '#b8690a';
+  ctx.beginPath(); ctx.ellipse(ro.x+3, ro.y-18, 4, 2.5, -0.3, 0, Math.PI*2); ctx.fill();
+
+  // 8. 床の廃材（タイル残材）
+  poly([pt(4.2,0.4,0.03),pt(5.0,0.4,0.03),pt(5.0,0.9,0.03),pt(4.2,0.9,0.03)],
+       '#d0c8b6','rgba(100,82,55,0.3)',0.5);
+  poly([pt(4.5,0.8,0.03),pt(5.2,0.8,0.03),pt(5.2,1.2,0.03),pt(4.5,1.2,0.03)],
+       '#c8c0ae','rgba(100,82,55,0.3)',0.5);
+
+  // ── メインリング（ゴールド） ──
+  ctx.beginPath();
+  ctx.arc(acx, acy, mainR, Math.PI*0.5, Math.PI);
+  ctx.strokeStyle = '#b8690a'; ctx.lineWidth = 2.8; ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(acx, acy, mainR-9, Math.PI*0.5, Math.PI);
+  ctx.strokeStyle = 'rgba(184,105,10,0.3)'; ctx.lineWidth = 0.8; ctx.stroke();
+
+  // コーナー装飾点
+  ctx.fillStyle='rgba(184,105,10,0.85)';
+  ctx.beginPath(); ctx.arc(acx-10,acy+10,3,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='rgba(184,105,10,0.45)';
+  ctx.beginPath(); ctx.arc(acx-26,acy+26,2,0,Math.PI*2); ctx.fill();
+
+  // 左フェード
+  var gL = ctx.createLinearGradient(0,0,CW*0.30,0);
+  gL.addColorStop(0,'rgba(240,237,230,1)');
+  gL.addColorStop(0.7,'rgba(240,237,230,0.04)');
+  gL.addColorStop(1,'rgba(240,237,230,0)');
+  ctx.fillStyle=gL; ctx.fillRect(0,0,CW*0.38,cvH);
+
+})();
+</script>
+</body>
+</html>

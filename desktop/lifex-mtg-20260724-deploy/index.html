@@ -1,0 +1,373 @@
+<title>LIFEX月2棟目標達成MTG 7/24｜架電率UP 投影資料</title>
+<style>
+  :root{
+    --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+    --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+    --p1:#1e4e79; --p2:#2e7d6e; --p3:#b05c1f;
+    --p1bg:#e8eff6; --p2bg:#e7f2ef; --p3bg:#f9efe4;
+  }
+  *{box-sizing:border-box}
+  body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif; color:var(--ink);
+    background:#e9edf1; margin:0; line-height:1.6; font-feature-settings:"palt"}
+  .wrap{width:min(1100px,96vw); margin:26px auto; overflow:visible}
+  .draft{width:1100px; margin:0 auto 14px; font-size:12px; color:#8a5a00; background:#fdf3dd; border:1px solid #ecd9a8;
+    border-radius:4px; padding:6px 14px; font-weight:700}
+  .sl{width:1100px; height:619px; background:#fff; border-radius:8px; box-shadow:0 2px 16px rgba(20,40,60,.09);
+    padding:38px 54px 30px; display:flex; flex-direction:column; position:relative; overflow:hidden; transform-origin:top left; margin:0 auto 22px}
+  .top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+  .chip{font-size:11.5px; font-weight:700; letter-spacing:.1em; padding:3px 12px; border-radius:99px}
+  .c0{background:#eceff2;color:var(--sub)} .c1{background:var(--p1bg);color:var(--p1)}
+  .c2{background:var(--p2bg);color:var(--p2)} .c3{background:var(--p3bg);color:var(--p3)}
+  .pg{margin-left:auto; font-size:12px; color:#b6c0ca; font-variant-numeric:tabular-nums}
+  .tt{font-size:31px; font-weight:800; line-height:1.35; margin:2px 0 4px; text-wrap:balance}
+  .ms{font-size:14.5px; color:var(--sub); margin:0 0 14px}
+  .body{flex:1; display:flex; gap:26px; min-height:0; overflow:hidden}
+  .foot{display:flex; gap:14px; margin-top:12px; align-items:center}
+  .asof{font-size:11px; color:var(--sub); background:var(--panel); border:1px solid var(--line); border-radius:3px; padding:2px 10px}
+  .real{font-size:11px; color:var(--p2); background:var(--p2bg); border:1px solid #bfdcd5; border-radius:3px; padding:2px 10px; font-weight:700}
+  .todo{font-size:11px; color:#8a5a00; background:#fdf3dd; border:1px solid #ecd9a8; border-radius:3px; padding:2px 10px; font-weight:700}
+  .live{font-size:11.5px; color:#fff; background:var(--navy); border-radius:3px; padding:3px 12px; font-weight:700; letter-spacing:.06em}
+  .num{font-variant-numeric:tabular-nums}
+  .col{display:flex; flex-direction:column; gap:12px; min-width:0}
+  .grow{flex:1}
+  .box{border:1px solid var(--line); border-radius:6px; padding:14px 18px; background:#fff}
+  .box h4{margin:0 0 4px; font-size:14.5px; color:var(--navy)}
+  .box p{margin:0; font-size:13px; color:var(--sub)}
+  .stat{background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:12px 16px; text-align:center}
+  .stat b{display:block; font-size:12.5px; color:var(--sub); font-weight:600}
+  .stat span{font-size:30px; font-weight:800; color:var(--navy)}
+  .stat small{font-size:13px; font-weight:700; color:var(--navy)}
+  table{border-collapse:collapse; width:100%; font-size:13.5px}
+  th{background:var(--panel); font-size:12px; color:var(--sub); font-weight:600; text-align:left}
+  th,td{border:1px solid var(--line); padding:8px 12px}
+  .fun{display:flex; align-items:center; justify-content:center; gap:6px; flex:1}
+  .fc{border-radius:50%; color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:800; flex-shrink:0}
+  .fc i{font-style:normal; font-size:24px}
+  .fc em{font-style:normal; font-size:11px; font-weight:600; opacity:.9}
+  .fa{color:#b6c0ca; font-size:20px; font-weight:700; display:flex; flex-direction:column; align-items:center}
+  .fa b{font-size:12px; color:var(--navy); white-space:nowrap}
+  .say{background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:10px; padding:14px 18px; font-size:14px}
+  .say b{color:var(--navy)}
+  .say .lbl{display:block; font-size:11px; letter-spacing:.1em; color:var(--navy); font-weight:700; margin-bottom:4px}
+  .big{font-size:20px; font-weight:800; line-height:1.6}
+  .big em{font-style:normal; color:var(--navy)}
+  .cap{font-size:12px; color:var(--sub)}
+  .cb{display:flex; align-items:center; gap:14px; font-size:15px; font-weight:700}
+  .cb .nm{width:190px; text-align:right; flex-shrink:0}
+  .cb .bar{height:34px; background:var(--navy); border-radius:3px}
+  .cb .ct{color:var(--navy); font-size:20px}
+  .flow{display:flex; align-items:stretch; gap:8px}
+  .flow .st{flex:1; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:10px 12px; font-size:12.5px; text-align:center}
+  .flow .st b{display:block; font-size:13.5px; color:var(--navy); margin-bottom:2px}
+  .flow .ar{align-self:center; color:#b6c0ca; font-weight:700; flex-shrink:0}
+  .ag{border:1px solid var(--line); border-radius:6px; padding:12px 18px; display:flex; align-items:center; gap:16px; background:#fff}
+  .ag .no{font-size:13px; font-weight:800; color:var(--sub); flex-shrink:0; width:26px}
+  .ag b{font-size:15.5px}
+  .ag .cap{margin-left:auto; text-align:right; flex-shrink:0}
+  @media print{body{background:#fff}.draft{display:none}.sl{box-shadow:none; border:1px solid var(--line); page-break-after:always}}
+</style>
+
+<div class="wrap">
+
+<!-- 1 表紙 -->
+<div class="sl" style="justify-content:center; text-align:center">
+  <div style="font-size:13px; letter-spacing:.22em; color:var(--sub); font-weight:700">2026.7.24　LIFEX 月2棟目標達成MTG</div>
+  <div style="font-size:52px; font-weight:800; margin:26px 0 10px; letter-spacing:.02em">つながらなければ、始まらない。</div>
+  <div style="font-size:18px; color:var(--navy); font-weight:700">架電率UP——接続率が高い3社のやり方を、ご本人から伺い、全店に横展開する。</div>
+  <div style="margin-top:42px; font-size:15px; color:var(--ink)">
+    <b>大建建設様</b><span style="color:var(--sub); margin:0 12px">／</span><b>竹村工務店様</b><span style="color:var(--sub); margin:0 12px">／</span><b>坂本建設工業様</b>
+    <div style="color:var(--sub); margin-top:8px; font-size:13.5px">進行：Gハウス LIFEX FC事業部　徳田</div>
+  </div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px">1 / 15</div>
+</div>
+
+<!-- 2 本日の流れ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">本日の流れ</span><span class="pg">2 / 15</span></div>
+  <div class="tt">3社の「実際のやり方」を、ご本人から伺います。</div>
+  <p class="ms">事前ヒアリングの回答をもとに徳田が整理してお伝えし、それぞれの場面でご本人に直接お話しいただきます。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:10px">
+    <div class="ag"><span class="no">1</span><b>現在地の確認</b><span class="cap">全店の接続率と、繋がった電話1本の価値（徳田）</span></div>
+    <div class="ag" style="border-color:var(--p1)"><span class="no" style="color:var(--p1)">2</span><b>大建建設様の実践</b><span class="chip c1">▶ 髙橋様よりお話しいただきます</span><span class="cap">アシスタントとの分業・メール3種の実物</span></div>
+    <div class="ag" style="border-color:var(--p2)"><span class="no" style="color:var(--p2)">3</span><b>竹村工務店様の実践</b><span class="chip c2">▶ 知花様よりお話しいただきます</span><span class="cap">掛け切る運用と、繋がった電話でLINE交換まで完了させる型</span></div>
+    <div class="ag" style="border-color:var(--p3)"><span class="no" style="color:var(--p3)">4</span><b>坂本建設工業様の実践</b><span class="chip c3">▶ 楠木様よりお話しいただきます</span><span class="cap">開封通知と連動した「見ている瞬間」の架電</span></div>
+    <div class="ag"><span class="no">5</span><b>まとめ</b><span class="cap">3社の共通点と、自店でどう始めるか（徳田）</span></div>
+  </div>
+  <div class="foot"><span class="cap"><b style="color:var(--navy)">メモは、手順で。</b>前回同様、「うまい」ではなく「何をしているか」を書き取ってください。</span></div>
+</div>
+
+<!-- 3 前回の続報 -->
+<div class="sl">
+  <div class="top"><span class="chip c0">前回研修（7/17・YUNO HOME 佐古社長）の続報</span><span class="pg">3 / 15</span></div>
+  <div class="tt">研修の学びが、もう現場で動き始めています。</div>
+  <p class="ms">研修から2日後、大建建設・髙橋様の初回面談での実践報告です。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:12px">
+    <div class="flow">
+      <div class="st"><b>初回面談セミナーを実施</b>「効果抜群。大変喜んでいただけました」</div>
+      <div class="ar">→</div>
+      <div class="st"><b>研修の流れどおりその場で契約打診</b>面談当日にクロージングまで実践</div>
+      <div class="ar">→</div>
+      <div class="st"><b>資金計画の具体化へ</b>お客様と一緒に融資の組み立てに着手。契約に向けて前進中</div>
+    </div>
+    <div class="say"><span class="lbl">もうひとつ——研修の学びの即実装</span>佐古社長のお話にあった<b>「日時を指定して来店を促す」</b>を、大建建設様は今週から実装。アシスタントの方が髙橋様のカレンダーで空き枠を確認し、<b>具体的な日時候補をメールに記載して</b>来店を打診する運用に切り替え中です。</div>
+  </div>
+  <div class="foot"><span class="real">実際の報告より（7/19・7/20）</span><span class="cap">学んだことは、2日で現場に入れられる。今日のテーマも同じです——面談より手前、<b style="color:var(--navy)">「電話が繋がるかどうか」</b>。</span></div>
+</div>
+
+<!-- 4 現状の数字 -->
+<div class="sl">
+  <div class="top"><span class="chip c0">現在地</span><span class="pg">4 / 15</span></div>
+  <div class="tt">全店で325件の登録。<br>うち207件と、まだ話せていない。</div>
+  <div class="body" style="flex-direction:column; gap:10px; justify-content:center">
+    <div class="fun">
+      <div class="fc num" style="width:130px;height:130px;background:#1e4e79"><i>325</i><em>会員登録</em></div>
+      <div class="fa"><b>接続率 36.3%</b>→</div>
+      <div class="fc num" style="width:96px;height:96px;background:#2e6da4"><i>118</i><em>通話</em></div>
+      <div class="fa" style="opacity:.55"><b>未接続</b>→</div>
+      <div class="fc num" style="width:110px;height:110px;background:#aeb9c4"><i>207</i><em>話せていない</em></div>
+    </div>
+    <div style="display:flex; gap:12px">
+      <div class="stat grow"><b>全店舗の通話接続率</b><span class="num">36.3<small>%</small></span></div>
+      <div class="stat grow" style="background:var(--navy-soft); border-color:var(--navy)"><b>通話に乗ってからのアポ率<br>（YUNO HOME様実績・前回研修より）</b><span class="num">90<small>%</small></span></div>
+      <div class="stat grow"><b>だから今月のテーマは</b><span style="font-size:22px">接続率</span></div>
+    </div>
+  </div>
+  <div class="foot"><span class="asof">2026/7/20時点・KPIダッシュボードより</span><span class="cap">通話に乗ってからの進め方は、前回の研修で手に入れました。残る課題は<b style="color:var(--navy)">通話に乗せる入口</b>です。</span></div>
+</div>
+
+<!-- 5 電話1本の価値 -->
+<div class="sl">
+  <div class="top"><span class="chip c0">繋がった電話の価値</span><span class="pg">5 / 15</span></div>
+  <div class="tt">繋がった電話1本は、約1,150万円。</div>
+  <p class="ms">前回研修のYUNO HOME様の実績——通話10件から契約4件（通話→契約 40%）。建物総額2,880万円で試算すると。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:14px">
+    <div style="display:flex; gap:12px; align-items:stretch">
+      <div class="stat grow"><b>通話→契約（YUNO HOME様実績）</b><span class="num">40<small>%</small></span></div>
+      <div class="stat grow" style="background:var(--navy-soft); border-color:var(--navy)"><b>2,880万円 × 40% ＝ 繋がった1本の期待売上</b><span class="num" style="font-size:34px">約1,152<small>万円</small></span></div>
+      <div class="stat grow"><b>接続率が3社水準（45%）になると<br>同じ登録数で通話は</b><span class="num">118→146<small>本（+28）</small></span></div>
+    </div>
+    <div class="big" style="text-align:center">電話は事務作業ではなく、<em>売上の入口</em>。<br><span style="font-size:15px; font-weight:600; color:var(--sub)">1回コールを増やすことに、これだけの意味があります。だから今日は「繋げている3社」に聞きます。</span></div>
+  </div>
+  <div class="foot"><span class="asof">試算はYUNO HOME様の7/16時点実績に基づく参考値。店舗・時期により変動します</span></div>
+</div>
+
+<!-- 6 3社の選定理由 -->
+<div class="sl">
+  <div class="top"><span class="chip c0">3社の選定理由</span><span class="pg">6 / 15</span></div>
+  <div class="tt">全店平均36.3%の中で、この3社が抜けています。</div>
+  <p class="ms">事前に統一質問——<b>①誰が電話を掛けているか　②いつ掛けているか</b>——をお送りし、実際の運用を伺いました。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:16px">
+    <div class="cb"><span class="nm">大建建設様</span><div class="bar num" style="width:540px; background:var(--p1)"></div><span class="ct num" style="color:var(--p1)">58.8%</span></div>
+    <div class="cb"><span class="nm">竹村工務店様</span><div class="bar num" style="width:413px; background:var(--p2)"></div><span class="ct num" style="color:var(--p2)">45.0%</span></div>
+    <div class="cb"><span class="nm">坂本建設工業様</span><div class="bar num" style="width:402px; background:var(--p3)"></div><span class="ct num" style="color:var(--p3)">43.8%</span></div>
+    <div class="cb"><span class="nm" style="color:var(--sub)">全店舗平均</span><div class="bar" style="width:333px; background:#b6c0ca"></div><span class="ct" style="color:var(--sub)">36.3%</span></div>
+  </div>
+  <div class="foot"><span class="asof">2026/7/20時点・登録10件以上の店舗から選定</span><span class="cap">大建建設様は平均の<b style="color:var(--navy)">1.6倍</b>。しかも、3社のやり方は同じではありません。ここからが本題です。</span></div>
+</div>
+
+<!-- 7 大建建設① -->
+<div class="sl">
+  <div class="top"><span class="chip c1">事例①　大建建設様｜接続率 58.8%</span><span class="pg">7 / 15</span></div>
+  <div class="tt">アシスタントが、全架電を担う。<br>髙橋様は面談に集中できる。</div>
+  <p class="ms">誰が・いつ・何回・繋がったら何を話すか——すべてアシスタントの水嶋様が担い、仕組みで回しています。</p>
+  <div class="body" style="overflow:hidden">
+    <div class="col" style="flex:0 0 40%; justify-content:flex-start; gap:8px">
+      <div class="box" style="border-color:var(--p1); padding:8px 14px"><h4 style="font-size:13px">誰が：アシスタント（水嶋様）が担当</h4><p style="font-size:12px">登録のPC通知メールを水嶋様が<b>直接確認</b>——営業からの依頼待ちがない。髙橋様は面談・商談に集中</p></div>
+      <div class="box" style="border-color:var(--p1); padding:8px 14px"><h4 style="font-size:13px">いつ：登録時すぐ＋朝夕30分の集中架電</h4><p style="font-size:12px">当日掛ける方を先に選んでおき、朝・夕方30分ずつ集中して掛ける。週末が近ければ先にメール→週末に架電</p></div>
+      <div class="box" style="border-color:var(--p1); padding:8px 14px"><h4 style="font-size:13px">繋がったら：7項目ヒアリング＋アポ取りまで完結</h4><p style="font-size:12px">Googleカレンダーで予定を確認しその場でアポ、または候補日3つをメールで調整</p></div>
+      <div class="box" style="border-color:var(--p1); padding:8px 14px"><h4 style="font-size:13px">電話：固定番号から。留守電は必ず残す</h4><p style="font-size:12px">1回目は御礼、2回目はYouTube動画ご案内——留守電の内容も段階を変える</p></div>
+    </div>
+    <div class="col grow" style="justify-content:flex-start">
+      <div class="flow" style="flex-direction:column; gap:5px">
+        <div class="st" style="text-align:left; padding:8px 12px"><b>登録があった時点</b>すぐ架電（出なければ留守電に御礼）</div>
+        <div class="ar" style="align-self:center; font-size:13px">↓ 繋がらない</div>
+        <div class="st" style="text-align:left; padding:8px 12px"><b>YouTube来店促進メール＋2回目の架電</b>留守電は「動画をご覧ください」に切替</div>
+        <div class="ar" style="align-self:center; font-size:13px">↓ 週末を狙って</div>
+        <div class="st" style="text-align:left; padding:8px 12px"><b>3回目の架電</b>電話はここまで、と決めてある</div>
+        <div class="ar" style="align-self:center; font-size:13px">↓ 以後は</div>
+        <div class="st" style="text-align:left; padding:8px 12px; background:var(--p1bg); border-color:#c6d6e6"><b>定期配信へ（準備中）</b>コンテンツ動画などを定期的にお届けし接点を切らさない</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">7月ヒアリング原文より（水嶋様ご回答）</span><span class="cap" style="font-size:12px">前回研修の型——水嶋様の電話にそのまま実装</span><span class="live">▶ ここで大建建設様よりお話しいただきます</span></div>
+</div>
+
+<!-- 8 大建建設② -->
+<div class="sl">
+  <div class="top"><span class="chip c1">事例①　大建建設様｜接続率 58.8%</span><span class="pg">8 / 15</span></div>
+  <div class="tt">電話に出ない方にも、接点を切らさない。メールは3種類。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:12px">
+    <table>
+      <tr><th style="width:24%">メール</th><th style="width:28%">送るタイミング</th><th>狙い</th></tr>
+      <tr><td><b>会員登録お礼</b></td><td>登録直後</td><td>無料相談（予約制）への来店誘導。HP・電話の予約導線つき</td></tr>
+      <tr><td><b>YouTube来店促進</b></td><td>電話が繋がらなかった方へ</td><td>ルームツアー動画で温度を上げて、来店予約へ</td></tr>
+      <tr><td><b>自社不動産のお客様へのご案内</b></td><td>不動産事業部の既存のお客様へ</td><td>土地探し中の方にLIFE X特設ページと会員登録をご案内——<b>登録の母数そのものを増やす</b></td></tr>
+    </table>
+    <div style="display:flex; gap:12px">
+      <div class="box grow" style="border-color:var(--p1); background:var(--p1bg)"><h4>ここがポイント①：電話×メールの二面追客</h4><p style="color:var(--ink)">どれだけ掛けても電話に出ない方は必ず残る——その前提で動画という受け皿と定期配信まで設計。自社の不動産のお客様への案内で<b>入口の数自体を増やす</b>動きまでセットです。</p></div>
+      <div class="box grow" style="border-color:var(--p1); background:var(--p1bg)"><h4>ここがポイント②：1本ごとに記録を残す</h4><p style="color:var(--ink)">掛けた日時・曜日・話した内容を髙橋様とのチャットで報告。<b>記録があるから次の1本が掛けやすい</b>——留守電の内容・繋がった方の温度感まで積み上がっています。</p>
+        <div style="margin-top:10px; background:#fff; border:1px solid var(--line); border-radius:4px; padding:10px 14px; font-size:11.5px; color:var(--ink); line-height:1.7">
+          <div style="font-size:10.5px; font-weight:700; color:var(--navy); margin-bottom:6px; letter-spacing:.08em">▼ チャット報告（実際の文面・一部抜粋・個人情報はマスキング）</div>
+          <div>本日「LIFE X」会員登録へTELをした結果、2件お話が出来ました。</div>
+          <div style="margin-top:6px"><b>★ ●● 様</b>　6/4(土) 留守電（御礼メッセージ）→ 6/28(日) 留守電（YouTube動画ご案内）→ 7/12(日) 9:45 通話：他社で建築済みのため対象外と確認</div>
+          <div style="margin-top:6px"><b>◎ ●● 様</b>　5/23(土) コールのみ → 6/28(日) 留守電（御礼メッセージ）→ 7/12(日) 16:30 通話：築30年戸建にお住まい、リフォームか建て替えを検討中。外出中だったため日を改めて相談会へご案内予定</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">実物のメール文面・チャット報告は当日画面共有します（個人情報はマスキング済み）</span><span class="cap">文面は丁寧で、飾らない普通の文章です。特別なのは文章ではなく、<b style="color:var(--navy)">送り切る仕組みと記録</b>のほうです。</span></div>
+</div>
+
+<!-- 9 竹村工務店① 掛け切る運用 -->
+<div class="sl">
+  <div class="top"><span class="chip c2">事例②　竹村工務店様｜接続率 45.0%</span><span class="pg">9 / 15</span></div>
+  <div class="tt">気づいたらすぐ、1本目。<br>出なければ時間帯を変えて、1週間掛け切る。</div>
+  <p class="ms">知花様ご本人が全件担当。曜日・時間帯・やめ時まで、すべて決まっています。</p>
+  <div class="body" style="overflow:hidden">
+    <div class="col" style="flex:0 0 44%; justify-content:flex-start; gap:8px">
+      <div class="box" style="border-color:var(--p2); padding:10px 14px"><h4 style="font-size:13px">誰が：営業の知花様ご本人のみ</h4><p>分業はせず、自分のお客様は自分で掛ける。退勤後はあまり見ていない——だから翌日（休みなら2日後）もある</p></div>
+      <div class="box" style="border-color:var(--p2); padding:10px 14px"><h4 style="font-size:13px">初動：9〜17時、気づいたらすぐ1本目</h4><p>遅くとも翌日。社用携帯でも確認できるが、退勤後まで追わない</p></div>
+      <div class="box" style="border-color:var(--p2); padding:10px 14px"><h4 style="font-size:13px">1日2回の時間帯：11〜13時＋15〜17時</h4><p>翌日は別の時間帯に掛ける。生活パターンに当てる工夫。留守電・SMSはなし（出なかった記録はメモで管理）</p></div>
+      <div class="box" style="border-color:var(--p2); padding:10px 14px"><h4 style="font-size:13px">発信番号：固定が基本。詳細記入のお客様は携帯でも同時に</h4><p>固定に出なかった方が携帯には出てくれた実例あり（最大7回目で接続した方）</p></div>
+    </div>
+    <div class="col grow" style="justify-content:flex-start; gap:3px">
+      <div class="flow" style="flex-direction:column; gap:2px">
+        <div class="st" style="text-align:left; padding:4px 12px"><b>気づいたらすぐ1本目</b>固定番号から（携帯番号があれば同時に）</div>
+        <div class="ar" style="align-self:center; font-size:12px">↓ 繋がらない</div>
+        <div class="st" style="text-align:left; padding:4px 12px"><b>11〜13時・15〜17時の2本</b>翌日は違う時間帯へ</div>
+        <div class="ar" style="align-self:center; font-size:12px">↓ それでも繋がらない</div>
+        <div class="st" style="text-align:left; padding:4px 12px; background:var(--p2bg); border-color:#b5d5c8"><b>最低1週間、掛け切る</b>最大7回——7回目で繋がった実例あり</div>
+        <div class="ar" style="align-self:center; font-size:12px">↓ 1週間が過ぎたら</div>
+        <div class="st" style="text-align:left; padding:4px 12px"><b>「見込みなし」と判定して次へ</b>だらだら追わない。区切りまで決めてある</div>
+      </div>
+      <div class="stat" style="background:var(--p2bg); border-color:var(--p2); padding:5px 12px; display:flex; align-items:center; justify-content:center; gap:10px">
+        <div style="text-align:center"><div style="font-size:11px; font-weight:600; color:var(--sub)">通常</div><span class="num" style="font-size:20px">1〜3<small style="font-size:11px">回</small></span></div>
+        <span style="color:#b6c0ca; font-size:16px">｜</span>
+        <div style="text-align:center"><div style="font-size:11px; font-weight:600; color:var(--sub)">最多実績</div><span class="num" style="font-size:20px; color:var(--p2)">7<small style="font-size:11px; color:var(--p2)">回目で接続</small></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">7月15時ヒアリング原文より</span><span class="live">▶ ここで知花様よりお話しいただきます（前半）</span></div>
+</div>
+
+<!-- 10 竹村工務店② 繋がった後の型 -->
+<div class="sl">
+  <div class="top"><span class="chip c2">事例②　竹村工務店様｜接続率 45.0%</span><span class="pg">10 / 15</span></div>
+  <div class="tt">繋がった1本で、LINE交換まで完了させる。</div>
+  <p class="ms">接続率だけでなく、<b>繋がった電話の「密度」</b>が他とは違います。</p>
+  <div class="body" style="overflow:hidden">
+    <div class="col" style="flex:0 0 46%; justify-content:flex-start">
+      <div class="flow" style="flex-direction:column; gap:6px">
+        <div class="st" style="text-align:left"><b>挨拶・本人確認→お問合せのお礼</b>「●●様ですか？LIFE Xご登録のお礼で——少々よろしいでしょうか」</div>
+        <div class="ar" style="align-self:center">↓</div>
+        <div class="st" style="text-align:left"><b>来店ご案内 or 現地調査・解体見積などの打診</b>お客様の状況に合わせた話題で関係をつくる</div>
+        <div class="ar" style="align-self:center">↓ 通話しながら同時に</div>
+        <div class="st" style="text-align:left; background:var(--p2bg); border-color:#b5d5c8"><b>SMSでお名前を送信→LINEのQRコードを送信</b>SMSが届かない設定の方もいるため必ずQRも送る</div>
+        <div class="ar" style="align-self:center">↓</div>
+        <div class="st" style="text-align:left; background:var(--p2bg); border-color:#b5d5c8"><b>スタンプ＋お名前を返してもらい、LINE完了</b>スタンプでお客様の好みも分かる</div>
+      </div>
+    </div>
+    <div class="col grow" style="justify-content:flex-start; gap:12px">
+      <div class="box" style="border-color:var(--p2)"><h4>ここがポイント①：電話中にLINEを確立する</h4><p style="color:var(--ink)">電話が切れたあとに「LINEを交換しませんか」とお願いするのではなく、<b>通話の最中にSMSとQRを送りLINEを完了させる</b>。繋がった1本を、次の接点まで一気に伸ばす。</p></div>
+      <div class="box" style="border-color:var(--p2)"><h4>ここがポイント②：SMSとQRコードは必ず両方</h4><p style="color:var(--ink)">SMSが届かない設定の方もいる。どちらか一方だけでは取りこぼす——<b>両方送って確実にLINEに誘導</b>する設計。</p></div>
+      <div class="box" style="border-color:var(--p2)"><h4>ここがポイント③：スタンプ確認で「温度感」を把握</h4><p style="color:var(--ink)">スタンプの種類で相手の好みやキャラクターが分かる——小さな気配りが、次のやり取りの入り口になる。</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">7月15時ヒアリング原文より</span><span class="live">▶ ここで知花様よりお話しいただきます（後半）</span></div>
+</div>
+
+<!-- 10 坂本建設工業 -->
+<div class="sl">
+  <div class="top"><span class="chip c3">事例③　坂本建設工業様｜接続率 43.8%</span><span class="pg">11 / 15</span></div>
+  <div class="tt">登録の瞬間に1本。<br>お客様が「見ている瞬間」に、もう1本。</div>
+  <p class="ms">Digima（デジマ）の行動通知を使い、架電タイミングをデータで決めています。</p>
+  <div class="body" style="overflow:hidden">
+    <div class="col" style="flex:0 0 44%; justify-content:flex-start; gap:8px">
+      <div class="box" style="border-color:var(--p3); padding:10px 14px"><h4 style="font-size:13px">誰が：営業ご本人が最初の3本。その後は相川様にバトンタッチ</h4><p>ご本人が3回掛けて繋がらなければ、相川様が担当を引き継ぐ明確な体制</p></div>
+      <div class="box" style="border-color:var(--p3); padding:10px 14px"><h4 style="font-size:13px">いつ：登録時すぐ1本→同日18時以降に2本目。3回まで</h4><p>1本目の後すぐDigimaでメール・SMSを送信。開封通知が来たら即架電。難しければ同じ時間帯を狙う</p></div>
+      <div class="box" style="border-color:var(--p3); padding:10px 14px"><h4 style="font-size:13px">ツール：Digima（デジマ）で通知・管理</h4><p>メール開封・URLクリック・Web訪問をリアルタイムでメール通知。導入難易度は低め・ZOOMでサポートあり（費用は確認中）</p></div>
+      <div class="box" style="border-color:var(--p3); padding:10px 14px"><h4 style="font-size:13px">電話：携帯から。留守電は残さない</h4><p>Digima管轄外になるため「聞いたかどうか」の把握ができない——だから残さない</p></div>
+    </div>
+    <div class="col grow" style="justify-content:flex-start; gap:6px">
+      <div class="flow" style="flex-direction:column; gap:2px">
+        <div class="st" style="text-align:left; padding:5px 12px"><b>登録の瞬間</b>すぐ携帯から1本目</div>
+        <div class="ar" style="align-self:center; font-size:12px">↓ 繋がらない</div>
+        <div class="st" style="text-align:left; padding:5px 12px"><b>Digimaで御礼メール＋SMS送信</b>→ 同日18時以降に2本目</div>
+        <div class="ar" style="align-self:center; font-size:12px">↓ お客様がメールを開く / Webを訪問する</div>
+        <div class="st" style="text-align:left; padding:5px 12px; background:var(--p3bg); border-color:#ecd0b0"><b>Digimaから通知 → 即架電</b>「いま見ている瞬間」に掛かってくる</div>
+        <div class="ar" style="align-self:center; font-size:12px">↓ 計3回掛けて繋がらなければ</div>
+        <div class="st" style="text-align:left; padding:5px 12px"><b>相川様にバトンタッチ</b>担当を変えて別角度でアプローチ</div>
+      </div>
+      <div class="box" style="border-color:var(--p3); padding:6px 12px"><h4 style="font-size:12px">Digimaのメール：LINE公式へ誘導する設計</h4><p style="color:var(--ink); font-size:11.5px; margin-top:3px">差し込みで顧客名を自動挿入。個別相談はLINE公式へ——<b>電話が繋がらなくてもLINEに入口がある</b></p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">7月ヒアリング原文・添付画像より（費用は確認中）</span><span class="live">▶ ここで楠木様よりお話しいただきます</span></div>
+</div>
+
+<!-- 11 3社比較 -->
+<div class="sl">
+  <div class="top"><span class="chip c0">3社のやり方を並べる</span><span class="pg">12 / 15</span></div>
+  <div class="tt">やり方は違っていい。ただし3社とも、全部「決まっている」。</div>
+  <div class="body" style="flex-direction:column; justify-content:center">
+    <table style="font-size:13px">
+      <tr><th style="width:16%"></th><th style="width:28%; color:var(--p1)">大建建設様（58.8%）</th><th style="width:28%; color:var(--p2)">竹村工務店様（45.0%）</th><th style="color:var(--p3)">坂本建設工業様（43.8%）</th></tr>
+      <tr><td><b>誰が掛ける</b></td><td>アシスタント（水嶋様）が登録通知を直接確認</td><td>営業ご本人（知花様）のみ</td><td>営業ご本人＋合間は相川様が代行</td></tr>
+      <tr><td><b>最初の1本</b></td><td>登録があった時点ですぐ（朝夕30分の集中架電）</td><td>9〜17時、気づいたらすぐ（遅くとも翌日）</td><td>登録時すぐ＋同日18時以降に2本目</td></tr>
+      <tr><td><b>繋がらない時</b></td><td>夕方・週末に掛け直し＋動画メール</td><td>11〜13時・15〜17時の2本、翌日は別の時間帯。最低1週間</td><td>開封・クリック通知が来た瞬間に架電。別日は同じ時間帯を狙う</td></tr>
+      <tr><td><b>区切り</b></td><td>電話は3回まで→以後は定期配信へ</td><td>1週間で見込みなしと判定</td><td>3回で相川様にバトンタッチ</td></tr>
+      <tr><td><b>繋がった後</b></td><td>7項目ヒアリング＋アポ取りまで水嶋様が完結</td><td>来店・現地調査の打診＋<b>通話中にSMS・LINEまで完了</b></td><td>（当日確認）</td></tr>
+      <tr><td><b>電話以外の接点</b></td><td>YouTube動画メール・定期配信・自社不動産のお客様へのご案内</td><td>なし——電話とLINEに集中</td><td>Digima（開封・訪問通知）＋LINE公式への誘導</td></tr>
+    </table>
+  </div>
+  <div class="foot"><span class="cap">正解はひとつではありません。<b style="color:var(--navy)">自店の体制に合うやり方を選ぶ</b>のが今日のゴールです。</span></div>
+</div>
+
+<!-- 12 共通点 -->
+<div class="sl">
+  <div class="top"><span class="chip c0">共通点の抽出</span><span class="pg">13 / 15</span></div>
+  <div class="tt">やり方は違っても、共通点は3つ。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:12px">
+    <div class="box" style="display:flex; align-items:center; gap:18px; border-left:4px solid var(--navy)"><span style="font-size:26px; font-weight:800; color:var(--navy); flex-shrink:0">1</span><div><b style="font-size:16px">初動が早い。登録を放置しない</b><div class="cap">大建建設様も坂本建設工業様も「登録があった時点ですぐ」。反響は生モノ——時間が経つほど繋がらなくなります</div></div></div>
+    <div class="box" style="display:flex; align-items:center; gap:18px; border-left:4px solid var(--navy)"><span style="font-size:26px; font-weight:800; color:var(--navy); flex-shrink:0">2</span><div><b style="font-size:16px">回数を決めて、時間帯を変えて掛け切る</b><div class="cap">大建建設様は3回＋動画メール、竹村工務店様は11〜13時・15〜17時の2本×1週間（7回目で繋がった実例も）、坂本建設工業様は開封通知で「見ている時間帯」を特定。1〜2回で止めるかどうかが平均との差になっています</div></div></div>
+    <div class="box" style="display:flex; align-items:center; gap:18px; border-left:4px solid var(--navy)"><span style="font-size:26px; font-weight:800; color:var(--navy); flex-shrink:0">3</span><div><b style="font-size:16px">区切りと、その後が決まっている</b><div class="cap">大建建設様は定期配信へ移す、竹村工務店様は判定して次へ。区切りがあるから、掛けるべきお客様に時間を使えます</div></div></div>
+  </div>
+  <div class="foot"><span class="cap">接続率の差は、トークのうまさではなく<b style="color:var(--navy)">「決めごとがあるか」</b>の差です。</span></div>
+</div>
+
+<!-- 13 本部の取り組み -->
+<div class="sl">
+  <div class="top"><span class="chip c0">本部の取り組み</span><span class="pg">14 / 15</span></div>
+  <div class="tt">加盟店の皆様だけにお願いしません。本部も同じ型で動きます。</div>
+  <p class="ms">本部の不動産部門「いえプロ」で、初動架電の仕組み<b>「初動架電キット」</b>の検証を開始します（まず大阪・1拠点で型をつくり、効果確認後に展開）。</p>
+  <div class="body">
+    <div class="col" style="flex:0 0 46%; justify-content:center">
+      <div class="box"><h4>体制：時間帯で担い手をリレー</h4><p>平日日中は本部スタッフが一次架電で「つながる時間帯・希望日」を聞き取り→夕方・土日は営業が直接、日程確定まで</p></div>
+      <div class="box"><h4>決めごと：当日中に1本目・最大3回</h4><p>通知から当日中（遅くとも翌営業日午前）に1本目。時間帯を変えて最大3回、つながらなければSMSを送って記録に残す</p></div>
+      <div class="box"><h4>ねらい：通電率 35%→50%</h4><p>結果は毎回シートに記録し、同じダッシュボードで確認</p></div>
+    </div>
+    <div class="col grow" style="justify-content:center; gap:12px">
+      <div class="box" style="border-color:var(--navy); background:var(--navy-soft)"><h4>気づいた方もいると思います</h4><p style="color:var(--ink)">このキットの中身は、<b>①当日中の初動　②回数を決めて掛け切る　③区切りとその後</b>——今日の3社の共通点を、そのまま仕組みに起こしたものです。</p></div>
+      <div class="box"><h4>効果が出た型は、全店にお配りします</h4><p style="color:var(--ink)">トークスクリプト・管理シートごとパッケージにして横展開する予定です。まずは本部が自分でやって、数字で確かめます。</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="asof">2026/7/20時点の計画・詳細は準備中</span></div>
+</div>
+
+<!-- 14 まとめ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">今日のゴール</span><span class="pg">15 / 15</span></div>
+  <div class="tt">自店のやり方を、今日決めて帰ってください。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:14px">
+    <div style="display:flex; gap:14px">
+      <div class="box grow" style="border-color:var(--p1); background:var(--p1bg)"><h4>アシスタント・事務スタッフがいる店</h4><p style="color:var(--ink)">→ <b>分業で進める</b>（大建建設様の実践を参考に）。登録の通知を誰が受けて誰が掛けるかを名前で決め、繋がらない方への動画・メールの受け皿を用意する</p></div>
+      <div class="box grow" style="border-color:var(--p2); background:var(--p2bg)"><h4>営業だけで回している店</h4><p style="color:var(--ink)">→ <b>本人が掛け切る</b>（竹村工務店様の実践を参考に）。1日2回×1週間をそのまま真似る。メールに逃げず、電話で当てる</p></div>
+    </div>
+    <div class="box">
+      <h4>どちらのやり方でも、決めるのは3つだけ</h4>
+      <p style="color:var(--ink); font-size:14px">①「誰が掛けるか」を名前で決める　②登録が入ったら<b>当日中に1本目</b>　③繋がらない方への決めごと（回数・時間帯・区切りとその後）をつくる</p>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">来月のこの場で、各店の接続率を同じダッシュボードで確認します。繋がった1本は約1,150万円——<b style="color:var(--navy)">増やした通話の分だけ、商談が増えます。</b></span></div>
+</div>
+
+</div>
