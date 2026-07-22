@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIFEX 月2棟契約目標達成MTG｜2026.7.3</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy:    #0D1B35;
+  --navy2:   #1E3560;
+  --accent:  #C8762A;
+  --accent2: #E08A38;
+  --accent-l:#FFF3E8;
+  --white:   #FFFFFF;
+  --bg:      #F7F8FA;
+  --ink:     #111827;
+  --ink2:    #374151;
+  --muted:   #6B7280;
+  --border:  #E5E7EB;
+  --border2: #D1D5DB;
+  --success: #059669;
+  --success-l:#ECFDF5;
+  --font: -apple-system,'Hiragino Sans','Yu Gothic UI','Meiryo',sans-serif;
+}
+html, body { width:100%; height:100%; overflow:hidden; background:var(--bg); font-family:var(--font); -webkit-font-smoothing:antialiased; color:var(--ink); }
+
+.deck { width:100vw; height:100vh; position:relative; }
+.slide { position:absolute; inset:0; opacity:0; pointer-events:none; transition:opacity .25s ease; overflow:hidden; }
+.slide.active { opacity:1; pointer-events:all; }
+
+/* ── PROGRESS ── */
+.progress { position:fixed; top:0; left:0; height:3px; background:var(--accent); transition:width .3s ease; z-index:200; }
+
+/* ── NAV ── */
+.nav {
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
+  display:flex; align-items:center; gap:14px; z-index:100;
+  background:var(--white); border:1px solid var(--border2);
+  border-radius:40px; padding:8px 20px;
+  box-shadow:0 4px 16px rgba(0,0,0,.08);
+}
+.nav-btn { background:none; border:none; color:var(--muted); font-size:16px; cursor:pointer; padding:4px 8px; transition:color .15s; font-family:var(--font); border-radius:6px; }
+.nav-btn:hover { color:var(--ink); background:var(--bg); }
+.nav-btn:disabled { opacity:.25; cursor:default; }
+.nav-counter { font-size:12px; color:var(--muted); min-width:40px; text-align:center; }
+.dots { display:flex; gap:5px; align-items:center; }
+.dot { width:6px; height:6px; border-radius:50%; background:var(--border2); cursor:pointer; transition:background .2s, transform .2s; }
+.dot.active { background:var(--accent); transform:scale(1.4); }
+
+/* ── LAYOUT BASE ── */
+.slide-inner { height:100%; display:flex; flex-direction:column; padding:52px 8vw 90px; justify-content:center; overflow:auto; }
+.eyebrow { font-size:11px; font-weight:700; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+.h1 { font-size:clamp(26px,3.8vw,50px); font-weight:800; color:var(--navy); line-height:1.2; letter-spacing:-.02em; margin-bottom:20px; }
+.h2 { font-size:clamp(22px,3vw,40px); font-weight:800; color:var(--navy); line-height:1.25; letter-spacing:-.01em; margin-bottom:16px; }
+.lead { font-size:clamp(14px,1.3vw,17px); color:var(--ink2); line-height:1.85; max-width:740px; }
+.lead strong { color:var(--navy); font-weight:700; }
+.lead p { margin-bottom:1.2em; }
+.lead p:last-child { margin-bottom:0; }
+
+/* ── TITLE SLIDE ── */
+.s-title { background:var(--white); }
+.title-deco {
+  position:absolute; top:0; right:0; width:40vw; height:100%;
+  background:linear-gradient(135deg,#F4F6FA 0%,#EBF0FA 100%);
+  clip-path:polygon(18% 0,100% 0,100% 100%,0% 100%);
+}
+.title-logo {
+  width:52px; height:52px; background:var(--accent); border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:17px; font-weight:900; color:var(--white); margin-bottom:28px;
+  position:relative;
+}
+.title-meta { display:flex; gap:10px; flex-wrap:wrap; margin-top:32px; position:relative; }
+.meta-pill { font-size:12px; color:var(--muted); background:var(--bg); border:1px solid var(--border); border-radius:20px; padding:5px 14px; }
+
+/* ── DIVIDER LINE ── */
+.divider { width:48px; height:3px; background:var(--accent); border-radius:2px; margin-bottom:20px; }
+
+/* ── KPI CARDS ── */
+.kpi-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:28px; max-width:900px; }
+.kpi-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:16px 14px; border-top:3px solid var(--accent); }
+.kpi-card.green { border-top-color:var(--success); }
+.kpi-lbl { font-size:10px; font-weight:700; color:var(--muted); letter-spacing:.04em; margin-bottom:10px; line-height:1.4; }
+.kpi-val { font-size:clamp(26px,2.8vw,38px); font-weight:900; color:var(--navy); line-height:1; }
+.kpi-val .u { font-size:14px; font-weight:500; color:var(--muted); margin-left:2px; }
+.kpi-base { font-size:10px; color:var(--muted); margin-top:5px; }
+.kpi-note { margin-top:20px; padding:14px 18px; background:var(--bg); border-radius:10px; border:1px solid var(--border); font-size:13px; color:var(--ink2); line-height:1.7; max-width:700px; }
+.kpi-note strong { color:var(--navy); }
+
+/* ── CHIPS ── */
+.chip-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:24px; }
+.chip { font-size:12px; padding:5px 14px; border-radius:20px; border:1px solid var(--border2); color:var(--ink2); background:var(--white); }
+.chip.orange { background:var(--accent-l); border-color:#F5CBA0; color:var(--accent); font-weight:600; }
+
+/* ── TWO COL ── */
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:28px; max-width:860px; }
+.box { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:20px 22px; }
+.box-title { font-size:12px; font-weight:700; color:var(--accent); letter-spacing:.06em; text-transform:uppercase; margin-bottom:12px; }
+.box ul { list-style:none; }
+.box ul li { font-size:13px; color:var(--ink2); line-height:1.7; padding:5px 0; border-bottom:1px solid var(--border); display:flex; gap:8px; align-items:flex-start; }
+.box ul li:last-child { border-bottom:none; }
+.box ul li::before { content:''; display:inline-block; width:5px; height:5px; border-radius:50%; background:var(--accent); margin-top:8px; flex-shrink:0; }
+
+/* ── STEPS ── */
+.steps { display:flex; flex-direction:column; gap:12px; margin-top:24px; max-width:700px; }
+.step { display:flex; gap:14px; align-items:flex-start; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:16px 18px; }
+.step-num { width:28px; height:28px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; color:var(--white); flex-shrink:0; }
+.step-title { font-size:14px; font-weight:700; color:var(--navy); margin-bottom:3px; }
+.step-desc { font-size:12px; color:var(--muted); line-height:1.65; }
+.step-note { margin-top:16px; padding:12px 16px; background:var(--accent-l); border-radius:8px; border-left:3px solid var(--accent); font-size:12px; color:var(--ink2); line-height:1.6; max-width:700px; }
+
+/* ── SPEAKER CARD ── */
+.speaker-card { display:flex; gap:20px; align-items:center; background:var(--accent-l); border:1px solid #F5CBA0; border-radius:14px; padding:22px 26px; margin-top:24px; max-width:680px; }
+.speaker-avatar { width:58px; height:58px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:900; color:var(--white); flex-shrink:0; }
+.speaker-name { font-size:17px; font-weight:800; color:var(--navy); margin-bottom:3px; }
+.speaker-sub { font-size:12px; color:var(--accent); font-weight:600; margin-bottom:6px; }
+.speaker-note { font-size:13px; color:var(--ink2); line-height:1.6; }
+
+/* ── FLOW GRID ── */
+.flow-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:24px; max-width:720px; }
+.flow-box { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:18px 16px; text-align:center; }
+.flow-box.highlight { border-color:#F5CBA0; background:var(--accent-l); }
+.flow-icon { font-size:26px; margin-bottom:8px; }
+.flow-title { font-size:13px; font-weight:700; color:var(--navy); margin-bottom:5px; }
+.flow-desc { font-size:12px; color:var(--muted); line-height:1.5; }
+
+/* ── CLOSING ── */
+.s-close { background:var(--navy); }
+.s-close .eyebrow { color:var(--accent2); }
+.s-close .h2 { color:var(--white); }
+.s-close .lead { color:rgba(255,255,255,.65); }
+.s-close .lead strong { color:var(--white); }
+.close-box { margin-top:28px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:18px 22px; max-width:580px; }
+.close-box-title { font-size:12px; font-weight:700; color:var(--accent2); letter-spacing:.06em; text-transform:uppercase; margin-bottom:8px; }
+.close-box-body { font-size:14px; color:rgba(255,255,255,.7); line-height:1.8; }
+.close-box-body strong { color:var(--white); }
+
+@media (max-width:640px) {
+  .kpi-grid { grid-template-columns:repeat(2,1fr); }
+  .two-col { grid-template-columns:1fr; }
+  .flow-grid { grid-template-columns:1fr; }
+  .title-deco { display:none; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="deck">
+
+  <!-- 0: TITLE -->
+  <div class="slide s-title active">
+    <div class="title-deco"></div>
+    <div class="slide-inner" style="position:relative;">
+      <div class="title-logo">LX</div>
+      <div class="eyebrow">LIFEX 加盟店全体会議　2026.7.3</div>
+      <div class="h1">月2棟契約<br>目標達成MTG</div>
+      <div class="lead"><p>加盟店の皆様と現状を正直に共有し、<strong>本部と一緒に月2棟を達成する</strong>ための場です。</p></div>
+      <div class="title-meta">
+        <span class="meta-pill">全加盟店参加</span>
+        <span class="meta-pill">60〜90分</span>
+        <span class="meta-pill">進行：徳田</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1: 会議の趣旨 -->
+  <div class="slide" style="background:var(--white);">
+    <div class="slide-inner">
+      <div class="eyebrow">① 会議の趣旨・目的</div>
+      <div class="divider"></div>
+      <div class="h2">なぜ、この会議をやるのか</div>
+      <div class="lead">
+        <p>LIFEXの加盟店として同じ看板を掲げている私たちは、<strong>事業パートナーです。</strong></p>
+        <p>各店が個別に悩み、個別に試行錯誤するより、<strong>全員の現状と知見を持ち寄って考えた方が、圧倒的に速く・正確に動ける。</strong> それがこの会議の存在理由です。</p>
+        <p>数字をオープンにするのは、評価や比較のためではありません。<strong>現状を正確に把握し、次の打ち手を全員で判断するためです。</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2: 現状数値 -->
+  <div class="slide" style="background:var(--bg);">
+    <div class="slide-inner">
+      <div class="eyebrow">② 現状の数値共有</div>
+      <div class="divider"></div>
+      <div class="h2">全店舗累計</div>
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-lbl">リスト総数</div>
+          <div class="kpi-val">295<span class="u">名</span></div>
+          <div class="kpi-base">累計登録数</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-lbl">① 通話接続率</div>
+          <div class="kpi-val">35<span class="u">%</span></div>
+          <div class="kpi-base">102 ÷ 295名</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-lbl">② アポ取得率</div>
+          <div class="kpi-val">52<span class="u">%</span></div>
+          <div class="kpi-base">53 ÷ 102名</div>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-lbl">③ 面談後契約率</div>
+          <div class="kpi-val">26<span class="u">%</span></div>
+          <div class="kpi-base">11 ÷ 43名</div>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-lbl">現在の契約・内定数</div>
+          <div class="kpi-val">11<span class="u">件</span></div>
+          <div class="kpi-base">累計実績</div>
+        </div>
+      </div>
+      <div class="kpi-note">※ 各店舗の数値は今後週次で追加されます</div>
+    </div>
+  </div>
+
+  <!-- 3: 不通対策 -->
+  <div class="slide" style="background:var(--bg);">
+    <div class="slide-inner">
+      <div class="eyebrow">③ 不通対策</div>
+      <div class="divider"></div>
+      <div class="h2">電話が繋がらない相手への<br>アプローチを変える</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">登録後すぐに電話する</div>
+            <div class="step-desc">会員登録は「興味がある」というサイン。鮮度が命なので、登録確認後すぐに架電する。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">繋がらなければ当日夜にも再架電</div>
+            <div class="step-desc">日中に出られない方も多い。同日の夜（19〜21時）にもう一度かける。携帯だけでなく、固定電話でもかけてみる。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">3回繋がらなかったらメールへ切り替え</div>
+            <div class="step-desc">グラフテクト・施工事例・YouTube動画などワクワクするコンテンツをメールで届ける。「電話できなかった」で終わらせない。</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-note">3回電話して繋がらなかったら、次のページの素材を活用してください。</div>
+    </div>
+  </div>
+
+  <!-- 3-b: ワクワク素材 -->
+  <div class="slide" style="background:var(--white);">
+    <div class="slide-inner">
+      <div class="eyebrow">③ 不通対策 ─ ワクワク素材の使い方</div>
+      <div class="divider"></div>
+      <div class="h2">メールで届ける<br>「見たくなる素材」</div>
+      <div class="lead">
+        <p>3回電話して繋がらなかったお客様へ。説明ではなく、<strong>思わず見てしまうコンテンツ</strong>を届けることで次の接点をつくります。</p>
+      </div>
+
+      <div class="two-col" style="margin-top:20px;max-width:900px;">
+        <div class="box">
+          <div class="box-title">素材ページに収録されているもの</div>
+          <ul>
+            <li><strong style="color:var(--navy);">グラフテクト</strong> ─ ショールームツアー動画・公式サイト</li>
+            <li><strong style="color:var(--navy);">アイカ工業 スマートサニタリー</strong> ─ 紹介動画・ショールームツアー</li>
+            <li><strong style="color:var(--navy);">evoltz（制震ダンパー）</strong> ─ 地震比較実験・振動台実験動画</li>
+            <li><strong style="color:var(--navy);">LIXIL リシェル</strong> ─ 製品解説動画・公式ページ</li>
+          </ul>
+        </div>
+        <div class="box">
+          <div class="box-title">使い方</div>
+          <ul>
+            <li>3回電話して繋がらなかったらメールへ切り替える</li>
+            <li>お客様の興味に合わせて素材を1〜2本選んで送る</li>
+            <li>「ご覧いただけましたか？」を次の架電の入口にする</li>
+            <li>★マークが「特にインパクトのある素材」の目印</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;padding:14px 20px;background:var(--accent-l);border:1px solid #F5CBA0;border-radius:10px;max-width:860px;display:flex;align-items:center;gap:16px;">
+        <div style="font-size:13px;color:var(--ink2);line-height:1.7;flex:1;">
+          素材ページはこちら（全加盟店でご活用ください）<br>
+          <a href="https://profound-concha-423d0f.netlify.app/" target="_blank" style="color:var(--accent);font-weight:700;font-size:14px;word-break:break-all;">https://profound-concha-423d0f.netlify.app/</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4: 困りごと -->
+  <div class="slide" style="background:var(--white);">
+    <div class="slide-inner">
+      <div class="eyebrow">④ 各店舗の困りごと共有</div>
+      <div class="divider"></div>
+      <div class="h2">今、どこで詰まっていますか？</div>
+      <div class="lead">
+        <p>一人で抱えている課題を、この場に出してください。</p>
+        <p><strong>同じ悩みを持っている店が必ずあります。共有することが全員の前進につながります。</strong></p>
+      </div>
+      <div class="box" style="margin-top:24px;max-width:860px;border-left:3px solid var(--accent);">
+        <div class="box-title">事前に寄せられた声（一部）</div>
+        <ul>
+          <li>繋がっても「まずプランを見ます」という着地になり、アポが取れない</li>
+          <li>モデルハウスがないため、どのような誘い文句で誘えばよいかわからずアポが取れない</li>
+          <li>「まだ考え始めで…」とかわされてしまう</li>
+          <li>「今は忙しい」とガチャ切りされる</li>
+        </ul>
+      </div>
+      <div style="margin-top:14px;font-size:13px;color:var(--muted);max-width:860px;">他にも困っていることがあれば、この場で遠慮なく出してください。</div>
+    </div>
+  </div>
+
+  <!-- 5: ヒアリングタイム -->
+  <div class="slide" style="background:var(--bg);">
+    <div class="slide-inner">
+      <div class="eyebrow">⑤ ヒアリングタイム</div>
+      <div class="divider"></div>
+      <div class="h2">皆さんは今、どうやって<br>アポを取っていますか？</div>
+      <div class="lead">
+        <p>正解を押しつける場ではありません。各店が今やっていることを出し合い、<strong>全員のヒントにする時間です。</strong></p>
+      </div>
+      <div class="steps" style="margin-top:24px;">
+        <div class="step">
+          <div class="step-num">Q1</div>
+          <div>
+            <div class="step-title">電話が繋がったとき、最初に何を話していますか？</div>
+            <div class="step-desc">最初の一言・話の入り方を教えてください。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">Q2</div>
+          <div>
+            <div class="step-title">アポが取れたときと取れなかったとき、何が違いましたか？</div>
+            <div class="step-desc">うまくいったケース・いかなかったケース、どちらも歓迎です。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">Q3</div>
+          <div>
+            <div class="step-title">「まだ考え中」「忙しい」と言われたらどうしていますか？</div>
+            <div class="step-desc">断られた後の動き方を聞かせてください。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">Q4</div>
+          <div>
+            <div class="step-title">モデルハウスなしで、どこに・どう来てもらっていますか？</div>
+            <div class="step-desc">代わりにやっていること、工夫していることを教えてください。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6: アポ取得術 -->
+  <div class="slide" style="background:var(--white);">
+    <div class="slide-inner">
+      <div class="eyebrow">⑥ アポ取得術</div>
+      <div class="divider"></div>
+      <div class="h2">モデルハウスがなくても<br>お客様を呼べる</div>
+      <div class="lead">
+        <p>電話が繋がった後、<strong>いかにアポにつなげるかが勝負です。</strong></p>
+        <p>この課題について、アポ取得率が特に高いYUNO HOME 佐古社長に実践事例をお話しいただく予定です。</p>
+      </div>
+      <div class="speaker-card">
+        <div class="speaker-avatar">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 1 3 3v4a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/>
+            <path d="M19 10a7 7 0 0 1-14 0"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+        </div>
+        <div>
+          <div class="speaker-name">佐古 社長</div>
+          <div class="speaker-sub">YUNO HOME</div>
+          <div class="speaker-note">モデルハウスのない環境でも安定した来場・面談を実現。実践で使えるトークと考え方を次回MTGにてご共有いただく予定です。どうぞお楽しみに。</div>
+        </div>
+      </div>
+      <div class="box" style="margin-top:20px;max-width:860px;">
+        <div class="box-title">次回MTGまでに考えておいてください</div>
+        <ul>
+          <li>繋がった後、自分はどんな一言から始めているか</li>
+          <li>アポに至ったお客様と、そうでないお客様の違いは何か</li>
+          <li>佐古社長に一番聞いてみたいこと</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6: 数値入力 -->
+  <div class="slide" style="background:var(--bg);">
+    <div class="slide-inner">
+      <div class="eyebrow">⑦ 数値入力の徹底依頼</div>
+      <div class="divider"></div>
+      <div class="h2">毎週の数値共有を<br>習慣にしてください</div>
+      <div class="lead"><p>この会議を毎週続けることで、各店の動きが可視化され、<strong>問題が小さいうちに手が打てます。</strong></p></div>
+      <div class="flow-grid">
+        <div class="flow-box">
+          <div class="flow-icon">📋</div>
+          <div class="flow-title">毎週木曜 18時まで</div>
+          <div class="flow-desc">今週のリスト数・通話数・アポ数・契約数を徳田にご連絡ください</div>
+        </div>
+        <div class="flow-box highlight">
+          <div class="flow-icon">📞</div>
+          <div class="flow-title">システム完成まで</div>
+          <div class="flow-desc">徳田が直接各店舗にヒアリングします。短時間で対応します</div>
+        </div>
+        <div class="flow-box">
+          <div class="flow-icon">📊</div>
+          <div class="flow-title">翌週金曜MTGで共有</div>
+          <div class="flow-desc">集めた数値をダッシュボードに反映し、全員に見せます</div>
+        </div>
+      </div>
+      <div class="step-note" style="margin-top:20px;">数値を出すことが目的ではありません。<strong>数値を使って、次の一手を全員で考えること</strong>が目的です。出しにくい数字でも、正直に共有してもらえる方が絶対に助かります。</div>
+    </div>
+  </div>
+
+  <!-- 7: 質疑応答 -->
+  <div class="slide" style="background:var(--white);">
+    <div class="slide-inner">
+      <div class="eyebrow">⑧ その他・質疑応答</div>
+      <div class="divider"></div>
+      <div class="h2">聞きたいこと、<br>話したいことはありますか？</div>
+      <div class="lead">
+        <p>今日の内容に関する質問、各店舗の個別状況の相談、本部への要望など、<strong>何でもこの場で話してください。</strong></p>
+        <p>言いにくいことも含めて、ここで出してもらえることが次につながります。</p>
+      </div>
+      <div class="box" style="margin-top:24px;max-width:560px;">
+        <div class="box-title">次回以降について</div>
+        <ul>
+          <li>毎週金曜 16:00〜 定例開催</li>
+          <li>数値の締め切りは毎週<strong>木曜 18:00</strong></li>
+          <li><strong>この会議を続けることが、月2棟への最短ルートです。</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11: LINE確認 -->
+  <div class="slide" style="background:var(--bg);">
+    <div class="slide-inner">
+      <div class="eyebrow">最後に確認させてください</div>
+      <div class="divider"></div>
+      <div class="h2">LINE公式アカウントは<br>お持ちですか？</div>
+      <div class="lead">
+        <p>今後のお客様フォローに活用できる可能性があるため、各店舗の状況を把握させてください。</p>
+      </div>
+      <div class="two-col" style="margin-top:28px;">
+        <div class="box" style="border-top:3px solid var(--accent);">
+          <div class="box-title">持っている場合</div>
+          <ul>
+            <li>どのような用途で使っていますか？</li>
+            <li>お客様への配信はしていますか？</li>
+            <li>活用できていると感じていますか？</li>
+          </ul>
+        </div>
+        <div class="box" style="border-top:3px solid var(--border2);">
+          <div class="box-title">持っていない場合</div>
+          <ul>
+            <li>導入を検討したことはありますか？</li>
+            <li>どんな理由で使っていないですか？</li>
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:20px;padding:14px 20px;background:var(--accent-l);border:1px solid #F5CBA0;border-radius:10px;max-width:860px;font-size:13px;color:var(--ink2);line-height:1.7;">
+        今日の回答をもとに、本部で活用方法の提案を検討します。今後の会議でご案内できる予定です。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <button class="nav-btn" id="btn-prev" onclick="goTo(cur-1)">←</button>
+  <div class="dots" id="dots"></div>
+  <span class="nav-counter" id="counter">1 / 8</span>
+  <button class="nav-btn" id="btn-next" onclick="goTo(cur+1)">→</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const N = slides.length;
+let cur = 0;
+const dotsEl = document.getElementById('dots');
+const counterEl = document.getElementById('counter');
+const progressEl = document.getElementById('progress');
+const btnPrev = document.getElementById('btn-prev');
+const btnNext = document.getElementById('btn-next');
+
+slides.forEach((_,i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' active':'');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+});
+
+function goTo(n) {
+  if (n < 0 || n >= N) return;
+  slides[cur].classList.remove('active');
+  dotsEl.children[cur].classList.remove('active');
+  cur = n;
+  slides[cur].classList.add('active');
+  dotsEl.children[cur].classList.add('active');
+  counterEl.textContent = (cur+1) + ' / ' + N;
+  progressEl.style.width = ((cur+1)/N*100) + '%';
+  btnPrev.disabled = cur === 0;
+  btnNext.disabled = cur === N-1;
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='ArrowRight'||e.key==='ArrowDown') goTo(cur+1);
+  if (e.key==='ArrowLeft' ||e.key==='ArrowUp')   goTo(cur-1);
+});
+
+goTo(0);
+</script>
+</body>
+</html>

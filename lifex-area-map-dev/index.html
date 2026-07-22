@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIFEX 加盟エリアマップ（プロトタイプ）</title>
+<style>
+  :root{
+    --taken:#3B4FC4;        /* エリア（購入済） */
+    --taken-hover:#2E3FA8;
+    --build:#A7BCEA;        /* 施工可能エリア */
+    --build-hover:#8CA6E0;
+    --open:#FFFFFF;         /* 空きエリア */
+    --open-hover:#F0F2F5;
+    --sea:#E9EFF5;
+    --line:#B9C0CA;
+    --prefline:#7E8896;
+    --ink:#1F2430;
+    --sub:#6B7280;
+    --accent:#4547CC;
+    --card:#FFFFFF;
+    --bg:#F4F5F7;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+  .wrap{max-width:1240px;margin:0 auto;padding:20px 24px 48px}
+
+  header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+  header h1{font-size:22px;letter-spacing:.04em}
+  .proto-badge{background:#B3372B;color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;letter-spacing:.08em}
+  header .date{color:var(--sub);font-size:12px;margin-left:auto}
+  .warn-box{background:#FDF3E7;border:1px solid #E8C99B;border-radius:10px;padding:10px 14px;font-size:12px;color:#8A5A1B;margin-bottom:14px;line-height:1.7}
+  .warn-box b{display:block;margin-bottom:2px}
+
+  .layout{display:flex;gap:16px;align-items:flex-start}
+  .map-card{flex:1;min-width:0;background:var(--card);border-radius:14px;box-shadow:0 1px 4px rgba(20,30,60,.08);padding:14px;position:relative}
+  .map-head{display:flex;align-items:center;gap:10px;margin:2px 4px 8px}
+  .map-head .title{font-weight:700;font-size:15px}
+  .back-btn{display:none;border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 12px;font-size:12px;cursor:pointer;color:var(--ink)}
+  .back-btn:hover{background:var(--open-hover)}
+  .back-btn.show{display:inline-block}
+  .mode-toggle{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;margin-left:8px}
+  .mode-toggle button{border:none;background:#fff;padding:5px 13px;font-size:12px;cursor:pointer;color:var(--sub)}
+  .mode-toggle button.on{background:var(--accent);color:#fff;font-weight:700}
+  .m-chip{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:baseline;flex-shrink:0}
+  .edit-panel{border:2px solid var(--accent)}
+  .e-label{display:block;font-size:11px;color:var(--sub);margin:8px 0 4px}
+  #editMember{width:100%;border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:13px;background:#fff}
+  .e-hint{font-size:11px;color:var(--sub);background:var(--bg);border-radius:8px;padding:7px 10px;line-height:1.6;margin-bottom:8px}
+  .e-counts{font-size:12px;font-weight:700;margin-bottom:10px}
+  .e-btn{display:block;width:100%;border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 0;font-size:13px;cursor:pointer;margin-bottom:7px;color:var(--ink)}
+  .e-btn:hover{background:var(--bg)}
+  .e-btn.e-save{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+  .e-btn.e-save:hover{background:#3739B0}
+  .muni.editing-target{cursor:crosshair}
+  svg{width:100%;height:auto;display:block;background:var(--sea);border-radius:10px}
+  .muni{stroke:var(--line);cursor:pointer;transition:fill .12s}
+  .muni:hover{filter:brightness(.93)}
+  .muni.open{fill:var(--open)}
+  .muni.taken{fill:var(--taken)}
+  .muni.build{fill:var(--build)}
+  .muni.build.multi{fill:url(#patMultiStatus)}
+  .muni.dim{opacity:.25}
+  .muni.selected{stroke:#1F2430;}
+  .prefline{fill:none;stroke:var(--prefline);pointer-events:none}
+  .badges{transition:opacity .25s}
+  .badges.hidden{opacity:0;pointer-events:none}
+  .badge{cursor:pointer}
+  .badge circle{fill:var(--taken);stroke:#fff;stroke-width:1.6}
+  .badge.b-build circle{fill:var(--build-hover)}
+  .badge text{fill:#fff;font-size:9px;font-weight:700;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+  .oki-sep{fill:none;stroke:#9AA5B1;stroke-dasharray:4 4;pointer-events:none}
+  .oki-label{fill:#7E8896;font-size:11px;pointer-events:none}
+
+  .tooltip{position:fixed;z-index:30;background:rgba(28,32,44,.95);color:#fff;font-size:12px;padding:7px 11px;border-radius:8px;pointer-events:none;display:none;max-width:260px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+  .tooltip .tt-name{font-weight:700;font-size:13px}
+  .tooltip .tt-status{margin-top:2px}
+  .tt-chip{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:baseline}
+
+  .side{width:300px;flex-shrink:0;display:flex;flex-direction:column;gap:12px}
+  .panel{background:var(--card);border-radius:14px;box-shadow:0 1px 4px rgba(20,30,60,.08);padding:16px}
+  .panel h2{font-size:13px;color:var(--sub);letter-spacing:.08em;margin-bottom:10px}
+
+  .legend-item{display:flex;gap:10px;align-items:flex-start;padding:6px 0}
+  .legend-swatch{width:22px;height:22px;border-radius:5px;flex-shrink:0;margin-top:2px;border:1px solid var(--line)}
+  .legend-item b{font-size:13px;display:block}
+  .legend-item span{font-size:11px;color:var(--sub);display:block;line-height:1.5}
+
+  .summary{display:flex;gap:8px;text-align:center}
+  .summary div{flex:1;background:var(--bg);border-radius:10px;padding:8px 4px}
+  .summary .num{font-size:20px;font-weight:700}
+  .summary .lbl{font-size:10px;color:var(--sub)}
+  .summary .num.c-taken{color:var(--taken)}
+  .summary .num.c-build{color:#5B7BD6}
+  .summary .num.c-open{color:#3E9E6E}
+
+  .search-box{position:relative}
+  .search-box input{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px 12px;font-size:13px;outline:none}
+  .search-box input:focus{border-color:var(--accent)}
+  .search-results{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 6px 18px rgba(20,30,60,.14);z-index:20;max-height:260px;overflow-y:auto;display:none}
+  .search-results.show{display:block}
+  .sr-item{padding:8px 12px;font-size:13px;cursor:pointer;display:flex;justify-content:space-between;gap:8px}
+  .sr-item:hover{background:var(--bg)}
+  .sr-item .sr-pref{color:var(--sub);font-size:11px;flex-shrink:0}
+
+  .info-empty{color:var(--sub);font-size:12px}
+  .info-name{font-size:16px;font-weight:700}
+  .info-pref{font-size:12px;color:var(--sub)}
+  .info-status{margin-top:8px;font-size:13px;display:flex;align-items:center;gap:7px}
+  .info-status .tt-chip{width:12px;height:12px}
+  .info-member{margin-top:4px;font-size:13px}
+  .info-note{margin-top:8px;font-size:11px;color:var(--sub);background:var(--bg);border-radius:8px;padding:7px 10px}
+
+  .member-item{padding:9px 10px;border-radius:9px;cursor:pointer;border:1px solid transparent}
+  .member-item:hover{background:var(--bg)}
+  .member-item.active{border-color:var(--accent);background:#F0F0FB}
+  .member-item .m-name{font-size:13px;font-weight:700}
+  .member-item .m-count{font-size:11px;color:var(--sub)}
+
+  .table-card{margin-top:16px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #E5E7EB;vertical-align:top}
+  th{font-size:11px;color:var(--sub);letter-spacing:.06em;white-space:nowrap}
+  td.m-col{white-space:nowrap;font-weight:700}
+  .area-tag{display:inline-block;background:#EDEFF9;border-radius:5px;padding:1px 7px;margin:2px 3px 2px 0;font-size:12px}
+  .area-tag.t-taken{background:var(--taken);color:#fff}
+
+  footer{margin-top:28px;font-size:11px;color:var(--sub);line-height:1.7}
+
+  @media(max-width:900px){
+    .layout{flex-direction:column}
+    .side{width:100%}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>LIFEX 加盟エリアマップ <span style="font-size:11px;color:#9AA1AC;font-weight:400">v2</span></h1>
+    <span class="proto-badge" id="dataBadge">プロトタイプ｜サンプルデータ</span>
+    <span class="date" id="today"></span>
+  </header>
+  <div class="warn-box" id="warnBox" style="display:none"></div>
+
+  <div class="layout">
+    <div class="map-card">
+      <div class="map-head">
+        <button class="back-btn" id="backBtn">← 全国に戻る</button>
+        <span class="title" id="mapTitle">全国</span>
+        <div class="mode-toggle">
+          <button id="modeStatus" class="on">空き状況</button>
+          <button id="modeMember">加盟店別</button>
+        </div>
+        <button class="back-btn" id="editBtn" style="display:none;margin-left:8px">✏ 施工範囲を入力</button>
+        <span style="font-size:11px;color:var(--sub);margin-left:auto" id="mapHint">クリックで都道府県を拡大 → 市区町村を選択</span>
+      </div>
+      <svg id="map" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+
+    <div class="side">
+      <div class="panel edit-panel" id="editPanel" style="display:none">
+        <h2>施工範囲の入力</h2>
+        <label class="e-label">加盟店</label>
+        <select id="editMember"></select>
+        <label class="e-label">いま塗る区分</label>
+        <div class="mode-toggle" style="margin:0 0 10px">
+          <button id="editKindTaken">エリア購入済</button>
+          <button id="editKindBuild" class="on">施工可能</button>
+        </div>
+        <div class="e-hint">県をクリックして拡大 → 市区町村をクリックで塗る／もう一度クリックで消す</div>
+        <div class="e-counts" id="editCounts">購入済 0｜施工可能 0</div>
+        <button class="e-btn" id="editBulk" style="display:none">この県をまとめて選択</button>
+        <button class="e-btn e-save" id="editSave">💾 スプシに保存</button>
+        <button class="e-btn" id="editCancel">やめる（保存しない）</button>
+      </div>
+      <div class="panel">
+        <h2>凡例</h2>
+        <div id="legendStatus">
+          <div class="legend-item">
+            <div class="legend-swatch" style="background:var(--taken)"></div>
+            <div><b>エリア（購入済）</b><span>加盟店がエリア権を取得済みの市区町村。新規のご提案はできません。</span></div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-swatch" style="background:var(--build)"></div>
+            <div><b>施工可能エリア</b><span>既存加盟店が施工対応できる範囲。エリア権としては未販売です。</span></div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-swatch" style="background:repeating-linear-gradient(45deg,#7E96D8 0 4px,#C7D4F2 4px 8px)"></div>
+            <div><b>施工可能（複数社重複）</b><span>複数の加盟店の施工範囲が重なっている市区町村です。</span></div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-swatch" style="background:var(--open)"></div>
+            <div><b>空きエリア</b><span>エリア権・施工対応ともに空き。ご提案可能です。</span></div>
+          </div>
+        </div>
+        <div id="legendMember" style="display:none">
+          <div class="legend-item">
+            <div class="legend-swatch" id="lmDark"></div>
+            <div><b>濃い色＝エリア（購入済）</b><span>色は加盟店ごとに異なります。右下の加盟店リストと対応。</span></div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-swatch" id="lmLight"></div>
+            <div><b>淡い色＝施工可能エリア</b><span>同じ加盟店の淡色バージョンです。</span></div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-swatch" id="lmStripe"></div>
+            <div><b>縞模様＝施工範囲の被り</b><span>重なっている各社の色の縞で表示します。</span></div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-swatch" style="background:var(--open)"></div>
+            <div><b>白＝空きエリア</b><span>ご提案可能です。</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>全国サマリー（市区町村数）</h2>
+        <div class="summary">
+          <div><div class="num c-taken" id="sumTaken">–</div><div class="lbl">購入済</div></div>
+          <div><div class="num c-build" id="sumBuild">–</div><div class="lbl">施工可能</div></div>
+          <div><div class="num c-open" id="sumOpen">–</div><div class="lbl">空き</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>市区町村を検索</h2>
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="例：堺市、川口市、高知市…" autocomplete="off">
+          <div class="search-results" id="searchResults"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>選択中のエリア</h2>
+        <div id="infoBody"><div class="info-empty">地図上の市区町村をクリックすると詳細を表示します</div></div>
+      </div>
+
+      <div class="panel">
+        <h2 id="memberListTitle">加盟店（サンプル）</h2>
+        <div id="memberList"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel table-card">
+    <h2 id="tableTitle">加盟店別 施工範囲一覧（サンプル）</h2>
+    <table>
+      <thead><tr><th>加盟店</th><th>エリア（購入済）</th><th>施工可能エリア</th></tr></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <footer>
+    <span id="footerSourceNote">※ 本資料はプロトタイプです。表示中の加盟店・エリアはすべて架空のサンプルデータです。</span><br>
+    ※ 政令指定都市は行政区単位で管理しています（エリア分割は加盟店との協議により区の組み合わせで設定）。小笠原村は表示対象外。<br>
+    地図データ出典：国土交通省 国土数値情報（行政区域データ N03・2021年）を加工して作成
+  </footer>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script src="map-data.js"></script>
+<script>
+'use strict';
+/* ================= サンプルデータ =================
+   本番ではここがスプレッドシート（GAS）からの自動取得に置き換わる。
+   形式: [都道府県, 市区町村名]（政令市は「市名+区名」） */
+/*SAMPLE_START*/
+const SAMPLE_MEMBERS = [
+  { name: "サンプル工務店A（首都圏）",
+    purchased: [["東京都","世田谷区"],["東京都","町田市"]],
+    buildable: [["東京都","調布市"],["東京都","狛江市"],["東京都","稲城市"],["神奈川県","川崎市多摩区"],["神奈川県","川崎市麻生区"],["神奈川県","横浜市青葉区"],["埼玉県","戸田市"],["埼玉県","蕨市"]] },
+  { name: "サンプル建設B（埼玉）",
+    purchased: [["埼玉県","さいたま市大宮区"],["埼玉県","さいたま市見沼区"],["埼玉県","川口市"]],
+    buildable: [["埼玉県","さいたま市北区"],["埼玉県","上尾市"],["埼玉県","蕨市"],["埼玉県","戸田市"],["埼玉県","越谷市"]] },
+  { name: "サンプルホームC（宮城）",
+    purchased: [["宮城県","仙台市太白区"],["宮城県","仙台市泉区"]],
+    buildable: [["宮城県","仙台市青葉区"],["宮城県","名取市"],["宮城県","岩沼市"],["宮城県","富谷市"]] },
+  { name: "サンプル住宅D（高知）",
+    purchased: [["高知県","高知市"]],
+    buildable: [["高知県","南国市"],["高知県","土佐市"],["高知県","香南市"],["高知県","香美市"],["高知県","いの町"]] },
+  { name: "サンプル工務店E（鹿児島）",
+    purchased: [["鹿児島県","鹿児島市"]],
+    buildable: [["鹿児島県","日置市"],["鹿児島県","姶良市"],["鹿児島県","霧島市"]] }
+];
+/*SAMPLE_END*/
+
+/* ================= 設定 =================
+   GASをデプロイしたらURLをここに貼る。空のままならサンプルデータで表示。 */
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbw49lDBLxn0sU3-xkjuTsZbt9wlGe8ft8Rzjn7RZGfnr7Riphb7ItxHJeYJTO9fnB4dBw/exec';
+
+const M = window.MAP_DATA;
+const svg = document.getElementById('map');
+const NS = 'http://www.w3.org/2000/svg';
+const [VX, VY, VW, VH] = M.viewBox;
+
+/* ---- 地名インデックス ---- */
+const byKey = new Map();            // "都道府県/市区町村名" → muni
+const prefMunis = new Map();        // 都道府県 → [市区町村full...]
+const cityWards = new Map();        // "都道府県/政令市名" → [区full...]
+M.munis.forEach(m => {
+  byKey.set(m.p + '/' + m.full, m);
+  if (!prefMunis.has(m.p)) prefMunis.set(m.p, []);
+  prefMunis.get(m.p).push(m.full);
+  if (m.g) {
+    const k = m.p + '/' + m.g;
+    if (!cityWards.has(k)) cityWards.set(k, []);
+    cityWards.get(k).push(m.full);
+  }
+});
+
+/*EXPAND_START*/
+/* スプシの行データ → 加盟店データ。
+   市区町村欄は「正式名」「政令市名（全区に展開）」「全域（県内全市区町村）」を受け付け、
+   認識できない地名・区分・購入エリアの重複は warnings に積んで画面に出す。 */
+function rowsToMembers(rows) {
+  const members = [], idx = new Map(), warnings = [], purchasedBy = new Map();
+  const expand = (pref, muni) => {
+    if (muni === '全域') return prefMunis.has(pref) ? prefMunis.get(pref).slice() : null;
+    if (byKey.has(pref + '/' + muni)) return [muni];
+    if (cityWards.has(pref + '/' + muni)) return cityWards.get(pref + '/' + muni).slice();
+    return null;
+  };
+  rows.forEach(r => {
+    const member = String(r.member || '').trim();
+    const pref = String(r.pref || '').trim();
+    const muni = String(r.muni || '').trim();
+    const kindRaw = String(r.kind || '').trim();
+    if (!member || !pref || !muni) return;
+    const kind = kindRaw.includes('購入') ? 'purchased' : (kindRaw.includes('施工') ? 'buildable' : null);
+    if (!kind) { warnings.push(`区分を認識できません：${member}／${pref}${muni}「${kindRaw}」（「エリア購入済」か「施工可能」で入力）`); return; }
+    const ex = expand(pref, muni);
+    if (!ex) { warnings.push(`市区町村名を認識できません：${member}／「${pref} ${muni}」（政令市は区名まで、郡は付けずに入力）`); return; }
+    if (!idx.has(member)) { idx.set(member, members.length); members.push({ name: member, purchased: [], buildable: [] }); }
+    const mem = members[idx.get(member)];
+    ex.forEach(full => {
+      if (kind === 'purchased') {
+        const owner = purchasedBy.get(pref + '/' + full);
+        if (owner && owner !== member) warnings.push(`購入エリアが重複しています：${pref}${full}（${owner} と ${member}）`);
+        purchasedBy.set(pref + '/' + full, member);
+      }
+      mem[kind].push([pref, full]);
+    });
+  });
+  return { members, warnings };
+}
+/*EXPAND_END*/
+
+/*COLLAPSE_START*/
+/* 入力モードで塗った内容 → スプシ行。
+   県内すべて塗ってあれば「全域」1行に、政令市の全区なら市名1行に自動でまとめる */
+function collapseToRows(draft) {
+  const rows = [];
+  [['purchased', 'エリア購入済'], ['buildable', '施工可能']].forEach(([key, label]) => {
+    const byPref = new Map();
+    draft[key].forEach(k => {
+      const i = k.indexOf('/');
+      const pref = k.slice(0, i), full = k.slice(i + 1);
+      if (!byPref.has(pref)) byPref.set(pref, new Set());
+      byPref.get(pref).add(full);
+    });
+    byPref.forEach((set, pref) => {
+      if (prefMunis.has(pref) && prefMunis.get(pref).every(f => set.has(f))) {
+        rows.push({ pref, muni: '全域', kind: label });
+        return;
+      }
+      const covered = new Set();
+      cityWards.forEach((wards, ck) => {
+        if (!ck.startsWith(pref + '/')) return;
+        if (wards.every(w => set.has(w))) {
+          rows.push({ pref, muni: ck.slice(pref.length + 1), kind: label });
+          wards.forEach(w => covered.add(w));
+        }
+      });
+      [...set].sort().forEach(f => { if (!covered.has(f)) rows.push({ pref, muni: f, kind: label }); });
+    });
+  });
+  return rows;
+}
+/*COLLAPSE_END*/
+
+/* ================= 画面構築 ================= */
+function boot(MEMBERS, meta) {
+/* ---- 状態テーブル構築 ---- */
+const status = new Map();           // code → {s:'taken'|'build', mems:[{name,mi}...]} 施工可能は複数社持てる
+const resolveErrors = [];
+MEMBERS.forEach((mem, mi) => {
+  mem.purchased.forEach(([p, n]) => {
+    const mu = byKey.get(p + '/' + n);
+    if (!mu) { resolveErrors.push(p + n); return; }
+    status.set(mu.c, { s: 'taken', mems: [{ name: mem.name, mi }] }); // 購入済が最優先
+  });
+});
+MEMBERS.forEach((mem, mi) => {
+  mem.buildable.forEach(([p, n]) => {
+    const mu = byKey.get(p + '/' + n);
+    if (!mu) { resolveErrors.push(p + n); return; }
+    const st = status.get(mu.c);
+    if (!st) status.set(mu.c, { s: 'build', mems: [{ name: mem.name, mi }] });
+    else if (st.s === 'build' && !st.mems.some(x => x.mi === mi)) st.mems.push({ name: mem.name, mi }); // 施工範囲の被り
+  });
+});
+
+/* 加盟店カラー（黄金角で色相を回し、何社に増えても被りにくい） */
+const memberColor = (mi, kind) => {
+  const h = Math.round((mi * 137.508 + 8) % 360);
+  return kind === 'taken' ? `hsl(${h},58%,42%)` : `hsl(${h},52%,80%)`;
+};
+
+/* ---- 塗りパターン（施工範囲の被り＝斜線ストライプ） ---- */
+const defs = document.createElementNS(NS, 'defs');
+svg.appendChild(defs);
+function makeStripePattern(id, colors, w) {
+  const pat = document.createElementNS(NS, 'pattern');
+  pat.setAttribute('id', id);
+  pat.setAttribute('width', colors.length * w);
+  pat.setAttribute('height', 8);
+  pat.setAttribute('patternUnits', 'userSpaceOnUse');
+  pat.setAttribute('patternTransform', 'rotate(45)');
+  colors.forEach((c, i) => {
+    const r = document.createElementNS(NS, 'rect');
+    r.setAttribute('x', i * w); r.setAttribute('width', w); r.setAttribute('height', 8);
+    r.setAttribute('fill', c);
+    pat.appendChild(r);
+  });
+  defs.appendChild(pat);
+}
+makeStripePattern('patMultiStatus', ['#7E96D8', '#C7D4F2'], 1.4); // 空き状況ビュー用（縞幅は小さい市でも縞に見える細さ）
+const comboPatterns = new Set();
+function memberComboFill(mis) {
+  const key = 'patCombo-' + mis.slice().sort((a, b) => a - b).join('-');
+  if (!comboPatterns.has(key)) {
+    makeStripePattern(key, mis.map(mi => memberColor(mi, 'build')), 1.4);
+    comboPatterns.add(key);
+  }
+  return `url(#${key})`;
+}
+/* 情報パネル・ツールチップのチップ用（CSS背景として返す） */
+function chipBg(st) {
+  if (!st) return '#fff';
+  if (st.s === 'taken') return viewMode === 'member' ? memberColor(st.mems[0].mi, 'taken') : '#3B4FC4';
+  if (st.mems.length === 1) return viewMode === 'member' ? memberColor(st.mems[0].mi, 'build') : '#A7BCEA';
+  const cs = viewMode === 'member' ? st.mems.map(x => memberColor(x.mi, 'build')) : ['#7E96D8', '#C7D4F2'];
+  return `repeating-linear-gradient(45deg, ${cs.map((c, i) => `${c} ${i * 4}px ${(i + 1) * 4}px`).join(', ')})`;
+}
+function memberNames(st) {
+  const names = st.mems.map(x => esc(x.name)).join('、');
+  return st.s === 'build' && st.mems.length > 1 ? `${names}（${st.mems.length}社の施工範囲が重複）` : names;
+}
+if (resolveErrors.length) console.warn('未解決の市区町村名:', resolveErrors);
+
+/* ---- SVG構築 ---- */
+svg.setAttribute('viewBox', `${VX} ${VY} ${VW} ${VH}`);
+const gMunis = document.createElementNS(NS, 'g');
+const gPrefs = document.createElementNS(NS, 'g');
+svg.appendChild(gMunis);
+svg.appendChild(gPrefs);
+
+const pathByCode = new Map();
+M.munis.forEach(m => {
+  const el = document.createElementNS(NS, 'path');
+  el.setAttribute('d', m.d);
+  el.setAttribute('fill-rule', 'evenodd');
+  const st = status.get(m.c);
+  el.setAttribute('class', 'muni ' + (st ? st.s + (st.s === 'build' && st.mems.length > 1 ? ' multi' : '') : 'open'));
+  el.dataset.code = m.c;
+  gMunis.appendChild(el);
+  pathByCode.set(m.c, el);
+});
+M.prefs.forEach(pf => {
+  const el = document.createElementNS(NS, 'path');
+  el.setAttribute('d', pf.d);
+  el.setAttribute('class', 'prefline');
+  gPrefs.appendChild(el);
+});
+if (M.okinawaBox) {
+  const [bx, by, bw, bh] = M.okinawaBox;
+  const sep = document.createElementNS(NS, 'path');
+  sep.setAttribute('d', `M${bx + bw} ${by}L${bx + bw} ${by + bh}L${bx} ${by + bh}`);
+  sep.setAttribute('class', 'oki-sep');
+  svg.appendChild(sep);
+  const lb = document.createElementNS(NS, 'text');
+  lb.setAttribute('x', bx + 4); lb.setAttribute('y', by + 14);
+  lb.setAttribute('class', 'oki-label');
+  lb.textContent = '沖縄県';
+  svg.appendChild(lb);
+}
+
+/* ---- 県バッジ（全国ビューで加盟店所在地を示す） ---- */
+function pathBBox(d) {
+  const nums = d.match(/-?[\d.]+/g).map(Number);
+  let b = [Infinity, Infinity, -Infinity, -Infinity];
+  for (let i = 0; i < nums.length; i += 2) {
+    if (nums[i] < b[0]) b[0] = nums[i]; if (nums[i] > b[2]) b[2] = nums[i];
+    if (nums[i + 1] < b[1]) b[1] = nums[i + 1]; if (nums[i + 1] > b[3]) b[3] = nums[i + 1];
+  }
+  return b;
+}
+const gBadges = document.createElementNS(NS, 'g');
+gBadges.setAttribute('class', 'badges');
+svg.appendChild(gBadges);
+{
+  const byPref = new Map(); // pref → {taken, build, bbox}
+  M.munis.forEach(m => {
+    const st = status.get(m.c);
+    if (!st) return;
+    if (!byPref.has(m.p)) byPref.set(m.p, { taken: 0, build: 0, bbox: [Infinity, Infinity, -Infinity, -Infinity] });
+    const e = byPref.get(m.p);
+    e[st.s === 'taken' ? 'taken' : 'build']++;
+    const b = pathBBox(m.d);
+    e.bbox = [Math.min(e.bbox[0], b[0]), Math.min(e.bbox[1], b[1]), Math.max(e.bbox[2], b[2]), Math.max(e.bbox[3], b[3])];
+  });
+  byPref.forEach((e, pref) => {
+    const cx = (e.bbox[0] + e.bbox[2]) / 2, cy = (e.bbox[1] + e.bbox[3]) / 2;
+    const g = document.createElementNS(NS, 'g');
+    g.setAttribute('class', 'badge' + (e.taken ? '' : ' b-build'));
+    const c = document.createElementNS(NS, 'circle');
+    c.setAttribute('cx', cx); c.setAttribute('cy', cy); c.setAttribute('r', 8);
+    const t = document.createElementNS(NS, 'text');
+    t.setAttribute('x', cx); t.setAttribute('y', cy);
+    t.textContent = e.taken + e.build;
+    g.appendChild(c); g.appendChild(t);
+    g.addEventListener('click', () => zoomToPref(pref));
+    gBadges.appendChild(g);
+  });
+}
+function setBadgesVisible(v) {
+  gBadges.classList.toggle('hidden', !v);
+  gBadges.style.pointerEvents = v ? '' : 'none';
+}
+
+/* ---- ズーム ---- */
+let curVB = [VX, VY, VW, VH];
+let currentPref = null;   // null=全国
+let anim = null;
+let onZoomChanged = null; // 入力モードがズーム状態を知るためのフック
+
+function setVB(vb) {
+  curVB = vb;
+  svg.setAttribute('viewBox', vb.map(v => v.toFixed(2)).join(' '));
+  updateStrokes();
+}
+function updateStrokes() {
+  const f = curVB[2] / VW;   // 表示中の縮尺（1=全国）
+  gMunis.style.strokeWidth = (0.55 * Math.max(f, 0.12)).toFixed(3);
+  gPrefs.style.strokeWidth = (0.9 * Math.max(f, 0.25)).toFixed(3);
+  document.querySelectorAll('.muni.selected').forEach(el =>
+    el.style.strokeWidth = (2.2 * Math.max(f, 0.12)).toFixed(3));
+}
+function animateVB(target, dur = 450) {
+  if (anim) cancelAnimationFrame(anim);
+  const from = curVB.slice(), t0 = performance.now();
+  const ease = t => 1 - Math.pow(1 - t, 3);
+  const step = now => {
+    const t = Math.min(1, (now - t0) / dur), e = ease(t);
+    setVB(from.map((v, i) => v + (target[i] - v) * e));
+    if (t < 1) anim = requestAnimationFrame(step);
+  };
+  anim = requestAnimationFrame(step);
+}
+function bboxToVB(b, pad = 0.09) {
+  let [x1, y1, x2, y2] = b;
+  let w = x2 - x1, h = y2 - y1;
+  x1 -= w * pad; y1 -= h * pad; w *= 1 + pad * 2; h *= 1 + pad * 2;
+  const ratio = VH / VW;   // svgのアスペクトに合わせる
+  if (h / w > ratio) { const nw = h / ratio; x1 -= (nw - w) / 2; w = nw; }
+  else { const nh = w * ratio; y1 -= (nh - h) / 2; h = nh; }
+  return [x1, y1, w, h];
+}
+function zoomToPref(pref, instant) {
+  currentPref = pref;
+  document.getElementById('mapTitle').textContent = pref;
+  document.getElementById('backBtn').classList.add('show');
+  setBadgesVisible(false);
+  try { history.replaceState(null, '', '#pref=' + encodeURIComponent(pref)); } catch (e) {}
+  const vb = bboxToVB(M.prefBBox[pref]);
+  instant ? setVB(vb) : animateVB(vb);
+  if (onZoomChanged) onZoomChanged();
+}
+function zoomNational() {
+  currentPref = null;
+  document.getElementById('mapTitle').textContent = '全国';
+  document.getElementById('backBtn').classList.remove('show');
+  clearSelection();
+  clearMemberHighlight();
+  setBadgesVisible(true);
+  try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+  animateVB([VX, VY, VW, VH]);
+  if (onZoomChanged) onZoomChanged();
+}
+document.getElementById('backBtn').addEventListener('click', zoomNational);
+
+/* ---- 選択・情報パネル ---- */
+let selectedCode = null;
+function clearSelection() {
+  if (selectedCode) {
+    const el = pathByCode.get(selectedCode);
+    el.classList.remove('selected'); el.style.strokeWidth = '';
+  }
+  selectedCode = null;
+  document.getElementById('infoBody').innerHTML =
+    '<div class="info-empty">地図上の市区町村をクリックすると詳細を表示します</div>';
+}
+const STATUS_LABEL = { taken: 'エリア（購入済）', build: '施工可能エリア', open: '空きエリア（ご提案可能）' };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function selectMuni(m) {
+  clearSelection();
+  selectedCode = m.c;
+  const el = pathByCode.get(m.c);
+  el.classList.add('selected');
+  gMunis.appendChild(el);   // 枠線を最前面に
+  updateStrokes();
+  const st = status.get(m.c);
+  const s = st ? st.s : 'open';
+  let html = `<div class="info-name">${m.full}</div><div class="info-pref">${m.p}</div>`;
+  html += `<div class="info-status"><span class="tt-chip" style="background:${chipBg(st)};border:1px solid var(--line)"></span>${STATUS_LABEL[s]}</div>`;
+  if (st) html += `<div class="info-member">担当：${memberNames(st)}</div>`;
+  if (m.g) html += `<div class="info-note">${m.g}は政令指定都市のため行政区単位で管理しています</div>`;
+  document.getElementById('infoBody').innerHTML = html;
+}
+
+/* ---- 表示モード（空き状況 / 加盟店別） ---- */
+let viewMode = 'status';
+function applyMode() {
+  M.munis.forEach(m => {
+    const el = pathByCode.get(m.c);
+    const st = status.get(m.c);
+    let fill = '';
+    if (viewMode === 'member' && st) {
+      if (st.s === 'taken') fill = memberColor(st.mems[0].mi, 'taken');
+      else if (st.mems.length === 1) fill = memberColor(st.mems[0].mi, 'build');
+      else fill = memberComboFill(st.mems.map(x => x.mi)); // 被り＝各社色の縞
+    }
+    el.style.fill = fill;
+  });
+  document.getElementById('legendStatus').style.display = viewMode === 'status' ? '' : 'none';
+  document.getElementById('legendMember').style.display = viewMode === 'member' ? '' : 'none';
+  document.getElementById('modeStatus').classList.toggle('on', viewMode === 'status');
+  document.getElementById('modeMember').classList.toggle('on', viewMode === 'member');
+  if (selectedCode) selectMuni(M.munis.find(x => x.c === selectedCode)); // 情報パネルの色を更新
+}
+document.getElementById('modeStatus').addEventListener('click', () => { viewMode = 'status'; applyMode(); });
+document.getElementById('modeMember').addEventListener('click', () => { viewMode = 'member'; applyMode(); });
+// 加盟店別モードの凡例サンプル色（1〜2社目の色を例示）
+document.getElementById('lmDark').style.background = memberColor(0, 'taken');
+document.getElementById('lmLight').style.background = memberColor(0, 'build');
+document.getElementById('lmStripe').style.background =
+  `repeating-linear-gradient(45deg, ${memberColor(0, 'build')} 0 4px, ${memberColor(1, 'build')} 4px 8px)`;
+
+/* ---- クリック・ホバー ---- */
+const tooltip = document.getElementById('tooltip');
+gMunis.addEventListener('click', e => {
+  const code = e.target.dataset && e.target.dataset.code;
+  if (!code) return;
+  const m = M.munis.find(x => x.c === code);
+  if (editing) {  // 入力モード中：拡大してからクリックで塗る
+    if (currentPref === m.p) toggleDraft(m);
+    else zoomToPref(m.p);
+    return;
+  }
+  if (!currentPref || currentPref !== m.p) zoomToPref(m.p);
+  selectMuni(m);
+});
+gMunis.addEventListener('mousemove', e => {
+  const code = e.target.dataset && e.target.dataset.code;
+  if (!code) { tooltip.style.display = 'none'; return; }
+  const m = M.munis.find(x => x.c === code);
+  const st = status.get(code);
+  const s = st ? st.s : 'open';
+  tooltip.innerHTML =
+    `<div class="tt-name">${m.p} ${m.full}</div>` +
+    `<div class="tt-status"><span class="tt-chip" style="background:${chipBg(st)};border:1px solid #888"></span>${STATUS_LABEL[s]}${st ? '｜' + memberNames(st) : ''}</div>`;
+  tooltip.style.display = 'block';
+  const pad = 14;
+  let tx = e.clientX + pad, ty = e.clientY + pad;
+  if (tx + 270 > innerWidth) tx = e.clientX - 270;
+  if (ty + 70 > innerHeight) ty = e.clientY - 70;
+  tooltip.style.left = tx + 'px'; tooltip.style.top = ty + 'px';
+});
+gMunis.addEventListener('mouseleave', () => tooltip.style.display = 'none');
+
+/* ---- サマリー ---- */
+let nTaken = 0, nBuild = 0;
+status.forEach(v => v.s === 'taken' ? nTaken++ : nBuild++);
+document.getElementById('sumTaken').textContent = nTaken;
+document.getElementById('sumBuild').textContent = nBuild;
+document.getElementById('sumOpen').textContent = M.munis.length - nTaken - nBuild;
+
+/* ---- 検索 ---- */
+const sInput = document.getElementById('searchInput');
+const sResults = document.getElementById('searchResults');
+sInput.addEventListener('input', () => {
+  const q = sInput.value.trim();
+  if (!q) { sResults.classList.remove('show'); return; }
+  const hits = M.munis.filter(m => m.full.includes(q) || (m.p + m.full).includes(q)).slice(0, 12);
+  sResults.innerHTML = hits.length
+    ? hits.map(m => `<div class="sr-item" data-code="${m.c}"><span>${m.full}</span><span class="sr-pref">${m.p}</span></div>`).join('')
+    : '<div class="sr-item" style="color:var(--sub)">見つかりません</div>';
+  sResults.classList.add('show');
+});
+sResults.addEventListener('click', e => {
+  const item = e.target.closest('.sr-item');
+  if (!item || !item.dataset.code) return;
+  const m = M.munis.find(x => x.c === item.dataset.code);
+  sResults.classList.remove('show');
+  sInput.value = m.full;
+  clearMemberHighlight();
+  zoomToPref(m.p);
+  selectMuni(m);
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-box')) sResults.classList.remove('show');
+});
+
+/* ---- 加盟店リスト・ハイライト ---- */
+let activeMember = null;
+function clearMemberHighlight() {
+  activeMember = null;
+  document.querySelectorAll('.member-item').forEach(el => el.classList.remove('active'));
+  M.munis.forEach(m => pathByCode.get(m.c).classList.remove('dim'));
+}
+function memberCodes(mem) {
+  const codes = [];
+  [...mem.purchased, ...mem.buildable].forEach(([p, n]) => {
+    const mu = byKey.get(p + '/' + n);
+    if (mu) codes.push(mu.c);
+  });
+  return codes;
+}
+const memberList = document.getElementById('memberList');
+MEMBERS.forEach((mem, i) => {
+  const div = document.createElement('div');
+  div.className = 'member-item';
+  div.innerHTML = `<div class="m-name"><span class="m-chip" style="background:${memberColor(i, 'taken')}"></span>${esc(mem.name)}</div><div class="m-count">購入済 ${mem.purchased.length}｜施工可能 ${mem.buildable.length}</div>`;
+  div.addEventListener('click', () => {
+    if (activeMember === i) { clearMemberHighlight(); zoomNational(); return; }
+    clearMemberHighlight();
+    activeMember = i;
+    div.classList.add('active');
+    const codes = new Set(memberCodes(mem));
+    M.munis.forEach(m => pathByCode.get(m.c).classList.toggle('dim', !codes.has(m.c)));
+    // 該当エリア全体にズーム
+    let b = [Infinity, Infinity, -Infinity, -Infinity];
+    codes.forEach(c => {
+      const pb = M.prefBBox[M.munis.find(x => x.c === c).p];
+      b = [Math.min(b[0], pb[0]), Math.min(b[1], pb[1]), Math.max(b[2], pb[2]), Math.max(b[3], pb[3])];
+    });
+    document.getElementById('mapTitle').textContent = mem.name;
+    document.getElementById('backBtn').classList.add('show');
+    currentPref = '__member__';
+    animateVB(bboxToVB(b));
+  });
+  memberList.appendChild(div);
+});
+/* ---- 一覧テーブル ---- */
+document.getElementById('tableBody').innerHTML = MEMBERS.map((mem, mi) => {
+  const tags = (list, cls) => list.map(([p, n]) => `<span class="area-tag ${cls}">${esc(n)}</span>`).join('');
+  return `<tr><td class="m-col"><span class="m-chip" style="background:${memberColor(mi, 'taken')}"></span>${esc(mem.name)}</td><td>${tags(mem.purchased, 't-taken')}</td><td>${tags(mem.buildable, '')}</td></tr>`;
+}).join('');
+
+/* ---- 入力モード（地図をクリックして施工範囲を塗る → スプシに保存） ---- */
+const editBtn = document.getElementById('editBtn');
+const editPanel = document.getElementById('editPanel');
+const editSel = document.getElementById('editMember');
+let editing = null; // {mi, name, kind, draft:{purchased:Set, buildable:Set}, dirty}
+
+function draftOf(mi) {
+  const d = { purchased: new Set(), buildable: new Set() };
+  if (mi < MEMBERS.length) {
+    MEMBERS[mi].purchased.forEach(([p, n]) => d.purchased.add(p + '/' + n));
+    MEMBERS[mi].buildable.forEach(([p, n]) => d.buildable.add(p + '/' + n));
+  }
+  return d;
+}
+function fillMemberSelect(selectedValue) {
+  editSel.innerHTML = MEMBERS.map((m, i) => `<option value="${i}">${esc(m.name)}</option>`).join('') +
+    '<option value="__new__">＋ 新しい加盟店を追加…</option>';
+  if (selectedValue !== undefined) editSel.value = selectedValue;
+}
+function addNewOption(name) {
+  const opt = document.createElement('option');
+  opt.value = 'new:' + name;
+  opt.textContent = name + '（新規）';
+  editSel.insertBefore(opt, editSel.lastElementChild);
+  editSel.value = 'new:' + name;
+}
+/* 編集中は「自分の担当分＝draftの色、他社分＝空き状況の色、自分の旧データ＝白」で塗り直す */
+function repaintEdit() {
+  M.munis.forEach(m => {
+    const el = pathByCode.get(m.c);
+    const key = m.p + '/' + m.full;
+    let fill;
+    if (editing.draft.purchased.has(key)) fill = memberColor(editing.mi, 'taken');
+    else if (editing.draft.buildable.has(key)) fill = memberColor(editing.mi, 'build');
+    else {
+      const st = status.get(m.c);
+      const others = st ? st.mems.filter(x => x.mi !== editing.mi) : [];
+      fill = !st || !others.length ? '#fff' : (st.s === 'taken' ? '#3B4FC4' : '#A7BCEA');
+    }
+    el.style.fill = fill;
+    el.classList.add('editing-target');
+  });
+  document.getElementById('editCounts').textContent =
+    `購入済 ${editing.draft.purchased.size}｜施工可能 ${editing.draft.buildable.size}`;
+}
+function setKind(k) {
+  editing.kind = k;
+  document.getElementById('editKindTaken').classList.toggle('on', k === 'purchased');
+  document.getElementById('editKindBuild').classList.toggle('on', k === 'buildable');
+}
+function toggleDraft(m) {
+  const key = m.p + '/' + m.full;
+  const d = editing.draft, k = editing.kind, other = k === 'purchased' ? 'buildable' : 'purchased';
+  if (d[k].has(key)) d[k].delete(key);
+  else {
+    const st = status.get(m.c);
+    const owner = st && st.s === 'taken' && st.mems.find(x => x.mi !== editing.mi);
+    if (owner && !confirm(`${m.full}は「${owner.name}」のエリア（購入済）です。それでも塗りますか？`)) return;
+    d[other].delete(key);
+    d[k].add(key);
+  }
+  editing.dirty = true;
+  repaintEdit();
+}
+function startEditFor(mi, name) {
+  editing = { mi, name, kind: 'buildable', draft: draftOf(mi), dirty: false };
+  viewMode = 'status'; applyMode();
+  editPanel.style.display = '';
+  editBtn.style.display = 'none';
+  document.getElementById('mapHint').textContent = '入力モード：県をクリックで拡大 → 市区町村をクリックで塗る';
+  setKind('buildable');
+  updateBulkBtn();
+  repaintEdit();
+}
+function exitEdit() {
+  editing = null;
+  editPanel.style.display = 'none';
+  if (canEdit) editBtn.style.display = 'inline-block';
+  document.getElementById('mapHint').textContent = 'クリックで都道府県を拡大 → 市区町村を選択';
+  M.munis.forEach(m => {
+    const el = pathByCode.get(m.c);
+    el.style.fill = '';
+    el.classList.remove('editing-target');
+  });
+  applyMode();
+}
+function updateBulkBtn() {
+  const b = document.getElementById('editBulk');
+  const show = editing && currentPref && currentPref !== '__member__';
+  b.style.display = show ? '' : 'none';
+  if (show) b.textContent = `${currentPref}をまとめて選択`;
+}
+onZoomChanged = () => { if (editing) updateBulkBtn(); };
+
+editBtn.onclick = () => {
+  fillMemberSelect();
+  if (MEMBERS.length) { editSel.value = '0'; startEditFor(0, MEMBERS[0].name); }
+  else {
+    const name = (prompt('加盟店名を入力してください') || '').trim();
+    if (!name) return;
+    addNewOption(name);
+    startEditFor(MEMBERS.length, name);
+  }
+};
+editSel.onchange = () => {
+  const prevValue = editing.mi < MEMBERS.length ? String(editing.mi) : 'new:' + editing.name;
+  if (editing.dirty && !confirm('保存していない変更は消えます。加盟店を切り替えますか？')) {
+    editSel.value = prevValue;
+    return;
+  }
+  const v = editSel.value;
+  if (v === '__new__') {
+    const name = (prompt('新しい加盟店名を入力してください') || '').trim();
+    if (!name || MEMBERS.some(x => x.name === name)) {
+      if (name) alert('同じ名前の加盟店がすでにあります');
+      editSel.value = prevValue;
+      return;
+    }
+    addNewOption(name);
+    startEditFor(MEMBERS.length, name);
+  } else if (v.startsWith('new:')) {
+    startEditFor(MEMBERS.length, v.slice(4));
+  } else {
+    startEditFor(Number(v), MEMBERS[Number(v)].name);
+  }
+};
+document.getElementById('editKindTaken').onclick = () => setKind('purchased');
+document.getElementById('editKindBuild').onclick = () => setKind('buildable');
+document.getElementById('editBulk').onclick = () => {
+  if (!editing || !currentPref || currentPref === '__member__') return;
+  const d = editing.draft, k = editing.kind, other = k === 'purchased' ? 'buildable' : 'purchased';
+  prefMunis.get(currentPref).forEach(full => {
+    const key = currentPref + '/' + full;
+    const mu = byKey.get(key);
+    const st = status.get(mu.c);
+    if (st && st.s === 'taken' && st.mems.some(x => x.mi !== editing.mi)) return; // 他社の購入済は飛ばす
+    d[other].delete(key);
+    d[k].add(key);
+  });
+  editing.dirty = true;
+  repaintEdit();
+};
+document.getElementById('editCancel').onclick = () => {
+  if (editing.dirty && !confirm('保存していない変更は消えますが、やめますか？')) return;
+  exitEdit();
+};
+document.getElementById('editSave').onclick = () => {
+  const rows = collapseToRows(editing.draft);
+  if (!rows.length && !confirm(`${editing.name}の登録をすべて削除して保存します。よろしいですか？`)) return;
+  let pin = localStorage.getItem('lifexAreaPin');
+  if (!pin) {
+    pin = (prompt('保存用のPIN（合言葉）を入力してください') || '').trim();
+    if (!pin) return;
+  }
+  const btn = document.getElementById('editSave');
+  btn.disabled = true; btn.textContent = '保存中…';
+  fetch(GAS_URL, { method: 'POST', body: JSON.stringify({ pin, member: editing.name, rows }) })
+    .then(r => r.json())
+    .then(j => {
+      if (j.error) {
+        if (j.error.includes('PIN')) localStorage.removeItem('lifexAreaPin');
+        throw new Error(j.error);
+      }
+      localStorage.setItem('lifexAreaPin', pin);
+      alert(`保存しました（${editing.name}：スプシ${j.saved}行）。最新データを読み込み直します。`);
+      location.reload();
+    })
+    .catch(err => {
+      alert('保存できませんでした：' + err.message);
+      btn.disabled = false; btn.textContent = '💾 スプシに保存';
+    });
+};
+
+document.getElementById('today').textContent =
+  new Date().toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }) + ' 時点';
+updateStrokes();
+
+/* ---- URLハッシュで直接開く（#pref=埼玉県&mode=member） ---- */
+{
+  const params = {};
+  decodeURIComponent(location.hash.slice(1)).split('&').forEach(kv => {
+    const [k, v] = kv.split('=');
+    if (k && v) params[k] = v;
+  });
+  if (params.mode === 'member') { viewMode = 'member'; applyMode(); }
+  if (params.pref && M.prefBBox[params.pref]) zoomToPref(params.pref, true);
+}
+
+/* ---- データソース表示（バッジ・警告）・入力ボタンの表示判定 ---- */
+// 入力モードは「GAS接続済み」かつ「手元でファイルを開いた or URLに#editを付けた」ときだけ
+const canEdit = !!GAS_URL && meta.live && (location.protocol === 'file:' || location.hash.includes('edit'));
+if (canEdit) editBtn.style.display = 'inline-block'; // .back-btnのdisplay:noneに勝つため明示指定
+const badge = document.getElementById('dataBadge');
+if (meta.live) {
+  badge.textContent = 'スプシ連携｜自動反映';
+  badge.style.background = '#2E8B57';
+  if (meta.updated) badge.title = '最終取得: ' + meta.updated;
+  document.getElementById('memberListTitle').textContent = '加盟店';
+  document.getElementById('tableTitle').textContent = '加盟店別 施工範囲一覧';
+  document.getElementById('footerSourceNote').textContent = '※ データはスプレッドシート「施工範囲マスタ」から自動反映されています。';
+} else if (meta.error) {
+  badge.textContent = 'サンプル表示（スプシ取得失敗）';
+  console.error('スプシ取得失敗:', meta.error);
+  const wb0 = document.getElementById('warnBox');
+  wb0.style.display = '';
+  wb0.innerHTML = '<b>⚠ スプシからデータを取得できませんでした（いまはサンプルを表示中）</b>' +
+    'ネットの一時的な不調のことが多いです。ページを再読み込み（F5）してください。直らない場合はこの画面をスクショで共有を。<br>' +
+    '<span style="color:#B3372B">' + esc(meta.error) + '</span>';
+}
+const warns = meta.warnings || [];
+if (warns.length) {
+  const wb = document.getElementById('warnBox');
+  wb.style.display = '';
+  wb.innerHTML = `<b>⚠ スプシの入力内容を確認してください（${warns.length}件・該当行は地図に反映されていません）</b>` +
+    warns.map(w => '・' + esc(w)).join('<br>');
+}
+} /* boot() ここまで */
+
+/* ================= 起動 ================= */
+if (GAS_URL) {
+  fetch(GAS_URL)
+    .then(r => r.json())
+    .then(j => {
+      const { members, warnings } = rowsToMembers(j.rows || []);
+      boot(members, { live: true, updated: j.updated, warnings });
+    })
+    .catch(err => boot(SAMPLE_MEMBERS, { live: false, error: String(err) }));
+} else {
+  boot(SAMPLE_MEMBERS, { live: false });
+}
+</script>
+</body>
+</html>

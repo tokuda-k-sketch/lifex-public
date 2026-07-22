@@ -1,0 +1,374 @@
+<title>LIFEX 月2棟達成MTG 進行設計書</title>
+<style>
+  :root{
+    --ink:#1c2733; --sub:#5a6b7e; --line:#d9e1e9; --panel:#f3f6f9;
+    --navy:#1e4e79; --navy-soft:#e8eff6;
+    --p1:#1e4e79; --p2:#2e7d6e; --p3:#b05c1f;
+    --p1bg:#e8eff6; --p2bg:#e7f2ef; --p3bg:#f9efe4;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+    color:var(--ink); background:#fff; margin:0; line-height:1.75;
+    font-feature-settings:"palt";
+  }
+  .page{max-width:900px;margin:0 auto;padding:48px 28px 80px}
+  .eyebrow{font-size:12px;letter-spacing:.18em;color:var(--navy);font-weight:700}
+  h1{font-size:30px;line-height:1.4;margin:10px 0 6px;text-wrap:balance}
+  .lede{color:var(--sub);font-size:15px;max-width:40em}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .meta span{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:4px 12px;font-size:13px}
+  .theme{
+    margin-top:22px;background:var(--navy);color:#fff;border-radius:6px;padding:18px 22px;
+  }
+  .theme b{display:block;font-size:12px;letter-spacing:.15em;opacity:.75;margin-bottom:6px}
+  .theme p{margin:0;font-size:15px;line-height:1.8}
+  h2{font-size:21px;margin:64px 0 6px;padding-top:20px;border-top:2px solid var(--ink)}
+  h2 .no{color:var(--navy);margin-right:10px;font-variant-numeric:tabular-nums}
+  .h2sub{color:var(--sub);font-size:14px;margin:0 0 22px}
+  table{border-collapse:collapse;width:100%;font-size:14px}
+  .scroll{overflow-x:auto}
+  th{background:var(--panel);text-align:left;font-size:12.5px;letter-spacing:.05em;color:var(--sub);font-weight:600}
+  th,td{border:1px solid var(--line);padding:9px 12px;vertical-align:top}
+  td.time{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:700;color:var(--navy)}
+  td.min{white-space:nowrap;text-align:center;font-variant-numeric:tabular-nums}
+  .who{font-size:12px;color:var(--sub);white-space:nowrap}
+  .note{background:var(--panel);border-left:3px solid var(--navy);padding:14px 18px;font-size:14px;margin:20px 0;border-radius:0 4px 4px 0}
+  .note b{color:var(--navy)}
+
+  /* slide cards */
+  .slide{border:1px solid var(--line);border-radius:6px;margin:0 0 22px;overflow:hidden}
+  .slide-head{display:flex;align-items:baseline;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);background:#fff}
+  .snum{font-variant-numeric:tabular-nums;font-weight:800;color:#fff;background:var(--navy);border-radius:4px;padding:1px 9px;font-size:13px;flex-shrink:0}
+  .slide-head h3{margin:0;font-size:16.5px;line-height:1.5}
+  .tag{margin-left:auto;flex-shrink:0;font-size:11.5px;font-weight:700;letter-spacing:.08em;padding:2px 10px;border-radius:99px}
+  .t0{background:#eceff2;color:var(--sub)} .t1{background:var(--p1bg);color:var(--p1)}
+  .t2{background:var(--p2bg);color:var(--p2)} .t3{background:var(--p3bg);color:var(--p3)}
+  .slide-body{display:grid;grid-template-columns:1fr 280px;gap:0}
+  .slide-msg{padding:14px 18px;font-size:14px}
+  .slide-msg p{margin:0 0 8px}
+  .slide-msg .q{display:inline-block;background:var(--p3bg);color:var(--p3);font-size:11.5px;font-weight:700;border-radius:3px;padding:1px 8px;margin:2px 4px 2px 0}
+  .msg-label{font-size:11px;letter-spacing:.12em;color:var(--sub);font-weight:700;display:block;margin-bottom:3px}
+  .slide-wf{padding:14px 18px;border-left:1px dashed var(--line);background:#fbfcfd}
+  .wf-cap{font-size:11px;letter-spacing:.1em;color:var(--sub);font-weight:700;margin-bottom:8px}
+  .wf{aspect-ratio:16/9;border:1.5px solid var(--ink);border-radius:3px;background:#fff;padding:7px;display:flex;flex-direction:column;gap:5px;font-size:9.5px;line-height:1.3;color:var(--sub)}
+  .wf .r{display:flex;gap:5px;flex:1;min-height:0}
+  .wf .b{border:1px solid var(--line);border-radius:2px;background:var(--panel);flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:3px}
+  .wf .b.hd{background:#fff;border:none;font-weight:800;color:var(--ink);font-size:10.5px;flex:0 0 auto;min-height:16px}
+  .wf .b.ac{background:var(--navy-soft);border-color:var(--navy);color:var(--navy);font-weight:700}
+  .wf .b.wide{flex:2.2}
+  .wf .b.thin{flex:0 0 20%}
+  .arrow{color:var(--navy);font-weight:700}
+  @media(max-width:680px){.slide-body{grid-template-columns:1fr}.slide-wf{border-left:none;border-top:1px dashed var(--line)}}
+
+  /* coverage map */
+  .cov td:first-child{width:34px;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
+  .pill{font-size:11.5px;font-weight:700;border-radius:3px;padding:1px 8px;white-space:nowrap}
+  .pv1{background:var(--p1bg);color:var(--p1)} .pv2{background:var(--p2bg);color:var(--p2)} .pv3{background:var(--p3bg);color:var(--p3)}
+
+  /* prep list */
+  .prep{border:1px solid var(--line);border-radius:6px;padding:4px 22px;margin-bottom:14px}
+  .prep h3{font-size:15.5px;margin:16px 0 4px;color:var(--navy)}
+  .prep h3 em{font-style:normal;color:var(--ink)}
+  .prep p{margin:0 0 16px;font-size:14px}
+  footer{margin-top:70px;padding-top:16px;border-top:1px solid var(--line);color:var(--sub);font-size:12.5px}
+</style>
+
+<div class="page">
+  <div class="eyebrow">LIFEX 加盟店オンラインMTG（60分）進行設計書</div>
+  <h1>月2棟は、再現できる。<br>— YUNO HOME 佐古社長の営業システム 全公開 —</h1>
+  <p class="lede">トップ加盟店の「型」を、明日そのまま動かせる粒度で持ち帰るための進行アジェンダ・スライド構成案・登壇者事前準備メモ。</p>
+  <div class="meta">
+    <span>登壇：YUNO HOME 佐古社長</span>
+    <span>対象：LIFEX加盟店 営業担当・経営者</span>
+    <span>60分／オンライン</span>
+    <span>事前アンケート回答：19名</span>
+    <span>事前質問16問を回収</span>
+  </div>
+  <div class="theme">
+    <b>裏テーマ（この設計書のすべての判断基準）</b>
+    <p>「佐古社長だからできる」を1ミリも残さない。<strong>60分のすべてを、誰が使っても同じように機能する"営業システムの公開"として設計する。</strong>感想ではなく、翌日の行動が残る状態がゴール。構成・スライド・話し方のすべてをこの一点に向ける。</p>
+  </div>
+
+  <h2><span class="no">01</span>60分タイムテーブル</h2>
+  <p class="h2sub">ライブQ&amp;Aの枠は設けない。事前質問16問そのものが実質のQ&amp;Aであり、営業フローの時系列に沿って「流れの中で回収」する方式。当日の追加質問はチャットで受け、回収しきれない分は後日文書で全店共有する。時間配分は事前アンケートの課題分布（回答19名中12名が「初回アポイントの獲得数」を課題に選択）に基づき、第1章を最厚にしている。</p>
+  <div class="scroll">
+  <table>
+    <tr><th>時間</th><th>分</th><th>内容</th><th>担当</th></tr>
+    <tr><td class="time">00:00–03:00</td><td class="min">3</td><td><b>オープニング｜今日のゴール設定</b><br>「今日持ち帰るのは、明日そのまま使える"型"です」— メモの取り方（感想ではなく手順で書く）の指定まで含めて、事務局が最初に枠組みを作る。</td><td class="who">事務局</td></tr>
+    <tr><td class="time">03:00–10:00</td><td class="min">7</td><td><b>数字の全公開＋営業フロー全体図</b><br>月2棟を逆算KPI（着電→アポ→来場→申込→契約の各歩留まり）に分解して見せる。「率は普通。設計が違う」——"個人技の話"という見方を、冒頭で数字から消す。全体フロー図＝本日の地図を提示。</td><td class="who">佐古社長</td></tr>
+    <tr><td class="time">10:00–27:00</td><td class="min">17</td><td><b>第1章｜集客・アポ獲得の型</b>（事前質問Q1-1〜Q1-4を回収）<br>テレアポ着電後のトークフロー実演／誘客の理由づけ3パターン／「トークの質か、追客の回数か」への回答＝接触ルール表／通常来場客への初動対応。<br><span style="color:var(--p1);font-size:12.5px">※アンケート最多課題「初回アポ獲得数」(12/19名)に対応するため最厚配分。</span></td><td class="who">佐古社長</td></tr>
+    <tr><td class="time">27:00–40:00</td><td class="min">13</td><td><b>第2章｜初回商談・セミナーの型</b>（Q2-1〜Q2-5を回収）<br>モニター説明60分の入り方＝冒頭90秒の許可取りスクリプト実演／「毎回必ず初回1時間セミナーをやるのか？」への回答／セミナースライドの緩急設計／金額ギャップの「総額先出し」／土地なし客の順序設計。</td><td class="who">佐古社長</td></tr>
+    <tr><td class="time">40:00–53:00</td><td class="min">13</td><td><b>第3章｜競合対策・クロージングの型</b>（Q3-1〜Q3-7を回収）<br>初回来場→申込の標準スケジュール／一条工務店（最注目競合・9/19名）を主軸に、アイ工務店（6/19名）も含めた事前ブロック／「他社も見たい」を出させない判断基準の先取り／阻害要因と値引き対応／申込後の土地付け・資金計画の流れ。</td><td class="who">佐古社長</td></tr>
+    <tr><td class="time">53:00–57:00</td><td class="min">4</td><td><b>まとめ｜明日からの3アクション</b><br>持ち帰りを3つに絞って宿題化。</td><td class="who">両者</td></tr>
+    <tr><td class="time">57:00–60:00</td><td class="min">3</td><td><b>クロージング</b><br>チャット質問の後日回答約束／録画・資料共有／次回テーマ予告。</td><td class="who">事務局</td></tr>
+  </table>
+  </div>
+  <div class="note"><b>時間設計の意図：</b>冒頭10分に「数字＋全体地図」を置くのが最大のポイント。「普通の率の掛け算」だと先に示せれば、以降のトーク紹介がすべて「システムの部品」として聞こえる。逆にここを飛ばすと、どんなに良いトークを紹介しても「佐古さんだから」で流される。</div>
+
+  <h2><span class="no">02</span>スライド構成案（全15枚）</h2>
+  <p class="h2sub">白基調・1スライド1メッセージ・図解優先。右の枠は当日スライドのレイアウト見取り図。</p>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">1</span><h3>表紙｜月2棟は、再現できる。</h3><span class="tag t0">導入</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <span class="msg-label">メッセージ</span>
+        <p>サブタイトルに「YUNO HOME式 営業システム、全公開。」。短い言い切りのタイトルで「今日は再現性の話」という構えを最初に作る。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>白地の中央にタイトル1行のみ。下部にごく薄いグレーで営業フロー図のシルエットを敷き、「今日はこの図を埋めていく」予告として機能させる。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="r"><div class="b" style="background:#fff;border:none"></div></div><div class="b hd">月2棟は、再現できる。</div><div class="r"><div class="b">薄グレーのフロー図シルエット（→→→→→）</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">2</span><h3>今日の聞き方｜メモは、手順で。</h3><span class="tag t0">導入</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <span class="msg-label">メッセージ</span>
+        <p>感想メモは明日使えない。手順メモは明日使える——メモの取り方を最初に指定する：<b>NG「佐古社長はトークがうまい」／OK「着電後の最初の質問は◯◯と聞く」</b>。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>左右2列の比較表。左＝NGなメモ例（グレー）、右＝OKなメモ例（紺）。文字は各3行以内。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="b hd">今日の「聞き方」</div><div class="r"><div class="b">NGメモ例<br>（感想）</div><div class="b ac">OKメモ例<br>（手順）</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">3</span><h3>数字の全公開｜率は普通。設計が違う。</h3><span class="tag t0">導入</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <span class="msg-label">メッセージ</span>
+        <p>着電→アポ→来場→申込→契約のファネルを実数と歩留まり率で公開。「1つ1つの率は業界並み。<b>落とさない仕組みを各段に置いているだけ</b>」が結論。"個人技の話"という見方を、ここで数字から消す。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>左に上から下へ細くなるファネル図（5段）、右に各段の率を並べた小さな表。率の数字だけ紺で大きく。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="b hd">月2棟の逆算式</div><div class="r"><div class="b wide">ファネル図<br>着電→アポ→来場<br>→申込→契約</div><div class="b ac">各段の<br>歩留まり率表</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">4</span><h3>営業フロー全体図｜今日の地図</h3><span class="tag t0">導入</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <span class="msg-label">メッセージ</span>
+        <p>集客〜契約後までを横一列7ステップのフローチャートで提示し、<b>事前質問16問と課題投票の件数をこの地図上にマッピング</b>して見せる（Q番号アイコン＋「アポ獲得12名」等の件数バッジを該当ステップに配置）。「皆さんの質問は全部この流れの部品の話です。一番票が集まったアポ獲得に、今日は一番時間を使います」——時間配分の根拠まで参加者のデータで示す。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>横一列のフローチャート（各箱は単語のみ）。下に第1章〜第3章の範囲を色帯で表示。以降の章扉でこの図を再掲し「現在地」をハイライト。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="b hd">営業フロー全体図</div><div class="r" style="flex:0 0 34%"><div class="b">着電</div><div class="b">アポ</div><div class="b">来場</div><div class="b">商談</div><div class="b">申込</div><div class="b">契約</div></div><div class="r"><div class="b ac">第1章</div><div class="b ac">第2章</div><div class="b ac">第3章</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">5</span><h3>第1章①｜テレアポは「台本」で決まる</h3><span class="tag t1">集客・アポ</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <p><span class="q">Q1-1 着電後の対応・アポまでのトーク</span><span class="q">Q1-2 誘客の理由づけ</span></p>
+        <span class="msg-label">メッセージ</span>
+        <p>着電後の分岐スクリプトを図解：<b>着電 → ヒアリング2問 → 来店理由の提示 → 日程の二択打診</b>。誘客の「理由づけ」は3パターンに型化（例：限定性＝モニター枠／個別性＝あなた向け資金診断／実物＝現地でしか見えないもの）して使い分け条件まで示す。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>左にトークの分岐フローチャート（吹き出しで一言一句の冒頭文言）、右に理由づけ3パターンのカード3枚。当日はここで実演。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="b hd">着電→アポの台本</div><div class="r"><div class="b wide">分岐フロー図<br>着電→2問→理由→二択打診<br>（吹き出しでスクリプト）</div><div class="b ac">理由づけ<br>3パターン<br>カード</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">6</span><h3>第1章②｜追客は、ルール表で回す</h3><span class="tag t1">集客・アポ</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <p><span class="q">Q1-3 トークの質 vs 何度もアタック、どちらが大事？</span></p>
+        <span class="msg-label">メッセージ</span>
+        <p>質問への回答は「どちらでもない。<b>接触ルール表</b>」。当日／3日後／1週間後／1ヶ月後に「誰が・どの手段で・何を送るか」を固定した運用表を公開。担当者の記憶にも気分にも依存しないから、新人でも追客が落ちない——「システムで売る」を最も端的に体現するスライド。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>1枚まるごと接触ルール表（行＝経過日数、列＝手段・内容・担当）。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="b hd">追客・接触ルール表</div><div class="r"><div class="b thin">当日</div><div class="b ac">手段／内容／担当</div></div><div class="r"><div class="b thin">3日後</div><div class="b">…</div></div><div class="r"><div class="b thin">1週間</div><div class="b">…</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">7</span><h3>第1章③｜通常来場客は「タイプ分け」で初動を変える</h3><span class="tag t1">集客・アポ</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <p><span class="q">Q1-4 通常集客での来場客への訴求</span></p>
+        <span class="msg-label">メッセージ</span>
+        <p>来場動機（性能重視／価格重視）×検討温度（今すぐ／情報収集）の2軸マトリクスで来場客を4タイプに分類し、タイプごとに最初の10分で何を見せるか・何を聞くかを固定。「訴求がうまい」のではなく「訴求の割り当てが決まっている」。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>中央に2軸4象限のマトリクス図。各象限に初動トークの要点を一言ずつ。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="b hd">来場客4タイプ×初動</div><div class="r"><div class="b">象限A<br>初動◯◯</div><div class="b">象限B<br>初動◯◯</div></div><div class="r"><div class="b">象限C<br>初動◯◯</div><div class="b ac">象限D<br>初動◯◯</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">8</span><h3>第2章①｜モニター説明は、最初の90秒の「許可取り」で決まる</h3><span class="tag t2">初回商談</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <p><span class="q">Q2-1 モニター60分説明の入り方（初対面で聞いてもらえる？）</span></p>
+        <span class="msg-label">メッセージ</span>
+        <p>「初対面でいきなり60分聞いてもらえるのか」への回答＝<b>聞いてもらえるかは説明の中身ではなく、冒頭の許可取りで決まる</b>。「所要時間・聞くメリット・途中離脱OK」を先に約束する冒頭90秒のスクリプトを一言一句公開し、当日実演する。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>左に大きな吹き出しでスクリプト全文（これだけは文字量許容・ただしこの1要素のみ）、右に許可取りの3原則を一言ずつ。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="b hd">冒頭90秒の許可取り</div><div class="r"><div class="b wide ac">スクリプト全文<br>（吹き出し）</div><div class="b">3原則<br>①時間<br>②利益<br>③退路</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">9</span><h3>第2章②｜セミナースライドは、全部説明しない</h3><span class="tag t2">初回商談</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <p><span class="q">Q2-2 一から説明するのか、端的に刺さる説明か？</span><span class="q">Q2-5 初回1時間のセミナートークを毎回必ずやるのか？</span></p>
+        <span class="msg-label">メッセージ</span>
+        <p>回答＝「刺す3枚」を決めて、そこにだけ時間をかける緩急設計。横軸＝スライド番号、縦軸＝かける時間の折れ線グラフで「説明の濃淡」を可視化。「毎回必ず60分やるのか？」にもここで回答——やる/やらない・厚くする/流すの判断は気分ではなく客のタイプ（スライド7の4象限）で切り替える基準がある、と示す。ここでも判断が型になっている。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>中央に濃淡グラフ1点。山になっている3箇所に「刺す3枚」のラベル。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="b hd">説明の濃淡グラフ</div><div class="r"><div class="b ac">折れ線グラフ<br>横軸：スライド番号<br>縦軸：かける時間<br>山3つに「刺す3枚」ラベル</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">10</span><h3>第2章③｜金額は「総額の先出し」でギャップを消す</h3><span class="tag t2">初回商談</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <p><span class="q">Q2-3 本体価格＝全部の価格と思っている客への対応</span><span class="q">Q2-4 土地がない方への営業手法</span></p>
+        <span class="msg-label">メッセージ</span>
+        <p>ギャップは「起きてから埋める」のではなく「起きる前に消す」。本体・付帯・諸費用・土地の積み上げ棒グラフを<b>商談の前半で先に</b>見せる「総額先出しの型」。土地なし客はこの延長で「総予算確定 → 土地予算の逆算 → 土地探し」の順に乗せる——土地から探させない順序設計。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>左に総額の積み上げ棒グラフ（本体だけ紺・他はグレー）、右に土地なし客の3ステップフロー（縦）。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="b hd">総額先出しの型</div><div class="r"><div class="b ac">積み上げ棒グラフ<br>本体＋付帯＋諸費用＋土地</div><div class="b">土地なし客<br>①総予算<br>②土地予算<br>③土地探し</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">11</span><h3>第3章①｜スケジュールは、こちらが設計する</h3><span class="tag t3">クロージング</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <p><span class="q">Q3-2 初回来場〜初回申込の全体の流れ・以降のスケジューリング</span></p>
+        <span class="msg-label">メッセージ</span>
+        <p>初回来場を起点に「当日・3日以内・1週間・2週間…」の標準アクションを固定したタイムラインを公開。次アポは<b>必ずその場で・日付で</b>取る運用ルールとセットで示す。流れがうまいのではない。流れが、決まっている。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>横軸＝経過日数のタイムライン図1点。各ポイントにアクション名のみ（詳細は口頭）。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="b hd">初回来場→申込 標準スケジュール</div><div class="r" style="flex:0 0 38%"><div class="b">当日</div><div class="b">3日</div><div class="b">1週</div><div class="b ac">2週<br>申込</div></div><div class="r"><div class="b">各ポイントのアクション名（1行ずつ）</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">12</span><h3>第3章②｜競合は「戦う」前に「来させない」</h3><span class="tag t3">クロージング</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <p><span class="q">Q3-1 一条工務店・アイ工務店対策</span><span class="q">Q3-3 「他社も見たい」と言わせない顧客心理の持って行き方</span></p>
+        <span class="msg-label">メッセージ</span>
+        <p>一条・アイとのポジショニングマップ（例：縦軸 総額、横軸 性能とコストのバランス）でLIFEXの立ち位置を客観図として先に見せ、<b>初回のうちに「家選びの判断基準」をこちらから渡す</b>。基準を先に持った客は他社で迷わない——「他社も見たい」は出てから切り返すのではなく、出る前に基準で塞ぐ。アンケートで名指しが最多だった一条工務店（9/19名）を主軸に、実際の対戦事例で語る。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>左に2軸ポジショニングマップ（競合ロゴ位置＋LIFEX）、右に「判断基準を渡すトーク」の要点3つ。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="b hd">競合の事前ブロック</div><div class="r"><div class="b wide">ポジショニング<br>マップ（2軸）<br>一条／アイ／LIFEX</div><div class="b ac">基準を渡す<br>トーク要点<br>×3</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">13</span><h3>第3章③｜阻害要因トップ3と、値引きを求められた時の一手</h3><span class="tag t3">クロージング</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <p><span class="q">Q3-4 LIFEXを選ぶ阻害要因と解決トーク</span><span class="q">Q3-5 値引き対応</span></p>
+        <span class="msg-label">メッセージ</span>
+        <p>実際に断られてきた理由トップ3を正直に公開し、それぞれの切り返しトークを対応表で示す（負けデータを公開できること自体が、感覚ではなくシステムで運用している証明になる）。値引きは<b>「値引けない理由を誇る」型</b>——価格の根拠（仕様・原価構造）を先に語り、値引き余地のない価格設計であることを価値として伝える。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>上段に阻害要因×切り返しの3行対応表。下段に値引き対応の一言（大きめの1文のみ）。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="b hd">阻害要因×切り返し</div><div class="r"><div class="b">要因1→トーク</div></div><div class="r"><div class="b">要因2→トーク／要因3→トーク</div></div><div class="r"><div class="b ac">値引き対応：値引けない理由を誇る（1文）</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">14</span><h3>第3章④｜クロージングは「その場の勝負」ではなく「確認作業」</h3><span class="tag t3">クロージング</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <p><span class="q">Q3-6 クロージングで意識していること</span><span class="q">Q3-7 申込後の土地付け・資金計画の流れ</span></p>
+        <span class="msg-label">メッセージ</span>
+        <p>ここまでの各段でテストクロージング（小さな合意）を積んでいれば、最後は「確認」になる——クロージングを一発の説得にしない設計思想を総括。申込→土地付け→資金計画→契約のフローを図で示し、<b>申込は「ゴール」ではなく「土地と資金を本気で動かすためのスタート」</b>という位置づけトークまで公開。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>上段に「小さな合意」の積み上げ階段図、下段に申込後の横フロー（申込→土地付け→資金計画→契約）。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="b hd">クロージング＝確認作業</div><div class="r"><div class="b">小さな合意の階段図（斜め上がり）</div></div><div class="r" style="flex:0 0 32%"><div class="b">申込</div><div class="b">土地付け</div><div class="b">資金計画</div><div class="b ac">契約</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-head"><span class="snum">15</span><h3>まとめ｜明日からの3アクション</h3><span class="tag t0">まとめ</span></div>
+    <div class="slide-body">
+      <div class="slide-msg">
+        <span class="msg-label">メッセージ</span>
+        <p>持ち帰りを3つに絞る：<b>①追客の接触ルール表を自社版に書き写す ②冒頭90秒の許可取りスクリプトを暗唱できるようにする ③総額先出しの図を自社価格で作る</b>。締めの一言は「型は、今日すべて渡しました。あとは、動かすだけです」。</p>
+        <span class="msg-label">レイアウト</span>
+        <p>3アクションを縦に大きく3行。下部に次回予告を小さく。</p>
+      </div>
+      <div class="slide-wf"><div class="wf-cap">LAYOUT</div>
+        <div class="wf"><div class="b hd">明日からの3アクション</div><div class="r"><div class="b ac">① 接触ルール表を写す</div></div><div class="r"><div class="b ac">② 90秒スクリプトを暗唱</div></div><div class="r"><div class="b ac">③ 総額先出し図を自社版で作る</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <h2><span class="no">03</span>事前質問16問 → スライド対応マップ</h2>
+  <p class="h2sub">「自分の質問が扱われなかった」を出さないためのチェック表。当日、事務局が消し込みに使う。#16はアンケート原文から追加回収した質問。</p>
+  <div class="scroll">
+  <table class="cov">
+    <tr><th>#</th><th>事前質問（要旨）</th><th>回収スライド</th><th>章</th></tr>
+    <tr><td>1</td><td>テレアポ着電後の対応、アポまでのトーク</td><td>S5</td><td><span class="pill pv1">第1章</span></td></tr>
+    <tr><td>2</td><td>来店を促す理由づけ（誘客トーク）のパターン</td><td>S5</td><td><span class="pill pv1">第1章</span></td></tr>
+    <tr><td>3</td><td>トークの質 vs 何度もアタックする運用、どちらが大事か</td><td>S6</td><td><span class="pill pv1">第1章</span></td></tr>
+    <tr><td>4</td><td>通常集客での来場客への訴求方法</td><td>S7</td><td><span class="pill pv1">第1章</span></td></tr>
+    <tr><td>5</td><td>モニター60分説明の入り方（初対面で聞いてもらえるのか）</td><td>S8</td><td><span class="pill pv2">第2章</span></td></tr>
+    <tr><td>6</td><td>セミナースライドの説明方法（一から？端的に？）</td><td>S9</td><td><span class="pill pv2">第2章</span></td></tr>
+    <tr><td>7</td><td>本体価格＝総額と思って来店する客との金額ギャップ</td><td>S10</td><td><span class="pill pv2">第2章</span></td></tr>
+    <tr><td>8</td><td>土地がない方への営業手法</td><td>S10</td><td><span class="pill pv2">第2章</span></td></tr>
+    <tr><td>9</td><td>一条工務店・アイ工務店対策</td><td>S12</td><td><span class="pill pv3">第3章</span></td></tr>
+    <tr><td>10</td><td>初回来場〜初回申込の全体の流れ、以降のスケジューリング</td><td>S11</td><td><span class="pill pv3">第3章</span></td></tr>
+    <tr><td>11</td><td>「他社も見たい」と言わせない事前の顧客心理の持って行き方</td><td>S12</td><td><span class="pill pv3">第3章</span></td></tr>
+    <tr><td>12</td><td>LIFEXを選ぶ阻害要因と解決トーク</td><td>S13</td><td><span class="pill pv3">第3章</span></td></tr>
+    <tr><td>13</td><td>値引きを求められたときの対応</td><td>S13</td><td><span class="pill pv3">第3章</span></td></tr>
+    <tr><td>14</td><td>クロージングで意識していること</td><td>S14</td><td><span class="pill pv3">第3章</span></td></tr>
+    <tr><td>15</td><td>申込後の土地付け・資金計画の流れ</td><td>S14</td><td><span class="pill pv3">第3章</span></td></tr>
+    <tr><td>16</td><td>初回1時間のセミナートークを毎回必ず行っているのか（判断基準の言語化・共有が商談設計のメインでは？）</td><td>S9</td><td><span class="pill pv2">第2章</span></td></tr>
+  </table>
+  </div>
+
+  <div class="note"><b>佐古社長への事前共有・準備のお願いは別紙にまとめています：</b><a href="https://claude.ai/code/artifact/8c442a7a-a445-40c5-a9a2-c5c9b3c954a8" style="color:var(--navy)">登壇者向け事前資料（別ファイル）</a>。話し方の軸3点・準備素材のチェックリスト・当日の運用を記載。</div>
+
+  <footer>LIFEX FC事業部｜月2棟達成オンラインMTG 進行設計書（ドラフト）</footer>
+</div>

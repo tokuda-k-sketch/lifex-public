@@ -1,0 +1,193 @@
+/**
+ * LIFEX KPI + 広告実績 データ配信スクリプト v2
+ * ─────────────────────────────────────────────
+ * 【設置場所】KPIスプレッドシート → 拡張機能 → Apps Script
+ *            既存のコードを全て消して、このファイルの内容に置き換える
+ *
+ * 【v1からの変更点】
+ *   ・従来のKPIデータ配信はそのまま（レスポンス構造も互換）
+ *   ・広告スプシ（別ファイル）を閲覧参照して以下を追加配信
+ *       - 月別_反響集計（LP1）: 月別×媒体別の登録数・配信費・CPA・CVR
+ *       - 予約集計（LP1）    : 加盟店ごとの予約CV数・累計配信費
+ *
+ * 【デプロイ手順】※必ず「新しいデプロイ」で！
+ *   1. コードを置き換えて保存（Ctrl+S）
+ *   2. 右上「デプロイ」→「新しいデプロイ」
+ *      ※「デプロイを管理」から既存デプロイを編集しないこと。
+ *        既存デプロイは本番ダッシュボードが使用中のため触らない。
+ *   3. 種類:「ウェブアプリ」／ 実行ユーザー:「自分」／ アクセス:「全員」
+ *   4. デプロイ → 承認画面が出たら「許可」
+ *   5. 表示された新しいURLをコピー（開発版ダッシュボードに設定する）
+ */
+
+// 広告実績スプレッドシート（閲覧できればOK・編集権限は不要）
+const AD_SPREADSHEET_ID = '1qsCsnB5SZtSA8XUE5OWxptKjX8eRokJkA6D8Bs-QK9k';
+
+function doGet(e) {
+  const sheet = SpreadsheetApp
+    .getActiveSpreadsheet()
+    .getSheetByName('KPIデータ');
+
+  if (!sheet) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ error: 'シート「KPIデータ」が見つかりません' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  const rows = sheet.getDataRange().getValues();
+
+  // 1行目はヘッダーなのでスキップ。店舗名が空の行もスキップ
+  const stores = rows.slice(1)
+    .filter(row => row[0] && String(row[0]).trim() !== '')
+    .map(row => ({
+      name:  String(row[0]  || ''),
+      sub:   String(row[1]  || ''),
+      s: {
+        2:  Number(row[2]  || 0),
+        3:  Number(row[3]  || 0),
+        4:  Number(row[4]  || 0),
+        5:  Number(row[5]  || 0),
+        6:  Number(row[6]  || 0),
+        7:  Number(row[7]  || 0),
+        8:  Number(row[8]  || 0),
+        9:  Number(row[9]  || 0),
+        10: Number(row[10] || 0),
+        11: Number(row[11] || 0),
+        12: Number(row[12] || 0),
+        13: Number(row[13] || 0)
+      },
+      notes: String(row[14] || '')
+    }));
+
+  // ── 広告実績（別スプシを閲覧参照）──
+  // 読めなくてもKPI配信は止めない：エラー時は ads.error に理由を入れて返す
+  let ads;
+  try {
+    ads = readAdData();
+  } catch (err) {
+    ads = { error: String(err) };
+  }
+
+  const payload = JSON.stringify({
+    stores:    stores,
+    ads:       ads,
+    updatedAt: new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })
+  });
+
+  return ContentService
+    .createTextOutput(payload)
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+/* ══════════ 広告スプシの読み取り ══════════ */
+
+function readAdData() {
+  const ss = SpreadsheetApp.openById(AD_SPREADSHEET_ID);
+  const monthly = findSheetByName(ss, '月別_反響集計（LP1）');
+  const reserve = findSheetByName(ss, '予約集計（LP1）');
+  return {
+    months:       monthly ? parseMonthly(monthly)      : [],
+    reservations: reserve ? parseReservations(reserve) : []
+  };
+}
+
+// シート名の前後の空白ゆれを無視して探す
+function findSheetByName(ss, target) {
+  const t = target.replace(/[\s　]/g, '');
+  const hit = ss.getSheets().filter(function(sh) {
+    return sh.getName().replace(/[\s　]/g, '') === t;
+  });
+  return hit.length ? hit[0] : null;
+}
+
+/**
+ * 月別_反響集計（LP1）のパース
+ * レイアウト: 「META広告_YYYY年M月」のタイトル行 → ヘッダー行 → 店舗行…（空行まで）
+ *             同じ行のL列に「Google広告_YYYY年M月」ブロックが並ぶ
+ * META : A加盟店 Bコード C登録 D配信費 E CPA F表示 Gクリック H率 I CVR J LP流入
+ * Google: L加盟店 Mコード N登録 O配信費 P CPA Q表示 Rクリック S率 T CVR U残予算
+ */
+function parseMonthly(sheet) {
+  const vals = sheet.getDataRange().getDisplayValues();
+  const months = [];
+
+  for (let r = 0; r < vals.length; r++) {
+    const m = String(vals[r][0]).match(/^META広告_(\d{4})年(\d{1,2})月/);
+    if (!m) continue;
+
+    const block = {
+      ym:     m[1] + '-' + ('0' + m[2]).slice(-2),
+      label:  m[1] + '年' + m[2] + '月',
+      stores: []
+    };
+
+    // タイトル行の次がヘッダー、その次から店舗行
+    for (let i = r + 2; i < vals.length; i++) {
+      const name = String(vals[i][0]).trim();
+      if (!name || /^META広告_/.test(name)) break; // 空行 or 次ブロックで終了
+      if (name.charAt(0) === '※') continue;        // 注記行はスキップ
+      block.stores.push({
+        name:   name,
+        code:   String(vals[i][1]).trim(),
+        meta:   pickAd(vals[i], 2),
+        google: pickAd(vals[i], 13)
+      });
+    }
+    months.push(block);
+  }
+  return months;
+}
+
+// base=登録列のインデックス。{登録, 配信費, CPA, CVR} を数値化して返す
+function pickAd(row, base) {
+  return {
+    reg:  num(row[base]),
+    cost: num(row[base + 1]),
+    cpa:  num(row[base + 2]),
+    cvr:  num(row[base + 6])   // "0.21%" → 0.21
+  };
+}
+
+/**
+ * 予約集計（LP1）のパース
+ * 「加盟店」「コード」が横に並ぶヘッダーを探し、
+ * その下の表（加盟店 / コード / 予約数 / 累計配信費）を読む
+ */
+function parseReservations(sheet) {
+  const vals = sheet.getDataRange().getDisplayValues();
+
+  for (let r = 0; r < vals.length; r++) {
+    for (let c = 0; c < vals[r].length - 1; c++) {
+      if (String(vals[r][c]).trim() !== '加盟店') continue;
+      if (String(vals[r][c + 1]).trim() !== 'コード') continue;
+
+      const list = [];
+      for (let i = r + 1; i < vals.length; i++) {
+        const name = String(vals[i][c]).trim();
+        if (!name) break;
+        if (/合計|小計/.test(name)) continue;
+        const count = num(vals[i][c + 2]);
+        const cost  = num(vals[i][c + 3]);
+        // 数値が両方無い行はデータ行ではない（別セクションの見出し等）→ 表の終わり
+        if (count === null && cost === null) break;
+        list.push({
+          name:  name,
+          code:  String(vals[i][c + 1]).trim(),
+          count: count,
+          cost:  cost
+        });
+      }
+      return list;
+    }
+  }
+  return [];
+}
+
+// "¥835,900" "1.61%" "3" → 数値、 "#DIV/0!" "" "-" → null
+function num(v) {
+  if (v === null || v === undefined) return null;
+  const s = String(v).replace(/[¥,％%\s　]/g, '');
+  if (s === '' || s === '-' || s.indexOf('#') === 0) return null;
+  const n = parseFloat(s);
+  return isNaN(n) ? null : n;
+}

@@ -1,0 +1,988 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIFEX KPI ダッシュボード</title>
+<meta name="description" content="LIFEX加盟店 KPI管理ダッシュボード — 通話接続率・アポ取得率・契約率を全店舗で可視化">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:       #E8EDF4;
+  --surface:  #FFFFFF;
+  --navy:     #0D1B35;
+  --ink:      #182438;
+  --muted:    #5A6B7E;
+  --hairline: #D3DCE8;
+  --accent:   #C8762A;
+  --success:  #1A7A50;
+  --warn:     #B85C00;
+  --down:     #B3372B; /* 前週比DOWN専用の赤。面談のオレンジ(--f4)・アクセントと混同しないよう分離 */
+  --down-bg:  #FBE9E7;
+  --f1: #1E54A4;
+  --f2: #2B7BD8;
+  --f3: #3C9AE8;
+  --f4: #C8762A;
+  --f5: #1A7A50;
+  --font: -apple-system,'Hiragino Sans','Yu Gothic UI','Meiryo',sans-serif;
+}
+body { font-family: var(--font); background: var(--bg); color: var(--ink); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+/* ── HEADER ── */
+.hdr {
+  background: var(--navy);
+  color: #fff;
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.hdr-brand { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.hdr-logo {
+  height: 36px; padding: 0 12px; background: var(--accent); border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 900; color: #fff; letter-spacing: .06em;
+}
+.hdr-title { font-size: 18px; font-weight: 800; letter-spacing: .04em; }
+.hdr-sub   { font-size: 11px; opacity: .5; margin-top: 3px; }
+.hdr-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.hdr-date-lbl { font-size: 10px; opacity: .45; text-transform: uppercase; letter-spacing: .1em; }
+.hdr-date-val { font-size: 14px; font-weight: 700; opacity: .88; }
+.status-bar {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; color: rgba(255,255,255,.5);
+}
+.status-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,.3); flex-shrink: 0;
+}
+.status-dot.live  { background: #4ade80; box-shadow: 0 0 6px #4ade8088; }
+.status-dot.warn  { background: #fbbf24; }
+.status-dot.spin  { background: rgba(255,255,255,.3); animation: pulse .9s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+.btn-refresh {
+  background: rgba(255,255,255,.1); border: none; border-radius: 5px;
+  color: rgba(255,255,255,.65); font-size: 11px; padding: 4px 10px;
+  cursor: pointer; font-family: var(--font); transition: background .15s;
+}
+.btn-refresh:hover { background: rgba(255,255,255,.2); color: #fff; }
+
+/* ── LAYOUT ── */
+.wrap { max-width: 1360px; margin: 0 auto; padding: 28px 40px 64px; }
+.sec-lbl {
+  font-size: 10px; font-weight: 800; letter-spacing: .18em; color: var(--muted);
+  text-transform: uppercase; display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+}
+.sec-lbl::after { content: ''; flex: 1; height: 1px; background: var(--hairline); }
+
+/* ── KPI CARDS ── */
+.kpi-row { display: grid; grid-template-columns: repeat(6,1fr); gap: 12px; margin-bottom: 28px; }
+.kc {
+  background: var(--surface); border-radius: 12px; padding: 18px 16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.05);
+  border-top: 3px solid var(--f1);
+}
+.kc.v2 { border-top-color: var(--f2); }
+.kc.v3 { border-top-color: var(--success); }
+.kc-tag  { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: .04em; margin-bottom: 10px; line-height: 1.4; }
+.kc-num  { font-size: 36px; font-weight: 900; color: var(--ink); line-height: 1; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.kc-num .u { font-size: 16px; font-weight: 600; color: var(--muted); margin-left: 1px; }
+.kc-base { font-size: 10px; color: var(--muted); margin-top: 6px; font-variant-numeric: tabular-nums; }
+.kc-base .sd { margin-left: 6px; margin-top: 0; }
+
+/* ── FUNNEL BOX ── */
+.funnel-box {
+  background: var(--navy); border-radius: 16px;
+  padding: 28px 40px 34px; margin-bottom: 28px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.14), 0 10px 28px rgba(0,0,0,.14);
+}
+.funnel-hdr { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 22px; }
+.funnel-title { font-size: 14px; font-weight: 700; color: rgba(255,255,255,.8); letter-spacing: .04em; }
+.funnel-note  { font-size: 11px; color: rgba(255,255,255,.35); }
+.funnel-svg-wrap { width: 100%; overflow-x: auto; }
+.funnel-svg-wrap svg { display: block; width: 100%; }
+
+/* ── STORE GRID ── */
+.sg { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+
+/* ── STORE CARD ── */
+.sc {
+  background: var(--surface); border-radius: 14px; padding: 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.05);
+  display: flex; flex-direction: column;
+}
+.sc-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+.sc-name { font-size: 15px; font-weight: 800; color: var(--ink); }
+.sc-sub  { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.sc-pill {
+  font-size: 11px; font-weight: 700; padding: 3px 10px;
+  border-radius: 20px; white-space: nowrap; flex-shrink: 0;
+  background: #E8F0FC; color: #1E54A4;
+}
+.sc-pill.zero { background: #F1F5F9; color: #94A3B8; }
+
+/* Mini funnel */
+.mf-wrap {
+  background: #F5F8FC; border-radius: 10px;
+  padding: 14px 10px 10px; margin-bottom: 14px;
+}
+.mf-row { display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+.mf-bub {
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; color: #fff; flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.mf-sep { font-size: 14px; color: #BCC8D8; padding: 0 4px; flex-shrink: 0; }
+.mf-labels { display: flex; justify-content: space-around; }
+.mf-label  { font-size: 8.5px; color: var(--muted); text-align: center; flex: 1; }
+
+/* Store KPIs */
+.sk-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 14px; }
+.sk { text-align: center; padding: 8px 4px; background: #F5F8FC; border-radius: 8px; }
+.sk-lbl { font-size: 9px; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+.sk-val { font-size: 20px; font-weight: 900; color: #1E54A4; font-variant-numeric: tabular-nums; }
+.sk-val .u { font-size: 11px; font-weight: 600; color: var(--muted); }
+.sk-val.na { font-size: 13px; color: #C0CDD8; font-weight: 600; }
+.sd { display: inline-block; font-size: 9px; font-weight: 800; padding: 1px 6px; border-radius: 10px; margin-top: 3px; font-variant-numeric: tabular-nums; }
+.sd.up   { background: #E5F4EC; color: var(--success); }
+.sd.down { background: var(--down-bg); color: var(--down); }
+.sd.flat { background: transparent; color: #B6C2D0; }
+.sg-note { font-size: 10px; font-weight: 600; letter-spacing: 0; text-transform: none; color: #94A3B8; }
+
+/* Notes */
+.notes { border-top: 1px solid var(--hairline); padding-top: 12px; margin-top: auto; }
+.notes-lbl  { font-size: 9.5px; font-weight: 700; color: #94A3B8; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 6px; }
+.notes-body { font-size: 12px; color: #475569; line-height: 1.75; white-space: pre-line; }
+.notes-none { font-size: 12px; color: #C0CDD8; font-style: italic; }
+
+/* Skeleton loader */
+.skeleton { background: linear-gradient(90deg, #e8edf4 25%, #d3dce8 50%, #e8edf4 75%); background-size: 200% 100%; animation: shimmer 1.4s ease infinite; border-radius: 8px; }
+@keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+/* Setup banner */
+.setup-banner {
+  background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 10px;
+  padding: 14px 20px; margin-bottom: 24px;
+  font-size: 13px; color: #92400E; line-height: 1.6;
+}
+.setup-banner strong { display: block; font-size: 14px; margin-bottom: 4px; }
+
+/* ── AD SECTION (店舗カード内 広告実績) ── */
+.ad-sec { border-top: 1px solid var(--hairline); padding-top: 12px; margin-top: 14px; margin-bottom: 14px; }
+.ad-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.ad-lbl { font-size: 9.5px; font-weight: 700; color: #94A3B8; text-transform: uppercase; letter-spacing: .1em; }
+.ad-tabs { display: flex; gap: 4px; }
+.ad-tab {
+  font-size: 9.5px; font-weight: 700; padding: 3px 9px; border-radius: 20px;
+  border: 1px solid var(--hairline); background: #fff; color: #94A3B8;
+  cursor: pointer; font-family: var(--font); transition: all .12s;
+}
+.ad-tab.on { background: #1E54A4; border-color: #1E54A4; color: #fff; }
+.ad-units { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+.ad-unit { text-align: center; padding: 9px 4px 7px; background: #FDF6EE; border-radius: 8px; }
+.ad-unit-lbl { font-size: 9px; font-weight: 700; color: #A06A32; margin-bottom: 3px; }
+.ad-unit-val { font-size: 17px; font-weight: 900; color: var(--accent); font-variant-numeric: tabular-nums; }
+.ad-unit-val.na { font-size: 12px; color: #C0CDD8; font-weight: 600; }
+.ad-unit-base { font-size: 8.5px; color: #B08A5E; margin-top: 3px; font-variant-numeric: tabular-nums; }
+.ad-tbl { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.ad-tbl.hide { display: none; }
+.ad-tbl th {
+  font-size: 8.5px; font-weight: 700; color: #94A3B8; text-align: right;
+  padding: 3px 6px; border-bottom: 1px solid var(--hairline);
+}
+.ad-tbl th:first-child { text-align: left; }
+.ad-tbl td { font-size: 11px; color: #334155; text-align: right; padding: 4px 6px; border-bottom: 1px solid #EFF3F8; }
+.ad-tbl td:first-child { text-align: left; font-weight: 700; color: var(--muted); font-size: 10px; white-space: nowrap; }
+.ad-tbl tr:last-child td { border-bottom: none; }
+.ad-none { font-size: 11px; color: #C0CDD8; font-style: italic; }
+.dev-pill {
+  font-size: 10px; font-weight: 800; letter-spacing: .08em;
+  background: var(--accent); color: #fff; border-radius: 4px;
+  padding: 2px 8px; margin-left: 10px; vertical-align: 2px;
+}
+
+/* ── WEEKLY TREND (週次推移) ── */
+.wk-box {
+  background: var(--surface); border-radius: 14px; padding: 22px 24px 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.05);
+  margin-bottom: 28px;
+}
+.wk-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.wk-note { font-size: 11px; color: var(--muted); }
+.btn-snap {
+  background: #fff; border: 1px solid var(--hairline); border-radius: 6px;
+  color: var(--muted); font-size: 11px; font-weight: 700; padding: 5px 12px;
+  cursor: pointer; font-family: var(--font); transition: all .15s; white-space: nowrap;
+}
+.btn-snap:hover { border-color: #1E54A4; color: #1E54A4; }
+.btn-snap:disabled { opacity: .55; cursor: default; }
+.wk-cards { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; margin-bottom: 20px; }
+.wkc { background: #F5F8FC; border-radius: 10px; padding: 12px 8px 10px; text-align: center; }
+.wkc-lbl { font-size: 10px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+.wkc-num { font-size: 26px; font-weight: 900; color: var(--ink); line-height: 1; font-variant-numeric: tabular-nums; }
+.wkc-num .u { font-size: 12px; font-weight: 600; color: var(--muted); }
+.wkc-delta { display: inline-block; font-size: 11px; font-weight: 800; margin-top: 7px; padding: 2px 9px; border-radius: 20px; font-variant-numeric: tabular-nums; }
+.wkc-delta.up   { background: #E5F4EC; color: var(--success); }
+.wkc-delta.down { background: var(--down-bg); color: var(--down); }
+.wkc-delta.flat { background: #EEF2F7; color: #94A3B8; }
+.wk-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+.wk-leg { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: var(--muted); }
+.wk-leg i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.wk-chart-wrap { overflow-x: auto; margin-bottom: 8px; }
+.wk-chart-wrap svg { display: block; width: 100%; }
+.wk-tbl-wrap { overflow-x: auto; border-top: 1px solid var(--hairline); padding-top: 14px; margin-top: 6px; }
+.wk-tbl { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+.wk-tbl th { font-size: 10px; font-weight: 700; color: #94A3B8; padding: 5px 10px; text-align: right; border-bottom: 1px solid var(--hairline); white-space: nowrap; }
+.wk-tbl th:first-child, .wk-tbl td:first-child { text-align: left; position: sticky; left: 0; background: var(--surface); }
+.wk-tbl td { font-size: 12px; color: #334155; text-align: right; padding: 6px 10px; border-bottom: 1px solid #EFF3F8; white-space: nowrap; }
+.wk-tbl td:first-child { font-size: 11px; font-weight: 700; color: var(--muted); }
+.wk-tbl tr:last-child td { border-bottom: none; }
+.wk-tbl td.now { background: #FDF6EE; font-weight: 800; }
+.wk-tbl th.now { color: var(--accent); }
+.wk-tbl .dcol { font-weight: 800; }
+.wk-tbl .dcol.up { color: var(--success); }
+.wk-tbl .dcol.down { color: var(--down); }
+.wk-tbl .dcol.flat { color: #94A3B8; }
+.wk-empty { font-size: 12.5px; color: var(--muted); line-height: 1.8; padding: 6px 2px; }
+
+@media (max-width: 1100px) { .kpi-row { grid-template-columns: repeat(3,1fr); } .sg { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 680px) {
+  .wrap { padding: 20px 16px 48px; } .hdr { padding: 14px 16px; }
+  .kpi-row { grid-template-columns: repeat(2,1fr); } .sg { grid-template-columns: 1fr; }
+  .wk-cards { grid-template-columns: repeat(3,1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-brand">
+    <div class="hdr-logo">LIFEX</div>
+    <div>
+      <div class="hdr-title">LIFEX KPI ダッシュボード<span class="dev-pill">プレビュー（店舗別前週比・合成履歴）</span></div>
+      <div class="hdr-sub" id="js-store-count">加盟店 営業KPI管理</div>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="hdr-date-lbl">集計基準日</div>
+      <div class="hdr-date-val" id="js-date">—</div>
+    </div>
+    <div class="status-bar">
+      <div class="status-dot spin" id="js-dot"></div>
+      <span id="js-status">読み込み中...</span>
+      <button class="btn-refresh" onclick="init()" id="js-refresh" style="display:none">↻ 更新</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div id="js-banner"></div>
+
+  <div class="sec-lbl">全店舗合計 KPI</div>
+  <div class="kpi-row" id="js-kpi-row"></div>
+
+  <div class="funnel-box">
+    <div class="funnel-hdr">
+      <div class="funnel-title">ファネルフロー ─ 全店舗合計</div>
+      <div class="funnel-note">各ステージの円の大きさ ＝ 顧客数</div>
+    </div>
+    <div class="funnel-svg-wrap">
+      <svg id="js-funnel" viewBox="0 0 820 240" preserveAspectRatio="xMidYMid meet" style="min-width:560px"></svg>
+    </div>
+  </div>
+
+  <div class="sec-lbl">週次推移 ─ 全店舗合計</div>
+  <div id="js-weekly"></div>
+
+  <!-- ステータス定義凡例 -->
+  <div style="background:#fff;border-radius:14px;padding:18px 24px;margin-bottom:24px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 4px 12px rgba(0,0,0,.05);">
+    <div style="font-size:12px;font-weight:800;color:#5A6B7E;letter-spacing:.08em;margin-bottom:12px;">ステータス定義</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px 16px;">
+      <div style="font-size:11px;color:#182438;padding:4px 0;border-bottom:1px solid #E8EDF4;"><span style="font-weight:700;color:#1E54A4;margin-right:6px;">S2</span>会員登録</div>
+      <div style="font-size:11px;color:#182438;padding:4px 0;border-bottom:1px solid #E8EDF4;"><span style="font-weight:700;color:#1E54A4;margin-right:6px;">S3</span>連絡が繋がらない</div>
+      <div style="font-size:11px;color:#182438;padding:4px 0;border-bottom:1px solid #E8EDF4;"><span style="font-weight:700;color:#1E54A4;margin-right:6px;">S4</span>通話済み（追客中）</div>
+      <div style="font-size:11px;color:#182438;padding:4px 0;border-bottom:1px solid #E8EDF4;"><span style="font-weight:700;color:#1E54A4;margin-right:6px;">S5</span>来場予約（アポ取得）</div>
+      <div style="font-size:11px;color:#182438;padding:4px 0;border-bottom:1px solid #E8EDF4;"><span style="font-weight:700;color:#2B7BD8;margin-right:6px;">S6</span>面談済み</div>
+      <div style="font-size:11px;color:#182438;padding:4px 0;border-bottom:1px solid #E8EDF4;"><span style="font-weight:700;color:#2B7BD8;margin-right:6px;">S7</span>土地探し中</div>
+      <div style="font-size:11px;color:#182438;padding:4px 0;border-bottom:1px solid #E8EDF4;"><span style="font-weight:700;color:#2B7BD8;margin-right:6px;">S8</span>ローン事前審査待ち</div>
+      <div style="font-size:11px;color:#182438;padding:4px 0;border-bottom:1px solid #E8EDF4;"><span style="font-weight:700;color:#2B7BD8;margin-right:6px;">S9</span>中長期計画</div>
+      <div style="font-size:11px;color:#182438;padding:4px 0;"><span style="font-weight:700;color:#C8762A;margin-right:6px;">S10</span>内定</div>
+      <div style="font-size:11px;color:#182438;padding:4px 0;"><span style="font-weight:700;color:#1A7A50;margin-right:6px;">S11</span>契約済み</div>
+      <div style="font-size:11px;color:#182438;padding:4px 0;"><span style="font-weight:700;color:#94A3B8;margin-right:6px;">S12</span>失注</div>
+      <div style="font-size:11px;color:#182438;padding:4px 0;"><span style="font-weight:700;color:#94A3B8;margin-right:6px;">S13</span>顧客対象外</div>
+    </div>
+  </div>
+
+  <div class="sec-lbl">店舗別 KPI<span class="sg-note" id="js-sg-note"></span></div>
+  <div class="sg" id="js-sg"></div>
+</div>
+
+<script>
+/* プレビュー用: 合成履歴つきデータ固定 */
+const __PRE = {"stores":[{"name":"久留米建設","sub":"髙口様","s":{"2":0,"3":4,"4":3,"5":0,"6":1,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":1},"notes":"S6：マンション売却先行→7/7再来アポ済　S13：業者のため対象外"},{"name":"中央建設","sub":"出雲店","s":{"2":0,"3":2,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"中央建設","sub":"松江店","s":{"2":0,"3":2,"4":4,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":"S4：ショートメッセージでのみ返事2件「こちらから動くと言われている」S6〜7の間に申込がほしい"},{"name":"中央建設","sub":"鳥取店","s":{"2":1,"3":0,"4":0,"5":0,"6":2,"7":1,"8":0,"9":0,"10":2,"11":0,"12":0,"13":1},"notes":"チラシ構成検討中（モニターハウス募集等）月森・池本・村上さんと面談設定　鳥取：タウンチラシ広告掲載検討"},{"name":"中央建設","sub":"米子店","s":{"2":0,"3":0,"4":2,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"大建建設","sub":"高橋様","s":{"2":1,"3":3,"4":4,"5":2,"6":2,"7":1,"8":0,"9":1,"10":0,"11":0,"12":0,"13":3},"notes":"S2：リフォームのお客様　S4：1件は「忙しい」と切られた　S5：7/19来場アポ確定"},{"name":"WD","sub":"藤田様","s":{"2":0,"3":19,"4":4,"5":1,"6":5,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"坂本建設工業","sub":"","s":{"2":0,"3":9,"4":4,"5":1,"6":2,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":"S6：6/28再来場で土地提案→住宅ローン心配、ご夫婦共に異動あり"},{"name":"竹村工務店","sub":"知花様","s":{"2":0,"3":8,"4":4,"5":1,"6":1,"7":0,"8":0,"9":1,"10":0,"11":2,"12":0,"13":3},"notes":""},{"name":"シリウス","sub":"吉田様","s":{"2":10,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":"寒冷地仕様が固まっていないため、現在は電話ではなくメールで資料のお送りのみにとどめている。"},{"name":"YUNO　HOME","sub":"佐古様","s":{"2":0,"3":15,"4":1,"5":3,"6":0,"7":2,"8":0,"9":0,"10":2,"11":2,"12":0,"13":3},"notes":""},{"name":"いえプロ","sub":"吉田（萌）","s":{"2":0,"3":56,"4":29,"5":4,"6":2,"7":4,"8":0,"9":3,"10":3,"11":2,"12":23,"13":32},"notes":""},{"name":"キノシタ","sub":"岩本様","s":{"2":0,"3":0,"4":2,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"BJC","sub":"藤村様","s":{"2":0,"3":10,"4":7,"5":1,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":1,"13":0},"notes":""},{"name":"トーモク","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"スピークス","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"建匠","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"南日本ハウス","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"アイコン","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"永大ハウスビルド","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""}],"ads":{"months":[{"ym":"2026-05","label":"2026年5月","stores":[{"name":"Gハウス","code":"001-01","meta":{"reg":0,"cost":null,"cpa":null,"cvr":null},"google":{"reg":null,"cost":null,"cpa":null,"cvr":null}},{"name":"いえプロ","code":"002-01","meta":{"reg":37,"cost":338423,"cpa":9147,"cvr":3.34},"google":{"reg":3,"cost":4592,"cpa":1531,"cvr":4.11}},{"name":"久留米建設","code":"003-01","meta":{"reg":5,"cost":269330,"cpa":53866,"cvr":0.21},"google":{"reg":0,"cost":4384,"cpa":null,"cvr":0}},{"name":"坂本建設工業","code":"004-01","meta":{"reg":5,"cost":267560,"cpa":53512,"cvr":0.11},"google":{"reg":0,"cost":3657,"cpa":null,"cvr":0}},{"name":"トーモク","code":"005-01","meta":{"reg":0,"cost":null,"cpa":null,"cvr":null},"google":{"reg":null,"cost":null,"cpa":null,"cvr":null}},{"name":"スピークス","code":"006-01","meta":{"reg":0,"cost":null,"cpa":null,"cvr":null},"google":{"reg":null,"cost":null,"cpa":null,"cvr":null}},{"name":"シリウス","code":"007-01","meta":{"reg":6,"cost":260159,"cpa":43360,"cvr":0.16},"google":{"reg":0,"cost":443,"cpa":null,"cvr":0}},{"name":"竹村工務店","code":"008-01","meta":{"reg":10,"cost":343945,"cpa":34395,"cvr":0.5},"google":{"reg":0,"cost":3203,"cpa":null,"cvr":0}},{"name":"中央建設①","code":"009-01/出雲","meta":{"reg":6,"cost":206784,"cpa":34464,"cvr":0.24},"google":{"reg":0,"cost":1931,"cpa":null,"cvr":0}},{"name":"中央建設②","code":"009-02/松江","meta":{"reg":2,"cost":198399,"cpa":99200,"cvr":0.06},"google":{"reg":0,"cost":3702,"cpa":null,"cvr":0}},{"name":"中央建設③","code":"009-03/鳥取","meta":{"reg":0,"cost":194053,"cpa":null,"cvr":0},"google":{"reg":0,"cost":152,"cpa":null,"cvr":0}},{"name":"中央建設④","code":"009-04/米子","meta":{"reg":1,"cost":239527,"cpa":239527,"cvr":0.04},"google":{"reg":0,"cost":2630,"cpa":null,"cvr":0}},{"name":"YUNO HOME","code":"011-01","meta":{"reg":14,"cost":351785,"cpa":25128,"cvr":0.9},"google":{"reg":0,"cost":6527,"cpa":null,"cvr":0}},{"name":"BJC","code":"014-01","meta":{"reg":8,"cost":268001,"cpa":33500,"cvr":0.25},"google":{"reg":0,"cost":2971,"cpa":null,"cvr":0}},{"name":"大建建設","code":"015-01","meta":{"reg":7,"cost":257695,"cpa":36814,"cvr":0.14},"google":{"reg":0,"cost":4244,"cpa":null,"cvr":0}},{"name":"WITHDOM Group","code":"016-01","meta":{"reg":0,"cost":0,"cpa":null,"cvr":null},"google":{"reg":null,"cost":null,"cpa":null,"cvr":null}},{"name":"キノシタ","code":"017-01","meta":{"reg":0,"cost":0,"cpa":null,"cvr":null},"google":{"reg":null,"cost":null,"cpa":null,"cvr":null}}]},{"ym":"2026-06","label":"2026年6月","stores":[{"name":"Gハウス","code":"001-01","meta":{"reg":0,"cost":null,"cpa":null,"cvr":null},"google":{"reg":null,"cost":null,"cpa":null,"cvr":null}},{"name":"いえプロ","code":"002-01","meta":{"reg":29,"cost":334086,"cpa":11520,"cvr":3.02},"google":{"reg":13,"cost":74806,"cpa":5754,"cvr":0.73}},{"name":"久留米建設","code":"003-01","meta":{"reg":3,"cost":250370,"cpa":83457,"cvr":0.42},"google":{"reg":3,"cost":128374,"cpa":42791,"cvr":0.21}},{"name":"坂本建設工業","code":"004-01","meta":{"reg":7,"cost":250688,"cpa":35813,"cvr":0.94},"google":{"reg":0,"cost":94374,"cpa":null,"cvr":0}},{"name":"トーモク","code":"005-01","meta":{"reg":0,"cost":null,"cpa":null,"cvr":null},"google":{"reg":0,"cost":null,"cpa":null,"cvr":null}},{"name":"スピークス","code":"006-01","meta":{"reg":0,"cost":null,"cpa":null,"cvr":null},"google":{"reg":0,"cost":null,"cpa":null,"cvr":null}},{"name":"シリウス","code":"007-01","meta":{"reg":2,"cost":248177,"cpa":124089,"cvr":0.28},"google":{"reg":2,"cost":125303,"cpa":62652,"cvr":0.15}},{"name":"竹村工務店","code":"008-01","meta":{"reg":10,"cost":332454,"cpa":33245,"cvr":1.46},"google":{"reg":0,"cost":58242,"cpa":null,"cvr":0}},{"name":"中央建設①","code":"009-01/出雲","meta":{"reg":2,"cost":238384,"cpa":119192,"cvr":0.27},"google":{"reg":0,"cost":73367,"cpa":null,"cvr":0}},{"name":"中央建設②","code":"009-02/松江","meta":{"reg":0,"cost":249384,"cpa":null,"cvr":0},"google":{"reg":3,"cost":73178,"cpa":24393,"cvr":0.32}},{"name":"中央建設③","code":"009-03/鳥取","meta":{"reg":3,"cost":218904,"cpa":72968,"cvr":0.51},"google":{"reg":0,"cost":51524,"cpa":null,"cvr":0}},{"name":"中央建設④","code":"009-04/米子","meta":{"reg":2,"cost":248321,"cpa":124161,"cvr":0.23},"google":{"reg":0,"cost":71920,"cpa":null,"cvr":0}},{"name":"YUNO HOME","code":"011-01","meta":{"reg":5,"cost":335682,"cpa":67136,"cvr":0.57},"google":{"reg":8,"cost":76820,"cpa":9603,"cvr":0.65}},{"name":"BJC","code":"014-01","meta":{"reg":9,"cost":251837,"cpa":27982,"cvr":1.13},"google":{"reg":0,"cost":106146,"cpa":null,"cvr":0}},{"name":"大建建設","code":"015-01","meta":{"reg":11,"cost":249897,"cpa":22718,"cvr":1.48},"google":{"reg":0,"cost":61632,"cpa":null,"cvr":0}},{"name":"WITHDOM Group","code":"016-01","meta":{"reg":18,"cost":250623,"cpa":13924,"cvr":1.84},"google":{"reg":12,"cost":69839,"cpa":5820,"cvr":0.9}},{"name":"キノシタ","code":"017-01","meta":{"reg":1,"cost":244616,"cpa":244616,"cvr":0.15},"google":{"reg":0,"cost":64826,"cpa":null,"cvr":0}},{"name":"建匠","code":"018-01","meta":{"reg":0,"cost":98180,"cpa":null,"cvr":0},"google":{"reg":0,"cost":61707,"cpa":null,"cvr":0}}]},{"ym":"2026-07","label":"2026年7月","stores":[{"name":"Gハウス","code":"001-01","meta":{"reg":0,"cost":null,"cpa":null,"cvr":null},"google":{"reg":null,"cost":null,"cpa":null,"cvr":null}},{"name":"いえプロ","code":"002-01","meta":{"reg":11,"cost":156636,"cpa":14240,"cvr":2.51},"google":{"reg":12,"cost":59553,"cpa":4963,"cvr":0.94}},{"name":"久留米建設","code":"003-01","meta":{"reg":2,"cost":143783,"cpa":71892,"cvr":0.51},"google":{"reg":1,"cost":53836,"cpa":53836,"cvr":0.25}},{"name":"坂本建設工業","code":"004-01","meta":{"reg":2,"cost":133156,"cpa":66578,"cvr":0.64},"google":{"reg":0,"cost":7469,"cpa":null,"cvr":0}},{"name":"トーモク","code":"005-01","meta":{"reg":0,"cost":null,"cpa":null,"cvr":null},"google":{"reg":null,"cost":null,"cpa":null,"cvr":null}},{"name":"スピークス","code":"006-01","meta":{"reg":0,"cost":null,"cpa":null,"cvr":null},"google":{"reg":null,"cost":null,"cpa":null,"cvr":null}},{"name":"シリウス","code":"007-01","meta":{"reg":4,"cost":130394,"cpa":32599,"cvr":1.08},"google":{"reg":0,"cost":52706,"cpa":null,"cvr":0}},{"name":"竹村工務店","code":"008-01","meta":{"reg":4,"cost":139505,"cpa":34876,"cvr":1.45},"google":{"reg":0,"cost":5630,"cpa":null,"cvr":0}},{"name":"中央建設①","code":"009-01/出雲","meta":{"reg":1,"cost":66570,"cpa":66570,"cvr":0.49},"google":{"reg":0,"cost":12246,"cpa":null,"cvr":0}},{"name":"中央建設②","code":"009-02/松江","meta":{"reg":0,"cost":69334,"cpa":null,"cvr":0},"google":{"reg":0,"cost":59555,"cpa":null,"cvr":0}},{"name":"中央建設③","code":"009-03/鳥取","meta":{"reg":0,"cost":49415,"cpa":null,"cvr":0},"google":{"reg":0.75,"cost":59428,"cpa":79237,"cvr":0.25}},{"name":"中央建設④","code":"009-04/米子","meta":{"reg":0,"cost":65458,"cpa":null,"cvr":0},"google":{"reg":null,"cost":null,"cpa":null,"cvr":null}},{"name":"YUNO HOME","code":"011-01","meta":{"reg":9,"cost":133850,"cpa":14872,"cvr":2.8},"google":{"reg":0,"cost":41946,"cpa":null,"cvr":0}},{"name":"BJC","code":"014-01","meta":{"reg":1,"cost":122277,"cpa":122277,"cvr":0.3},"google":{"reg":0,"cost":47334,"cpa":null,"cvr":0}},{"name":"大建建設","code":"015-01","meta":{"reg":11,"cost":135303,"cpa":12300,"cvr":2.23},"google":{"reg":0,"cost":6265,"cpa":null,"cvr":0}},{"name":"WITHDOM Group","code":"016-01","meta":{"reg":13,"cost":145250,"cpa":11173,"cvr":2.95},"google":{"reg":1,"cost":54731,"cpa":54731,"cvr":0.09}},{"name":"キノシタ","code":"017-01","meta":{"reg":1,"cost":135948,"cpa":135948,"cvr":0.35},"google":{"reg":0,"cost":4253,"cpa":null,"cvr":0}},{"name":"建匠","code":"018-01","meta":{"reg":1,"cost":114115,"cpa":114115,"cvr":0.36},"google":{"reg":0,"cost":5905,"cpa":null,"cvr":0}},{"name":"河原工務店","code":"019-01","meta":{"reg":null,"cost":null,"cpa":null,"cvr":null},"google":{"reg":null,"cost":null,"cpa":null,"cvr":null}}]}],"reservations":[{"name":"Gハウス","code":"001-01","count":0,"cost":0},{"name":"いえプロ","code":"002-01","count":1,"cost":968095},{"name":"久留米建設","code":"003-01","count":0,"cost":850078},{"name":"坂本建設工業","code":"004-01","count":1,"cost":756904},{"name":"トーモク","code":"005-01","count":0,"cost":0},{"name":"スピークス","code":"006-01","count":0,"cost":0},{"name":"シリウス","code":"007-01","count":0,"cost":817182},{"name":"竹村工務店","code":"008-01","count":0,"cost":882979},{"name":"中央建設①","code":"009-01/出雲","count":0,"cost":599282},{"name":"中央建設②","code":"009-02/松江","count":0,"cost":653552},{"name":"中央建設③","code":"009-03/鳥取","count":0,"cost":573476},{"name":"中央建設④","code":"009-04/米子","count":0,"cost":635505},{"name":"YUNO HOME","code":"011-01","count":0,"cost":946611},{"name":"BJC","code":"014-01","count":0,"cost":798567},{"name":"大建建設","code":"015-01","count":0,"cost":715036},{"name":"WITHDOM Group","code":"016-01","count":1,"cost":520443},{"name":"キノシタ","code":"017-01","count":0,"cost":449642},{"name":"建匠","code":"018-01","count":0,"cost":279907}]},"updatedAt":"2026/7/19 17:47:49","history":[{"date":"2026-07-12","data":{"stores":[{"name":"久留米建設","sub":"髙口様","s":{"2":0,"3":4,"4":5,"5":0,"6":1,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":1},"notes":"S6：マンション売却先行→7/7再来アポ済　S13：業者のため対象外"},{"name":"中央建設","sub":"出雲店","s":{"2":0,"3":1,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"中央建設","sub":"鳥取店","s":{"2":1,"3":0,"4":0,"5":0,"6":2,"7":1,"8":0,"9":0,"10":2,"11":0,"12":0,"13":1},"notes":"チラシ構成検討中（モニターハウス募集等）月森・池本・村上さんと面談設定　鳥取：タウンチラシ広告掲載検討"},{"name":"中央建設","sub":"米子店","s":{"2":0,"3":0,"4":2,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"大建建設","sub":"高橋様","s":{"2":1,"3":3,"4":4,"5":2,"6":2,"7":1,"8":0,"9":1,"10":0,"11":0,"12":0,"13":3},"notes":"S2：リフォームのお客様　S4：1件は「忙しい」と切られた　S5：7/19来場アポ確定"},{"name":"WD","sub":"藤田様","s":{"2":0,"3":19,"4":4,"5":1,"6":5,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"坂本建設工業","sub":"","s":{"2":0,"3":9,"4":4,"5":1,"6":2,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":"S6：6/28再来場で土地提案→住宅ローン心配、ご夫婦共に異動あり"},{"name":"竹村工務店","sub":"知花様","s":{"2":0,"3":8,"4":4,"5":1,"6":1,"7":0,"8":0,"9":1,"10":0,"11":2,"12":0,"13":3},"notes":""},{"name":"シリウス","sub":"吉田様","s":{"2":10,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":"寒冷地仕様が固まっていないため、現在は電話ではなくメールで資料のお送りのみにとどめている。"},{"name":"YUNO　HOME","sub":"佐古様","s":{"2":0,"3":15,"4":1,"5":3,"6":0,"7":2,"8":0,"9":0,"10":2,"11":2,"12":0,"13":3},"notes":""},{"name":"いえプロ","sub":"吉田（萌）","s":{"2":0,"3":56,"4":29,"5":4,"6":2,"7":4,"8":0,"9":3,"10":3,"11":2,"12":23,"13":32},"notes":""},{"name":"キノシタ","sub":"岩本様","s":{"2":0,"3":0,"4":2,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"BJC","sub":"藤村様","s":{"2":0,"3":10,"4":7,"5":1,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":1,"13":0},"notes":""},{"name":"トーモク","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"スピークス","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"建匠","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"南日本ハウス","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"アイコン","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"永大ハウスビルド","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""}]}},{"date":"2026-07-19","data":{"stores":[{"name":"久留米建設","sub":"髙口様","s":{"2":0,"3":4,"4":3,"5":0,"6":1,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":1},"notes":"S6：マンション売却先行→7/7再来アポ済　S13：業者のため対象外"},{"name":"中央建設","sub":"出雲店","s":{"2":0,"3":2,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"中央建設","sub":"松江店","s":{"2":0,"3":2,"4":4,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":"S4：ショートメッセージでのみ返事2件「こちらから動くと言われている」S6〜7の間に申込がほしい"},{"name":"中央建設","sub":"鳥取店","s":{"2":1,"3":0,"4":0,"5":0,"6":2,"7":1,"8":0,"9":0,"10":2,"11":0,"12":0,"13":1},"notes":"チラシ構成検討中（モニターハウス募集等）月森・池本・村上さんと面談設定　鳥取：タウンチラシ広告掲載検討"},{"name":"中央建設","sub":"米子店","s":{"2":0,"3":0,"4":2,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"大建建設","sub":"高橋様","s":{"2":1,"3":3,"4":4,"5":2,"6":2,"7":1,"8":0,"9":1,"10":0,"11":0,"12":0,"13":3},"notes":"S2：リフォームのお客様　S4：1件は「忙しい」と切られた　S5：7/19来場アポ確定"},{"name":"WD","sub":"藤田様","s":{"2":0,"3":19,"4":4,"5":1,"6":5,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"坂本建設工業","sub":"","s":{"2":0,"3":9,"4":4,"5":1,"6":2,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":"S6：6/28再来場で土地提案→住宅ローン心配、ご夫婦共に異動あり"},{"name":"竹村工務店","sub":"知花様","s":{"2":0,"3":8,"4":4,"5":1,"6":1,"7":0,"8":0,"9":1,"10":0,"11":2,"12":0,"13":3},"notes":""},{"name":"シリウス","sub":"吉田様","s":{"2":10,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":"寒冷地仕様が固まっていないため、現在は電話ではなくメールで資料のお送りのみにとどめている。"},{"name":"YUNO　HOME","sub":"佐古様","s":{"2":0,"3":15,"4":1,"5":3,"6":0,"7":2,"8":0,"9":0,"10":2,"11":2,"12":0,"13":3},"notes":""},{"name":"いえプロ","sub":"吉田（萌）","s":{"2":0,"3":56,"4":29,"5":4,"6":2,"7":4,"8":0,"9":3,"10":3,"11":2,"12":23,"13":32},"notes":""},{"name":"キノシタ","sub":"岩本様","s":{"2":0,"3":0,"4":2,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"BJC","sub":"藤村様","s":{"2":0,"3":10,"4":7,"5":1,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":1,"13":0},"notes":""},{"name":"トーモク","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"スピークス","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"建匠","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"南日本ハウス","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"アイコン","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""},{"name":"永大ハウスビルド","sub":"","s":{"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0},"notes":""}]}}]};
+window.fetch = async () => ({ ok: true, json: async () => __PRE });
+
+/* ══════════ CONFIGURATION ══════════
+   Googleスプレッドシートのデプロイ後、URLをここに貼り付ける
+   （空のままの場合はサンプルデータで表示）                    */
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwriC9V4xS2ZZ8rGhfsQydsBmXKzTWo9CKiJUs7kPt5naU3NWXQy_IKbB6ytZfw_WtE/exec';
+
+/* ══════════ SAMPLE DATA (今週分) ══════════ */
+const SAMPLE_STORES = [
+  {
+    name:'久留米建設', sub:'髙口様',
+    s:{3:4, 4:3, 6:1, 13:1},
+    notes:'ステータス6：マンション売却先行 → 7/7 再来のアポ済\nステータス13：業者のため顧客対象外'
+  },
+  {
+    name:'中央建設', sub:'出雲店',
+    s:{3:2},
+    notes:''
+  },
+  {
+    name:'中央建設', sub:'松江店',
+    s:{3:2, 4:4},
+    notes:'ステータス4：ショートメッセージでのみ返事2件\n「こちらから動くと言われてしまっている」\n目標：ステータス6〜7の間に申し込みがほしい'
+  },
+  {
+    name:'中央建設', sub:'鳥取店',
+    s:{2:1, 6:2, 7:1, 10:2, 13:1},
+    notes:'チラシ内容・構成の検討中（モニターハウス募集等）\n月森さん・池本さん・村上さんとの面談設定\n鳥取：タウンチラシへの広告掲載を検討'
+  },
+  {
+    name:'中央建設', sub:'米子店',
+    s:{4:2},
+    notes:''
+  },
+  {
+    name:'大建建設', sub:'高橋様',
+    s:{2:1, 3:5, 4:3, 5:1, 6:2, 7:1, 9:1, 13:3},
+    notes:'ステータス2：リフォームのお客様\nステータス4：1件は「忙しい」と切られた\nステータス5：7/19 来場アポ確定'
+  },
+  {
+    name:'WD', sub:'',
+    s:{},
+    notes:''
+  },
+  {
+    name:'坂本建設工業', sub:'',
+    s:{3:8, 4:4, 6:1},
+    notes:'ステータス1：未会員（既存）が1名\nステータス6：6/28再来場で土地提案→住宅ローン心配、ご夫婦共に異動があり'
+  }
+];
+
+/* ══════════ CONSTANTS ══════════ */
+const STAGE_LABELS = ['登録','通話','アポ','面談','契約'];
+const F_COLORS     = ['#1E54A4','#2B7BD8','#3C9AE8','#C8762A','#1A7A50'];
+
+/* ══════════ 広告実績データ ══════════ */
+let ADS = null; // GAS v2 から受け取る { months:[], reservations:[] }
+
+// 店舗名の表記ゆれを吸収（全角半角スペース除去・丸数字→数字・小文字化）
+const normName = s => String(s||'')
+  .replace(/[\s　]/g,'')
+  .replace(/[①②③④]/g, ch => ({'①':'1','②':'2','③':'3','④':'4'}[ch]))
+  .toLowerCase();
+
+// KPI側の店舗 → 広告スプシ側の店舗名を解決
+function findAdName(st){
+  if(!ADS || !ADS.months) return null;
+  // 中央建設はKPI側が「中央建設＋支店名」、広告側が「中央建設①〜④」
+  if(normName(st.name).indexOf('中央建設')===0){
+    const map={'出雲':'中央建設①','松江':'中央建設②','鳥取':'中央建設③','米子':'中央建設④'};
+    for(const loc in map){ if(String(st.sub||'').indexOf(loc)>=0) return map[loc]; }
+  }
+  const ALIAS={'WD':'WITHDOM Group'};
+  const target = normName(ALIAS[String(st.name).trim()] || st.name);
+  // 広告データに登場する店舗名から正規化一致を探す
+  const pool = new Set();
+  ADS.months.forEach(mo => mo.stores.forEach(s => pool.add(s.name)));
+  (ADS.reservations||[]).forEach(s => pool.add(s.name));
+  for(const name of pool){ if(normName(name)===target) return name; }
+  return null;
+}
+
+const yen  = v => (v==null||isNaN(v)) ? '—' : '¥'+Math.round(v).toLocaleString('ja-JP');
+const cnt  = v => (v==null||isNaN(v)) ? '—' : Math.round(v).toLocaleString('ja-JP');
+const pctf = v => (v==null||isNaN(v)) ? '—' : v.toFixed(2)+'%';
+
+/* ══════════ 店舗カード内 広告実績セクション ══════════ */
+function renderAdSection(st, r){
+  if(!ADS || !ADS.months || !ADS.months.length) return '';
+  const adName = findAdName(st);
+  if(!adName){
+    return `<div class="ad-sec"><div class="ad-head"><div class="ad-lbl">広告実績</div></div>
+      <div class="ad-none">広告データなし（広告スプシに該当店舗が見つかりません）</div></div>`;
+  }
+
+  // 予約集計：予約CV数と累計配信費
+  const rv = (ADS.reservations||[]).find(x => normName(x.name)===normName(adName));
+  const resCount = rv ? rv.count : null;
+  const cumCost  = rv ? rv.cost  : null;
+  const yoyaku = (cumCost!=null && resCount>0) ? cumCost/resCount   : null;
+  const raijo  = (cumCost!=null && r.interview>0) ? cumCost/r.interview : null;
+
+  const unit = (lbl, val, base) => `
+    <div class="ad-unit">
+      <div class="ad-unit-lbl">${lbl}</div>
+      <div class="ad-unit-val ${val==null?'na':''}">${val==null?'—':yen(val)}</div>
+      <div class="ad-unit-base">${base}</div>
+    </div>`;
+
+  // 月次推移（媒体別）
+  const rows = ADS.months.map(mo => {
+    const s = mo.stores.find(x => normName(x.name)===normName(adName));
+    return { label: mo.label.replace(/^\d{4}年/,''), meta: s?s.meta:null, google: s?s.google:null };
+  });
+
+  const tbl = (media, hidden) => `
+    <table class="ad-tbl ${hidden?'hide':''}" data-media="${media}">
+      <tr><th>月</th><th>登録</th><th>配信費</th><th>CPA</th><th>CVR</th></tr>
+      ${rows.map(row => {
+        const d = row[media];
+        if(!d) return `<tr><td>${row.label}</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>`;
+        return `<tr><td>${row.label}</td><td>${cnt(d.reg)}</td><td>${yen(d.cost)}</td><td>${yen(d.cpa)}</td><td>${pctf(d.cvr)}</td></tr>`;
+      }).join('')}
+    </table>`;
+
+  return `<div class="ad-sec">
+    <div class="ad-head">
+      <div class="ad-lbl">広告実績</div>
+      <div class="ad-tabs">
+        <button class="ad-tab on" onclick="adTab(this,'meta')">META</button>
+        <button class="ad-tab" onclick="adTab(this,'google')">Google</button>
+      </div>
+    </div>
+    <div class="ad-units">
+      ${unit('予約単価（LP予約）', yoyaku, resCount!=null ? `累計配信費 ÷ 予約${cnt(resCount)}件` : 'データなし')}
+      ${unit('来場単価（実来場）', raijo, `累計配信費 ÷ 面談済以降${r.interview}名`)}
+    </div>
+    ${tbl('meta', false)}
+    ${tbl('google', true)}
+  </div>`;
+}
+
+// META / Google 切り替え（カード単位）
+function adTab(btn, media){
+  const sec = btn.closest('.ad-sec');
+  sec.querySelectorAll('.ad-tab').forEach(b => b.classList.toggle('on', b===btn));
+  sec.querySelectorAll('.ad-tbl').forEach(t => t.classList.toggle('hide', t.dataset.media!==media));
+}
+
+/* ══════════ 週次推移（GAS v2.1 スナップショット） ══════════ */
+let HISTORY = null; // GAS v2.1 の ?history=N で受け取る [{date:'yyyy-MM-dd', data:{stores,...}}, ...]。GASが旧版のままなら null
+
+const fmtMD = d => { const m = String(d).match(/^\d{4}-(\d{2})-(\d{2})$/); return m ? Number(m[1])+'/'+Number(m[2]) : String(d); };
+const todayISO = () => { const n = new Date(); return n.getFullYear()+'-'+('0'+(n.getMonth()+1)).slice(-2)+'-'+('0'+n.getDate()).slice(-2); };
+
+const STAGE_DEFS = [
+  {lbl:'登録',      key:'total',     color:'#1E54A4'},
+  {lbl:'通話',      key:'connected', color:'#2B7BD8'},
+  {lbl:'アポ',      key:'appt',      color:'#3C9AE8'},
+  {lbl:'面談',      key:'interview', color:'#C8762A'},
+  {lbl:'契約',      key:'contract',  color:'#1A7A50'},
+];
+
+// スナップショット履歴＋現在の生データを時系列の点に変換する。
+// 最新スナップショットが今日でなければ、末尾に「現在」（未保存）の点を足す
+function buildWeeklyPoints(stores){
+  const pts = (HISTORY || [])
+    .filter(h => h && h.data && Array.isArray(h.data.stores))
+    .map(h => ({ date: String(h.date), G: sumStores(h.data.stores), saved: true }));
+  if(!pts.length || pts[pts.length-1].date !== todayISO()){
+    pts.push({ date: todayISO(), G: sumStores(stores), live: true });
+  }
+  return pts;
+}
+
+function deltaHtml(d, isRate){
+  if(d === null) return '<span class="wkc-delta flat">—</span>';
+  const cls = d > 0.001 ? 'up' : d < -0.001 ? 'down' : 'flat';
+  const sign = d > 0.001 ? '＋' : d < -0.001 ? '−' : '±';
+  const val = isRate ? Math.abs(d).toFixed(1)+'pt' : Math.abs(d);
+  return `<span class="wkc-delta ${cls}">${sign}${val}</span>`;
+}
+
+// 店舗カード用の小さい前週比バッジ。null（履歴なし・率が算出不能）のときは何も出さない
+function sdHtml(d, isRate){
+  if(d === null || d === undefined) return '';
+  const cls = d > 0.001 ? 'up' : d < -0.001 ? 'down' : 'flat';
+  const sign = d > 0.001 ? '＋' : d < -0.001 ? '−' : '±';
+  const val = isRate ? Math.abs(d).toFixed(1)+'pt' : Math.abs(d);
+  return `<span class="sd ${cls}">${sign}${val}</span>`;
+}
+
+// 前回スナップショット（比較基準）。最新保存分が今日なら、さらに1つ前と比較する
+// （保存直後に全項目±0になるのを避け、週次推移セクションの前週比と同じ基準に揃える）
+function prevSnapshot(){
+  const hs = (HISTORY || []).filter(h => h && h.data && Array.isArray(h.data.stores));
+  if(!hs.length) return null;
+  const ref = String(hs[hs.length-1].date) === todayISO() ? hs[hs.length-2] : hs[hs.length-1];
+  return ref ? { date: String(ref.date), stores: ref.data.stores } : null;
+}
+
+// 前回スナップショットの店舗別データを name+sub で引けるマップにする
+function prevStoreMap(){
+  const ref = prevSnapshot();
+  if(!ref) return null;
+  const map = {};
+  ref.stores.forEach(st => { map[String(st.name).trim()+'|'+String(st.sub||'').trim()] = st; });
+  return { date: ref.date, map };
+}
+
+function renderWeekly(stores){
+  const el = document.getElementById('js-weekly');
+  if(!el) return;
+
+  if(HISTORY === null){
+    el.innerHTML = `<div class="wk-box"><div class="wk-empty">
+      <strong>週次推移データが未連携です。</strong><br>
+      KPIスプシのApps Scriptをv2.1のコードに更新し、「デプロイ」→「デプロイを管理」→ v2デプロイの鉛筆マーク →
+      バージョン「新バージョン」でデプロイすると、ここに毎週の推移が表示されます（URLの変更は不要）。
+    </div></div>`;
+    return;
+  }
+
+  const pts = buildWeeklyPoints(stores);
+  const last = pts[pts.length-1];
+  const prev = pts.length > 1 ? pts[pts.length-2] : null;
+
+  const cards = STAGE_DEFS.map(d => {
+    const v  = last.G[d.key];
+    const dv = prev ? v - prev.G[d.key] : null;
+    return `<div class="wkc" style="border-top:3px solid ${d.color}">
+      <div class="wkc-lbl">${d.lbl}</div>
+      <div class="wkc-num">${v}<span class="u">名</span></div>
+      ${deltaHtml(dv)}
+    </div>`;
+  }).join('');
+
+  const note = prev
+    ? `前週比: ${fmtMD(prev.date)}保存分との比較${last.live ? '（現在の数字は未保存）' : ''}`
+    : 'スナップショットが貯まると前週比・推移グラフが表示されます（毎週水曜に自動保存）';
+
+  el.innerHTML = `<div class="wk-box">
+    <div class="wk-head">
+      <div class="wk-note">${note}</div>
+      <button class="btn-snap" onclick="saveSnapshotNow(this)">📌 今週分を保存する</button>
+    </div>
+    <div class="wk-cards">${cards}</div>
+    ${renderWeeklyChart(pts)}
+    ${renderWeeklyTable(pts)}
+  </div>`;
+}
+
+function renderWeeklyChart(pts){
+  if(pts.length < 2) return '';
+  const n = pts.length;
+  const W = Math.max(640, 120 + (n-1)*84), H = 236;
+  const padL = 36, padR = 56, padT = 14, padB = 40;
+  const maxV = Math.max(4, ...pts.map(p => p.G.total));
+  const X = i => padL + (W-padL-padR) * i / (n-1);
+  const Y = v => padT + (H-padT-padB) * (1 - v/maxV);
+  const font = "-apple-system,'Hiragino Sans','Yu Gothic UI',sans-serif";
+  let out = '';
+
+  // 横グリッド＋Y軸目盛
+  for(let t = 0; t <= 4; t++){
+    const v = Math.round(maxV * t / 4), y = Y(v);
+    out += `<line x1="${padL}" y1="${y.toFixed(1)}" x2="${W-padR}" y2="${y.toFixed(1)}" stroke="#E8EDF4" stroke-width="1"/>
+      <text x="${padL-7}" y="${(y+3).toFixed(1)}" text-anchor="end" font-size="9" fill="#94A3B8" font-family="${font}">${v}</text>`;
+  }
+
+  // X軸ラベル（日付、現在の点はオレンジ強調）
+  pts.forEach((p,i) => {
+    out += `<text x="${X(i).toFixed(1)}" y="${H-padB+17}" text-anchor="middle" font-size="10" font-weight="${p.live?'800':'600'}"
+      fill="${p.live?'#C8762A':'#5A6B7E'}" font-family="${font}">${fmtMD(p.date)}</text>`;
+    if(p.live) out += `<text x="${X(i).toFixed(1)}" y="${H-padB+29}" text-anchor="middle" font-size="8.5" fill="#C8762A" font-family="${font}">現在</text>`;
+  });
+
+  // 折れ線（最後の点が未保存の「現在」なら、その区間だけ破線）
+  STAGE_DEFS.forEach(d => {
+    const xy = pts.map((p,i) => [X(i), Y(p.G[d.key])]);
+    const solidN = pts[n-1].live ? n-1 : n;
+    if(solidN > 1){
+      out += `<polyline points="${xy.slice(0,solidN).map(c => c[0].toFixed(1)+','+c[1].toFixed(1)).join(' ')}"
+        fill="none" stroke="${d.color}" stroke-width="2.5" stroke-linejoin="round"/>`;
+    }
+    if(pts[n-1].live){
+      const [a,b] = [xy[n-2], xy[n-1]];
+      out += `<line x1="${a[0].toFixed(1)}" y1="${a[1].toFixed(1)}" x2="${b[0].toFixed(1)}" y2="${b[1].toFixed(1)}"
+        stroke="${d.color}" stroke-width="2.5" stroke-dasharray="5 4"/>`;
+    }
+    xy.forEach((c,i) => {
+      out += pts[i].live
+        ? `<circle cx="${c[0].toFixed(1)}" cy="${c[1].toFixed(1)}" r="4" fill="#fff" stroke="${d.color}" stroke-width="2.5"/>`
+        : `<circle cx="${c[0].toFixed(1)}" cy="${c[1].toFixed(1)}" r="3.5" fill="${d.color}"/>`;
+    });
+  });
+
+  // 最終値ラベル（重なりは下方向にずらす）
+  const labels = STAGE_DEFS
+    .map(d => ({ color: d.color, v: pts[n-1].G[d.key], y: Y(pts[n-1].G[d.key]) }))
+    .sort((a,b) => a.y - b.y);
+  for(let i = 1; i < labels.length; i++){
+    if(labels[i].y - labels[i-1].y < 13) labels[i].y = labels[i-1].y + 13;
+  }
+  labels.forEach(l => {
+    out += `<text x="${W-padR+9}" y="${(l.y+3.5).toFixed(1)}" font-size="11" font-weight="800" fill="${l.color}"
+      font-family="${font}" font-variant-numeric="tabular-nums">${l.v}</text>`;
+  });
+
+  return `<div class="wk-legend">${STAGE_DEFS.map(d => `<span class="wk-leg"><i style="background:${d.color}"></i>${d.lbl}</span>`).join('')}</div>
+    <div class="wk-chart-wrap"><svg viewBox="0 0 ${W} ${H}" style="min-width:560px">${out}</svg></div>`;
+}
+
+function renderWeeklyTable(pts){
+  const metrics = [
+    {lbl:'登録（総数）',   f: G => G.total},
+    {lbl:'通話接続',       f: G => G.connected},
+    {lbl:'アポ取得',       f: G => G.appt},
+    {lbl:'面談済み',       f: G => G.interview},
+    {lbl:'内定・契約',     f: G => G.contract},
+    {lbl:'① 通話接続率',   f: G => G.kpi1, rate:true},
+    {lbl:'② アポ取得率',   f: G => G.kpi2, rate:true},
+    {lbl:'③ 契約率',       f: G => G.kpi3, rate:true},
+  ];
+  const n = pts.length;
+  const ths = pts.map((p,i) =>
+    `<th class="${i===n-1?'now':''}">${fmtMD(p.date)}${p.live?'<br>（現在）':''}</th>`).join('');
+  const rows = metrics.map(m => {
+    const tds = pts.map((p,i) => {
+      const v = m.f(p.G);
+      return `<td class="${i===n-1?'now':''}">${v===null ? '—' : m.rate ? v+'%' : v}</td>`;
+    }).join('');
+    let d = '—', cls = 'flat';
+    if(n > 1){
+      const a = m.f(pts[n-1].G), b = m.f(pts[n-2].G);
+      if(a !== null && b !== null){
+        const diff = m.rate ? parseFloat(a) - parseFloat(b) : a - b;
+        cls = diff > 0.001 ? 'up' : diff < -0.001 ? 'down' : 'flat';
+        d = (diff > 0.001 ? '＋' : diff < -0.001 ? '−' : '±') + (m.rate ? Math.abs(diff).toFixed(1)+'pt' : Math.abs(diff));
+      }
+    }
+    return `<tr><td>${m.lbl}</td>${tds}<td class="dcol ${cls}">${d}</td></tr>`;
+  }).join('');
+  return `<div class="wk-tbl-wrap"><table class="wk-tbl">
+    <tr><th>指標</th>${ths}<th>前週比</th></tr>${rows}</table></div>`;
+}
+
+// 「今週分を保存する」ボタン → GASの ?snapshot=1 を叩いてシートに1行保存し、再読み込み
+async function saveSnapshotNow(btn){
+  btn.disabled = true;
+  const orig = btn.textContent;
+  btn.textContent = '保存中...';
+  try {
+    const res = await fetch(APPS_SCRIPT_URL+'?snapshot=1&t='+Date.now(), {redirect:'follow'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const d = await res.json();
+    if(d.snapshotError) throw new Error(d.snapshotError);
+    if(!d.snapshotSaved) throw new Error('GASがv2.1に未更新のため保存できません');
+    btn.textContent = d.snapshotSaved === 'already-saved' ? '✓ 本日分は保存済みです' : '✓ 保存しました';
+    setTimeout(init, 900);
+  } catch(err) {
+    console.error('snapshot error:', err);
+    btn.textContent = '保存失敗（コンソール参照）';
+    setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 3000);
+  }
+}
+
+/* ══════════ KPI CALC ══════════ */
+function calcKPIs(s) {
+  const g = k => s[k] || 0;
+  const total     = [2,3,4,5,6,7,8,9,10,11,12,13].reduce((a,k)=>a+g(k),0);
+  const connected = [4,5,6,7,8,9,10,11].reduce((a,k)=>a+g(k),0);
+  const appt      = [5,6,7,8,9,10,11].reduce((a,k)=>a+g(k),0);
+  const interview = [6,7,8,9,10,11].reduce((a,k)=>a+g(k),0);
+  const contract  = [10,11].reduce((a,k)=>a+g(k),0);
+  const pct = (n,d) => d>0 ? (n/d*100).toFixed(1) : null;
+  return {
+    total, connected, appt, interview, contract,
+    kpi1: pct(connected,total), kpi2: pct(appt,connected), kpi3: pct(contract,interview),
+    oa: pct(appt,total), oi: pct(interview,total), oc: pct(contract,total),
+    apptToIv: appt>0 ? (interview/appt*100).toFixed(1) : null,
+  };
+}
+
+function sumStores(stores) {
+  let t=0,c=0,a=0,iv=0,ct=0;
+  stores.forEach(st => {
+    const r = calcKPIs(st.s);
+    t+=r.total; c+=r.connected; a+=r.appt; iv+=r.interview; ct+=r.contract;
+  });
+  const pct=(n,d)=>d>0?(n/d*100).toFixed(1):null;
+  return {
+    total:t, connected:c, appt:a, interview:iv, contract:ct,
+    kpi1:pct(c,t), kpi2:pct(a,c), kpi3:pct(ct,iv),
+    oa:pct(a,t), oi:pct(iv,t), oc:pct(ct,t),
+    apptToIv: a>0?(iv/a*100).toFixed(1):null,
+  };
+}
+
+/* ══════════ STATUS UI ══════════ */
+function setStatus(state, text) {
+  const dot = document.getElementById('js-dot');
+  const msg = document.getElementById('js-status');
+  const btn = document.getElementById('js-refresh');
+  dot.className = 'status-dot ' + (state==='live'?'live':state==='warn'?'warn':'spin');
+  msg.textContent = text;
+  btn.style.display = (state!=='loading') ? '' : 'none';
+}
+
+/* ══════════ DATE ══════════ */
+function setDate() {
+  const now = new Date();
+  const days = ['日','月','火','水','木','金','土'];
+  document.getElementById('js-date').textContent =
+    now.getFullYear()+'年'+(now.getMonth()+1)+'月'+now.getDate()+'日（'+days[now.getDay()]+'）';
+}
+
+/* ══════════ RENDER KPI CARDS ══════════ */
+function renderKPICards(G, prevG) {
+  const defs = [
+    {tag:'① 通話接続率',      val:G.kpi1, pv:prevG&&prevG.kpi1, base:`${G.connected} ÷ ${G.total}名`,    cls:''},
+    {tag:'② アポ取得率',      val:G.kpi2, pv:prevG&&prevG.kpi2, base:`${G.appt} ÷ ${G.connected}名`,    cls:'v2'},
+    {tag:'③ 契約（内定）率',  val:G.kpi3, pv:prevG&&prevG.kpi3, base:`${G.contract} ÷ ${G.interview}名`, cls:'v3'},
+    {tag:'全体アポ取得率',     val:G.oa,   pv:prevG&&prevG.oa,   base:`${G.appt} ÷ ${G.total}名`,         cls:''},
+    {tag:'全体面談率',         val:G.oi,   pv:prevG&&prevG.oi,   base:`${G.interview} ÷ ${G.total}名`,    cls:'v2'},
+    {tag:'全体契約（内定）率', val:G.oc,   pv:prevG&&prevG.oc,   base:`${G.contract} ÷ ${G.total}名`,     cls:'v3'},
+  ];
+  document.getElementById('js-kpi-row').innerHTML = defs.map(d => {
+    const num = d.val!==null
+      ? d.val+'<span class="u">%</span>'
+      : '<span style="font-size:22px;color:#BCC8D8">—</span>';
+    const delta = (d.val!==null && d.pv!==null && d.pv!==undefined && d.pv!==false)
+      ? parseFloat(d.val)-parseFloat(d.pv) : null;
+    return `<div class="kc ${d.cls}">
+      <div class="kc-tag">${d.tag}</div>
+      <div class="kc-num">${num}</div>
+      <div class="kc-base">${d.base}${sdHtml(delta,true)}</div>
+    </div>`;
+  }).join('');
+}
+
+/* ══════════ RENDER FUNNEL SVG ══════════ */
+function renderFunnel(G, prevG) {
+  const svg = document.getElementById('js-funnel');
+  const CY = 100;
+  const stages = [
+    {lbl:['会員登録','（全体）S2'], count:G.total},
+    {lbl:['通話接続','S4'],         count:G.connected},
+    {lbl:['アポ取得','S5'],         count:G.appt},
+    {lbl:['面談済み','S6'],         count:G.interview},
+    {lbl:['内定・契約','S10-11'],   count:G.contract},
+  ];
+  const MAX = G.total || 1;
+  const minR=20, maxR=74;
+  const radii = stages.map(s => minR+(s.count/MAX)*(maxR-minR));
+  const GAP = 52;
+  const xs = [radii[0]+12];
+  for(let i=1;i<5;i++) xs[i]=xs[i-1]+radii[i-1]+GAP+radii[i];
+
+  const ARROW_CLR='rgba(255,255,255,.18)', PCT_CLR='rgba(255,255,255,.82)', LBL_CLR='rgba(255,255,255,.45)';
+  const font="-apple-system,'Hiragino Sans','Yu Gothic UI',sans-serif";
+
+  let out=`<defs><marker id="arh" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+    <path d="M0,0 L0,7 L7,3.5 z" fill="${ARROW_CLR}"/></marker></defs>`;
+
+  const rates=[G.kpi1,G.kpi2,G.apptToIv,G.kpi3];
+  const prevRates=prevG?[prevG.kpi1,prevG.kpi2,prevG.apptToIv,prevG.kpi3]:null;
+  const rateLabels=['①通話接続率','②アポ取得率','来場率','③契約率'];
+
+  for(let i=0;i<4;i++){
+    const x1=xs[i]+radii[i], x2=xs[i+1]-radii[i+1], mx=(x1+x2)/2;
+    out+=`<line x1="${x1.toFixed(1)}" y1="${CY}" x2="${x2.toFixed(1)}" y2="${CY}"
+      stroke="${ARROW_CLR}" stroke-width="2" marker-end="url(#arh)"/>`;
+    if(rates[i]!==null){
+      out+=`<text x="${mx.toFixed(1)}" y="${CY-16}" text-anchor="middle"
+        font-family="${font}" font-size="12" font-weight="700" fill="${PCT_CLR}">${rates[i]}%</text>
+       <text x="${mx.toFixed(1)}" y="${CY-3}" text-anchor="middle"
+        font-family="${font}" font-size="9" fill="rgba(255,255,255,.3)">${rateLabels[i]}</text>`;
+      // 前週比（pt）を矢印の下に表示。緑=改善／オレンジ=悪化／灰=横ばい
+      if(prevRates && prevRates[i]!==null){
+        const dp=parseFloat(rates[i])-parseFloat(prevRates[i]);
+        const up=dp>0.001, down=dp<-0.001;
+        const clr=up?'#6FD9A6':down?'#F0857A':'rgba(255,255,255,.35)';
+        const sign=up?'＋':down?'−':'±';
+        out+=`<text x="${mx.toFixed(1)}" y="${CY+17}" text-anchor="middle"
+          font-family="${font}" font-size="10" font-weight="800" fill="${clr}"
+          font-variant-numeric="tabular-nums">${sign}${Math.abs(dp).toFixed(1)}pt</text>`;
+      }
+    }
+  }
+
+  stages.forEach((st,i)=>{
+    const r=radii[i],x=xs[i];
+    out+=`<circle cx="${x.toFixed(1)}" cy="${CY}" r="${(r+6).toFixed(1)}" fill="${F_COLORS[i]}" opacity=".12"/>`;
+    out+=`<circle cx="${x.toFixed(1)}" cy="${CY}" r="${r.toFixed(1)}" fill="${F_COLORS[i]}"/>`;
+    const fs=r>52?22:r>38?17:r>26?13:10;
+    out+=`<text x="${x.toFixed(1)}" y="${(CY+fs*.36).toFixed(1)}" text-anchor="middle"
+      font-family="${font}" font-size="${fs}" font-weight="900" fill="white"
+      font-variant-numeric="tabular-nums">${st.count}</text>`;
+    const ly=CY+r+20;
+    st.lbl.forEach((line,li)=>{
+      out+=`<text x="${x.toFixed(1)}" y="${(ly+li*15).toFixed(1)}" text-anchor="middle"
+        font-family="${font}" font-size="11.5" font-weight="600" fill="${LBL_CLR}">${line}</text>`;
+    });
+  });
+
+  svg.setAttribute('viewBox',`0 0 ${Math.ceil(Math.max(xs[4]+radii[4]+16,640))} 240`);
+  svg.innerHTML=out;
+}
+
+/* ══════════ RENDER STORE CARDS ══════════ */
+function renderStoreCards(stores) {
+  const minD=30, maxD=68;
+  const prev = prevStoreMap();
+  const note = document.getElementById('js-sg-note');
+  if(note) note.textContent = prev ? `増減バッジは前回保存分（${fmtMD(prev.date)}）との比較` : '';
+
+  const cards = stores.map(st=>{
+    const r=calcKPIs(st.s);
+    const pv = prev ? prev.map[String(st.name).trim()+'|'+String(st.sub||'').trim()] : null;
+    const pr = pv ? calcKPIs(pv.s) : null;
+    const dN = k => pr ? r[k] - pr[k] : null;                 // 人数の増減
+    const dR = k => (pr && r[k]!==null && pr[k]!==null)       // 率の増減（pt）
+      ? parseFloat(r[k]) - parseFloat(pr[k]) : null;
+    const counts=[r.total,r.connected,r.appt,r.interview,r.contract];
+    const mx=r.total||1;
+
+    const bubbles=counts.map((cnt,i)=>{
+      const d=Math.round(minD+(cnt/mx)*(maxD-minD));
+      const fs=d>50?13:d>38?11:9;
+      const sep=i<4?`<span class="mf-sep">›</span>`:'';
+      return `<div class="mf-bub" style="width:${d}px;height:${d}px;background:${F_COLORS[i]};font-size:${fs}px">${cnt}</div>${sep}`;
+    }).join('');
+
+    const skv=v=>v!==null
+      ?`<div class="sk-val">${v}<span class="u">%</span></div>`
+      :`<div class="sk-val na">—</div>`;
+
+    const pillCls=r.total===0?'zero':'';
+    const pillTxt=r.total>0?`総数 ${r.total}名`:'データなし';
+    const notesHtml=st.notes?`<div class="notes-body">${st.notes}</div>`:`<div class="notes-none">所見なし</div>`;
+
+    return `<div class="sc">
+      <div class="sc-head">
+        <div><div class="sc-name">${st.name}</div><div class="sc-sub">${st.sub}</div></div>
+        <div class="sc-pill ${pillCls}">${pillTxt}</div>
+      </div>
+      <div class="mf-wrap">
+        <div class="mf-row">${bubbles}</div>
+        <div class="mf-labels">
+          <div class="mf-label">登録<span style="font-size:9px;color:#1E54A4;font-weight:700;display:block">S2</span>${sdHtml(dN('total'))}</div>
+          <div class="mf-label">通話<span style="font-size:9px;color:#1E54A4;font-weight:700;display:block">S4</span>${sdHtml(dN('connected'))}</div>
+          <div class="mf-label">アポ<span style="font-size:9px;color:#1E54A4;font-weight:700;display:block">S5</span>${sdHtml(dN('appt'))}</div>
+          <div class="mf-label">面談<span style="font-size:9px;color:#1E54A4;font-weight:700;display:block">S6</span>${sdHtml(dN('interview'))}</div>
+          <div class="mf-label">契約<span style="font-size:9px;color:#1A7A50;font-weight:700;display:block">S10-11</span>${sdHtml(dN('contract'))}</div>
+        </div>
+      </div>
+      <div class="sk-row">
+        <div class="sk"><div class="sk-lbl">① 通話接続率</div>${skv(r.kpi1)}${sdHtml(dR('kpi1'),true)}</div>
+        <div class="sk"><div class="sk-lbl">② アポ取得率</div>${skv(r.kpi2)}${sdHtml(dR('kpi2'),true)}</div>
+        <div class="sk"><div class="sk-lbl">③ 契約率</div>${skv(r.kpi3)}${sdHtml(dR('kpi3'),true)}</div>
+      </div>
+      <div class="sk-row" style="margin-top:6px;padding-top:8px;border-top:1px solid #E8EDF4;">
+        <div class="sk"><div class="sk-lbl" style="font-size:9px">登録→アポ転換率</div>${skv(r.oa)}${sdHtml(dR('oa'),true)}</div>
+        <div class="sk"><div class="sk-lbl" style="font-size:9px">登録→面談転換率</div>${skv(r.oi)}${sdHtml(dR('oi'),true)}</div>
+        <div class="sk"><div class="sk-lbl" style="font-size:9px">登録→契約転換率</div>${skv(r.oc)}${sdHtml(dR('oc'),true)}</div>
+      </div>
+      ${renderAdSection(st, r)}
+      <div class="notes"><div class="notes-lbl">所見・備考</div>${notesHtml}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('js-sg').innerHTML=cards;
+}
+
+/* ══════════ RENDER ALL ══════════ */
+function renderAll(stores) {
+  const G=sumStores(stores);
+  const ps=prevSnapshot();
+  const prevG=ps?sumStores(ps.stores):null;
+  const active=stores.filter(s=>s.s&&Object.keys(s.s).length>0).length;
+  document.getElementById('js-store-count').textContent=
+    `加盟店 営業KPI管理 ／ ${stores.length}店舗（今週データ登録: ${active}店舗）`;
+  renderKPICards(G, prevG);
+  renderFunnel(G, prevG);
+  renderWeekly(stores);
+  renderStoreCards(stores);
+}
+
+/* ══════════ INIT (fetch or sample) ══════════ */
+async function init() {
+  setDate();
+  setStatus('loading','読み込み中...');
+  document.getElementById('js-banner').innerHTML='';
+
+  if(!APPS_SCRIPT_URL){
+    renderAll(SAMPLE_STORES);
+    setStatus('warn','サンプルデータを表示中 — スプレッドシート未連携');
+    document.getElementById('js-banner').innerHTML=`
+      <div class="setup-banner">
+        <strong>📋 Googleスプレッドシートとの連携が未設定です</strong>
+        Apps Scriptをデプロイ後、このHTMLファイルの先頭にある <code>APPS_SCRIPT_URL</code> にURLを貼り付けてください。
+        設定手順は別ファイル <code>lifex-apps-script.js</code> の冒頭に記載しています。
+      </div>`;
+    return;
+  }
+
+  try {
+    const res = await fetch(APPS_SCRIPT_URL+'?history=12&t='+Date.now(), {redirect:'follow'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data = await res.json();
+    if(!data.stores || !Array.isArray(data.stores)) throw new Error('データ形式が不正');
+
+    // 週次スナップショット履歴（GAS v2.1のみ）。旧GASはhistoryキー自体が無い → null（未連携表示）
+    HISTORY = Array.isArray(data.history) ? data.history : null;
+    if(data.historyError){
+      HISTORY = [];
+      document.getElementById('js-banner').innerHTML += `
+        <div class="setup-banner">
+          <strong>⚠ 週次スナップショットの読み込みに失敗しました</strong>
+          KPI表示は正常です。エラー内容: ${data.historyError}
+        </div>`;
+    }
+
+    // 広告実績データ（GAS v2のみ）。無い・エラーでもKPI表示は続行
+    ADS = (data.ads && !data.ads.error && Array.isArray(data.ads.months)) ? data.ads : null;
+    if(data.ads && data.ads.error){
+      document.getElementById('js-banner').innerHTML=`
+        <div class="setup-banner">
+          <strong>⚠ 広告スプシの読み込みに失敗しました</strong>
+          KPIデータは正常です。エラー内容: ${data.ads.error}
+        </div>`;
+    } else if(!data.ads){
+      document.getElementById('js-banner').innerHTML=`
+        <div class="setup-banner">
+          <strong>📋 広告実績データが未連携です（GAS v1のURLを参照中）</strong>
+          Apps Scriptをv2コードに更新して「新しいデプロイ」を作成し、そのURLをこのHTMLの <code>APPS_SCRIPT_URL</code> に設定してください。
+        </div>`;
+    }
+
+    renderAll(data.stores);
+    const t=new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
+    setStatus('live', ADS ? 'スプレッドシート連携中（KPI＋広告） — 最終更新 '+t
+                          : 'スプレッドシート連携中（KPIのみ） — 最終更新 '+t);
+  } catch(err) {
+    console.error('LIFEX fetch error:', err);
+    HISTORY = null;
+    renderAll(SAMPLE_STORES);
+    setStatus('warn','取得失敗（サンプルデータを表示）');
+  }
+}
+
+init();
+
+/* ══════════ 自動更新 ══════════
+   5分ごとにスプシから再取得（タブが非表示の間は休止し、
+   表示に戻った瞬間に最新化する） */
+const AUTO_REFRESH_MS = 5 * 60 * 1000;
+setInterval(() => { if (!document.hidden) init(); }, AUTO_REFRESH_MS);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) init(); });
+</script>
+</body>
+</html>

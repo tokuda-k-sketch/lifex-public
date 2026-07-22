@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIFEX KPIダッシュボード 制作の記録</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #E8EDF4; --surface: #fff; --navy: #0D1B35; --ink: #182438;
+  --muted: #5A6B7E; --hairline: #D3DCE8; --accent: #C8762A;
+  --blue: #1E54A4; --success: #1A7A50;
+  --font: -apple-system,'Hiragino Sans','Yu Gothic UI','Meiryo',sans-serif;
+}
+body { font-family: var(--font); background: var(--bg); color: var(--ink); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+
+.hdr { background: var(--navy); color: #fff; padding: 40px 40px 36px; }
+.hdr-inner { max-width: 920px; margin: 0 auto; }
+.hdr-logo { display: inline-flex; width: 40px; height: 40px; background: var(--accent); border-radius: 8px; align-items: center; justify-content: center; font-size: 14px; font-weight: 900; margin-bottom: 18px; }
+.hdr h1 { font-size: 26px; font-weight: 800; letter-spacing: .02em; line-height: 1.4; }
+.hdr .sub { font-size: 13px; opacity: .55; margin-top: 10px; }
+
+.wrap { max-width: 920px; margin: 0 auto; padding: 36px 40px 80px; }
+.sec-lbl { font-size: 11px; font-weight: 800; letter-spacing: .18em; color: var(--muted); text-transform: uppercase; display: flex; align-items: center; gap: 10px; margin: 44px 0 16px; }
+.sec-lbl::after { content: ''; flex: 1; height: 1px; background: var(--hairline); }
+.sec-lbl:first-child { margin-top: 0; }
+
+.card { background: var(--surface); border-radius: 14px; padding: 26px 30px; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.05); margin-bottom: 14px; }
+p + p { margin-top: 12px; }
+.card h3 { font-size: 15px; font-weight: 800; margin-bottom: 10px; }
+strong { font-weight: 800; }
+a { color: var(--blue); }
+
+/* 完成物リンク */
+.site-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.site { background: var(--surface); border-radius: 14px; padding: 22px 24px; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.05); border-top: 3px solid var(--blue); }
+.site.dev { border-top-color: var(--accent); }
+.site .tag { font-size: 10px; font-weight: 800; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; }
+.site .name { font-size: 15px; font-weight: 800; margin: 6px 0 4px; }
+.site .desc { font-size: 12px; color: var(--muted); }
+.site a { font-size: 12px; word-break: break-all; }
+
+/* 仕組み図 */
+.flow { display: flex; flex-direction: column; gap: 0; align-items: stretch; }
+.flow-node { background: #F5F8FC; border: 1px solid var(--hairline); border-radius: 10px; padding: 14px 20px; }
+.flow-node .t { font-size: 13.5px; font-weight: 800; }
+.flow-node .d { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.flow-node.dark { background: var(--navy); border-color: var(--navy); color: #fff; }
+.flow-node.dark .d { color: rgba(255,255,255,.55); }
+.flow-arrow { text-align: center; color: #BCC8D8; font-size: 16px; padding: 4px 0; line-height: 1; }
+.flow-arrow span { font-size: 11px; color: var(--muted); margin-left: 8px; vertical-align: 2px; }
+
+/* タイムライン */
+.tl { position: relative; padding-left: 26px; }
+.tl::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--hairline); }
+.tl-item { position: relative; padding-bottom: 26px; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before { content: ''; position: absolute; left: -25px; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: var(--blue); border: 3px solid var(--bg); }
+.tl-item.milestone::before { background: var(--accent); }
+.tl-time { font-size: 11px; font-weight: 800; color: var(--muted); letter-spacing: .04em; }
+.tl-head { font-size: 14.5px; font-weight: 800; margin: 2px 0 8px; }
+.tl-body { font-size: 13px; color: #33415a; }
+
+/* 指示の引用（吹き出し） */
+.quote { background: #EEF3FA; border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; padding: 12px 18px; margin: 10px 0; font-size: 13px; color: #2a3a55; }
+.quote .who { font-size: 10.5px; font-weight: 800; color: var(--blue); letter-spacing: .06em; display: block; margin-bottom: 4px; }
+.quote.kuro { background: #FDF6EE; border-left-color: var(--accent); }
+.quote.kuro .who { color: var(--accent); }
+
+/* コツ */
+.tips { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.tip { background: var(--surface); border-radius: 14px; padding: 22px 24px; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.05); }
+.tip .no { font-size: 22px; font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+.tip h3 { font-size: 14.5px; font-weight: 800; margin-bottom: 8px; }
+.tip p { font-size: 12.5px; color: #33415a; }
+
+/* 手順 */
+.steps { counter-reset: step; }
+.step { display: flex; gap: 16px; padding: 14px 0; border-bottom: 1px solid #EFF3F8; }
+.step:last-child { border-bottom: none; }
+.step::before { counter-increment: step; content: counter(step); flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--navy); color: #fff; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+.step .s-body { font-size: 13.5px; }
+.step code { background: #F1F5F9; border-radius: 4px; padding: 1px 7px; font-size: 12px; color: #B54708; }
+
+.note { background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 10px; padding: 14px 20px; font-size: 12.5px; color: #92400E; margin-top: 20px; }
+.foot { text-align: center; font-size: 11px; color: var(--muted); margin-top: 48px; }
+
+@media (max-width: 680px) {
+  .hdr { padding: 28px 20px; } .wrap { padding: 24px 18px 60px; }
+  .site-row, .tips { grid-template-columns: 1fr; }
+  .card { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-inner">
+    <div class="hdr-logo">LX</div>
+    <h1>LIFEX KPIダッシュボード<br>どうやってクロと作ったか — 制作の記録</h1>
+    <div class="sub">徳田（BtoB事業部）→ 西野さん共有用 ／ 2026年7月12日</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="sec-lbl">はじめに</div>
+  <div class="card">
+    <p>加盟店16店舗のKPIを、これまで電話とオンライン会議で1店舗ずつ聞き取って口頭共有していました。これを「スプシに数字を入れれば、金曜会議のダッシュボードに勝手に反映される」形に変えたのがこのツールです。</p>
+    <p>プログラミングの勉強をしてから作ったわけではなく、Claude Code（社内では「クロ」と呼んでいます）に<strong>業務の課題をそのまま相談して、対話しながら</strong>作りました。この資料は「どんな指示を出したのか」を、実際のやり取りの引用付きで残したものです。</p>
+  </div>
+
+  <div class="sec-lbl">完成したもの</div>
+  <div class="site-row">
+    <div class="site">
+      <div class="tag">本番（金曜会議で使用中）</div>
+      <div class="name">KPIダッシュボード v1</div>
+      <div class="desc">全店舗KPI・ファネル・店舗別カード</div>
+      <a href="https://euphonious-selkie-072baa.netlify.app/">euphonious-selkie-072baa.netlify.app</a>
+    </div>
+    <div class="site dev">
+      <div class="tag">開発版（本番に影響させず並走）</div>
+      <div class="name">KPIダッシュボード v2</div>
+      <div class="desc">v1＋広告実績（META/Google）＋5分自動更新</div>
+      <a href="https://prismatic-trifle-834c72.netlify.app/">prismatic-trifle-834c72.netlify.app</a>
+    </div>
+  </div>
+
+  <div class="sec-lbl">仕組み — サーバーもDBも使わない</div>
+  <div class="card">
+    <div class="flow">
+      <div class="flow-node">
+        <div class="t">Googleスプレッドシート</div>
+        <div class="d">各店舗のステータス人数（S2〜S13）を手入力。これがデータベース代わり</div>
+      </div>
+      <div class="flow-arrow">▼<span>Apps Script（スプシに付属のプログラム）がJSONで配信</span></div>
+      <div class="flow-node">
+        <div class="t">Google Apps Script（GAS）</div>
+        <div class="d">スプシを読んでデータ配信するAPI代わり。v2では広告スプシ（マーケ管理・閲覧のみ）も参照</div>
+      </div>
+      <div class="flow-arrow">▼<span>ブラウザが開くたびに最新データを取得</span></div>
+      <div class="flow-node dark">
+        <div class="t">HTML 1枚（Netlifyで公開）</div>
+        <div class="d">受け取ったデータをその場で描画。ファネルの円・KPIカード・店舗カードすべてこの1ファイル</div>
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:13px;">スプシがDB、GASがAPI、Netlify（無料の静的ホスティング）が画面。<strong>ランニングコストはゼロ</strong>です。数値の更新はスプシに入力するだけで、ダッシュボード側の作業は一切ありません。</p>
+  </div>
+
+  <div class="sec-lbl">制作の実録 — 実際にこう指示した</div>
+  <div class="card">
+    <div class="tl">
+
+      <div class="tl-item">
+        <div class="tl-time">7月1日（火）11:23</div>
+        <div class="tl-head">最初にやったのは、自己紹介の登録</div>
+        <div class="tl-body">
+          <p>作業を頼む前に、自分の役職・担当業務・「AIが作ったとわかる資料はNG」という方針をまとめてクロに登録しました（CLAUDE.mdという設定ファイルになります）。以降のすべての作業でクロがこの前提を踏まえてくれるので、毎回説明し直す必要がありません。</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">11:28</div>
+        <div class="tl-head">課題をそのまま相談（「作り方」は指定していない）</div>
+        <div class="tl-body">
+          <div class="quote"><span class="who">徳田 → クロ</span>今、LIFEX加盟店様のKPIをだすために各店舗様より数値の吸い上げを実施しています。この数値を誰が見ても分かるように資料を作成したいです。また、今後数値は変動していくので編集が可能な形式にもしたいです。そして常に数値が分かる状態に設定をお願いします。</div>
+          <p>「HTMLで」「ダッシュボードを」とは一言も言っていません。困りごとと満たしたい条件（誰でも分かる・編集できる・常に最新）だけを伝えています。</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">11:35</div>
+        <div class="tl-head">求めるレベル感を現場の言葉で追加</div>
+        <div class="tl-body">
+          <div class="quote"><span class="who">徳田 → クロ</span>今は１６店舗ですが今後増えていくと考えてください。数値は現状お電話又はオンライン会議でヒアリングしてます。ここも原始的過ぎるのでなんとかしたい。（中略）加盟店様のマネージャーが教育や数値管理に使えるレベルのモノと理解ください。</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">11:38</div>
+        <div class="tl-head">クロの提案を、営業の現場感覚で却下</div>
+        <div class="tl-body">
+          <p>クロは入力手段としてGoogleフォームを提案してきましたが、ここは譲りませんでした。</p>
+          <div class="quote"><span class="who">徳田 → クロ</span>Googleフォームの場合、新規顧客は分かりやすいですが既存顧客のランクアップ時のことを考えると面倒くさいのでは。もっと加盟店様の営業マンが利用しやすい、と思って貰わないと入力をいただけなくなると思います。毎週金曜日の早朝から会議がありますので木曜日中の集計を考えております。</div>
+          <p>「入力してもらえない仕組みは絶対に定着しない」は14年の営業経験からの確信です。ツールの知識はクロが持っていますが、<strong>現場で回るかどうかの判断はこちらの仕事</strong>です。</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">11:43</div>
+        <div class="tl-head">電話ヒアリングの生メモを、整形せずそのまま貼り付け</div>
+        <div class="tl-body">
+          <div class="quote"><span class="who">徳田 → クロ</span>久留米建設（髙口様）　３：４　４：３　６：１（マンション売却先行）→7/7再来のアポ済…（各店舗ぶん、メモをそのまま）</div>
+          <p>体裁を整えず貼っただけですが、クロはここからステータス構造・所見欄の必要性・実データでの表示確認まで全部読み取りました。<strong>きれいにしてから渡す必要はない</strong>と実感した場面です。</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">12:52</div>
+        <div class="tl-head">ビジュアルのアイデアはこちらから出した</div>
+        <div class="tl-body">
+          <div class="quote"><span class="who">徳田 → クロ</span>所見欄又は備考欄も欲しいです。あとはビジュアルが見えやすい方がよいのでガンチャートみたいに●→●みたいな形で数に対して円の大きさがかわるなど出来れば良いですね。</div>
+          <p>ダッシュボードの顔になっている「円の大きさ＝顧客数」のファネルは、この一文から生まれています。</p>
+        </div>
+      </div>
+
+      <div class="tl-item milestone">
+        <div class="tl-time">13:11 → 13:20</div>
+        <div class="tl-head">方式を選択、v1完成 — 相談開始から約2時間</div>
+        <div class="tl-body">
+          <p>クロが提示した選択肢から「Googleスプレッドシートと連携（スプシに入れるだけで自動更新）」を選ぶと、GASのコードとダッシュボードHTMLが生成されました。午後にクロの案内どおりGASをデプロイし、NetlifyへHTMLをドラッグ＆ドロップして公開。<strong>翌週の金曜会議から実戦投入</strong>しています。</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">7月10日(金) 15:33</div>
+        <div class="tl-head">v2着手 — 本番を壊さない指示から始めた</div>
+        <div class="tl-body">
+          <div class="quote"><span class="who">徳田 → クロ</span>別のスプシから来場単価のコンバージョンを各加盟店毎に常に最新情報が見れるようにしたいです。ただし、このシートは今日の会議でも使うので修正する場合はコピーするなどして別軸で修正を進めたいと考えています。<strong>いきなり作業に入らずに相談しながら進めましょう。</strong></div>
+          <p>会議で現役稼働中のものに手を入れる怖さがあったので、「別軸で」「相談しながら」を最初に釘を刺しました。結果、クロは開発版を完全に分離して作り、本番は1文字も変わっていません。</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">7月11日〜12日</div>
+        <div class="tl-head">権限確認・デプロイは対話で乗り切る</div>
+        <div class="tl-body">
+          <p>広告スプシの編集権限が自分にあるか分からない、GASのファイルはどうやって開くのか——この辺は正直に「分からない」と言いながら、画面の状況を伝えて一つずつ進めました。分からないことを分からないと言えば、クロが手順を刻んでくれます。</p>
+        </div>
+      </div>
+
+      <div class="tl-item milestone">
+        <div class="tl-time">7月12日(日) 19:43</div>
+        <div class="tl-head">v2完成 — 仕上げの一言も普通の日本語</div>
+        <div class="tl-body">
+          <div class="quote"><span class="who">徳田 → クロ</span>5分ごとに自動更新を入れてもらえたらすごく助かります。</div>
+          <p>これで「会議中に開きっぱなしでも常に最新」になりました。技術用語を使った指示は、最初から最後までほぼゼロです。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sec-lbl">振り返って — うまくいった4つの型</div>
+  <div class="tips">
+    <div class="tip">
+      <div class="no">1</div>
+      <h3>課題を渡す。作り方は渡さない</h3>
+      <p>「ダッシュボードを作って」ではなく「数値の吸い上げが原始的すぎる。誰でも分かる状態にしたい」から始める。手段の引き出しはクロの方が多いので、選択肢を出させてから業務側の判断で選ぶ方が良いものになります。</p>
+    </div>
+    <div class="tip">
+      <div class="no">2</div>
+      <h3>現場の判断では絶対に譲らない</h3>
+      <p>Googleフォーム案の却下がそれです。「営業マンが面倒だと思ったら入力されない」はAIには分からない領域。ここを譲らなかったことが、実際に運用が回っている一番の理由だと思っています。</p>
+    </div>
+    <div class="tip">
+      <div class="no">3</div>
+      <h3>生データを整形せずに貼る</h3>
+      <p>電話ヒアリングのメモをそのまま貼りました。きれいな資料にしてから渡そうとすると、その作業で止まります。汚いまま渡してもクロは構造を読み取ります。</p>
+    </div>
+    <div class="tip">
+      <div class="no">4</div>
+      <h3>稼働中のものには「別軸で」と釘を刺す</h3>
+      <p>「本番は会議で使うのでコピーして別軸で。いきなり作業に入らず相談しながら」——この一文だけで、開発版の分離もGASのバージョン管理もクロが段取りしてくれました。守りたいものは先に言葉にする。</p>
+    </div>
+  </div>
+
+  <div class="sec-lbl">西野さんの環境で試すには</div>
+  <div class="card">
+    <div class="steps">
+      <div class="step"><div class="s-body">このHTMLと一緒に渡している<strong>フォルダ（lifex-dashboard-handover）</strong>を、ご自身のPCの分かりやすい場所に置く</div></div>
+      <div class="step"><div class="s-body">そのフォルダでClaude Codeを起動する（フォルダには技術詳細をまとめたREADMEと、ダッシュボード・GASの実物のソースコードが入っています）</div></div>
+      <div class="step"><div class="s-body">最初にこう伝える：<code>このフォルダのファイルをすべて読んで、このダッシュボードの仕組みを説明して</code></div></div>
+      <div class="step"><div class="s-body">あとは自由に質問・応用へ。「自分の部署のデータで同じものを作りたい」と言えば、このコードを下敷きに組んでくれます</div></div>
+    </div>
+    <div class="note"><strong>取り扱い注意：</strong>フォルダ内のコードには加盟店の営業数値へアクセスできるURLが含まれます。社内共有に留め、外部への転送やアップロードはしないでください。</div>
+  </div>
+
+  <div class="foot">LIFEX KPIダッシュボード 制作の記録 ／ 徳田・クロ共作 ／ 2026.07.12</div>
+</div>
+
+</body>
+</html>

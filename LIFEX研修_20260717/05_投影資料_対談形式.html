@@ -1,0 +1,274 @@
+<title>LIFEX研修 投影資料〈対談形式〉</title>
+<style>
+  :root{
+    --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+    --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+    --p1:#1e4e79; --p2:#2e7d6e; --p3:#b05c1f;
+    --p1bg:#e8eff6; --p2bg:#e7f2ef; --p3bg:#f9efe4;
+  }
+  *{box-sizing:border-box}
+  body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif; color:var(--ink);
+    background:#e9edf1; margin:0; line-height:1.6; font-feature-settings:"palt"}
+  .wrap{width:min(1100px,96vw); margin:26px auto; overflow:visible}
+  .sl{width:1100px; height:619px; background:#fff; border-radius:8px; box-shadow:0 2px 16px rgba(20,40,60,.09);
+    padding:38px 54px 30px; display:flex; flex-direction:column; position:relative; overflow:hidden; transform-origin:top left}
+  .top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+  .chip{font-size:11.5px; font-weight:700; letter-spacing:.1em; padding:3px 12px; border-radius:99px}
+  .c0{background:#eceff2;color:var(--sub)} .c1{background:var(--p1bg);color:var(--p1)}
+  .c2{background:var(--p2bg);color:var(--p2)} .c3{background:var(--p3bg);color:var(--p3)}
+  .pg{margin-left:auto; font-size:12px; color:#b6c0ca; font-variant-numeric:tabular-nums}
+  .tt{font-size:31px; font-weight:800; line-height:1.35; margin:2px 0 4px; text-wrap:balance}
+  .ms{font-size:14.5px; color:var(--sub); margin:0 0 14px}
+  .body{flex:1; display:flex; gap:26px; min-height:0}
+  .foot{display:flex; gap:14px; margin-top:12px; align-items:center}
+  .asof{font-size:11px; color:var(--sub); background:var(--panel); border:1px solid var(--line); border-radius:3px; padding:2px 10px}
+  .real{font-size:11px; color:var(--p2); background:var(--p2bg); border:1px solid #bfdcd5; border-radius:3px; padding:2px 10px; font-weight:700}
+  .num{font-variant-numeric:tabular-nums}
+  .col{display:flex; flex-direction:column; gap:12px; min-width:0}
+  .grow{flex:1}
+  .box{border:1px solid var(--line); border-radius:6px; padding:14px 18px; background:#fff}
+  .box h4{margin:0 0 4px; font-size:14.5px; color:var(--navy)}
+  .box p{margin:0; font-size:13px; color:var(--sub)}
+  .stat{background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:12px 16px; text-align:center}
+  .stat b{display:block; font-size:12.5px; color:var(--sub); font-weight:600}
+  .stat span{font-size:30px; font-weight:800; color:var(--navy)}
+  .stat small{font-size:13px; font-weight:700; color:var(--navy)}
+  table{border-collapse:collapse; width:100%; font-size:13.5px}
+  th{background:var(--panel); font-size:12px; color:var(--sub); font-weight:600; text-align:left}
+  th,td{border:1px solid var(--line); padding:8px 12px}
+  .fun{display:flex; align-items:center; justify-content:center; gap:6px; flex:1}
+  .fc{border-radius:50%; color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:800; flex-shrink:0}
+  .fc i{font-style:normal; font-size:24px}
+  .fc em{font-style:normal; font-size:11px; font-weight:600; opacity:.9}
+  .fa{color:#b6c0ca; font-size:20px; font-weight:700; display:flex; flex-direction:column; align-items:center}
+  .fa b{font-size:12px; color:var(--navy); white-space:nowrap}
+  .say{background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:10px; padding:14px 18px; font-size:14px}
+  .say b{color:var(--navy)}
+  .say .lbl{display:block; font-size:11px; letter-spacing:.1em; color:var(--navy); font-weight:700; margin-bottom:4px}
+  .stk{width:150px; display:flex; flex-direction:column-reverse; border:1px solid var(--line); border-radius:4px; overflow:hidden; height:100%}
+  .stk div{display:flex; align-items:center; justify-content:center; font-size:12px; color:#fff; font-weight:700}
+  .big{font-size:20px; font-weight:800; line-height:1.6}
+  .big em{font-style:normal; color:var(--navy)}
+  .cap{font-size:12px; color:var(--sub)}
+  /* 質問カード */
+  .qs{flex:1; display:flex; flex-direction:column; gap:10px; justify-content:center}
+  .qs.two{display:grid; grid-template-columns:1fr 1fr; gap:10px; align-content:center}
+  .q{border:1px solid var(--line); border-left:4px solid var(--navy); border-radius:4px; background:#fbfcfd;
+    padding:12px 18px; font-size:15.5px; font-weight:700; line-height:1.6; display:flex; align-items:center}
+  .q span{color:var(--navy); margin-right:12px; font-size:13px; flex-shrink:0}
+  /* 競合バー */
+  .cb{display:flex; align-items:center; gap:14px; font-size:15px; font-weight:700}
+  .cb .nm{width:150px; text-align:right; flex-shrink:0}
+  .cb .bar{height:34px; background:var(--navy); border-radius:3px}
+  .cb .ct{color:var(--navy); font-size:20px}
+  @media print{body{background:#fff}.sl{box-shadow:none; border:1px solid var(--line); page-break-after:always}}
+</style>
+
+<!-- 1 表紙 -->
+<div class="sl" style="justify-content:center; text-align:center">
+  <div style="font-size:13px; letter-spacing:.22em; color:var(--sub); font-weight:700">2026.7.17　LIFEX 加盟店研修</div>
+  <div style="font-size:54px; font-weight:800; margin:26px 0 10px; letter-spacing:.02em">月2棟は、再現できる。</div>
+  <div style="font-size:18px; color:var(--navy); font-weight:700">YUNO HOME式 営業システム、全公開。</div>
+  <div style="margin-top:42px; font-size:15px; color:var(--ink)">
+    <b>株式会社YUNO HOME　佐古社長</b>
+    <span style="color:var(--sub); margin:0 14px">×</span>
+    <span style="color:var(--sub)">聞き手：Gハウス LIFEX FC事業部　徳田</span>
+  </div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px">1 / 11</div>
+</div>
+
+<!-- 2 本日の対談 -->
+<div class="sl">
+  <div class="top"><span class="chip c0">本日の流れ</span><span class="pg">2 / 11</span></div>
+  <div class="tt">皆さんの質問16問を、佐古社長にぶつけます。</div>
+  <p class="ms">事前アンケート（回答19名）の質問を徳田が代読し、対談形式で全問回収します。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:12px">
+    <div class="box" style="display:flex; align-items:center; gap:16px"><span class="chip c0" style="flex-shrink:0">対談①</span><b style="font-size:16px">数字の種明かし</b><span class="cap">通話の9割がアポになる理由</span></div>
+    <div class="box" style="display:flex; align-items:center; gap:16px; border-color:var(--p1)"><span class="chip c1" style="flex-shrink:0">対談②</span><b style="font-size:16px">集客・アポ獲得</b><span class="cap">質問4問｜アンケート最多課題（12/19名）</span></div>
+    <div class="box" style="display:flex; align-items:center; gap:16px; border-color:var(--p2)"><span class="chip c2" style="flex-shrink:0">対談③</span><b style="font-size:16px">初回面談・セミナー</b><span class="cap">質問5問</span></div>
+    <div class="box" style="display:flex; align-items:center; gap:16px; border-color:var(--p3)"><span class="chip c3" style="flex-shrink:0">対談④</span><b style="font-size:16px">競合対策・クロージング</b><span class="cap">質問7問</span></div>
+  </div>
+  <div class="foot"><span class="cap"><b style="color:var(--navy)">メモは、手順で。</b>「うまい」ではなく「何をしているか」を書き取ってください。</span></div>
+</div>
+
+<!-- 3 数字 -->
+<div class="sl">
+  <div class="top"><span class="chip c0">対談①｜数字の種明かし</span><span class="pg">3 / 11</span></div>
+  <div class="tt">つながるのは、3人に1人。<br>つながってからは、落とさない。</div>
+  <div class="body" style="flex-direction:column; gap:10px">
+    <div class="fun">
+      <div class="fc num" style="width:120px;height:120px;background:#1e4e79"><i>27</i><em>登録</em></div>
+      <div class="fa"><b>接続率 37.0%</b>→</div>
+      <div class="fc num" style="width:88px;height:88px;background:#2e6da4"><i>10</i><em>通話</em></div>
+      <div class="fa"><b>アポ率 90.0%</b>→</div>
+      <div class="fc num" style="width:84px;height:84px;background:#3b82c4"><i>9</i><em>アポ</em></div>
+      <div class="fa"><b>面談化 66.7%</b>→</div>
+      <div class="fc num" style="width:74px;height:74px;background:#b05c1f"><i>6</i><em>面談</em></div>
+      <div class="fa"><b>契約率 66.7%</b>→</div>
+      <div class="fc num" style="width:64px;height:64px;background:#2e7d6e"><i>4</i><em>契約</em></div>
+    </div>
+    <div style="display:flex; gap:12px">
+      <div class="stat grow"><b>登録→契約 転換率</b><span class="num">14.8<small>%</small></span></div>
+      <div class="stat grow" style="background:var(--navy-soft); border-color:var(--navy)"><b>月2棟の設計式</b><span style="font-size:19px" class="num">登録14件/月 × 14.8% ≒ <em style="font-style:normal">2棟</em></span></div>
+      <div class="stat grow"><b>通話後にアポを逃す数</b><span class="num">10人中 1人</span></div>
+    </div>
+  </div>
+  <div class="foot"><span class="asof">2026/7/16時点・数値は更新予定</span><span class="cap">徳田の最初の質問：「この90%、電話で何をしているんですか？」</span></div>
+</div>
+
+<!-- 4 扉Q1 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">対談②｜集客・アポ獲得</span><span class="pg">4 / 11</span></div>
+  <div class="tt">皆さんからの質問</div>
+  <div class="qs">
+    <div class="q"><span>Q1</span>テレアポ着電後の対応、アポまでのトークを知りたい</div>
+    <div class="q"><span>Q2</span>来店を促す理由づけ（誘客トーク）はどんなパターンが多い？</div>
+    <div class="q"><span>Q3</span>アポ提示までの過程と、断られても何度もアタックする運用、どちらが大事？</div>
+    <div class="q"><span>Q4</span>通常集客での来場客には、どう訴求している？</div>
+  </div>
+  <div class="foot"><span class="cap">事前アンケートの原文より</span></div>
+</div>
+
+<!-- 5 電話の型 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">対談②｜集客・アポ獲得</span><span class="pg">5 / 11</span></div>
+  <div class="tt">アポ率90%の電話は、アポ取りの電話ではない。</div>
+  <p class="ms">目的は2つ——アポ取得と、<b>初回面談の質を上げること</b>。電話の時点で、商談は始まっている。</p>
+  <div class="body">
+    <div class="col" style="flex:0 0 36%; justify-content:center">
+      <div class="box" style="border-color:var(--p1)"><h4>原則① 建物・性能の話は、電話でしない</h4><p>電話ですべては伝わらない。答えは面談に取っておく</p></div>
+      <div class="box" style="border-color:var(--p1)"><h4>原則② 言われたことは、その場ですぐ返す</h4><p>即答するから、お客様の本音が出てくる</p></div>
+      <div class="box" style="border-color:var(--p1)"><h4>原則③ 単体ではなく、ストーリーで話す</h4><p>質問を並べず、会話の流れとして聞く</p></div>
+    </div>
+    <div class="col grow" style="justify-content:center">
+      <table style="font-size:12.5px">
+        <tr><th style="width:52%">聞く内容（7項目）</th><th>狙い</th></tr>
+        <tr><td>① なぜ規格住宅で問い合わせたのか</td><td>重視点の把握（価格か、デザイン・間取りか）</td></tr>
+        <tr><td>② 家づくりを始めたタイミング</td><td>知識レベルの把握（専門用語でジャブを打つ）</td></tr>
+        <tr><td>③ 土地の有無</td><td>契約時期の把握。土地ありなら資料を事前に全部もらう</td></tr>
+        <tr><td>④ 引越ししたい時期</td><td>ご家族の優先順位の把握。あえて余白を残す</td></tr>
+        <tr><td>⑤ ローン事前審査の状況</td><td>予算感の把握。他社の提案を踏まえて対策</td></tr>
+        <tr><td>⑥ 希望エリア</td><td>提案の幅を広げる</td></tr>
+        <tr><td>⑦ 他社の検討状況</td><td>他社の強みを把握し、初回面談のアプローチを修正</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="foot"><span class="real">佐古社長の実際の電話トーク資料より</span><span class="cap">対談で深掘り：入り方の実際の言い回し（トーク紹介①）</span></div>
+</div>
+
+<!-- 6 追いメール -->
+<div class="sl">
+  <div class="top"><span class="chip c1">対談②｜集客・アポ獲得</span><span class="pg">6 / 11</span></div>
+  <div class="tt">電話に出ない人を、あきらめない。</div>
+  <p class="ms">「質か、回数か」——答えはどちらでもなく、記憶に頼らない接触の仕組み。</p>
+  <div class="body">
+    <div class="col grow" style="justify-content:center">
+      <div class="box" style="border-color:var(--p1)">
+        <h4>実物の型：電話に出ない方への「追いメール」</h4>
+        <p style="line-height:1.9; font-size:13.5px">・会員登録へのお礼から入る<br>・<b style="color:var(--ink)">日時候補を必ず3つ、こちらから提示する</b><br>　（「一度いかがでしょうか？」と相手に委ねると返信率が落ちる）<br>・「土地探しから総額まで、初回からご提案可能」を明記して<br>　来店する理由を作る</p>
+      </div>
+    </div>
+    <div class="col" style="flex:0 0 38%; justify-content:center">
+      <div class="say"><span class="lbl">1件の重み</span>面談1件の獲得コストは<br><b class="num" style="font-size:22px">¥154,948</b><br><span class="cap">（広告費÷実来場・7/16時点）</span><br>接触の抜け漏れ1件は、約15万円をそのまま捨てるのと同じ。</div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">メールの型は佐古社長の実資料より</span><span class="asof">金額は7/16時点・更新予定</span></div>
+</div>
+
+<!-- 7 扉Q2 -->
+<div class="sl">
+  <div class="top"><span class="chip c2">対談③｜初回面談・セミナー</span><span class="pg">7 / 11</span></div>
+  <div class="tt">皆さんからの質問</div>
+  <div class="qs">
+    <div class="q"><span>Q5</span>モニター60分説明の入り方は？初対面でいきなり聞いてもらえるもの？</div>
+    <div class="q"><span>Q6</span>セミナースライドは一から説明する？端的に刺さる説明がある？</div>
+    <div class="q"><span>Q7</span>初回1時間のセミナートークを、毎回必ずやっている？</div>
+    <div class="q"><span>Q8</span>「本体価格＝建物全部の価格」と思って来店される方との金額ギャップは？</div>
+    <div class="q"><span>Q9</span>土地がない方への営業手法は？</div>
+  </div>
+  <div class="foot"><span class="cap">事前アンケートの原文より｜対談で深掘り：面談冒頭の実際の言い回し（トーク紹介②）</span></div>
+</div>
+
+<!-- 8 総額先出し -->
+<div class="sl">
+  <div class="top"><span class="chip c2">対談③｜初回面談・セミナー</span><span class="pg">8 / 11</span></div>
+  <div class="tt">初回面談で、資金計画を見せる。</div>
+  <p class="ms">金額のギャップは、起きてから埋めるのではなく、起きる前に消す。</p>
+  <div class="body">
+    <div style="display:flex; gap:14px; align-items:stretch; flex:1; justify-content:center">
+      <div class="stk">
+        <div style="flex:210; background:#1e4e79">本体 2,100</div>
+        <div style="flex:48; background:#3b82c4">付帯工事 480</div>
+        <div style="flex:30; background:#7ba7cc">諸費用 300</div>
+      </div>
+      <div class="col" style="justify-content:center; gap:6px">
+        <div class="big" style="font-size:24px">建物総額 <em class="num">2,880万円</em></div>
+        <div class="cap">（万円）</div>
+        <div class="cap">商談の<b>前半</b>でこの図を出す。<br>「本体の他に、ここまで掛かります」を<br>こちらから先に言う。</div>
+      </div>
+    </div>
+    <div class="col" style="flex:0 0 34%; justify-content:center">
+      <div class="box" style="border-color:var(--p2)"><h4>土地なしのお客様</h4><p style="line-height:1.9">① 総予算を確定する<br>② 土地予算を逆算する<br>③ 予算内で土地を探す<br><b style="color:var(--ink)">土地から探させない。この順番に乗せる。</b></p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">土地代は別途。土地なしのお客様には右の順番で総予算から入る。</span></div>
+</div>
+
+<!-- 9 扉Q3 -->
+<div class="sl">
+  <div class="top"><span class="chip c3">対談④｜競合対策・クロージング</span><span class="pg">9 / 11</span></div>
+  <div class="tt">皆さんからの質問</div>
+  <div class="qs two">
+    <div class="q" style="font-size:14px"><span>Q10</span>一条工務店・アイ工務店対策は？</div>
+    <div class="q" style="font-size:14px"><span>Q11</span>初回来場〜申込までの流れと、以降のスケジューリングは？</div>
+    <div class="q" style="font-size:14px"><span>Q12</span>「他社も見たい」と言わせない、事前の顧客心理の持って行き方は？</div>
+    <div class="q" style="font-size:14px"><span>Q13</span>LIFEXを選ぶ阻害要因と、解決するトークは？</div>
+    <div class="q" style="font-size:14px"><span>Q14</span>値引きを求められたら、どう対応する？</div>
+    <div class="q" style="font-size:14px"><span>Q15</span>クロージングで意識していることは？</div>
+    <div class="q" style="font-size:14px; grid-column:1/-1"><span>Q16</span>申込後の商談の流れ——土地付けと資金計画はどうしている？</div>
+  </div>
+  <div class="foot"><span class="cap">事前アンケートの原文より｜対談で深掘り：判断基準を渡すトーク（トーク紹介③）・一条との勝ち負け事例</span></div>
+</div>
+
+<!-- 10 競合データ -->
+<div class="sl">
+  <div class="top"><span class="chip c3">対談④｜競合対策・クロージング</span><span class="pg">10 / 11</span></div>
+  <div class="tt">皆さんが一番聞きたい競合は、一条工務店。</div>
+  <p class="ms">事前アンケート「対策を聞きたい競合」（回答19名）</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:22px">
+    <div class="cb"><span class="nm">一条工務店</span><div class="bar" style="width:54%"></div><span class="ct num">9名</span></div>
+    <div class="cb"><span class="nm">アイ工務店</span><div class="bar" style="width:36%; background:#3b82c4"></div><span class="ct num">6名</span></div>
+    <div class="cb"><span class="nm">その他</span><div class="bar" style="width:18%; background:#b6c0ca"></div><span class="ct num">3名</span></div>
+  </div>
+  <div class="foot"><span class="cap">佐古社長に聞く：一条と競合したとき、実際に何が起きているのか。勝った例・負けた例。</span></div>
+</div>
+
+<!-- 11 まとめ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">まとめ</span><span class="pg">11 / 11</span></div>
+  <div class="tt">明日からの3アクション</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:14px">
+    <div class="box" style="border-color:var(--navy); display:flex; align-items:center; gap:18px"><span style="font-size:26px; font-weight:800; color:var(--navy)" class="num">1</span><div><h4 style="font-size:17px">電話ヒアリング7項目を、自社の台本にする</h4><p>聞く内容と狙いを写すだけ。次の着電から使う</p></div></div>
+    <div class="box" style="border-color:var(--navy); display:flex; align-items:center; gap:18px"><span style="font-size:26px; font-weight:800; color:var(--navy)" class="num">2</span><div><h4 style="font-size:17px">追いメールを「日時3候補」型に変える</h4><p>相手に委ねる文面を今週でやめる</p></div></div>
+    <div class="box" style="border-color:var(--navy); display:flex; align-items:center; gap:18px"><span style="font-size:26px; font-weight:800; color:var(--navy)" class="num">3</span><div><h4 style="font-size:17px">総額先出しの図を、自社の価格で作る</h4><p>本体・付帯・諸費用。商談前半で出せる状態にする</p></div></div>
+    <div style="text-align:center; font-size:17px; font-weight:700; color:var(--navy); margin-top:6px">型は、今日すべて渡しました。あとは、動かすだけです。</div>
+  </div>
+  <div class="foot"><span class="cap">当日の追加質問はチャットへ。事務局が回収し、後日文書で全店共有します。</span></div>
+</div>
+
+<script>
+(function(){
+  document.querySelectorAll('.sl').forEach(function(s){
+    var w=document.createElement('div'); w.className='wrap';
+    s.parentNode.insertBefore(w,s); w.appendChild(s);
+  });
+  function fit(){
+    document.querySelectorAll('.wrap').forEach(function(w){
+      var s=w.firstElementChild, k=Math.min(1,w.clientWidth/1100);
+      s.style.transform='scale('+k+')';
+      w.style.height=(619*k)+'px';
+    });
+  }
+  addEventListener('resize',fit); fit();
+})();
+</script>
