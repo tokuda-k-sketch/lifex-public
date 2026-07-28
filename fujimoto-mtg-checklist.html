@@ -8,13 +8,14 @@
   :root{
     --ink:#16202B; --ink-soft:#3D4A57; --paper:#F4F5F7; --card:#fff;
     --line:#D9DDE3; --line-soft:#E7EAEF; --blue:#274B8E; --blue-wash:#EAEFF7;
-    --gold:#B7822E; --gold-wash:#F6EEDD; --red:#B23A2E; --red-wash:#FBECEA; --mute:#7A8593;
+    --gold:#B7822E; --gold-wash:#F6EEDD; --red:#B23A2E; --red-wash:#FBECEA;
+    --green:#2F7A4F; --green-wash:#EAF5EE; --amber:#B5851E; --amber-wash:#FBF1DA; --mute:#7A8593;
   }
   *{box-sizing:border-box;}
   body{margin:0; background:var(--paper);
     font-family:"Yu Gothic","YuGothic","Hiragino Kaku Gothic ProN","Noto Sans JP","Meiryo",sans-serif;
-    color:var(--ink); line-height:1.5; -webkit-font-smoothing:antialiased; padding:22px;}
-  .sheet{max-width:940px; margin:0 auto; background:var(--card);
+    color:var(--ink); line-height:1.5; -webkit-font-smoothing:antialiased; padding:22px 22px 96px;}
+  .sheet{max-width:960px; margin:0 auto; background:var(--card);
     border:1px solid var(--line); border-radius:5px; overflow:hidden;
     box-shadow:0 12px 32px -20px rgba(22,32,43,.28);}
   header{padding:20px 26px 16px; border-bottom:2px solid var(--ink);}
@@ -22,7 +23,12 @@
   h1{margin:0; font-size:22px; font-weight:800; letter-spacing:.01em;}
   .sub{margin:8px 0 0; font-size:13px; color:var(--ink-soft); font-weight:600;}
   .sub b{color:var(--red);}
-  .body{padding:16px 26px 22px;}
+  .meta{display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-top:12px;}
+  .meta label{font-size:12px; font-weight:700; color:var(--ink-soft); display:flex; align-items:center; gap:6px;}
+  .meta input{font:inherit; font-size:13px; padding:5px 9px; border:1px solid var(--line); border-radius:5px; color:var(--ink);}
+  .counter{font-size:12px; font-weight:700; color:var(--mute); font-variant-numeric:tabular-nums;}
+  .counter b{color:var(--green);} .counter i{font-style:normal; color:var(--amber);}
+  .body{padding:14px 26px 22px;}
   .grp{margin-top:18px;}
   .grp:first-child{margin-top:4px;}
   .grp-h{display:flex; align-items:center; gap:9px; margin:0 0 8px;}
@@ -30,48 +36,88 @@
   .grp-h .tag{font-size:10px; font-weight:800; color:#fff; background:var(--ink);
     padding:2px 8px; border-radius:20px; letter-spacing:.04em;}
   .grp-h .tag.top{background:var(--red);}
-  .grp-h .n{font-size:11px; color:var(--mute); font-weight:700;}
   ul{list-style:none; margin:0; padding:0; border:1px solid var(--line); border-radius:6px; overflow:hidden;}
-  li{display:grid; grid-template-columns:26px 22px 1fr; gap:11px; align-items:start;
-    padding:10px 13px; border-top:1px solid var(--line-soft);}
+  li{display:grid; grid-template-columns:26px 1fr; gap:11px; align-items:start;
+    padding:11px 13px; border-top:1px solid var(--line-soft);}
   li:first-child{border-top:none;}
   li.top{background:var(--red-wash);}
-  .num{font-size:13px; font-weight:800; color:var(--blue); font-variant-numeric:tabular-nums; text-align:center; padding-top:1px;}
+  li.done{background:var(--green-wash);}
+  li.hold{background:var(--amber-wash);}
+  .num{font-size:13px; font-weight:800; color:var(--blue); font-variant-numeric:tabular-nums; text-align:center; padding-top:2px;}
   li.top .num{color:var(--red);}
-  .chk{width:17px; height:17px; border:1.8px solid var(--mute); border-radius:4px; margin-top:2px;}
-  .txt .q{font-size:13.5px; font-weight:800; line-height:1.4;}
-  .txt .d{font-size:12px; color:var(--ink-soft); font-weight:600; margin-top:2px; line-height:1.5;}
-  .txt .d b{color:var(--blue); font-weight:800;}
-  li.top .txt .d b{color:var(--red);}
+  .q{font-size:13.5px; font-weight:800; line-height:1.4;}
+  .d{font-size:12px; color:var(--ink-soft); font-weight:600; margin-top:2px; line-height:1.5;}
+  .d b{color:var(--blue); font-weight:800;}
+  li.top .d b{color:var(--red);}
+  .ctl{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:9px;}
+  .stg{display:inline-flex; border:1px solid var(--line); border-radius:6px; overflow:hidden; background:#fff;}
+  .st{font:inherit; font-size:12px; font-weight:700; padding:5px 12px; border:none; background:#fff; color:var(--ink-soft); cursor:pointer; border-left:1px solid var(--line-soft);}
+  .st:first-child{border-left:none;}
+  .st:hover{background:#F1F3F7;}
+  .st[data-v="合意"].on{background:var(--green); color:#fff;}
+  .st[data-v="持ち帰り"].on{background:var(--amber); color:#fff;}
+  .st[data-v="未"].on{background:var(--mute); color:#fff;}
+  .memo{flex:1; min-width:220px; font:inherit; font-size:12.5px; padding:6px 10px;
+    border:1px solid var(--line); border-radius:6px; color:var(--ink); background:#fff;}
+  .memo:focus,.memo:focus-visible{outline:2px solid var(--blue); outline-offset:1px; border-color:var(--blue);}
+  .st:focus-visible{outline:2px solid var(--blue); outline-offset:1px;}
   footer{padding:12px 26px 18px; border-top:1px solid var(--line-soft);
     font-size:11px; color:var(--mute); line-height:1.6;}
   footer b{color:var(--ink-soft);}
-  @media (max-width:640px){ body{padding:12px;} li{grid-template-columns:22px 20px 1fr; gap:9px;} }
-  @media print{ body{padding:0; background:#fff;} .sheet{border:none; box-shadow:none;} @page{size:A4; margin:12mm;} }
+  /* bottom action bar */
+  .bar{position:fixed; left:0; right:0; bottom:0; z-index:20; background:rgba(22,32,43,.97);
+    padding:11px 20px; display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap;
+    box-shadow:0 -6px 20px -12px rgba(0,0,0,.5);}
+  .bar .hint{color:#C7D0DA; font-size:12px; font-weight:600; margin-right:6px;}
+  .btn{font:inherit; font-size:13px; font-weight:800; padding:9px 18px; border-radius:7px; border:none; cursor:pointer;}
+  .btn.copy{background:#2FA36B; color:#fff;}
+  .btn.copy:hover{background:#268a5a;}
+  .btn.print{background:#3C4B5B; color:#fff;}
+  .btn.clear{background:transparent; color:#9AA6B2; border:1px solid #3C4B5B;}
+  .btn:focus-visible{outline:2px solid #7FB0FF; outline-offset:2px;}
+  .toast{position:fixed; left:50%; bottom:70px; transform:translateX(-50%) translateY(12px);
+    background:var(--green); color:#fff; font-size:13px; font-weight:800; padding:10px 18px; border-radius:8px;
+    opacity:0; pointer-events:none; transition:opacity .25s, transform .25s; z-index:30;}
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+  @media (max-width:640px){ body{padding:12px 12px 110px;} li{grid-template-columns:22px 1fr; gap:9px;} .memo{min-width:140px;} }
+  @media print{
+    body{padding:0; background:#fff;} .sheet{border:none; box-shadow:none;}
+    .bar,.toast{display:none!important;} .st{display:none;} .stg::after{content:attr(data-print); font-size:12px; font-weight:800; padding:4px 8px;}
+    .memo{border:none; border-bottom:1px solid var(--line);} @page{size:A4; margin:12mm;}
+  }
+  @media (prefers-reduced-motion:reduce){ .toast{transition:none;} }
 </style>
 </head>
 <body>
 <div class="sheet">
   <header>
     <p class="eyebrow">藤本さん × 徳田　すり合わせ</p>
-    <h1>明日の打合せ 確認事項 ― 14項目</h1>
+    <h1>明日の打合せ 確認事項 ― 14項目（記入式）</h1>
     <p class="sub"><b>明日のゴールは①②の決着。</b>ここが決まらないと③以降の数字合わせが宙に浮く。<span style="color:var(--mute);font-weight:600;">（藤本プラン 07-28版 反映）</span></p>
+    <div class="meta">
+      <label>MTG日：<input type="text" id="mtgdate" placeholder="2026/07/29" size="12"></label>
+      <span class="counter" id="counter">合意 0 ／ 持ち帰り 0 ／ 未 14</span>
+    </div>
   </header>
 
-  <div class="body">
+  <div class="body" id="list">
 
     <div class="grp">
       <div class="grp-h"><span class="tag top">最優先</span><span class="t">ここがズレると丸山MTGで即崩れる</span></div>
       <ul>
-        <li class="top">
-          <div class="num">1</div><div class="chk"></div>
-          <div class="txt"><div class="q">通電率50%（9月末）の現状値と打ち手を確定</div>
-          <div class="d">修正版で判明＝加盟店側の通電率を<b>初動フォロー即応化（GAS即時通知×1時間以内架電＋48h内予約一本化）</b>で <b>35→50%(+15pt)を実証中</b>。私の資料と同レイヤーで正。論点は現状値が <b>35%（藤本実証）か／全店平均は別か</b>。目標50%(9月末)→上限60%で揃える。</div></div>
+        <li data-id="1" class="top">
+          <div class="num">1</div>
+          <div>
+            <div class="q">通電率50%（9月末）の現状値と打ち手を確定</div>
+            <div class="d">修正版で判明＝加盟店側の通電率を<b>初動フォロー即応化（GAS即時通知×1時間以内架電＋48h内予約一本化）</b>で <b>35→50%(+15pt)を実証中</b>。私の資料と同レイヤーで正。論点は現状値が <b>35%（藤本実証）か／全店平均は別か</b>。目標50%(9月末)→上限60%で揃える。</div>
+          </div>
         </li>
-        <li class="top">
-          <div class="num">2</div><div class="chk"></div>
-          <div class="txt"><div class="q">前半（8–10月）、私は何屋か ― 工数の二重取り</div>
-          <div class="d">藤本プラン＝9名体制だが前半は<b>藤本(統括兼務)＋徳田(実質営業1名)</b>で始動（IS/営業入社は11/1〜、足立さん辞退で営業1枠再募集中）。私の資料＝棟数支援・研修を同時に負う。一人では両立しない。優先順位・時間配分を合意。</div></div>
+        <li data-id="2" class="top">
+          <div class="num">2</div>
+          <div>
+            <div class="q">前半（8–10月）、私は何屋か ― 工数の二重取り</div>
+            <div class="d">藤本プラン＝9名体制だが前半は<b>藤本(統括兼務)＋徳田(実質営業1名)</b>で始動（IS/営業入社は11/1〜、足立さん辞退で営業1枠再募集中）。私の資料＝棟数支援・研修を同時に負う。一人では両立しない。優先順位・時間配分を合意。</div>
+          </div>
         </li>
       </ul>
     </div>
@@ -79,20 +125,26 @@
     <div class="grp">
       <div class="grp-h"><span class="tag">整合</span><span class="t">数字・シナリオを揃える</span></div>
       <ul>
-        <li>
-          <div class="num">3</div><div class="chk"></div>
-          <div class="txt"><div class="q">加盟カーブはどのシナリオで合わせるか</div>
-          <div class="d">base <b>10/16/14/10</b>／楽観 14/18/12/6／保守 6/14/16/14。私の事業部合計はbase前提。丸山にはbaseで揃えるか。</div></div>
+        <li data-id="3">
+          <div class="num">3</div>
+          <div>
+            <div class="q">加盟カーブはどのシナリオで合わせるか</div>
+            <div class="d">base <b>10/16/14/10</b>／楽観 14/18/12/6／保守 6/14/16/14。私の事業部合計はbase前提。丸山にはbaseで揃えるか。</div>
+          </div>
         </li>
-        <li>
-          <div class="num">4</div><div class="chk"></div>
-          <div class="txt"><div class="q">社数の定義合わせ</div>
-          <div class="d">私「既存17＋新規50＝<b>67社</b>」／藤本「累計加盟 <b>10→26→40→50</b>（修正版で加盟カーブと整合）、研究会150→期末500」。"既存17（実加盟）"と"研究会母集団"の切り分けを確認。</div></div>
+        <li data-id="4">
+          <div class="num">4</div>
+          <div>
+            <div class="q">社数の定義合わせ</div>
+            <div class="d">私「既存17＋新規50＝<b>67社</b>」／藤本「累計加盟 <b>10→26→40→50</b>（修正版で加盟カーブと整合）、研究会150→期末500」。"既存17（実加盟）"と"研究会母集団"の切り分けを確認。</div>
+          </div>
         </li>
-        <li>
-          <div class="num">5</div><div class="chk"></div>
-          <div class="txt"><div class="q">加盟後の立ち上げ想定は一致するか</div>
-          <div class="d">私「加盟後12ヶ月で 0.65→月2棟（4/8/12ヶ月＝1.0/1.5/2.0）」。これを事業部の公式ラインにしてよいか。</div></div>
+        <li data-id="5">
+          <div class="num">5</div>
+          <div>
+            <div class="q">加盟後の立ち上げ想定は一致するか</div>
+            <div class="d">私「加盟後12ヶ月で <b>0.5→月2棟</b>（4/8/12ヶ月＝1.0/1.5/2.0）」。これを事業部の公式ラインにしてよいか。</div>
+          </div>
         </li>
       </ul>
     </div>
@@ -100,15 +152,19 @@
     <div class="grp">
       <div class="grp-h"><span class="tag">データ取得</span><span class="t">事業部合計を閉じるために藤本さんから貰う</span></div>
       <ul>
-        <li>
-          <div class="num">6</div><div class="chk"></div>
-          <div class="txt"><div class="q">既存17社の現状棟数ベースライン</div>
-          <div class="d">月次カーブ図の起点。無いと通期合計が出せない。</div></div>
+        <li data-id="6">
+          <div class="num">6</div>
+          <div>
+            <div class="q">既存17社の現状棟数ベースライン</div>
+            <div class="d">月次カーブ図の起点。無いと通期合計が出せない。</div>
+          </div>
         </li>
-        <li>
-          <div class="num">7</div><div class="chk"></div>
-          <div class="txt"><div class="q">加盟店の1棟あたり粗利</div>
-          <div class="d">本部の加盟金500万/月会費30万とは<b>別物</b>。加盟店向け訴求用。売上×粗利率で概算でも可か。</div></div>
+        <li data-id="7">
+          <div class="num">7</div>
+          <div>
+            <div class="q">加盟店の1棟あたり粗利</div>
+            <div class="d">本部の加盟金500万/月会費30万とは<b>別物</b>。加盟店向け訴求用。売上×粗利率で概算でも可か。</div>
+          </div>
         </li>
       </ul>
     </div>
@@ -116,20 +172,26 @@
     <div class="grp">
       <div class="grp-h"><span class="tag">集客</span><span class="t">母数の担保 ― 本部最大課題との接続</span></div>
       <ul>
-        <li>
-          <div class="num">8</div><div class="chk"></div>
-          <div class="txt"><div class="q">「会員登録・問い合わせ減少」と月12件確保の関係</div>
-          <div class="d">本部集客が細ると加盟店の反響も細る。母数対策の分担。</div></div>
+        <li data-id="8">
+          <div class="num">8</div>
+          <div>
+            <div class="q">「会員登録・問い合わせ減少」と月12件確保の関係</div>
+            <div class="d">本部集客が細ると加盟店の反響も細る。母数対策の分担。</div>
+          </div>
         </li>
-        <li>
-          <div class="num">9</div><div class="chk"></div>
-          <div class="txt"><div class="q">広告運用代行＋アイコン様ROI型の横展開</div>
-          <div class="d">補強A（受託30万→フィー6万）。どの加盟店から、私が絡むか。</div></div>
+        <li data-id="9">
+          <div class="num">9</div>
+          <div>
+            <div class="q">広告運用代行＋アイコン様ROI型の横展開</div>
+            <div class="d">補強A（受託30万→フィー6万）。どの加盟店から、私が絡むか。</div>
+          </div>
         </li>
-        <li>
-          <div class="num">10</div><div class="chk"></div>
-          <div class="txt"><div class="q">経営革真研究会との集客連携</div>
-          <div class="d">小田弘輝さんがリーダー・白井さん確認済。私の関与範囲。</div></div>
+        <li data-id="10">
+          <div class="num">10</div>
+          <div>
+            <div class="q">経営革真研究会との集客連携</div>
+            <div class="d">小田弘輝さんがリーダー・白井さん確認済。私の関与範囲。</div>
+          </div>
         </li>
       </ul>
     </div>
@@ -137,10 +199,12 @@
     <div class="grp">
       <div class="grp-h"><span class="tag">位置づけ</span><span class="t">共通言語にできるか</span></div>
       <ul>
-        <li>
-          <div class="num">11</div><div class="chk"></div>
-          <div class="txt"><div class="q">「棟数支援＝月会費ストックを守る解約防止装置」を共通言語にするか</div>
-          <div class="d">加盟店が儲かる（棟数↑）→継続→全社粗利8.73億の土台（LIFEX粗利3.0億・月会費<b>1.8億/年</b>）。丸山MTGでこのフレームを使うか。</div></div>
+        <li data-id="11">
+          <div class="num">11</div>
+          <div>
+            <div class="q">「棟数支援＝月会費ストックを守る解約防止装置」を共通言語にするか</div>
+            <div class="d">加盟店が儲かる（棟数↑）→継続→全社粗利8.73億の土台（LIFEX粗利3.0億・月会費<b>1.8億/年</b>）。丸山MTGでこのフレームを使うか。</div>
+          </div>
         </li>
       </ul>
     </div>
@@ -148,20 +212,26 @@
     <div class="grp">
       <div class="grp-h"><span class="tag">新規事業・日程</span><span class="t">重複回避と読み替え</span></div>
       <ul>
-        <li>
-          <div class="num">12</div><div class="chk"></div>
-          <div class="txt"><div class="q">私の新規事業と藤本の補強A〜Dの重複回避</div>
-          <div class="d">線引き。パイロット（12–1月）がQ2加盟ピーク＋薄い体制と工数衝突する点も。</div></div>
+        <li data-id="12">
+          <div class="num">12</div>
+          <div>
+            <div class="q">私の新規事業と藤本の補強A〜Dの重複回避</div>
+            <div class="d">線引き。パイロット（12–1月）がQ2加盟ピーク＋薄い体制と工数衝突する点も。</div>
+          </div>
         </li>
-        <li>
-          <div class="num">13</div><div class="chk"></div>
-          <div class="txt"><div class="q">モデルハウス完成予定一覧（7/24宿題）×集客計画</div>
-          <div class="d">突き合わせ。月12件確保の前提に直結。</div></div>
+        <li data-id="13">
+          <div class="num">13</div>
+          <div>
+            <div class="q">モデルハウス完成予定一覧（7/24宿題）×集客計画</div>
+            <div class="d">突き合わせ。月12件確保の前提に直結。</div>
+          </div>
         </li>
-        <li>
-          <div class="num">14</div><div class="chk"></div>
-          <div class="txt"><div class="q">カレンダーの読み替え</div>
-          <div class="d">8/20・9月末通電率50%・11/1 IS稼働・12/31営業補充 ↔ 私の資料のフェーズ（加盟後経過月）。</div></div>
+        <li data-id="14">
+          <div class="num">14</div>
+          <div>
+            <div class="q">カレンダーの読み替え</div>
+            <div class="d">8/20・9月末通電率50%・11/1 IS稼働・12/31営業補充 ↔ 私の資料のフェーズ（加盟後経過月）。</div>
+          </div>
         </li>
       </ul>
     </div>
@@ -169,8 +239,137 @@
   </div>
 
   <footer>
-    <b>チェック欄：</b>□＝合意／未チェック＝持ち帰り。　<b>関連資料：</b>来期目標設定（月2棟への逆算ロードマップ）。　<b>作成：</b>2026-07-28
+    <b>使い方：</b>各項目で「合意／持ち帰り」を選び、メモ欄に決定事項・宿題・数字を記入。入力は自動保存されます。MTG後、下の<b>「記入内容をコピー」</b>を押してクロ（Claude）に貼り付けてください。
   </footer>
 </div>
+
+<div class="bar">
+  <span class="hint">MTG後 →</span>
+  <button class="btn copy" id="copyBtn">📋 記入内容をコピー</button>
+  <button class="btn print" id="printBtn">🖨 印刷 / PDF</button>
+  <button class="btn clear" id="clearBtn">クリア</button>
+</div>
+<div class="toast" id="toast">コピーしました。クロに貼り付けてください</div>
+
+<script>
+(function(){
+  var KEY = "fujimoto-checklist-v2";
+  var items = Array.prototype.slice.call(document.querySelectorAll("li[data-id]"));
+
+  // 各項目に 合意/持ち帰り/未 ボタン と メモ欄 を差し込む
+  items.forEach(function(li){
+    var wrap = li.children[1];
+    var ctl = document.createElement("div"); ctl.className = "ctl";
+    var stg = document.createElement("div"); stg.className = "stg";
+    ["合意","持ち帰り","未"].forEach(function(v){
+      var b = document.createElement("button");
+      b.className = "st"; b.type = "button"; b.dataset.v = v; b.textContent = v;
+      if(v === "未"){ b.classList.add("on"); }
+      stg.appendChild(b);
+    });
+    var memo = document.createElement("input");
+    memo.className = "memo"; memo.type = "text";
+    memo.placeholder = "決定事項・宿題・数字メモ";
+    ctl.appendChild(stg); ctl.appendChild(memo);
+    wrap.appendChild(ctl);
+  });
+
+  function load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; } }
+  function save(){
+    var d = { date: document.getElementById("mtgdate").value, items:{} };
+    items.forEach(function(li){
+      var id = li.dataset.id;
+      var on = li.querySelector(".st.on");
+      d.items[id] = { status: on ? on.dataset.v : "未", memo: li.querySelector(".memo").value };
+    });
+    try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){}
+    paint();
+  }
+  function paint(){
+    var c = {合意:0,持ち帰り:0,未:0};
+    items.forEach(function(li){
+      var v = (li.querySelector(".st.on")||{}).dataset ? li.querySelector(".st.on").dataset.v : "未";
+      c[v]++;
+      li.classList.toggle("done", v==="合意");
+      li.classList.toggle("hold", v==="持ち帰り");
+    });
+    document.getElementById("counter").innerHTML =
+      "合意 <b>"+c.合意+"</b> ／ 持ち帰り <i>"+c.持ち帰り+"</i> ／ 未 "+c.未;
+  }
+
+  // 復元
+  var saved = load();
+  if(saved.date){ document.getElementById("mtgdate").value = saved.date; }
+  if(saved.items){
+    items.forEach(function(li){
+      var s = saved.items[li.dataset.id]; if(!s) return;
+      li.querySelectorAll(".st").forEach(function(b){ b.classList.toggle("on", b.dataset.v === s.status); });
+      li.querySelector(".memo").value = s.memo || "";
+    });
+  }
+  paint();
+
+  // イベント
+  document.getElementById("list").addEventListener("click", function(e){
+    var b = e.target.closest(".st"); if(!b) return;
+    b.parentNode.querySelectorAll(".st").forEach(function(x){ x.classList.remove("on"); });
+    b.classList.add("on"); save();
+  });
+  document.getElementById("list").addEventListener("input", function(e){
+    if(e.target.classList.contains("memo")) save();
+  });
+  document.getElementById("mtgdate").addEventListener("input", save);
+
+  function buildText(){
+    var d = load();
+    var date = (d.date||"").trim() || "（未記入）";
+    var c = {合意:0,持ち帰り:0,未:0};
+    items.forEach(function(li){ var v=(li.querySelector(".st.on")||{}).dataset ? li.querySelector(".st.on").dataset.v:"未"; c[v]++; });
+    var lines = [];
+    lines.push("■ 藤本さん すり合わせ 記入結果");
+    lines.push("MTG日: " + date);
+    lines.push("集計: 合意 "+c.合意+" ／ 持ち帰り "+c.持ち帰り+" ／ 未 "+c.未+"（全14項目）");
+    lines.push("");
+    items.forEach(function(li){
+      var num = li.dataset.id;
+      var q = li.querySelector(".q").textContent.trim();
+      var v = (li.querySelector(".st.on")||{}).dataset ? li.querySelector(".st.on").dataset.v : "未";
+      var mark = v==="合意" ? "[合意]" : (v==="持ち帰り" ? "[持ち帰り]" : "[未]");
+      var memo = li.querySelector(".memo").value.trim();
+      lines.push("【"+num+"】"+mark+" "+q);
+      lines.push("   メモ: " + (memo || "―"));
+    });
+    return lines.join("\n");
+  }
+  function toast(msg){
+    var t = document.getElementById("toast"); t.textContent = msg||"コピーしました。クロに貼り付けてください";
+    t.classList.add("show"); setTimeout(function(){ t.classList.remove("show"); }, 2200);
+  }
+  document.getElementById("copyBtn").addEventListener("click", function(){
+    var text = buildText();
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){ toast(); }, function(){ fallback(text); });
+    } else { fallback(text); }
+  });
+  function fallback(text){
+    var ta = document.createElement("textarea"); ta.value = text;
+    ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand("copy"); toast(); }catch(e){ toast("コピー不可：長押しで全選択してください"); }
+    document.body.removeChild(ta);
+  }
+  document.getElementById("printBtn").addEventListener("click", function(){ window.print(); });
+  document.getElementById("clearBtn").addEventListener("click", function(){
+    if(!confirm("記入内容をすべて消去します。よろしいですか？")) return;
+    try{ localStorage.removeItem(KEY); }catch(e){}
+    items.forEach(function(li){
+      li.querySelectorAll(".st").forEach(function(b){ b.classList.toggle("on", b.dataset.v==="未"); });
+      li.querySelector(".memo").value = "";
+    });
+    document.getElementById("mtgdate").value = "";
+    paint();
+  });
+})();
+</script>
 </body>
 </html>
