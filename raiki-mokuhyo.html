@@ -171,6 +171,14 @@
   .dept-cell .cap{font-size:10.5px;color:var(--ink-soft);margin-top:4px;font-weight:600;line-height:1.5;}
   .dept-note{font-size:10.5px;color:#8a5a12;background:var(--gold-wash);border-left:3px solid var(--gold);padding:8px 12px;border-radius:0 4px 4px 0;font-weight:700;line-height:1.55;margin-bottom:22px;}
   .tag-need{display:inline-block;font-size:10px;font-weight:800;color:#8a5a12;border:1px dashed var(--gold);border-radius:4px;padding:1px 7px;margin-left:8px;vertical-align:middle;letter-spacing:.02em;}
+  .curve-head{font-size:10.5px;font-weight:800;color:var(--ink-soft);padding:11px 15px 0;letter-spacing:.02em;}
+  .curve{display:flex;align-items:flex-end;gap:12px;padding:8px 16px 12px;height:132px;}
+  .curve .col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px;height:100%;}
+  .curve .val{font-size:12px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--blue);}
+  .curve .col:last-child .val{color:var(--gold);}
+  .curve .bar{width:100%;max-width:60px;background:var(--blue);border-radius:3px 3px 0 0;}
+  .curve .col:last-child .bar{background:var(--gold);}
+  .curve .lab{font-size:9.5px;color:var(--mute);font-weight:700;text-align:center;line-height:1.3;}
   /* ---- 新規事業 swimlane ---- */
   .lane{
     display:grid;grid-template-columns:repeat(4,1fr);gap:0;
@@ -278,7 +286,7 @@
             <div class="focus"><span class="dot"></span>攻略ゲート：<em>&nbsp;① 通電率（9月末 50%必達）</em></div>
             <div class="kpi hot">
               <span class="lab">① 通電率</span>
-              <span class="val"><span class="now">35%<sup>*</sup></span><span class="arw">→</span>50%</span>
+              <span class="val"><span class="now">35%</span><span class="arw">→</span>50%</span>
             </div>
             <div class="kpi">
               <span class="lab">② アポ取得率</span>
@@ -398,13 +406,21 @@
             <div class="cap">社長ミッション（70社×月2棟＝月140棟・年約2,000棟）と同方向。</div>
           </div>
           <div class="dept-cell">
-            <div class="k">来期の現実</div>
-            <div class="v">逓増<small> カーブ</small></div>
-            <div class="cap">新規は加盟が後半重心＋立ち上げ途上。来期の貢献は0.5〜1.0棟中心で右肩上がり。</div>
+            <div class="k">来期の着地見込み</div>
+            <div class="v">期初 月8 → 期末 月85<small> 棟</small></div>
+            <div class="cap">現状7月実績＝月8棟（既存）を起点に逓増。通期 <b>約470棟</b> の見込み。</div>
           </div>
         </div>
+        <div class="curve-head">来期の月次 運転棟数（棟/月・各四半期末スナップショット）</div>
+        <div class="curve">
+          <div class="col"><div class="val">8</div><div class="bar" style="height:9px;"></div><div class="lab">期初<br>8月</div></div>
+          <div class="col"><div class="val">17</div><div class="bar" style="height:19px;"></div><div class="lab">Q1末<br>10月</div></div>
+          <div class="col"><div class="val">34</div><div class="bar" style="height:38px;"></div><div class="lab">Q2末<br>1月</div></div>
+          <div class="col"><div class="val">59</div><div class="bar" style="height:66px;"></div><div class="lab">Q3末<br>4月</div></div>
+          <div class="col"><div class="val">89</div><div class="bar" style="height:100px;"></div><div class="lab">期末<br>7月</div></div>
+        </div>
       </div>
-      <div class="dept-note">私の棟数支援は、藤本プランの<b>月会費ストック（約1.8億/年・LIFEX粗利3.0億）を守る装置</b>。加盟店様が儲かる（棟数UP）から継続する＝解約防止。全社粗利8.73億の土台を、加盟店様の成功で支える。<span class="tag-need">残：月次カーブは既存17社の現状棟数で確定</span></div>
+      <div class="dept-note">私の棟数支援は、藤本プランの<b>月会費ストック（約1.8億/年・LIFEX粗利3.0億）を守る装置</b>。加盟店様が儲かる（棟数UP）から継続する＝解約防止。全社粗利8.73億の土台を、加盟店様の成功で支える。<span style="display:block;margin-top:5px;font-weight:600;color:#8a5a12;">試算前提：現状7月実績 月8棟（既存）＋加盟カーブ base（Q1:10/Q2:16/Q3:14/Q4:10）＋加盟後ランプ（4/8/12ヶ月で月1.0/1.5/2.0棟）。新規は立ち上げ途上のため期末で定常未達＝翌期に複利。</span></div>
 
       <!-- 新規事業 -->
       <div class="sec-label">
@@ -448,8 +464,8 @@
 
     <footer>
       <div class="legend">
-        <b>指標の定義：</b>①通電率＝架電がつながった率（社内用語に統一）。①②とも実務上の上限は約60%。③契約率＝現状30%は実数。<br>
-        <b><sup>*</sup> ①②の現状値は暫定 → 8/8までにダッシュボード実数へ差し替え。</b>　<b>粗利は2種：</b>本部＝加盟金500万＋月会費30万/月（藤本プラン）／加盟店＝1棟あたり粗利（別数字・要確定、加盟店向け訴求に使う）。　<b>時間軸：</b>「2」＝加盟後経過月／「3・4」＝来期カレンダー。
+        <b>指標の定義：</b>①通電率＝架電がつながった率（社内用語）。①②とも実務上の上限は約60%。③契約率＝現状30%は実数。<br>
+        <b>7/29 藤本MTGで確定：</b>①通電率 現状35%→目標60%／加盟店1棟粗利 <b>約500万</b>＝月2棟（年24棟）で <b>年1.2億/店</b> の粗利／Q1は徳田＝加盟店支援に専念（加盟獲得は森山さん）。　<b><sup>*</sup> ②アポ取得率40%は暫定</b>（ダッシュボード実数へ差し替え）。　<b>時間軸：</b>「2」＝加盟後経過月／「3・4」＝来期カレンダー。
       </div>
       <div class="stamp">
         <span class="prov">加盟店様の成功 ＝ 私の来期目標</span><br>
