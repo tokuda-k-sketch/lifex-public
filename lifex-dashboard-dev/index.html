@@ -145,6 +145,20 @@ body { font-family: var(--font); background: var(--bg); color: var(--ink); min-h
 .sk-val { font-size: 20px; font-weight: 900; color: #1E54A4; font-variant-numeric: tabular-nums; }
 .sk-val .u { font-size: 11px; font-weight: 600; color: var(--muted); }
 .sk-val.na { font-size: 13px; color: #C0CDD8; font-weight: 600; }
+/* 目標ゲージ（各店が会議で決めた自己設定目標 vs 実績） */
+.tg-row { margin: 2px 0 12px; display: flex; flex-direction: column; gap: 7px; }
+.tg { background: #F5F8FC; border-radius: 8px; padding: 8px 12px; }
+.tg-h { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.tg-h b { font-size: 10px; font-weight: 800; color: var(--muted); }
+.tg-s { font-size: 10px; font-weight: 700; color: #5c6c7d; font-variant-numeric: tabular-nums; }
+.tg-track { position: relative; height: 16px; background: #E4EBF3; border-radius: 5px; }
+.tg-fill { position: absolute; left: 0; top: 0; bottom: 0; background: #2B7BD8; border-radius: 5px 0 0 5px; }
+.tg-fill.done { background: #2E9E6E; border-radius: 5px; }
+.tg-goal { position: absolute; top: -3px; bottom: -3px; width: 3px; background: #E08A2B; border-radius: 2px; }
+.tg-note { font-size: 10px; font-weight: 800; margin-top: 5px; text-align: right; }
+.tg-note.done { color: #2E9E6E; }
+.tg-note.gap { color: #B05C1F; }
+.tg-note.na { color: #B6C2D0; }
 .sd { display: inline-block; font-size: 9px; font-weight: 800; padding: 1px 6px; border-radius: 10px; margin-top: 3px; font-variant-numeric: tabular-nums; }
 .sd.up   { background: #E5F4EC; color: var(--success); }
 .sd.down { background: var(--down-bg); color: var(--down); }
@@ -376,6 +390,7 @@ const F_COLORS     = ['#1E54A4','#2B7BD8','#3C9AE8','#C8762A','#1A7A50'];
 
 /* ══════════ 広告実績データ ══════════ */
 let ADS = null; // GAS v2 から受け取る { months:[], reservations:[] }
+let TARGETS = null; // GAS v2.2 の目標シートから受け取る [{name,sub,kpi1,kpi2,kpi3}, ...]。無ければ null（目標ゲージ非表示）
 
 // 店舗名の表記ゆれを吸収（全角半角スペース除去・丸数字→数字・小文字化）
 const normName = s => String(s||'')
@@ -718,6 +733,43 @@ function sumStores(stores) {
   };
 }
 
+/* ══════════ 目標ゲージ ══════════ */
+// 店舗名＋支店で目標を引く（店舗カードの前回比マッチと同じキーの作り方）
+function targetFor(st){
+  if(!Array.isArray(TARGETS)) return null;
+  const key = String(st.name).trim()+'|'+String(st.sub||'').trim();
+  return TARGETS.find(t => String(t.name).trim()+'|'+String(t.sub||'').trim() === key) || null;
+}
+// 目標が入っている指標だけゲージを描く（0〜100%スケール・実績は既存のkpi計算をそのまま使用）
+function renderTargetGauges(r, tg){
+  if(!tg) return '';
+  const metrics=[
+    {key:'kpi2', lbl:'② アポ取得率', t:tg.kpi2},   // 今回の主眼
+    {key:'kpi1', lbl:'① 通話接続率', t:tg.kpi1},
+    {key:'kpi3', lbl:'③ 契約率',     t:tg.kpi3},
+  ];
+  const rows = metrics
+    .filter(m => m.t!==null && m.t!==undefined && !isNaN(Number(m.t)))
+    .map(m=>{
+      const goal = Math.max(0, Math.min(100, Number(m.t)));
+      const act  = (r[m.key]!==null && r[m.key]!==undefined) ? parseFloat(r[m.key]) : null;
+      const fillW = act===null ? 0 : Math.max(0, Math.min(100, act));
+      const done  = act!==null && act >= goal;
+      const noteCls = act===null ? 'na' : (done ? 'done' : 'gap');
+      const note = act===null ? 'データなし' : (done ? '目標達成 ✓' : 'あと '+(goal-act).toFixed(1)+'pt');
+      const actTxt = act===null ? '—' : act.toFixed(1)+'%';
+      return `<div class="tg">
+        <div class="tg-h"><b>${m.lbl} 目標</b><span class="tg-s">実績 ${actTxt} ／ 目標 ${goal}%</span></div>
+        <div class="tg-track">
+          <div class="tg-fill ${done?'done':''}" style="width:${fillW}%"></div>
+          <div class="tg-goal" style="left:${goal}%"></div>
+        </div>
+        <div class="tg-note ${noteCls}">${note}</div>
+      </div>`;
+    }).join('');
+  return rows ? `<div class="tg-row">${rows}</div>` : '';
+}
+
 /* ══════════ STATUS UI ══════════ */
 function setStatus(state, text) {
   const dot = document.getElementById('js-dot');
@@ -845,6 +897,7 @@ function renderStoreCards(stores) {
       ? parseFloat(r[k]) - parseFloat(pr[k]) : null;
     const counts=[r.total,r.connected,r.appt,r.interview,r.contract];
     const mx=r.total||1;
+    const gaugeHtml=renderTargetGauges(r, targetFor(st));
 
     const bubbles=counts.map((cnt,i)=>{
       const d=Math.round(minD+(cnt/mx)*(maxD-minD));
@@ -886,6 +939,7 @@ function renderStoreCards(stores) {
         <div class="sk"><div class="sk-lbl" style="font-size:9px">登録→面談転換率</div>${skv(r.oi)}${sdHtml(dR('oi'),true)}</div>
         <div class="sk"><div class="sk-lbl" style="font-size:9px">登録→契約転換率</div>${skv(r.oc)}${sdHtml(dR('oc'),true)}</div>
       </div>
+      ${gaugeHtml}
       ${renderAdSection(st, r)}
       <div class="notes"><div class="notes-lbl">所見・備考</div>${notesHtml}</div>
     </div>`;
@@ -942,6 +996,9 @@ async function init() {
           KPI表示は正常です。エラー内容: ${data.historyError}
         </div>`;
     }
+
+    // 各店の自己設定目標（GAS v2.2のみ）。無ければnull → 目標ゲージは非表示
+    TARGETS = Array.isArray(data.targets) ? data.targets : null;
 
     // 広告実績データ（GAS v2のみ）。無い・エラーでもKPI表示は続行
     ADS = (data.ads && !data.ads.error && Array.isArray(data.ads.months)) ? data.ads : null;

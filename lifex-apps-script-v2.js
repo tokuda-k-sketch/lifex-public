@@ -75,9 +75,19 @@ function doGet(e) {
     ads = { error: String(err) };
   }
 
+  // ── 目標（各店が会議で決めた自己設定目標）──
+  // 「目標」シートが無ければ空配列。読めなくてもKPI配信は止めない
+  let targets;
+  try {
+    targets = readTargets_(stores);
+  } catch (err) {
+    targets = [];
+  }
+
   const out = {
     stores:    stores,
     ads:       ads,
+    targets:   targets,
     updatedAt: new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })
   };
 
@@ -171,6 +181,68 @@ function cellDate_(v) {
   return (v instanceof Date)
     ? Utilities.formatDate(v, 'Asia/Tokyo', 'yyyy-MM-dd')
     : String(v).trim();
+}
+
+/* ══════════ 目標シートの読み取り ══════════ */
+
+const TARGET_SHEET = '目標';
+
+/**
+ * 「目標」シートを読み、各店の自己設定目標を配列で返す。
+ * シートが無ければ ensureTargetSheet_ が全店舗名入りで自動作成する。
+ * レイアウト（1行目ヘッダー）:
+ *   A=店舗名 / B=支店 / C=目標アポ率 / D=目標接続率 / E=目標契約率
+ *   ※数値は 25 でも 25% でも可。空欄はその指標の目標なしとして扱う。
+ * 返り値: [{ name, sub, kpi2(=アポ率), kpi1(=接続率), kpi3(=契約率) }, ...]
+ *   ダッシュボードのKPIキー名(kpi1/kpi2/kpi3)に合わせてある。
+ */
+function readTargets_(stores) {
+  const sheet = ensureTargetSheet_(stores);
+  if (!sheet) return [];
+
+  const rows = sheet.getDataRange().getValues();
+  return rows.slice(1)
+    .filter(function(row) { return row[0] && String(row[0]).trim() !== ''; })
+    .map(function(row) {
+      return {
+        name: String(row[0] || ''),
+        sub:  String(row[1] || ''),
+        kpi2: numOrNull_(row[2]),  // 目標アポ率
+        kpi1: numOrNull_(row[3]),  // 目標接続率
+        kpi3: numOrNull_(row[4])   // 目標契約率
+      };
+    });
+}
+
+/**
+ * 「目標」シートが無ければ、ヘッダー＋全店舗名を入れて自動作成する。
+ * 既にあれば一切さわらない（徳田さんが入力した目標値を絶対に上書きしない）。
+ * → デプロイ後、ダッシュボードを一度開けば「目標」シートが全店名入りで出現。
+ *   あとはC列（目標アポ率）に数字を入れるだけで、その店の目標ゲージが点灯する。
+ */
+function ensureTargetSheet_(stores) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = findSheetByName(ss, TARGET_SHEET);
+  if (sheet) return sheet;
+
+  sheet = ss.insertSheet(TARGET_SHEET);
+  sheet.appendRow(['店舗名', '支店', '目標アポ率(%)', '目標接続率(%)', '目標契約率(%)']);
+  (stores || []).forEach(function(st) {
+    sheet.appendRow([st.name || '', st.sub || '', '', '', '']);
+  });
+  sheet.setFrozenRows(1);
+  sheet.getRange(1, 1, 1, 5).setFontWeight('bold');
+  sheet.setColumnWidths(1, 5, 130);
+  return sheet;
+}
+
+// "25" "25%" "25.0" → 数値、 "" null "-" → null
+function numOrNull_(v) {
+  if (v === null || v === undefined) return null;
+  const s = String(v).replace(/[％%\s　]/g, '');
+  if (s === '' || s === '-') return null;
+  const n = parseFloat(s);
+  return isNaN(n) ? null : n;
 }
 
 /* ══════════ 広告スプシの読み取り ══════════ */
