@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>来期目標設定 ― 加盟店様を「月2棟」へ | LIFEX FC事業</title>
-<style>
-  :root{color-scheme:light}
-  body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}
-  img{max-width:100%}
-</style>
-</head>
-<body>
 <style>
   :root{
     --ink:#16202B;
@@ -46,6 +33,7 @@
     box-shadow:0 1px 0 rgba(22,32,43,.03),0 12px 32px -20px rgba(22,32,43,.28);
     overflow:hidden;
   }
+  /* ---- header ---- */
   header{
     padding:22px 30px 18px;
     border-bottom:2px solid var(--ink);
@@ -70,6 +58,7 @@
     text-align:right;font-size:11px;color:var(--mute);line-height:1.7;white-space:nowrap;
   }
   .byline .who{color:var(--ink);font-weight:700;font-size:12px;}
+  /* ---- section frame ---- */
   .body{padding:20px 30px 12px;}
   .sec-label{
     display:flex;align-items:center;gap:10px;margin:0 0 12px;
@@ -81,6 +70,7 @@
   }
   .sec-label h2{font-size:15px;margin:0;font-weight:800;letter-spacing:.02em;}
   .sec-label .hint{font-size:11px;color:var(--mute);margin-left:2px;font-weight:600;}
+  /* ---- 棟数 band ---- */
   .goalband{
     display:grid;grid-template-columns:repeat(3,1fr);gap:0;
     border:1px solid var(--line);border-radius:5px;overflow:hidden;margin-bottom:22px;
@@ -93,6 +83,7 @@
   .goalcell .v{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1;margin-top:2px;}
   .goalcell .v small{font-size:13px;font-weight:700;color:var(--ink-soft);}
   .goalcell .cap{font-size:11px;color:var(--ink-soft);margin-top:3px;font-weight:600;}
+  /* ---- roadmap ---- */
   .road{
     display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:8px;
   }
@@ -149,13 +140,38 @@
   .kpi.hot .val{color:var(--blue);}
   .p3 .kpi.hot .val{color:var(--gold);}
   .kpi .val .tgt-lock{color:var(--good);}
+  /* connector arrows between phases */
   .road{position:relative;}
+  /* ---- kpi footnote row ---- */
   .roadnote{
     font-size:11px;color:var(--ink-soft);margin:12px 0 22px;padding:9px 12px;
     background:var(--blue-wash);border-left:3px solid var(--blue);border-radius:0 4px 4px 0;
     font-weight:600;line-height:1.6;
   }
   .roadnote b{color:var(--blue);}
+  /* ---- 打ち手 ---- */
+  .plays{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 22px;}
+  .play{border:1px solid var(--line);border-radius:6px;padding:10px 13px 11px;background:#fff;}
+  .play h3{margin:0 0 6px;font-size:12.5px;font-weight:800;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .play h3 .tg{font-size:10px;font-weight:800;color:#fff;background:var(--blue);padding:2px 8px;border-radius:20px;font-variant-numeric:tabular-nums;letter-spacing:.02em;}
+  .play.k h3 .tg{background:var(--gold);}
+  .play ul{margin:0;padding-left:15px;}
+  .play li{font-size:11.5px;color:var(--ink-soft);line-height:1.55;font-weight:600;margin-bottom:3px;}
+  .play li:last-child{margin-bottom:0;}
+  /* ---- 事業部合計 ---- */
+  .dept{border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:8px;}
+  .dept-row{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:0;}
+  .dept-cell{padding:11px 15px 12px;border-right:1px solid var(--line-soft);}
+  .dept-cell:last-child{border-right:none;}
+  .dept-cell:nth-child(2){background:var(--gold-wash);}
+  .dept-cell .k{font-size:10.5px;font-weight:800;color:var(--mute);letter-spacing:.04em;}
+  .dept-cell:nth-child(2) .k{color:var(--gold);}
+  .dept-cell .v{font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;margin-top:2px;line-height:1.15;}
+  .dept-cell .v small{font-size:11px;color:var(--ink-soft);font-weight:700;}
+  .dept-cell .cap{font-size:10.5px;color:var(--ink-soft);margin-top:4px;font-weight:600;line-height:1.5;}
+  .dept-note{font-size:10.5px;color:#8a5a12;background:var(--gold-wash);border-left:3px solid var(--gold);padding:8px 12px;border-radius:0 4px 4px 0;font-weight:700;line-height:1.55;margin-bottom:22px;}
+  .tag-need{display:inline-block;font-size:10px;font-weight:800;color:#8a5a12;border:1px dashed var(--gold);border-radius:4px;padding:1px 7px;margin-left:8px;vertical-align:middle;letter-spacing:.02em;}
+  /* ---- 新規事業 swimlane ---- */
   .lane{
     display:grid;grid-template-columns:repeat(4,1fr);gap:0;
     border:1px solid var(--line);border-radius:6px;overflow:hidden;
@@ -173,6 +189,7 @@
   }
   .qcol.q4 .q{color:var(--gold);}
   .qcol.q4 .out{color:var(--gold);border-color:#E4D2AC;background:var(--gold-wash);}
+  /* ---- footer ---- */
   footer{
     padding:12px 30px 20px;border-top:1px solid var(--line-soft);margin-top:14px;
     display:flex;justify-content:space-between;gap:20px;align-items:flex-start;
@@ -213,6 +230,7 @@
 
     <div class="body">
 
+      <!-- 棟数ゴール -->
       <div class="sec-label">
         <span class="no">1</span>
         <h2>棟数ゴール</h2>
@@ -222,7 +240,7 @@
         <div class="goalcell">
           <div class="k">最低ライン（守り）</div>
           <div class="v">月1.0<small> 棟</small></div>
-          <div class="cap">ここを割らせない。全店の絶対防衛ライン。</div>
+          <div class="cap">立ち上げ期に到達させる最初の一里塚（現状0.65から底上げ）。</div>
         </div>
         <div class="goalcell">
           <div class="k">通常運転</div>
@@ -236,6 +254,7 @@
         </div>
       </div>
 
+      <!-- ロードマップ -->
       <div class="sec-label">
         <span class="no">2</span>
         <h2>逆算ロードマップ ― 1フェーズにつき1ゲートを攻略する</h2>
@@ -243,22 +262,23 @@
       </div>
       <div class="road">
 
+        <!-- Phase 1 -->
         <div class="phase p1">
           <div class="phase-top">
             <div class="when">加盟後 0–4ヶ月　立ち上げ期</div>
-            <div class="name">まず"行動量"を固める</div>
-            <div class="hako"><b>月1.0棟</b><span>／ 最低ラインを死守</span></div>
+            <div class="name">現状0.65棟を、まず月1棟へ</div>
+            <div class="hako"><b>0.65 → 月1.0棟</b><span>／ 4ヶ月で3ゲートを底上げ</span></div>
           </div>
           <div class="need">
-            <span class="nlab">必要集客</span>
-            <span class="nval">月12<small> 件 確保</small></span>
-            <span class="nchain">集客12 → 接続6.6 → アポ3.0 → 契約1.0　<b style="color:var(--good);">目標ちょうど</b></span>
+            <span class="nlab">集客 確保ライン</span>
+            <span class="nval">月12<small> 件（下限）</small></span>
+            <span class="nchain">集客12 → 通電6.0 → アポ2.7 → 契約1.1　<b style="color:var(--good);">0.65→1.0超へ</b></span>
           </div>
           <div class="gate">
-            <div class="focus"><span class="dot"></span>攻略ゲート：<em>&nbsp;① 架電率</em></div>
+            <div class="focus"><span class="dot"></span>攻略ゲート：<em>&nbsp;① 通電率（9月末 50%必達）</em></div>
             <div class="kpi hot">
-              <span class="lab">① 架電率<em style="font-style:normal;color:var(--mute);font-weight:600;font-size:10px;"> 接続</em></span>
-              <span class="val"><span class="now">45%<sup>*</sup></span><span class="arw">→</span>55%</span>
+              <span class="lab">① 通電率</span>
+              <span class="val"><span class="now">45%<sup>*</sup></span><span class="arw">→</span>50%</span>
             </div>
             <div class="kpi">
               <span class="lab">② アポ取得率</span>
@@ -266,27 +286,28 @@
             </div>
             <div class="kpi">
               <span class="lab">③ 契約率</span>
-              <span class="val"><span class="now">30%</span><span class="arw">→</span>35%</span>
+              <span class="val"><span class="now">30%</span><span class="arw">→</span>40%</span>
             </div>
           </div>
         </div>
 
+        <!-- Phase 2 -->
         <div class="phase p2">
           <div class="phase-top">
             <div class="when">加盟後 5–8ヶ月　成長期</div>
-            <div class="name">"中間転換"を引き上げる</div>
-            <div class="hako"><b>月1.5棟</b><span>／ 標準速度へ</span></div>
+            <div class="name">“中間転換”を引き上げる</div>
+            <div class="hako"><b>月1.5棟</b><span>／ 標準速度へ（実力1.8）</span></div>
           </div>
           <div class="need">
-            <span class="nlab">必要集客</span>
-            <span class="nval">月12<small> 件 確保</small></span>
-            <span class="nchain">集客12 → 接続7.2 → アポ4.0 → 契約1.8　<b style="color:var(--good);">目標1.5＋上積み</b></span>
+            <span class="nlab">集客 確保ライン</span>
+            <span class="nval">月12<small> 件（下限）</small></span>
+            <span class="nchain">集客12 → 通電6.6 → アポ3.6 → 契約1.8　<b style="color:var(--good);">目標1.5＋上積み</b></span>
           </div>
           <div class="gate">
             <div class="focus"><span class="dot"></span>攻略ゲート：<em>&nbsp;② アポ取得率</em></div>
             <div class="kpi">
-              <span class="lab">① 架電率<em style="font-style:normal;color:var(--mute);font-weight:600;font-size:10px;"> 接続</em></span>
-              <span class="val">55%<span class="arw">→</span><span class="tgt-lock">60% 上限</span></span>
+              <span class="lab">① 通電率</span>
+              <span class="val">50%<span class="arw">→</span>55%</span>
             </div>
             <div class="kpi hot">
               <span class="lab">② アポ取得率</span>
@@ -294,27 +315,28 @@
             </div>
             <div class="kpi">
               <span class="lab">③ 契約率</span>
-              <span class="val">35%<span class="arw">→</span>45%</span>
+              <span class="val">40%<span class="arw">→</span>50%</span>
             </div>
           </div>
         </div>
 
+        <!-- Phase 3 -->
         <div class="phase p3">
           <div class="phase-top">
             <div class="when">加盟後 9–12ヶ月　定常期</div>
-            <div class="name">"成約"で仕上げる</div>
-            <div class="hako"><b>月2.0棟</b><span>／ 目標を定常化</span></div>
+            <div class="name">“成約”で仕上げる</div>
+            <div class="hako"><b>月2.0棟</b><span>／ 目標を定常化（実力2.6）</span></div>
           </div>
           <div class="need">
-            <span class="nlab">必要集客</span>
-            <span class="nval">月12<small> 件 確保</small></span>
-            <span class="nchain">集客12 → 接続7.2 → アポ4.3 → 契約2.6　<b style="color:var(--gold);">目標2.0＋上積み</b></span>
+            <span class="nlab">集客 確保ライン</span>
+            <span class="nval">月12<small> 件（下限）</small></span>
+            <span class="nchain">集客12 → 通電7.2 → アポ4.3 → 契約2.6　<b style="color:var(--gold);">目標2.0＋上積み</b></span>
           </div>
           <div class="gate">
             <div class="focus"><span class="dot"></span>攻略ゲート：<em>&nbsp;③ 契約率</em></div>
             <div class="kpi">
-              <span class="lab">① 架電率<em style="font-style:normal;color:var(--mute);font-weight:600;font-size:10px;"> 接続</em></span>
-              <span class="val">60%<span class="arw">→</span><span class="tgt-lock">60% 維持</span></span>
+              <span class="lab">① 通電率</span>
+              <span class="val">55%<span class="arw">→</span><span class="tgt-lock">60% 上限</span></span>
             </div>
             <div class="kpi">
               <span class="lab">② アポ取得率</span>
@@ -322,19 +344,72 @@
             </div>
             <div class="kpi hot">
               <span class="lab">③ 契約率</span>
-              <span class="val">45%<span class="arw">→</span>60%</span>
+              <span class="val">50%<span class="arw">→</span>60%</span>
             </div>
           </div>
         </div>
 
       </div>
       <div class="roadnote">
-        <b>逆算の考え方（必要集客 = 棟数 ÷ 架電率 × アポ取得率 × 契約率）―</b> 集客は全フェーズ<b>月12件</b>を確保ラインに統一（＝手は緩めない）。立ち上げ期はこれでちょうど月1棟。成長・定常期は転換率が上がるぶん、同じ12件で棟数が上振れ（成長期≈1.8棟／定常期≈2.6棟相当）＝これが<b>安全マージン</b>。接続・アポ取得率は上限 <b>60%</b> まで取り切り、最大の伸びしろ＝<b>契約率（30% → 60%）</b>を定常期で仕上げる。集客を落とさず、転換率で棟数を積み上げる。
+        <b>逆算の考え方　確保ライン ＝ 棟数 ÷（通電率 × アポ取得率 × 契約率）―</b> 現状値（通電45%×アポ40%×契約30%）では月<b>0.65棟</b>にしかならない。立ち上げ期の4ヶ月で3ゲートを底上げして月1棟へ乗せ、以降は通電・アポを上限 <b>60%</b> まで取り切りつつ、最大の伸びしろ＝<b>契約率（30%→60%）</b>を成長〜定常期で仕上げる。集客は全フェーズ<b>月12件（下限）</b>を確保し手を緩めない。上振れ（成長1.8／定常2.6）は安全マージン。
       </div>
 
+      <!-- 打ち手 -->
+      <div class="sec-label">
+        <span class="no">2b</span>
+        <h2>“願望に見せない”ための打ち手 ― 何をやって上げるか</h2>
+        <span class="hint">※ 契約率30→60%・集客12件は自動では上がらない。実行策で裏づける</span>
+      </div>
+      <div class="plays">
+        <div class="play k">
+          <h3><span class="tg">契約率 30 → 60%</span>アポ→契約を倍にするレバー</h3>
+          <ul>
+            <li>初動速度：反響→一次架電のスピードを標準化（KPI自己診断シートと連動）</li>
+            <li>来場前ヒアリング設計：資金・土地・要望を事前把握し、商談の的中率を上げる</li>
+            <li>モデルハウス体感で動機形成／上位店の商談ロープレを横展開</li>
+          </ul>
+        </div>
+        <div class="play">
+          <h3><span class="tg">集客 月12件 確保</span>母数をどう埋めるか</h3>
+          <ul>
+            <li>会員登録・問い合わせ導線のテコ入れ（本部最大課題＝母数の先細り対策）</li>
+            <li>広告投資の最適化：アイコン様のROI型シミュレーションを横展開</li>
+            <li>モデルハウス完成予定と集客計画を連動（7/24分の一覧に接続）</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 事業部合計 -->
       <div class="sec-label">
         <span class="no">3</span>
-        <h2>棟数支援と並走する"新規事業"の探索 ― 半年で立ち上げ</h2>
+        <h2>事業部 来期の合計棟数 ― 藤本プランと接続</h2>
+        <span class="hint">※ 各店ロードマップ（加盟後経過月）を、来期の社数カーブに掛け合わせた事業部視点</span>
+      </div>
+      <div class="dept">
+        <div class="dept-row">
+          <div class="dept-cell">
+            <div class="k">来期の体制</div>
+            <div class="v">67<small> 社</small></div>
+            <div class="cap">既存17社 ＋ 新規50社。加盟カーブ＝Q1:10／Q2:16／Q3:14／Q4:10社（藤本プラン）。</div>
+          </div>
+          <div class="dept-cell">
+            <div class="k">定常到達像（全社 月2棟）</div>
+            <div class="v">月134<small> 棟 ／ 年 約1,600棟</small></div>
+            <div class="cap">社長ミッション（70社×月2棟＝月140棟・年約2,000棟）と同方向。</div>
+          </div>
+          <div class="dept-cell">
+            <div class="k">来期の現実</div>
+            <div class="v">逓増<small> カーブ</small></div>
+            <div class="cap">新規は加盟が後半重心＋立ち上げ途上。来期の貢献は0.65〜1.0棟中心で右肩上がり。</div>
+          </div>
+        </div>
+      </div>
+      <div class="dept-note">私の棟数支援は、藤本プランの<b>月会費ストック（約1.8億/年・LIFEX粗利3.0億）を守る装置</b>。加盟店様が儲かる（棟数UP）から継続する＝解約防止。全社粗利8.73億の土台を、加盟店様の成功で支える。<span class="tag-need">残：月次カーブは既存17社の現状棟数で確定</span></div>
+
+      <!-- 新規事業 -->
+      <div class="sec-label">
+        <span class="no">4</span>
+        <h2>棟数支援と並走する“新規事業”の探索 ― 半年で立ち上げ</h2>
         <span class="hint">※ 困りごとを起点に、2026年8月〜2027年1月で試験導入まで。検証・横展開の判断は下期へ</span>
       </div>
       <div class="lane">
@@ -367,13 +442,14 @@
           <div class="out">半年で立ち上げ</div>
         </div>
       </div>
+      <div class="dept-note" style="background:var(--blue-wash);border-color:var(--blue);color:#25406f;margin:8px 0 0;">工数の但し書き：パイロット（12–1月）は加盟ピーク（Q2・16社／私は契約主力＋新人育成）と重なる。新規事業は<b>週の時間を区切って</b>並走し、棟数支援を最優先に置く。</div>
 
     </div>
 
     <footer>
       <div class="legend">
-        <b>指標の定義：</b>①架電率＝架電がつながった率（接続率）。①②とも実務上の上限は約60%。③契約率＝現状30%は実数。<br>
-        <b><sup>*</sup> ①②の現状値は暫定</b>（ダッシュボード実数で差し替え予定）。<b>時間軸：</b>「2. ロードマップ」＝各店の<b>加盟後経過月</b>基準／「3. 新規事業」＝<b>来期カレンダー</b>基準。
+        <b>指標の定義：</b>①通電率＝架電がつながった率（社内用語に統一）。①②とも実務上の上限は約60%。③契約率＝現状30%は実数。<br>
+        <b><sup>*</sup> ①②の現状値は暫定 → 8/8までにダッシュボード実数へ差し替え。</b>　<b>粗利は2種：</b>本部＝加盟金500万＋月会費30万/月（藤本プラン）／加盟店＝1棟あたり粗利（別数字・要確定、加盟店向け訴求に使う）。　<b>時間軸：</b>「2」＝加盟後経過月／「3・4」＝来期カレンダー。
       </div>
       <div class="stamp">
         <span class="prov">加盟店様の成功 ＝ 私の来期目標</span><br>
@@ -383,6 +459,3 @@
 
   </div>
 </div>
-
-</body>
-</html>
