@@ -41,8 +41,8 @@
     padding:11px 13px; border-top:1px solid var(--line-soft);}
   li:first-child{border-top:none;}
   li.top{background:var(--red-wash);}
-  li.done{background:var(--green-wash);}
-  li.hold{background:var(--amber-wash);}
+  li:has(.st input[value="合意"]:checked){background:var(--green-wash);}
+  li:has(.st input[value="持ち帰り"]:checked){background:var(--amber-wash);}
   .num{font-size:13px; font-weight:800; color:var(--blue); font-variant-numeric:tabular-nums; text-align:center; padding-top:2px;}
   li.top .num{color:var(--red);}
   .q{font-size:13.5px; font-weight:800; line-height:1.4;}
@@ -51,20 +51,23 @@
   li.top .d b{color:var(--red);}
   .ctl{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:9px;}
   .stg{display:inline-flex; border:1px solid var(--line); border-radius:6px; overflow:hidden; background:#fff;}
-  .st{font:inherit; font-size:12px; font-weight:700; padding:5px 12px; border:none; background:#fff; color:var(--ink-soft); cursor:pointer; border-left:1px solid var(--line-soft);}
-  .st:first-child{border-left:none;}
-  .st:hover{background:#F1F3F7;}
-  .st[data-v="合意"].on{background:var(--green); color:#fff;}
-  .st[data-v="持ち帰り"].on{background:var(--amber); color:#fff;}
-  .st[data-v="未"].on{background:var(--mute); color:#fff;}
-  .memo{flex:1; min-width:220px; font:inherit; font-size:12.5px; padding:6px 10px;
+  .st{position:relative; display:inline-flex;}
+  .st input{position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:pointer;}
+  .st span{display:block; padding:6px 13px; font-size:12px; font-weight:700; color:var(--ink-soft);
+    border-left:1px solid var(--line-soft); user-select:none;}
+  .st:first-child span{border-left:none;}
+  .st input:hover + span{background:#F1F3F7;}
+  .st input[value="合意"]:checked + span{background:var(--green); color:#fff;}
+  .st input[value="持ち帰り"]:checked + span{background:var(--amber); color:#fff;}
+  .st input[value="未"]:checked + span{background:var(--mute); color:#fff;}
+  .st input:focus-visible + span{outline:2px solid var(--blue); outline-offset:-2px;}
+  .memo{flex:1; min-width:220px; font:inherit; font-size:12.5px; padding:7px 10px;
     border:1px solid var(--line); border-radius:6px; color:var(--ink); background:#fff;}
+  .memo::placeholder{color:#A9B2BD;}
   .memo:focus,.memo:focus-visible{outline:2px solid var(--blue); outline-offset:1px; border-color:var(--blue);}
-  .st:focus-visible{outline:2px solid var(--blue); outline-offset:1px;}
   footer{padding:12px 26px 18px; border-top:1px solid var(--line-soft);
     font-size:11px; color:var(--mute); line-height:1.6;}
   footer b{color:var(--ink-soft);}
-  /* bottom action bar */
   .bar{position:fixed; left:0; right:0; bottom:0; z-index:20; background:rgba(22,32,43,.97);
     padding:11px 20px; display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap;
     box-shadow:0 -6px 20px -12px rgba(0,0,0,.5);}
@@ -77,12 +80,12 @@
   .btn:focus-visible{outline:2px solid #7FB0FF; outline-offset:2px;}
   .toast{position:fixed; left:50%; bottom:70px; transform:translateX(-50%) translateY(12px);
     background:var(--green); color:#fff; font-size:13px; font-weight:800; padding:10px 18px; border-radius:8px;
-    opacity:0; pointer-events:none; transition:opacity .25s, transform .25s; z-index:30;}
+    opacity:0; pointer-events:none; transition:opacity .25s, transform .25s; z-index:30; max-width:90%; text-align:center;}
   .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
-  @media (max-width:640px){ body{padding:12px 12px 110px;} li{grid-template-columns:22px 1fr; gap:9px;} .memo{min-width:140px;} }
+  @media (max-width:640px){ body{padding:12px 12px 116px;} li{grid-template-columns:22px 1fr; gap:9px;} .memo{min-width:140px;} }
   @media print{
     body{padding:0; background:#fff;} .sheet{border:none; box-shadow:none;}
-    .bar,.toast{display:none!important;} .st{display:none;} .stg::after{content:attr(data-print); font-size:12px; font-weight:800; padding:4px 8px;}
+    .bar,.toast{display:none!important;}
     .memo{border:none; border-bottom:1px solid var(--line);} @page{size:A4; margin:12mm;}
   }
   @media (prefers-reduced-motion:reduce){ .toast{transition:none;} }
@@ -105,18 +108,34 @@
     <div class="grp">
       <div class="grp-h"><span class="tag top">最優先</span><span class="t">ここがズレると丸山MTGで即崩れる</span></div>
       <ul>
-        <li data-id="1" class="top">
+        <li class="top" data-id="1">
           <div class="num">1</div>
           <div>
             <div class="q">通電率50%（9月末）の現状値と打ち手を確定</div>
             <div class="d">修正版で判明＝加盟店側の通電率を<b>初動フォロー即応化（GAS即時通知×1時間以内架電＋48h内予約一本化）</b>で <b>35→50%(+15pt)を実証中</b>。私の資料と同レイヤーで正。論点は現状値が <b>35%（藤本実証）か／全店平均は別か</b>。目標50%(9月末)→上限60%で揃える。</div>
+            <div class="ctl">
+              <span class="stg">
+                <label class="st"><input type="radio" name="st-1" value="合意"><span>合意</span></label>
+                <label class="st"><input type="radio" name="st-1" value="持ち帰り"><span>持ち帰り</span></label>
+                <label class="st"><input type="radio" name="st-1" value="未" checked><span>未</span></label>
+              </span>
+              <input class="memo" data-id="1" type="text" placeholder="決定事項・宿題・数字メモ">
+            </div>
           </div>
         </li>
-        <li data-id="2" class="top">
+        <li class="top" data-id="2">
           <div class="num">2</div>
           <div>
             <div class="q">前半（8–10月）、私は何屋か ― 工数の二重取り</div>
             <div class="d">藤本プラン＝9名体制だが前半は<b>藤本(統括兼務)＋徳田(実質営業1名)</b>で始動（IS/営業入社は11/1〜、足立さん辞退で営業1枠再募集中）。私の資料＝棟数支援・研修を同時に負う。一人では両立しない。優先順位・時間配分を合意。</div>
+            <div class="ctl">
+              <span class="stg">
+                <label class="st"><input type="radio" name="st-2" value="合意"><span>合意</span></label>
+                <label class="st"><input type="radio" name="st-2" value="持ち帰り"><span>持ち帰り</span></label>
+                <label class="st"><input type="radio" name="st-2" value="未" checked><span>未</span></label>
+              </span>
+              <input class="memo" data-id="2" type="text" placeholder="決定事項・宿題・数字メモ">
+            </div>
           </div>
         </li>
       </ul>
@@ -130,6 +149,14 @@
           <div>
             <div class="q">加盟カーブはどのシナリオで合わせるか</div>
             <div class="d">base <b>10/16/14/10</b>／楽観 14/18/12/6／保守 6/14/16/14。私の事業部合計はbase前提。丸山にはbaseで揃えるか。</div>
+            <div class="ctl">
+              <span class="stg">
+                <label class="st"><input type="radio" name="st-3" value="合意"><span>合意</span></label>
+                <label class="st"><input type="radio" name="st-3" value="持ち帰り"><span>持ち帰り</span></label>
+                <label class="st"><input type="radio" name="st-3" value="未" checked><span>未</span></label>
+              </span>
+              <input class="memo" data-id="3" type="text" placeholder="決定事項・宿題・数字メモ">
+            </div>
           </div>
         </li>
         <li data-id="4">
@@ -137,6 +164,14 @@
           <div>
             <div class="q">社数の定義合わせ</div>
             <div class="d">私「既存17＋新規50＝<b>67社</b>」／藤本「累計加盟 <b>10→26→40→50</b>（修正版で加盟カーブと整合）、研究会150→期末500」。"既存17（実加盟）"と"研究会母集団"の切り分けを確認。</div>
+            <div class="ctl">
+              <span class="stg">
+                <label class="st"><input type="radio" name="st-4" value="合意"><span>合意</span></label>
+                <label class="st"><input type="radio" name="st-4" value="持ち帰り"><span>持ち帰り</span></label>
+                <label class="st"><input type="radio" name="st-4" value="未" checked><span>未</span></label>
+              </span>
+              <input class="memo" data-id="4" type="text" placeholder="決定事項・宿題・数字メモ">
+            </div>
           </div>
         </li>
         <li data-id="5">
@@ -144,6 +179,14 @@
           <div>
             <div class="q">加盟後の立ち上げ想定は一致するか</div>
             <div class="d">私「加盟後12ヶ月で <b>0.5→月2棟</b>（4/8/12ヶ月＝1.0/1.5/2.0）」。これを事業部の公式ラインにしてよいか。</div>
+            <div class="ctl">
+              <span class="stg">
+                <label class="st"><input type="radio" name="st-5" value="合意"><span>合意</span></label>
+                <label class="st"><input type="radio" name="st-5" value="持ち帰り"><span>持ち帰り</span></label>
+                <label class="st"><input type="radio" name="st-5" value="未" checked><span>未</span></label>
+              </span>
+              <input class="memo" data-id="5" type="text" placeholder="決定事項・宿題・数字メモ">
+            </div>
           </div>
         </li>
       </ul>
@@ -157,6 +200,14 @@
           <div>
             <div class="q">既存17社の現状棟数ベースライン</div>
             <div class="d">月次カーブ図の起点。無いと通期合計が出せない。</div>
+            <div class="ctl">
+              <span class="stg">
+                <label class="st"><input type="radio" name="st-6" value="合意"><span>合意</span></label>
+                <label class="st"><input type="radio" name="st-6" value="持ち帰り"><span>持ち帰り</span></label>
+                <label class="st"><input type="radio" name="st-6" value="未" checked><span>未</span></label>
+              </span>
+              <input class="memo" data-id="6" type="text" placeholder="数字を記入（例：既存17社 平均月○棟）">
+            </div>
           </div>
         </li>
         <li data-id="7">
@@ -164,6 +215,14 @@
           <div>
             <div class="q">加盟店の1棟あたり粗利</div>
             <div class="d">本部の加盟金500万/月会費30万とは<b>別物</b>。加盟店向け訴求用。売上×粗利率で概算でも可か。</div>
+            <div class="ctl">
+              <span class="stg">
+                <label class="st"><input type="radio" name="st-7" value="合意"><span>合意</span></label>
+                <label class="st"><input type="radio" name="st-7" value="持ち帰り"><span>持ち帰り</span></label>
+                <label class="st"><input type="radio" name="st-7" value="未" checked><span>未</span></label>
+              </span>
+              <input class="memo" data-id="7" type="text" placeholder="数字を記入（例：1棟粗利○万円）">
+            </div>
           </div>
         </li>
       </ul>
@@ -177,6 +236,14 @@
           <div>
             <div class="q">「会員登録・問い合わせ減少」と月12件確保の関係</div>
             <div class="d">本部集客が細ると加盟店の反響も細る。母数対策の分担。</div>
+            <div class="ctl">
+              <span class="stg">
+                <label class="st"><input type="radio" name="st-8" value="合意"><span>合意</span></label>
+                <label class="st"><input type="radio" name="st-8" value="持ち帰り"><span>持ち帰り</span></label>
+                <label class="st"><input type="radio" name="st-8" value="未" checked><span>未</span></label>
+              </span>
+              <input class="memo" data-id="8" type="text" placeholder="決定事項・宿題・数字メモ">
+            </div>
           </div>
         </li>
         <li data-id="9">
@@ -184,6 +251,14 @@
           <div>
             <div class="q">広告運用代行＋アイコン様ROI型の横展開</div>
             <div class="d">補強A（受託30万→フィー6万）。どの加盟店から、私が絡むか。</div>
+            <div class="ctl">
+              <span class="stg">
+                <label class="st"><input type="radio" name="st-9" value="合意"><span>合意</span></label>
+                <label class="st"><input type="radio" name="st-9" value="持ち帰り"><span>持ち帰り</span></label>
+                <label class="st"><input type="radio" name="st-9" value="未" checked><span>未</span></label>
+              </span>
+              <input class="memo" data-id="9" type="text" placeholder="決定事項・宿題・数字メモ">
+            </div>
           </div>
         </li>
         <li data-id="10">
@@ -191,6 +266,14 @@
           <div>
             <div class="q">経営革真研究会との集客連携</div>
             <div class="d">小田弘輝さんがリーダー・白井さん確認済。私の関与範囲。</div>
+            <div class="ctl">
+              <span class="stg">
+                <label class="st"><input type="radio" name="st-10" value="合意"><span>合意</span></label>
+                <label class="st"><input type="radio" name="st-10" value="持ち帰り"><span>持ち帰り</span></label>
+                <label class="st"><input type="radio" name="st-10" value="未" checked><span>未</span></label>
+              </span>
+              <input class="memo" data-id="10" type="text" placeholder="決定事項・宿題・数字メモ">
+            </div>
           </div>
         </li>
       </ul>
@@ -204,6 +287,14 @@
           <div>
             <div class="q">「棟数支援＝月会費ストックを守る解約防止装置」を共通言語にするか</div>
             <div class="d">加盟店が儲かる（棟数↑）→継続→全社粗利8.73億の土台（LIFEX粗利3.0億・月会費<b>1.8億/年</b>）。丸山MTGでこのフレームを使うか。</div>
+            <div class="ctl">
+              <span class="stg">
+                <label class="st"><input type="radio" name="st-11" value="合意"><span>合意</span></label>
+                <label class="st"><input type="radio" name="st-11" value="持ち帰り"><span>持ち帰り</span></label>
+                <label class="st"><input type="radio" name="st-11" value="未" checked><span>未</span></label>
+              </span>
+              <input class="memo" data-id="11" type="text" placeholder="決定事項・宿題・数字メモ">
+            </div>
           </div>
         </li>
       </ul>
@@ -217,6 +308,14 @@
           <div>
             <div class="q">私の新規事業と藤本の補強A〜Dの重複回避</div>
             <div class="d">線引き。パイロット（12–1月）がQ2加盟ピーク＋薄い体制と工数衝突する点も。</div>
+            <div class="ctl">
+              <span class="stg">
+                <label class="st"><input type="radio" name="st-12" value="合意"><span>合意</span></label>
+                <label class="st"><input type="radio" name="st-12" value="持ち帰り"><span>持ち帰り</span></label>
+                <label class="st"><input type="radio" name="st-12" value="未" checked><span>未</span></label>
+              </span>
+              <input class="memo" data-id="12" type="text" placeholder="決定事項・宿題・数字メモ">
+            </div>
           </div>
         </li>
         <li data-id="13">
@@ -224,6 +323,14 @@
           <div>
             <div class="q">モデルハウス完成予定一覧（7/24宿題）×集客計画</div>
             <div class="d">突き合わせ。月12件確保の前提に直結。</div>
+            <div class="ctl">
+              <span class="stg">
+                <label class="st"><input type="radio" name="st-13" value="合意"><span>合意</span></label>
+                <label class="st"><input type="radio" name="st-13" value="持ち帰り"><span>持ち帰り</span></label>
+                <label class="st"><input type="radio" name="st-13" value="未" checked><span>未</span></label>
+              </span>
+              <input class="memo" data-id="13" type="text" placeholder="決定事項・宿題・数字メモ">
+            </div>
           </div>
         </li>
         <li data-id="14">
@@ -231,6 +338,14 @@
           <div>
             <div class="q">カレンダーの読み替え</div>
             <div class="d">8/20・9月末通電率50%・11/1 IS稼働・12/31営業補充 ↔ 私の資料のフェーズ（加盟後経過月）。</div>
+            <div class="ctl">
+              <span class="stg">
+                <label class="st"><input type="radio" name="st-14" value="合意"><span>合意</span></label>
+                <label class="st"><input type="radio" name="st-14" value="持ち帰り"><span>持ち帰り</span></label>
+                <label class="st"><input type="radio" name="st-14" value="未" checked><span>未</span></label>
+              </span>
+              <input class="memo" data-id="14" type="text" placeholder="決定事項・宿題・数字メモ">
+            </div>
           </div>
         </li>
       </ul>
@@ -245,129 +360,103 @@
 
 <div class="bar">
   <span class="hint">MTG後 →</span>
-  <button class="btn copy" id="copyBtn">📋 記入内容をコピー</button>
-  <button class="btn print" id="printBtn">🖨 印刷 / PDF</button>
-  <button class="btn clear" id="clearBtn">クリア</button>
+  <button class="btn copy" id="copyBtn" type="button">📋 記入内容をコピー</button>
+  <button class="btn print" id="printBtn" type="button">🖨 印刷 / PDF</button>
+  <button class="btn clear" id="clearBtn" type="button">クリア</button>
 </div>
 <div class="toast" id="toast">コピーしました。クロに貼り付けてください</div>
 
 <script>
 (function(){
-  var KEY = "fujimoto-checklist-v2";
-  var items = Array.prototype.slice.call(document.querySelectorAll("li[data-id]"));
+  var KEY = "fujimoto-checklist-v3";
+  var lis = Array.prototype.slice.call(document.querySelectorAll("li[data-id]"));
+  var dateEl = document.getElementById("mtgdate");
 
-  // 各項目に 合意/持ち帰り/未 ボタン と メモ欄 を差し込む
-  items.forEach(function(li){
-    var wrap = li.children[1];
-    var ctl = document.createElement("div"); ctl.className = "ctl";
-    var stg = document.createElement("div"); stg.className = "stg";
-    ["合意","持ち帰り","未"].forEach(function(v){
-      var b = document.createElement("button");
-      b.className = "st"; b.type = "button"; b.dataset.v = v; b.textContent = v;
-      if(v === "未"){ b.classList.add("on"); }
-      stg.appendChild(b);
-    });
-    var memo = document.createElement("input");
-    memo.className = "memo"; memo.type = "text";
-    memo.placeholder = "決定事項・宿題・数字メモ";
-    ctl.appendChild(stg); ctl.appendChild(memo);
-    wrap.appendChild(ctl);
-  });
-
-  function load(){ try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; } }
+  function statusOf(id){
+    var r = document.querySelector('input[name="st-'+id+'"]:checked');
+    return r ? r.value : "未";
+  }
+  function memoOf(id){
+    var m = document.querySelector('.memo[data-id="'+id+'"]');
+    return m ? m.value : "";
+  }
   function save(){
-    var d = { date: document.getElementById("mtgdate").value, items:{} };
-    items.forEach(function(li){
-      var id = li.dataset.id;
-      var on = li.querySelector(".st.on");
-      d.items[id] = { status: on ? on.dataset.v : "未", memo: li.querySelector(".memo").value };
-    });
+    var d = { date: dateEl.value, items:{} };
+    lis.forEach(function(li){ var id=li.dataset.id; d.items[id] = { status:statusOf(id), memo:memoOf(id) }; });
     try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){}
     paint();
   }
   function paint(){
-    var c = {合意:0,持ち帰り:0,未:0};
-    items.forEach(function(li){
-      var v = (li.querySelector(".st.on")||{}).dataset ? li.querySelector(".st.on").dataset.v : "未";
-      c[v]++;
-      li.classList.toggle("done", v==="合意");
-      li.classList.toggle("hold", v==="持ち帰り");
-    });
+    var c={合意:0,持ち帰り:0,未:0};
+    lis.forEach(function(li){ c[statusOf(li.dataset.id)]++; });
     document.getElementById("counter").innerHTML =
       "合意 <b>"+c.合意+"</b> ／ 持ち帰り <i>"+c.持ち帰り+"</i> ／ 未 "+c.未;
   }
-
   // 復元
-  var saved = load();
-  if(saved.date){ document.getElementById("mtgdate").value = saved.date; }
-  if(saved.items){
-    items.forEach(function(li){
-      var s = saved.items[li.dataset.id]; if(!s) return;
-      li.querySelectorAll(".st").forEach(function(b){ b.classList.toggle("on", b.dataset.v === s.status); });
-      li.querySelector(".memo").value = s.memo || "";
-    });
-  }
+  try{
+    var saved = JSON.parse(localStorage.getItem(KEY)||"{}");
+    if(saved.date){ dateEl.value = saved.date; }
+    if(saved.items){
+      Object.keys(saved.items).forEach(function(id){
+        var s = saved.items[id];
+        var r = document.querySelector('input[name="st-'+id+'"][value="'+s.status+'"]');
+        if(r){ r.checked = true; }
+        var m = document.querySelector('.memo[data-id="'+id+'"]');
+        if(m && s.memo){ m.value = s.memo; }
+      });
+    }
+  }catch(e){}
   paint();
 
-  // イベント
-  document.getElementById("list").addEventListener("click", function(e){
-    var b = e.target.closest(".st"); if(!b) return;
-    b.parentNode.querySelectorAll(".st").forEach(function(x){ x.classList.remove("on"); });
-    b.classList.add("on"); save();
-  });
-  document.getElementById("list").addEventListener("input", function(e){
-    if(e.target.classList.contains("memo")) save();
-  });
-  document.getElementById("mtgdate").addEventListener("input", save);
+  document.getElementById("list").addEventListener("change", save);
+  document.getElementById("list").addEventListener("input", function(e){ if(e.target.classList.contains("memo")) save(); });
+  dateEl.addEventListener("input", save);
 
   function buildText(){
-    var d = load();
-    var date = (d.date||"").trim() || "（未記入）";
-    var c = {合意:0,持ち帰り:0,未:0};
-    items.forEach(function(li){ var v=(li.querySelector(".st.on")||{}).dataset ? li.querySelector(".st.on").dataset.v:"未"; c[v]++; });
-    var lines = [];
-    lines.push("■ 藤本さん すり合わせ 記入結果");
-    lines.push("MTG日: " + date);
-    lines.push("集計: 合意 "+c.合意+" ／ 持ち帰り "+c.持ち帰り+" ／ 未 "+c.未+"（全14項目）");
-    lines.push("");
-    items.forEach(function(li){
-      var num = li.dataset.id;
-      var q = li.querySelector(".q").textContent.trim();
-      var v = (li.querySelector(".st.on")||{}).dataset ? li.querySelector(".st.on").dataset.v : "未";
-      var mark = v==="合意" ? "[合意]" : (v==="持ち帰り" ? "[持ち帰り]" : "[未]");
-      var memo = li.querySelector(".memo").value.trim();
-      lines.push("【"+num+"】"+mark+" "+q);
-      lines.push("   メモ: " + (memo || "―"));
+    var date = (dateEl.value||"").trim() || "（未記入）";
+    var c={合意:0,持ち帰り:0,未:0};
+    lis.forEach(function(li){ c[statusOf(li.dataset.id)]++; });
+    var out = ["■ 藤本さん すり合わせ 記入結果",
+               "MTG日: "+date,
+               "集計: 合意 "+c.合意+" ／ 持ち帰り "+c.持ち帰り+" ／ 未 "+c.未+"（全14項目）",
+               ""];
+    lis.forEach(function(li){
+      var id=li.dataset.id;
+      var q=li.querySelector(".q").textContent.trim();
+      var st=statusOf(id);
+      out.push("【"+id+"】["+st+"] "+q);
+      out.push("   メモ: "+(memoOf(id).trim()||"―"));
     });
-    return lines.join("\n");
+    return out.join("\n");
   }
   function toast(msg){
-    var t = document.getElementById("toast"); t.textContent = msg||"コピーしました。クロに貼り付けてください";
-    t.classList.add("show"); setTimeout(function(){ t.classList.remove("show"); }, 2200);
+    var t=document.getElementById("toast"); t.textContent=msg||"コピーしました。クロに貼り付けてください";
+    t.classList.add("show"); setTimeout(function(){ t.classList.remove("show"); },2400);
+  }
+  function fallback(text){
+    var ta=document.createElement("textarea"); ta.value=text;
+    ta.style.position="fixed"; ta.style.top="0"; ta.style.opacity="0"; document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    var ok=false; try{ ok=document.execCommand("copy"); }catch(e){}
+    document.body.removeChild(ta);
+    toast(ok ? undefined : "コピーできませんでした。画面を選択して手動コピーしてください");
   }
   document.getElementById("copyBtn").addEventListener("click", function(){
-    var text = buildText();
+    var text=buildText();
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(text).then(function(){ toast(); }, function(){ fallback(text); });
     } else { fallback(text); }
   });
-  function fallback(text){
-    var ta = document.createElement("textarea"); ta.value = text;
-    ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta);
-    ta.select();
-    try{ document.execCommand("copy"); toast(); }catch(e){ toast("コピー不可：長押しで全選択してください"); }
-    document.body.removeChild(ta);
-  }
   document.getElementById("printBtn").addEventListener("click", function(){ window.print(); });
   document.getElementById("clearBtn").addEventListener("click", function(){
     if(!confirm("記入内容をすべて消去します。よろしいですか？")) return;
     try{ localStorage.removeItem(KEY); }catch(e){}
-    items.forEach(function(li){
-      li.querySelectorAll(".st").forEach(function(b){ b.classList.toggle("on", b.dataset.v==="未"); });
-      li.querySelector(".memo").value = "";
+    lis.forEach(function(li){
+      var id=li.dataset.id;
+      var mi=document.querySelector('input[name="st-'+id+'"][value="未"]'); if(mi){ mi.checked=true; }
+      var m=document.querySelector('.memo[data-id="'+id+'"]'); if(m){ m.value=""; }
     });
-    document.getElementById("mtgdate").value = "";
-    paint();
+    dateEl.value=""; paint();
   });
 })();
 </script>
