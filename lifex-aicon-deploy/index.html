@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>愛知県 広告投資シミュレーション｜アイコン様</title>
+<style>
+  :root{
+    --ink:#1E2430; --ink2:#4A515F; --muted:#7A8291;
+    --line:#E4E7EE; --bg:#F6F7F9; --card:#FFFFFF;
+    --indigo:#3B3DBF; --indigo-bg:#EEEEFB;
+    --green:#1F9B6E; --green-bg:#E7F6EF;
+    --amber:#C77D22; --amber-bg:#FBF1E1;
+    --navy:#232A45;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{
+    font-family:"Yu Gothic","YuGothic","Hiragino Kaku Gothic ProN","Meiryo",sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.6;
+    font-feature-settings:"palt"; -webkit-font-smoothing:antialiased;
+  }
+  .sheet{max-width:1120px; margin:0 auto; padding:30px 30px 44px;}
+  .head{display:flex; justify-content:space-between; align-items:flex-end; border-bottom:3px solid var(--navy); padding-bottom:14px; margin-bottom:22px;}
+  .head .lead{font-size:12px; letter-spacing:.14em; color:var(--indigo); font-weight:700;}
+  .head h1{font-size:26px; letter-spacing:.01em; margin-top:4px; color:var(--navy);}
+  .head .sub{font-size:13px; color:var(--muted); margin-top:6px;}
+  .head .who{text-align:right; font-size:12px; color:var(--ink2); line-height:1.7;}
+  .head .who b{font-size:15px; color:var(--navy);}
+  .hook{background:var(--navy); color:#fff; border-radius:12px; padding:20px 24px; margin-bottom:24px; display:flex; gap:22px; align-items:center;}
+  .hook .big{font-size:15px; line-height:1.7;}
+  .hook .big b{color:#FFD98A;}
+  .hook .tag{flex:0 0 auto; font-size:11px; letter-spacing:.12em; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); border-radius:20px; padding:6px 14px; align-self:flex-start;}
+  .sec-t{display:flex; align-items:center; gap:10px; margin:26px 0 12px;}
+  .sec-t .no{width:26px;height:26px;border-radius:7px;background:var(--indigo);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+  .sec-t h2{font-size:17px; color:var(--navy);}
+  .sec-t .note{font-size:11px; color:var(--muted); margin-left:auto;}
+  .row{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:11px; padding:18px 20px;}
+  .card h3{font-size:14px; color:var(--ink); margin-bottom:3px;}
+  .card .cap{font-size:11px; color:var(--muted); margin-bottom:14px;}
+  .stats{display:flex; flex-wrap:wrap; gap:16px 26px;}
+  .stat .v{font-size:26px; font-weight:800; color:var(--navy); letter-spacing:-.01em; line-height:1.1;}
+  .stat .v small{font-size:14px; font-weight:700; margin-left:2px;}
+  .stat .l{font-size:11px; color:var(--muted); margin-top:2px;}
+  .stat .v.g{color:var(--green);}
+  .stat .v.i{color:var(--indigo);}
+  .pill{display:inline-block; font-size:11px; font-weight:700; padding:2px 9px; border-radius:20px;}
+  .pill.g{background:var(--green-bg); color:var(--green);}
+  .pill.i{background:var(--indigo-bg); color:var(--indigo);}
+  .pill.a{background:var(--amber-bg); color:var(--amber);}
+  .kicker{font-size:12px; color:var(--ink2); margin-top:14px; padding-top:12px; border-top:1px dashed var(--line);}
+  .kicker b{color:var(--navy);}
+  table.mini{width:100%; border-collapse:collapse; margin-top:4px; font-size:12.5px;}
+  table.mini th,table.mini td{padding:7px 8px; text-align:right; border-bottom:1px solid var(--line);}
+  table.mini th:first-child,table.mini td:first-child{text-align:left;}
+  table.mini thead th{font-size:11px; color:var(--muted); font-weight:600; border-bottom:1.5px solid var(--line);}
+  table.mini tbody tr:last-child td{border-bottom:none; font-weight:700; background:var(--indigo-bg);}
+  /* pattern comparison */
+  table.pat{width:100%; border-collapse:collapse; font-size:13px; background:var(--card); border:1px solid var(--line); border-radius:11px; overflow:hidden;}
+  table.pat th,table.pat td{padding:11px 14px; border-bottom:1px solid var(--line); text-align:center;}
+  table.pat thead th{background:var(--navy); color:#fff; font-size:13px;}
+  table.pat thead th.b{background:var(--indigo);}
+  table.pat thead th small{display:block; font-weight:400; font-size:10.5px; opacity:.85; margin-top:2px;}
+  table.pat td:first-child,table.pat th:first-child{text-align:left; color:var(--ink2); font-size:12px; background:#FBFBFD; width:170px;}
+  table.pat td.b{background:var(--indigo-bg);}
+  table.pat .big{font-size:18px; font-weight:800; color:var(--navy);}
+  table.pat .big.g{color:var(--indigo);}
+  table.pat tbody tr:last-child td{border-bottom:none;}
+  table.pat .tag-oc{display:inline-block;font-size:10.5px;font-weight:700;background:var(--green-bg);color:var(--green);padding:2px 8px;border-radius:12px;}
+  .ctx{display:flex; gap:10px; align-items:center; font-size:11.5px; color:var(--muted); margin:10px 2px 0;}
+  .ctx b{color:var(--ink2);}
+  .proj{background:linear-gradient(180deg,#fff, #FBFCFE); border:1.5px solid var(--indigo); border-radius:12px; padding:20px 22px; margin-top:6px;}
+  .proj-grid{display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; text-align:center; margin:6px 0 4px;}
+  .proj-grid .cell{padding:6px 12px; position:relative;}
+  .proj-grid .cell:not(:last-child):after{content:"→"; position:absolute; right:-9px; top:50%; transform:translateY(-50%); color:var(--muted); font-size:16px;}
+  .proj-grid .v{font-size:22px; font-weight:800; color:var(--navy);}
+  .proj-grid .v.g{color:var(--green);}
+  .proj-grid .l{font-size:11px; color:var(--muted); line-height:1.5;}
+  .roi{margin-top:14px; background:var(--green-bg); border-radius:9px; padding:13px 16px; font-size:13px; color:#14503b;}
+  .roi b{color:var(--green); font-size:15px;}
+  .foot{margin-top:26px; padding-top:14px; border-top:1px solid var(--line); font-size:10.5px; color:var(--muted); line-height:1.7;}
+  .foot b{color:var(--ink2);}
+  @media print{ body{background:#fff;} .sheet{padding:10px;} }
+  @media (max-width:720px){ .row,.proj-grid{grid-template-columns:1fr;} .head{flex-direction:column;align-items:flex-start;gap:8px;} .proj-grid .cell:after{display:none;} }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="head">
+    <div>
+      <div class="lead">LIFEX FC ｜ 広告投資シミュレーション</div>
+      <h1>この商圏なら、広告投資は十分に見合います。</h1>
+      <div class="sub">Gハウス直営店と福岡ウィズダム様のLIFEX広告実績を、アイコン様の商圏に当てはめて試算（対応範囲2パターン）</div>
+    </div>
+    <div class="who">
+      ご提案先<br><b>株式会社アイコン様</b><br>
+      <span style="color:var(--muted)">2026年7月／株式会社Gハウス BtoB事業部</span>
+    </div>
+  </div>
+
+  <div class="hook">
+    <div class="tag">結論</div>
+    <div class="big">
+      広告宣伝費は「毎月出ていくコスト」ではなく、<b>1棟の粗利で何倍にもなって戻る投資</b>です。<br>
+      Gハウスは注文住宅で <b>年間8,600万円</b>を広告に投じ、<b>契約153棟</b>を生む集客力があります。契約1棟あたりの広告費は約56万円。対して1棟の粗利は、LIFEXで約500万円、Gハウスの注文住宅なら700〜900万円 ―― 広告費は、その<b>ごく一部</b>にすぎません。
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="sec-t"><div class="no">1</div><h2>Gハウス直営店 ― 同じLIFEX広告で、毎月40件の反響が立っている</h2><span class="note">LIFEX広告実績・2026年</span></div>
+  <div class="card">
+    <div class="stats">
+      <div class="stat"><div class="v g">月40<small>件前後</small></div><div class="l">反響数（5〜7月）</div></div>
+      <div class="stat"><div class="v">約1.1<small>万円</small></div><div class="l">反響単価</div></div>
+      <div class="stat"><div class="v i">3<small>%超</small></div><div class="l">Meta CVR（ネット最上位）</div></div>
+      <div class="stat"><div class="v">約43<small>万円</small></div><div class="l">広告費（5〜7月平均）</div></div>
+    </div>
+    <table class="mini" style="margin-top:16px;">
+      <thead><tr><th>月</th><th>広告費（総計）</th><th>反響数</th><th>反響単価</th></tr></thead>
+      <tbody>
+        <tr><td>2月</td><td>582,854 円</td><td>―</td><td>―</td></tr>
+        <tr><td>3月</td><td>586,318 円</td><td>―</td><td>―</td></tr>
+        <tr><td>4月</td><td>297,085 円</td><td>―</td><td>―</td></tr>
+        <tr><td>5月</td><td>410,699 円</td><td>40 件</td><td>約1.03万円</td></tr>
+        <tr><td>6月</td><td>475,708 円</td><td>42 件</td><td>約1.13万円</td></tr>
+        <tr><td>7月</td><td>約40万円</td><td>35 件</td><td>約1.14万円</td></tr>
+        <tr><td>5〜7月 平均</td><td>約43万円</td><td>39 件</td><td>約1.1万円</td></tr>
+      </tbody>
+    </table>
+    <div class="kicker">Meta広告のCVRは <b>3%超でネット全店の最上位</b>。Gハウスが自社で磨いた広告運用ノウハウが、そのままLIFEXの集客に載っています ―― 加盟店様が <b>ゼロから試行錯誤しなくていい</b>のは、この裏付けがあるからです。<br><span style="font-size:11px;color:var(--muted)">※反響数はダッシュボード連携分（5〜7月）。2〜4月も継続配信中。7月は予算枠45万円に対する着地見込み。</span></div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="sec-t"><div class="no">2</div><h2>福岡ウィズダムホーム様 ― 再現性は、直近2ヶ月で証明済み</h2><span class="note">2026年5月加盟・広告実績データより</span></div>
+  <div class="row">
+    <div class="card">
+      <h3>加盟翌月から、いきなり立ち上がる</h3>
+      <div class="cap">Meta＋Google 反響数と配信費（LIFEX広告実績スプレッドシート）</div>
+      <table class="mini">
+        <thead><tr><th>月</th><th>反響数</th><th>配信費</th><th>反響単価</th></tr></thead>
+        <tbody>
+          <tr><td>6月（初の本稼働）</td><td>30 件</td><td>320,462 円</td><td>約1.1万円</td></tr>
+          <tr><td>7月</td><td>16 件</td><td>259,777 円</td><td>約1.6万円</td></tr>
+          <tr><td>2ヶ月 合計</td><td>46 件</td><td>約58万円</td><td>約1.3万円</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>好条件が重なる愛知は、さらに有利</h3>
+      <div class="cap">福岡の前提条件との違い</div>
+      <div style="font-size:13px;line-height:1.9;color:var(--ink2)">
+        <span class="pill a">福岡</span> 県内に複数の加盟店があり、<b>反響を分け合う</b>市場。<br>
+        それでも加盟翌月に<b>月30反響</b>を、反響単価 約1.3万円で獲得。<br><br>
+        <span class="pill i">愛知</span> <b>加盟店ゼロ ―― 県内の反響はすべてアイコン様へ送客。</b><br>
+        商圏内の反響を、分け合う相手がいない。
+      </div>
+      <div class="kicker">福岡でも、反響から<b>面談ステージまで案件が進行中</b>。反響が商談へと着実に育っています。</div>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="sec-t"><div class="no">3</div><h2>対応商圏 ― 広げるほど、独占できる市場は大きくなる</h2><span class="note">2パターンで試算</span></div>
+  <table class="pat">
+    <thead>
+      <tr>
+        <th>項目</th>
+        <th>パターンA<small>車で約1時間圏</small></th>
+        <th class="b">パターンB<small>車で約1.5時間圏</small></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>対応エリア</td><td>西三河中南部＋知多東部<br><span style="font-size:11px;color:var(--muted)">西尾・岡崎・安城・刈谷・豊田・碧南 ほか</span></td><td class="b">A＋名古屋市・東三河・尾張南部<br><span style="font-size:11px;color:var(--muted)">名古屋・豊橋・豊川 ほか</span></td></tr>
+      <tr><td>商圏人口</td><td><span class="big">約180万人</span></td><td class="b"><span class="big g">約520万人</span></td></tr>
+      <tr><td>年間 新設住宅着工（試算）</td><td><span class="big">約1.3万戸</span></td><td class="b"><span class="big g">約3.8万戸</span></td></tr>
+      <tr><td>県内のLIFEX加盟店</td><td><span class="tag-oc">ゼロ ＝ 独占</span></td><td class="b"><span class="tag-oc">ゼロ ＝ 独占</span></td></tr>
+      <tr><td>見込み反響（月）<br><span style="font-size:10.5px;color:var(--muted)">配信 月36万円時</span></td><td><span class="big">月30件前後</span><br><span style="font-size:11px;color:var(--muted)">福岡実績と同水準</span></td><td class="b"><span class="big g">月30件前後 〜</span><br><span style="font-size:11px;color:var(--muted)">母数が大きく、配信増で60件まで拡張余地</span></td></tr>
+    </tbody>
+  </table>
+  <div class="ctx">
+    <span class="pill i">参考</span>
+    <div>県レベルの地力：<b>大阪府 876万人／69,213戸</b>・<b>福岡県 508万人／35,207戸</b>・<b>愛知県 745万人／56,119戸</b>。<br>パターンBの約520万人・約3.8万戸は、<b>ほぼ福岡県一県に匹敵する市場を、競合なしで独占</b>できる規模です。</div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="sec-t"><div class="no">4</div><h2>回収シミュレーション ― 配信費 年360万円（月36万円 × 10ヶ月）で試算</h2><span class="note">試算</span></div>
+  <div class="proj">
+    <div class="proj-grid" style="grid-template-columns:1fr 1fr 1fr 1fr;">
+      <div class="cell"><div class="v i">360<small style="font-size:13px">万円</small></div><div class="l">年間配信費<br>月36万円 × 10ヶ月</div></div>
+      <div class="cell"><div class="v">約300<small style="font-size:13px">件</small></div><div class="l">年間反響<br>月30件（福岡実績と同水準）</div></div>
+      <div class="cell"><div class="v g">12〜24<small style="font-size:13px">棟</small></div><div class="l">年間契約<br>LIFEXモデル 月1〜2棟</div></div>
+      <div class="cell"><div class="v g" style="font-size:18px">6,000万〜1.2億<small style="font-size:13px">円</small></div><div class="l">年間粗利<br>12〜24棟 × LIFEX 500万円</div></div>
+    </div>
+    <div class="roi">
+      LIFEXは<b>最低でも月1棟・標準で月2棟</b>が獲れるモデル。年12〜24棟なら粗利は <b>6,000万〜1.2億円</b>。
+      ―― 配信費 <b>360万円</b> は、そのうち <b>わずか3〜6%</b>。<b>初月の1棟だけで配信費は回収</b>し、以降は積み上がる一方です。
+    </div>
+  </div>
+
+  <div class="foot">
+    <b>出典・前提：</b> 大阪モデル＝Gハウス直営 2024年度実績（LIFEX FC提案書 P6-7・P20-21）。福岡＝ウィズダムホーム様 2026年5月加盟、6〜7月のLIFEX広告実績データ（Meta＋Google 反響・配信費）。人口＝総務省人口推計（2025年）、名古屋市235万人（2025年国勢調査速報値）、西三河統計研究協議会・愛知県東三河/知多地域統計。新設住宅着工＝国土交通省 住宅着工統計（2024年）。<br>
+    ※商圏人口は西尾市から車で約1時間圏（約180万人）／約1.5時間圏（約520万人）の主要市の積み上げ。商圏の年間着工戸数は愛知県平均の人口あたり着工率からの試算。回収シミュレーションは配信費 月36万円×10ヶ月＝年360万円で試算（導入初期2ヶ月はGハウス本部が集客支援のため、加盟店様の実配信を年10ヶ月と想定）。年間契約数はLIFEXモデルの標準（最低月1棟・毎月2棟＝年12〜24棟）にもとづき、粗利はLIFEX 1棟あたり約500万円で算出。立ち上がり時期は変動します。月会費等は別途。見込み反響・回収は福岡の実績と大阪の成約率にもとづく試算であり、成果を保証するものではありません。パターンBの反響上振れは配信費の増強を前提とします。
+  </div>
+
+</div>
+</body>
+</html>

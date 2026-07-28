@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>来期目標設定 ― 加盟店様を「月2棟」へ | LIFEX FC事業</title>
+<style>
+  :root{color-scheme:light}
+  body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}
+  img{max-width:100%}
+</style>
+</head>
+<body>
+<style>
+  :root{
+    --ink:#16202B;
+    --ink-soft:#3D4A57;
+    --paper:#F4F5F7;
+    --card:#FFFFFF;
+    --line:#D9DDE3;
+    --line-soft:#E7EAEF;
+    --blue:#274B8E;
+    --blue-soft:#5C7BB5;
+    --blue-wash:#EAEFF7;
+    --gold:#B7822E;
+    --gold-wash:#F6EEDD;
+    --good:#2F7A4F;
+    --mute:#7A8593;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  .wrap{
+    font-family:"Yu Gothic","YuGothic","Hiragino Kaku Gothic ProN","Noto Sans JP","Meiryo",sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+    padding:24px;
+  }
+  .sheet{
+    max-width:1160px;
+    margin:0 auto;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:4px;
+    box-shadow:0 1px 0 rgba(22,32,43,.03),0 12px 32px -20px rgba(22,32,43,.28);
+    overflow:hidden;
+  }
+  header{
+    padding:22px 30px 18px;
+    border-bottom:2px solid var(--ink);
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .eyebrow{
+    font-size:11px;letter-spacing:.18em;font-weight:700;color:var(--blue);
+    text-transform:uppercase;margin:0 0 6px;
+  }
+  h1{
+    font-size:25px;line-height:1.25;margin:0;font-weight:800;letter-spacing:.01em;
+    text-wrap:balance;
+  }
+  .thesis{
+    margin:9px 0 0;font-size:14px;color:var(--ink-soft);font-weight:600;
+  }
+  .thesis b{color:var(--gold);font-weight:800;}
+  .byline{
+    text-align:right;font-size:11px;color:var(--mute);line-height:1.7;white-space:nowrap;
+  }
+  .byline .who{color:var(--ink);font-weight:700;font-size:12px;}
+  .body{padding:20px 30px 12px;}
+  .sec-label{
+    display:flex;align-items:center;gap:10px;margin:0 0 12px;
+  }
+  .sec-label .no{
+    font-size:11px;font-weight:800;color:#fff;background:var(--ink);
+    width:20px;height:20px;border-radius:3px;display:grid;place-items:center;
+    letter-spacing:0;
+  }
+  .sec-label h2{font-size:15px;margin:0;font-weight:800;letter-spacing:.02em;}
+  .sec-label .hint{font-size:11px;color:var(--mute);margin-left:2px;font-weight:600;}
+  .goalband{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    border:1px solid var(--line);border-radius:5px;overflow:hidden;margin-bottom:22px;
+  }
+  .goalcell{padding:12px 16px;border-right:1px solid var(--line);position:relative;}
+  .goalcell:last-child{border-right:none;}
+  .goalcell.is-goal{background:var(--gold-wash);}
+  .goalcell .k{font-size:11px;font-weight:700;color:var(--mute);letter-spacing:.04em;}
+  .goalcell.is-goal .k{color:var(--gold);}
+  .goalcell .v{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1;margin-top:2px;}
+  .goalcell .v small{font-size:13px;font-weight:700;color:var(--ink-soft);}
+  .goalcell .cap{font-size:11px;color:var(--ink-soft);margin-top:3px;font-weight:600;}
+  .road{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:8px;
+  }
+  .phase{
+    border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff;
+    display:flex;flex-direction:column;
+  }
+  .phase-top{padding:11px 14px 10px;border-bottom:1px solid var(--line-soft);}
+  .phase-top .when{font-size:10.5px;font-weight:700;letter-spacing:.06em;color:var(--blue);}
+  .phase-top .name{font-size:15px;font-weight:800;margin-top:1px;}
+  .phase-top .hako{
+    display:inline-flex;align-items:baseline;gap:4px;margin-top:6px;
+    font-variant-numeric:tabular-nums;
+  }
+  .phase-top .hako b{font-size:19px;font-weight:800;}
+  .phase-top .hako span{font-size:11px;color:var(--mute);font-weight:700;}
+  .p1 .phase-top{background:var(--blue-wash);}
+  .p2 .phase-top{background:#E1E9F6;}
+  .p3 .phase-top{background:var(--gold-wash);}
+  .p3 .phase-top .when{color:var(--gold);}
+  .need{
+    padding:8px 14px 9px;background:#EEF1F6;border-bottom:1px solid var(--line-soft);
+    display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;
+  }
+  .need .nlab{font-size:10px;font-weight:800;letter-spacing:.05em;color:var(--ink-soft);}
+  .need .nval{font-size:18px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--blue);line-height:1;}
+  .need .nval small{font-size:10px;font-weight:700;color:var(--mute);}
+  .need .nchain{
+    width:100%;font-size:9.5px;color:var(--mute);font-weight:600;
+    font-variant-numeric:tabular-nums;letter-spacing:.01em;margin-top:1px;
+  }
+  .p3 .need{background:var(--gold-wash);}
+  .p3 .need .nval{color:var(--gold);}
+  .gate{
+    padding:10px 14px 12px;display:flex;flex-direction:column;gap:9px;flex:1;
+  }
+  .gate .focus{
+    font-size:11px;font-weight:800;letter-spacing:.03em;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .gate .focus .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex:none;}
+  .p3 .gate .focus .dot{background:var(--gold);}
+  .gate .focus em{font-style:normal;color:var(--mute);font-weight:700;}
+  .kpi{
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:12px;padding:5px 0;border-top:1px dashed var(--line-soft);
+  }
+  .kpi:first-of-type{border-top:none;}
+  .kpi .lab{color:var(--ink-soft);font-weight:600;}
+  .kpi .val{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap;}
+  .kpi .val .now{color:var(--mute);font-weight:600;}
+  .kpi .val .arw{color:var(--line);margin:0 3px;}
+  .kpi.hot .lab{color:var(--ink);font-weight:800;}
+  .kpi.hot .val{color:var(--blue);}
+  .p3 .kpi.hot .val{color:var(--gold);}
+  .kpi .val .tgt-lock{color:var(--good);}
+  .road{position:relative;}
+  .roadnote{
+    font-size:11px;color:var(--ink-soft);margin:12px 0 22px;padding:9px 12px;
+    background:var(--blue-wash);border-left:3px solid var(--blue);border-radius:0 4px 4px 0;
+    font-weight:600;line-height:1.6;
+  }
+  .roadnote b{color:var(--blue);}
+  .lane{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border:1px solid var(--line);border-radius:6px;overflow:hidden;
+  }
+  .qcol{padding:11px 13px 13px;border-right:1px solid var(--line-soft);position:relative;}
+  .qcol:last-child{border-right:none;}
+  .qcol .q{font-size:10.5px;font-weight:800;color:var(--blue);letter-spacing:.05em;}
+  .qcol .mon{font-size:10px;color:var(--mute);font-weight:700;margin-top:1px;}
+  .qcol .act{font-size:12.5px;font-weight:800;margin-top:7px;line-height:1.35;}
+  .qcol .desc{font-size:11px;color:var(--ink-soft);margin-top:4px;line-height:1.5;font-weight:500;}
+  .qcol .out{
+    font-size:10px;font-weight:700;color:var(--good);margin-top:7px;
+    display:inline-block;border:1px solid #BFE0CC;background:#EEF7F1;
+    padding:2px 7px;border-radius:20px;
+  }
+  .qcol.q4 .q{color:var(--gold);}
+  .qcol.q4 .out{color:var(--gold);border-color:#E4D2AC;background:var(--gold-wash);}
+  footer{
+    padding:12px 30px 20px;border-top:1px solid var(--line-soft);margin-top:14px;
+    display:flex;justify-content:space-between;gap:20px;align-items:flex-start;
+  }
+  .legend{font-size:10.5px;color:var(--mute);line-height:1.7;}
+  .legend b{color:var(--ink-soft);}
+  .stamp{
+    font-size:10.5px;color:var(--mute);text-align:right;line-height:1.7;white-space:nowrap;
+  }
+  .prov{color:var(--gold);font-weight:700;}
+  @media (max-width:820px){
+    .goalband,.road,.lane{grid-template-columns:1fr;}
+    header{flex-direction:column;align-items:flex-start;}
+    .byline{text-align:left;}
+  }
+  @media print{
+    .wrap{padding:0;background:#fff;}
+    .sheet{border:none;box-shadow:none;max-width:none;}
+    @page{size:A4 landscape;margin:10mm;}
+  }
+</style>
+
+<div class="wrap">
+  <div class="sheet">
+
+    <header>
+      <div>
+        <p class="eyebrow">来期 目標設定 ｜ 2026年8月 スタート</p>
+        <h1>加盟店様を「月2棟」へ ― 加盟後12ヶ月の逆算ロードマップ</h1>
+        <p class="thesis"><b>加盟店様の成功が、私の目標です。</b>　各店の棟数を積み上げることを、私自身の来期目標に据えます。</p>
+      </div>
+      <div class="byline">
+        <div class="who">BtoB事業部　LIFEX FC担当</div>
+        徳田<br>
+        提出：2026年7月
+      </div>
+    </header>
+
+    <div class="body">
+
+      <div class="sec-label">
+        <span class="no">1</span>
+        <h2>棟数ゴール</h2>
+        <span class="hint">― 全加盟店を、加盟後12ヶ月でこの水準へ</span>
+      </div>
+      <div class="goalband">
+        <div class="goalcell">
+          <div class="k">最低ライン（守り）</div>
+          <div class="v">月1.0<small> 棟</small></div>
+          <div class="cap">ここを割らせない。全店の絶対防衛ライン。</div>
+        </div>
+        <div class="goalcell">
+          <div class="k">通常運転</div>
+          <div class="v">月1.5<small> 棟</small></div>
+          <div class="cap">FCとして「回っている」と言える標準速度。</div>
+        </div>
+        <div class="goalcell is-goal">
+          <div class="k">目標（攻め）</div>
+          <div class="v">月2.0<small> 棟</small></div>
+          <div class="cap">12ヶ月かけて定常化させる到達点。</div>
+        </div>
+      </div>
+
+      <div class="sec-label">
+        <span class="no">2</span>
+        <h2>逆算ロードマップ ― 1フェーズにつき1ゲートを攻略する</h2>
+        <span class="hint">※ 各店の「加盟後の経過月」基準</span>
+      </div>
+      <div class="road">
+
+        <div class="phase p1">
+          <div class="phase-top">
+            <div class="when">加盟後 0–4ヶ月　立ち上げ期</div>
+            <div class="name">まず"行動量"を固める</div>
+            <div class="hako"><b>月1.0棟</b><span>／ 最低ラインを死守</span></div>
+          </div>
+          <div class="need">
+            <span class="nlab">必要集客</span>
+            <span class="nval">月12<small> 件 確保</small></span>
+            <span class="nchain">集客12 → 接続6.6 → アポ3.0 → 契約1.0　<b style="color:var(--good);">目標ちょうど</b></span>
+          </div>
+          <div class="gate">
+            <div class="focus"><span class="dot"></span>攻略ゲート：<em>&nbsp;① 架電率</em></div>
+            <div class="kpi hot">
+              <span class="lab">① 架電率<em style="font-style:normal;color:var(--mute);font-weight:600;font-size:10px;"> 接続</em></span>
+              <span class="val"><span class="now">45%<sup>*</sup></span><span class="arw">→</span>55%</span>
+            </div>
+            <div class="kpi">
+              <span class="lab">② アポ取得率</span>
+              <span class="val"><span class="now">40%<sup>*</sup></span><span class="arw">→</span>45%</span>
+            </div>
+            <div class="kpi">
+              <span class="lab">③ 契約率</span>
+              <span class="val"><span class="now">30%</span><span class="arw">→</span>35%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase p2">
+          <div class="phase-top">
+            <div class="when">加盟後 5–8ヶ月　成長期</div>
+            <div class="name">"中間転換"を引き上げる</div>
+            <div class="hako"><b>月1.5棟</b><span>／ 標準速度へ</span></div>
+          </div>
+          <div class="need">
+            <span class="nlab">必要集客</span>
+            <span class="nval">月12<small> 件 確保</small></span>
+            <span class="nchain">集客12 → 接続7.2 → アポ4.0 → 契約1.8　<b style="color:var(--good);">目標1.5＋上積み</b></span>
+          </div>
+          <div class="gate">
+            <div class="focus"><span class="dot"></span>攻略ゲート：<em>&nbsp;② アポ取得率</em></div>
+            <div class="kpi">
+              <span class="lab">① 架電率<em style="font-style:normal;color:var(--mute);font-weight:600;font-size:10px;"> 接続</em></span>
+              <span class="val">55%<span class="arw">→</span><span class="tgt-lock">60% 上限</span></span>
+            </div>
+            <div class="kpi hot">
+              <span class="lab">② アポ取得率</span>
+              <span class="val">45%<span class="arw">→</span>55%</span>
+            </div>
+            <div class="kpi">
+              <span class="lab">③ 契約率</span>
+              <span class="val">35%<span class="arw">→</span>45%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase p3">
+          <div class="phase-top">
+            <div class="when">加盟後 9–12ヶ月　定常期</div>
+            <div class="name">"成約"で仕上げる</div>
+            <div class="hako"><b>月2.0棟</b><span>／ 目標を定常化</span></div>
+          </div>
+          <div class="need">
+            <span class="nlab">必要集客</span>
+            <span class="nval">月12<small> 件 確保</small></span>
+            <span class="nchain">集客12 → 接続7.2 → アポ4.3 → 契約2.6　<b style="color:var(--gold);">目標2.0＋上積み</b></span>
+          </div>
+          <div class="gate">
+            <div class="focus"><span class="dot"></span>攻略ゲート：<em>&nbsp;③ 契約率</em></div>
+            <div class="kpi">
+              <span class="lab">① 架電率<em style="font-style:normal;color:var(--mute);font-weight:600;font-size:10px;"> 接続</em></span>
+              <span class="val">60%<span class="arw">→</span><span class="tgt-lock">60% 維持</span></span>
+            </div>
+            <div class="kpi">
+              <span class="lab">② アポ取得率</span>
+              <span class="val">55%<span class="arw">→</span><span class="tgt-lock">60% 上限</span></span>
+            </div>
+            <div class="kpi hot">
+              <span class="lab">③ 契約率</span>
+              <span class="val">45%<span class="arw">→</span>60%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="roadnote">
+        <b>逆算の考え方（必要集客 = 棟数 ÷ 架電率 × アポ取得率 × 契約率）―</b> 集客は全フェーズ<b>月12件</b>を確保ラインに統一（＝手は緩めない）。立ち上げ期はこれでちょうど月1棟。成長・定常期は転換率が上がるぶん、同じ12件で棟数が上振れ（成長期≈1.8棟／定常期≈2.6棟相当）＝これが<b>安全マージン</b>。接続・アポ取得率は上限 <b>60%</b> まで取り切り、最大の伸びしろ＝<b>契約率（30% → 60%）</b>を定常期で仕上げる。集客を落とさず、転換率で棟数を積み上げる。
+      </div>
+
+      <div class="sec-label">
+        <span class="no">3</span>
+        <h2>棟数支援と並走する"新規事業"の探索 ― 半年で立ち上げ</h2>
+        <span class="hint">※ 困りごとを起点に、2026年8月〜2027年1月で試験導入まで。検証・横展開の判断は下期へ</span>
+      </div>
+      <div class="lane">
+        <div class="qcol q1">
+          <div class="q">STEP 1</div>
+          <div class="mon">2026年 8月</div>
+          <div class="act">全加盟店ヒアリング</div>
+          <div class="desc">棚卸し。集客・追客・商品・原価まで、現場の困りごとを一気に聞き切る。</div>
+          <div class="out">課題リスト化</div>
+        </div>
+        <div class="qcol q2">
+          <div class="q">STEP 2</div>
+          <div class="mon">2026年 9月</div>
+          <div class="act">共通項の抽出・テーマ化</div>
+          <div class="desc">各店の声から「多くの店が共通で困っていること」を絞り、事業テーマを1本に決める。</div>
+          <div class="out">事業テーマ確定</div>
+        </div>
+        <div class="qcol q3">
+          <div class="q">STEP 3</div>
+          <div class="mon">2026年 10–11月</div>
+          <div class="act">企画・設計</div>
+          <div class="desc">テーマを形に。提供内容・座組み・試す店を決め、実行プランまで一気に固める。</div>
+          <div class="out">実行プラン策定</div>
+        </div>
+        <div class="qcol q4">
+          <div class="q">STEP 4</div>
+          <div class="mon">2026年 12月–2027年 1月</div>
+          <div class="act">試験導入 ＝ 立ち上げ</div>
+          <div class="desc">1〜2店に絞ってパイロット稼働。半年で「動いている」状態をつくる。</div>
+          <div class="out">半年で立ち上げ</div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      <div class="legend">
+        <b>指標の定義：</b>①架電率＝架電がつながった率（接続率）。①②とも実務上の上限は約60%。③契約率＝現状30%は実数。<br>
+        <b><sup>*</sup> ①②の現状値は暫定</b>（ダッシュボード実数で差し替え予定）。<b>時間軸：</b>「2. ロードマップ」＝各店の<b>加盟後経過月</b>基準／「3. 新規事業」＝<b>来期カレンダー</b>基準。
+      </div>
+      <div class="stamp">
+        <span class="prov">加盟店様の成功 ＝ 私の来期目標</span><br>
+        LIFEX FC事業 ／ 来期（2026年8月〜2027年7月）
+      </div>
+    </footer>
+
+  </div>
+</div>
+
+</body>
+</html>
