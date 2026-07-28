@@ -1,0 +1,472 @@
+<title>LIFEX月2棟目標達成MTG 7/31｜観て、診て、決めて帰る 投影資料</title>
+<style>
+  :root{
+    --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+    --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+    --p1:#1e4e79; --p2:#2e7d6e; --p3:#b05c1f;
+    --p1bg:#e8eff6; --p2bg:#e7f2ef; --p3bg:#f9efe4;
+    --leak:#b3372b; --leakbg:#fbe9e7;
+  }
+  *{box-sizing:border-box}
+  body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif; color:var(--ink);
+    background:#e9edf1; margin:0; line-height:1.6; font-feature-settings:"palt"}
+  .wrap{width:min(1100px,96vw); margin:26px auto; overflow:visible}
+  .draft{width:1100px; margin:0 auto 14px; font-size:12px; color:#8a5a00; background:#fdf3dd; border:1px solid #ecd9a8;
+    border-radius:4px; padding:6px 14px; font-weight:700}
+  .sl{width:1100px; height:619px; background:#fff; border-radius:8px; box-shadow:0 2px 16px rgba(20,40,60,.09);
+    padding:32px 50px 24px; display:flex; flex-direction:column; position:relative; overflow:hidden; transform-origin:top left; margin:0 auto 22px}
+  .top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+  .chip{font-size:11.5px; font-weight:700; letter-spacing:.1em; padding:3px 12px; border-radius:99px}
+  .c0{background:#eceff2;color:var(--sub)} .c1{background:var(--p1bg);color:var(--p1)}
+  .c2{background:var(--p2bg);color:var(--p2)} .c3{background:var(--p3bg);color:var(--p3)}
+  .step{background:var(--navy); color:#fff}
+  .pg{margin-left:auto; font-size:12px; color:#b6c0ca; font-variant-numeric:tabular-nums}
+  .tt{font-size:29px; font-weight:800; line-height:1.3; margin:2px 0 4px; text-wrap:balance}
+  .ms{font-size:13.5px; color:var(--sub); margin:0 0 11px}
+  .body{flex:1; display:flex; gap:22px; min-height:0; overflow:hidden}
+  .foot{display:flex; gap:12px; margin-top:9px; align-items:center}
+  .asof{font-size:11px; color:var(--sub); background:var(--panel); border:1px solid var(--line); border-radius:3px; padding:2px 10px}
+  .real{font-size:11px; color:var(--p2); background:var(--p2bg); border:1px solid #bfdcd5; border-radius:3px; padding:2px 10px; font-weight:700}
+  .todo{font-size:11px; color:#8a5a00; background:#fdf3dd; border:1px solid #ecd9a8; border-radius:3px; padding:2px 10px; font-weight:700}
+  .live{font-size:11.5px; color:#fff; background:var(--navy); border-radius:3px; padding:3px 12px; font-weight:700; letter-spacing:.06em}
+  .num{font-variant-numeric:tabular-nums}
+  .col{display:flex; flex-direction:column; gap:11px; min-width:0}
+  .grow{flex:1}
+  .box{border:1px solid var(--line); border-radius:6px; padding:12px 16px; background:#fff}
+  .box h4{margin:0 0 4px; font-size:13.5px; color:var(--navy)}
+  .box p{margin:0; font-size:12.5px; color:var(--sub)}
+  .stat{background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:12px 16px; text-align:center}
+  .stat b{display:block; font-size:12.5px; color:var(--sub); font-weight:600}
+  .stat span{font-size:28px; font-weight:800; color:var(--navy)}
+  .stat small{font-size:13px; font-weight:700; color:var(--navy)}
+  table{border-collapse:collapse; width:100%; font-size:12.5px}
+  th{background:var(--panel); font-size:11.5px; color:var(--sub); font-weight:600; text-align:left}
+  th,td{border:1px solid var(--line); padding:6px 10px}
+  .fun{display:flex; align-items:center; justify-content:center; gap:6px; flex:1}
+  .fc{border-radius:50%; color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:800; flex-shrink:0}
+  .fc i{font-style:normal; font-size:20px}
+  .fc em{font-style:normal; font-size:11px; font-weight:600; opacity:.9}
+  .fa{color:#b6c0ca; font-size:17px; font-weight:700; display:flex; flex-direction:column; align-items:center}
+  .fa b{font-size:12px; color:var(--navy); white-space:nowrap}
+  .fa.leak{color:var(--leak)} .fa.leak b{color:var(--leak)}
+  .say{background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:10px; padding:12px 16px; font-size:13px}
+  .say b{color:var(--navy)}
+  .say .lbl{display:block; font-size:11px; letter-spacing:.1em; color:var(--navy); font-weight:700; margin-bottom:4px}
+  .big{font-size:18px; font-weight:800; line-height:1.5}
+  .big em{font-style:normal; color:var(--navy)}
+  .cap{font-size:12px; color:var(--sub)}
+  .flow{display:flex; align-items:stretch; gap:8px}
+  .flow .st{flex:1; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:9px 12px; font-size:12px; text-align:center}
+  .flow .st b{display:block; font-size:12.5px; color:var(--navy); margin-bottom:2px}
+  .flow .ar{align-self:center; color:#b6c0ca; font-weight:700; flex-shrink:0}
+  .ag{border:1px solid var(--line); border-radius:6px; padding:10px 18px; display:flex; align-items:center; gap:16px; background:#fff}
+  .ag .no{font-size:13px; font-weight:800; color:var(--sub); flex-shrink:0; width:34px}
+  .ag b{font-size:15px}
+  .ag .cap{margin-left:auto; text-align:right; flex-shrink:0}
+  .rhythm{display:flex; gap:6px; margin-bottom:9px}
+  .rhythm span{flex:1; text-align:center; font-size:12px; font-weight:700; padding:6px 4px; border-radius:5px; background:var(--panel); color:#aab4bf; border:1px solid var(--line)}
+  .rhythm span.on{background:var(--navy); color:#fff; border-color:var(--navy)}
+  .gauge{background:#fff; border:1px solid var(--line); border-radius:8px; padding:12px 16px}
+  .gauge .gh{display:flex; align-items:baseline; gap:10px; margin-bottom:8px}
+  .gauge .gn{font-size:14px; font-weight:800}
+  .gauge .track{position:relative; height:26px; background:var(--panel); border-radius:5px; overflow:hidden; border:1px solid var(--line)}
+  .gauge .fill{position:absolute; left:0; top:0; bottom:0; background:var(--navy); border-radius:5px 0 0 5px}
+  .gauge .goal{position:absolute; top:-4px; bottom:-4px; width:3px; background:var(--p3)}
+  .rate{display:flex; gap:10px}
+  .rate .r{flex:1; text-align:center; border:1px solid var(--line); border-radius:6px; padding:8px 6px; background:#fff}
+  .rate .r b{display:block; font-size:11.5px; color:var(--sub); font-weight:600}
+  .rate .r span{font-size:21px; font-weight:800; color:var(--navy); font-variant-numeric:tabular-nums}
+  .rate .r.bad{background:var(--leakbg); border-color:var(--leak)}
+  .rate .r.bad span{color:var(--leak)} .rate .r.bad b{color:var(--leak)}
+  .quo{border-left:4px solid var(--p3); background:var(--p3bg); border-radius:0 8px 8px 0; padding:11px 15px; font-size:13px}
+  .quo .lbl{display:block; font-size:11px; letter-spacing:.06em; color:var(--p3); font-weight:700; margin-bottom:4px}
+  .stk{width:132px; display:flex; flex-direction:column-reverse; border:1px solid var(--line); border-radius:4px; overflow:hidden}
+  .stk div{display:flex; align-items:center; justify-content:center; font-size:11.5px; color:#fff; font-weight:700}
+  @media print{body{background:#fff}.draft{display:none}.sl{box-shadow:none; border:1px solid var(--line); page-break-after:always}}
+</style>
+
+<div class="wrap">
+
+<div class="draft">■ 叩き台（改訂3版・2026/7/27）｜7/31（金）16:00〜（60分）・登壇なし／徳田さん進行。処方は前回3社（7/24）＋佐古社長7/17研修の実資料から厚く引用。自店カルテは事前配布。赤い仮置き数字は当日ダッシュボード最新値で差し替え。</div>
+
+<!-- 1 表紙 -->
+<div class="sl" style="justify-content:center; text-align:center">
+  <div style="font-size:13px; letter-spacing:.22em; color:var(--sub); font-weight:700">2026.7.31（金）16:00〜　LIFEX 月2棟目標達成MTG</div>
+  <div style="font-size:52px; font-weight:800; margin:22px 0 12px; letter-spacing:.02em">観て、診て、決めて帰る。</div>
+  <div style="font-size:18px; color:var(--navy); font-weight:700">今日から、この場のやり方を変えます。<br>本部が教える場から、各店が自分の数字を自分で読み、次の一手を決める場へ。</div>
+  <div style="margin-top:36px; font-size:15px; color:var(--ink)">
+    <b>観る</b><span style="color:var(--sub); margin:0 10px">→</span><b>診る</b><span style="color:var(--sub); margin:0 10px">→</span><b>処方</b><span style="color:var(--sub); margin:0 10px">→</span><b>決める</b><span style="color:var(--sub); margin:0 10px">→</span><b style="color:var(--sub)">（次回）答え合わせ</b>
+    <div style="color:var(--sub); margin-top:10px; font-size:13.5px">進行：Gハウス LIFEX FC事業部　徳田</div>
+  </div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px">1 / 16</div>
+</div>
+
+<!-- 2 本日の流れ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">本日の流れ</span><span class="pg">2 / 17</span></div>
+  <div class="tt">今日は「聞く」より「自分の数字を見る」時間を多くとります。</div>
+  <p class="ms">お手元に配った「自店カルテ」を見ながら進めます。自分の店の弱点を自分で見つけ、その場で目標を決める。前回の3社と佐古社長の型は、みなさんの弱点への「処方箋」として登場します。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:10px">
+    <div class="ag" style="border-color:var(--navy)"><span class="no" style="color:var(--navy)">観る</span><b>自店カルテを開く</b><span class="cap">全店平均ではなく、自分の店のファネルを見る。前回決めた架電運用の答え合わせも</span></div>
+    <div class="ag" style="border-color:var(--navy)"><span class="no" style="color:var(--navy)">診る</span><b>自分の店の「穴」を見つける</b><span class="chip step">▶ 自分のカルテで</span><span class="cap">どの段で一番こぼれているか。練習してから自店で</span></div>
+    <div class="ag" style="border-color:var(--p1)"><span class="no" style="color:var(--p1)">処方</span><b>穴に効く「型」を選ぶ</b><span class="cap">接続率・アポ率・面談率・契約率、それぞれに実物の型を用意</span></div>
+    <div class="ag" style="border-color:var(--p2)"><span class="no" style="color:var(--p2)">決める</span><b>アポ率の目標を決めて発表</b><span class="chip step">▶ 発表いただきます</span><span class="cap">その場でダッシュボードに反映</span></div>
+  </div>
+  <div class="foot"><span class="cap"><b style="color:var(--navy)">今日のゴール。</b>「自分の店の弱点はここだ」と言えること。そして「だから来週これをやる」を数字で決めて帰ること。</span></div>
+</div>
+
+<!-- 3 つかみ：2つの伸びしろ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">はじめに</span><span class="pg">3 / 17</span></div>
+  <div class="tt">棟数は「集客 × 歩留まり」で決まります。<br>伸ばせる場所は、店によって違います。</div>
+  <p class="ms">棟数を増やす道は2つ——<b style="color:var(--ink)">①集客</b>（登録の母数を増やす）と、<b style="color:var(--ink)">②歩留まり</b>（繋がった先をこぼさない＝率）。集客は広告などで伸ばす別のテーマ。今日は各店が、もう一方の"歩留まり"を自分の数字で見ます。</p>
+  <div class="body" style="flex-direction:column; gap:12px; justify-content:center">
+    <div style="display:flex; gap:12px">
+      <div class="stat grow" style="background:var(--navy-soft); border-color:var(--navy)"><b>月2棟の設計式（前回研修より）</b><span class="num" style="font-size:17px"><span style="color:var(--p3)">登録14件</span>〈集客〉 × <span style="color:var(--navy)">14.8%</span>〈歩留まり〉 ≒ 2棟</span></div>
+      <div class="stat grow"><b>面談1件の獲得コスト</b><span class="num">¥154,948</span></div>
+      <div class="stat grow"><b>契約1件（建物総額）</b><span class="num">2,880<small>万円</small></span></div>
+    </div>
+    <div class="say"><span class="lbl">今日の出発点</span>集客に苦戦している店もあれば、繋がった先でこぼしている店もある。<b>伸びしろの場所は、店によって違います。</b>だから他店のやり方をそのまま真似ても効きません。今日はまず、<b>自分の数字を見て、自分の伸びしろがどこか</b>を見つけます。</div>
+  </div>
+  <div class="foot"><span class="asof">数値は前回研修（YUNO HOME様・2026/7/16時点）の参考値</span></div>
+</div>
+
+<!-- 4 観る＋答え合わせ -->
+<div class="sl">
+  <div class="rhythm"><span class="on">観る</span><span>診る</span><span>処方</span><span>決める</span><span>答え合わせ</span></div>
+  <div class="top"><span class="chip step">STEP 観る</span><span class="pg">4 / 17</span></div>
+  <div class="tt">まず、お手元の「自店カルテ」を開いてください。</div>
+  <p class="ms">事前にお配りした、自店の「登録→通話→アポ→面談→契約」の1枚です。全店平均は今は忘れて、自分の店の数字だけを見てください。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:16px">
+    <div class="fun" style="flex:0">
+      <div class="fc num" style="width:86px;height:86px;background:#1e4e79"><i>登録</i></div>
+      <div class="fa"><b>接続率</b>→</div>
+      <div class="fc num" style="width:80px;height:80px;background:#2e6da4"><i>通話</i></div>
+      <div class="fa"><b>アポ率</b>→</div>
+      <div class="fc num" style="width:74px;height:74px;background:#3b82c4"><i>アポ</i></div>
+      <div class="fa"><b>面談率</b>→</div>
+      <div class="fc num" style="width:68px;height:68px;background:#2e7d6e"><i>面談</i></div>
+      <div class="fa"><b>契約率</b>→</div>
+      <div class="fc num" style="width:62px;height:62px;background:#256b5e"><i>契約</i></div>
+    </div>
+    <div class="cap" style="text-align:center">4つの率——接続率・アポ率・面談率・契約率。この4つのどこかに、あなたの店の「穴」があります。</div>
+    <div style="display:flex; gap:16px">
+      <div class="box" style="flex:1; border-color:var(--navy)"><h4>見るのは「数」ではなく「率」</h4><p style="color:var(--ink)">登録が多い少ないは商圏で変わります。大事なのは<b>各段でどれだけ次に進めているか＝率</b>。率は、店の大小に関係なく比べられる自分の"実力"です。</p></div>
+      <div class="box" style="flex:1"><h4>前回の答え合わせ</h4><p style="color:var(--ink)">7/24で決めた架電運用（①誰が ②当日中に1本目 ③回数・区切り）。<b>やってみて、自店の接続率は動きましたか。</b>カルテの先週比で、自分で確かめてください。</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="todo">自店カルテは本部が全店分を生成・事前配布（ダッシュボードのデータから自動生成）</span></div>
+</div>
+
+<!-- 5 診る①：ボトルネック -->
+<div class="sl">
+  <div class="rhythm"><span>観る</span><span class="on">診る</span><span>処方</span><span>決める</span><span>答え合わせ</span></div>
+  <div class="top"><span class="chip step">STEP 診る①</span><span class="pg">5 / 17</span></div>
+  <div class="tt">成約数は、一番狭い「穴」で決まります。</div>
+  <p class="ms">どんなに入口（登録）を増やしても、途中の一段が細ければ、契約までは同じだけしか流れません。伸ばすべきは、一番細い段です。</p>
+  <div class="body" style="flex-direction:column; gap:14px; justify-content:center">
+    <div class="fun">
+      <div class="fc num" style="width:108px;height:108px;background:#1e4e79"><i>登録</i><em>たくさん</em></div>
+      <div class="fa"><b>接続率 高</b>→</div>
+      <div class="fc num" style="width:94px;height:94px;background:#2e6da4"><i>通話</i></div>
+      <div class="fa leak"><b>アポ率 低 ←穴</b>→</div>
+      <div class="fc num" style="width:54px;height:54px;background:var(--leak)"><i>アポ</i><em>激減</em></div>
+      <div class="fa"><b>面談率</b>→</div>
+      <div class="fc num" style="width:52px;height:52px;background:#2e7d6e"><i>契約</i></div>
+    </div>
+    <div class="say"><span class="lbl">例：この店の場合</span>登録も接続も十分。でも<b style="color:var(--leak)">通話→アポ（アポ率）でごっそりこぼれている</b>。この店が入口をもっと増やしても意味は薄い——<b>穴はアポ率</b>。ここを塞ぐのが、一番効く一手です。</div>
+  </div>
+  <div class="foot"><span class="cap">「うちは反響が少ない」——本当にそこが穴ですか。<b style="color:var(--navy)">穴は、率が一番落ちている段にあります。</b></span></div>
+</div>
+
+<!-- 6 診る②：穴の見つけ方 -->
+<div class="sl">
+  <div class="rhythm"><span>観る</span><span class="on">診る</span><span>処方</span><span>決める</span><span>答え合わせ</span></div>
+  <div class="top"><span class="chip step">STEP 診る②</span><span class="pg">6 / 17</span></div>
+  <div class="tt">穴の見つけ方は、たった2ステップ。</div>
+  <p class="ms">難しい分析は要りません。4つの率を並べて、一番低い段を探すだけ。その段に効く「処方箋」を、このあと1段ずつ用意しています。</p>
+  <div class="body" style="justify-content:center; gap:18px">
+    <div class="col" style="flex:0 0 40%; justify-content:center">
+      <div class="box" style="border-color:var(--navy)"><h4>STEP 1　4つの率を並べる</h4><p style="color:var(--ink)">接続率・アポ率・面談率・契約率。自店カルテにそのまま出ています。</p></div>
+      <div class="box" style="border-color:var(--navy)"><h4>STEP 2　一番低い段が「穴」</h4><p style="color:var(--ink)">そこが今月あなたが伸ばす場所。<b>2つも3つも同時にやらない。</b>一番細い一段に集中します。</p></div>
+    </div>
+    <div class="col grow" style="justify-content:center">
+      <table>
+        <tr><th style="width:34%">穴が…</th><th>効く処方（このあと）</th></tr>
+        <tr><td><b>接続率</b>（つながらない）</td><td>初動・回数・時間帯 → <b>8枚目</b></td></tr>
+        <tr><td style="background:var(--leakbg); color:var(--leak)"><b>アポ率</b>（つながるがアポにならない）</td><td>電話の型と7項目 → <b>9枚目</b></td></tr>
+        <tr><td><b>面談率</b>（アポがすっぽかされる）</td><td>面談冒頭と日程の設計 → <b>10枚目</b></td></tr>
+        <tr><td><b>契約率</b>（面談から契約に至らない）</td><td>総額・競合・クロージング → <b>11〜12枚目</b></td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">これが「自己診断」の型。<b style="color:var(--navy)">数字を見る→穴を探す→効く型を当てる</b>——毎週これを自分で回せるように。</span></div>
+</div>
+
+<!-- 7 診る③：ケース練習＋自店で確認 -->
+<div class="sl">
+  <div class="rhythm"><span>観る</span><span class="on">診る</span><span>処方</span><span>決める</span><span>答え合わせ</span></div>
+  <div class="top"><span class="chip step">STEP 診る③　練習 → 自店で</span><span class="pg">7 / 17</span></div>
+  <div class="tt">練習です。この店の「穴」は、どこでしょう。</div>
+  <p class="ms">ある店の先月の数字です（匿名）。4つの率を見て、一番の穴を探してみてください。30秒。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:14px">
+    <div class="rate">
+      <div class="r"><b>登録</b><span>40</span></div>
+      <div class="r"><b>接続率</b><span>60%</span></div>
+      <div class="r bad"><b>アポ率</b><span>17%</span></div>
+      <div class="r"><b>面談率</b><span>75%</span></div>
+      <div class="r"><b>契約率</b><span>33%</span></div>
+    </div>
+    <div class="say"><span class="lbl">答え</span>接続率60%は<b>優秀</b>——つなげる力はある。面談率75%・契約率33%も悪くない。一番低いのは<b style="color:var(--leak)">アポ率17%</b>。せっかく繋がった電話が、アポにならずこぼれている。<b>穴はアポ率。打つ手は9枚目の処方。</b>入口を増やすより、繋がった電話を取りこぼさない方が、はるかに効く店です。</div>
+    <div class="box" style="border-color:var(--p2); background:var(--p2bg)"><h4 style="color:var(--p2)">▶ では、自分の店で。カルテで一番低い段を1つ見つけてください（見るだけ・30秒）</h4><p style="color:var(--ink)">見つけた段が、あなたの「今月の穴」。このあとの処方で、そこに効く型だけ持ち帰ってください。</p></div>
+  </div>
+  <div class="foot"><span class="live">▶ 何人かに「どこが穴でしたか？」と聞いてみます</span></div>
+</div>
+
+<!-- 8 処方：接続率 -->
+<div class="sl">
+  <div class="rhythm"><span>観る</span><span>診る</span><span class="on">処方</span><span>決める</span><span>答え合わせ</span></div>
+  <div class="top"><span class="chip c1">処方①　穴が「接続率」なら</span><span class="pg">8 / 17</span></div>
+  <div class="tt">つながらないなら、初動・回数・時間帯を決める。</div>
+  <p class="ms">前回7/24の3社の実践が、そのまま処方箋です。自店に合うやり方を1つ選んで真似てください。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:9px">
+    <div class="box" style="border-left:4px solid var(--p1); display:flex; gap:14px; align-items:center; padding:10px 16px"><div style="flex:0 0 140px"><b style="color:var(--p1); font-size:14px">大建建設様</b><div class="cap">58.8%・分業で仕組み化</div></div><p style="color:var(--ink); font-size:12px; margin:0">登録通知をアシスタントが直接確認→<b>当日すぐ架電＋朝夕30分の集中架電</b>。留守電は「御礼→動画案内」と段階化。電話は3回で区切り、以降は定期配信へ。掛けた日時・内容はチャットで報告し記録に残す</p></div>
+    <div class="box" style="border-left:4px solid var(--p1); display:flex; gap:14px; align-items:center; padding:10px 16px"><div style="flex:0 0 140px"><b style="color:var(--p1); font-size:14px">竹村工務店様</b><div class="cap">45.0%・本人が掛け切る</div></div><p style="color:var(--ink); font-size:12px; margin:0">気づいたらすぐ1本目→<b>11〜13時・15〜17時の2本、翌日は別の時間帯</b>で最低1週間掛け切る（<b>7回目で繋がった実例</b>）。固定に出ない方は携帯にも同時に。1週間で見込み判定して次へ</p></div>
+    <div class="box" style="border-left:4px solid var(--p1); display:flex; gap:14px; align-items:center; padding:10px 16px"><div style="flex:0 0 140px"><b style="color:var(--p1); font-size:14px">坂本建設工業様</b><div class="cap">43.8%・通知で狙い撃ち</div></div><p style="color:var(--ink); font-size:12px; margin:0">登録の瞬間に1本→御礼メール＋SMS→<b>開封通知が来た「見ている瞬間」に架電</b>。計3回で担当交代。電話が繋がらなくてもLINE公式に入口を用意</p></div>
+    <div class="say" style="padding:9px 16px"><span class="lbl">3社の共通点</span><b>①初動が早い（登録を放置しない）②回数と時間帯を決めて掛け切る ③区切りとその後が決まっている。</b>やり方は違っても、この3つは全社共通です。</div>
+  </div>
+  <div class="foot"><span class="real">前回7/24 MTG・3社ヒアリング原文より</span></div>
+</div>
+
+<!-- 9 処方：アポ率（電話の型＋7項目） -->
+<div class="sl">
+  <div class="rhythm"><span>観る</span><span>診る</span><span class="on">処方</span><span>決める</span><span>答え合わせ</span></div>
+  <div class="top"><span class="chip c1">処方②　穴が「アポ率」なら</span><span class="pg">9 / 17</span></div>
+  <div class="tt">アポ率90%の電話は、「アポ取りの電話」ではない。</div>
+  <p class="ms">佐古社長7/17研修より。電話の目的は2つ——アポ取得と<b>初回面談の質を上げること</b>。建物・性能の話は電話でせず、下の7項目を"会話の流れ"で聞く。電話の時点で商談は始まっている。</p>
+  <div class="body" style="gap:18px">
+    <div class="col" style="flex:0 0 40%; justify-content:center; gap:9px">
+      <div class="flow" style="flex-direction:column; gap:5px">
+        <div class="st" style="text-align:left; padding:7px 12px"><b>① 建物・性能の話は電話でしない</b>答えは面談に取っておく</div>
+        <div class="st" style="text-align:left; padding:7px 12px; background:var(--navy-soft); border-color:#c6d6e6"><b>② 切る前に、必ず次の日時を打診</b>「◯日か◯日、どちらが」と<b>二択</b>で</div>
+        <div class="st" style="text-align:left; padding:7px 12px; background:var(--navy-soft); border-color:#c6d6e6"><b>③ 通話中にSMS＋QRでLINE完了</b>（竹村工務店様）電話後の接点を確保して切る</div>
+      </div>
+      <div class="box" style="border-color:var(--navy); padding:9px 14px"><h4>「考えておきます」で切らせない</h4><p style="color:var(--ink)">曖昧に終わると9割は戻らない。<b>日時か、次の連絡手段か、必ずどちらかを持って切る。</b></p></div>
+    </div>
+    <div class="col grow" style="justify-content:center">
+      <table style="font-size:11.5px">
+        <tr><th style="width:50%">電話で聞く7項目（佐古社長）</th><th>狙い</th></tr>
+        <tr><td>① なぜ規格住宅で問い合わせたか</td><td>重視点（価格かデザインか）</td></tr>
+        <tr><td>② 家づくりを始めた時期</td><td>知識レベルの把握</td></tr>
+        <tr><td>③ 土地の有無</td><td>契約時期。土地ありは資料を事前入手</td></tr>
+        <tr><td>④ 引越ししたい時期</td><td>家族の優先順位</td></tr>
+        <tr><td>⑤ ローン事前審査の状況</td><td>予算感の把握</td></tr>
+        <tr><td>⑥ 希望エリア</td><td>提案の幅を広げる</td></tr>
+        <tr><td>⑦ 他社の検討状況</td><td>競合把握→面談の入りを修正</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="foot"><span class="real">佐古社長 7/17研修・実際の電話トーク資料より</span><span class="cap">YUNO HOME様の通話→アポ率<b style="color:var(--navy)">90%</b>の中身は、この7項目です。</span></div>
+</div>
+
+<!-- 10 処方：面談率（90秒＋スケジュール設計） -->
+<div class="sl">
+  <div class="rhythm"><span>観る</span><span>診る</span><span class="on">処方</span><span>決める</span><span>答え合わせ</span></div>
+  <div class="top"><span class="chip c1">処方③　穴が「面談率」なら</span><span class="pg">10 / 17</span></div>
+  <div class="tt">アポが飛ぶのは、面談冒頭と日程が「設計されていない」から。</div>
+  <p class="ms">佐古社長7/17研修より。すっぽかしは気合いでなく、面談の入りと日程の置き方で防ぎます。</p>
+  <div class="body" style="gap:18px">
+    <div class="col" style="flex:0 0 50%; justify-content:center; gap:10px">
+      <div class="quo" style="line-height:1.85"><span class="lbl">冒頭90秒の「許可取り」スクリプト</span>「最初にお約束を。この説明は<b>60分</b>で、家づくりとお金の話を全部お見せします。聞いていただくと<b>総予算と月々の支払いがその場で見える</b>ようになります。途中で合わないと思ったら<b>遠慮なく止めてください</b>。無理にお勧めしません。」</div>
+      <div class="flow"><div class="st"><b>① 時間を約束</b>60分と示す</div><div class="ar">＋</div><div class="st"><b>② 利益を約束</b>何が手に入るか</div><div class="ar">＋</div><div class="st"><b>③ 退路を渡す</b>断る自由</div></div>
+    </div>
+    <div class="col grow" style="justify-content:center; gap:8px">
+      <div class="cap" style="font-weight:700; color:var(--navy)">スケジュールは、こちらが設計する</div>
+      <div class="flow" style="flex-direction:column; gap:4px">
+        <div class="st" style="text-align:left; padding:7px 12px; background:var(--navy-soft); border-color:#c6d6e6"><b>初回面談（当日）</b>モニター説明60分＋資金診断→<b>次アポを"日付"で確定</b></div>
+        <div class="st" style="text-align:left; padding:7px 12px"><b>〜3日</b>お礼連絡＋<b>資金診断の結果を共有</b>（接点を切らさない）</div>
+        <div class="st" style="text-align:left; padding:7px 12px"><b>〜1週間</b>2回目面談（プラン・土地条件のすり合わせ）</div>
+        <div class="st" style="text-align:left; padding:7px 12px"><b>〜2週間</b>申込</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">佐古社長 7/17研修より</span><span class="cap">「また連絡します」で終わらせない。<b style="color:var(--navy)">次の予定を先に置くから、飛ばない。</b></span></div>
+</div>
+
+<!-- 11 処方：契約率①（総額＋競合） -->
+<div class="sl">
+  <div class="rhythm"><span>観る</span><span>診る</span><span class="on">処方</span><span>決める</span><span>答え合わせ</span></div>
+  <div class="top"><span class="chip c1">処方④　穴が「契約率」なら（1/2）</span><span class="pg">11 / 17</span></div>
+  <div class="tt">総額は先に出す。競合は「出る前」に塞ぐ。</div>
+  <p class="ms">佐古社長7/17研修より。金額ギャップは起きてから埋めず、起きる前に消す。競合は戦う前に来させない。</p>
+  <div class="body" style="gap:18px">
+    <div class="col" style="flex:0 0 48%; justify-content:center">
+      <div class="box" style="border-color:var(--p2)"><h4>金額は、総額を商談前半で見せる</h4>
+        <div style="display:flex; gap:14px; align-items:center; margin-top:8px">
+          <div class="stk" style="height:120px">
+            <div style="flex:210; background:#1e4e79">本体 2,100</div>
+            <div style="flex:48; background:#3b82c4">付帯 480</div>
+            <div style="flex:30; background:#7ba7cc">諸費用 300</div>
+          </div>
+          <div>
+            <div class="big" style="font-size:18px">建物総額 <em class="num">2,880万</em></div>
+            <p style="color:var(--ink); font-size:12px; margin:6px 0 0"><b>土地なしのお客様は</b><br>①総予算を確定→②土地予算を逆算→③予算内で探す。<b>土地から探させない。</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col grow" style="justify-content:center; gap:9px">
+      <div class="box" style="border-color:var(--p3)"><h4>① 判断基準を、先に渡す</h4><p style="color:var(--ink)">「どの会社で建てるにせよ、この3点だけは確認を」——比較の軸をこちらが作る</p></div>
+      <div class="box" style="border-color:var(--p3)"><h4>② 競合を貶さない</h4><p style="color:var(--ink)">一条・アイの強みは認めた上で、<b>総額と月々</b>で土俵を引き寄せる</p></div>
+      <div class="box" style="border-color:var(--p3)"><h4>③ 出る前に塞ぐ</h4><p style="color:var(--ink)">基準を先に持った客は、他社ショールームで迷わない</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">佐古社長 7/17研修より（名指し競合：一条工務店・アイ工務店）</span></div>
+</div>
+
+<!-- 12 処方：契約率②（クロージング＋断り理由） -->
+<div class="sl">
+  <div class="rhythm"><span>観る</span><span>診る</span><span class="on">処方</span><span>決める</span><span>答え合わせ</span></div>
+  <div class="top"><span class="chip c1">処方④　穴が「契約率」なら（2/2）</span><span class="pg">12 / 17</span></div>
+  <div class="tt">クロージングは、説得ではなく「確認」。</div>
+  <p class="ms">佐古社長7/17研修より。最後に強いのではなく、途中の合意を積むから最後が軽い（面談6件→契約4件・66.7%）。</p>
+  <div class="body" style="gap:18px">
+    <div class="col" style="flex:0 0 44%; justify-content:center; gap:8px">
+      <div class="flow" style="flex-direction:column; gap:4px">
+        <div class="st" style="text-align:left; padding:7px 12px"><b>予算の合意</b>総額を先出し</div>
+        <div class="ar" style="align-self:center; transform:rotate(90deg)">→</div>
+        <div class="st" style="text-align:left; padding:7px 12px"><b>基準の合意</b>判断軸を先に渡す</div>
+        <div class="ar" style="align-self:center; transform:rotate(90deg)">→</div>
+        <div class="st" style="text-align:left; padding:7px 12px"><b>計画の合意</b>スケジュール確定</div>
+        <div class="ar" style="align-self:center; transform:rotate(90deg)">→</div>
+        <div class="st" style="text-align:left; padding:8px 12px; background:var(--navy); color:#fff; border-color:var(--navy)"><b style="color:#fff">申込＝確認</b>「進めていいですか」だけ</div>
+      </div>
+    </div>
+    <div class="col grow" style="justify-content:center; gap:9px">
+      <table style="font-size:11.5px">
+        <tr><th style="width:42%">よくある断り文句</th><th>切り返しの型（考え方）</th></tr>
+        <tr><td>規格だと、自分たちの暮らしに合わない気がする</td><td>間取りは"選ぶ"もの。実例から、その家族に近い暮らし方のプランを当てて見せる</td></tr>
+        <tr><td>大手ともう少し比較してから決めたい</td><td>初回に"家選びの判断基準"を渡しておく（11枚目）。比較の軸をこちらが作れば、戻ってくる</td></tr>
+        <tr><td>もう少し検討してから決めたい</td><td>迷いの正体を「土地・予算・時期」のどれか1つに絞る。次の面談日を決めて場をつなぐ</td></tr>
+      </table>
+      <div class="quo"><span class="lbl">値引きを求められたら</span><b>値引けない理由を、根拠で語る。</b>「この価格は◯◯を削らないための価格です」——先に根拠を語れるから、値引きの土俵に乗らない。</div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">クロージングの型：佐古社長 7/17研修より</span><span class="cap">断り文句と切り返しは<b style="color:var(--navy)">一般の型</b>。徳田さんの実例に置き換えると、さらに強くなります</span></div>
+</div>
+
+<!-- 13 決める：アポ率目標 -->
+<div class="sl">
+  <div class="rhythm"><span>観る</span><span>診る</span><span>処方</span><span class="on">決める</span><span>答え合わせ</span></div>
+  <div class="top"><span class="chip c2">STEP 決める</span><span class="pg">13 / 17</span></div>
+  <div class="tt">各店、この場で「アポ率の目標」を決めてください。</div>
+  <p class="ms">診断で穴がどこだったとしても、今月みんなで追う共通の一段はアポ率です。事前チャットの通り、順に発表をお願いします。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:12px">
+    <div class="flow">
+      <div class="st" style="text-align:left; padding:13px 15px"><b>STEP 1　現在地</b>自店の今のアポ率をカルテで確認</div>
+      <div class="ar">→</div>
+      <div class="st" style="text-align:left; padding:13px 15px"><b>STEP 2　目標</b>現状＋5〜10pt。届く一歩を数字で（例：17%→25%）</div>
+      <div class="ar">→</div>
+      <div class="st" style="text-align:left; padding:13px 15px; background:var(--navy-soft); border-color:#c6d6e6"><b>STEP 3　一手</b>そのために変えること（例：通話中に必ず日程を打診）</div>
+    </div>
+    <div class="box" style="border-color:var(--navy)"><h4>発表フォーマット（一言で）</h4><p style="color:var(--ink); font-size:14px">「<b>◯◯</b>は、アポ率を今の <b>__%</b> から <b>__%</b> にします。そのために、<b>________</b> をやります。」</p></div>
+  </div>
+  <div class="foot"><span class="live">▶ 各店、順番に発表をお願いします</span><span class="cap">自分で診て、自分で決めた数字です。だから、追いかけられます。</span></div>
+</div>
+
+<!-- 14 見える化 -->
+<div class="sl">
+  <div class="rhythm"><span>観る</span><span>診る</span><span>処方</span><span class="on">決める</span><span>答え合わせ</span></div>
+  <div class="top"><span class="chip c0">見える化</span><span class="pg">14 / 17</span></div>
+  <div class="tt">発表いただいた数字を、その場で入力します。<br>来週から、目標対比が毎週見えます。</div>
+  <p class="ms">「決めて終わり」にしないための仕組み。発表 → その場で入力 → 翌週から各店カード（とカルテ）に「目標 vs 実績」が並びます。</p>
+  <div class="body" style="justify-content:center; gap:22px">
+    <div class="col" style="flex:0 0 42%; justify-content:center">
+      <div class="flow" style="flex-direction:column; gap:6px">
+        <div class="st" style="text-align:left"><b>① 各店が発表</b>「アポ率を◯%にします」</div>
+        <div class="ar" style="align-self:center">↓</div>
+        <div class="st" style="text-align:left"><b>② その場で入力</b>徳田が発表を聞きながら目標欄に記入</div>
+        <div class="ar" style="align-self:center">↓ 自動</div>
+        <div class="st" style="text-align:left; background:var(--navy-soft); border-color:#c6d6e6"><b>③ ダッシュボードに反映</b>各店カードに「目標ライン」が表示され、毎週の実績と並ぶ</div>
+      </div>
+    </div>
+    <div class="col grow" style="justify-content:center; gap:12px">
+      <div class="gauge">
+        <div class="gh"><span class="gn">◯◯工務店様</span><span class="cap">アポ率　実績 17% / 目標 25%</span></div>
+        <div class="track"><div class="fill" style="width:44%"></div><div class="goal" style="left:64%"></div></div>
+        <div class="cap" style="margin-top:6px">※表示イメージ。青が実績、オレンジの線が各店の決めた目標</div>
+      </div>
+      <div class="box" style="border-color:var(--navy); background:var(--navy-soft)"><h4>毎週、自分の目標との距離が見える</h4><p style="color:var(--ink)">届いた週は次へ。届かない週は、決めた一手に戻る。<b>見えているから、追いかけられます。</b></p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="todo">ダッシュボードの目標表示機能は会議前に本部側で用意</span></div>
+</div>
+
+<!-- 15 商談を磨く2つの道具 -->
+<div class="sl">
+  <div class="top"><span class="chip c3">本部からの道具　商談を磨く</span><span class="pg">15 / 17</span></div>
+  <div class="tt">KPIで穴が分かったら、次は商談の"中身"。<br>今日から使える道具を、2つ用意しました。</div>
+  <p class="ms">数字で「どこが穴か」を見つけたら、その先は商談の質。特に契約率・面談率が穴だった店は、この2つから使ってみてください。</p>
+  <div class="body" style="gap:18px">
+    <div class="box grow" style="border-top:4px solid var(--navy); display:flex; flex-direction:column; gap:9px">
+      <h4 style="font-size:15.5px">① 商談ふりかえりシート（人物金時敵）</h4>
+      <p style="color:var(--ink)">自分の商談（録画）を、自分で"解剖"する道具。<b>人・物・金・時・敵</b>の5視点で「どこまで掘れたか／まだ掘れていないのは何か」を見て、次の一手を1つ決める。</p>
+      <p style="color:var(--ink); font-size:12.5px">＝「検討します」の本当の理由が、この5つのどこに引っかかっていたかまで掘る。</p>
+      <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:auto">
+        <span class="chip c1">人</span><span class="chip c2">物</span><span class="chip c3">金</span><span class="chip c1">時</span><span class="chip c3">敵</span>
+      </div>
+      <a href="https://tokuda-k-sketch.github.io/lifex-public/shodan-furikaeri.html" target="_blank" rel="noopener" style="font-size:12.5px;font-weight:800;color:#fff;background:var(--navy);border-radius:6px;padding:8px 14px;text-decoration:none;text-align:center">▶ ふりかえりシートを開く</a>
+    </div>
+    <div class="box grow" style="border-top:4px solid var(--p3); display:flex; flex-direction:column; gap:9px">
+      <h4 style="font-size:15.5px">② 鉄板トーク集</h4>
+      <p style="color:var(--ink)">状況別の深掘りトークを集めた"武器庫"。お客様の言葉を受け、<b>「なぜ?」→気づき→LIFEXの強みへ</b>橋渡しする型。</p>
+      <p style="color:var(--ink); font-size:12.5px">＝処方（8〜12枚目）の型を、そのまま現場で使えるセリフに。</p>
+      <div style="display:flex; gap:6px; flex-wrap:wrap; margin-top:auto">
+        <span class="chip c0">重視点</span><span class="chip c0">断り文句</span><span class="chip c0">競合</span><span class="chip c0">フェーズ別</span>
+      </div>
+      <a href="https://tokuda-k-sketch.github.io/lifex-public/teppan-talk.html" target="_blank" rel="noopener" style="font-size:12.5px;font-weight:800;color:#fff;background:var(--p3);border-radius:6px;padding:8px 14px;text-decoration:none;text-align:center">▶ 鉄板トーク集を開く</a>
+    </div>
+  </div>
+  <div class="foot"><span class="todo">どちらも叩き台。皆さんの実際のトーク・基準で一緒に育てます</span></div>
+</div>
+
+<!-- 16 これからの進め方＋コンシェルジュ構想 -->
+<div class="sl">
+  <div class="top"><span class="chip c3">本部からのお知らせ　これからの進め方</span><span class="pg">16 / 17</span></div>
+  <div class="tt">商談チェックは、全店を一斉に見ません。</div>
+  <p class="ms">全部を本部が見るのは無理。だから「絞って深く／全店は自己点検／お手本を共有」の3段で、無理なく回します。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:10px">
+    <div class="box" style="display:flex; align-items:center; gap:16px; border-left:4px solid var(--p3)"><span style="font-size:22px; font-weight:800; color:var(--p3); flex-shrink:0; width:30px">1</span><div><b style="font-size:15px">数字が指した店を、絞って深く</b><div class="cap">契約率・面談率が課題の店から、個別に商談を一緒に振り返り（全店一斉ではなく、必要な店から）</div></div></div>
+    <div class="box" style="display:flex; align-items:center; gap:16px; border-left:4px solid var(--p3)"><span style="font-size:22px; font-weight:800; color:var(--p3); flex-shrink:0; width:30px">2</span><div><b style="font-size:15px">全店は「商談ふりかえりシート」で自己点検</b><div class="cap">今日の道具①。自分の商談を、自分で解剖して次の一手を決める</div></div></div>
+    <div class="box" style="display:flex; align-items:center; gap:16px; border-left:4px solid var(--p3)"><span style="font-size:22px; font-weight:800; color:var(--p3); flex-shrink:0; width:30px">3</span><div><b style="font-size:15px">お手本の商談を1本、全店で共有</b><div class="cap">ご本人の了承を得たものだけを教材化して共有</div></div></div>
+    <div class="say"><span class="lbl">目指す先：LIFEX 営業コンシェルジュ</span>ゆくゆくは、<b>加盟店が相談したら、AIが自動でアドバイスを返す仕組み</b>へ。今日のトーク集とふりかえりシートが、そのAIの"頭の中身"になります。加盟店が増えても回る形にしていきます。</div>
+  </div>
+  <div class="foot"><span class="todo">これは進め方の予告です。詳細は次回以降ご案内します</span></div>
+</div>
+
+<!-- 16 まとめ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">今日のまとめ</span><span class="pg">17 / 17</span></div>
+  <div class="tt">毎回、この5拍子で回します。持ち帰るのは2つ。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:12px">
+    <div class="flow">
+      <div class="st" style="padding:12px 8px"><b>観る</b>自店の率</div>
+      <div class="ar">→</div>
+      <div class="st" style="padding:12px 8px"><b>診る</b>穴を見つける</div>
+      <div class="ar">→</div>
+      <div class="st" style="padding:12px 8px"><b>処方</b>効く型を選ぶ</div>
+      <div class="ar">→</div>
+      <div class="st" style="padding:12px 8px"><b>決める</b>目標と一手</div>
+      <div class="ar">→</div>
+      <div class="st" style="padding:12px 8px; background:var(--navy-soft); border-color:#c6d6e6"><b>やる→答え合わせ</b>次回、結果を見る</div>
+    </div>
+    <div style="display:flex; gap:14px">
+      <div class="box grow" style="border-color:var(--navy); background:var(--navy-soft)"><h4>1. 自分の店の「穴」と「来週の一手」</h4><p style="color:var(--ink)">4つの率で一番低い段が穴。そこに効く処方を1つだけ。<b>あれもこれも、はやらない。</b></p></div>
+      <div class="box grow" style="border-color:var(--p2); background:var(--p2bg)"><h4>2. アポ率の目標（発表・入力済み）</h4><p style="color:var(--ink)">→ ダッシュボードに反映済み。<b>来週から毎週、目標との距離を確認します。</b></p></div>
+    </div>
+    <div class="say"><span class="lbl">次回に向けて</span>今日決めた一手を、1週間やってみてください。<b>次回の冒頭は、その答え合わせから。</b>「やって、どうだったか」を持ってきてください——それが次の誰かの処方箋になります。</div>
+  </div>
+  <div class="foot"><span class="cap">観て、診て、決めて、やる。<b style="color:var(--navy)">自分の数字は、自分で動かせる。</b></span></div>
+</div>
+
+</div>

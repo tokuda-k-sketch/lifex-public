@@ -1,0 +1,253 @@
+<title>LIFEX 鉄板トーク集（叩き台）</title>
+<style>
+  :root{
+    --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+    --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+    --p2:#2e7d6e; --p2bg:#e7f2ef; --leak:#b3372b; --leakbg:#fbe9e7;
+    --amber:#8a5a00; --amberbg:#fdf3dd; --amberln:#ecd9a8;
+  }
+  *{box-sizing:border-box}
+  body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif; color:var(--ink);
+    background:#eef2f6; margin:0; line-height:1.65; font-feature-settings:"palt"}
+  .wrap{width:min(1000px,94vw); margin:26px auto 60px}
+  .hd{background:#fff; border-radius:10px 10px 0 0; padding:24px 30px 18px; box-shadow:0 2px 18px rgba(20,40,60,.09)}
+  .eyebrow{font-size:12px; letter-spacing:.16em; color:var(--sub); font-weight:700}
+  h1{font-size:25px; font-weight:800; margin:6px 0 4px}
+  .lead{font-size:13.5px; color:var(--sub); margin:0}
+  .draft{display:inline-block; margin-top:11px; font-size:11.5px; color:var(--amber); background:var(--amberbg);
+    border:1px solid var(--amberln); border-radius:4px; padding:5px 13px; font-weight:700; line-height:1.6}
+  .draft b{color:var(--p2)}
+  .tabs{display:flex; flex-wrap:wrap; gap:6px; background:#fff; padding:0 30px 0; box-shadow:0 2px 18px rgba(20,40,60,.09)}
+  .tab{font-size:13px; font-weight:700; padding:11px 16px; border:none; background:none; color:var(--sub); cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-1px}
+  .tab:hover{color:var(--navy)}
+  .tab.on{color:var(--navy); border-bottom-color:var(--navy)}
+  .tab:focus-visible{outline:2px solid var(--navy-soft); outline-offset:-2px}
+  .panel{background:#fff; border-radius:0 0 10px 10px; padding:8px 30px 28px; box-shadow:0 2px 18px rgba(20,40,60,.09)}
+  .page{display:none}
+  .page.on{display:block}
+  .page-h{font-size:12.5px; color:var(--sub); margin:16px 0 4px; padding-top:8px}
+  .card{border:1px solid var(--line); border-radius:10px; overflow:hidden; margin-top:14px}
+  .card .trig{display:flex; align-items:center; gap:10px; padding:11px 16px; background:var(--leakbg); border-bottom:1px solid #f0d5cf}
+  .card .trig .lbl{font-size:10.5px; font-weight:800; color:var(--leak); background:#fff; border:1px solid #e6b7ad; border-radius:99px; padding:2px 9px; flex-shrink:0}
+  .card .trig .say{font-size:14.5px; font-weight:800; color:var(--ink)}
+  .card .flow{padding:6px 16px 14px}
+  .step{display:flex; gap:12px; padding:9px 0; border-bottom:1px dashed var(--line)}
+  .step:last-child{border-bottom:none}
+  .step .k{flex:0 0 74px; font-size:11px; font-weight:800; color:#fff; background:var(--navy); border-radius:5px; height:22px; display:flex; align-items:center; justify-content:center; margin-top:1px}
+  .step.bridge .k{background:var(--p2)}
+  .step .t{font-size:13px}
+  .step .t .you{color:var(--navy); font-weight:700}
+  .step .t .cust{color:var(--leak); font-weight:700}
+  .step .t b{background:#fff2b8; padding:0 2px}
+  .src{display:inline-block; font-size:10.5px; font-weight:700; border-radius:4px; padding:1px 8px; margin-left:8px; vertical-align:middle}
+  .src.real{color:var(--p2); background:var(--p2bg); border:1px solid #bfdcd5}
+  .src.hint{color:var(--amber); background:var(--amberbg); border:1px solid var(--amberln)}
+  .note{font-size:11.5px; color:var(--sub); margin-top:10px}
+  @media print{
+    body{background:#fff}
+    .hd,.tabs,.panel{box-shadow:none}
+    .tabs{display:none}
+    .page{display:block !important}
+    .page-h{page-break-before:auto}
+    .card{page-break-inside:avoid}
+  }
+</style>
+
+<div class="wrap">
+  <div class="hd">
+    <div class="eyebrow">LIFEX 月2棟プロジェクト　商談の"武器庫"</div>
+    <h1>鉄板トーク集</h1>
+    <p class="lead">お客様の言葉を受けて「なぜ？」で本音を掘り、意外な気づきを渡して、LIFEXの強みへ橋渡しする——深掘りの会話の型を、状況別にまとめました。</p>
+    <div class="draft">■ 叩き台 ｜ <b class="real">緑バッジ＝佐古社長7/17研修の"実物"の型</b>／<span style="color:var(--amber)">黄バッジ＝クロが規格住宅向けに書いた"案"（要差し替え）</span>。文言は徳田さんの実際の言い回しに置き換える前提です。</div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab on" data-t="0">① 重視点を深掘り</button>
+    <button class="tab" data-t="1">② 断り文句を切り返す</button>
+    <button class="tab" data-t="2">③ 競合を"貶さず"攻略</button>
+    <button class="tab" data-t="3">④ フェーズ別の型</button>
+  </div>
+
+  <div class="panel">
+
+    <!-- ① 重視点の深掘り -->
+    <div class="page on" data-p="0">
+      <div class="page-h">アンケートやヒアリングで「これが大事」と出た点を、その場で深掘りしてLIFEXの強みへ。</div>
+
+      <div class="card">
+        <div class="trig"><span class="lbl">価格・予算</span><span class="say">「予算内で建てたいんです」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">① 受ける</span><span class="t">「そうですよね、一番大事なところです。」</span></div>
+          <div class="step"><span class="k">② なぜ？</span><span class="t"><span class="you">「なぜ予算が気になりますか？ 以前どこかで、思ったより高い見積もりを見られました？」</span></span></div>
+          <div class="step"><span class="k">③ 気づき</span><span class="t">「実は<b>注文住宅は、打合せのたびに"あれもこれも"で総額が際限なく上がりがち</b>なんです。契約後に予算オーバー、はよくある話で。」</span></div>
+          <div class="step bridge"><span class="k">④ 橋渡し</span><span class="t">「LIFEXは<b>最初から総額がはっきり見える</b>ので、そのブレがないんです。」<span class="src hint">案・要差し替え</span></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="trig"><span class="lbl">性能・暖かさ</span><span class="say">「暖かい家がいいんです」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">① 受ける</span><span class="t">「大事ですよね。今のお住まい、寒かったりします？」</span></div>
+          <div class="step"><span class="k">② なぜ？</span><span class="t"><span class="you">「"暖かい"って、色んな会社さんが言いますよね。ちなみに何で"暖かさ"を比べたらいいか、ご存知ですか？」</span></span></div>
+          <div class="step"><span class="k">③ 気づき</span><span class="t">「カタログの数値だけでなく、<b>実際に測った気密（すき間）</b>で決まるんです。ここが会社で全然違って。」</span></div>
+          <div class="step bridge"><span class="k">④ 橋渡し</span><span class="t">「LIFEXの規格仕様は〇〇なので、そこが担保できるんです。」<span class="src hint">※LIFEXの実際の性能仕様に要差し替え</span></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="trig"><span class="lbl">デザイン</span><span class="say">「おしゃれな家にしたい」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">② なぜ？</span><span class="t"><span class="you">「素敵ですね。どんな雰囲気がお好きですか？（写真を見せながら）これとかどうです？」</span></span></div>
+          <div class="step"><span class="k">③ 気づき</span><span class="t">「"規格"って聞くと画一的に思われがちですが、<b>実際はここまでできる</b>んです（実例を見せる）。」</span></div>
+          <div class="step bridge"><span class="k">④ 橋渡し</span><span class="t">「ゼロから悩むより、<b>"良い"と選ばれた形から選ぶ</b>方が、実は失敗しないしコストも読めるんです。」<span class="src hint">案・要差し替え</span></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="trig"><span class="lbl">早さ・分かりやすさ</span><span class="say">「あまり打合せに時間をかけたくない」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">② なぜ？</span><span class="t"><span class="you">「お忙しいですもんね。入居のご希望時期って決まっています？」</span></span></div>
+          <div class="step"><span class="k">③ 気づき</span><span class="t">「注文は打合せが何十回にもなって、<b>疲れて途中で妥協</b>される方も多いんです。」</span></div>
+          <div class="step bridge"><span class="k">④ 橋渡し</span><span class="t">「LIFEXは<b>工程も期間も読める</b>ので、迷わず・早く・きれいに進みます。」<span class="src hint">案・要差し替え</span></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="trig"><span class="lbl">土地から</span><span class="say">「まだ土地が決まっていなくて」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">型</span><span class="t"><b>土地から探させない。</b>① 総予算を確定する → ② 土地に使える予算を逆算する → ③ その予算内で土地を探す、の順に乗せる。<span class="src real">佐古社長 7/17</span></span></div>
+          <div class="step bridge"><span class="k">④ 橋渡し</span><span class="t">「先に総額を固めるので、"土地は買えたけど家にお金が回らない"を防げます。」</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② 断り文句 -->
+    <div class="page" data-p="1">
+      <div class="page-h">「検討します」の裏にある本当の理由を、否定せず掘って解く。</div>
+
+      <div class="card">
+        <div class="trig"><span class="lbl">断り</span><span class="say">「規格だと、自由が効かない気がする」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">② なぜ？</span><span class="t"><span class="you">「なぜそう思われますか？」</span></span></div>
+          <div class="step"><span class="k">③ 気づき</span><span class="t">「実は<b>ゼロから決める注文の方が、迷いと打合せ増でコストも時間も膨らみやすい</b>んです。」</span></div>
+          <div class="step bridge"><span class="k">④ 橋渡し</span><span class="t">「LIFEXは"実際に暮らしやすい"と選ばれた型から選ぶので、<b>失敗が少なく、総額も読める</b>んです。」<span class="src hint">案・要差し替え</span></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="trig"><span class="lbl">断り</span><span class="say">「もっと安いところがあって…」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">② なぜ？</span><span class="t"><span class="you">「そうなんですね。ちなみにその金額、"何が"含まれているか比べられました？」</span></span></div>
+          <div class="step"><span class="k">③ 気づき</span><span class="t">「安さには必ず理由があって、<b>性能や標準仕様が削られている</b>ことが多いんです。後から足すと結局高くなる、も"あるある"で。」</span></div>
+          <div class="step bridge"><span class="k">④ 橋渡し</span><span class="t">「LIFEXは<b>必要な性能を削らないための価格</b>です。ここは正直にお伝えします。」<span class="src hint">案・要差し替え</span></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="trig"><span class="lbl">断り</span><span class="say">「大手ともう少し比較してから決めたい」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">② なぜ？</span><span class="t"><span class="you">「もちろんです。ちなみに大手さんの、どういうところに惹かれています？（安心感ですか？）」</span></span></div>
+          <div class="step"><span class="k">③ 気づき</span><span class="t">「大手の"安心"の正体を、一緒に言語化する。何と何を比べれば後悔しないか。」</span></div>
+          <div class="step bridge"><span class="k">④ 橋渡し</span><span class="t"><b>こちらから"家選びの判断基準"を先に渡す</b>。総額・暮らしやすさで土俵をつくる（けなさない）。<span class="src real">佐古社長 7/17</span></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="trig"><span class="lbl">断り</span><span class="say">「一度持ち帰って検討します」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">② なぜ？</span><span class="t"><span class="you">「ぜひ！ 差し支えなければ、<b>一番引っかかっているのは"お金""間取り""時期"のどれ</b>ですか？」</span></span></div>
+          <div class="step"><span class="k">③ 掘る</span><span class="t">迷いの正体を<b>1つに絞る</b>。＝「人物金時敵」のどこに引っかかっているかを特定する。</span></div>
+          <div class="step bridge"><span class="k">④ 橋渡し</span><span class="t">「では次回、そこがスッキリする資料をご用意します。」と言って、<b>次の面談日を"日付"でその場で押さえる</b>。<span class="src real">佐古社長 7/17</span></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="trig"><span class="lbl">断り</span><span class="say">「親（配偶者）に相談してから」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">② なぜ？</span><span class="t"><span class="you">「大事なご判断ですもんね。どなたのご意見が一番大きいですか？」</span></span></div>
+          <div class="step"><span class="k">③ 掘る</span><span class="t"><b>決裁者・キーマン（人物金時敵の"人"）</b>を特定する。反対の理由まで聞けるとベスト。</span></div>
+          <div class="step bridge"><span class="k">④ 橋渡し</span><span class="t">「次回、ぜひご一緒に。その場でご説明した方が早いです」と<b>キーマン同席の場を設計</b>する。<span class="src hint">案・要差し替え</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ③ 競合 -->
+    <div class="page" data-p="2">
+      <div class="page-h">大原則：<b>けなさない。</b>相手の強みを認めた上で、"アプローチの違い"を示して土俵を引き寄せる。<span class="src real">佐古社長 7/17</span></div>
+
+      <div class="card">
+        <div class="trig"><span class="lbl">競合</span><span class="say">「一条工務店さんも見ていて…」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">① 受ける</span><span class="t">「一条さん、いい会社ですよね！ ちなみに<span class="you">なぜ一条さんにお問い合わせを？</span>」</span></div>
+          <div class="step bridge"><span class="k">④ 違い</span><span class="t">「性能の"考え方"が違うんです。相手は◯◯というアプローチ、LIFEXは△△というアプローチ、と<b>違いで比較</b>する（優劣でなく）。」<span class="src hint">※LIFEXの実際の性能の売りに要差し替え</span></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="trig"><span class="lbl">競合</span><span class="say">「地元の工務店さんとも迷っていて」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">① 受ける</span><span class="t">「地元の会社さん、親身でいいですよね。」</span></div>
+          <div class="step bridge"><span class="k">④ 違い</span><span class="t">「地場の会社さんは"担当者の腕"に左右されがち。LIFEXは<b>全国で磨かれた"型"がある</b>ので、<b>品質と価格が安定して再現</b>できるんです。」<span class="src hint">案・要差し替え</span></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="trig"><span class="lbl">競合</span><span class="say">「建売の方が安いかなと」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">① 受ける</span><span class="t">「価格の魅力、ありますよね。」</span></div>
+          <div class="step bridge"><span class="k">④ 違い</span><span class="t">「建売は"出来合い"で選べない、注文は"高くて大変"。LIFEXは<b>その中間——選べる自由さと、手の届く価格</b>のいいとこ取りなんです。」<span class="src hint">案・要差し替え</span></span></div>
+        </div>
+      </div>
+
+      <div class="note">※競合ごとの具体トークは、<b>LIFEXが実際にどこと競合し、何で勝っているか</b>を徳田さんに伺って差し替えます。ここは"けなさず違いで比較する型"の見本です。</div>
+    </div>
+
+    <!-- ④ フェーズ別 -->
+    <div class="page" data-p="3">
+      <div class="page-h">商談の流れに沿った"型"。詳しくは7/31 MTGの処方スライド（8〜12枚目）と対応。</div>
+
+      <div class="card">
+        <div class="trig" style="background:var(--navy-soft); border-color:#c6d6e6"><span class="lbl" style="color:var(--navy); border-color:#a8c1db">電話</span><span class="say">つながった1本を、アポにする</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">型</span><span class="t">建物・性能の話は電話でしない。<b>7項目</b>（①なぜ規格で問合せ ②家づくり時期 ③土地有無 ④引越時期 ⑤事前審査 ⑥希望エリア ⑦他社検討）を会話の流れで聞く。<span class="src real">佐古社長 7/17</span></span></div>
+          <div class="step bridge"><span class="k">締め</span><span class="t"><b>切る前に「◯日か◯日、どちらが」と日時を二択で打診</b>。SMS＋QRでLINEも確保して切る。</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="trig" style="background:var(--navy-soft); border-color:#c6d6e6"><span class="lbl" style="color:var(--navy); border-color:#a8c1db">面談冒頭</span><span class="say">聞いてもらえる状態を、先に作る</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">型</span><span class="t"><b>冒頭90秒の許可取り</b>：①時間を約束（◯分で）②聞くと何が手に入るか ③「合わなければ止めてOK」の退路。<span class="src hint">スクリプトは案・要差し替え</span></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="trig" style="background:var(--navy-soft); border-color:#c6d6e6"><span class="lbl" style="color:var(--navy); border-color:#a8c1db">金額</span><span class="say">総額を、商談前半で先に出す</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">型</span><span class="t"><b>本体＋付帯＋諸費用の総額を先に見せる</b>（例2,880万）。「本体の他にここまで掛かります」をこちらから先に言う。<span class="src real">佐古社長 7/17</span></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="trig" style="background:var(--navy-soft); border-color:#c6d6e6"><span class="lbl" style="color:var(--navy); border-color:#a8c1db">クロージング</span><span class="say">説得ではなく「確認」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">型</span><span class="t">予算の合意 → 基準の合意 → 計画の合意 を途中で積み、申込は<b>「進めていいですか」の確認だけ</b>。<span class="src real">佐古社長 7/17</span></span></div>
+          <div class="step bridge"><span class="k">値引き</span><span class="t">値引けない理由を根拠で語る。「この価格は◯◯を削らないための価格です」。</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  var tabs = document.querySelectorAll('.tab');
+  var pages = document.querySelectorAll('.page');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var i = tab.getAttribute('data-t');
+      tabs.forEach(function(t){ t.classList.toggle('on', t===tab); });
+      pages.forEach(function(p){ p.classList.toggle('on', p.getAttribute('data-p')===i); });
+    });
+  });
+</script>

@@ -1,0 +1,212 @@
+<title>LIFEX 商談ふりかえりシート（人物金時敵・深掘り版）</title>
+<style>
+  :root{
+    --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+    --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+    --p2:#2e7d6e; --p2bg:#e7f2ef; --leak:#b3372b; --leakbg:#fbe9e7;
+    --amber:#8a5a00; --amberbg:#fdf3dd; --amberln:#ecd9a8;
+    --jin:#1e4e79; --mono:#2e7d6e; --kane:#b05c1f; --toki:#3b82c4; --teki:#b3372b;
+  }
+  *{box-sizing:border-box}
+  body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif; color:var(--ink);
+    background:#eef2f6; margin:0; line-height:1.65; font-feature-settings:"palt"}
+  .sheet{width:min(980px,94vw); margin:26px auto; background:#fff; border-radius:10px;
+    box-shadow:0 2px 18px rgba(20,40,60,.09); overflow:hidden}
+  .hd{padding:26px 34px 20px; border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:12px; letter-spacing:.16em; color:var(--sub); font-weight:700}
+  h1{font-size:25px; font-weight:800; margin:6px 0 4px}
+  .lead{font-size:13.5px; color:var(--sub); margin:0}
+  .draft{display:inline-block; margin-top:10px; font-size:11.5px; color:var(--amber); background:var(--amberbg);
+    border:1px solid var(--amberln); border-radius:4px; padding:3px 12px; font-weight:700}
+  .meta{display:flex; flex-wrap:wrap; gap:10px 22px; padding:15px 34px; background:var(--panel); border-bottom:1px solid var(--line)}
+  .meta label{font-size:12px; color:var(--sub); font-weight:700; display:flex; align-items:center; gap:8px}
+  .meta input,.meta select{border:none; border-bottom:1.5px solid #b9c6d4; background:transparent; font:inherit; font-size:13.5px; padding:2px 6px; color:var(--ink)}
+  .meta input{min-width:110px}
+  .meta input:focus,.meta select:focus{outline:none; border-color:var(--navy)}
+  .body{padding:6px 34px 22px}
+  .sec{margin-top:24px}
+  .sec-h{display:flex; align-items:baseline; gap:11px; margin-bottom:4px}
+  .sec-h .no{font-size:12.5px; font-weight:800; color:#fff; background:var(--navy); border-radius:5px; padding:3px 11px; flex-shrink:0}
+  .sec-h h2{font-size:17px; font-weight:800; margin:0; color:var(--navy)}
+  .sec-note{font-size:12.5px; color:var(--sub); margin:2px 0 12px 0}
+  /* 人物金時敵グリッド */
+  .gmc{border:1px solid var(--line); border-radius:9px; overflow:hidden}
+  .gmc .row{display:grid; grid-template-columns:120px 1.1fr 1fr; border-top:1px solid var(--line)}
+  .gmc .row.head{border-top:none}
+  .gmc .rh{background:var(--panel); font-size:11px; font-weight:700; color:var(--sub); padding:8px 11px}
+  .gmc .lens{padding:11px 12px; display:flex; flex-direction:column; gap:3px; justify-content:center; color:#fff}
+  .gmc .lens b{font-size:19px; font-weight:800; line-height:1}
+  .gmc .lens span{font-size:11px; font-weight:600; opacity:.92; line-height:1.4}
+  .gmc textarea{border:none; border-left:1px solid var(--line); border-radius:0; background:#fff; min-height:64px; font:inherit; font-size:12.5px; padding:8px 11px; resize:vertical; color:var(--ink); line-height:1.55}
+  .gmc textarea::placeholder{color:#aeb9c4}
+  .gmc textarea:focus{outline:none; box-shadow:inset 0 0 0 2px var(--navy-soft)}
+  .gmc textarea.next{background:#fffdf7}
+  /* 鉄板トークの型 */
+  .talk{display:flex; align-items:stretch; gap:8px; margin-bottom:12px}
+  .talk .st{flex:1; border:1px solid var(--line); border-radius:8px; padding:10px 12px; background:var(--panel)}
+  .talk .st .k{font-size:11px; font-weight:800; color:var(--navy); display:block; margin-bottom:3px}
+  .talk .st .t{font-size:12.5px; color:var(--ink)}
+  .talk .ar{align-self:center; color:#b6c0ca; font-weight:800; flex-shrink:0}
+  .ex{border:1px solid var(--line); border-radius:8px; overflow:hidden}
+  .ex .er{display:grid; grid-template-columns:150px 1fr; border-top:1px solid var(--line); font-size:12.5px}
+  .ex .er.head{border-top:none}
+  .ex .eh{background:var(--panel); font-size:11px; font-weight:700; color:var(--sub); padding:7px 11px}
+  .ex .say{padding:8px 11px}
+  .ex .cx{padding:8px 11px; font-weight:700; color:var(--navy); background:#fbfcfd; display:flex; align-items:center}
+  .ex .say b{color:var(--leak)}
+  .ex .say .arrow{color:var(--p2); font-weight:800}
+  .q{margin:12px 0}
+  .q .ask{font-size:14px; font-weight:700; margin-bottom:5px}
+  .q .ask b{color:var(--navy)}
+  .q .sub{font-size:12px; color:var(--sub); font-weight:400; display:block; margin-top:1px}
+  textarea.free{width:100%; border:1px solid var(--line); border-radius:7px; background:#fcfdfe; font:inherit; font-size:13.5px; padding:9px 12px; resize:vertical; color:var(--ink); line-height:1.6}
+  textarea.free:focus{outline:none; border-color:var(--navy); background:#fff; box-shadow:0 0 0 3px var(--navy-soft)}
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin:6px 0}
+  .chips label{font-size:13px; font-weight:700; border:1.5px solid #b9c6d4; border-radius:99px; padding:5px 15px; cursor:pointer; background:#fff; display:flex; align-items:center; gap:7px}
+  .chips input{appearance:none; -webkit-appearance:none; width:15px; height:15px; border:2px solid #b9c6d4; border-radius:4px; position:relative; margin:0}
+  .chips input:checked{background:var(--leak); border-color:var(--leak)}
+  .chips input:checked::after{content:"✓"; color:#fff; font-size:11px; font-weight:900; position:absolute; left:1px; top:-3px}
+  .chips label:has(input:checked){border-color:var(--leak); background:var(--leakbg); color:var(--leak)}
+  .decide{border:2px solid var(--p2); background:var(--p2bg); border-radius:9px; padding:16px 18px}
+  .decide .ask{color:var(--p2)}
+  .decide textarea.free{border-color:#a9cabb}
+  .foot{padding:16px 34px 24px; border-top:1px solid var(--line); background:var(--panel)}
+  .foot h3{font-size:13px; margin:0 0 6px; color:var(--navy)}
+  .foot p{font-size:12.5px; color:var(--sub); margin:0 0 8px}
+  .btns{display:flex; gap:10px; margin-top:6px}
+  .btns button{font:inherit; font-size:13px; font-weight:700; padding:8px 18px; border-radius:7px; cursor:pointer; border:1px solid var(--navy)}
+  .btns .print{background:var(--navy); color:#fff}
+  .btns .reset{background:#fff; color:var(--navy)}
+  @media print{
+    body{background:#fff}
+    .sheet{box-shadow:none; width:100%; margin:0; border-radius:0}
+    .btns{display:none}
+    textarea,.chips input,.gmc .lens{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+  }
+</style>
+
+<div class="sheet">
+  <div class="hd">
+    <div class="eyebrow">LIFEX 月2棟プロジェクト　商談を"解剖"する</div>
+    <h1>商談ふりかえりシート（人物金時敵・深掘り版）</h1>
+    <p class="lead">◯×を付けるためのシートではありません。<b>「人物金時敵」の5視点で、どこまで掘れたか・まだ掘れていないのは何か</b>を見て、次の一手を決めます。商談の前に仮説を書き、後で答え合わせしてもOK。</p>
+    <span class="draft">■ 叩き台 v3 ｜ Gハウス注文住宅の教育サイト（人物金時敵・鉄板トーク）を参考に、LIFEX規格住宅向けに翻案。トーク例・基準は徳田さんの実際の型で今後強化します</span>
+  </div>
+
+  <div class="meta">
+    <label>店舗名 <input type="text"></label>
+    <label>商談日 <input type="text" placeholder="　/　"></label>
+    <label>対象のお客様 <input type="text" placeholder="　　様"></label>
+    <label>結果 <select><option value="">選ぶ</option><option>次アポ獲得</option><option>申込</option><option>保留・持ち帰り</option><option>失注</option></select></label>
+  </div>
+
+  <div class="body">
+
+    <!-- PART 1 人物金時敵 -->
+    <div class="sec">
+      <div class="sec-h"><span class="no">PART 1</span><h2>「人物金時敵」で、この商談を掘る</h2></div>
+      <p class="sec-note">契約の障壁になる「見えない課題」を、5つの視点で洗い出します。左＝今回つかめたこと／右＝まだ掘れていない・次に聞くこと。<b>右の空欄が多いほど、そこが次の伸びしろ</b>です。</p>
+      <div class="gmc">
+        <div class="row head"><div class="rh"></div><div class="rh">今回つかめたこと</div><div class="rh">まだ掘れていない／次に聞くこと</div></div>
+        <div class="row">
+          <div class="lens" style="background:var(--jin)"><b>人</b><span>決裁者は誰か／キーマン／背中を押す協力者</span></div>
+          <textarea placeholder="例：決裁は奥様。ご主人は乗り気だが義父の意見が強い…"></textarea>
+          <textarea class="next" placeholder="例：義父が何を心配しているか、次回ヒアリング"></textarea>
+        </div>
+        <div class="row">
+          <div class="lens" style="background:var(--mono)"><b>物</b><span>土地の有無・条件／LIFEXの家（デザイン・性能）への共感／譲れない要望</span></div>
+          <textarea placeholder="例：土地あり。規格プランは気に入っているが収納に不満…"></textarea>
+          <textarea class="next" placeholder="例：譲れない要望（回遊動線？書斎？）を具体化"></textarea>
+        </div>
+        <div class="row">
+          <div class="lens" style="background:var(--kane)"><b>金</b><span>総予算感／ローン事前審査・自己資金／親からの援助</span></div>
+          <textarea placeholder="例：総額のイメージが曖昧。事前審査まだ…"></textarea>
+          <textarea class="next" placeholder="例：事前審査を次回までに。自己資金・援助の有無"></textarea>
+        </div>
+        <div class="row">
+          <div class="lens" style="background:var(--toki)"><b>時</b><span>入居希望時期／「子の入学まで」等のリミット／いつ決めたいか</span></div>
+          <textarea placeholder="例：来春入居希望。でも「いつ決めるか」は未定…"></textarea>
+          <textarea class="next" placeholder="例：逆算して「いつまでに会社決定」を一緒に確認"></textarea>
+        </div>
+        <div class="row">
+          <div class="lens" style="background:var(--teki)"><b>敵</b><span>競合（他工務店・大手・建売）／今の住まいの不満／反対者・土地の障害</span></div>
+          <textarea placeholder="例：一条とアイも検討中。今は寒い賃貸…"></textarea>
+          <textarea class="next" placeholder="例：競合の何が刺さっているか（性能？価格？）を特定"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- PART 2 鉄板トークの型 -->
+    <div class="sec">
+      <div class="sec-h"><span class="no">PART 2</span><h2>掘り方の「型」——鉄板トーク</h2></div>
+      <p class="sec-note">上をどう掘るか。お客様の言葉を受けて<b>「なぜ？」を重ね、意外な気づきを渡し、LIFEXの強みへ橋渡し</b>する。この流れが深掘りの基本です。</p>
+      <div class="talk">
+        <div class="st"><span class="k">① 受ける</span><span class="t">お客様の言葉を否定せず受け止める</span></div>
+        <div class="ar">→</div>
+        <div class="st"><span class="k">② なぜ？</span><span class="t">「なぜそう思われますか？」で理由（本音）を引き出す</span></div>
+        <div class="ar">→</div>
+        <div class="st"><span class="k">③ 気づき</span><span class="t">相手が知らない事実・視点を渡す（へぇ！を作る）</span></div>
+        <div class="ar">→</div>
+        <div class="st"><span class="k">④ 橋渡し</span><span class="t">その気づきを、LIFEXの強みに自然につなぐ</span></div>
+      </div>
+      <div class="ex">
+        <div class="er head"><div class="eh">お客様の言葉（LIFEX例）</div><div class="eh">深掘りの会話（②なぜ→③気づき→④橋渡し）</div></div>
+        <div class="er"><div class="cx">「規格だと、自由が効かない気がする」</div><div class="say">🧑‍💼「なぜそう思われますか？」→ 実は<b>ゼロから決める注文は、迷いと打合せ増でコストも時間も膨らみやすい</b>。<span class="arrow">→</span> LIFEXは"実際に暮らしやすい"と選ばれた型から選ぶので、<b>失敗が少なく、総額も読める</b>。</div></div>
+        <div class="er"><div class="cx">「価格が気になる」</div><div class="say">🧑‍💼「なぜですか？（前に高い見積もりを見られました？）」→ 注文は打合せのたびに<b>際限なく上がる不安</b>がある。<span class="arrow">→</span> LIFEXは<b>最初から総額が見える</b>から、その不安がない。</div></div>
+        <div class="er"><div class="cx">「大手とも比較してから」</div><div class="say">🧑‍💼「なぜ大手を？（安心感ですか？）」→ 大手の安心の正体を言語化。<span class="arrow">→</span> こちらから<b>"家選びの判断基準"を先に渡し</b>、総額と暮らしやすさで土俵をつくる（貶さない）。</div></div>
+      </div>
+      <p class="sec-note" style="margin-top:8px">※このトーク例は<b>叩き台</b>です。LIFEXの実際の強み・言い回しに、徳田さんの手で置き換えてください。</p>
+    </div>
+
+    <!-- PART 3 分かれ目と本音 -->
+    <div class="sec">
+      <div class="sec-h"><span class="no">PART 3</span><h2>分かれ目と、本当の理由</h2></div>
+      <div class="q">
+        <div class="ask"><b>流れが決まった瞬間</b>はどこでしたか。お客様は何と言い、あなたは何と返しましたか。<span class="sub">良い方に動いた／崩れた、どちらでも。できるだけ実際のセリフで</span></div>
+        <textarea class="free" rows="3"></textarea>
+      </div>
+      <div class="q">
+        <div class="ask">「検討します／持ち帰ります」の<b>本当の理由</b>は、人物金時敵の<b>どこ</b>に引っかかっていましたか。<span class="sub">＝PART1で"掘れていなかった"視点とつながっているはず</span></div>
+        <div class="chips">
+          <label><input type="checkbox">人（決裁者・反対者）</label>
+          <label><input type="checkbox">物（プラン・要望）</label>
+          <label><input type="checkbox">金（予算・資金）</label>
+          <label><input type="checkbox">時（時期・決め時）</label>
+          <label><input type="checkbox">敵（競合・不満）</label>
+          <label><input type="checkbox">特定できなかった</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- PART 4 次の一手 -->
+    <div class="sec">
+      <div class="sec-h"><span class="no">PART 4</span><h2>次に「必ず変える1つ」</h2></div>
+      <div class="decide">
+        <div class="q" style="margin:0 0 12px">
+          <div class="ask">この1本から、次の商談で<b>必ず変えることを、1つだけ</b>。<span class="sub">多くは「掘れていなかった視点を、次はこう聞く」になるはず</span></div>
+          <textarea class="free" rows="2"></textarea>
+        </div>
+        <div class="q" style="margin:0">
+          <div class="ask">それを<b>いつ・どのお客様との商談で</b>試しますか。</div>
+          <textarea class="free" rows="1"></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <h3>使い方</h3>
+    <p>商談の後（できれば当日）に、録画を見ながらPART1を埋めます。きれいに全部埋めるより、<b>「まだ掘れていない」右側を正直に書く</b>ことが目的です。そこがそのまま、PART3の"検討します"の正体であり、PART4の次の一手になります。KPIダッシュボードで契約率・面談率が穴だった店は、失注した商談を1本、このシートで解剖してみてください。</p>
+    <p style="font-size:11.5px">※本シートは叩き台（v3）。「人物金時敵」「鉄板トーク」はGハウス注文住宅の教育サイトを参考に、規格住宅LIFEX向けに翻案したものです。項目・トーク例・基準は、徳田さん・佐古社長の実際の商談に合わせて今後強化します。</p>
+    <div class="btns"><button class="print" onclick="window.print()">印刷 / PDF保存</button><button class="reset" id="reset">入力をリセット</button></div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('reset').addEventListener('click', function(){
+    document.querySelectorAll('textarea').forEach(function(t){ t.value=''; });
+    document.querySelectorAll('input[type=checkbox]').forEach(function(c){ c.checked=false; });
+    document.querySelectorAll('select').forEach(function(s){ s.selectedIndex=0; });
+  });
+</script>
