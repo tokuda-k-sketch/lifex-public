@@ -42,6 +42,21 @@
   .src{display:inline-block; font-size:10.5px; font-weight:700; border-radius:4px; padding:1px 8px; margin-left:8px; vertical-align:middle}
   .src.real{color:var(--p2); background:var(--p2bg); border:1px solid #bfdcd5}
   .src.hint{color:var(--amber); background:var(--amberbg); border:1px solid var(--amberln)}
+  .note{font-size:11.5px; color:var(--sub); background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:9px 13px; margin-top:14px; line-height:1.7}
+  .note b{color:var(--ink)}
+  .hero{background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:10px; padding:13px 16px; margin-top:14px; font-size:13.5px}
+  .hero b{color:var(--navy)}
+  .cmp{width:100%; border-collapse:collapse; margin-top:14px; font-size:12.5px}
+  .cmp th,.cmp td{border:1px solid var(--line); padding:7px 6px; text-align:center; vertical-align:middle}
+  .cmp th{background:var(--panel); color:var(--sub); font-weight:700; font-size:11px}
+  .cmp th.lx{background:var(--navy); color:#fff; font-weight:800; font-size:12.5px}
+  .cmp td.ax{text-align:left; font-weight:700; color:var(--ink); background:#fbfcfd; white-space:nowrap}
+  .cmp td.lxcol{background:var(--navy-soft)}
+  .cmp .o{color:var(--p2); font-weight:800; font-size:15px}
+  .cmp .t{color:#c0392b; font-weight:800; font-size:15px}
+  .cmp .mid{color:#5c6c7d; font-weight:800; font-size:15px}
+  .cmp tr.win td{border-top:2px solid var(--navy); font-weight:800}
+  .cmp small{font-weight:400; color:#8b95a0; font-size:10px; display:block}
   .note{font-size:11.5px; color:var(--sub); margin-top:10px}
   @media print{
     body{background:#fff}
@@ -173,33 +188,58 @@
 
     <!-- ③ 競合 -->
     <div class="page" data-p="2">
-      <div class="page-h">大原則：<b>けなさない。</b>相手の強みを認めた上で、"アプローチの違い"を示して土俵を引き寄せる。<span class="src real">佐古社長 7/17</span></div>
+      <div class="page-h">大原則は<b>けなさない</b>こと。相手の強みは認めた上で、<b>「4つの軸」で比べてもらう</b>。<span class="src real">佐古社長 7/17：判断基準を先に渡す</span></div>
+
+      <div class="hero">LIFEXの勝ち筋は <b>トータルコスト × デザイン × 性能 × 高水準の標準装備</b>。競合はどれか1〜2つは強いが、<b>4つ全部が揃うのはLIFEXだけ</b>。この4軸を"家選びの基準"として先に渡すのが、競合対策の核です。</div>
+
+      <table class="cmp">
+        <tr><th style="text-align:left">4つの軸</th><th class="lx">LIFEX</th><th>一条工務店</th><th>アイ工務店</th><th>地場ビルダー</th><th>ローコスト系</th></tr>
+        <tr><td class="ax">トータルコスト</td><td class="lxcol o">◎</td><td class="t">△<small>高め</small></td><td class="o">◎</td><td class="mid">○</td><td class="o">◎</td></tr>
+        <tr><td class="ax">デザイン</td><td class="lxcol o">◎</td><td class="t">△</td><td class="mid">○</td><td class="t">△<small>担当次第</small></td><td class="t">△</td></tr>
+        <tr><td class="ax">性能</td><td class="lxcol o">◎</td><td class="o">◎</td><td class="mid">○</td><td class="t">△</td><td class="t">△</td></tr>
+        <tr><td class="ax">高水準の標準装備</td><td class="lxcol o">◎</td><td class="mid">○</td><td class="t">△<small>OP追加</small></td><td class="t">△</td><td class="t">△<small>薄い</small></td></tr>
+        <tr class="win"><td class="ax">4つ全部そろう？</td><td class="lxcol" style="color:#fff;background:var(--p2)">✔ 揃う</td><td class="t">×</td><td class="t">×</td><td class="t">×</td><td class="t">×</td></tr>
+      </table>
+      <div class="note">※競合側の ◎○△ は"現場の見え方"の目安（叩き台）。徳田さんの実感で調整してください。<b>「LIFEXが4つ揃う」が確定の核</b>です。トークは相手を落とさず、お客様自身に「言われてみれば4つは揃ってないな」と<b>気づいてもらう</b>流れにします。</div>
 
       <div class="card">
         <div class="trig"><span class="lbl">競合</span><span class="say">「一条工務店さんも見ていて…」</span></div>
         <div class="flow">
-          <div class="step"><span class="k">① 受ける</span><span class="t">「一条さん、いい会社ですよね！ ちなみに<span class="you">なぜ一条さんにお問い合わせを？</span>」</span></div>
-          <div class="step bridge"><span class="k">④ 違い</span><span class="t">「性能の"考え方"が違うんです。相手は◯◯というアプローチ、LIFEXは△△というアプローチ、と<b>違いで比較</b>する（優劣でなく）。」<span class="src hint">※LIFEXの実際の性能の売りに要差し替え</span></span></div>
+          <div class="step"><span class="k">① 受ける</span><span class="t">「一条さん、いい会社ですよね！ ちなみに<span class="you">なぜ一条さんに惹かれました？</span>」</span></div>
+          <div class="step"><span class="k">② なぜ？</span><span class="t"><span class="cust">「やっぱり性能かな」</span></span></div>
+          <div class="step"><span class="k">③ 気づき</span><span class="t">「ですよね、性能は間違いない会社です。<b>一条さんは"性能に全振り"</b>。逆に、コストやデザイン、標準装備の選択肢はどう感じられました？」</span></div>
+          <div class="step bridge"><span class="k">④ 橋渡し</span><span class="t">「LIFEXは<b>性能もしっかり押さえた上で、コスト・デザイン・標準装備も全部揃う</b>んです。"性能だけ"で選ぶか、"4つ全部"で選ぶか、ですね。」</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="trig"><span class="lbl">競合</span><span class="say">「アイ工務店さんとも比べていて」</span></div>
+        <div class="flow">
+          <div class="step"><span class="k">① 受ける</span><span class="t">「アイさん、コスパいいですよね。<span class="you">価格に惹かれてます？</span>」</span></div>
+          <div class="step"><span class="k">② なぜ？</span><span class="t"><span class="cust">「うん、本体が安くて」</span></span></div>
+          <div class="step"><span class="k">③ 気づき</span><span class="t">「本体価格は魅力です。ひとつだけ——<b>標準装備がどこまで"込み"か</b>、確認されました？ 良くしようとすると<b>オプションで上がっていく</b>ことが多くて。」</span></div>
+          <div class="step bridge"><span class="k">④ 橋渡し</span><span class="t">「LIFEXは<b>高水準の標準装備が"込み"でこの価格</b>。最終的な総額と満足で見ると、ここが効いてきます。」</span></div>
         </div>
       </div>
 
       <div class="card">
         <div class="trig"><span class="lbl">競合</span><span class="say">「地元の工務店さんとも迷っていて」</span></div>
         <div class="flow">
-          <div class="step"><span class="k">① 受ける</span><span class="t">「地元の会社さん、親身でいいですよね。」</span></div>
-          <div class="step bridge"><span class="k">④ 違い</span><span class="t">「地場の会社さんは"担当者の腕"に左右されがち。LIFEXは<b>全国で磨かれた"型"がある</b>ので、<b>品質と価格が安定して再現</b>できるんです。」<span class="src hint">案・要差し替え</span></span></div>
+          <div class="step"><span class="k">① 受ける</span><span class="t">「地元の会社さん、親身でいいですよね。<span class="you">どのあたりが良かったですか？</span>」</span></div>
+          <div class="step"><span class="k">② なぜ？</span><span class="t"><span class="cust">「担当の方が感じよくて」</span></span></div>
+          <div class="step"><span class="k">③ 気づき</span><span class="t">「それ大事です。ただ正直、地場の会社さんは<b>"担当者の腕"で品質もデザインも変わりがち</b>。当たり外れが出やすいんです。」</span></div>
+          <div class="step bridge"><span class="k">④ 橋渡し</span><span class="t">「LIFEXは<b>全国で磨いた"型"</b>があるので、コスト・デザイン・性能・標準装備の4つが<b>誰が担当でも安定して同じ水準</b>で出ます。」</span></div>
         </div>
       </div>
 
       <div class="card">
-        <div class="trig"><span class="lbl">競合</span><span class="say">「建売の方が安いかなと」</span></div>
+        <div class="trig"><span class="lbl">競合</span><span class="say">「もっと安いところがあって…（ローコスト系）」</span></div>
         <div class="flow">
-          <div class="step"><span class="k">① 受ける</span><span class="t">「価格の魅力、ありますよね。」</span></div>
-          <div class="step bridge"><span class="k">④ 違い</span><span class="t">「建売は"出来合い"で選べない、注文は"高くて大変"。LIFEXは<b>その中間——選べる自由さと、手の届く価格</b>のいいとこ取りなんです。」<span class="src hint">案・要差し替え</span></span></div>
+          <div class="step"><span class="k">② なぜ？</span><span class="t"><span class="you">「そうなんですね。その金額、"何が含まれているか"まで比べられました？」</span></span></div>
+          <div class="step"><span class="k">③ 気づき</span><span class="t">「安さには必ず理由があって、<b>性能か標準装備が削られている</b>ことが多いんです。後から足すと結局高くなる、も"あるある"で。」</span></div>
+          <div class="step bridge"><span class="k">④ 橋渡し</span><span class="t">「LIFEXは<b>コスト・デザイン・性能・標準装備の4つが揃って、この価格</b>。"安いだけ"とは中身が違うんです。」</span></div>
         </div>
       </div>
-
-      <div class="note">※競合ごとの具体トークは、<b>LIFEXが実際にどこと競合し、何で勝っているか</b>を徳田さんに伺って差し替えます。ここは"けなさず違いで比較する型"の見本です。</div>
     </div>
 
     <!-- ④ フェーズ別 -->
