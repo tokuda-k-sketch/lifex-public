@@ -1,0 +1,226 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LIFEX 自店カルテ（加盟店別）</title>
+<style>
+  :root{
+    --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+    --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+    --p2:#2e7d6e; --p2bg:#e7f2ef; --leak:#b3372b; --leakbg:#fbe9e7;
+    --up:#2e7d6e; --down:#b3372b;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif; color:var(--ink);
+    background:#eef2f6; line-height:1.6; font-feature-settings:"palt"}
+  .bar{position:sticky; top:0; z-index:10; background:#1a1f24; color:#fff; padding:12px 20px; display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+  .bar h1{font-size:15px; font-weight:700}
+  .bar .sp{margin-left:auto; display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+  .bar select{font:inherit; font-size:13px; padding:5px 10px; border-radius:6px; border:1px solid #3a424b; background:#2a3037; color:#fff}
+  .bar button{font:inherit; font-size:13px; font-weight:700; padding:6px 14px; border-radius:6px; border:none; background:var(--blue); color:#fff; cursor:pointer}
+  .bar .st{font-size:12px; color:#8b949e}
+  .wrap{max-width:900px; margin:22px auto; padding:0 16px}
+  .karte{background:#fff; border-radius:12px; box-shadow:0 2px 14px rgba(20,40,60,.09); padding:26px 30px; margin-bottom:22px}
+  .kh{display:flex; align-items:flex-end; justify-content:space-between; border-bottom:2px solid var(--navy); padding-bottom:12px; margin-bottom:16px}
+  .kh .nm{font-size:22px; font-weight:800; color:var(--navy)}
+  .kh .nm small{font-size:13px; color:var(--sub); font-weight:600; margin-left:8px}
+  .kh .meta{font-size:12px; color:var(--sub); text-align:right}
+  .kh .meta b{font-size:20px; color:var(--ink); font-weight:800}
+  .fun{display:flex; align-items:center; justify-content:center; gap:4px; margin:6px 0 18px; flex-wrap:wrap}
+  .fc{border-radius:50%; color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:800; flex-shrink:0}
+  .fc b{font-size:19px; font-variant-numeric:tabular-nums} .fc span{font-size:10px; font-weight:600; opacity:.9}
+  .fa{color:#b6c0ca; font-size:15px; font-weight:800}
+  .rates{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:16px}
+  .r{border:1px solid var(--line); border-radius:9px; padding:11px 8px; text-align:center; position:relative}
+  .r .rl{font-size:11.5px; color:var(--sub); font-weight:700}
+  .r .rv{font-size:26px; font-weight:800; color:var(--navy); font-variant-numeric:tabular-nums; line-height:1.15}
+  .r .rv small{font-size:13px}
+  .r .rd{font-size:10.5px; font-weight:800; margin-top:2px}
+  .r .rd.up{color:var(--up)} .r .rd.down{color:var(--down)} .r .rd.flat{color:#b6c2d0}
+  .r.hole{background:var(--leakbg); border-color:var(--leak); border-width:2px}
+  .r.hole .rl,.r.hole .rv{color:var(--leak)}
+  .r.hole::after{content:"◀ 一番の穴"; position:absolute; top:6px; right:8px; font-size:9.5px; font-weight:800; color:var(--leak)}
+  .r.na .rv{color:#c0cdd8; font-size:15px}
+  .tg{background:var(--panel); border:1px solid var(--line); border-radius:9px; padding:11px 15px; margin-bottom:16px}
+  .tg .th{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; font-size:12px}
+  .tg .th b{font-size:13px; color:var(--navy)}
+  .tg .th .s{color:var(--sub); font-weight:700; font-variant-numeric:tabular-nums}
+  .tg .track{position:relative; height:22px; background:#e4ebf3; border-radius:5px}
+  .tg .fill{position:absolute; left:0; top:0; bottom:0; background:var(--navy); border-radius:5px 0 0 5px}
+  .tg .fill.done{background:var(--p2); border-radius:5px}
+  .tg .goal{position:absolute; top:-3px; bottom:-3px; width:3px; background:#e08a2b}
+  .tg .note{font-size:11px; font-weight:800; text-align:right; margin-top:5px}
+  .tg .note.done{color:var(--p2)} .tg .note.gap{color:#b05c1f} .tg .note.none{color:#8b949e}
+  .work{border:2px dashed var(--p2); background:var(--p2bg); border-radius:9px; padding:13px 16px}
+  .work .wl{font-size:11px; font-weight:800; color:var(--p2); letter-spacing:.06em; margin-bottom:6px}
+  .work .ln{display:flex; align-items:center; gap:10px; font-size:14px; font-weight:700; margin:8px 0}
+  .work .ln .bk{flex:1; border-bottom:2px solid #9cbfb2; height:20px}
+  .intro{background:#fff; border-radius:12px; box-shadow:0 2px 14px rgba(20,40,60,.09); padding:18px 24px; margin-bottom:22px; font-size:13px; color:var(--sub)}
+  .intro h2{font-size:15px; color:var(--navy); margin-bottom:6px}
+  .intro b{color:var(--ink)}
+  .msg{max-width:900px; margin:22px auto; padding:16px 20px; background:#fff3dd; border:1px solid #ecd9a8; border-radius:8px; color:#8a5a00; font-size:13px; font-weight:700}
+  @media print{
+    body{background:#fff}
+    .bar,.intro{display:none}
+    .wrap{margin:0; max-width:100%; padding:0}
+    .karte{box-shadow:none; border:1px solid var(--line); page-break-after:always; margin:0}
+    .r.hole{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+  }
+</style></head>
+<body>
+<div class="bar">
+  <h1>LIFEX 自店カルテ</h1>
+  <div class="sp">
+    <label style="font-size:12px;color:#8b949e">表示：
+      <select id="sel"><option value="__all">全店（印刷用）</option></select>
+    </label>
+    <button onclick="window.print()">印刷 / PDF保存</button>
+    <span class="st" id="st">読み込み中…</span>
+  </div>
+</div>
+
+<div class="wrap" id="app">
+  <div class="intro">
+    <h2>これは、各店にお配りする「自店カルテ」です</h2>
+    <p>ダッシュボードの最新データから自動作成。<b>1店＝1ページ</b>で、上のプルダウンで店を選ぶか「全店」で印刷→PDFにして各店へお渡しください。研修では、各店がこのカルテを見ながら<b>「4つの率で一番低い段＝穴」</b>を確認し、来週の一手を決めます。</p>
+  </div>
+</div>
+
+<script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwriC9V4xS2ZZ8rGhfsQydsBmXKzTWo9CKiJUs7kPt5naU3NWXQy_IKbB6ytZfw_WtE/exec';
+const F_CLR = ['#1e4e79','#2e6da4','#3b82c4','#2e7d6e','#256b5e'];
+const F_SZ  = [86,78,70,62,56];
+
+function calc(s){
+  const g=k=>Number(s&&s[k]||0);
+  const total=[2,3,4,5,6,7,8,9,10,11,12,13].reduce((a,k)=>a+g(k),0);
+  const connected=[4,5,6,7,8,9,10,11].reduce((a,k)=>a+g(k),0);
+  const appt=[5,6,7,8,9,10,11].reduce((a,k)=>a+g(k),0);
+  const iv=[6,7,8,9,10,11].reduce((a,k)=>a+g(k),0);
+  const ct=[10,11].reduce((a,k)=>a+g(k),0);
+  const pct=(n,d)=>d>0?+(n/d*100).toFixed(1):null;
+  return {total,connected,appt,iv,ct,
+    kpi1:pct(connected,total), kpi2:pct(appt,connected), kpi3:pct(iv,appt), kpi4:pct(ct,iv)};
+}
+const key=st=>String(st.name).trim()+'|'+String(st.sub||'').trim();
+
+let STORES=[], TARGETS=[], PREV=null;
+
+function prevMap(history){
+  // 前週比：最新スナップショットの1つ前（同日なら2つ前）を使う
+  if(!Array.isArray(history)) return null;
+  const hs=history.filter(h=>h&&h.data&&Array.isArray(h.data.stores));
+  if(hs.length<1) return null;
+  // 末尾が今日保存分の可能性→単純に最後から2番目を基準に。無ければ最後
+  const ref = hs.length>=2 ? hs[hs.length-2] : hs[hs.length-1];
+  const m={}; ref.data.stores.forEach(st=>{ m[key(st)]=st.s; });
+  return m;
+}
+function targetFor(st){ return TARGETS.find(t=>key(t)===key(st))||null; }
+
+function funnelHtml(r){
+  const vals=[r.total,r.connected,r.appt,r.iv,r.ct];
+  const labs=['登録','通話','アポ','面談','契約'];
+  const rates=['接続率','アポ率','面談率','契約率'];
+  let h='';
+  for(let i=0;i<5;i++){
+    const d=F_SZ[i];
+    h+=`<div class="fc" style="width:${d}px;height:${d}px;background:${F_CLR[i]}"><b>${vals[i]}</b><span>${labs[i]}</span></div>`;
+    if(i<4) h+=`<div class="fa">›</div>`;
+  }
+  return h;
+}
+function delta(cur,prev){
+  if(cur===null||prev===null||prev===undefined) return '';
+  const d=+(cur-prev).toFixed(1);
+  if(Math.abs(d)<0.05) return '<div class="rd flat">±0</div>';
+  return `<div class="rd ${d>0?'up':'down'}">${d>0?'▲+':'▼'}${Math.abs(d)}pt</div>`;
+}
+function ratesHtml(r, pr){
+  const items=[
+    {l:'接続率', k:'kpi1'}, {l:'アポ率', k:'kpi2'}, {l:'面談率', k:'kpi3'}, {l:'契約率', k:'kpi4'}
+  ];
+  // 穴＝非null最小
+  let holeK=null, min=999;
+  items.forEach(it=>{ const v=r[it.k]; if(v!==null && v<min){min=v; holeK=it.k;} });
+  return items.map(it=>{
+    const v=r[it.k];
+    const na = v===null;
+    const hole = it.k===holeK && !na;
+    const d = pr ? delta(v, pr[it.k]) : '';
+    return `<div class="r ${hole?'hole':''} ${na?'na':''}">
+      <div class="rl">${it.l}</div>
+      <div class="rv">${na?'—':v+'<small>%</small>'}</div>${d}
+    </div>`;
+  }).join('');
+}
+function gaugeHtml(r, tg){
+  if(!tg || tg.kpi2===null || tg.kpi2===undefined || isNaN(Number(tg.kpi2))) return '';
+  const goal=Math.max(0,Math.min(100,Number(tg.kpi2)));
+  const act=r.kpi2;
+  const fill=act===null?0:Math.max(0,Math.min(100,act));
+  const done=act!==null&&act>=goal;
+  const note=act===null?'データなし':(done?'目標達成 ✓':'あと '+(goal-act).toFixed(1)+'pt');
+  const ncls=act===null?'none':(done?'done':'gap');
+  return `<div class="tg">
+    <div class="th"><b>今月のアポ率 目標</b><span class="s">実績 ${act===null?'—':act+'%'} ／ 目標 ${goal}%</span></div>
+    <div class="track"><div class="fill ${done?'done':''}" style="width:${fill}%"></div><div class="goal" style="left:${goal}%"></div></div>
+    <div class="note ${ncls}">${note}</div>
+  </div>`;
+}
+function karteHtml(st){
+  const r=calc(st.s);
+  const pr = PREV ? calc({...(PREV[key(st)]||{})}) : null;
+  const prForDelta = (PREV && PREV[key(st)]) ? calc(PREV[key(st)]) : null;
+  return `<div class="karte" data-k="${key(st)}">
+    <div class="kh">
+      <div class="nm">${st.name}様${st.sub?`<small>${st.sub}</small>`:''}</div>
+      <div class="meta">総登録 <b>${r.total}</b> 件<br><span style="font-size:11px">${DATESTAMP}</span></div>
+    </div>
+    <div class="fun">${funnelHtml(r)}</div>
+    <div class="rates">${ratesHtml(r, prForDelta)}</div>
+    ${gaugeHtml(r, targetFor(st))}
+    <div class="work">
+      <div class="wl">この1枚から決める（研修で記入）</div>
+      <div class="ln"><span>うちの一番の穴は</span><span class="bk"></span></div>
+      <div class="ln"><span>来週やる一手は</span><span class="bk"></span></div>
+    </div>
+  </div>`;
+}
+let DATESTAMP='';
+
+function render(filter){
+  const app=document.getElementById('app');
+  const intro=app.querySelector('.intro');
+  app.querySelectorAll('.karte').forEach(k=>k.remove());
+  const list = STORES.filter(st=>calc(st.s).total>0).sort((a,b)=>calc(b.s).total-calc(a.s).total);
+  const show = filter==='__all'||!filter ? list : list.filter(st=>key(st)===filter);
+  show.forEach(st=>{ intro.insertAdjacentHTML('afterend', karteHtml(st)); });
+  // afterend積み上げは逆順になるので入れ直し
+  app.querySelectorAll('.karte').forEach(k=>k.remove());
+  let html=''; show.forEach(st=>{ html+=karteHtml(st); });
+  intro.insertAdjacentHTML('afterend', html);
+}
+
+async function load(){
+  const st=document.getElementById('st');
+  try{
+    const res=await fetch(APPS_SCRIPT_URL+'?history=6&t='+Date.now(), {redirect:'follow'});
+    const data=await res.json();
+    if(!data.stores||!Array.isArray(data.stores)) throw new Error('データ形式が不正');
+    STORES=data.stores;
+    TARGETS=Array.isArray(data.targets)?data.targets:[];
+    PREV=prevMap(data.history);
+    DATESTAMP=(data.updatedAt||'').split(' ')[0]+' 時点';
+    const active=STORES.filter(s=>calc(s.s).total>0).sort((a,b)=>calc(b.s).total-calc(a.s).total);
+    const sel=document.getElementById('sel');
+    active.forEach(s=>{ const o=document.createElement('option'); o.value=key(s); o.textContent=s.name+(s.sub?' '+s.sub:''); sel.appendChild(o); });
+    sel.addEventListener('change', ()=>render(sel.value));
+    st.textContent = `${active.length}店舗 ／ ${data.updatedAt||''}`;
+    render('__all');
+  }catch(e){
+    st.textContent='読み込み失敗';
+    document.getElementById('app').insertAdjacentHTML('beforeend',
+      `<div class="msg">データを読み込めませんでした（${String(e)}）。<br>このカルテは<b>ローカルのファイルとして開く</b>とダッシュボードのデータを取得します。ネット接続をご確認ください。</div>`);
+  }
+}
+load();
+</script>
+</body></html>
