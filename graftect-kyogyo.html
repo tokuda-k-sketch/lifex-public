@@ -1,0 +1,686 @@
+<title>グラフテクト × LIFEX 協業提案書</title>
+<style>
+:root {
+  --navy: #0F2240;
+  --navy-mid: #1A3357;
+  --forest: #1B3D2A;
+  --forest-light: #E8EFE9;
+  --gold: #C4983A;
+  --gold-pale: rgba(196,152,58,0.10);
+  --gold-muted: #8A6820;
+  --bg: #F5F3EE;
+  --white: #FFFFFF;
+  --text: #1C1C1C;
+  --muted: #666;
+  --border: #DEDAD1;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #E8E4DC;
+  font-family: 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 800px;
+  margin: 28px auto;
+  background: var(--white);
+  box-shadow: 0 8px 48px rgba(0,0,0,0.14);
+}
+
+/* ── HEADER ── */
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 140px;
+}
+.header-left {
+  background: var(--navy);
+  padding: 28px 30px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.header-right {
+  background: var(--forest);
+  padding: 28px 30px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.brand-eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.42);
+  font-weight: 600;
+}
+.brand-name {
+  font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.05em;
+  margin-top: 6px;
+}
+.brand-tag {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+}
+.header-right .brand-eyebrow { text-align: right; }
+.header-right .brand-name { text-align: right; }
+.header-right .brand-tag { text-align: right; }
+
+.header-divider {
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, var(--navy) 50%, var(--forest) 50%);
+  position: relative;
+}
+.header-divider::after {
+  content: '×';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--gold);
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 28px;
+  text-align: center;
+}
+
+/* ── BODY ── */
+.body { padding: 30px 36px; display: flex; flex-direction: column; gap: 26px; }
+
+.section-head {
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* catch copy */
+.catch {
+  text-align: center;
+  padding: 22px 24px;
+  background: var(--navy);
+  border-radius: 2px;
+}
+.catch-main {
+  font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+}
+.catch-main span { color: var(--gold); }
+.catch-sub {
+  margin-top: 8px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+}
+
+/* flow */
+.flow-wrap { display: flex; align-items: center; gap: 0; }
+.flow-box {
+  flex: 1;
+  padding: 16px 14px 14px;
+  border-radius: 2px;
+  text-align: center;
+}
+.flow-box.gf { background: var(--forest); }
+.flow-box.wk { background: var(--bg); border: 1.5px solid var(--border); }
+.flow-box.lx { background: var(--navy); }
+.flow-role {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+.flow-box.gf .flow-role, .flow-box.lx .flow-role { color: rgba(255,255,255,0.45); }
+.flow-box.wk .flow-role { color: #8A7A5A; }
+.flow-title {
+  font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 7px;
+}
+.flow-box.gf .flow-title, .flow-box.lx .flow-title { color: #fff; }
+.flow-box.wk .flow-title { color: var(--text); }
+.flow-detail {
+  font-size: 10.5px;
+  line-height: 1.65;
+}
+.flow-box.gf .flow-detail, .flow-box.lx .flow-detail { color: rgba(255,255,255,0.68); }
+.flow-box.wk .flow-detail { color: #5A4E38; }
+
+.flow-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 52px;
+  flex-shrink: 0;
+  gap: 4px;
+}
+.arr-label {
+  font-size: 9.5px;
+  color: var(--gold-muted);
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+.arr-line {
+  position: relative;
+  height: 2px;
+  background: var(--gold);
+  width: 32px;
+}
+.arr-line::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: -4px;
+  border-left: 8px solid var(--gold);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+
+.return-loop {
+  margin-top: 12px;
+  padding: 12px 18px;
+  background: var(--gold-pale);
+  border: 1px dashed rgba(196,152,58,0.4);
+  border-radius: 2px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.loop-icon {
+  color: var(--gold);
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.loop-head {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--gold-muted);
+  margin-bottom: 3px;
+}
+.loop-body {
+  font-size: 11px;
+  color: #6A5520;
+  line-height: 1.7;
+}
+
+/* merit */
+.merit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.merit-card {
+  background: var(--forest-light);
+  border-left: 3px solid var(--forest);
+  padding: 14px 16px;
+  border-radius: 0 2px 2px 0;
+}
+.merit-no {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--forest);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.merit-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 6px;
+  line-height: 1.35;
+  font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+}
+.merit-desc {
+  font-size: 11px;
+  color: #3A4A3E;
+  line-height: 1.72;
+}
+.merit-num {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--forest);
+  background: rgba(27,61,42,0.08);
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+
+/* scale */
+.scale-band {
+  background: var(--navy);
+  color: white;
+  padding: 18px 22px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.scale-stat {
+  text-align: center;
+  flex: 1;
+}
+.scale-num {
+  font-size: 36px;
+  font-weight: 700;
+  font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.scale-num.gold { color: var(--gold); }
+.scale-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.55);
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+}
+.scale-div {
+  width: 1px;
+  height: 50px;
+  background: rgba(255,255,255,0.15);
+  flex-shrink: 0;
+}
+.scale-arrow-block {
+  text-align: center;
+  flex-shrink: 0;
+}
+.scale-arrow-text {
+  font-size: 26px;
+  color: var(--gold);
+  line-height: 1;
+}
+.scale-arrow-sub {
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 3px;
+  letter-spacing: 0.05em;
+}
+
+/* phase2 */
+.phase2-wrap {
+  border: 1.5px solid var(--forest);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.phase2-header {
+  background: var(--forest);
+  padding: 11px 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.phase2-badge {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 700;
+  background: rgba(255,255,255,0.1);
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.phase2-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  letter-spacing: 0.04em;
+}
+.phase2-body {
+  padding: 16px 18px;
+  background: var(--forest-light);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.phase2-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.phase2-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--forest);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.phase2-item-body {}
+.phase2-item-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 3px;
+  line-height: 1.35;
+  font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+}
+.phase2-item-desc {
+  font-size: 11px;
+  color: #3A4A3E;
+  line-height: 1.72;
+}
+.phase2-item-tag {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--forest);
+  background: rgba(27,61,42,0.1);
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.phase2-divider {
+  height: 1px;
+  background: rgba(27,61,42,0.12);
+}
+
+/* ask */
+.ask-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.ask-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 14px 12px;
+  background: var(--bg);
+  border-radius: 2px;
+}
+.ask-num {
+  width: 26px;
+  height: 26px;
+  background: var(--navy);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.ask-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text);
+  line-height: 1.35;
+}
+.ask-desc {
+  font-size: 11px;
+  color: #555;
+  line-height: 1.68;
+}
+
+/* footer */
+.footer {
+  padding: 11px 36px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-co {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--navy);
+  font-family: 'Yu Mincho', serif;
+  letter-spacing: 0.04em;
+}
+.footer-note {
+  font-size: 10px;
+  color: #AAA;
+}
+
+@media print {
+  body { background: none; }
+  .page { box-shadow: none; margin: 0; }
+}
+</style>
+
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <div>
+        <div class="brand-eyebrow">提案者</div>
+        <div class="brand-name">LIFEX</div>
+      </div>
+      <div class="brand-tag">規格住宅フランチャイズ<br>グラフテクトキッチン標準採用</div>
+    </div>
+    <div class="header-right">
+      <div>
+        <div class="brand-eyebrow">協業パートナー</div>
+        <div class="brand-name">グラフテクト</div>
+      </div>
+      <div class="brand-tag">全国13ショールーム<br>10エリア担当営業体制</div>
+    </div>
+  </div>
+  <div class="header-divider" style="display:flex;align-items:center;justify-content:center;">
+    <span style="background:var(--gold);color:white;font-size:13px;font-weight:700;width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;position:relative;z-index:1;">×</span>
+  </div>
+
+  <div class="body">
+
+    <!-- キャッチ -->
+    <div class="catch">
+      <div class="catch-main">グラフテクト様の工務店紹介が、<br><span>貴社の安定受注</span>に変わる仕組みです。</div>
+      <div class="catch-sub">LIFEXは2026年4月スタートから4か月で19社が加盟——月4.75社ペースで急拡大中です。<br>各エリア担当営業様が既存取引先にご紹介いただくだけで、加盟した工務店がグラフテクトキッチンを標準採用するため、紹介実績がそのままキッチン受注の積み上げになります。</div>
+    </div>
+
+    <!-- フロー -->
+    <div>
+      <div class="section-head">協業の流れ</div>
+      <div class="flow-wrap">
+        <div class="flow-box gf">
+          <div class="flow-role">紹介する側</div>
+          <div class="flow-title">グラフテクト</div>
+          <div class="flow-detail">各エリア担当営業が<br>既存工務店へLIFEXを紹介</div>
+        </div>
+        <div class="flow-arrow">
+          <div class="arr-label">既存取引先へ<br>紹介</div>
+          <div class="arr-line"></div>
+        </div>
+        <div class="flow-box wk">
+          <div class="flow-role">紹介される側</div>
+          <div class="flow-title">工務店</div>
+          <div class="flow-detail">規格住宅商品を持たない<br>グラフテクト活用工務店</div>
+        </div>
+        <div class="flow-arrow">
+          <div class="arr-label">加盟検討<br>→ 商談</div>
+          <div class="arr-line"></div>
+        </div>
+        <div class="flow-box lx">
+          <div class="flow-role">加盟先</div>
+          <div class="flow-title">LIFEX加盟</div>
+          <div class="flow-detail">規格住宅を新商品として追加<br>加盟工務店がグラフテクトへ発注</div>
+        </div>
+      </div>
+      <div class="return-loop">
+        <div class="loop-icon">↺</div>
+        <div>
+          <div class="loop-head">循環する仕組み —— グラフテクト様へのリターン</div>
+          <div class="loop-body">LIFEX加盟店が増えるたびに、グラフテクトキッチンの安定受注先が自動的に積み上がります。紹介1件が、継続的なキッチン発注へ繋がる関係です。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- メリット -->
+    <div>
+      <div class="section-head">グラフテクト様のメリット</div>
+      <div class="merit-grid">
+        <div class="merit-card">
+          <div class="merit-no">メリット ①</div>
+          <div class="merit-title">紹介実績がキッチン受注に変わる</div>
+          <div class="merit-desc">加盟工務店はLIFEX仕様としてグラフテクトキッチンを標準採用。1社紹介するたびに長期的な受注先が1社増える計算になります。</div>
+        </div>
+        <div class="merit-card">
+          <div class="merit-no">メリット ②</div>
+          <div class="merit-title">既存取引先との関係がさらに深化</div>
+          <div class="merit-desc">規格住宅という新商品で工務店の事業拡張を支援できるため、単なるキッチン供給業者から「事業パートナー」へ関係が進化します。</div>
+        </div>
+        <div class="merit-card">
+          <div class="merit-no">メリット ③</div>
+          <div class="merit-title">営業担当の負担はほぼゼロ</div>
+          <div class="merit-desc">LIFEXから紹介用ツール（シート・トーク）を提供します。「こんな規格住宅があります」と一言お伝えいただくだけで構いません。</div>
+        </div>
+        <div class="merit-card">
+          <div class="merit-no">メリット ④</div>
+          <div class="merit-title">規格住宅市場での存在感を確立</div>
+          <div class="merit-desc">注文住宅が伸び悩む中、規格住宅市場は成長中。LIFEX加盟店との連携で、グラフテクト様がこの市場に深く根付く機会になります。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 目標規模 -->
+    <div>
+      <div class="section-head">LIFEX の成長実績と目標規模</div>
+      <div class="scale-band">
+        <div class="scale-stat">
+          <div class="scale-num">4.75</div>
+          <div class="scale-label">月平均加盟獲得ペース（社）<br>2026年4月〜7月実績</div>
+        </div>
+        <div class="scale-div"></div>
+        <div class="scale-stat">
+          <div class="scale-num">19</div>
+          <div class="scale-label">現在の加盟店数（社）<br>2026年7月末時点</div>
+        </div>
+        <div class="scale-arrow-block">
+          <div class="scale-arrow-text">→</div>
+          <div class="scale-arrow-sub">2027年7月末まで</div>
+        </div>
+        <div class="scale-stat">
+          <div class="scale-num gold">70</div>
+          <div class="scale-label">目標加盟店数（社）</div>
+        </div>
+        <div class="scale-div"></div>
+        <div class="scale-stat">
+          <div class="scale-num gold">+51</div>
+          <div class="scale-label">残り12か月で必要な加盟数</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- フェーズ2提案 -->
+    <div>
+      <div class="section-head">紹介スキームが軌道に乗ったあと——さらに深める連携プログラム</div>
+      <div class="phase2-wrap">
+        <div class="phase2-header">
+          <div class="phase2-badge">フェーズ2 提案</div>
+          <div class="phase2-title">全国展示×SNS拡散：グラフテクトキッチンを日本中で見せる仕組みへ</div>
+        </div>
+        <div class="phase2-body">
+
+          <div class="phase2-item">
+            <div class="phase2-icon">🏠</div>
+            <div class="phase2-item-body">
+              <div class="phase2-item-title">LIFEX全国展開＝グラフテクトキッチンの全国展示</div>
+              <div class="phase2-item-desc">グラフテクト様のショールームは現在全国13か所。しかしLIFEXが70社体制になれば、各地のモデルハウスに実物のグラフテクトキッチンが設置されます。ショールームのない都道府県でも、地元の工務店のモデルハウスで実際のキッチンを体験できる環境が生まれます。</div>
+              <div class="phase2-item-tag">実質的なショールーム網の全国拡張 ——— 追加コストゼロ</div>
+            </div>
+          </div>
+
+          <div class="phase2-divider"></div>
+
+          <div class="phase2-item">
+            <div class="phase2-icon">🏷</div>
+            <div class="phase2-item-body">
+              <div class="phase2-item-title">モデルハウス限定 特別仕入れ価格のご提供</div>
+              <div class="phase2-item-desc">LIFEX加盟店が最初に建てるモデルハウス（1棟）のキッチンに限り、特別仕入れ価格でのご提供をご検討いただけませんか。加盟店の初期投資が下がり、グラフテクト採用の敷居が下がります。モデルハウスは年間数百人が来場するため、1台の割引が長期的な受注・認知につながります。</div>
+              <div class="phase2-item-tag">1棟限定のため実損は限定的 ——— 広告費として整理可能</div>
+            </div>
+          </div>
+
+          <div class="phase2-divider"></div>
+
+          <div class="phase2-item">
+            <div class="phase2-icon">📸</div>
+            <div class="phase2-item-body">
+              <div class="phase2-item-title">SNS発信プログラム：加盟店が全国で発信する仕組み</div>
+              <div class="phase2-item-desc">特別仕入れの適用を受けた加盟店は、自社ホームページ・Instagram等に写真付きでグラフテクトキッチンを紹介することを約束します。グラフテクト様の公式アカウントがその投稿をリポスト・紹介することで、加盟店側にも露出メリットが生まれます。加盟店が増えるほど、グラフテクト様のSNS露出が拡大し続ける構造になります。</div>
+              <div class="phase2-item-tag">加盟店→グラフテクト→加盟店 の三方向露出</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- お願い -->
+    <div>
+      <div class="section-head">グラフテクト様にお願いしたいこと</div>
+      <div class="ask-grid">
+        <div class="ask-item">
+          <div class="ask-num">1</div>
+          <div>
+            <div class="ask-title">各エリア担当営業様へのご紹介</div>
+            <div class="ask-desc">大阪をスタートに、全国10エリアのご担当者様とのご面談機会をいただけますと幸いです。</div>
+          </div>
+        </div>
+        <div class="ask-item">
+          <div class="ask-num">2</div>
+          <div>
+            <div class="ask-title">紹介スキームの社内展開</div>
+            <div class="ask-desc">LIFEXから紹介シート・口頭説明ツールを提供します。営業様の手間を最小化した形で進めます。</div>
+          </div>
+        </div>
+        <div class="ask-item">
+          <div class="ask-num">3</div>
+          <div>
+            <div class="ask-title">ショールームへの資料設置（任意）</div>
+            <div class="ask-desc">工務店が来店した際、LIFEX資料をお手に取っていただける環境があると加盟促進に繋がります。</div>
+          </div>
+        </div>
+        <div class="ask-item">
+          <div class="ask-num">4</div>
+          <div>
+            <div class="ask-title">まずはパイロット実施</div>
+            <div class="ask-desc">2〜3エリアで試行し、反応・課題を確認した上で全国展開を検討します。まずは小さく始めさせてください。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-co">LIFEX / Gハウス BtoB事業部</div>
+    <div class="footer-note">本資料は協議用資料です　2026.07</div>
+  </div>
+
+</div>
