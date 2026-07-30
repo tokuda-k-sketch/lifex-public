@@ -1,0 +1,576 @@
+<title>LIFEX MTG 8/7｜商談を磨く 投影資料</title>
+<style>
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+  --p1:#1e4e79; --p2:#2e7d6e; --p3:#b05c1f;
+  --p1bg:#e8eff6; --p2bg:#e7f2ef; --p3bg:#f9efe4;
+  --leak:#b3372b; --leakbg:#fbe9e7;
+  --gh:#8b4513; --ghbg:#fdf0e4; --ghborder:#e0c4a0;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.6; font-feature-settings:"palt"}
+.wrap{width:min(1100px,96vw); margin:26px auto}
+.draft{width:1100px; margin:0 auto 14px; font-size:12px; color:#8a5a00; background:#fdf3dd;
+  border:1px solid #ecd9a8; border-radius:4px; padding:6px 14px; font-weight:700}
+.sl{width:1100px; height:619px; background:#fff; border-radius:8px;
+  box-shadow:0 2px 16px rgba(20,40,60,.09); padding:32px 50px 24px;
+  display:flex; flex-direction:column; position:relative; overflow:hidden; margin:0 auto 22px}
+.top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+.chip{font-size:11.5px; font-weight:700; letter-spacing:.08em; padding:3px 12px; border-radius:99px}
+.c0{background:#eceff2;color:var(--sub)}
+.c1{background:var(--p1bg);color:var(--p1)}
+.c2{background:var(--p2bg);color:var(--p2)}
+.c3{background:var(--p3bg);color:var(--p3)}
+.cgh{background:var(--ghbg);color:var(--gh);border:1px solid var(--ghborder)}
+.pg{margin-left:auto; font-size:12px; color:#b6c0ca; font-variant-numeric:tabular-nums}
+.tt{font-size:29px; font-weight:800; line-height:1.3; margin:2px 0 4px; text-wrap:balance}
+.ms{font-size:13.5px; color:var(--sub); margin:0 0 11px}
+.body{flex:1; display:flex; gap:22px; min-height:0; overflow:hidden}
+.foot{display:flex; gap:12px; margin-top:9px; align-items:center}
+.cap{font-size:12px; color:var(--sub)}
+.col{display:flex; flex-direction:column; gap:11px; min-width:0}
+.grow{flex:1}
+.say{background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:10px; padding:12px 16px; font-size:13px}
+.say b{color:var(--navy)}
+.say .lbl{display:block; font-size:11px; letter-spacing:.1em; color:var(--navy); font-weight:700; margin-bottom:4px}
+.ag{border:1px solid var(--line); border-radius:6px; padding:10px 18px; display:flex; align-items:center; gap:16px; background:#fff}
+.ag .no{font-size:12px; font-weight:800; color:var(--sub); flex-shrink:0; width:56px; line-height:1.3}
+.ag b{font-size:15px}
+.ag .cap{margin-left:auto; text-align:right; flex-shrink:0; max-width:380px}
+.arr{font-size:28px; color:#c8d4de; align-self:center; flex-shrink:0; font-weight:300}
+
+/* STEPフロー */
+.sf{display:flex; gap:5px; align-items:stretch}
+.sc{flex:1; border:1px solid var(--line); border-radius:6px; padding:10px 7px;
+  background:var(--panel); display:flex; flex-direction:column; gap:3px}
+.sc .sn{font-size:9px; font-weight:700; color:var(--sub); letter-spacing:.12em; text-transform:uppercase}
+.sc .st{font-size:12px; font-weight:800; color:var(--navy); line-height:1.3}
+.sc .sd{font-size:10.5px; color:var(--sub); line-height:1.4; margin-top:2px}
+.sc.hl{background:var(--ghbg); border-color:var(--ghborder)}
+.sc.hl .st{color:var(--gh)}
+
+/* 人物金時敵 */
+.hk{display:flex; flex-direction:column; gap:8px; flex:1}
+.hk-row{display:flex; align-items:center; gap:14px; background:var(--panel);
+  border:1px solid var(--line); border-radius:6px; padding:9px 16px}
+.hk-row .hn{font-size:20px; font-weight:900; color:var(--navy); width:26px; flex-shrink:0; text-align:center}
+.hk-row .hd{flex:1}
+.hk-row .hd b{display:block; font-size:13px; color:var(--ink)}
+.hk-row .hd span{font-size:11.5px; color:var(--sub)}
+.hk-marks{display:flex; gap:6px; margin-left:auto; flex-shrink:0}
+.hm{width:30px; height:30px; border-radius:50%; border:2px solid var(--line);
+  display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; color:#ccc; background:#fff}
+.hm.ok{background:var(--p2); border-color:var(--p2); color:#fff}
+.hm.tri{background:var(--p3bg); border-color:var(--p3); color:var(--p3)}
+.hm.ng{background:var(--leakbg); border-color:var(--leak); color:var(--leak)}
+
+/* ツールカード */
+.tc{border:1px solid var(--line); border-radius:8px; padding:16px 20px;
+  display:flex; flex-direction:column; gap:8px; flex:1}
+.tc h3{margin:0; font-size:17px; font-weight:800; color:var(--navy)}
+.tc p{margin:0; font-size:12.5px; color:var(--sub); line-height:1.6}
+.tc-tag{display:inline-block; font-size:10.5px; font-weight:700; padding:2px 10px;
+  border-radius:99px; border:1px solid var(--line); color:var(--sub); background:var(--panel); margin-bottom:2px}
+.btn-link{display:inline-block; padding:6px 18px; background:var(--navy); color:#fff;
+  border-radius:6px; font-size:12px; font-weight:700; text-decoration:none; margin-top:4px}
+
+/* フェーズバー */
+.ph{flex:1; text-align:center; border:1px solid var(--line); border-radius:6px; padding:12px 8px; background:var(--panel)}
+.ph b{display:block; font-size:13px; font-weight:800; color:var(--navy); margin-bottom:5px; line-height:1.3}
+.ph span{font-size:11px; color:var(--sub); line-height:1.6}
+
+/* 道のりタイムライン */
+.tl{display:flex; gap:0; align-items:stretch; margin-bottom:6px}
+.tl-item{flex:1; display:flex; flex-direction:column; position:relative}
+.tl-item::after{content:''; position:absolute; right:0; top:22px; width:1px; height:calc(100% - 44px); background:var(--line)}
+.tl-item:last-child::after{display:none}
+.tl-dot{width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:800; flex-shrink:0; margin:0 auto 8px; border:2px solid var(--line); color:var(--sub); background:#fff}
+.tl-dot.done{background:var(--navy); border-color:var(--navy); color:#fff}
+.tl-dot.today{background:var(--p2); border-color:var(--p2); color:#fff}
+.tl-body{flex:1; border:1px solid var(--line); border-radius:6px; padding:10px 14px; margin:0 6px; background:#fff}
+.tl-body.done{background:var(--panel)}
+.tl-body.today{background:var(--p2bg); border-color:var(--p2)}
+.tl-body .tb{font-size:11px; font-weight:700; color:var(--sub); letter-spacing:.08em; margin-bottom:3px}
+.tl-body .th{font-size:13px; font-weight:800; color:var(--navy); margin-bottom:4px; line-height:1.3}
+.tl-body .td{font-size:11.5px; color:var(--sub); line-height:1.5}
+
+/* 大きな問い */
+.big-ask{border:3px solid var(--navy); border-radius:12px; padding:26px 40px; text-align:center; background:var(--navy-soft)}
+.big-ask .q{font-size:28px; font-weight:900; color:var(--navy); line-height:1.4}
+.big-ask .q small{display:block; font-size:13px; font-weight:600; color:var(--sub); margin-top:8px}
+
+/* 概念ボックス（Gハウス） */
+.gh-box{background:var(--ghbg); border:1px solid var(--ghborder); border-radius:6px; padding:10px 14px; font-size:13px}
+.gh-box b{display:block; font-size:13px; color:var(--gh)}
+.gh-box span{font-size:11.5px; color:var(--sub)}
+
+@media print{body{background:#fff}.draft{display:none}.sl{box-shadow:none; border:1px solid var(--line); page-break-after:always}}
+</style>
+
+<div class="wrap">
+
+<div class="draft">■ 叩き台（v1・2026/7/30）｜8/7（金）16:00〜（60分）・登壇なし／徳田さん進行。Gハウスの商談の型紹介＋LIFEXへの翻案2ツール。赤い仮置き（___）は当日ダッシュボード最新値で差し替え。</div>
+
+<!-- 1 表紙 -->
+<div class="sl" style="justify-content:center; text-align:center">
+  <div style="font-size:13px; letter-spacing:.22em; color:var(--sub); font-weight:700">2026.8.7（金）16:00〜　LIFEX 月2棟目標達成MTG</div>
+  <div style="font-size:56px; font-weight:800; margin:24px 0 14px; letter-spacing:.02em">商談を磨く。</div>
+  <div style="font-size:19px; color:var(--navy); font-weight:700; line-height:1.7">型を知り、使い、自分のものにする。</div>
+  <div style="margin-top:40px; font-size:13.5px; color:var(--sub)">進行：Gハウス LIFEX FC事業部　徳田</div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px">1 / 13</div>
+</div>
+
+<!-- 2 これまでの道のり -->
+<div class="sl">
+  <div class="top"><span class="chip c0">これまでの道のり</span><span class="pg">2 / 13</span></div>
+  <div class="tt" style="font-size:24px">商品を知り、心理を学び、数字を診た。今日は商談の型をお渡しします。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:7px">
+
+    <!-- フェーズ1 -->
+    <div style="font-size:10px; font-weight:800; letter-spacing:.1em; color:var(--sub); margin-bottom:1px">
+      ❶ LIFEX営業研修シリーズ（4月〜6月・隔週・全5回）
+    </div>
+    <div style="display:flex; gap:5px">
+      <div style="flex:1; background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:7px 8px">
+        <div style="font-size:9px; color:var(--sub); font-weight:700">4/27 第1回</div>
+        <div style="font-size:11px; font-weight:800; color:var(--navy); margin-top:2px; line-height:1.3">LIFEXを知る</div>
+      </div>
+      <div style="flex:1; background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:7px 8px">
+        <div style="font-size:9px; color:var(--sub); font-weight:700">5/11 第2回</div>
+        <div style="font-size:11px; font-weight:800; color:var(--navy); margin-top:2px; line-height:1.3">商品力を理解する</div>
+      </div>
+      <div style="flex:1; background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:7px 8px">
+        <div style="font-size:9px; color:var(--sub); font-weight:700">5/25 第3回</div>
+        <div style="font-size:11px; font-weight:800; color:var(--navy); margin-top:2px; line-height:1.3">購買心理と<br>ヒアリング</div>
+      </div>
+      <div style="flex:1; background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:7px 8px">
+        <div style="font-size:9px; color:var(--sub); font-weight:700">6/8 第4回</div>
+        <div style="font-size:11px; font-weight:800; color:var(--navy); margin-top:2px; line-height:1.3">標準仕様の<br>深掘り</div>
+      </div>
+      <div style="flex:1; background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:7px 8px">
+        <div style="font-size:9px; color:var(--sub); font-weight:700">6/22 第5回</div>
+        <div style="font-size:11px; font-weight:800; color:var(--navy); margin-top:2px; line-height:1.3">クロージング・<br>失注対策</div>
+      </div>
+    </div>
+
+    <!-- フェーズ区切り -->
+    <div style="display:flex; align-items:center; gap:10px; margin:1px 0">
+      <div style="flex:1; height:1px; background:var(--line)"></div>
+      <div style="font-size:10px; font-weight:800; letter-spacing:.1em; color:var(--sub); white-space:nowrap">
+        ❷ 月2棟目標達成MTGシリーズ（7/3スタート・毎週金曜）
+      </div>
+      <div style="flex:1; height:1px; background:var(--line)"></div>
+    </div>
+
+    <!-- フェーズ2 -->
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-dot done" style="font-size:9.5px">7/3</div>
+        <div class="tl-body done">
+          <div class="th">不通対策・アポ術の型</div>
+          <div class="td">架電が繋がらない原因を共有。アポ取得の型（タイミング・言い回し）を初公開。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot done" style="font-size:9.5px">7/17</div>
+        <div class="tl-body done">
+          <div class="th">月2棟の型を公開</div>
+          <div class="td">佐古社長（YUNO HOME）対談。電話7項目・冒頭90秒・総額先出し・クロージング階段まで一挙公開。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot done" style="font-size:9.5px">7/24</div>
+        <div class="tl-body done">
+          <div class="th">通電率UP</div>
+          <div class="td">通電率上位3社の架電法を横展開。共通点は「初動・回数・区切り」の3つ。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot done" style="font-size:9.5px">7/31</div>
+        <div class="tl-body done">
+          <div class="th">KPI診断・アポ率目標</div>
+          <div class="td">自店カルテで穴を特定。アポ率の目標を各店が宣言しダッシュボードに即反映。</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot today" style="font-size:9.5px">8/7</div>
+        <div class="tl-body today">
+          <div class="th" style="color:var(--p2)">商談を磨く　▶ 本日</div>
+          <div class="td">7/31で予告した2ツールを今日渡します。Gハウスの型を見た上で使い方を確認します。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 3 今日の流れ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">本日の流れ</span><span class="pg">3 / 13</span></div>
+  <div class="tt">今日は「型を知る」時間にします。</div>
+  <p class="ms">7/31でアポ率の目標を決めました。今日はその先——商談の中身を磨く2つのツールをお渡しします。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:10px">
+    <div class="ag" style="border-color:var(--navy)">
+      <span class="no" style="color:var(--navy)">観る</span>
+      <b>先週のファネル確認</b>
+      <span class="cap">アポ率目標の出だし1週間。数字の動きを確認します</span>
+    </div>
+    <div class="ag" style="border-color:var(--gh)">
+      <span class="no" style="color:var(--gh)">Gハウスの型</span>
+      <b>成長を支えた商談の型を見る</b>
+      <span class="cap">商談をSTEPで進める型・把握度の管理・毎回問う問いの3つ</span>
+    </div>
+    <div class="ag" style="border-color:var(--p1)">
+      <span class="no" style="color:var(--p1)">翻案</span>
+      <b>この型をLIFEX向けに作りました</b>
+      <span class="cap">7/31に予告した2つのツールの本体です。前回の約束を今日回収します</span>
+    </div>
+    <div class="ag" style="border-color:var(--p2)">
+      <span class="no" style="color:var(--p2)">次回へ</span>
+      <b>8/21に感想＋改善率を確認</b>
+      <span class="cap">3週間後の答え合わせに向けて、今日使い方を持ち帰ります</span>
+    </div>
+  </div>
+  <div class="foot"><span class="cap"><b style="color:var(--navy)">今日のゴール。</b>「どの場面でどう使うか」が決まって帰ること。</span></div>
+</div>
+
+<!-- 3 観る -->
+<div class="sl">
+  <div class="top"><span class="chip c1">観る</span><span class="pg">4 / 13</span></div>
+  <div class="tt">先週の動きを確認します。</div>
+  <p class="ms">7/31で設定したアポ率目標の出だし1週間。まず数字を見てから、今日の本題へ。</p>
+  <div class="body" style="flex-direction:column; gap:16px; justify-content:center">
+    <div style="display:flex; gap:8px; align-items:center">
+      <div style="flex:1; text-align:center; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:12px 6px">
+        <div style="font-size:11px; color:var(--sub); font-weight:600; margin-bottom:4px">登録</div>
+        <div style="font-size:28px; font-weight:800; color:#c00">___</div>
+      </div>
+      <div style="color:#b6c0ca; font-size:18px; font-weight:300">→</div>
+      <div style="flex:1; text-align:center; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:12px 6px">
+        <div style="font-size:11px; color:var(--sub); font-weight:600; margin-bottom:4px">通話</div>
+        <div style="font-size:28px; font-weight:800; color:#c00">___</div>
+      </div>
+      <div style="color:#b6c0ca; font-size:18px; font-weight:300">→</div>
+      <div style="flex:1; text-align:center; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:12px 6px">
+        <div style="font-size:11px; color:var(--sub); font-weight:600; margin-bottom:4px">アポ</div>
+        <div style="font-size:28px; font-weight:800; color:#c00">___</div>
+      </div>
+      <div style="color:#b6c0ca; font-size:18px; font-weight:300">→</div>
+      <div style="flex:1; text-align:center; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:12px 6px">
+        <div style="font-size:11px; color:var(--sub); font-weight:600; margin-bottom:4px">面談</div>
+        <div style="font-size:28px; font-weight:800; color:#c00">___</div>
+      </div>
+      <div style="color:#b6c0ca; font-size:18px; font-weight:300">→</div>
+      <div style="flex:1; text-align:center; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:12px 6px">
+        <div style="font-size:11px; color:var(--sub); font-weight:600; margin-bottom:4px">契約</div>
+        <div style="font-size:28px; font-weight:800; color:#c00">___</div>
+      </div>
+    </div>
+    <div class="say">
+      <span class="lbl">アポ率目標（7/31 設定）</span>
+      各店の目標はダッシュボードで確認。1週間は短いので傾向を見る程度。大事なのはこの後の「型」です。
+      <span style="display:block; margin-top:6px; font-size:11.5px; color:#c00; font-weight:700">※ 当日ダッシュボード最新値で確認・差し替え</span>
+    </div>
+  </div>
+</div>
+
+<!-- 4 Gハウスの型① STEPフロー -->
+<div class="sl">
+  <div class="top"><span class="chip cgh">Gハウスの型①</span><span class="pg">5 / 13</span></div>
+  <div class="tt">商談は7つのSTEPで進める。</div>
+  <p class="ms">何をどの順番で話すかを型として決めておく。型があることで、誰でも同じ質の商談ができる。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:14px">
+    <div class="sf">
+      <div class="sc">
+        <span class="sn">STEP 1</span>
+        <span class="st">ヒアリング</span>
+        <span class="sd">現住まい・入居人数・きっかけ・土地・家・時期の7項目を確認する</span>
+      </div>
+      <div class="sc hl">
+        <span class="sn">STEP 2</span>
+        <span class="st">提案への入り口</span>
+        <span class="sd">「月々いくらまで出せますか？」——出す価値のある金額を聞き出す</span>
+      </div>
+      <div class="sc hl">
+        <span class="sn">STEP 3</span>
+        <span class="st">図面・資金試算</span>
+        <span class="sd">参考図面＋月々の総額を提示。「この金額を見て、どう思いますか？」</span>
+      </div>
+      <div class="sc">
+        <span class="sn">STEP 4</span>
+        <span class="st">月々に落とす</span>
+        <span class="sd">頭金・ローン年数・ボーナス払い。光熱費逆転現象を必ず見せる</span>
+      </div>
+      <div class="sc">
+        <span class="sn">STEP 5</span>
+        <span class="st">提案提示</span>
+        <span class="sd">Gハウスの価値を理解した後で初めてキャンペーンを出す。先出しNG</span>
+      </div>
+      <div class="sc">
+        <span class="sn">STEP 6</span>
+        <span class="st">予算が厳しければ</span>
+        <span class="sd">エリア・坪数・頭金・援助の6択で整理。全部譲れない人は追わない</span>
+      </div>
+      <div class="sc">
+        <span class="sn">STEP 7</span>
+        <span class="st">次回アポへ</span>
+        <span class="sd">スタイルブック・土地物件・事前審査のスケジュールを共有して次回へ</span>
+      </div>
+    </div>
+    <div style="display:flex; gap:12px">
+      <div style="flex:1; background:var(--ghbg); border:1px solid var(--ghborder); border-radius:6px; padding:10px 16px; font-size:12.5px">
+        <b style="color:var(--gh)">STEP2の核心</b> ——「いくらが良いですか？」はNG。<b>出す価値のある金額</b>を引き出す問い方をする。安い数字を言わせると、後で上げられなくなる。
+      </div>
+      <div style="flex:1; background:var(--ghbg); border:1px solid var(--ghborder); border-radius:6px; padding:10px 16px; font-size:12.5px">
+        <b style="color:var(--gh)">STEP3の核心</b> ——金額を出したら必ず反応を確認する。「どう思いますか？」への答えで、次に何を深掘りするかが決まる。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5 Gハウスの型② 人物金時敵 -->
+<div class="sl">
+  <div class="top"><span class="chip cgh">Gハウスの型②</span><span class="pg">6 / 13</span></div>
+  <div class="tt">お客様の「把握度」を5軸で管理する。</div>
+  <p class="ms">商談ごとに◯△×を更新していく。全部◯に近づくほど、契約の勝率が上がる。</p>
+  <div class="body" style="gap:24px; align-items:stretch">
+    <div class="hk">
+      <div class="hk-row">
+        <span class="hn">人</span>
+        <div class="hd"><b>決裁者・キーマン</b><span>誰が最終決定者か。家族で影響力を持つ人は誰か</span></div>
+        <div class="hk-marks">
+          <div class="hm ok">◯</div><div class="hm">△</div><div class="hm">✕</div>
+        </div>
+      </div>
+      <div class="hk-row">
+        <span class="hn">物</span>
+        <div class="hd"><b>土地・建物の要望</b><span>どんな家に住みたいか。土地の条件・こだわりは何か</span></div>
+        <div class="hk-marks">
+          <div class="hm">◯</div><div class="hm tri">△</div><div class="hm">✕</div>
+        </div>
+      </div>
+      <div class="hk-row">
+        <span class="hn">金</span>
+        <div class="hd"><b>予算・資金・援助</b><span>月々の上限は。頭金・親からの援助の有無は</span></div>
+        <div class="hk-marks">
+          <div class="hm">◯</div><div class="hm tri">△</div><div class="hm">✕</div>
+        </div>
+      </div>
+      <div class="hk-row">
+        <span class="hn">時</span>
+        <div class="hd"><b>時期・リミット・動く理由</b><span>いつまでに決めたいか。決断を急がせる理由は何か</span></div>
+        <div class="hk-marks">
+          <div class="hm ok">◯</div><div class="hm">△</div><div class="hm">✕</div>
+        </div>
+      </div>
+      <div class="hk-row">
+        <span class="hn">敵</span>
+        <div class="hd"><b>競合・阻害要因</b><span>他社を検討しているか。誰が反対しているか</span></div>
+        <div class="hk-marks">
+          <div class="hm ok">◯</div><div class="hm">△</div><div class="hm">✕</div>
+        </div>
+      </div>
+    </div>
+    <div class="col" style="width:290px; flex-shrink:0; justify-content:center; gap:12px">
+      <div style="background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:16px; font-size:13px; line-height:2">
+        <div style="font-size:11px; font-weight:700; color:var(--sub); letter-spacing:.1em; margin-bottom:8px">◯△×の意味</div>
+        <div><b>◯</b>　把握できた</div>
+        <div><b>△</b>　一部不明・深掘りが必要</div>
+        <div><b>✕</b>　まだ聞けていない</div>
+      </div>
+      <div class="say">
+        <span class="lbl">使い方のポイント</span>
+        △と✕が残っている軸＝<b>次回聞くべき質問</b>が自動的に見える。何を聞けばいいか迷わなくなる。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6 Gハウスの型③ あと何をすれば契約か -->
+<div class="sl">
+  <div class="top"><span class="chip cgh">Gハウスの型③</span><span class="pg">7 / 13</span></div>
+  <div class="tt">毎商談後に必ず、この問いを立てる。</div>
+  <p class="ms">どれだけ良い商談をしても、この問いに答えられなければ次の手が決まらない。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:18px">
+    <div class="big-ask">
+      <div class="q">
+        あと何をすれば契約か？
+        <small>（問題点・課題点）</small>
+      </div>
+    </div>
+    <div style="display:flex; gap:14px">
+      <div style="flex:1; border:1px solid var(--leak); border-radius:6px; padding:14px 18px; background:var(--leakbg)">
+        <div style="font-size:12px; font-weight:700; color:var(--leak); margin-bottom:5px">答えられない商談は</div>
+        <div style="font-size:13px; color:var(--ink); line-height:1.7">人物金時敵のどこかに<b>×か△</b>が残っている。把握が足りない段階では、何をすべきかが見えない。</div>
+      </div>
+      <div style="flex:1; border:1px solid var(--p2); border-radius:6px; padding:14px 18px; background:var(--p2bg)">
+        <div style="font-size:12px; font-weight:700; color:var(--p2); margin-bottom:5px">答えられる商談は</div>
+        <div style="font-size:13px; color:var(--ink); line-height:1.7">「金の△を解消すれば動く」「敵の一条への不安を取れば決まる」——具体的な<b>次の一手</b>が決まる。</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <span class="cap">この問いが習慣になったとき、商談は「流れるもの」から「積み上げるもの」に変わる。</span>
+    <span style="margin-left:auto; font-size:12.5px; color:var(--navy); font-weight:700">→ この型をLIFEX向けに翻案しました</span>
+  </div>
+</div>
+
+<!-- 7 LIFEXへの翻案 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">LIFEXへの翻案</span><span class="pg">8 / 13</span></div>
+  <div class="tt">この型をLIFEX向けに作りました。</div>
+  <p class="ms">7/31に予告した2つのツールの本体がこれです。今日はURLを渡して終わりではなく、使い方を一緒に確認します。</p>
+  <div class="body" style="gap:20px; align-items:stretch">
+    <div class="col" style="width:270px; flex-shrink:0; justify-content:center; gap:10px">
+      <div style="font-size:11px; font-weight:700; color:var(--gh); letter-spacing:.1em; margin-bottom:2px">Gハウスの型（今見てきた3つ）</div>
+      <div class="gh-box"><b>① STEPで商談を構造化する</b><span>何をどの順番で話すか</span></div>
+      <div class="gh-box"><b>② 人物金時敵で把握度を管理する</b><span>◯△×で次の問いが見える</span></div>
+      <div class="gh-box"><b>③「あと何をすれば？」を毎回問う</b><span>習慣化が商談を積み上げる</span></div>
+    </div>
+    <div class="arr" style="font-size:36px">→</div>
+    <div class="col" style="flex:1; gap:14px; justify-content:center">
+      <div class="tc" style="background:var(--navy-soft); border-color:var(--p1)">
+        <span class="tc-tag">ツール①</span>
+        <h3>商談ふりかえりシート</h3>
+        <p>人物金時敵の5視点で商談を振り返る。「あと何をすれば契約か？」を毎回言語化する。商談前に仮説を立て、後に答え合わせをする形で使う。</p>
+        <a class="btn-link" href="https://tokuda-k-sketch.github.io/lifex-public/shodan-furikaeri.html" target="_blank">開く →</a>
+      </div>
+      <div class="tc" style="background:var(--p2bg); border-color:var(--p2)">
+        <span class="tc-tag">ツール②</span>
+        <h3>鉄板トーク集</h3>
+        <p>STEP別・場面別のトーク集。重視点の深掘り・断り文句への切り返し・競合対策・フェーズ別の4タブ。すべて「受ける→なぜ？→気づき→橋渡し」の型。</p>
+        <a class="btn-link" href="https://tokuda-k-sketch.github.io/lifex-public/teppan-talk.html" target="_blank" style="background:var(--p2)">開く →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 8 ふりかえりシートの使い方 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">使い方①</span><span class="pg">9 / 13</span></div>
+  <div class="tt">ふりかえりシートは「商談の前後」で使う。</div>
+  <p class="ms">商談中に使うのではなく、前に仮説を立て、後に答え合わせをする。この繰り返しが商談を磨く。</p>
+  <div class="body" style="gap:10px; align-items:stretch">
+    <div class="col" style="flex:1; justify-content:center">
+      <div style="background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:8px; padding:18px 20px; height:100%; display:flex; flex-direction:column; justify-content:center">
+        <div style="font-size:11px; font-weight:700; color:var(--navy); letter-spacing:.1em; margin-bottom:10px">商談前（5分）</div>
+        <div style="font-size:13.5px; line-height:1.9; color:var(--ink)">
+          5軸ごとに<b>仮説を立てる</b><br>
+          「この人は金が△かもしれない」<br>
+          「敵に一条がいるかも」<br>
+          <span style="color:var(--navy); font-weight:700">→ 今日聞く質問が決まる</span>
+        </div>
+      </div>
+    </div>
+    <div class="arr">→</div>
+    <div class="col" style="width:170px; flex-shrink:0; justify-content:center">
+      <div style="background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:18px; text-align:center; height:100%; display:flex; flex-direction:column; justify-content:center">
+        <div style="font-size:24px; font-weight:800; color:var(--sub); margin-bottom:8px">商談</div>
+        <div style="font-size:12px; color:var(--sub); line-height:1.7">シートは出さなくていい<br>頭に入れておくだけ</div>
+      </div>
+    </div>
+    <div class="arr">→</div>
+    <div class="col" style="flex:1; justify-content:center">
+      <div style="background:var(--p2bg); border:1px solid #bfdcd5; border-radius:8px; padding:18px 20px; height:100%; display:flex; flex-direction:column; justify-content:center">
+        <div style="font-size:11px; font-weight:700; color:var(--p2); letter-spacing:.1em; margin-bottom:10px">商談後（10分）</div>
+        <div style="font-size:13.5px; line-height:1.9; color:var(--ink)">
+          仮説と<b>答え合わせ</b><br>
+          まだ×△の軸 ＝ 次回聞く質問<br>
+          「あと何をすれば？」を書く<br>
+          <span style="color:var(--p2); font-weight:700">→ 次の商談が設計できる</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">「録画を見返してから書く」でも十分。翌日でもいい。まず1回やってみることが大事。</span></div>
+</div>
+
+<!-- 9 鉄板トーク集の使い方 -->
+<div class="sl">
+  <div class="top"><span class="chip c2">使い方②</span><span class="pg">10 / 13</span></div>
+  <div class="tt">鉄板トーク集は「商談前に読んでおく」。</div>
+  <p class="ms">困ったときに開くのではなく、商談前に想定される場面を読んでおく。準備が商談の質を上げる。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:14px">
+    <div style="display:flex; gap:10px">
+      <div class="ph" style="background:var(--navy-soft); border-color:var(--p1)">
+        <b>重視点を深掘り</b>
+        <span>価格・性能・デザイン・早さ・土地<br><br>ヒアリング段階（STEP1〜2）で<br>お客様の本音を引き出す</span>
+      </div>
+      <div class="ph" style="background:var(--leakbg); border-color:var(--leak)">
+        <b style="color:var(--leak)">断り文句を切り返す</b>
+        <span>規格の自由度・安い・大手比較<br>「検討します」の本音を探る<br><br>壁が来たときに開く</span>
+      </div>
+      <div class="ph" style="background:var(--p3bg); border-color:var(--p3)">
+        <b style="color:var(--p3)">競合を攻略</b>
+        <span>一条工務店・地場ビルダー・建売<br><br>「敵」が出てきたとき<br>（人物金時敵の「敵」）</span>
+      </div>
+      <div class="ph" style="background:var(--p2bg); border-color:var(--p2)">
+        <b style="color:var(--p2)">フェーズ別</b>
+        <span>電話7項目・面談90秒<br>総額先出し・クロージング<br><br>各フェーズの入口で確認</span>
+      </div>
+    </div>
+    <div style="display:flex; gap:12px; align-items:stretch">
+      <div class="say" style="flex:1">
+        <span class="lbl">すべてのトークに共通する型</span>
+        <b>受ける → なぜ？ → 気づき → LIFEXへ橋渡し</b><br>
+        <span style="font-size:12px; color:var(--sub)">「受ける」から始めることで、お客様の警戒が解ける。否定から入ると心を閉じる。</span>
+      </div>
+      <div style="border:1px solid var(--line); border-radius:8px; padding:14px 18px; background:var(--panel); font-size:12.5px; width:300px">
+        <div style="font-weight:700; color:var(--navy); margin-bottom:6px; font-size:13px">おすすめの使い方</div>
+        <div style="color:var(--sub); line-height:1.7">「この人は競合に一条がいる」<br>→ 競合タブの一条トークを1本読む<br>→ 翌日の商談に臨む<br>これだけで準備の質が変わる</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 10 今日持ち帰るもの -->
+<div class="sl">
+  <div class="top"><span class="chip c2">今日持ち帰るもの</span><span class="pg">11 / 13</span></div>
+  <div class="tt">今日から使える2つのURLをお渡しします。</div>
+  <p class="ms">7/31でお見せした2点。今日の本番です。商談の前後に開いてみてください。</p>
+  <div class="body" style="gap:20px; align-items:stretch">
+    <div style="flex:1; border:2px solid var(--p1); border-radius:10px; padding:22px 26px; background:var(--navy-soft); display:flex; flex-direction:column; gap:10px">
+      <div style="font-size:11px; font-weight:700; color:var(--p1); letter-spacing:.1em">ツール①</div>
+      <div style="font-size:20px; font-weight:800; color:var(--navy)">商談ふりかえりシート</div>
+      <div style="font-size:13px; color:var(--sub); line-height:1.7; flex:1">
+        人物金時敵の5視点で振り返る。<br>「あと何をすれば契約か？」を毎回言語化する。<br>商談前の仮説→後の答え合わせで使う。
+      </div>
+      <div style="font-size:11.5px; color:var(--blue); word-break:break-all; margin-top:auto">https://tokuda-k-sketch.github.io/lifex-public/shodan-furikaeri.html</div>
+    </div>
+    <div style="flex:1; border:2px solid var(--p2); border-radius:10px; padding:22px 26px; background:var(--p2bg); display:flex; flex-direction:column; gap:10px">
+      <div style="font-size:11px; font-weight:700; color:var(--p2); letter-spacing:.1em">ツール②</div>
+      <div style="font-size:20px; font-weight:800; color:var(--p2)">鉄板トーク集</div>
+      <div style="font-size:13px; color:var(--sub); line-height:1.7; flex:1">
+        重視点・断り文句・競合・フェーズ別の4タブ。<br>困ったときではなく、<b style="color:var(--ink)">商談前日に</b>読む。<br>想定される場面を準備しておく。
+      </div>
+      <div style="font-size:11.5px; color:var(--blue); word-break:break-all; margin-top:auto">https://tokuda-k-sketch.github.io/lifex-public/teppan-talk.html</div>
+    </div>
+  </div>
+  <div class="foot">
+    <span class="cap">8/21（3週間後）に「使ってみた感想を1分で」聞かせてください。どの場面で使ったか、使いにくかった点も歓迎です。</span>
+  </div>
+</div>
+
+<!-- 12 次回予告 -->
+<div class="sl" style="justify-content:center; text-align:center">
+  <div class="top" style="justify-content:center"><span class="chip c0">次回</span></div>
+  <div style="font-size:16px; font-weight:700; color:var(--sub); margin:18px 0 8px; letter-spacing:.1em">2026.8.21（金）16:00〜</div>
+  <div style="font-size:42px; font-weight:800; margin:0 0 20px; letter-spacing:.02em">答え合わせ＋改善率の確認。</div>
+  <div style="display:flex; gap:16px; margin:0 auto; width:640px">
+    <div style="flex:1; background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:8px; padding:18px 20px; text-align:left">
+      <div style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:6px">① ツールを使った感想（各店1分）</div>
+      <div style="font-size:12.5px; color:var(--sub); line-height:1.7">どの場面で使ったか。気づいたこと・使いにくかった点も歓迎</div>
+    </div>
+    <div style="flex:1; background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:8px; padding:18px 20px; text-align:left">
+      <div style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:6px">② アポ率の改善率確認</div>
+      <div style="font-size:12.5px; color:var(--sub); line-height:1.7">7/31で設定した目標。3週間でどう動いたか、数字で答え合わせ</div>
+    </div>
+  </div>
+  <div style="margin-top:30px; font-size:16px; color:var(--sub); font-style:italic">型は使わないと磨けない。まず1回。</div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px">13 / 13</div>
+</div>
+
+</div>
