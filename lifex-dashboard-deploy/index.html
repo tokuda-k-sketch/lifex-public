@@ -267,6 +267,37 @@ body { font-family: var(--font); background: var(--bg); color: var(--ink); min-h
   .kpi-row { grid-template-columns: repeat(2,1fr); } .sg { grid-template-columns: 1fr; }
   .wk-cards { grid-template-columns: repeat(3,1fr); }
 }
+
+/* ── INSIGHT SECTION（全社分析・勝ちパターン・分布） ── */
+.insight-box { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+@media (max-width: 900px) { .insight-box { grid-template-columns: 1fr; } }
+.ins-card { background: var(--surface); border-radius: 14px; padding: 22px 24px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.05); }
+.ins-ttl { font-size: 10px; font-weight: 800; color: var(--muted); letter-spacing: .1em;
+  text-transform: uppercase; margin-bottom: 16px; }
+.bm-row { display: flex; align-items: center; gap: 12px; padding: 9px 0;
+  border-bottom: 1px solid var(--hairline); }
+.bm-row:last-child { border-bottom: none; }
+.bm-rank { font-size: 12px; font-weight: 900; width: 20px; flex-shrink: 0;
+  color: var(--muted); text-align: center; }
+.bm-rank.gold { color: #B4832B; }
+.bm-name { flex: 1; font-size: 13px; font-weight: 700; color: var(--ink);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bm-kpis { display: flex; gap: 10px; flex-shrink: 0; }
+.bm-kpi { text-align: center; min-width: 38px; }
+.bm-kpi .v { font-size: 14px; font-weight: 800; color: var(--ink);
+  font-variant-numeric: tabular-nums; line-height: 1.2; }
+.bm-kpi .l { font-size: 9px; color: var(--muted); }
+.dist-row { display: flex; flex-direction: column; gap: 16px; }
+.dist-metric { }
+.dist-lbl { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 6px; }
+.dist-track { position: relative; height: 8px; background: var(--hairline);
+  border-radius: 4px; margin: 0 0 4px; }
+.dist-iqr { position: absolute; top: 0; height: 8px; border-radius: 3px; box-sizing: border-box; }
+.dist-med { position: absolute; top: -3px; width: 3px; height: 14px; border-radius: 2px; }
+.dist-nums { display: flex; justify-content: space-between; font-size: 10px;
+  color: var(--muted); font-variant-numeric: tabular-nums; }
+.dist-nums .med { font-weight: 800; color: var(--ink); }
 </style>
 </head>
 <body>
@@ -329,6 +360,8 @@ body { font-family: var(--font); background: var(--bg); color: var(--ink); min-h
       <div style="font-size:11px;color:#182438;padding:4px 0;"><span style="font-weight:700;color:#94A3B8;margin-right:6px;">S13</span>顧客対象外</div>
     </div>
   </div>
+
+  <div id="js-insight"></div>
 
   <div class="sec-lbl">店舗別 KPI<span class="sg-note" id="js-sg-note"></span></div>
   <div class="sg" id="js-sg"></div>
@@ -435,6 +468,7 @@ function renderAdSection(st, r){
   const cumCost  = rv ? rv.cost  : null;
   const yoyaku = (cumCost!=null && resCount>0) ? cumCost/resCount   : null;
   const raijo  = (cumCost!=null && r.interview>0) ? cumCost/r.interview : null;
+  const cpo    = (cumCost!=null && r.contract>0) ? cumCost/r.contract : null;
 
   const unit = (lbl, val, base) => `
     <div class="ad-unit">
@@ -470,6 +504,7 @@ function renderAdSection(st, r){
     <div class="ad-units">
       ${unit('予約単価（LP予約）', yoyaku, resCount!=null ? `累計配信費 ÷ 予約${cnt(resCount)}件` : 'データなし')}
       ${unit('来場単価（実来場）', raijo, `累計配信費 ÷ 面談済以降${r.interview}名`)}
+      ${unit('CPO（受注1棟あたり広告費）', cpo, r.contract>0 ? `累計配信費 ÷ 契約${r.contract}棟` : '契約データなし')}
     </div>
     ${tbl('meta', false)}
     ${tbl('google', true)}
@@ -948,6 +983,99 @@ function renderStoreCards(stores) {
   document.getElementById('js-sg').innerHTML=cards;
 }
 
+/* ══════════ 全社インサイト（勝ちパターンBM・群の分布・CPO集計） ══════════ */
+function quartile(sorted, q) {
+  if (!sorted.length) return null;
+  const pos = (sorted.length - 1) * q;
+  const lo = Math.floor(pos), hi = Math.ceil(pos);
+  return lo === hi ? sorted[lo] : sorted[lo] * (hi - pos) + sorted[hi] * (pos - lo);
+}
+
+function renderInsight(stores) {
+  const el = document.getElementById('js-insight');
+  if (!el) return;
+
+  const withData = stores.filter(st => calcKPIs(st.s).total > 0);
+  if (withData.length < 2) { el.innerHTML = ''; return; }
+
+  const kpis = withData.map(st => calcKPIs(st.s));
+
+  // ── 上位3店（アポ取得率 kpi2 で降順） ──
+  const ranked = withData
+    .map((st, i) => ({ st, r: kpis[i] }))
+    .filter(x => x.r.kpi2 !== null)
+    .sort((a, b) => parseFloat(b.r.kpi2) - parseFloat(a.r.kpi2));
+  const top3 = ranked.slice(0, 3);
+
+  const medalColor = ['#B4832B','#5A6B7E','#5A6B7E'];
+  const bmRows = top3.map((x, i) => {
+    const name = x.st.name + (x.st.sub ? '（' + x.st.sub + '）' : '');
+    return `<div class="bm-row">
+      <div class="bm-rank" style="color:${medalColor[i]}">${i+1}</div>
+      <div class="bm-name" title="${name}">${name}</div>
+      <div class="bm-kpis">
+        <div class="bm-kpi">
+          <div class="v">${x.r.kpi1 !== null ? x.r.kpi1+'%' : '—'}</div>
+          <div class="l">通電</div>
+        </div>
+        <div class="bm-kpi">
+          <div class="v" style="color:var(--f2)">${x.r.kpi2 !== null ? x.r.kpi2+'%' : '—'}</div>
+          <div class="l">アポ</div>
+        </div>
+        <div class="bm-kpi">
+          <div class="v" style="color:var(--success)">${x.r.kpi3 !== null ? x.r.kpi3+'%' : '—'}</div>
+          <div class="l">契約</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // ── 分布（kpi1/kpi2/kpi3 の中央値・四分位・最大最小） ──
+  const distDefs = [
+    { lbl: '① 通話接続率', key: 'kpi1', color: '#1E54A4' },
+    { lbl: '② アポ取得率', key: 'kpi2', color: '#2B7BD8' },
+    { lbl: '③ 契約率',     key: 'kpi3', color: '#1A7A50' },
+  ];
+
+  const distRows = distDefs.map(d => {
+    const vals = kpis
+      .map(r => r[d.key])
+      .filter(v => v !== null)
+      .map(v => parseFloat(v))
+      .sort((a, b) => a - b);
+    if (vals.length < 2) return '';
+    const mn = vals[0], mx = vals[vals.length - 1];
+    const q1 = quartile(vals, 0.25), med = quartile(vals, 0.5), q3 = quartile(vals, 0.75);
+    const range = mx - mn || 1;
+    const pct = v => ((v - mn) / range * 100).toFixed(1);
+    return `<div class="dist-metric">
+      <div class="dist-lbl">${d.lbl}</div>
+      <div class="dist-track">
+        <div class="dist-iqr" style="left:${pct(q1)}%;width:${(pct(q3)-pct(q1))}%;background:${d.color}28;border:1.5px solid ${d.color}66"></div>
+        <div class="dist-med" style="left:calc(${pct(med)}% - 1.5px);background:${d.color}"></div>
+      </div>
+      <div class="dist-nums">
+        <span>${mn.toFixed(1)}%</span>
+        <span class="med">中央値 ${med.toFixed(1)}%</span>
+        <span>${mx.toFixed(1)}%</span>
+      </div>
+    </div>`;
+  }).filter(Boolean).join('');
+
+  el.innerHTML = `
+    <div class="sec-lbl">全社分析 ─ 勝ちパターンと群のばらつき</div>
+    <div class="insight-box">
+      <div class="ins-card">
+        <div class="ins-ttl">アポ取得率 上位店ベンチマーク（${withData.length}店中）</div>
+        <div>${bmRows || '<div style="color:#94A3B8;font-size:13px;padding:8px 0">データ取得中...</div>'}</div>
+      </div>
+      <div class="ins-card">
+        <div class="ins-ttl">全社の分布 ─ ${withData.length}店舗 ／ 棒＝四分位範囲・縦線＝中央値</div>
+        <div class="dist-row">${distRows || '<div style="color:#94A3B8;font-size:13px;padding:8px 0">データ取得中...</div>'}</div>
+      </div>
+    </div>`;
+}
+
 /* ══════════ RENDER ALL ══════════ */
 function renderAll(stores) {
   const G=sumStores(stores);
@@ -959,6 +1087,7 @@ function renderAll(stores) {
   renderKPICards(G, prevG);
   renderFunnel(G, prevG);
   renderWeekly(stores);
+  renderInsight(stores);
   renderStoreCards(stores);
 }
 
