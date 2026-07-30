@@ -339,7 +339,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--ink); min-h
     </div>
   </div>
 
-  <div class="sec-lbl">週次推移 ─ 全店舗合計</div>
+  <div class="sec-lbl" id="js-weekly-lbl">週次推移 ─ 全店舗合計</div>
   <div id="js-weekly"></div>
 
   <!-- ステータス定義凡例 -->
@@ -363,7 +363,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--ink); min-h
 
   <div id="js-insight"></div>
 
-  <div class="sec-lbl">店舗別 KPI<span class="sg-note" id="js-sg-note"></span></div>
+  <div class="sec-lbl" id="js-store-lbl">店舗別 KPI<span class="sg-note" id="js-sg-note"></span></div>
   <div class="sg" id="js-sg"></div>
 </div>
 
@@ -372,6 +372,10 @@ body { font-family: var(--font); background: var(--bg); color: var(--ink); min-h
    Googleスプレッドシートのデプロイ後、URLをここに貼り付ける
    （空のままの場合はサンプルデータで表示）                    */
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwriC9V4xS2ZZ8rGhfsQydsBmXKzTWo9CKiJUs7kPt5naU3NWXQy_IKbB6ytZfw_WtE/exec';
+
+/* 加盟店別ビュー設定 — URL に ?s=TOKEN が付いているとき自店舗のみ表示 */
+const STORE_TOKEN = new URLSearchParams(location.search).get('s') || null;
+const STORE_VIEW  = !!STORE_TOKEN;
 
 /* ══════════ SAMPLE DATA (今週分) ══════════ */
 const SAMPLE_STORES = [
@@ -424,6 +428,8 @@ const F_COLORS     = ['#1E54A4','#2B7BD8','#3C9AE8','#C8762A','#1A7A50'];
 /* ══════════ 広告実績データ ══════════ */
 let ADS = null; // GAS v2 から受け取る { months:[], reservations:[] }
 let TARGETS = null; // GAS v2.2 の目標シートから受け取る [{name,sub,kpi1,kpi2,kpi3}, ...]。無ければ null（目標ゲージ非表示）
+let GLOBAL_AGGREGATE = null; // 加盟店ビュー用：GASが全店舗から算出した集計値
+let STORE_GROUP = null;      // 加盟店ビュー用：グループ表示名（例「中央建設」）
 
 // 店舗名の表記ゆれを吸収（全角半角スペース除去・丸数字→数字・小文字化）
 const normName = s => String(s||'')
@@ -613,7 +619,7 @@ function renderWeekly(stores){
   el.innerHTML = `<div class="wk-box">
     <div class="wk-head">
       <div class="wk-note">${note}</div>
-      <button class="btn-snap" onclick="saveSnapshotNow(this)">📌 今週分を保存する</button>
+      ${!STORE_VIEW ? '<button class="btn-snap" onclick="saveSnapshotNow(this)">📌 今週分を保存する</button>' : ''}
     </div>
     <div class="wk-cards">${cards}</div>
     ${renderWeeklyChart(pts)}
@@ -976,7 +982,7 @@ function renderStoreCards(stores) {
       </div>
       ${gaugeHtml}
       ${renderAdSection(st, r)}
-      <div class="notes"><div class="notes-lbl">所見・備考</div>${notesHtml}</div>
+      ${!STORE_VIEW ? `<div class="notes"><div class="notes-lbl">所見・備考</div>${notesHtml}</div>` : ''}
     </div>`;
   }).join('');
 
@@ -1077,17 +1083,30 @@ function renderInsight(stores) {
 }
 
 /* ══════════ RENDER ALL ══════════ */
-function renderAll(stores) {
-  const G=sumStores(stores);
-  const ps=prevSnapshot();
-  const prevG=ps?sumStores(ps.stores):null;
-  const active=stores.filter(s=>s.s&&Object.keys(s.s).length>0).length;
-  document.getElementById('js-store-count').textContent=
-    `加盟店 営業KPI管理 ／ ${stores.length}店舗（今週データ登録: ${active}店舗）`;
+function renderAll(stores, globalAggregate) {
+  // 加盟店ビューでは全体集計をGASから受け取り、管理者ビューはローカル計算
+  const G = globalAggregate || sumStores(stores);
+  const ps = prevSnapshot();
+  // 加盟店ビューでは前週比の全体集計を表示しない（自店舗の履歴で代替）
+  const prevG = STORE_VIEW ? null : (ps ? sumStores(ps.stores) : null);
+  const active = stores.filter(s=>s.s&&Object.keys(s.s).length>0).length;
+
+  if (STORE_VIEW) {
+    document.getElementById('js-store-count').textContent =
+      `${STORE_GROUP || ''} 様 ／ KPIカード・ファネルは全加盟店合計 ／ 下部は自店舗の詳細`;
+    const weeklyLbl = document.getElementById('js-weekly-lbl');
+    if (weeklyLbl) weeklyLbl.textContent = '週次推移 ─ 自店舗';
+    const storeLbl = document.getElementById('js-store-lbl');
+    if (storeLbl) storeLbl.innerHTML = `自店舗 KPI<span class="sg-note" id="js-sg-note"></span>`;
+  } else {
+    document.getElementById('js-store-count').textContent =
+      `加盟店 営業KPI管理 ／ ${stores.length}店舗（今週データ登録: ${active}店舗）`;
+  }
+
   renderKPICards(G, prevG);
   renderFunnel(G, prevG);
   renderWeekly(stores);
-  renderInsight(stores);
+  if (!STORE_VIEW) renderInsight(stores);
   renderStoreCards(stores);
 }
 
@@ -1097,7 +1116,12 @@ async function init() {
   setStatus('loading','読み込み中...');
   document.getElementById('js-banner').innerHTML='';
 
+  // 加盟店ビューでは「開発版」バッジを非表示
+  const devPill = document.querySelector('.dev-pill');
+  if (STORE_VIEW && devPill) devPill.style.display = 'none';
+
   if(!APPS_SCRIPT_URL){
+    if (STORE_VIEW) { setStatus('warn','設定エラー'); return; }
     renderAll(SAMPLE_STORES);
     setStatus('warn','サンプルデータを表示中 — スプレッドシート未連携');
     document.getElementById('js-banner').innerHTML=`
@@ -1110,50 +1134,78 @@ async function init() {
   }
 
   try {
-    const res = await fetch(APPS_SCRIPT_URL+'?history=12&t='+Date.now(), {redirect:'follow'});
+    const url = APPS_SCRIPT_URL + '?history=12&t=' + Date.now()
+      + (STORE_TOKEN ? '&s=' + encodeURIComponent(STORE_TOKEN) : '');
+    const res = await fetch(url, {redirect:'follow'});
     if(!res.ok) throw new Error('HTTP '+res.status);
     const data = await res.json();
+
+    // 無効トークン
+    if (data.error === 'invalid_token') {
+      document.getElementById('js-banner').innerHTML=`
+        <div class="setup-banner">
+          <strong>⚠ このURLは無効または期限切れです</strong>
+          LIFEX事務局にご連絡ください。
+        </div>`;
+      setStatus('warn','アクセスエラー');
+      return;
+    }
+
     if(!data.stores || !Array.isArray(data.stores)) throw new Error('データ形式が不正');
 
     // 週次スナップショット履歴（GAS v2.1のみ）。旧GASはhistoryキー自体が無い → null（未連携表示）
     HISTORY = Array.isArray(data.history) ? data.history : null;
     if(data.historyError){
       HISTORY = [];
-      document.getElementById('js-banner').innerHTML += `
+      if (!STORE_VIEW) document.getElementById('js-banner').innerHTML += `
         <div class="setup-banner">
           <strong>⚠ 週次スナップショットの読み込みに失敗しました</strong>
           KPI表示は正常です。エラー内容: ${data.historyError}
         </div>`;
     }
 
-    // 各店の自己設定目標（GAS v2.2のみ）。無ければnull → 目標ゲージは非表示
+    // 各店の自己設定目標（GAS v2.2のみ）
     TARGETS = Array.isArray(data.targets) ? data.targets : null;
 
-    // 広告実績データ（GAS v2のみ）。無い・エラーでもKPI表示は続行
-    ADS = (data.ads && !data.ads.error && Array.isArray(data.ads.months)) ? data.ads : null;
-    if(data.ads && data.ads.error){
-      document.getElementById('js-banner').innerHTML=`
-        <div class="setup-banner">
-          <strong>⚠ 広告スプシの読み込みに失敗しました</strong>
-          KPIデータは正常です。エラー内容: ${data.ads.error}
-        </div>`;
-    } else if(!data.ads){
-      document.getElementById('js-banner').innerHTML=`
-        <div class="setup-banner">
-          <strong>📋 広告実績データが未連携です（GAS v1のURLを参照中）</strong>
-          Apps Scriptをv2コードに更新して「新しいデプロイ」を作成し、そのURLをこのHTMLの <code>APPS_SCRIPT_URL</code> に設定してください。
-        </div>`;
+    // 全体集計（加盟店ビュー用）
+    GLOBAL_AGGREGATE = data.globalAggregate || null;
+    STORE_GROUP = data.storeGroup || null;
+
+    // 広告実績データ（管理者ビューのみ）
+    if (!STORE_VIEW) {
+      ADS = (data.ads && !data.ads.error && Array.isArray(data.ads.months)) ? data.ads : null;
+      if(data.ads && data.ads.error){
+        document.getElementById('js-banner').innerHTML=`
+          <div class="setup-banner">
+            <strong>⚠ 広告スプシの読み込みに失敗しました</strong>
+            KPIデータは正常です。エラー内容: ${data.ads.error}
+          </div>`;
+      } else if(!data.ads){
+        document.getElementById('js-banner').innerHTML=`
+          <div class="setup-banner">
+            <strong>📋 広告実績データが未連携です（GAS v1のURLを参照中）</strong>
+            Apps Scriptをv2コードに更新して「新しいデプロイ」を作成し、そのURLをこのHTMLの <code>APPS_SCRIPT_URL</code> に設定してください。
+          </div>`;
+      }
     }
 
-    renderAll(data.stores);
+    renderAll(data.stores, GLOBAL_AGGREGATE);
     const t=new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
-    setStatus('live', ADS ? 'スプレッドシート連携中（KPI＋広告） — 最終更新 '+t
-                          : 'スプレッドシート連携中（KPIのみ） — 最終更新 '+t);
+    if (STORE_VIEW) {
+      setStatus('live', 'データ連携中 — 最終更新 '+t);
+    } else {
+      setStatus('live', ADS ? 'スプレッドシート連携中（KPI＋広告） — 最終更新 '+t
+                            : 'スプレッドシート連携中（KPIのみ） — 最終更新 '+t);
+    }
   } catch(err) {
     console.error('LIFEX fetch error:', err);
     HISTORY = null;
-    renderAll(SAMPLE_STORES);
-    setStatus('warn','取得失敗（サンプルデータを表示）');
+    if (STORE_VIEW) {
+      setStatus('warn','取得失敗 — 再読み込みしてください');
+    } else {
+      renderAll(SAMPLE_STORES);
+      setStatus('warn','取得失敗（サンプルデータを表示）');
+    }
   }
 }
 
