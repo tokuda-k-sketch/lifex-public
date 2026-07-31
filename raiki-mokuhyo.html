@@ -158,6 +158,52 @@
   .play ul{margin:0;padding-left:15px;}
   .play li{font-size:11.5px;color:var(--ink-soft);line-height:1.55;font-weight:600;margin-bottom:3px;}
   .play li:last-child{margin-bottom:0;}
+  /* ---- 課題タイプ分類 ---- */
+  .typeband{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 16px;
+  }
+  .typecell{
+    border:1px solid var(--line);border-radius:6px;padding:12px 14px;background:#fff;
+  }
+  .typecell.is-focus{border-color:var(--gold);background:var(--gold-wash);}
+  .typecell .type-no{font-size:10px;font-weight:800;color:var(--mute);letter-spacing:.06em;}
+  .typecell.is-focus .type-no{color:var(--gold);}
+  .typecell .type-name{font-size:14px;font-weight:800;margin:4px 0 6px;}
+  .typecell .type-symptom{font-size:11px;color:var(--ink-soft);font-weight:600;margin:0 0 8px;line-height:1.5;}
+  .typecell .type-cure{font-size:11px;color:var(--ink);font-weight:700;border-top:1px dashed var(--line);padding-top:7px;line-height:1.5;}
+  .typecell.is-focus .type-cure{color:var(--gold);}
+  /* ---- 注力3社スプリント ---- */
+  .sprint{
+    border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:8px;
+  }
+  .sprint-head{
+    display:grid;grid-template-columns:1.3fr 1fr 1.2fr 1fr;
+    background:var(--ink);color:#fff;
+    font-size:10.5px;font-weight:800;letter-spacing:.04em;
+  }
+  .sprint-head div{padding:8px 12px;}
+  .sprint-row{
+    display:grid;grid-template-columns:1.3fr 1fr 1.2fr 1fr;
+    border-top:1px solid var(--line-soft);
+  }
+  .sprint-row:nth-child(even){background:var(--blue-wash);}
+  .sprint-cell{padding:9px 12px;font-size:11.5px;font-weight:600;color:var(--ink-soft);line-height:1.5;}
+  .sprint-cell.name{color:var(--ink);font-weight:800;font-size:12px;}
+  .sprint-cell .badge{display:inline-block;font-size:10px;font-weight:800;padding:1px 7px;border-radius:20px;margin-bottom:4px;}
+  .badge-c{background:var(--gold-wash);color:var(--gold);border:1px solid #E4D2AC;}
+  .badge-s{background:#EEF7F1;color:var(--good);border:1px solid #BFE0CC;}
+  /* ---- 支援モード ---- */
+  .support-band{
+    display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 8px;
+  }
+  .scard{border:1px solid var(--line);border-radius:6px;padding:11px 14px;background:#fff;}
+  .scard.is-paid{border-color:var(--gold);background:var(--gold-wash);}
+  .scard h4{margin:0 0 7px;font-size:12.5px;font-weight:800;display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+  .scard h4 .stag{font-size:10px;font-weight:800;color:#fff;background:var(--blue);padding:2px 8px;border-radius:20px;}
+  .scard.is-paid h4 .stag{background:var(--gold);}
+  .scard ul{margin:0;padding-left:15px;}
+  .scard li{font-size:11.5px;color:var(--ink-soft);font-weight:600;line-height:1.55;margin-bottom:3px;}
+  .scard li:last-child{margin-bottom:0;}
   /* ---- 事業部合計 ---- */
   .dept{border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:8px;}
   .dept-row{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:0;}
@@ -209,9 +255,10 @@
   }
   .prov{color:var(--gold);font-weight:700;}
   @media (max-width:820px){
-    .goalband,.road,.lane{grid-template-columns:1fr;}
+    .goalband,.road,.lane,.typeband,.support-band{grid-template-columns:1fr;}
     header{flex-direction:column;align-items:flex-start;}
     .byline{text-align:left;}
+    .sprint-head,.sprint-row{grid-template-columns:1fr;}
   }
   @media print{
     .wrap{padding:0;background:#fff;}
@@ -227,12 +274,12 @@
       <div>
         <p class="eyebrow">来期 目標設定 ｜ 2026年8月 スタート</p>
         <h1>加盟店様を「月2棟」へ ― 加盟後12ヶ月の逆算ロードマップ</h1>
-        <p class="thesis"><b>加盟店様の成功が、私の目標です。</b>　各店の棟数を積み上げることを、私自身の来期目標に据えます。</p>
+        <p class="thesis"><b>加盟店様の成功が、私の目標です。</b>　まず2-3店で成功モデルをつくり、勝ちパターンを67社に広げる。</p>
       </div>
       <div class="byline">
         <div class="who">BtoB事業部　LIFEX FC担当　徳田</div>
-        丸山顧問 レビュー用<br>
-        2026年7月29日
+        丸山顧問 指摘反映版<br>
+        2026年7月31日
       </div>
     </header>
 
@@ -258,7 +305,7 @@
         <div class="goalcell is-goal">
           <div class="k">目標（攻め）</div>
           <div class="v">月2.0<small> 棟</small></div>
-          <div class="cap">12ヶ月かけて定常化させる到達点。</div>
+          <div class="cap">12ヶ月かけて定常化させる到達点。工務・集客まで含めた責任。</div>
         </div>
       </div>
 
@@ -303,7 +350,7 @@
         <div class="phase p2">
           <div class="phase-top">
             <div class="when">加盟後 5–8ヶ月　成長期</div>
-            <div class="name">“中間転換”を引き上げる</div>
+            <div class="name">"中間転換"を引き上げる</div>
             <div class="hako"><b>月1.5棟</b><span>／ 標準速度へ（実力1.8）</span></div>
           </div>
           <div class="need">
@@ -332,7 +379,7 @@
         <div class="phase p3">
           <div class="phase-top">
             <div class="when">加盟後 9–12ヶ月　定常期</div>
-            <div class="name">“成約”で仕上げる</div>
+            <div class="name">"成約"で仕上げる</div>
             <div class="hako"><b>月2.0棟</b><span>／ 目標を定常化（実力2.6）</span></div>
           </div>
           <div class="need">
@@ -365,24 +412,121 @@
       <!-- 打ち手 -->
       <div class="sec-label">
         <span class="no">2b</span>
-        <h2>“願望に見せない”ための打ち手 ― 何をやって上げるか</h2>
+        <h2>"願望に見せない"ための打ち手 ― 何をやって上げるか</h2>
         <span class="hint">※ 契約率30→60%・集客12件は自動では上がらない。実行策で裏づける</span>
       </div>
       <div class="plays">
         <div class="play k">
-          <h3><span class="tg">契約率 30 → 60%</span>アポ→契約を倍にするレバー</h3>
+          <h3><span class="tg">契約率 30 → 60%</span>商談の中に入り込む</h3>
           <ul>
-            <li>初動フォロー即応化：GAS即時通知×1時間以内架電＋48h内に個別相談予約へ一本化（藤本プランで通電率35→50%を実証・KPI自己診断シート連動）</li>
-            <li>来場前ヒアリング設計：資金・土地・要望を事前把握し、商談の的中率を上げる</li>
-            <li>モデルハウス体感で動機形成／上位店の商談ロープレを横展開</li>
+            <li>初動フォロー即応化：GAS即時通知×1時間以内架電＋48h内に個別相談予約へ一本化（藤本プランで通電率35→50%を実証）</li>
+            <li>商談オンライン同席＋AI商談振替レシートで事後FB（録画振り返り義務化）</li>
+            <li>上位店の成功トーク×ロープレを全店横展開</li>
           </ul>
         </div>
         <div class="play">
-          <h3><span class="tg">集客 月12件 確保</span>母数をどう埋めるか</h3>
+          <h3><span class="tg">集客 月12件 確保</span>広告形態×責任分担を決める</h3>
           <ul>
-            <li>会員登録・問い合わせ導線のテコ入れ（本部最大課題＝母数の先細り対策）</li>
-            <li>広告投資の最適化：アイコン様のROI型シミュレーションを横展開</li>
-            <li>モデルハウス完成予定と集客計画を連動（7/24分の一覧に接続）</li>
+            <li><b>本部型</b>：加盟後2ヶ月は本部が運用。軌道に乗ったら加盟店へ移管。広告費は加盟店負担。</li>
+            <li><b>混合型</b>：本部と加盟店で役割を分担。得意領域をそれぞれが担う。</li>
+            <li><b>自社型</b>：加盟店が自社完結。本部はノウハウ提供のみ。</li>
+            <li>加盟店毎の広告スタート・終わりを一元管理し、責任の空白をなくす。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 成功モデル3社 -->
+      <div class="sec-label" style="margin-top:4px;">
+        <span class="no">2c</span>
+        <h2>最初の90日で成功モデルをつくる ― 2–3店に絞って入り込む</h2>
+        <span class="hint">※ 67社一律でなく先に勝ちパターンを作る。8〜10月を検証スプリントと位置づける</span>
+      </div>
+
+      <!-- 課題タイプ分類 -->
+      <div class="typeband">
+        <div class="typecell">
+          <div class="type-no">TYPE A　集客不足</div>
+          <div class="type-name">問い合わせ数が月12件に届かない</div>
+          <div class="type-symptom">広告運用が本部頼み、もしくは導線が弱い。集客チャネルが未整備。</div>
+          <div class="type-cure">→ 広告形態（本部型/混合型/自社型）をヒアリングして確定。9月以降の責任者と運用方針を決める。</div>
+        </div>
+        <div class="typecell">
+          <div class="type-no">TYPE B　商談化不足</div>
+          <div class="type-name">集客はあるが通電・アポ率が低い</div>
+          <div class="type-symptom">問い合わせまでは来ているのに追客が遅い・弱い。スピードと質に課題。</div>
+          <div class="type-cure">→ 有償インサイドセールス代行（月10万円）でボトルネックを本部が直接解消。</div>
+        </div>
+        <div class="typecell is-focus">
+          <div class="type-no">TYPE C　成約転換不足（最優先）</div>
+          <div class="type-name">アポはあるが契約につながらない</div>
+          <div class="type-symptom">送客量が多いのに商談化率が低い。商談の質に個人差があり、改善余地が大きい。</div>
+          <div class="type-cure">→ 商談オンライン同席＋事後FB・ロープレ実施。AI商談振替レシートで不足点を可視化。</div>
+        </div>
+      </div>
+
+      <!-- 注力3社スプリント -->
+      <div class="sprint">
+        <div class="sprint-head">
+          <div>選定基準・店舗プロファイル</div>
+          <div>現状のボトルネック</div>
+          <div>8–10月の集中施策</div>
+          <div>90日KPI</div>
+        </div>
+        <div class="sprint-row">
+          <div class="sprint-cell name">
+            <span class="badge badge-c">最優先</span><br>
+            Type C型<br>送客量多・商談化率低
+          </div>
+          <div class="sprint-cell">通電率・アポ率の数値が見えている。問い合わせは多いのに成約まで届いていない。</div>
+          <div class="sprint-cell">商談同席＋事後FB・ロープレ実施。通電率・アポ率の原因を数値で分解し打ち手を決める。</div>
+          <div class="sprint-cell">通電率50%・アポ率45%・月1棟安定</div>
+        </div>
+        <div class="sprint-row">
+          <div class="sprint-cell name">
+            <span class="badge badge-s">次点</span><br>
+            Type B型<br>追客スピード・質に課題
+          </div>
+          <div class="sprint-cell">問い合わせはあるが架電が遅い・繋がらない。IS代行で即改善できるポテンシャルがある。</div>
+          <div class="sprint-cell">有償インサイドセールス代行（月10万円）を2ヶ月試行。通電から個別相談予約まで本部が担う。</div>
+          <div class="sprint-cell">通電率50%・月1棟・IS代行の費用対効果確認</div>
+        </div>
+        <div class="sprint-row">
+          <div class="sprint-cell name">
+            <span class="badge badge-s">次点</span><br>
+            Type A型<br>広告運用が本部頼み
+          </div>
+          <div class="sprint-cell">本部広告で集客できているが加盟店への移管が進んでいない。本部依存が続くと長期コスト増。</div>
+          <div class="sprint-cell">広告形態を確定し、9月以降の責任分担と運用方針を明示。お盆明けにMTG設定。</div>
+          <div class="sprint-cell">月12件自立確保・広告責任分担確定</div>
+        </div>
+      </div>
+      <div class="roadnote" style="margin:8px 0 22px;">
+        <b>3社選定の判断軸：</b>①数値がダッシュボードに出ている　②改善したら「成功事例」として次の加盟営業に使える　③2ヶ月以内に結果が出せる。選定と2ヶ月KPIは<b>8月中に確定</b>し、10月に答え合わせ。
+      </div>
+
+      <!-- 支援モード -->
+      <div class="sec-label">
+        <span class="no">2d</span>
+        <h2>支援モードと費用分担 ― 深さに応じて2択</h2>
+        <span class="hint">※ 全店一律でなく、課題と合意に応じてモードを選ぶ</span>
+      </div>
+      <div class="support-band" style="margin-bottom:22px;">
+        <div class="scard">
+          <h4><span class="stag">無償</span>商談同席 ＋ 事後フィードバック</h4>
+          <ul>
+            <li>オンライン商談にオブザーバー参加し、商談後に気づきをFB</li>
+            <li>AI商談振替レシートで不足点を自動可視化。録画振り返りも活用</li>
+            <li>ロープレ・スクリプト改善まで含む</li>
+            <li>対象：Type C（成約転換不足）の店舗から優先</li>
+          </ul>
+        </div>
+        <div class="scard is-paid">
+          <h4><span class="stag">有償</span>インサイドセールス代行　月10万円</h4>
+          <ul>
+            <li>本部が架電・追客を代行し、通電率・アポ率の底上げを直接担う</li>
+            <li>費用：加盟店負担（月10万円・2ヶ月契約から）</li>
+            <li>成果目標：通電率50%・アポ率45%を90日KPIに設定</li>
+            <li>対象：Type B（商談化不足）でIS支援に合意した店舗</li>
           </ul>
         </div>
       </div>
@@ -425,7 +569,7 @@
       <!-- 新規事業 -->
       <div class="sec-label">
         <span class="no">4</span>
-        <h2>棟数支援と並走する“新規事業”の探索 ― 半年で立ち上げ</h2>
+        <h2>棟数支援と並走する"新規事業"の探索 ― 半年で立ち上げ</h2>
         <span class="hint">※ 困りごとを起点に、2026年8月〜2027年1月で試験導入まで。検証・横展開の判断は下期へ</span>
       </div>
       <div class="lane">
@@ -465,7 +609,8 @@
     <footer>
       <div class="legend">
         <b>指標の定義：</b>①通電率＝架電がつながった率（社内用語）。①②とも実務上の上限は約60%。③契約率＝現状30%は実数。<br>
-        <b>7/29 藤本MTGで確定：</b>①通電率 現状35%→目標60%／加盟店1棟粗利 <b>約500万</b>＝月2棟（年24棟）で <b>年1.2億/店</b> の粗利／Q1は徳田＝加盟店支援に専念（加盟獲得は森山さん）。　<b><sup>*</sup> ②アポ取得率40%は暫定</b>（ダッシュボード実数へ差し替え）。　<b>時間軸：</b>「2」＝加盟後経過月／「3・4」＝来期カレンダー。
+        <b>7/29 藤本MTGで確定：</b>①通電率 現状35%→目標60%／加盟店1棟粗利 <b>約500万</b>＝月2棟（年24棟）で <b>年1.2億/店</b> の粗利／Q1は徳田＝加盟店支援に専念（加盟獲得は森山さん）。　<b><sup>*</sup> ②アポ取得率40%は暫定</b>（ダッシュボード実数へ差し替え）。　<b>時間軸：</b>「2」＝加盟後経過月／「3・4」＝来期カレンダー。<br>
+        <b>7/30 丸山顧問MTG反映：</b>2c 最初の90日・注力3社選定（Type A/B/C分類）／2d 支援2モード（無償同席・有償IS代行月10万）／広告形態3分類（本部型/混合型/自社型）を追加。
       </div>
       <div class="stamp">
         <span class="prov">加盟店様の成功 ＝ 私の来期目標</span><br>
