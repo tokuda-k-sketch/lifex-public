@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIFEX 広告投資提案資料 ジェネレーター</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Meiryo','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;background:#f0f2f5;color:#222;}
+#panel{position:fixed;left:0;top:0;bottom:0;width:290px;background:#15192a;color:#dce2f0;overflow-y:auto;padding:14px 13px 20px;z-index:1000;font-size:12px;scrollbar-width:thin;scrollbar-color:#3a4560 #1e2438;}
+#panel::-webkit-scrollbar{width:5px;}
+#panel::-webkit-scrollbar-track{background:#1e2438;}
+#panel::-webkit-scrollbar-thumb{background:#3a4560;border-radius:3px;}
+.panel-logo{font-size:11px;color:#6a8fc0;font-weight:bold;letter-spacing:.1em;text-align:center;padding:8px 0 12px;border-bottom:1px solid #252d45;margin-bottom:14px;}
+.panel-logo span{display:block;font-size:9px;color:#4a5a80;margin-top:2px;font-weight:normal;}
+.sec{margin-bottom:16px;}
+.sec-head{display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:bold;color:#8aa8d8;text-transform:uppercase;letter-spacing:.07em;padding:5px 8px;background:#1e2438;border-radius:4px;margin-bottom:10px;}
+.sec-head::before{content:'';display:inline-block;width:3px;height:12px;background:#4a7fc0;border-radius:2px;}
+#panel label{display:block;font-size:10.5px;color:#8898b8;margin-bottom:2px;margin-top:7px;}
+#panel input[type="text"],#panel input[type="number"],#panel select,#panel textarea{width:100%;background:#1e2438;border:1px solid #2e3a58;border-radius:4px;color:#dce2f0;font-size:12px;padding:5px 8px;outline:none;font-family:inherit;transition:border-color .2s;}
+#panel input:focus,#panel select:focus,#panel textarea:focus{border-color:#4a7fc0;background:#222b44;}
+#panel select{cursor:pointer;}
+#panel textarea{height:56px;resize:vertical;line-height:1.5;}
+#panel .g2{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+#panel .g3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:5px;}
+.subsec{border-left:2px solid #2e3a58;padding-left:8px;margin-top:8px;}
+.subsec-label{font-size:10px;color:#6a7a9a;margin-bottom:5px;font-weight:bold;}
+#panel hr{border:none;border-top:1px solid #1e2438;margin:12px 0;}
+#btn-print{display:block;width:100%;padding:12px;background:linear-gradient(135deg,#1e5ece,#1040a0);color:white;border:none;border-radius:6px;font-size:13px;font-weight:bold;cursor:pointer;margin-top:18px;letter-spacing:.05em;box-shadow:0 2px 8px rgba(30,94,206,.4);transition:all .2s;}
+#btn-print:hover{background:linear-gradient(135deg,#2a6ee0,#1850c0);}
+.hint{font-size:9.5px;color:#4a5a80;margin-top:4px;line-height:1.4;}
+#doc{margin-left:300px;padding:24px 20px;}
+.page{width:210mm;min-height:297mm;background:white;margin:0 auto 28px;padding:14mm 18mm 14mm;box-shadow:0 3px 16px rgba(0,0,0,.2);position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.fill{flex:1;}
+.ph{background:#1a2e5a;color:white;padding:8px 16px;font-size:10.5px;margin:-14mm -18mm 16px;display:flex;justify-content:space-between;align-items:center;letter-spacing:.04em;}
+.sh{font-size:14px;font-weight:bold;color:#1a2e5a;border-left:4px solid #1a2e5a;padding:2px 0 2px 10px;margin-bottom:6px;line-height:1.4;}
+.ss{font-size:11px;color:#555;margin-bottom:12px;line-height:1.6;}
+table{width:100%;border-collapse:collapse;font-size:11px;}
+th,td{border:1px solid #c8d0dc;padding:7px 10px;vertical-align:middle;line-height:1.5;}
+thead th{background:#1a2e5a;color:white;font-weight:bold;text-align:center;}
+tbody tr:nth-child(even) td{background:#f4f6fb;}
+td.lbl{background:#e8edf5;font-weight:bold;color:#1a2e5a;white-space:nowrap;}
+td.num{text-align:right;}
+td.c{text-align:center;}
+.tr-total td{background:#1a2e5a!important;color:white!important;font-weight:bold;}
+.box{border:1.5px solid #1a2e5a;border-radius:5px;padding:12px 15px;margin:10px 0;font-size:11px;line-height:1.7;}
+.bt{font-weight:bold;color:#1a2e5a;margin-bottom:6px;font-size:12px;}
+.box.n{background:#f4f6fb;border-color:#7a90b8;}
+.box.d{background:#1a2e5a;color:white;}
+.box.d .bt{color:#90b8f0;}
+.box.g{background:#e8f5e9;border-color:#4caf50;}
+.kpi-row{display:flex;gap:10px;margin:12px 0;}
+.kpi-card{flex:1;border:1.5px solid #1a2e5a;border-radius:5px;padding:12px 10px;text-align:center;}
+.kv{font-size:23px;font-weight:bold;color:#1a2e5a;line-height:1.2;}
+.kl{font-size:10px;color:#666;margin-top:5px;line-height:1.5;}
+.p1-meta{text-align:right;font-size:11px;color:#666;margin-bottom:14px;}
+.p1-title{font-size:18px;font-weight:bold;color:#1a2e5a;line-height:1.55;margin-bottom:12px;border-bottom:2px solid #1a2e5a;padding-bottom:12px;}
+.p1-sub{font-size:11px;color:#555;margin-bottom:16px;line-height:1.7;}
+.c-item{margin-bottom:14px;}
+.c-badge{background:#1a2e5a;color:white;font-size:10px;font-weight:bold;padding:3px 8px;display:inline-block;margin-bottom:4px;border-radius:2px;}
+.c-head{font-size:12.5px;font-weight:bold;color:#1a2e5a;margin-bottom:5px;}
+.c-body{font-size:11px;color:#444;line-height:1.7;}
+/* コンテンツが密なP3・P4用：テーブルのpadding を抑える */
+.tbl-dense th, .tbl-dense td { padding:5px 7px; font-size:10px; }
+@media print{
+  body{background:white;}
+  #panel{display:none!important;}
+  #doc{margin-left:0!important;padding:0!important;}
+  .page{margin:0!important;box-shadow:none!important;padding:14mm 18mm 14mm!important;}
+  .ph{margin:-14mm -18mm 16px!important;}
+}
+</style>
+</head>
+<body>
+
+<div id="panel">
+  <div class="panel-logo">
+    LIFEX 提案資料ジェネレーター
+    <span>入力 → 資料がリアルタイム更新 → PDF出力</span>
+  </div>
+
+  <div class="sec">
+    <div class="sec-head">① 基本情報</div>
+    <label>提案先 会社名（「様」不要）</label>
+    <input type="text" id="company_name" value="株式会社アイコン" oninput="update()">
+    <div class="g2">
+      <div><label>年</label><input type="number" id="year" value="2026" oninput="update()"></div>
+      <div><label>月</label><input type="number" id="month" value="8" oninput="update()"></div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="sec">
+    <div class="sec-head">② Gハウス直営 実績（直近3ヶ月）</div>
+    <p class="hint">古い順に入力してください</p>
+    <div class="subsec">
+      <div class="subsec-label">▸ 月1（古い方）</div>
+      <label>月の名称</label>
+      <input type="text" id="g_m1_name" value="2026年5月" oninput="update()">
+      <div class="g2">
+        <div><label>広告費（円）</label><input type="number" id="g_m1_cost" value="410699" oninput="update()"></div>
+        <div><label>反響数（件）</label><input type="number" id="g_m1_leads" value="40" oninput="update()"></div>
+      </div>
+    </div>
+    <div class="subsec">
+      <div class="subsec-label">▸ 月2</div>
+      <label>月の名称</label>
+      <input type="text" id="g_m2_name" value="2026年6月" oninput="update()">
+      <div class="g2">
+        <div><label>広告費（円）</label><input type="number" id="g_m2_cost" value="475708" oninput="update()"></div>
+        <div><label>反響数（件）</label><input type="number" id="g_m2_leads" value="42" oninput="update()"></div>
+      </div>
+    </div>
+    <div class="subsec">
+      <div class="subsec-label">▸ 月3（最新）</div>
+      <label>月の名称</label>
+      <input type="text" id="g_m3_name" value="2026年7月" oninput="update()">
+      <div class="g2">
+        <div><label>広告費（円）</label><input type="number" id="g_m3_cost" value="400000" oninput="update()"></div>
+        <div><label>反響数（件）</label><input type="number" id="g_m3_leads" value="36" oninput="update()"></div>
+      </div>
+    </div>
+    <label>CVR表示テキスト</label>
+    <input type="text" id="g_cvr" value="3%超" oninput="update()">
+  </div>
+
+  <hr>
+
+  <div class="sec">
+    <div class="sec-head">③ 参照加盟店 実績</div>
+    <p class="hint">商圏規模が近い加盟店を選んで設定</p>
+    <label>加盟店名（「様」不要）</label>
+    <input type="text" id="wh_name" value="ウィズダムホーム" oninput="update()">
+    <label>地域名（例：福岡）</label>
+    <input type="text" id="wh_region" value="福岡" oninput="update()">
+    <label>加盟月</label>
+    <input type="text" id="wh_join_month" value="2026年5月" oninput="update()">
+    <label>加盟店の商圏人口（万人）※類似度判定に使用</label>
+    <input type="number" id="wh_area_pop" value="508" step="1" oninput="update()">
+    <label>表示する実績月数</label>
+    <select id="wh_months" onchange="update()">
+      <option value="2">2ヶ月</option>
+      <option value="3">3ヶ月</option>
+    </select>
+    <div class="subsec" style="margin-top:10px;">
+      <div class="subsec-label">▸ 月1（古い方）</div>
+      <label>月の名称</label>
+      <input type="text" id="wh_m1_name" value="2026年6月（初の本稼働）" oninput="update()">
+      <div class="g2">
+        <div><label>広告費（円）</label><input type="number" id="wh_m1_cost" value="320462" oninput="update()"></div>
+        <div><label>反響数（件）</label><input type="number" id="wh_m1_leads" value="30" oninput="update()"></div>
+      </div>
+    </div>
+    <div class="subsec">
+      <div class="subsec-label">▸ 月2</div>
+      <label>月の名称</label>
+      <input type="text" id="wh_m2_name" value="2026年7月" oninput="update()">
+      <div class="g2">
+        <div><label>広告費（円）</label><input type="number" id="wh_m2_cost" value="259777" oninput="update()"></div>
+        <div><label>反響数（件）</label><input type="number" id="wh_m2_leads" value="22" oninput="update()"></div>
+      </div>
+    </div>
+    <div class="subsec" id="wh_m3_form" style="display:none;">
+      <div class="subsec-label">▸ 月3（3ヶ月選択時）</div>
+      <label>月の名称</label>
+      <input type="text" id="wh_m3_name" value="" oninput="update()">
+      <div class="g2">
+        <div><label>広告費（円）</label><input type="number" id="wh_m3_cost" value="0" oninput="update()"></div>
+        <div><label>反響数（件）</label><input type="number" id="wh_m3_leads" value="0" oninput="update()"></div>
+      </div>
+    </div>
+    <label>加盟店の立ち上げ状況（P4サブコピー）</label>
+    <input type="text" id="wh_intro" value="モデルハウスを持たない状態からの立ち上げです。" oninput="update()">
+    <label>参照加盟店に関する補足説明</label>
+    <textarea id="wh_notes" oninput="update()">福岡は、県内に複数の加盟店があり反響を分け合う市場です。それでもこの水準が出ています。</textarea>
+  </div>
+
+  <hr>
+
+  <div class="sec">
+    <div class="sec-head">④ 商圏情報（提案先）</div>
+    <label>パターンA 名称（車で約1時間圏）</label>
+    <input type="text" id="area_a_name" value="西三河中南部＋知多東部" oninput="update()">
+    <label>パターンA 市区町村例</label>
+    <input type="text" id="area_a_cities" value="西尾・岡崎・安城・刈谷・豊田・碧南 ほか" oninput="update()">
+    <div class="g3">
+      <div><label>人口（万人）</label><input type="number" id="area_a_pop" value="180" step="0.1" oninput="update()"></div>
+      <div><label>着工（万戸）</label><input type="number" id="area_a_starts" value="1.3" step="0.1" oninput="update()"></div>
+      <div><label>見込み反響</label><input type="text" id="area_a_leads" value="23〜30件" oninput="update()"></div>
+    </div>
+    <label>パターンB 名称（車で約1.5時間圏）</label>
+    <input type="text" id="area_b_name" value="A＋名古屋市・東三河・尾張南部" oninput="update()">
+    <label>パターンB 市区町村例</label>
+    <input type="text" id="area_b_cities" value="名古屋・豊橋・豊川 ほか" oninput="update()">
+    <div class="g2">
+      <div><label>人口（万人）</label><input type="number" id="area_b_pop" value="520" step="1" oninput="update()"></div>
+      <div><label>着工（万戸）</label><input type="number" id="area_b_starts" value="3.8" step="0.1" oninput="update()"></div>
+    </div>
+    <label>エリア分割ルール</label>
+    <textarea id="area_rule" oninput="update()">営業権を独占していただけるのは、ご契約いただいた市町村です（モデルハウス建設地・契約事務所の設置権）。政令指定都市である名古屋市は2分割の扱いとなります。</textarea>
+    <label>エリア加盟状況</label>
+    <textarea id="area_status" oninput="update()">現時点で愛知県内に加盟店はございません。県全体の独占をお約束するものではありませんが、エリアを最も自由にお選びいただける状態です。他社が近接エリアに加盟された場合、その市町村は選択できなくなります。</textarea>
+    <label>競合状況テキスト（P5 事例ボックス内）</label>
+    <textarea id="area_rival" oninput="update()">愛知県は現時点で加盟店がなく、商圏内の反響を分け合う相手がおりません。</textarea>
+  </div>
+
+  <hr>
+
+  <div class="sec">
+    <div class="sec-head">⑤ 参考データ（都道府県比較）</div>
+    <label>比較都道府県名</label>
+    <input type="text" id="ref_pref" value="愛知県" oninput="update()">
+    <div class="g2">
+      <div><label>人口（万人）</label><input type="number" id="ref_pop" value="745" step="1" oninput="update()"></div>
+      <div><label>着工（戸）</label><input type="number" id="ref_starts" value="56119" step="1" oninput="update()"></div>
+    </div>
+    <label>パターンBの規模感説明</label>
+    <textarea id="area_b_comment" oninput="update()">パターンBの約520万人・約3.8万戸は、福岡県一県に匹敵する規模です。</textarea>
+    <label>参照加盟店の都道府県 正式名（例：福岡県・大阪府・東京都）</label>
+    <input type="text" id="wh_pref_name" value="福岡県" oninput="update()">
+    <label>参照加盟店の都道府県 人口（万人）</label>
+    <input type="number" id="wh_pref_pop" value="508" step="1" oninput="update()">
+    <label>参照加盟店の都道府県 着工（戸）</label>
+    <input type="number" id="wh_pref_starts" value="35207" step="1" oninput="update()">
+    <label>出典フッターの商圏説明</label>
+    <textarea id="source_note" oninput="update()">商圏人口は西尾市から車で約1時間圏／約1.5時間圏の主要市の積み上げ。商圏の年間着工戸数は愛知県平均の人口あたり着工率からの試算。</textarea>
+  </div>
+
+  <button id="btn-print" onclick="window.print()">📄 PDFとして印刷・保存</button>
+  <p class="hint" style="text-align:center;margin-top:8px;">Edge/Chrome で開き「印刷」→「PDFに保存」</p>
+</div>
+
+<div id="doc">
+
+<!-- PAGE 1 -->
+<div class="page">
+  <div class="ph"><span style="font-weight:bold;">LIFEX FC事業 ご提案資料</span><span>株式会社Gハウス BtoB事業部</span></div>
+  <p class="p1-meta"><span id="p1_co"></span> 様 &emsp; <span id="p1_date"></span> &emsp; 株式会社Gハウス BtoB事業部</p>
+  <p class="p1-title">広告運用の範囲を、正確にご説明いたします。そのうえで、投資として見合うかをご判断ください。</p>
+  <p class="p1-sub">先般のご説明に不足があり、広告運用の範囲について誤ったご認識を与えてしまいました。まずその訂正から申し上げます。</p>
+  <div class="c-item">
+    <div><span class="c-badge">訂正①</span></div>
+    <div class="c-head">本部による広告運用は、加盟後2ヶ月間です。</div>
+    <div class="c-body">「本部が継続的に広告を運用する」というご認識を与えてしまいましたが、誤りです。本部主導での広告運用は立ち上げ期の2ヶ月間で、この費用は初期ライセンス費（500万円）に含まれております。3ヶ月目以降の広告費は、御社にご負担いただきます。</div>
+  </div>
+  <div class="c-item">
+    <div><span class="c-badge">訂正②</span></div>
+    <div class="c-head">月会費30万円は、広告費とは別のものです。</div>
+    <div class="c-body">月会費を広告費に充当する仕組みではございません。月会費は、プラン供給・ポータルサイト・研修・技術サポート等、本部機能の対価として、ご契約月より発生いたします。</div>
+  </div>
+  <div class="c-item">
+    <div><span class="c-badge">訂正③</span></div>
+    <div class="c-head">したがって、3ヶ月目以降は「月会費」と「広告費」の両方が発生します。</div>
+    <div class="c-body">ご懸念は当然のものです。本資料では、この費用を一切控除せず、初年度・2年目以降の総額をそのまま提示したうえで、投資として成立するかをご説明いたします。</div>
+  </div>
+
+  <div class="box n">
+    <div class="bt">ただし、3ヶ月目以降も「丸投げ」にはいたしません</div>
+    広告費のご負担は御社となりますが、配信設計・クリエイティブ・改善のノウハウは本部が継続して提供いたします。運用実務そのものを本部が代行する仕組みもご用意しております。ゼロから試行錯誤していただく必要はありません。
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <div class="ph"><span>2. 費用の全体像</span><span id="p2_co"></span></div>
+  <p class="ss">費用の全体を開示いたします。隠れた費用はありません。</p>
+  <table style="margin-bottom:12px;">
+    <thead><tr><th>費目</th><th>内容</th><th>初年度</th><th>2年目以降</th></tr></thead>
+    <tbody>
+      <tr><td class="lbl">初期ライセンス費（加盟金）</td><td style="font-size:9.5px;">1エリア・初年度のみ／10年償却可<br>※加盟後2ヶ月間の本部による集客支援を含む</td><td class="num">500万円</td><td class="c">―</td></tr>
+      <tr><td class="lbl">月会費</td><td style="font-size:9.5px;">30万円 × 12ヶ月<br>※プラン供給・ポータル・研修・技術サポート</td><td class="num">360万円</td><td class="num">360万円</td></tr>
+      <tr><td class="lbl">広告配信費（御社ご負担）</td><td style="font-size:9.5px;">月36万円<br>初年度は3ヶ月目からの10ヶ月／2年目以降は12ヶ月</td><td class="num">360万円</td><td class="num">432万円</td></tr>
+      <tr class="tr-total"><td colspan="2">合計</td><td class="num">1,220万円</td><td class="num">792万円</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box n" style="margin-bottom:10px;">
+    <div class="bt">これ以外の費用はいただきません</div>
+    <table style="border:none;font-size:10.5px;">
+      <tr><td style="border:none;width:120px;font-weight:bold;color:#1a2e5a;">ロイヤリティ</td><td style="border:none;">… <strong>なし</strong>（棟数が増えても本部への支払いは増えません）</td></tr>
+      <tr><td style="border:none;font-weight:bold;color:#1a2e5a;">契約フィー</td><td style="border:none;">… <strong>なし</strong></td></tr>
+      <tr><td style="border:none;font-weight:bold;color:#1a2e5a;">指定資材の購入義務</td><td style="border:none;">… <strong>なし</strong>（資材は御社の既存商流のままで結構です）</td></tr>
+    </table>
+    <p style="font-size:9.5px;color:#555;margin-top:6px;">※エリアを追加される場合のみ、追加ライセンス費300万円／エリア・月会費+10万円／月・エリアが発生いたします（後述）。</p>
+  </div>
+  <div class="box n">
+    <div class="bt">この資料の試算前提</div>
+    <p>Gハウス直営のLIFEX広告実績（<span id="p2_g_period"></span>の平均）と、先行加盟店・<span id="p2_wh_label"></span>（<span id="p2_wh_period"></span>）の<span id="p2_wh_months_label"></span>平均を参照し、<strong>月<span id="p2_base"></span>件（<span id="p2_wh_name2"></span>様の平均）を試算基準</strong>としております。</p>
+    <p style="margin-top:5px;font-size:9.5px;color:#555;">※月反響数は市場・配信戦略により変動します。下記転換率テーブルでは3つのシナリオをご覧いただけます。</p>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page">
+  <div class="ph"><span>3. 投資として成立するか</span><span id="p3_co"></span></div>
+  <p class="ss">反響を「契約」に転換するプロセスと、想定される棟数・収益をご説明いたします。</p>
+  <table class="tbl-dense" style="margin-bottom:10px;">
+    <thead>
+      <tr><th>シナリオ</th><th>月反響数<br>（試算基準）</th><th>接続率<br>（架電→通話）</th><th>アポ率<br>（通話→商談）</th><th>契約率<br>（商談→契約）</th><th>月契約棟数</th><th>年換算</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="lbl">保守ケース</td><td id="t_base_c" class="c"></td><td class="c">45%</td><td class="c">40%</td><td class="c">30%</td><td id="t_cons_m" class="c"></td><td id="t_cons_y" class="c"></td></tr>
+      <tr><td class="lbl">標準ケース</td><td id="t_base_s" class="c"></td><td class="c">55%</td><td class="c">45%</td><td class="c">35%</td><td id="t_std_m" class="c"></td><td id="t_std_y" class="c"></td></tr>
+      <tr><td class="lbl">上振れケース</td><td class="c">30件</td><td class="c">55%</td><td class="c">45%</td><td class="c">35%</td><td class="c"><strong>2.6棟</strong></td><td class="c"><strong>約31棟</strong></td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:9px;color:#666;margin-bottom:10px;">※接続率＝架電がつながった率。接続率・アポ率とも実務上の上限は約60%と置いております。転換率は加盟後の伴走支援を通じて段階的に引き上げます。</p>
+  <div class="bt" style="margin-bottom:6px;">回収の判定</div>
+  <div style="display:flex;gap:8px;margin-bottom:10px;font-size:10.5px;">
+    <div class="box n" style="flex:1;text-align:center;"><div style="font-size:9.5px;color:#666;">初年度 総投資</div><div style="font-size:18px;font-weight:bold;color:#1a2e5a;">1,220万円</div></div>
+    <div style="display:flex;align-items:center;font-size:16px;color:#aaa;">→</div>
+    <div class="box n" style="flex:1;text-align:center;"><div style="font-size:9.5px;color:#666;">年12棟の粗利（500万×12棟）</div><div style="font-size:18px;font-weight:bold;color:#1a2e5a;">6,000万円</div></div>
+    <div style="display:flex;align-items:center;font-size:16px;color:#aaa;">→</div>
+    <div class="box g" style="flex:1;text-align:center;"><div style="font-size:9.5px;color:#2e7d32;">投資回収後に残る額</div><div style="font-size:18px;font-weight:bold;color:#2e7d32;">+4,780万円</div></div>
+    <div style="display:flex;align-items:center;font-size:16px;color:#aaa;">→</div>
+    <div class="box n" style="flex:1;text-align:center;"><div style="font-size:9.5px;color:#666;">回収に必要な棟数</div><div style="font-size:18px;font-weight:bold;color:#1a2e5a;">2.4棟</div><div style="font-size:9px;color:#888;">（2年目以降は1.6棟）</div></div>
+  </div>
+  <div class="box d">
+    最低ラインの年12棟でも、初年度に投資を全額回収したうえで4,780万円が残ります。上表の保守ケース（年<span id="p3_c_y"></span>棟）なら約<span id="p3_p_c"></span>万円、標準ケース（年<span id="p3_s_y"></span>棟）なら約<span id="p3_p_s"></span>。広告費だけでなく、加盟金・月会費を含めた総額を差し引いた後の数字です。2年目以降は加盟金がなくなるため、費用は792万円に下がります。
+  </div>
+  <p style="font-size:9px;color:#666;margin-top:6px;">※1棟あたり粗利は当社標準モデルの水準です。御社の実行予算にもとづく精査は、加盟のご判断前に個別に実施いたします。</p>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page">
+  <div class="ph"><span>4. なぜ「広告費が反響に変わる」と申し上げられるのか</span><span id="p4_co"></span></div>
+  <p class="ss">Gハウス自身が、同じ広告運用で継続的に反響を獲得しています。</p>
+  <div class="kpi-row">
+    <div class="kpi-card"><div class="kv">月<span id="kpi_leads"></span>件</div><div class="kl">Gハウス直営 LIFEX広告<br><span id="kpi_g_period"></span>平均の反響数</div></div>
+    <div class="kpi-card"><div class="kv">約<span id="kpi_cpa"></span>万円</div><div class="kl">反響単価<br>広告費 月平均 約<span id="kpi_cost"></span>万円</div></div>
+    <div class="kpi-card"><div class="kv"><span id="kpi_cvr"></span></div><div class="kl">Meta広告 CVR<br>ネット広告全店で最上位</div></div>
+  </div>
+  <table class="tbl-dense" style="margin-bottom:10px;">
+    <thead><tr><th>月</th><th>広告配信費</th><th>反響数</th><th>反響単価</th></tr></thead>
+    <tbody>
+      <tr><td id="g1n" class="c"></td><td id="g1c" class="num"></td><td id="g1l" class="c"></td><td id="g1p" class="num"></td></tr>
+      <tr><td id="g2n" class="c"></td><td id="g2c" class="num"></td><td id="g2l" class="c"></td><td id="g2p" class="num"></td></tr>
+      <tr><td id="g3n" class="c"></td><td id="g3c" class="num"></td><td id="g3l" class="c"></td><td id="g3p" class="num"></td></tr>
+      <tr class="tr-total"><td class="c">3ヶ月 平均</td><td id="gavgc" class="num"></td><td id="gavgl" class="c"></td><td id="gavgp" class="num"></td></tr>
+    </tbody>
+  </table>
+  <div class="box n" style="margin-bottom:12px;font-size:9.5px;">
+    <strong>【参考】</strong> 年間8,600万円の広告投資に対し、契約153棟。契約1棟あたりの広告費は約56万円です。<br>
+    ※こちらは注文住宅事業の数字であり、LIFEXの試算とは分けてご覧ください。当社が広告投資を継続できている根拠としてご参照ください。
+  </div>
+  <p class="sh" style="margin-bottom:4px;">5. 先行加盟店の実例 ― <span id="wh_sec_label"></span></p>
+  <p class="ss">加盟<span id="wh_join_disp"></span>。<span id="wh_intro_note">モデルハウスを持たない状態からの立ち上げです。</span></p>
+  <table class="tbl-dense">
+    <thead><tr><th>月</th><th>広告配信費</th><th>反響数</th><th>反響単価</th></tr></thead>
+    <tbody>
+      <tr><td id="wh1n" class="c"></td><td id="wh1c" class="num"></td><td id="wh1l" class="c"></td><td id="wh1p" class="num"></td></tr>
+      <tr><td id="wh2n" class="c"></td><td id="wh2c" class="num"></td><td id="wh2l" class="c"></td><td id="wh2p" class="num"></td></tr>
+      <tr id="wh3row" style="display:none;"><td id="wh3n" class="c"></td><td id="wh3c" class="num"></td><td id="wh3l" class="c"></td><td id="wh3p" class="num"></td></tr>
+      <tr class="tr-total"><td id="wh_avg_label" class="c"></td><td id="whavgc" class="num"></td><td id="whavgl" class="c"></td><td id="whavgp" class="num"></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page">
+  <div class="ph"><span>5〜6. エリアと商圏</span><span id="p5_co"></span></div>
+  <div class="box n" style="margin-bottom:14px;">
+    <div class="bt" style="margin-bottom:10px;">この事例から申し上げたいこと</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;">
+      <div style="border-left:2px solid #7a90b8;padding-left:8px;">
+        <div style="font-size:10px;font-weight:bold;color:#1a2e5a;margin-bottom:3px;">① Web集客だけで立ち上がります</div>
+        <div style="font-size:10.5px;line-height:1.65;color:#333;"><span id="wh_name_note"></span>様は加盟翌月から月<span id="wh_m1l_note"></span>件の反響を獲得。モデルハウスなしで始動できました。</div>
+      </div>
+      <div style="border-left:2px solid #7a90b8;padding-left:8px;">
+        <div style="font-size:10px;font-weight:bold;color:#1a2e5a;margin-bottom:3px;">② 単月の数字は変動します</div>
+        <div style="font-size:10.5px;line-height:1.65;color:#333;"><span id="wh_m2_short"></span>は<span id="wh_m2l_note"></span>件に<span id="wh_trend_text"></span>。だからこそ<span id="wh_months_label2"></span>平均の<span id="wh_avg_note"></span>件を試算基準としております。</div>
+      </div>
+      <div style="border-left:2px solid #7a90b8;padding-left:8px;">
+        <div style="font-size:10px;font-weight:bold;color:#1a2e5a;margin-bottom:3px;">③ <span id="wh_region_note"></span>の市場環境</div>
+        <div id="wh_notes_disp" style="font-size:10.5px;line-height:1.65;color:#333;"></div>
+      </div>
+      <div style="border-left:2px solid #7a90b8;padding-left:8px;">
+        <div style="font-size:10px;font-weight:bold;color:#1a2e5a;margin-bottom:3px;">④ 御社の商圏規模</div>
+        <div id="similarity_text" style="font-size:10.5px;line-height:1.65;color:#333;"></div>
+      </div>
+    </div>
+    <p id="area_rival_disp" style="margin-top:10px;padding-top:8px;border-top:1px solid #d0d8e8;font-size:10px;color:#555;line-height:1.6;"></p>
+    <p style="font-size:9px;color:#888;margin-top:4px;">※商圏が重ならないため参考事例として開示しております。</p>
+  </div>
+  <p class="sh" style="margin-bottom:4px;">6. 対応商圏と、エリアの考え方</p>
+  <p class="ss">「独占」の範囲について、契約上の正確な内容をご説明いたします。</p>
+  <table>
+    <thead>
+      <tr><th>パターン</th><th>対応エリア</th><th>商圏人口</th><th>年間 新設住宅着工（試算）</th><th>見込み反響（月）</th><th>追加でいただく費用</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="lbl">A<br><small>（車で約1時間圏）</small></td>
+        <td><strong id="aa_name"></strong><br><small id="aa_cities" style="color:#666;"></small></td>
+        <td id="aa_pop" class="c"></td><td id="aa_starts" class="c"></td><td id="aa_leads" class="c"></td><td class="c">―</td>
+      </tr>
+      <tr>
+        <td class="lbl">B<br><small>（車で約1.5時間圏）</small></td>
+        <td><strong id="ab_name"></strong><br><small id="ab_cities" style="color:#666;"></small></td>
+        <td id="ab_pop" class="c"></td><td id="ab_starts" class="c"></td>
+        <td class="c">配信費の増額に応じて拡張可</td>
+        <td style="font-size:9.5px;text-align:center;">エリア数に応じて<br>+300万円／エリア<br>+10万円／月・エリア</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page">
+  <div class="ph"><span>7. まとめ</span><span id="p6_co"></span></div>
+  <div class="box n" style="margin-bottom:10px;font-size:10.5px;">
+    <div class="bt">エリア制について（補足）</div>
+    <ul style="padding-left:16px;line-height:1.9;">
+      <li><span id="area_rule_disp"></span></li>
+      <li>お客様の建築地に制限はありません。エリア外のお客様と契約いただくことも可能です。</li>
+      <li><span id="area_status_disp"></span></li>
+    </ul>
+  </div>
+
+  <div class="box n" style="margin-bottom:12px;font-size:9.5px;">
+    <strong>【ご参考】都道府県別 規模感</strong><br>
+    大阪府 876万人／69,213戸 &emsp; <span id="ref_pref_d"></span> <span id="ref_pop_d"></span>万人／<span id="ref_starts_d"></span>戸 &emsp; <span id="wh_region_pref_d"></span> <span id="wh_pref_pop_d"></span>万人／<span id="wh_pref_starts_d"></span>戸<br>
+    <span id="ab_comment_d"></span>
+  </div>
+  <p class="sh" style="margin-bottom:6px;">まとめ</p>
+  <div class="box d" style="margin-bottom:10px;">
+    <div class="bt">広告費は「毎月出ていくコスト」ではなく、1棟の粗利で回収できる投資です。</div>
+    <p>初年度の総投資1,220万円に対し、必要な契約は2.4棟。LIFEXの最低ラインである年12棟でも、投資を全額回収したうえで4,780万円が残ります。2年目以降は費用が792万円に下がり、必要棟数は1.6棟となります。</p>
+  </div>
+  <div class="box n" style="margin-bottom:14px;font-size:10.5px;">
+    <div class="bt">御社にとっての位置づけ</div>
+    現在の御社の受注は、ご紹介を中心に成り立っております。本件は、その受注を置き換えるものではなく、これまで取り組まれてこなかったWeb集客という新しい入り口を、ゼロから立ち上げるものです。既存のご紹介受注に上積みする形になります。
+  </div>
+  <div style="border-top:1px solid #ccc;padding-top:8px;font-size:8.5px;color:#666;line-height:1.65;">
+    <strong>出典・前提：</strong>
+    Gハウス直営のLIFEX広告実績＝<span id="p6_g_period"></span>（最新月は予算枠に対する着地見込み）。
+    <span id="p6_wh_region"></span>＝<span id="p6_wh_name"></span>様<span id="p6_wh_join"></span>加盟、<span id="p6_wh_period"></span>のLIFEX広告実績データ（Meta＋Google 反響・配信費）。
+    注文住宅の広告実績＝Gハウス直営 2024年度実績。
+    人口＝総務省人口推計（2025年）。新設住宅着工＝国土交通省 住宅着工統計（2024年）。<span id="source_note_d"></span><br>
+    ※本資料の反響数・棟数・粗利はいずれも試算であり、成果を保証するものではありません。1棟あたり粗利は当社標準モデルの水準であり、御社の実行予算にもとづく精査は加盟のご判断前に個別に実施いたします。立ち上がりの時期は変動いたします。金額はすべて税別です。
+  </div>
+  <div style="margin-top:16px;padding-top:12px;border-top:2px solid #1a2e5a;display:flex;justify-content:space-between;align-items:center;">
+    <div>
+      <div style="font-size:15px;font-weight:bold;color:#1a2e5a;letter-spacing:.05em;">株式会社Gハウス</div>
+      <div style="font-size:11px;color:#666;margin-top:3px;">BtoB事業部 ／ LIFEX FC事業</div>
+    </div>
+    <div style="font-size:9px;color:#aaa;">本資料に関するお問い合わせは担当者までお申し付けください。</div>
+  </div>
+</div>
+
+</div>
+
+<!-- ================================================================
+  ▼▼▼ クロが更新する設定ブロック ▼▼▼
+  商談ごとにここだけ書き換えてブラウザをリロードすれば完成
+================================================================ -->
+<script id="preset">
+const PRESET = {
+  // 基本情報
+  company_name: '株式会社アイコン',
+  year: 2026,
+  month: 8,
+
+  // Gハウス直営 実績（毎月更新）
+  g_m1_name: '2026年5月', g_m1_cost: 410699, g_m1_leads: 40,
+  g_m2_name: '2026年6月', g_m2_cost: 475708, g_m2_leads: 42,
+  g_m3_name: '2026年7月', g_m3_cost: 400000, g_m3_leads: 36,
+  g_cvr: '3%超',
+
+  // 参照加盟店（商圏が似ている加盟店を設定）
+  wh_name: 'ウィズダムホーム',
+  wh_region: '福岡',
+  wh_join_month: '2026年5月',
+  wh_area_pop: 508,
+  wh_months: 2,
+  wh_m1_name: '2026年6月（初の本稼働）', wh_m1_cost: 320462, wh_m1_leads: 30,
+  wh_m2_name: '2026年7月', wh_m2_cost: 259777, wh_m2_leads: 22,
+  wh_m3_name: '', wh_m3_cost: 0, wh_m3_leads: 0,
+  wh_intro: 'モデルハウスを持たない状態からの立ち上げです。',
+  wh_notes: '福岡は、県内に複数の加盟店があり反響を分け合う市場です。それでもこの水準が出ています。',
+
+  // 商圏情報（提案先エリア）← ここをクロが調査して自動入力
+  area_a_name: '西三河中南部＋知多東部',
+  area_a_cities: '西尾・岡崎・安城・刈谷・豊田・碧南 ほか',
+  area_a_pop: 180,
+  area_a_starts: 1.3,
+  area_a_leads: '23〜30件',
+  area_b_name: 'A＋名古屋市・東三河・尾張南部',
+  area_b_cities: '名古屋・豊橋・豊川 ほか',
+  area_b_pop: 520,
+  area_b_starts: 3.8,
+  area_rule: '営業権を独占していただけるのは、ご契約いただいた市町村です（モデルハウス建設地・契約事務所の設置権）。政令指定都市である名古屋市は2分割の扱いとなります。',
+  area_status: '現時点で愛知県内に加盟店はございません。県全体の独占をお約束するものではありませんが、エリアを最も自由にお選びいただける状態です。他社が近接エリアに加盟された場合、その市町村は選択できなくなります。',
+
+  // 参考データ（都道府県比較）← ここもクロが自動入力
+  ref_pref: '愛知県',
+  ref_pop: 745,
+  ref_starts: 56119,
+  area_b_comment: 'パターンBの約520万人・約3.8万戸は、福岡県一県に匹敵する規模です。',
+
+  // 参照加盟店の都道府県データ（P6 参考表に使用）← クロが自動入力
+  wh_pref_name: '福岡県',
+  wh_pref_pop: 508,
+  wh_pref_starts: 35207,
+
+  // 競合状況テキスト（P5）← エリアごとに書き換え
+  area_rival: '愛知県は現時点で加盟店がなく、商圏内の反響を分け合う相手がおりません。',
+
+  // 出典フッターの商圏説明（P6）← エリアごとに書き換え
+  source_note: '商圏人口は西尾市から車で約1時間圏／約1.5時間圏の主要市の積み上げ。商圏の年間着工戸数は愛知県平均の人口あたり着工率からの試算。',
+};
+</script>
+<!-- ▲▲▲ 設定ブロック ここまで ▲▲▲ -->
+
+<script>
+const $ = id => document.getElementById(id);
+const v = id => $( id) ? $( id).value : '';
+const num = id => parseFloat(v(id)) || 0;
+const set = (id, val) => { if ($(id)) $(id).innerHTML = val; };
+const 万 = yen => Math.round(yen / 10000);
+const 円 = yen => Math.round(yen).toLocaleString() + '円';
+const 単価 = (c, l) => (!l || !c) ? '―' : '約' + (c / l / 10000).toFixed(1) + '万円';
+
+function 万億(v) {
+  if (v >= 10000) {
+    const o = Math.floor(v / 10000);
+    const m = v % 10000;
+    return m > 0 ? o + '億' + m.toLocaleString() + '万' : o + '億';
+  }
+  return v.toLocaleString() + '万';
+}
+
+function update() {
+  const co = v('company_name');
+  const co様 = co + ' 様';
+  const ym = v('year') + '年' + v('month') + '月';
+
+  // Gハウス
+  const gC = [num('g_m1_cost'), num('g_m2_cost'), num('g_m3_cost')];
+  const gL = [num('g_m1_leads'), num('g_m2_leads'), num('g_m3_leads')];
+  const gN = [v('g_m1_name'), v('g_m2_name'), v('g_m3_name')];
+  const gSumC = gC[0]+gC[1]+gC[2];
+  const gSumL = gL[0]+gL[1]+gL[2];
+  const gAvgL = Math.round(gSumL / 3);
+  const gAvgC = gSumC / 3;
+
+  // 参照加盟店
+  const whMonths = parseInt(v('wh_months')) || 2;
+  const whC = [num('wh_m1_cost'), num('wh_m2_cost'), num('wh_m3_cost')];
+  const whL = [num('wh_m1_leads'), num('wh_m2_leads'), num('wh_m3_leads')];
+  const whN = [v('wh_m1_name'), v('wh_m2_name'), v('wh_m3_name')];
+  const whSumC = whMonths >= 3 ? whC[0]+whC[1]+whC[2] : whC[0]+whC[1];
+  const whSumL = whMonths >= 3 ? whL[0]+whL[1]+whL[2] : whL[0]+whL[1];
+  const whAvgL = Math.round(whSumL / whMonths);
+  const whAvgC = whSumC / whMonths;
+  const base = whAvgL;
+
+  // 月3行の表示切替
+  if ($('wh3row')) $('wh3row').style.display = whMonths >= 3 ? '' : 'none';
+  if ($('wh_m3_form')) $('wh_m3_form').style.display = whMonths >= 3 ? '' : 'none';
+
+  // 転換率
+  const cM = base * 0.45 * 0.40 * 0.30;
+  const sM = base * 0.55 * 0.45 * 0.35;
+  const cY = Math.round(cM * 12);
+  const sY = Math.round(sM * 12);
+  const pC = cY * 500 - 1220;
+  const pS = sY * 500 - 1220;
+
+  // 商圏類似度
+  const whPop = num('wh_area_pop');
+  const aPop = num('area_a_pop');
+  const whNameStr = v('wh_name') + '様';
+  let simText = '';
+  if (whPop > 0 && aPop > 0) {
+    const r = aPop / whPop;
+    const wp = Math.round(whPop) + '万人';
+    const ap = Math.round(aPop) + '万人';
+    if (r >= 0.8 && r <= 1.3) {
+      simText = whNameStr + '（商圏人口約' + wp + '）と御社の対象エリア（約' + ap + '）は同規模の商圏です。実績の参照事例として高い妥当性があります。';
+    } else if (r > 1.3 && r <= 2.5) {
+      simText = '御社の対象エリア（約' + ap + '）は、' + whNameStr + '（約' + wp + '）より大きな商圏です。同様の配信で、さらに高い反響が期待できます。';
+    } else if (r > 2.5) {
+      simText = '御社の対象エリア（約' + ap + '）は、' + whNameStr + '（約' + wp + '）の約' + r.toFixed(1) + '倍の商圏規模です。より多くの反響が期待できます。';
+    } else {
+      simText = '御社の対象エリア（約' + ap + '）は、' + whNameStr + '（約' + wp + '）よりコンパクトな商圏ですが、上記の反響実績は配信スケールの参照として活用できます。';
+    }
+  }
+
+  const mLabel = whMonths + 'ヶ月';
+  const whLabel = v('wh_region') + '・' + v('wh_name') + '様';
+  const whPeriod = whN[0] + '〜' + (whMonths >= 3 ? whN[2] : whN[1]);
+
+  // 会社名
+  ['p2_co','p3_co','p4_co','p5_co','p6_co'].forEach(id => set(id, co様));
+
+  // P1
+  set('p1_co', co);
+  set('p1_date', ym);
+
+  // P2
+  set('p2_g_period', gN[0] + '〜' + gN[2]);
+  set('p2_wh_label', whLabel);
+  set('p2_wh_period', whPeriod);
+  set('p2_wh_months_label', mLabel);
+  set('p2_base', base);
+  set('p2_wh_name2', v('wh_name'));
+
+  // P3
+  set('t_base_c', base + '件'); set('t_base_s', base + '件');
+  set('t_cons_m', cM.toFixed(1) + '棟'); set('t_cons_y', '約' + cY + '棟');
+  set('t_std_m', sM.toFixed(1) + '棟'); set('t_std_y', '約' + sY + '棟');
+  set('p3_c_y', cY); set('p3_s_y', sY);
+  set('p3_p_c', pC < 0 ? '（試算上 回収不足）' : pC.toLocaleString());
+  set('p3_p_s', pS < 0 ? '（試算上 回収不足）' : 万億(pS) + '円');
+
+  // P4 KPI
+  set('kpi_leads', gAvgL || '―');
+  set('kpi_cpa', gSumL > 0 ? (gSumC / gSumL / 10000).toFixed(1) : '―');
+  set('kpi_cost', gAvgC > 0 ? 万(gAvgC) : '―');
+  set('kpi_cvr', v('g_cvr'));
+  set('kpi_g_period', gN[0] + '〜' + gN[2]);
+
+  // P4 Gハウステーブル
+  for (let i = 0; i < 3; i++) {
+    set('g'+(i+1)+'n', gN[i]);
+    set('g'+(i+1)+'c', 円(gC[i]));
+    set('g'+(i+1)+'l', gL[i] + '件');
+    set('g'+(i+1)+'p', 単価(gC[i], gL[i]));
+  }
+  set('gavgc', '約' + 万(gAvgC) + '万円');
+  set('gavgl', gAvgL + '件');
+  set('gavgp', 単価(gSumC, gSumL));
+
+  // P4 参照加盟店テーブル
+  set('wh_sec_label', whLabel);
+  set('wh_join_disp', v('wh_join_month'));
+  set('wh_intro_note', v('wh_intro'));
+  for (let i = 0; i < 3; i++) {
+    set('wh'+(i+1)+'n', whN[i]);
+    set('wh'+(i+1)+'c', 円(whC[i]));
+    set('wh'+(i+1)+'l', whL[i] + '件');
+    set('wh'+(i+1)+'p', 単価(whC[i], whL[i]));
+  }
+  set('wh_avg_label', mLabel + ' 平均');
+  set('whavgc', '約' + 万(whAvgC) + '万円');
+  set('whavgl', whAvgL + '件');
+  set('whavgp', 単価(whSumC, whSumL));
+
+  // P5
+  set('wh_name_note', v('wh_name'));
+  set('wh_m1l_note', whL[0]);
+  // 「単月変動」は常に最終月の話
+  const lastIdx = whMonths - 1;
+  set('wh_m2_short', whN[lastIdx].replace(/^\d{4}年/, ''));
+  set('wh_m2l_note', whL[lastIdx]);
+  set('wh_months_label2', mLabel);
+  set('wh_avg_note', whAvgL);
+  set('wh_notes_disp', v('wh_notes'));
+  set('area_rival_disp', v('area_rival'));
+  set('wh_region_note', v('wh_region'));
+  set('similarity_text', simText);
+  // 前月比トレンド（P5）
+  const trend = (whL[lastIdx] > 0 && whL[lastIdx-1] > 0) ? (whL[lastIdx] < whL[lastIdx-1] ? '落ちています' : '増えています') : '推移しています';
+  set('wh_trend_text', trend);
+  set('aa_name', v('area_a_name')); set('aa_cities', v('area_a_cities'));
+  set('aa_pop', '約' + num('area_a_pop') + '万人');
+  set('aa_starts', '約' + num('area_a_starts') + '万戸');
+  set('aa_leads', v('area_a_leads'));
+  set('ab_name', v('area_b_name')); set('ab_cities', v('area_b_cities'));
+  set('ab_pop', '約' + num('area_b_pop') + '万人');
+  set('ab_starts', '約' + num('area_b_starts') + '万戸');
+
+  // P6
+  set('area_rule_disp', v('area_rule'));
+  set('area_status_disp', v('area_status'));
+  set('ref_pref_d', v('ref_pref'));
+  set('ref_pop_d', num('ref_pop'));
+  set('ref_starts_d', num('ref_starts').toLocaleString());
+  set('ab_comment_d', v('area_b_comment'));
+  set('p6_g_period', gN[0] + '〜' + gN[2]);
+  set('p6_wh_region', v('wh_region'));
+  set('p6_wh_name', v('wh_name'));
+  set('p6_wh_join', v('wh_join_month'));
+  set('p6_wh_period', whPeriod);
+  // P6 参考データ（参照加盟店の都道府県）
+  set('wh_region_pref_d', v('wh_pref_name'));
+  set('wh_pref_pop_d', num('wh_pref_pop'));
+  set('wh_pref_starts_d', num('wh_pref_starts').toLocaleString());
+  // P6 出典フッター
+  set('source_note_d', v('source_note') ? '　' + v('source_note') : '');
+}
+
+function loadPreset() {
+  for (const [k, val] of Object.entries(PRESET)) {
+    const el = $(k);
+    if (!el) continue;
+    el.value = val;
+  }
+}
+loadPreset();
+update();
+</script>
+</body>
+</html>
