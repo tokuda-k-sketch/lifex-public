@@ -90,7 +90,6 @@
     <div class="eyebrow">LIFEX 月2棟プロジェクト　商談を"解剖"する</div>
     <h1>商談ふりかえりシート（人物金時敵・深掘り版）</h1>
     <p class="lead">◯×を付けるためのシートではありません。<b>「人物金時敵」の5視点で、どこまで掘れたか・まだ掘れていないのは何か</b>を見て、次の一手を決めます。商談の前に仮説を書き、後で答え合わせしてもOK。</p>
-    <span class="draft">■ 叩き台 v3 ｜ Gハウス注文住宅の教育サイト（人物金時敵・鉄板トーク）を参考に、LIFEX規格住宅向けに翻案。トーク例・基準は徳田さんの実際の型で今後強化します</span>
   </div>
 
   <div class="meta">
@@ -155,7 +154,6 @@
         <div class="er"><div class="cx">「価格が気になる」</div><div class="say">🧑‍💼「なぜですか？（前に高い見積もりを見られました？）」→ 注文は打合せのたびに<b>際限なく上がる不安</b>がある。<span class="arrow">→</span> LIFEXは<b>最初から総額が見える</b>から、その不安がない。</div></div>
         <div class="er"><div class="cx">「大手とも比較してから」</div><div class="say">🧑‍💼「なぜ大手を？（安心感ですか？）」→ 大手の安心の正体を言語化。<span class="arrow">→</span> こちらから<b>"家選びの判断基準"を先に渡し</b>、総額と暮らしやすさで土俵をつくる（貶さない）。</div></div>
       </div>
-      <p class="sec-note" style="margin-top:8px">※このトーク例は<b>叩き台</b>です。LIFEXの実際の強み・言い回しに、徳田さんの手で置き換えてください。</p>
     </div>
 
     <!-- PART 3 分かれ目と本音 -->
@@ -198,7 +196,6 @@
   <div class="foot">
     <h3>使い方</h3>
     <p>商談の後（できれば当日）に、録画を見ながらPART1を埋めます。きれいに全部埋めるより、<b>「まだ掘れていない」右側を正直に書く</b>ことが目的です。そこがそのまま、PART3の"検討します"の正体であり、PART4の次の一手になります。KPIダッシュボードで契約率・面談率が穴だった店は、失注した商談を1本、このシートで解剖してみてください。</p>
-    <p style="font-size:11.5px">※本シートは叩き台（v3）。「人物金時敵」「鉄板トーク」はGハウス注文住宅の教育サイトを参考に、規格住宅LIFEX向けに翻案したものです。項目・トーク例・基準は、徳田さん・佐古社長の実際の商談に合わせて今後強化します。</p>
     <div class="btns"><button class="print" onclick="window.print()">印刷 / PDF保存</button><button class="reset" id="reset">入力をリセット</button></div>
   </div>
 </div>
@@ -207,6 +204,20 @@
   document.getElementById('reset').addEventListener('click', function(){
     document.querySelectorAll('textarea').forEach(function(t){ t.value=''; });
     document.querySelectorAll('input[type=checkbox]').forEach(function(c){ c.checked=false; });
+    document.querySelectorAll('input[type=text]').forEach(function(i){ i.value=''; });
     document.querySelectorAll('select').forEach(function(s){ s.selectedIndex=0; });
+  });
+
+  // 印刷時、長文を書いた欄が枠内で見切れないよう高さを内容に合わせて一時的に広げる
+  var savedTextareaHeights = [];
+  window.addEventListener('beforeprint', function(){
+    document.querySelectorAll('textarea').forEach(function(t){
+      savedTextareaHeights.push([t, t.style.height]);
+      t.style.height = t.scrollHeight + 'px';
+    });
+  });
+  window.addEventListener('afterprint', function(){
+    savedTextareaHeights.forEach(function(pair){ pair[0].style.height = pair[1]; });
+    savedTextareaHeights = [];
   });
 </script>
