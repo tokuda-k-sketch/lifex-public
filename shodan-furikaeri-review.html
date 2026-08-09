@@ -1,0 +1,187 @@
+<title>LIFEX 商談ふりかえり 一覧・コメント</title>
+<style>
+  :root{
+    --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+    --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+    --p2:#2e7d6e; --p2bg:#e7f2ef; --leak:#b3372b; --leakbg:#fbe9e7;
+    --jin:#1e4e79; --mono:#2e7d6e; --kane:#b05c1f; --toki:#3b82c4; --teki:#b3372b;
+  }
+  *{box-sizing:border-box}
+  body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif; color:var(--ink);
+    background:#eef2f6; margin:0; line-height:1.6; font-feature-settings:"palt"}
+  .wrap{width:min(980px,94vw); margin:26px auto}
+  .hd{background:#fff; border-radius:10px; box-shadow:0 2px 18px rgba(20,40,60,.09); padding:22px 30px; margin-bottom:16px}
+  .eyebrow{font-size:12px; letter-spacing:.16em; color:var(--sub); font-weight:700}
+  h1{font-size:22px; font-weight:800; margin:6px 0 4px}
+  .lead{font-size:13px; color:var(--sub); margin:0}
+  .scope{display:inline-flex; align-items:center; gap:7px; margin-top:10px; font-size:12px; font-weight:700;
+    padding:4px 13px; border-radius:99px}
+  .scope.admin{background:var(--navy-soft); color:var(--navy)}
+  .scope.store{background:var(--p2bg); color:var(--p2)}
+  .state{background:#fff; border-radius:10px; padding:30px; text-align:center; color:var(--sub); font-size:13.5px}
+  .card{background:#fff; border-radius:10px; box-shadow:0 2px 14px rgba(20,40,60,.07); margin-bottom:14px; overflow:hidden}
+  .card-hd{display:flex; align-items:center; gap:12px; padding:14px 22px; border-bottom:1px solid var(--line); flex-wrap:wrap}
+  .card-hd .store{font-size:15px; font-weight:800; color:var(--navy)}
+  .card-hd .sub{font-size:12px; color:var(--sub)}
+  .card-hd .meta2{font-size:12.5px; color:var(--sub); margin-left:auto; display:flex; gap:14px; flex-wrap:wrap}
+  .badge{font-size:11px; font-weight:700; padding:3px 11px; border-radius:99px; background:var(--panel); color:var(--sub)}
+  .badge.win{background:var(--p2bg); color:var(--p2)}
+  .badge.lose{background:var(--leakbg); color:var(--leak)}
+  .card-body{padding:16px 22px}
+  .gmc-mini{display:flex; flex-direction:column; gap:6px; margin-bottom:14px}
+  .gmc-row{display:grid; grid-template-columns:56px 1fr 1fr; gap:0; border:1px solid var(--line); border-radius:7px; overflow:hidden; font-size:12.5px}
+  .gmc-row .lb{display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:15px}
+  .gmc-row .c1,.gmc-row .c2{padding:8px 11px; background:#fff}
+  .gmc-row .c1{border-right:1px solid var(--line)}
+  .gmc-row .c2{background:#fffdf7; color:var(--sub)}
+  .gmc-row .empty{color:#c3ccd4; font-style:italic}
+  .kv{font-size:12.5px; color:var(--ink); margin-bottom:10px}
+  .kv b{color:var(--navy); font-weight:700}
+  .honne-chips{display:flex; gap:6px; flex-wrap:wrap; margin:2px 0 10px}
+  .honne-chips span{font-size:11px; font-weight:700; padding:3px 10px; border-radius:99px; background:var(--leakbg); color:var(--leak)}
+  .decide-box{background:var(--p2bg); border:1px solid #bfdcd5; border-radius:8px; padding:10px 14px; font-size:12.5px; margin-bottom:6px}
+  .decide-box b{color:var(--p2)}
+  .comment-box{border-top:1px dashed var(--line); margin-top:14px; padding-top:12px}
+  .comment-box .lbl{font-size:11px; font-weight:700; color:var(--sub); letter-spacing:.08em; margin-bottom:6px; display:block}
+  .comment-box textarea{width:100%; border:1px solid var(--line); border-radius:7px; background:#fcfdfe; font:inherit;
+    font-size:13px; padding:9px 12px; resize:vertical; color:var(--ink); min-height:52px}
+  .comment-box textarea:focus{outline:none; border-color:var(--navy); background:#fff; box-shadow:0 0 0 3px var(--navy-soft)}
+  .comment-box .row{display:flex; gap:10px; align-items:center; margin-top:8px}
+  .comment-box button{font:inherit; font-size:12.5px; font-weight:700; padding:6px 16px; border-radius:6px; cursor:pointer;
+    border:1px solid var(--navy); background:var(--navy); color:#fff}
+  .comment-box button:disabled{opacity:.6; cursor:default}
+  .comment-box .saved{font-size:11.5px; color:var(--p2); opacity:0; transition:opacity .2s}
+  .comment-box .saved.show{opacity:1}
+  .refresh{font-size:12px; color:var(--navy); background:none; border:none; text-decoration:underline; cursor:pointer; padding:0}
+</style>
+
+<div class="wrap">
+  <div class="hd">
+    <div class="eyebrow">LIFEX 月2棟プロジェクト</div>
+    <h1>商談ふりかえり 一覧・コメント</h1>
+    <p class="lead">営業担当が提出した「商談ふりかえりシート」がここに集まります。内容を見てコメントを残せます。</p>
+    <div id="scope-badge"></div>
+  </div>
+  <div id="list"><div class="state">読み込み中…</div></div>
+</div>
+
+<script>
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbwriC9V4xS2ZZ8rGhfsQydsBmXKzTWo9CKiJUs7kPt5naU3NWXQy_IKbB6ytZfw_WtE/exec';
+  const TOKEN = new URLSearchParams(location.search).get('s') || null;
+
+  const listEl = document.getElementById('list');
+  const scopeEl = document.getElementById('scope-badge');
+
+  function esc(s){
+    return String(s || '').replace(/[&<>"']/g, function(c){
+      return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+    });
+  }
+  function nl2br(s){ return esc(s).replace(/\n/g, '<br>'); }
+
+  function gmcRow(color, label, v1, v2){
+    return '<div class="gmc-row">' +
+      '<div class="lb" style="background:' + color + '">' + label + '</div>' +
+      '<div class="c1">' + (v1 ? nl2br(v1) : '<span class="empty">（未記入）</span>') + '</div>' +
+      '<div class="c2">' + (v2 ? nl2br(v2) : '<span class="empty">（未記入）</span>') + '</div>' +
+      '</div>';
+  }
+
+  function resultBadge(r){
+    if (r === '申込' || r === '次アポ獲得') return '<span class="badge win">' + esc(r) + '</span>';
+    if (r === '失注') return '<span class="badge lose">' + esc(r) + '</span>';
+    if (r) return '<span class="badge">' + esc(r) + '</span>';
+    return '';
+  }
+
+  function renderCard(en){
+    const honne = String(en['本音チェック'] || '').split('、').filter(Boolean);
+    const id = esc(en['ID']);
+    return '<div class="card" data-id="' + id + '">' +
+      '<div class="card-hd">' +
+        '<span class="store">' + esc(en['店舗名']) + (en['支店'] ? '（' + esc(en['支店']) + '）' : '') + '</span>' +
+        resultBadge(en['結果']) +
+        '<span class="meta2">' +
+          (en['商談日'] ? '<span>商談日 ' + esc(en['商談日']) + '</span>' : '') +
+          (en['対象のお客様'] ? '<span>' + esc(en['対象のお客様']) + '様</span>' : '') +
+          '<span>提出 ' + esc(en['提出日時']) + '</span>' +
+        '</span>' +
+      '</div>' +
+      '<div class="card-body">' +
+        '<div class="gmc-mini">' +
+          gmcRow('var(--jin)', '人', en['人_つかめたこと'], en['人_次に聞くこと']) +
+          gmcRow('var(--mono)', '物', en['物_つかめたこと'], en['物_次に聞くこと']) +
+          gmcRow('var(--kane)', '金', en['金_つかめたこと'], en['金_次に聞くこと']) +
+          gmcRow('var(--toki)', '時', en['時_つかめたこと'], en['時_次に聞くこと']) +
+          gmcRow('var(--teki)', '敵', en['敵_つかめたこと'], en['敵_次に聞くこと']) +
+        '</div>' +
+        (en['分かれ目の場面'] ? '<div class="kv"><b>分かれ目の場面：</b>' + nl2br(en['分かれ目の場面']) + '</div>' : '') +
+        (honne.length ? '<div class="honne-chips">' + honne.map(function(h){ return '<span>' + esc(h) + '</span>'; }).join('') + '</div>' : '') +
+        (en['次に変える1つ'] ? '<div class="decide-box"><b>次に変える1つ：</b>' + nl2br(en['次に変える1つ']) + (en['いつ誰で試すか'] ? '<br><span style="color:var(--sub)">' + nl2br(en['いつ誰で試すか']) + '</span>' : '') + '</div>' : '') +
+        '<div class="comment-box">' +
+          '<span class="lbl">上司からのコメント</span>' +
+          '<textarea placeholder="ここにコメントを書いて保存してください">' + esc(en['店長コメント']) + '</textarea>' +
+          '<div class="row">' +
+            '<button class="save-btn">コメントを保存</button>' +
+            '<span class="saved">保存しました</span>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function wireComments(){
+    document.querySelectorAll('.card').forEach(function(card){
+      const btn = card.querySelector('.save-btn');
+      const ta = card.querySelector('.comment-box textarea');
+      const saved = card.querySelector('.saved');
+      btn.addEventListener('click', function(){
+        btn.disabled = true;
+        btn.textContent = '保存中…';
+        fetch(GAS_URL, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'furikaeri_comment', id: card.dataset.id, token: TOKEN, comment: ta.value }),
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' }
+        })
+          .then(function(r){ return r.json(); })
+          .then(function(data){
+            if (data && data.ok) {
+              saved.className = 'saved show';
+              setTimeout(function(){ saved.className = 'saved'; }, 2000);
+            } else {
+              alert('保存に失敗しました：' + (data && data.error ? data.error : '不明なエラー'));
+            }
+          })
+          .catch(function(){ alert('通信エラーです。もう一度お試しください'); })
+          .finally(function(){ btn.disabled = false; btn.textContent = 'コメントを保存'; });
+      });
+    });
+  }
+
+  function load(){
+    const url = GAS_URL + '?furikaeri=1' + (TOKEN ? '&s=' + encodeURIComponent(TOKEN) : '');
+    fetch(url).then(function(r){ return r.json(); }).then(function(data){
+      if (data.error === 'invalid_token') {
+        listEl.innerHTML = '<div class="state">このURLは無効です。管理者に確認してください。</div>';
+        return;
+      }
+      if (data.error) {
+        listEl.innerHTML = '<div class="state">読み込みに失敗しました：' + esc(data.error) + '</div>';
+        return;
+      }
+      scopeEl.innerHTML = data.isStoreView
+        ? '<span class="scope store">自店舗のみ表示</span>'
+        : '<span class="scope admin">本部ビュー：全店舗表示</span>';
+      if (!data.entries.length) {
+        listEl.innerHTML = '<div class="state">まだ提出がありません。</div>';
+        return;
+      }
+      listEl.innerHTML = data.entries.map(renderCard).join('');
+      wireComments();
+    }).catch(function(){
+      listEl.innerHTML = '<div class="state">通信エラーです。時間をおいて再度お試しください。<br><button class="refresh" onclick="load()">再読み込み</button></div>';
+    });
+  }
+
+  load();
+</script>
