@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>LIFEX商談AI採点｜費用感プレゼン（A4）</title>
+<style>
+  @page{ size: A4; margin: 14mm; }
+  *{box-sizing:border-box}
+  :root{
+    --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+    --navy:#1e4e79; --navy-soft:#e8eff6;
+    --p2:#2e7d6e; --p2bg:#e7f2ef;
+    --amber:#8a5a00; --amberbg:#fdf3dd; --amberln:#ecd9a8;
+  }
+  body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif; color:var(--ink);
+    background:#eef2f6; margin:0; line-height:1.55; font-feature-settings:"palt"}
+  .page{width:210mm; min-height:297mm; margin:0 auto; background:#fff; padding:14mm 16mm;
+    box-shadow:0 2px 18px rgba(20,40,60,.09)}
+  .eyebrow{font-size:11px; letter-spacing:.14em; color:var(--sub); font-weight:700}
+  h1{font-size:21px; font-weight:800; margin:5px 0 8px; color:var(--ink)}
+  .lead{font-size:12.5px; color:var(--sub); margin:0 0 14px; line-height:1.65}
+
+  .sec{margin-top:16px}
+  .sec-h{font-size:13.5px; font-weight:800; color:var(--navy); margin:0 0 6px;
+    border-bottom:2px solid var(--navy); padding-bottom:3px; display:inline-block}
+  p{font-size:12px; margin:0 0 8px; line-height:1.65}
+
+  .highlight{border:1.5px solid var(--p2); background:var(--p2bg); border-radius:8px; padding:10px 14px; margin:8px 0 4px}
+  .highlight b{color:var(--p2); font-size:13px}
+  .highlight span{font-size:11.5px; color:var(--ink)}
+
+  table{width:100%; border-collapse:collapse; font-size:11.5px; margin:8px 0}
+  th,td{border:1px solid var(--line); padding:6px 8px; text-align:center}
+  th{background:var(--panel); font-weight:700; color:var(--sub); font-size:10.5px}
+  td.lbl{background:var(--panel); font-weight:700; color:var(--ink); text-align:left}
+  td.num{font-variant-numeric:tabular-nums; font-weight:700; color:var(--navy)}
+
+  .assump{border:1px solid var(--amberln); background:var(--amberbg); border-radius:7px; padding:9px 12px; font-size:10.5px; color:var(--ink); line-height:1.65}
+  .assump b{color:var(--amber)}
+
+  .foot{margin-top:14px; padding-top:8px; border-top:1px solid var(--line); font-size:9.5px; color:var(--sub); line-height:1.6}
+
+  @media print{
+    body{background:#fff}
+    .page{box-shadow:none; margin:0; width:auto; min-height:auto}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="eyebrow">株式会社Gハウス LIFEX事業部 ｜ 社内決裁用資料</div>
+  <h1>LIFEX商談AI採点プロジェクト｜費用感について</h1>
+  <p class="lead">加盟店の商談を録音・文字起こしからAIが自動採点する仕組みの、運用費用（AI利用料）に関するご説明です。開発費とは別に、使った分だけ課金される従量課金の費用が継続的に発生します。</p>
+
+  <div class="sec">
+    <div class="sec-h">プロジェクト概要</div>
+    <p>すでに全21社へ配布済みの「商談ふりかえりシート」（営業が自分の商談を振り返る自己チェックツール）の発展形です。録音・録画・文字起こしをAIに読ませ、ヒアリング力（人物金時敵）と訴求力（LIFEXの勝ち筋4軸）の観点で自動採点し、営業育成・研修の材料にします。まずは自社直営店「いえプロ」で試験導入し、精度を確認した上で加盟店へ展開します。</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">費用が発生する仕組み</div>
+    <p>採点に使用するAI（Google Gemini API）は、音声データの長さに応じた従量課金です。APIキーの発行自体は無料で、月額固定費はありません。<b>商談1件あたり数十円程度</b>という単価感になります。</p>
+  </div>
+
+  <div class="highlight">
+    <b>試験導入（いえプロ1店舗）は、実質ほぼ費用ゼロで開始できます。</b><br>
+    <span>月5〜10件の利用であれば無料利用枠（1日あたり数百回の無料アクセス枠）に収まる見込みです。</span>
+  </div>
+
+  <div class="sec">
+    <div class="sec-h">加盟店展開時の費用シミュレーション（月額）</div>
+    <p>商談1件あたりの平均時間を「2時間」「2.5時間」の2パターンで想定し、加盟店数×月間商談件数ごとの月額費用を算出しました。</p>
+    <table>
+      <tr>
+        <th rowspan="2">加盟店数</th>
+        <th colspan="2">商談2時間想定</th>
+        <th colspan="2">商談2.5時間想定</th>
+      </tr>
+      <tr>
+        <th>月5件/店</th><th>月10件/店</th><th>月5件/店</th><th>月10件/店</th>
+      </tr>
+      <tr><td class="lbl">20社（現状）</td><td class="num">約3,600円</td><td class="num">約7,100円</td><td class="num">約4,500円</td><td class="num">約8,900円</td></tr>
+      <tr><td class="lbl">30社</td><td class="num">約5,400円</td><td class="num">約10,700円</td><td class="num">約6,700円</td><td class="num">約13,400円</td></tr>
+      <tr><td class="lbl">50社</td><td class="num">約8,900円</td><td class="num">約17,900円</td><td class="num">約11,200円</td><td class="num">約22,300円</td></tr>
+      <tr><td class="lbl">70社（来期目標達成後）</td><td class="num">約12,500円</td><td class="num">約25,000円</td><td class="num">約15,600円</td><td class="num">約31,200円</td></tr>
+    </table>
+    <p style="margin-top:2px">加盟店が現状20社→来期目標達成で70社規模まで増えても、<b>月額費用は最大でも約3万円程度</b>にとどまる見込みです（商談2.5時間・月10件/店のもっとも重い想定でも）。</p>
+  </div>
+
+  <div class="assump">
+    <b>算出の前提条件（見積り時点の仮定・変動あり）</b><br>
+    ・使用モデル：Google Gemini 2.5 Flash（音声を直接処理でき、コスト効率が良いモデル）<br>
+    ・音声入力単価：1分あたり約1,920トークン ×（1トークンあたり100万トークン=1.00ドル）で算出（商談1件あたり：2時間=約36円、2.5時間=約45円）<br>
+    ・為替レート：1ドル=155円で計算（実際の請求時レートにより増減）<br>
+    ・採点結果の文章生成（出力）分の費用は1件1円未満のためテーブルには含めず<br>
+    ・実際の商談時間・件数の分布により、上記より前後する可能性あり（本番投入前に実測での再確認を推奨）
+  </div>
+
+  <div class="foot">
+    参考：Google Gemini API公式料金ページ（ai.google.dev/gemini-api/docs/pricing）2026年7月時点の公開情報に基づく。開発費・保守費は別途。本資料は決裁検討用の見積りであり、確定金額ではありません。
+  </div>
+
+</div>
+</body>
+</html>
