@@ -43,9 +43,9 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 .say{background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:10px; padding:12px 16px; font-size:13px}
 .say b{color:var(--navy)}
 .say .lbl{display:block; font-size:11px; letter-spacing:.1em; color:var(--navy); font-weight:700; margin-bottom:4px}
-.ag{border:1px solid var(--line); border-radius:6px; padding:10px 18px; display:flex; align-items:center; gap:16px; background:#fff}
-.ag .no{font-size:12px; font-weight:800; color:var(--sub); flex-shrink:0; width:56px; line-height:1.3}
-.ag b{font-size:15px}
+.ag{border:1px solid var(--line); border-radius:8px; padding:18px 22px; display:flex; align-items:center; gap:18px; background:#fff}
+.ag .no{font-size:12.5px; font-weight:800; color:var(--sub); flex-shrink:0; width:64px; line-height:1.3}
+.ag b{font-size:16.5px}
 .ag .cap{margin-left:auto; text-align:right; flex-shrink:0; max-width:380px}
 .flow{display:flex; align-items:stretch; gap:8px}
 .flow .st{flex:1; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:9px 12px; font-size:12px; text-align:center}
@@ -105,14 +105,15 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 /* ===== 会話法パーツ ===== */
 /* VS比較（思い込み vs 成果視点） */
 .vs2{display:flex; gap:0; align-items:stretch; position:relative; flex:1}
-.vs2>div{flex:1; border:1px solid var(--line); border-radius:8px; padding:14px 18px; display:flex; flex-direction:column; gap:8px}
+.vs2>div{flex:1; border:1px solid var(--line); border-radius:8px; padding:14px 18px; display:flex; flex-direction:column; gap:14px; justify-content:center}
 .vs2 .neg{background:#fafbfc}
 .vs2 .pos{background:var(--navy-soft); border-color:var(--navy)}
 .vs2 h5{margin:0; font-size:12.5px; font-weight:800; color:var(--sub); display:flex; align-items:center; gap:6px}
 .vs2 .pos h5{color:var(--navy)}
 .vs2 .vs-badge{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:36px; height:36px; border-radius:50%;
   background:#fff; border:2px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; color:var(--sub); z-index:2}
-.vs2 .result{margin-top:auto; text-align:center; font-size:15px; font-weight:800; border-radius:6px; padding:10px; background:#fff; border:1px solid var(--line)}
+.vs2 .result{text-align:center; font-size:15px; font-weight:800; border-radius:6px; padding:10px; background:#fff; border:1px solid var(--line)}
+.vs2 .chatline{margin-top:0}
 .vs2 .pos .result{background:var(--p3bg); color:var(--p3); border-color:#e8cfae}
 .vs2 .neg .result{color:var(--sub)}
 
@@ -158,10 +159,10 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 /* 5つの「ど」 */
 .d5{display:flex; gap:8px; flex:1}
-.d5-card{flex:1; border:1px solid var(--line); border-radius:8px; padding:10px 8px; text-align:center; background:#fff; display:flex; flex-direction:column; gap:4px; align-items:center}
-.d5-badge{width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:800; color:#fff}
-.d5-card h5{margin:0; font-size:13px}
-.d5-card span{font-size:10px; color:var(--sub); line-height:1.3}
+.d5-card{flex:1; border:1px solid var(--line); border-radius:8px; padding:18px 10px; text-align:center; background:#fff; display:flex; flex-direction:column; gap:8px; align-items:center}
+.d5-badge{width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:19px; font-weight:800; color:#fff}
+.d5-card h5{margin:0; font-size:17px}
+.d5-card span{font-size:12.5px; color:var(--sub); line-height:1.4}
 
 /* 循環図（1セットで回す） */
 .loop3{position:relative; flex:1; display:flex; align-items:center; justify-content:center}
@@ -176,8 +177,6 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <div class="wrap">
 
-<div class="draft">■ 叩き台（v4・2026/8/11作成・壁打ち中）｜8/21（金）16:00〜。5拍子2周目、Part1=「聞く力」（会話法）。Part2=8/28「間の取り方＋テストクロージング」。<b>店名・数値は仮置き（___）。当日ダッシュボード最新値で差し替え。</b>会話法の出典はGハウス新人営業向け教育資料（2025年度版）。「あなた」等の個人向け表現は除き、LIFEX全店向けの型として翻案済み。</div>
-
 <!-- 1 表紙 -->
 <div class="sl" style="justify-content:center; text-align:center">
   <div style="font-size:13px; letter-spacing:.22em; color:var(--sub); font-weight:700">2026.8.21（金）16:00〜　LIFEX 月2棟目標達成MTG</div>
@@ -187,12 +186,12 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
     <b style="color:var(--sub)">観る→診る→処方→決める→</b><b style="color:var(--navy)">答え合わせ</b>
     <div style="color:var(--sub); margin-top:10px; font-size:13.5px">進行：Gハウス LIFEX FC事業部　徳田</div>
   </div>
-  <div class="pg" style="position:absolute; right:28px; bottom:20px">1 / 17</div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px">1 / 15</div>
 </div>
 
 <!-- 2 これまでの道のり -->
 <div class="sl">
-  <div class="top"><span class="chip c0">これまでの道のり</span><span class="pg">2 / 17</span></div>
+  <div class="top"><span class="chip c0">これまでの道のり</span><span class="pg">2 / 15</span></div>
   <div class="tt" style="font-size:23px">アポ率の型は渡した。今日からは「面談を強くする」2部作、第1回。</div>
   <div class="body" style="flex-direction:column; justify-content:center; gap:7px">
     <div class="tl">
@@ -208,46 +207,48 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 3 本日の流れ -->
 <div class="sl">
-  <div class="top"><span class="chip c0">本日の流れ</span><span class="pg">3 / 17</span></div>
-  <div class="tt">今日のメインは「会話法」1本です。</div>
+  <div class="top"><span class="chip c0">本日の流れ</span><span class="pg">3 / 15</span></div>
+  <div class="tt">今日のメインは「会話法」1本。各店の発言は1回にまとめます。</div>
   <p class="ms">アポ率が伸びても、面談で話が続かなければ契約になりません。今日は、Gハウスの新人営業教育で使っている「共感・復唱・関連質問」を丸ごとLIFEXの型として渡します。</p>
-  <div class="body" style="flex-direction:column; justify-content:center; gap:9px">
-    <div class="ag" style="border-color:var(--navy)"><span class="no" style="color:var(--navy)">答え合わせ</span><b>宣言の答え合わせ（各店1分＋アポ率結果）</b><span class="cap">8/7の道具・7/31のアポ率目標</span></div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:16px">
+    <div class="ag" style="border-color:var(--navy)"><span class="no" style="color:var(--navy)">答え合わせ</span><b>宣言の実践＋アポ率結果＋次の一手を1回で発表</b><span class="cap">8/7の道具・7/31のアポ率目標・次回までの宣言をまとめて</span></div>
     <div class="ag" style="border-color:var(--p3)"><span class="no" style="color:var(--p3)">新しい型</span><b>共感・復唱・関連質問を"1セット"で回す</b><span class="cap">Gハウス新人営業教育資料より。今日はこれだけを深く</span></div>
-    <div class="ag" style="border-color:var(--p1)"><span class="no" style="color:var(--p1)">実演</span><b>隣の人と1分、実際に声に出す</b><span class="cap">聞いて終わりにしない</span></div>
-    <div class="ag" style="border-color:var(--p2)"><span class="no" style="color:var(--p2)">決める</span><b>次回までに、どこで試すか宣言</b><span class="cap">8/28は「間の取り方＋テストクロージング」</span></div>
+    <div class="ag" style="border-color:#6b4fa0"><span class="no" style="color:#6b4fa0">ご案内</span><b>AX戦略部の同席・ポータル改善アンケート</b><span class="cap">本部より　＊詳細確認中</span></div>
   </div>
   <div class="foot"><span class="cap"><b style="color:var(--navy)">今日のゴール。</b>「共感→復唱→関連質問」を、今日の商談から1回使ってみられる状態にすること。</span></div>
 </div>
 
 <!-- 4 答え合わせ -->
 <div class="sl">
-  <div class="rhythm"><span>観る</span><span>診る</span><span>処方</span><span>決める</span><span class="on">答え合わせ</span></div>
-  <div class="top"><span class="chip step">答え合わせ</span><span class="pg">4 / 17</span></div>
-  <div class="tt">8/7の宣言と、7/31のアポ率目標、両方確認します。</div>
-  <p class="ms">「明日のAさんで使う」という宣言と、アポ率の目標。届いた店・まだの店、両方に価値があります。</p>
-  <div class="body" style="gap:16px">
-    <div class="col" style="flex:0 0 40%; justify-content:center; gap:10px">
-      <div class="dot-check" style="gap:16px">
-        <div style="display:flex; align-items:center; gap:6px"><div class="dc done">✓</div><span class="cap">宣言どおり使えた</span></div>
-        <div style="display:flex; align-items:center; gap:6px"><div class="dc pend">?</div><span class="cap">まだ・機会がなかった</span></div>
+  <div class="rhythm"><span>観る</span><span>診る</span><span>処方</span><span class="on">決める</span><span class="on">答え合わせ</span></div>
+  <div class="top"><span class="chip step">答え合わせ</span><span class="pg">4 / 15</span></div>
+  <div class="tt">宣言・アポ率・次の一手。1回の発表でまとめて聞きます。</div>
+  <p class="ms">各店1回、3つを続けて発表してください。「明日のAさんで使う」の答え合わせと、アポ率目標の進捗と、次回までの宣言です。</p>
+  <div class="body" style="flex-direction:column; gap:10px">
+    <div style="display:flex; gap:16px; flex:1">
+      <div class="col" style="flex:0 0 34%; justify-content:center; gap:8px">
+        <div class="dot-check" style="gap:14px">
+          <div style="display:flex; align-items:center; gap:6px"><div class="dc done">✓</div><span class="cap">宣言どおり使えた</span></div>
+          <div style="display:flex; align-items:center; gap:6px"><div class="dc pend">?</div><span class="cap">まだ・機会がなかった</span></div>
+        </div>
+        <div class="say" style="font-size:11.5px; padding:8px 12px"><span class="lbl">聞くこと</span>ふりかえりシート・鉄板トーク集をどの商談で使ったか。使えなかった店は何が引っかかったか。</div>
       </div>
-      <div class="say" style="font-size:12px"><span class="lbl">聞くこと</span>ふりかえりシート・鉄板トーク集をどの商談で使ったか。使えなかった店は何が引っかかったか。</div>
-    </div>
-    <div class="col grow" style="justify-content:center">
-      <div class="cmp-list">
-        <div class="cmp win"><div class="nm">◯◯様<span>___</span></div><div class="track"><div class="fill win" style="width:0%"></div><div class="goal" style="left:0%"></div></div><div class="nums"><b class="num">__%</b>/目標__%</div><span class="badge win">達成 ✓</span></div>
-        <div class="cmp gap"><div class="nm">◯◯様<span>___</span></div><div class="track"><div class="fill" style="width:0%"></div><div class="goal" style="left:0%"></div></div><div class="nums"><b class="num">__%</b>/目標__%</div><span class="badge gap">あと__pt</span></div>
-        <div class="cmp gap"><div class="nm">◯◯様<span>___</span></div><div class="track"><div class="fill" style="width:0%"></div><div class="goal" style="left:0%"></div></div><div class="nums"><b class="num">__%</b>/目標__%</div><span class="badge gap">あと__pt</span></div>
+      <div class="col grow" style="justify-content:center">
+        <div class="cmp-list">
+          <div class="cmp win"><div class="nm">中央建設様<span>鳥取店</span></div><div class="track"><div class="fill win" style="width:100%"></div><div class="goal" style="left:80%"></div></div><div class="nums"><b class="num">100.0%</b>/目標80%</div><span class="badge win">達成 ✓</span></div>
+          <div class="cmp gap"><div class="nm">坂本建設工業様<span>楠木様</span></div><div class="track"><div class="fill" style="width:44.4%"></div><div class="goal" style="left:50%"></div></div><div class="nums"><b class="num">44.4%</b>/目標50%</div><span class="badge gap">あと5.6pt</span></div>
+          <div class="cmp gap"><div class="nm">竹村工務店様<span>知花様</span></div><div class="track"><div class="fill" style="width:55.6%"></div><div class="goal" style="left:70%"></div></div><div class="nums"><b class="num">55.6%</b>/目標70%</div><span class="badge gap">あと14.4pt</span></div>
+        </div>
       </div>
     </div>
+    <div class="box" style="border-color:var(--navy)"><h4>③ 次の一手（発表フォーマット）</h4><p style="color:var(--ink); font-size:13.5px">「宣言は<b>使えた／まだ</b>。アポ率は<b>__%</b>。次回までに<b>________</b>（共感／復唱／関連質問のどれか1つ）を意識します。」</p></div>
   </div>
-  <div class="foot"><span class="todo">当日：ダッシュボード最新値・自店カルテで各店確認。数値はその場で埋める</span></div>
+  <div class="foot"><span class="todo">当日：各店1回の発言で①宣言の実践状況②アポ率③次の一手を聞く（1店あたり1分目安）</span></div>
 </div>
 
 <!-- 5 つなぎ -->
 <div class="sl">
-  <div class="top"><span class="chip c0">つなぎ</span><span class="pg">5 / 17</span></div>
+  <div class="top"><span class="chip c0">つなぎ</span><span class="pg">5 / 15</span></div>
   <div class="tt">アポは取れる。面談で、何が起きているか。</div>
   <p class="ms">8/7で「人物金時敵」という"何を聞くべきか"の型を渡しました。今日は、その先——"どう聞けば本音が出るか"の技術です。</p>
   <div class="body" style="flex-direction:column; justify-content:center; gap:14px">
@@ -259,13 +260,14 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
       <div class="st" style="padding:14px 10px"><b>8/28</b>間・テストクロージング<br><span style="font-size:10.5px; color:var(--sub)">どう決めさせるか</span></div>
     </div>
     <div class="say"><span class="lbl">出典</span>Gハウス新人営業向け教育資料（2025年度版）「営業の武器は会話法」。社内で新人に教えている、体系化された会話術です。</div>
+    <div class="box" style="border-color:var(--line); background:#fff"><h4>なぜ今、会話法か</h4><p>アポ率が上がっても、契約を決めるのは面談の質です。「何を聞くか」の次は「どう聞くか」——ここを鍛えます。</p></div>
   </div>
   <div class="foot"><span class="real">Gハウス新人営業教育資料より</span></div>
 </div>
 
 <!-- 6 VS比較 -->
 <div class="sl">
-  <div class="top"><span class="chip new">会話法①</span><span class="pg">6 / 17</span></div>
+  <div class="top"><span class="chip new">会話法①</span><span class="pg">6 / 15</span></div>
   <div class="tt">営業を左右するのは、説明力ではなく「会話の質」。</div>
   <p class="ms">「詳しく話せば売れる」は思い込みです。現場で起きているのは、その逆です。</p>
   <div class="body">
@@ -273,12 +275,14 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
       <div class="neg">
         <h5>✕ これまでの思い込み</h5>
         <div class="box" style="font-size:12px; padding:8px 12px">知識が増えれば売れる／詳しく説明するほど有利</div>
+        <div class="chatline">ありがちな一言<b>「当社の家は耐震等級3で、断熱性能も…」と、聞かれる前から説明が続く</b></div>
         <div class="result">たくさん説明しても<br>決まらない</div>
       </div>
       <div class="vs-badge">VS</div>
       <div class="pos">
         <h5>◯ 成果を出す営業の視点</h5>
         <div class="box" style="font-size:12px; padding:8px 12px; background:#fff">本音を安心して話せる場を作る／「決めさせる」より「決められる」</div>
+        <div class="chatline" style="margin-top:0">効く一言<b>「そこ、気になりますよね。もう少し詳しく聞かせてください」</b></div>
         <div class="result">ほとんど説明しなくても<br>決まる</div>
       </div>
     </div>
@@ -288,7 +292,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 7 黄金比率 -->
 <div class="sl">
-  <div class="top"><span class="chip new">会話法②</span><span class="pg">7 / 17</span></div>
+  <div class="top"><span class="chip new">会話法②</span><span class="pg">7 / 15</span></div>
   <div class="tt">本音は、お客様が話している時に出る。</div>
   <p class="ms">営業が話しすぎると、お客様は「聞く側」に回って思考が止まります。話してもらうほど、お客様自身も気づいていない本音が出てきます。</p>
   <div class="body" style="align-items:center">
@@ -318,7 +322,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 8 共感の3技術 -->
 <div class="sl">
-  <div class="top"><span class="chip new">会話法③　STEP1：共感</span><span class="pg">8 / 17</span></div>
+  <div class="top"><span class="chip new">会話法③　STEP1：共感</span><span class="pg">8 / 15</span></div>
   <div class="tt">共感の3つの技術。否定から入る営業は信用されない。</div>
   <p class="ms">共感とは「軽い合わせ」ではなく、「あなたの意見には価値がある」と示す承認です。</p>
   <div class="body">
@@ -345,7 +349,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 9 復唱の3レベル -->
 <div class="sl">
-  <div class="top"><span class="chip new">会話法④　STEP2：復唱</span><span class="pg">9 / 17</span></div>
+  <div class="top"><span class="chip new">会話法④　STEP2：復唱</span><span class="pg">9 / 15</span></div>
   <div class="tt">復唱の3レベル。「ただ繰り返す」から「心を掴む」へ。</div>
   <p class="ms">復唱は共感と関連質問をつなぐ橋。レベルが上がるほど、深い共感が伝わります。</p>
   <div class="body">
@@ -372,7 +376,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 10 復唱Do/Don't -->
 <div class="sl">
-  <div class="top"><span class="chip new">会話法⑤　STEP2：復唱の実践</span><span class="pg">10 / 17</span></div>
+  <div class="top"><span class="chip new">会話法⑤　STEP2：復唱の実践</span><span class="pg">10 / 15</span></div>
   <div class="tt">復唱はテクニックでなく"姿勢"。</div>
   <p class="ms">うまい営業と下手な営業の分かれ道は、この4つです。</p>
   <div class="body">
@@ -396,7 +400,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 11 関連質問5つのど -->
 <div class="sl">
-  <div class="top"><span class="chip new">会話法⑥　STEP3：関連質問</span><span class="pg">11 / 17</span></div>
+  <div class="top"><span class="chip new">会話法⑥　STEP3：関連質問</span><span class="pg">11 / 15</span></div>
   <div class="tt">深掘りの実践法：5つの「ど」。</div>
   <p class="ms">角度を変えて3回以上掘ることで、初めて本質的な「芯」が見えてきます。</p>
   <div class="body" style="flex-direction:column; gap:12px">
@@ -417,7 +421,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 12 1セットで回す -->
 <div class="sl">
-  <div class="top"><span class="chip new">会話法⑦　3つを"1セット"で回す</span><span class="pg">12 / 17</span></div>
+  <div class="top"><span class="chip new">会話法⑦　3つを"1セット"で回す</span><span class="pg">12 / 15</span></div>
   <div class="tt">この流れを繰り返すだけで、商談が整う。</div>
   <p class="ms">3つを循環させることで、お客様が自分で決断できる状態が生まれます。これが「押さない営業」の正体です。</p>
   <div class="body" style="align-items:center">
@@ -436,59 +440,21 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
   <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">説明力で勝負しなくていい。「聴く力」が最強の武器になる。</span></div>
 </div>
 
-<!-- 13 実演ワーク -->
+<!-- 13 AX戦略部・アンケート -->
 <div class="sl">
-  <div class="rhythm"><span>観る</span><span>診る</span><span class="on">処方</span><span>決める</span><span>答え合わせ</span></div>
-  <div class="top"><span class="chip step">実演ワーク（3分）</span><span class="pg">13 / 17</span></div>
-  <div class="tt">聞いて終わりにしない。隣の人と、実際に声に出してください。</div>
-  <p class="ms">読むだけでは身につきません。1分でも声に出すと、明日から使えるレベルに変わります。</p>
-  <div class="body" style="flex-direction:column; justify-content:center; gap:12px">
-    <div class="box grow" style="border-color:var(--p3); background:var(--p3bg)"><h4 style="font-size:15px">STEP1　お客様役が何か1つ要望を言う</h4><p style="color:var(--ink)">例：「広いリビングが欲しいんです」など、簡単な一言で</p></div>
-    <div class="box grow" style="border-color:var(--p3); background:var(--p3bg)"><h4 style="font-size:15px">STEP2　営業役が共感→復唱→関連質問を返す</h4><p style="color:var(--ink)">今日出た会話例をそのまま使ってOK。1周でいい</p></div>
-    <div class="box grow" style="border-color:var(--navy); background:var(--navy-soft)"><h4 style="font-size:15px">STEP3　役割を交代してもう1周</h4><p style="color:var(--ink)">やってみてどう感じたか、一言だけ共有</p></div>
+  <div class="top"><span class="chip" style="background:#efe9f7; color:#6b4fa0">本部より</span><span class="pg">13 / 15</span></div>
+  <div class="tt">AX戦略部の同席と、ポータル改善アンケート。</div>
+  <p class="ms">8/17に本部より全店へ告知済みの件です。ここからはAX戦略部様にバトンタッチします。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:16px">
+    <div class="box" style="border-color:#6b4fa0; background:#efe9f7; padding:20px 22px"><h4 style="color:#6b4fa0; font-size:16px">① AX戦略部様より　ご説明・質疑応答</h4><p style="color:var(--ink); font-size:13.5px">進行はAX戦略部様にお願いします。加盟店の皆様からの質問・ご要望は、この場で直接お聞きいただきます。</p></div>
+    <div class="box" style="border-color:#6b4fa0; background:#efe9f7; padding:20px 22px"><h4 style="color:#6b4fa0; font-size:16px">② ポータル改善アンケート（8/21 12:00締切）</h4><p style="color:var(--ink); font-size:13.5px">ご回答ありがとうございました。この場で追加のご意見・ご要望があれば承ります。</p></div>
   </div>
-  <div class="foot"><span class="live">▶ 何組かに「どんな会話になったか」聞いてみます</span></div>
+  <div class="foot"><span class="live">▶ 徳田より「ここからAX戦略部様にお願いします」とお繋ぎします</span></div>
 </div>
 
-<!-- 14 決める -->
+<!-- 14 まとめ -->
 <div class="sl">
-  <div class="rhythm"><span>観る</span><span>診る</span><span>処方</span><span class="on">決める</span><span>答え合わせ</span></div>
-  <div class="top"><span class="chip c2">STEP 決める</span><span class="pg">14 / 17</span></div>
-  <div class="tt">次回まで、どこで試すか決めてください。</div>
-  <p class="ms">3つ全部を完璧にやる必要はありません。まず1つ、次の商談で意識してみてください。</p>
-  <div class="body" style="flex-direction:column; justify-content:center; gap:12px">
-    <div class="flow">
-      <div class="st" style="text-align:left; padding:13px 15px"><b>共感を強くする</b>否定から入らない・3つの技術を1つ試す</div>
-      <div class="ar">/</div>
-      <div class="st" style="text-align:left; padding:13px 15px; background:var(--p3bg); border-color:#e8cfae"><b style="color:var(--p3)">復唱を強くする</b>Lv1を確実に。奥様を主役に戻す</div>
-      <div class="ar">/</div>
-      <div class="st" style="text-align:left; padding:13px 15px"><b>関連質問を強くする</b>5つの「ど」を1つ使う</div>
-    </div>
-    <div class="box" style="border-color:var(--navy)"><h4>発表フォーマット（一言で）</h4><p style="color:var(--ink); font-size:14px">「<b>◯◯</b>は、次の商談で<b>________</b>を意識します。」</p></div>
-  </div>
-  <div class="foot"><span class="live">▶ 各店、順番に発表をお願いします</span><span class="cap">次回8/28は、これの答え合わせ＋「間の取り方・テストクロージング」</span></div>
-</div>
-
-<!-- 15 見える化 -->
-<div class="sl">
-  <div class="top"><span class="chip c0">見える化</span><span class="pg">15 / 17</span></div>
-  <div class="tt">アポ率目標も、次回までの分を更新します。</div>
-  <p class="ms">会話法は数値化しにくいですが、アポ率・面談率は追い続けます。両輪で進めます。</p>
-  <div class="body" style="justify-content:center; gap:22px">
-    <div class="col grow" style="justify-content:center; gap:12px">
-      <div class="gauge">
-        <div class="gh"><span class="gn">◯◯様</span><span class="cap">アポ率　実績 __% / 次の目標 __%</span></div>
-        <div class="track"><div class="fill" style="width:44%"></div><div class="goal" style="left:64%"></div></div>
-      </div>
-      <div class="box" style="border-color:var(--navy); background:var(--navy-soft)"><h4>数字は数字、会話は会話</h4><p style="color:var(--ink)">アポ率は追いながら、面談の中身（会話法）も同時に強くしていきます。</p></div>
-    </div>
-  </div>
-  <div class="foot"><span class="todo">当日：目標シートを画面共有しながら更新</span></div>
-</div>
-
-<!-- 16 まとめ -->
-<div class="sl">
-  <div class="top"><span class="chip c0">今日のまとめ</span><span class="pg">16 / 17</span></div>
+  <div class="top"><span class="chip c0">今日のまとめ</span><span class="pg">14 / 15</span></div>
   <div class="tt">今日持ち帰るのは、たった1セット。</div>
   <div class="body" style="flex-direction:column; justify-content:center; gap:12px">
     <div class="flow">
@@ -505,7 +471,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
   <div class="foot"><span class="cap">説明力で勝負しなくていい。<b style="color:var(--navy)">「聴く力」が最強の武器になる。</b></span></div>
 </div>
 
-<!-- 17 次回予告 -->
+<!-- 15 次回予告 -->
 <div class="sl" style="justify-content:center; text-align:center">
   <div class="top" style="justify-content:center"><span class="chip c0">次回</span></div>
   <div style="font-size:16px; font-weight:700; color:var(--sub); margin:18px 0 8px; letter-spacing:.1em">2026.8.28（金）16:00〜</div>
@@ -521,7 +487,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
     </div>
   </div>
   <div style="margin-top:26px; font-size:15px; color:var(--sub); font-style:italic">聞く力の次は、決めさせる力。</div>
-  <div class="pg" style="position:absolute; right:28px; bottom:20px">17 / 17</div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px">15 / 15</div>
 </div>
 
 </div>
