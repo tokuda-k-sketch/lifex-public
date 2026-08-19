@@ -1,0 +1,836 @@
+<title>太陽光×トータルコスト訴求法｜叩き台</title>
+<style>
+  :root{
+    --bg:#f0f1ea;
+    --paper:#fbfbf7;
+    --ink:#20261e;
+    --ink-soft:#585f52;
+    --line:#d8dccd;
+    --initial:#5b6b78;
+    --initial-soft:#e7ebed;
+    --running:#b8860b;
+    --running-soft:#f6ecd3;
+    --total:#2f6b4f;
+    --total-soft:#e1ede4;
+    --warn:#a94438;
+    --caution:#8a5a1f;
+    --caution-soft:#f5e9d6;
+    --trust:#1f5f82;
+    --trust-soft:#e1ecf1;
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic","Noto Sans JP",sans-serif;
+    line-height:1.8;
+  }
+  .page{ max-width:920px; margin:0 auto; padding:56px 28px 100px; }
+
+  header.top{ border-bottom:2px solid var(--ink); padding-bottom:22px; margin-bottom:34px; }
+  .eyebrow{ font-size:12.5px; letter-spacing:.14em; color:var(--ink-soft); font-weight:600; margin-bottom:10px; }
+  h1{ font-size:clamp(23px,4vw,30px); font-weight:800; margin:0 0 10px; text-wrap:balance; }
+  .sub{ font-size:14px; color:var(--ink-soft); }
+
+  .lede{
+    background:var(--paper); border:1px solid var(--line); border-radius:4px;
+    padding:20px 22px; margin-bottom:24px; font-size:15px; color:var(--ink-soft);
+  }
+  .lede b{ color:var(--ink); }
+
+  .caution-banner{
+    background:var(--caution-soft); border:1px solid #d9be8f; border-radius:4px;
+    padding:14px 18px; margin-bottom:18px; font-size:13.5px; color:var(--caution);
+    display:flex; gap:10px; align-items:flex-start;
+  }
+  .caution-banner:last-of-type{ margin-bottom:40px; }
+  .caution-banner .mark{ font-weight:800; flex-shrink:0; }
+
+  h2.section-title{
+    font-size:20px; font-weight:800; margin:0 0 6px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .section-num{
+    font-size:12.5px; font-weight:700; color:#fff; background:var(--ink);
+    border-radius:3px; padding:3px 9px;
+  }
+  .section-sub{ font-size:13.5px; color:var(--ink-soft); margin:0 0 20px; }
+
+  section.block{
+    background:var(--paper); border-radius:6px; padding:26px 26px 28px;
+    margin-bottom:36px; border-left:5px solid var(--line);
+  }
+
+  .source-tag{
+    display:inline-block; font-size:11.5px; font-weight:700; letter-spacing:.03em;
+    color:var(--ink-soft); background:#fff; border:1px solid var(--line);
+    border-radius:20px; padding:2px 11px; margin-bottom:14px;
+  }
+
+  /* compare bars */
+  .compare{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:20px 0 6px; }
+  .compare-card{ border-radius:6px; padding:18px 18px 20px; }
+  .compare-card.old{ background:var(--initial-soft); border:1px solid #c7cfd4; }
+  .compare-card.new{ background:var(--total-soft); border:1px solid #bcd4c5; }
+  .compare-card .tag{ font-size:12px; font-weight:700; letter-spacing:.04em; }
+  .compare-card.old .tag{ color:var(--initial); }
+  .compare-card.new .tag{ color:var(--total); }
+  .compare-card h3{ font-size:16px; margin:6px 0 10px; font-weight:700; }
+  .compare-card p{ font-size:13.5px; color:var(--ink-soft); margin:0; }
+
+  .scenario{
+    margin-top:14px; background:#fff; border:1px solid var(--line); border-radius:5px;
+    padding:14px 16px; font-size:13.5px;
+  }
+  .scenario .who{ font-size:11.5px; font-weight:700; color:var(--ink-soft); letter-spacing:.04em; display:block; margin-bottom:6px; }
+
+  .quote-block{
+    margin:18px 0 4px; padding:14px 18px; background:#fff; border-left:3px solid var(--ink);
+    font-size:14px; font-style:normal;
+  }
+  .quote-block .from{ display:block; font-size:12px; color:var(--ink-soft); margin-top:6px; }
+
+  /* bar chart: monthly electricity cost comparison */
+  .barchart-wrap{ margin:22px 0 6px; }
+  .barchart-title{ font-size:12.5px; font-weight:700; color:var(--ink-soft); margin-bottom:16px; text-align:center; }
+  .barchart{
+    display:flex; align-items:flex-end; justify-content:center; gap:48px;
+    height:216px; padding:0 8px; border-bottom:1px solid var(--line);
+  }
+  .bar-col{ display:flex; flex-direction:column; align-items:center; width:96px; height:100%; justify-content:flex-end; }
+  .bar-value{ font-size:15px; font-weight:800; font-variant-numeric:tabular-nums; margin-bottom:6px; color:var(--ink); }
+  .bar{ width:56px; border-radius:4px 4px 0 0; }
+  .bar.baseline{ background:#c7cbc0; }
+  .bar.saving{ background:var(--total); }
+  .bar-badge{
+    font-size:11.5px; font-weight:700; color:#fff; background:var(--total);
+    border-radius:3px; padding:1px 7px; margin-bottom:6px;
+  }
+  .bar-cats{ display:flex; justify-content:center; gap:48px; margin-top:10px; }
+  .bar-cat{ width:96px; text-align:center; font-size:12px; color:var(--ink-soft); line-height:1.5; }
+  .bar-cat b{ display:block; color:var(--ink); font-size:12.5px; }
+
+  /* lever cards */
+  .levers{ display:flex; flex-direction:column; gap:12px; margin-top:18px; }
+  .lever{ background:#fff; border:1px solid var(--line); border-radius:6px; padding:18px 20px; }
+  .lever-head{ display:flex; align-items:baseline; gap:10px; margin-bottom:6px; }
+  .lever-head .num{
+    font-size:12px; font-weight:700; color:#fff; background:var(--running);
+    border-radius:50%; width:24px; height:24px; flex-shrink:0;
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  .lever h3{ font-size:15.5px; font-weight:700; margin:0; }
+  .lever p{ font-size:13.8px; color:var(--ink-soft); margin:0 0 8px; }
+  .lever .check{ font-size:12.5px; color:var(--total); margin-top:8px; padding-top:8px; border-top:1px dashed var(--line); }
+  .lever .check b{ font-weight:700; }
+  .lever .mechanism{ font-size:13.5px; margin:8px 0; padding:10px 12px; background:var(--running-soft); border-radius:4px; }
+  .lever .mechanism b{ color:var(--caution); }
+
+  /* type usage cards */
+  .type-card{ background:#fff; border:1px solid var(--line); border-radius:6px; padding:18px 20px; }
+  .type-head{ display:flex; align-items:baseline; gap:10px; margin-bottom:8px; }
+  .type-head .badge{
+    font-size:13px; font-weight:800; color:#fff; background:var(--ink);
+    border-radius:50%; width:26px; height:26px; flex-shrink:0;
+    display:inline-flex; align-items:center; justify-content:center;
+  }
+  .type-head h3{ font-size:15.5px; font-weight:700; margin:0; }
+  .type-card .why{ font-size:13.5px; color:var(--ink-soft); margin:0 0 10px; }
+  .type-card .example{ font-size:13.3px; background:var(--total-soft); border-radius:4px; padding:10px 12px; margin:0; border:1px solid #bcd4c5; }
+  .type-card .example .lbl{ font-size:11px; font-weight:700; color:var(--total); letter-spacing:.04em; display:block; margin-bottom:4px; }
+
+  /* warranty grid */
+  .warranty-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px; }
+  .warranty-card{ background:#fff; border:1px solid #bcd0dc; border-radius:6px; padding:16px 18px; }
+  .warranty-card h4{ font-size:14px; font-weight:700; margin:0 0 6px; color:var(--trust); }
+  .warranty-card p{ font-size:13.3px; color:var(--ink-soft); margin:0; }
+  .warranty-note{
+    margin-top:16px; background:var(--trust-soft); border:1px solid #bcd0dc; border-radius:6px;
+    padding:14px 18px; font-size:13.5px;
+  }
+
+  .flow{ counter-reset:step; margin-top:22px; }
+  .step{ padding:18px 0; border-top:1px solid var(--line); }
+  .step:first-child{ border-top:none; padding-top:4px; }
+  .step-head{ display:flex; gap:14px; align-items:flex-start; }
+  .step .step-num{
+    counter-increment:step; flex-shrink:0; width:28px; height:28px; border-radius:50%;
+    background:var(--running); color:#fff; font-weight:700; font-size:13px;
+    display:flex; align-items:center; justify-content:center; margin-top:2px;
+  }
+  .step .step-num::before{ content: counter(step); }
+  .step h3{ font-size:15px; font-weight:700; margin:2px 0 6px; }
+  .step p{ font-size:13.5px; color:var(--ink-soft); margin:0; }
+  .step .line{ font-size:13.3px; color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:4px; padding:9px 12px; margin-top:8px; }
+  .objection{
+    margin:10px 0 0 42px; background:var(--warn-soft,#fbeae7); border-left:3px solid var(--warn);
+    border-radius:0 5px 5px 0; padding:10px 14px;
+  }
+  .objection .q{ font-size:13px; font-weight:700; color:var(--warn); margin-bottom:6px; }
+  .objection .a{ font-size:13.3px; color:var(--ink); }
+
+  .formula-box{ background:#fff; border:1px dashed #b9c3c9; border-radius:6px; padding:18px 20px; margin-top:18px; }
+  .formula-box .label{ font-weight:700; font-size:12.5px; color:var(--running); letter-spacing:.05em; display:block; margin-bottom:10px; }
+  .formula-line{ font-size:14px; margin-bottom:8px; font-variant-numeric:tabular-nums; }
+  .formula-line b{ font-weight:700; }
+  .formula-line .op{ color:var(--ink-soft); margin:0 8px; }
+  .placeholder{ display:inline-block; background:var(--running-soft); color:var(--running); border-radius:3px; padding:1px 8px; font-weight:700; font-size:13px; }
+  .formula-annot{ font-size:12.5px; color:var(--ink-soft); margin:-2px 0 14px; }
+
+  .example{ margin-top:16px; background:var(--total-soft); border:1px solid #bcd4c5; border-radius:6px; padding:16px 18px; font-size:13.5px; }
+  .example .tag{ font-size:11.5px; font-weight:700; color:var(--warn); letter-spacing:.05em; display:block; margin-bottom:8px; }
+  .example table{ width:100%; border-collapse:collapse; margin-top:8px; }
+  .example td{ padding:5px 0; font-size:13.5px; }
+  .example td.k{ color:var(--ink-soft); width:60%; }
+  .example td.v{ text-align:right; font-weight:700; font-variant-numeric:tabular-nums; }
+  .example tr.result td{ border-top:1px solid #9dbfa8; padding-top:9px; font-size:14.5px; }
+
+  ul.plain{ margin:10px 0 0; padding-left:20px; font-size:13.8px; }
+  ul.plain li{ margin-bottom:5px; }
+
+  .ref-note{
+    margin-top:16px; font-size:13px; color:var(--ink-soft);
+    background:#fff; border:1px solid var(--line); border-radius:5px; padding:12px 16px;
+  }
+
+  .todo-note{
+    margin-top:16px; font-size:12.8px; color:var(--caution);
+    background:var(--caution-soft); border:1px solid #d9be8f; border-radius:5px; padding:10px 14px;
+  }
+
+  /* area ranking */
+  .area-rank{ margin-top:18px; }
+  .area-rank .rank-head{
+    display:flex; justify-content:space-between; font-size:11.5px; color:var(--ink-soft);
+    font-weight:700; letter-spacing:.03em; margin-bottom:8px; padding:0 2px;
+  }
+  .area-row{ display:flex; align-items:center; gap:10px; padding:5px 2px; }
+  .area-row.top{ background:var(--total-soft); border-radius:4px; }
+  .area-row.bottom{ background:var(--caution-soft); border-radius:4px; }
+  .area-rank-num{ width:18px; flex-shrink:0; font-size:11.5px; color:var(--ink-soft); text-align:right; }
+  .area-name{ width:150px; flex-shrink:0; font-size:13px; }
+  .area-name b{ font-weight:700; }
+  .area-name .pref{ font-size:11px; color:var(--ink-soft); }
+  .area-bar-track{ flex:1; height:16px; background:#fff; border:1px solid var(--line); border-radius:3px; overflow:hidden; }
+  .area-bar-fill{ height:100%; background:var(--running); border-radius:2px 0 0 2px; }
+  .area-row.top .area-bar-fill{ background:var(--total); }
+  .area-row.bottom .area-bar-fill{ background:var(--warn); }
+  .area-kwh{ width:78px; flex-shrink:0; text-align:right; font-size:13px; font-weight:700; font-variant-numeric:tabular-nums; }
+  .area-company{ width:100px; flex-shrink:0; text-align:center; font-size:11.5px; color:var(--ink-soft); }
+  .area-company b{ display:block; color:var(--ink); font-size:12px; }
+  .area-saving{ width:92px; flex-shrink:0; text-align:right; font-size:13px; font-weight:700; font-variant-numeric:tabular-nums; color:var(--total); }
+  .area-saving.cheap{ color:var(--warn); }
+  .area-diff-note{
+    margin-top:14px; background:#fff; border:1px solid var(--line); border-radius:5px;
+    padding:12px 16px; font-size:13px; color:var(--ink-soft);
+  }
+  .worst-case-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:18px 0; }
+  .worst-case-card{
+    background:var(--total-soft); border:1px solid #bcd4c5; border-radius:6px;
+    padding:18px 20px; display:flex; flex-direction:column; gap:12px;
+  }
+  .worst-case-card.alt{ background:var(--trust-soft); border-color:#bcd0dc; }
+  .worst-case-card.alt .v{ color:var(--trust) !important; }
+  .worst-case-card .wc-label{ font-size:12.5px; font-weight:700; color:var(--total); letter-spacing:.03em; }
+  .worst-case-card .wc-place{ font-size:16px; font-weight:800; margin:4px 0 0; }
+  .worst-case-card .wc-numbers{ display:flex; gap:28px; flex:1; min-width:280px; }
+  .worst-case-card .wc-num{ text-align:center; }
+  .worst-case-card .wc-num .v{ font-size:22px; font-weight:800; color:var(--total); font-variant-numeric:tabular-nums; }
+  .worst-case-card .wc-num .l{ font-size:11.5px; color:var(--ink-soft); margin-top:2px; }
+  .premise-box{
+    margin-top:14px; background:var(--running-soft); border:1px solid #d9be8f; border-radius:6px;
+    padding:14px 18px; font-size:13px;
+  }
+  .premise-box .ptitle{ font-weight:700; font-size:12.5px; color:var(--caution); display:block; margin-bottom:8px; }
+  .premise-box ul{ margin:0; padding-left:18px; }
+  .premise-box li{ margin-bottom:4px; }
+
+  footer.note{ margin-top:40px; font-size:12.5px; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:16px; }
+
+  @media (max-width:640px){
+    .compare{ grid-template-columns:1fr; }
+    .warranty-grid{ grid-template-columns:1fr; }
+    .objection{ margin-left:0; }
+  }
+</style>
+
+<div class="page">
+
+  <header class="top">
+    <div class="eyebrow">叩き台 v4 — 8/24 佐古さん相談用</div>
+    <h1>太陽光×トータルコスト訴求法</h1>
+    <div class="sub">加盟店4タイプ共通で使える武器。特にローコスト型では生命線、地域性型とは相性が良い</div>
+  </header>
+
+  <div class="lede">
+    佐古顧問MTGで指摘された「価格型（ローコスト）は4タイプの中で1番訴求が難しい」への回答として作ったが、<b>本体価格（イニシャルコスト）だけの比較で勝負するのをやめ、光熱費（ランニングコスト）を含めた「トータルコスト」で比較する</b>訴求そのものは、①不動産型②商品型③ローコスト型④地域性型の<b>4タイプ全てが使える共通の武器</b>。v1は骨組みだけで中身が薄いという指摘を受け、実際の商談で使える解像度まで掘り下げ、さらに<b>LIFEX公式セミナー資料（初回セミナースライド）に載っている実物件の電気代実績・保険料実績</b>を反映したv3。ランニングコスト・太陽光発電に特化した資料であり、既存の「商談セルフチェックシート」等の一般的な商談マナー資料とは別物として扱う。
+  </div>
+
+  <div class="caution-banner">
+    <span class="mark">※</span>
+    <span><b>加盟店様への提供時の注意</b>：①②③④の分類は本部・LIFEX側が内部でどの武器を渡すか判断するための材料であり、加盟店様ご自身に分類ラベルを見せるものではない。「あなたは③ローコスト型です」のような伝え方はせず、<b>その店に合った資料・トークの中身だけを渡す</b>（[[feedback-kameiten-keii]]と同じ思想）。</span>
+  </div>
+
+  <div class="caution-banner" style="background:#fff; border-color:var(--line);">
+    <span class="mark">※</span>
+    <span><b>資料の出所が2種類ある</b>：①<b>LIFEX公式「初回セミナースライド」</b>＝LIFEX自身の実データ（電気代実績2件・防蟻コスト・保険料実績）。これはそのまま使える。②<b>Gハウス本体の「見学説明会」資料</b>＝注文住宅（Gハウス直営）向けで、LIFEXとは仕様が異なる場合がある（耐震等級・BELS等級・標準装備等）。訴求ロジックの「型」として参照した部分であり、数値をそのまま使う際は加盟店の実際の仕様を個別に確認すること。</span>
+  </div>
+
+  <!-- 0. 使い方ガイド -->
+  <section class="block" style="border-left-color:var(--ink);">
+    <h2 class="section-title"><span class="section-num">00</span>タイプ別の使い方ガイド（本部内部用）</h2>
+    <p class="section-sub">同じ資料でも、加盟店の主軸タイプによって「なぜ効くか」の理屈が変わる。理屈が違えば渡し方・タイミングも変わる</p>
+
+    <div class="levers">
+      <div class="type-card">
+        <div class="type-head"><span class="badge">③</span><h3>ローコスト型 — 商談のメイン軸として全面的に使う</h3></div>
+        <p class="why">この店の顧客は最初から「他社より安いか」で比較している。本体価格の値引き合戦に持ち込まれた瞬間、体力の少ない工務店は必ず負ける。太陽光×トータルコストは、値引きせずに「実質の支払額」で逆転できる唯一の武器。ここが崩れるとこの店には他に切り札がない。</p>
+        <p class="example"><span class="lbl">想定シーン</span>他社見積が本体価格で30〜50万円安い、という比較を客が持ってきた場面。値引きで対抗するのではなく、この資料一式（比較の土俵・計算フレーム・トークの型）をそのまま使い、「本体価格ではなく実質の月々の支払いで見てください」に持ち込む。</p>
+      </div>
+      <div class="type-card">
+        <div class="type-head"><span class="badge">④</span><h3>地域性型 — 相性が良く、実は一番活きる</h3></div>
+        <p class="why">この店の武器は「地域の気候・暮らし方に合わせた家づくり」（例：東北の半平屋＋子供部屋事例）。太陽光の発電量そのものがエリアで変わるという事実は、この店の「地域に合わせる」という売り方の延長線上にある。別の武器を持ち込むのではなく、既存の武器の応用として説明できる。</p>
+        <p class="example"><span class="lbl">想定シーン</span>「うちの地域の日照条件だとどうなの？」と聞かれた時に即答できるかどうかが差になる。<b>ネクストエナジーのエリア別発電シミュレーションが2026-08-19到着、21エリア分の実数を反映済み</b>（セクション04参照）。さらに電力会社ごとの電気料金差まで反映すると、<b>発電量が少ないエリアでも電気代が高ければ削減額（円）は大きくなり、発電量が多くても電気代が安いエリアでは「電気代ゼロ超え（黒字化）」という別の切り口で訴求できる</b>——どのエリアの加盟店にも刺さる材料が用意できている。</p>
+      </div>
+      <div class="type-card">
+        <div class="type-head"><span class="badge">①</span><h3>不動産型 — 価格で切り返された時の補強カード</h3></div>
+        <p class="why">この店の武器は土地情報・プラン提案の豊富さで、価格の話は本来メインの土俵ではない。ただし土地代＋建物代の総額を比較され「他はもっと安く土地が見つかる」と言われた時、建物側で使える切り返しがないと総額比較で負ける。太陽光×トータルコストは、建物側でリカバリーする一手として温存しておく。</p>
+        <p class="example"><span class="lbl">想定シーン</span>土地探しの相談中に「総額」の話になり、価格が引き合いに出た瞬間だけ使う。プラン提案の話をしている最中に持ち出す必要はない。</p>
+      </div>
+      <div class="type-card">
+        <div class="type-head"><span class="badge">②</span><h3>商品型 — 優先度は低いが持っておいて損はない</h3></div>
+        <p class="why">この店はもともとGハウスと同水準の商品力で正面から勝負できるため、価格やランニングコストの話に持ち込まれる場面自体が少ない。ただし競合が本気で総額比較を仕掛けてきた時のための保険として、この資料は渡しておく。</p>
+        <p class="example"><span class="lbl">想定シーン</span>商品説明が一通り終わり、契約直前の最終確認で「決め手がもう一つ欲しい」という場面での後押しに使う。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1. 考え方の転換 -->
+  <section class="block" style="border-left-color:var(--initial);">
+    <h2 class="section-title"><span class="section-num">01</span>比較の土俵を変える</h2>
+    <p class="section-sub">「本体価格の安さ」で戦うのをやめ、「住んでからの総支払額」で戦う</p>
+
+    <div class="compare">
+      <div class="compare-card old">
+        <span class="tag">今までの比較軸</span>
+        <h3>イニシャルコスト</h3>
+        <p>建物本体価格のみで競合と比較される。ローコスト工務店は「本体価格が近い競合」が現れた瞬間に優位性を失う。値引き以外の対抗手段がない。</p>
+      </div>
+      <div class="compare-card new">
+        <span class="tag">切り替える比較軸</span>
+        <h3>トータルコスト</h3>
+        <p>本体価格＋住んでからの光熱費（ランニングコスト）の合計で比較する。太陽光でランニングコストを下げれば、本体価格で並ばれても総支払額で優位に立てる。</p>
+      </div>
+    </div>
+
+    <div class="scenario">
+      <span class="who">具体的にどう詰まるか（ローコスト型で実際に起きているはずの場面）</span>
+      お客様が他社の見積書を持ってきて「向こうは坪単価が3万円安い」と言う。ここで本体価格だけの勝負を続けると、次に安い会社が現れた時にまた同じ土俵に立たされる。値引きで応じれば利益を削るだけで、次の商談にも悪い前例を残す。<b>土俵を「本体価格」から「トータルコスト」に変えれば、坪単価の差そのものを比較の対象から外せる。</b>
+    </div>
+
+    <div class="quote-block">
+      「お客様の価値観：イニシャルコスト → トータルコストで判断する時代へ」
+      <span class="from">Gハウス本体セミナー資料 スライド75より（そのまま同じ結論に行き着いている＝業界的に有効な訴求ロジックだと分かる）</span>
+    </div>
+
+    <div class="barchart-wrap">
+      <div class="barchart-title">月々の実質電気代の比較（実在物件のデータ・セクション04より）</div>
+      <div class="barchart">
+        <div class="bar-col">
+          <div class="bar-value">18,000円</div>
+          <div class="bar baseline" style="height:200px;"></div>
+        </div>
+        <div class="bar-col">
+          <div class="bar-badge">▼92%</div>
+          <div class="bar-value">1,481円</div>
+          <div class="bar saving" style="height:17px;"></div>
+        </div>
+        <div class="bar-col">
+          <div class="bar-badge">▼82%</div>
+          <div class="bar-value">3,313円</div>
+          <div class="bar saving" style="height:37px;"></div>
+        </div>
+      </div>
+      <div class="bar-cats">
+        <div class="bar-cat"><b>オール電化平均</b>太陽光なし（総務省家計調査ベース）</div>
+        <div class="bar-cat"><b>実例①</b>9.3kW・104.74㎡</div>
+        <div class="bar-cat"><b>実例②</b>8.3kW・133.52㎡</div>
+      </div>
+    </div>
+
+    <p style="font-size:13px; color:var(--ink-soft); margin-top:14px;">※ここで比較しているのは「月々の光熱費（ランニングコスト）」のみ。太陽光搭載分だけ本体価格（イニシャルコスト）はわずかに増えるが、月々のローン増加額（セクション04参照）より電気代の削減額の方が大きいため、トータルでは負担が減る。</p>
+  </section>
+
+  <!-- 2. 複合提案の型 -->
+  <section class="block" style="border-left-color:var(--running);">
+    <h2 class="section-title"><span class="section-num">02</span>太陽光を核にした複合提案の型</h2>
+    <span class="source-tag">Gハウス資料 S69・S70・S72を型として抽出</span>
+    <p class="section-sub">太陽光の発電量そのものだけでなく、周辺設備と掛け合わせて「ランニングコスト削減」の説得力を上げる型。各項目の採用状況は2026-08-23に確認済み。</p>
+
+    <div class="levers">
+      <div class="lever">
+        <div class="lever-head"><span class="num">1</span><h3>太陽光による自家発電（核）</h3></div>
+        <p>削減効果のメイン。発電した電気を自家消費・売電の両方に使う前提で組み立てる。日中に発電した分は自宅で使い（電力会社から買う電気を減らす＝単価の高い「買う電気」を直接削る）、使いきれない分は売電に回す（エリアの実勢価格で収入になる）。この「自家消費＋売電」の二重取りがランニングコスト削減の本体。</p>
+        <div class="mechanism"><b>なぜ効くか</b>：電気は「買うと高い・売ると安い」のが基本構造。自家消費はその差額分そのまま得になるため、売電より自家消費を最大化する方が経済効果は大きい。だからこそ次の給湯・空調との掛け合わせ（自家消費先を増やす）が効いてくる。</div>
+        <div class="check">確認済み：<b>ネクストエナジー・アンド・リソース製がLIFEXの標準装備</b>（2026-08-23徳田さん確認）。長期保証・全国184拠点のアフターサービス体制あり（詳細は次セクション）。エリア別発電シミュレーションは2026-08-19に21エリア分到着済み（セクション04参照）</div>
+      </div>
+      <div class="lever">
+        <div class="lever-head"><span class="num">2</span><h3>給湯設備との掛け合わせ</h3></div>
+        <p>高効率給湯機（エコキュート等）＋太陽光の自家発電分を給湯に充当することで、電気代削減をさらに積み増す考え方。給湯は一般家庭の消費電力の中でも大きな比率を占めるため、ここに自家消費を回せるかどうかで削減額の伸びしろが変わる。</p>
+        <div class="mechanism"><b>なぜ効くか</b>：エコキュートは主に日中〜夜間に稼働させる設計が可能で、太陽光の発電時間帯（日中）に稼働をずらせば、買う電気ではなく自家発電分でお湯を沸かせる。「太陽光を載せただけ」より「給湯とセットで最適化した」方が削減額の実感が大きくなる。</div>
+        <div class="check">確認済み：<b>LIFEXは高効率給湯機（エコキュート等）を標準装備</b>（2026-08-23徳田さん確認）</div>
+      </div>
+      <div class="lever">
+        <div class="lever-head"><span class="num">3</span><h3>空調効率</h3></div>
+        <p>エアコンの効率（COP・APF等の指標）を訴求に使う型。高気密・高断熱であることが前提の効果。</p>
+        <div class="check" style="color:var(--caution); border-top-color:#d9be8f;">確認済み（要注意）：<b>工法・作り方はGハウスと同じ</b>だが、<b>気密測定（C値の実測）はGハウスが全棟実施に対し、LIFEXはオプション扱いで保証がない</b>（2026-08-23徳田さん確認）→「Gハウスと同じ工法です」までは言えるが、「C値0.24を保証します」のような実測値ベースの言い切りはNG。実測を売りにしたい場合は気密測定オプションの案内とセットで提案する。</div>
+      </div>
+      <div class="lever">
+        <div class="lever-head"><span class="num">4</span><h3>実績データでの見える化</h3></div>
+        <p>「計算上こうなるはずです」ではなく、実在する物件の年間電気代の実績を見せることで、削減額の話に説得力を持たせる。</p>
+        <div class="mechanism"><b>なぜ効くか</b>：計算上の数字は「話半分」で聞かれがちだが、実在する物件の実績数字は反論しにくい。数字への信頼が、トータルコスト思考への納得に直結する。</div>
+        <div class="check">更新：<b>LIFEX公式セミナー資料に、実在物件の年間電気代の実績が2件掲載されている</b>（9.3kW／104.74㎡の物件と8.3kW／133.52㎡の物件。売電・買電・オール電化平均との差額まで算出済み。計算のフレームに転記済み・下記参照）。<b>リアルタイムのHEMS画面データはまだ無い</b>ため、そこは引き続き計算上のシミュレーションで代替</div>
+      </div>
+      <div class="lever">
+        <div class="lever-head"><span class="num">5</span><h3>V2H（将来性の訴求）</h3></div>
+        <p>電気自動車を「走る蓄電池」として使う将来対応。今すぐの削減額ではなく「今、空配管をしておく理由」を論理立てて説明するための材料。</p>
+        <div class="mechanism"><b>なぜ「今」空配管が必要か</b>：固定価格買取（FIT）は10年で終了する。その後、市場価格に連動するFIP的な仕組みに移行する可能性があり（参照：日本卸電力取引所のエリアプライス）、そうなると「電気が安い時に貯めて高い時に使う／売る」価値が上がり、EV・V2Hを検討する家庭が増えると見込まれる。その時点で初めてV2H配線を通そうとすると、気密・断熱にこだわって施工した壁に穴を開けることになり、性能訴求そのものが台無しになる（本末転倒）。だからこそ建築時点で空配管だけ済ませておく。</div>
+        <div class="check">確認済み：<b>LIFEXはV2H対応の空配管等を標準搭載</b>（2026-08-23徳田さん確認）</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 保証・アフターサービス（新設） -->
+  <section class="block" style="border-left-color:var(--trust);">
+    <h2 class="section-title"><span class="section-num">03</span>保証・アフターサービスで「壊れたら？」を潰す</h2>
+    <span class="source-tag">ネクストエナジー・アンド・リソース公式サイトより</span>
+    <p class="section-sub">太陽光の話をすると必ず出る不安は「本当に発電し続けるのか」「壊れたら高くつくのでは」の2つ。トータルコストの計算は<b>何十年も故障せず動き続ける前提</b>で成り立っているため、この不安を潰せないと計算そのものが信用されない。</p>
+
+    <div class="warranty-grid">
+      <div class="warranty-card">
+        <h4>製品保証 15年間</h4>
+        <p>製造上の異常が発見された場合、保証開始日から<b>15年間</b>修理・交換に対応（一部製品は12年）。「数年で壊れたら終わり」ではない年数感を具体的に示せる。</p>
+      </div>
+      <div class="warranty-card">
+        <h4>経済損失補償（納入後10年以内）</h4>
+        <p>出力保証における不具合が原因で売電収入が減った場合、その経済的損失を<b>最大6ヶ月分</b>補償。発電できない期間の「収入が減る不安」もカバー範囲。</p>
+      </div>
+      <div class="warranty-card">
+        <h4>リニア出力保証 25〜30年</h4>
+        <p>搭載モジュールの種類により<b>25年〜30年</b>（N型セル搭載品は30年、ハーフカットセルモジュールは25年）。初年度は保証値の98%を下回らず、2年目以降は<b>毎年0.55%ずつ</b>基準値を下げていき、その基準を下回った場合に無償修理・交換。「経年でどこまで劣化するか」を数字で言い切れる。</p>
+      </div>
+      <div class="warranty-card">
+        <h4>住宅用蓄電システム 自然災害補償</h4>
+        <p>蓄電システムについて、台風・落雷等の自然災害による損害を補償。</p>
+      </div>
+    </div>
+
+    <div class="warranty-note">
+      <b>製品不具合時の交換費用が不要</b>：自社製パネルの瑕疵が原因の場合、調査費・運送費・撤去費用・再設置費用まですべて会社負担。<b>全国184拠点のスピーディーな対応体制</b>（フリーダイヤルのインフォメーションセンター＋協力会社ネットワークを含む専任調査スタッフ）があり、販売会社・施工会社で解決できない不具合にも本部側で対応できる。「壊れたら加盟店の持ち出しになるのでは」という不安にも、この体制で応えられる。
+    </div>
+
+    <div class="ref-note" style="margin-top:12px;">
+      出典：ネクストエナジー・アンド・リソース公式サイト。<a href="https://pd.nextenergy.jp/residential_commodity/solar_power_detail/about/maintenance.html" style="color:var(--trust);">故障・メンテナンスについて</a>／<a href="https://www.nextenergy.jp/sustainability/longtime/" style="color:var(--trust);">長く使えるものづくり</a>。保証年数は搭載するモジュールの型番によって変わるため、実際の提案時は<b>その物件に載せるモジュールの型番で確認</b>すること。
+    </div>
+  </section>
+
+  <!-- 4. 計算フレーム -->
+  <section class="block" style="border-left-color:var(--running);">
+    <h2 class="section-title"><span class="section-num">04</span>計算のフレーム</h2>
+    <p class="section-sub">下記2件はLIFEX公式セミナー資料に載っている実際の物件データ。さらに2026-08-19、ネクストエナジー・アンド・リソース（LIFEX標準搭載メーカー）から規格住宅PLAN40（モジュール総容量10.695kW・パワコン総容量9.9kW）のエリア別発電シミュレーションが21エリア分到着（下記参照）</p>
+
+    <div class="formula-box">
+      <span class="label">STEP A｜太陽光による月間の光熱費削減額</span>
+      <div class="formula-line">
+        <b>エリア別発電量(kWh/年・実測ベース)</b>のうち<span class="placeholder">自家消費分(固定2,000kWh)</span>で買電を削減、<span class="placeholder">残りは売電</span>
+        <span class="op">＝</span><b>月間削減額（下記21エリア一覧・試算値）</b>
+      </div>
+      <div class="formula-annot">※発電量はネクストエナジーのシミュレーション実数（下記21エリア一覧）。買電単価は<b>電力会社ごとのオール電化向けプラン実質料金</b>（Gハウス本体資料の全国電力料金比較データより）を使用し、全国一律にしていない。円換算は自家消費量を仮置きした<b>試算モデル</b>で算出（詳細は一覧下の「この試算の前提」参照）。売電単価そのものは日本卸電力取引所のエリアプライス（kankyo-ichiba.jp）で加盟店様ごとのエリアの実勢価格を参照できる</div>
+
+      <span class="label">STEP B｜太陽光搭載による月々のローン増加額</span>
+      <div class="formula-line">
+        <span class="placeholder">太陽光搭載による本体価格の上昇分</span><span class="op">÷</span><span class="placeholder">借入年数・金利条件</span>
+        <span class="op">＝</span><b>月々のローン増加額</b>
+      </div>
+      <span class="label">STEP C｜実質のトータルコスト影響</span>
+      <div class="formula-line">
+        <b>STEP Aの月間削減額</b><span class="op">－</span><b>STEP Bの月々のローン増加額</b>
+        <span class="op">＝</span><b>実質の月間トータルコスト差</b>
+      </div>
+    </div>
+
+    <div class="example">
+      <span class="tag">実例①｜LIFEX公式セミナー資料より（仮の数値ではなく実データ）</span>
+      <table>
+        <tr><td class="k">床面積</td><td class="v">104.74㎡</td></tr>
+        <tr><td class="k">太陽光パネル容量</td><td class="v">9.3kW</td></tr>
+        <tr><td class="k">売電金額</td><td class="v">9,103kWh×17円/kWh＝154,750円/年</td></tr>
+        <tr><td class="k">買電金額</td><td class="v">5,750.6kWh×30円/kWh＝172,518円/年（関西電力実質平均料金）</td></tr>
+        <tr><td class="k">買電－売電（実質の年間電気代）</td><td class="v">17,768円/年＝<b>月1,481円</b></td></tr>
+        <tr><td class="k">オール電化住宅の平均（総務省家計調査ベース）</td><td class="v">216,000円/年＝月18,000円</td></tr>
+        <tr class="result"><td class="k">実質メリット（平均との差）</td><td class="v" style="color:var(--total);">198,232円/年＝<b>月16,519円の削減</b></td></tr>
+      </table>
+    </div>
+
+    <div class="example">
+      <span class="tag">実例②｜LIFEX公式セミナー資料より（同様の実データ・別物件）</span>
+      <table>
+        <tr><td class="k">床面積</td><td class="v">133.52㎡</td></tr>
+        <tr><td class="k">太陽光パネル容量</td><td class="v">8.3kW</td></tr>
+        <tr><td class="k">売電金額</td><td class="v">6,189.5kWh×16円/kWh＝99,032円/年</td></tr>
+        <tr><td class="k">買電金額</td><td class="v">4,626.2kWh×30円/kWh＝138,786円/年（関西電力実質平均料金）</td></tr>
+        <tr><td class="k">買電－売電（実質の年間電気代）</td><td class="v">39,754円/年＝<b>月3,313円</b></td></tr>
+        <tr><td class="k">オール電化住宅の平均（総務省家計調査ベース）</td><td class="v">216,000円/年＝月18,000円</td></tr>
+        <tr class="result"><td class="k">実質メリット（平均との差）</td><td class="v" style="color:var(--total);">176,246円/年＝<b>月14,687円の削減</b></td></tr>
+      </table>
+    </div>
+
+    <div class="ref-note">
+      2つの実例とも、比較基準は「オール電化住宅の平均・月600kWh×30円＝月18,000円」（総務省家計調査／家計収支編・4人家族での平均、関西電力実質平均使用電力から算出）。<b>この基準値自体もエリアによって電力単価が変わるため、加盟店のエリアで比較する時は関西電力の単価をそのエリアの実勢単価に置き換える</b>（④地域性型との連動ポイント）。
+    </div>
+
+    <div class="ref-note">
+      <b>この数字が「今年だけ」で終わらない理由</b>：発電量は天候によって年ごとに増減するが、モジュールのリニア出力保証（25〜30年、毎年0.55%ずつしか基準が下がらない設計）により経年での急激な性能低下は起きない。つまりこの差額は単年の話ではなく、<b>保証期間である25〜30年間ずっと積み上がっていく差</b>だと説明できる。ここまで含めて話せると、単なる「初年度の割引感」ではなく「長期で見た資産価値の差」として伝わる。
+    </div>
+
+    <div class="area-rank">
+      <span class="label" style="display:block; margin:26px 0 4px; font-weight:700; font-size:12.5px; color:var(--running); letter-spacing:.05em;">エリア別発電シミュレーション（2026-08-19到着・ネクストエナジー確定値・21エリア）</span>
+      <p style="font-size:13px; color:var(--ink-soft); margin:0 0 14px;">規格住宅PLAN40（モジュール総容量10.695kW・パワコン総容量9.9kWで全エリア共通）を、全国21エリアの気象データで試算した年間発電量。設備は同じでも<b>日照条件だけで年間2,677kWh（最大の愛知西尾と最小の秋田の差）＝約23%の開きが出る</b>——これがそのまま④地域性型で「うちの地域だとどうなるか」に即答できる材料になる。</p>
+
+      <div class="rank-head"><span>エリア（観測地点）</span><span>電力会社</span><span style="margin-right:96px;">年間発電量</span><span>削減額試算(月)</span></div>
+      <div class="area-row top">
+        <span class="area-rank-num">1</span>
+        <span class="area-name"><span class="pref">愛知県西尾市</span><br><b>岡崎地点</b></span>
+        <span class="area-company">中部電力<b>35.04円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:100%;"></span></span>
+        <span class="area-kwh">14,369kWh</span>
+        <span class="area-saving">約22,800円</span>
+      </div>
+      <div class="area-row top">
+        <span class="area-rank-num">2</span>
+        <span class="area-name"><span class="pref">大阪府大阪市</span><br><b>大阪地点</b></span>
+        <span class="area-company">関西電力<b>30.61円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:97.8%;"></span></span>
+        <span class="area-kwh">14,058kWh</span>
+        <span class="area-saving">約21,700円</span>
+      </div>
+      <div class="area-row top">
+        <span class="area-rank-num">3</span>
+        <span class="area-name"><span class="pref">広島県福山市</span><br><b>福山地点</b></span>
+        <span class="area-company">中国電力<b>46.13円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:97.4%;"></span></span>
+        <span class="area-kwh">13,992kWh</span>
+        <span class="area-saving">約24,200円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">4</span>
+        <span class="area-name"><span class="pref">広島県広島市</span><br><b>広島地点</b></span>
+        <span class="area-company">中国電力<b>46.13円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:96.4%;"></span></span>
+        <span class="area-kwh">13,851kWh</span>
+        <span class="area-saving">約24,000円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">5</span>
+        <span class="area-name"><span class="pref">岡山県岡山市</span><br><b>岡山地点</b></span>
+        <span class="area-company">中国電力<b>46.13円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:96.3%;"></span></span>
+        <span class="area-kwh">13,832kWh</span>
+        <span class="area-saving">約24,000円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">6</span>
+        <span class="area-name"><span class="pref">埼玉県さいたま市</span><br><b>大宮地点</b></span>
+        <span class="area-company">東京電力<b>41.56円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:96.1%;"></span></span>
+        <span class="area-kwh">13,801kWh</span>
+        <span class="area-saving">約23,200円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">7</span>
+        <span class="area-name"><span class="pref">福岡県久留米市</span><br><b>久留米地点</b></span>
+        <span class="area-company">九州電力<b>27.59円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:94.2%;"></span></span>
+        <span class="area-kwh">13,533kWh</span>
+        <span class="area-saving cheap">約20,500円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">8</span>
+        <span class="area-name"><span class="pref">栃木県宇都宮市</span><br><b>宇都宮地点</b></span>
+        <span class="area-company">東京電力<b>41.56円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:94.1%;"></span></span>
+        <span class="area-kwh">13,521kWh</span>
+        <span class="area-saving">約22,800円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">9</span>
+        <span class="area-name"><span class="pref">福島県郡山市</span><br><b>郡山地点</b></span>
+        <span class="area-company">東北電力<b>45.41円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:92.6%;"></span></span>
+        <span class="area-kwh">13,311kWh</span>
+        <span class="area-saving">約23,100円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">10</span>
+        <span class="area-name"><span class="pref">福岡県糸島市</span><br><b>前原地点</b></span>
+        <span class="area-company">九州電力<b>27.59円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:91.7%;"></span></span>
+        <span class="area-kwh">13,175kWh</span>
+        <span class="area-saving cheap">約20,000円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">11</span>
+        <span class="area-name"><span class="pref">奈良県奈良市</span><br><b>奈良地点</b></span>
+        <span class="area-company">関西電力<b>30.61円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:91.6%;"></span></span>
+        <span class="area-kwh">13,158kWh</span>
+        <span class="area-saving">約20,400円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">12</span>
+        <span class="area-name"><span class="pref">奈良県磯城郡田原本町</span><br><b>奈良地点</b></span>
+        <span class="area-company">関西電力<b>30.61円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:91.6%;"></span></span>
+        <span class="area-kwh">13,158kWh</span>
+        <span class="area-saving">約20,400円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">13</span>
+        <span class="area-name"><span class="pref">宮城県仙台市</span><br><b>仙台地点</b></span>
+        <span class="area-company">東北電力<b>45.41円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:90.7%;"></span></span>
+        <span class="area-kwh">13,034kWh</span>
+        <span class="area-saving">約22,700円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">14</span>
+        <span class="area-name"><span class="pref">福岡県福岡市</span><br><b>福岡地点</b></span>
+        <span class="area-company">九州電力<b>27.59円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:90.3%;"></span></span>
+        <span class="area-kwh">12,969kWh</span>
+        <span class="area-saving cheap">約19,700円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">15</span>
+        <span class="area-name"><span class="pref">鳥取県米子市</span><br><b>米子地点</b></span>
+        <span class="area-company">中国電力<b>46.13円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:89.3%;"></span></span>
+        <span class="area-kwh">12,825kWh</span>
+        <span class="area-saving">約22,600円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">16</span>
+        <span class="area-name"><span class="pref">島根県出雲市</span><br><b>出雲地点</b></span>
+        <span class="area-company">中国電力<b>46.13円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:88.7%;"></span></span>
+        <span class="area-kwh">12,749kWh</span>
+        <span class="area-saving">約22,500円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">17</span>
+        <span class="area-name"><span class="pref">鳥取県鳥取市</span><br><b>鳥取地点</b></span>
+        <span class="area-company">中国電力<b>46.13円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:88.3%;"></span></span>
+        <span class="area-kwh">12,680kWh</span>
+        <span class="area-saving">約22,400円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">18</span>
+        <span class="area-name"><span class="pref">岩手県盛岡市</span><br><b>盛岡地点</b></span>
+        <span class="area-company">東北電力<b>45.41円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:87.4%;"></span></span>
+        <span class="area-kwh">12,562kWh</span>
+        <span class="area-saving">約22,100円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">19</span>
+        <span class="area-name"><span class="pref">島根県松江市</span><br><b>松江地点</b></span>
+        <span class="area-company">中国電力<b>46.13円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:87.4%;"></span></span>
+        <span class="area-kwh">12,562kWh</span>
+        <span class="area-saving">約22,200円</span>
+      </div>
+      <div class="area-row">
+        <span class="area-rank-num">20</span>
+        <span class="area-name"><span class="pref">新潟県新潟市</span><br><b>新潟地点</b></span>
+        <span class="area-company">東北電力<b>45.41円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:85.9%;"></span></span>
+        <span class="area-kwh">12,338kWh</span>
+        <span class="area-saving">約21,800円</span>
+      </div>
+      <div class="area-row bottom">
+        <span class="area-rank-num">21</span>
+        <span class="area-name"><span class="pref">秋田県秋田市</span><br><b>秋田地点</b></span>
+        <span class="area-company">東北電力<b>45.41円</b></span>
+        <span class="area-bar-track"><span class="area-bar-fill" style="width:81.4%;"></span></span>
+        <span class="area-kwh">11,692kWh</span>
+        <span class="area-saving">約20,900円</span>
+      </div>
+
+      <div class="area-diff-note">
+        観測地点は加盟店の所在住所そのものではなく、シミュレーション上の最寄り気象観測地点（例：奈良2物件はいずれも「奈良」地点を参照、愛知西尾市は「岡崎」地点、福岡糸島市は「前原」地点を参照）。商談で使う際は<b>その加盟店の実際の建築地住所で改めて依頼すれば、より近い地点のシミュレーションが出せる</b>（今回の21件は加盟中・商談化見込みのエリアを優先して依頼したもの）。「電力会社」欄の単価は各社オール電化向けプランの<b>昼間・夜間の実質料金を平均した値</b>（詳細は一覧下の「この試算の前提」参照）。
+      </div>
+    </div>
+
+    <div class="ref-note" style="margin-top:18px; margin-bottom:0;">
+      <b>発見：削減額が一番小さいエリアは「発電量最下位の秋田」ではなく「電気代がもともと安い九州エリア」だった。</b>電力会社によって単価が最大1.7倍近く違う（中国電力46.13円 vs 九州電力27.59円）ため、発電量の差より電力単価の差の方が削減額（円）に効いてくるケースがある。ただし切り口は変わっても、<b>どちらのエリアも太陽光は武器になる</b>——下記2枚で比較。
+    </div>
+
+    <div class="worst-case-grid">
+      <div class="worst-case-card">
+        <div>
+          <span class="wc-label">電力単価が高いエリア＝削減額（円）を強く訴求</span>
+          <p class="wc-place">秋田県秋田市（東北電力45.41円・発電量は21エリア中最下位）</p>
+        </div>
+        <div class="wc-numbers">
+          <div class="wc-num"><div class="v">約20,900円</div><div class="l">月間削減額試算</div></div>
+          <div class="wc-num"><div class="v">▲77%</div><div class="l">オール電化平均比</div></div>
+          <div class="wc-num"><div class="v">月約6,350円</div><div class="l">試算上の実質電気代</div></div>
+        </div>
+      </div>
+      <div class="worst-case-card alt">
+        <div>
+          <span class="wc-label">電力単価が安いエリア＝「電気代ゼロ超え」を訴求</span>
+          <p class="wc-place">福岡県福岡市（九州電力27.59円・発電量は21エリア中14位）</p>
+        </div>
+        <div class="wc-numbers">
+          <div class="wc-num"><div class="v">約19,700円</div><div class="l">月間削減額試算</div></div>
+          <div class="wc-num"><div class="v">▲119%</div><div class="l">オール電化平均比</div></div>
+          <div class="wc-num"><div class="v">月約3,130円</div><div class="l">試算上の実質電気代（黒字）</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="premise-box">
+      <span class="ptitle">この試算の前提（仮置き・佐古さんとのすり合わせ対象）</span>
+      <ul class="plain">
+        <li><b>世帯の年間消費電力量：7,200kWh</b>（オール電化平均・総務省家計調査ベース。実例①②と同じ基準を使用。オール電化平均の金額自体も各エリアの電力単価×7,200kWhで算出しているため、電力会社ごとに比較基準の金額も変わる）</li>
+        <li><b>自家消費量：年間2,000kWh（固定）</b>——実例①②の実績（自家消費量はそれぞれ約1,449kWh・約2,574kWh、平均約2,000kWh）から。太陽光の搭載規模を変えても、日中に家庭内で使い切れる量（在宅時間・家電の稼働パターン）はほぼ一定という考え方に基づく仮定</li>
+        <li><b>買電単価は電力会社ごとのオール電化向けプラン実質料金（昼間・夜間の平均）を使用</b>：中部電力35.04円・関西電力30.61円・中国電力46.13円・東京電力41.56円・九州電力27.59円・東北電力45.41円（Gハウス本体資料「スマート（賢い・経済的）な家づくり」の「相次ぐ電気料金の高騰」スライドにある実質料金一覧より、2025年5月以降の各社公表単価）。<b>実例①②の「関西電力30円」もこの一覧の関西電力実質料金（昼間37.31円・夜間23.91円の平均30.61円）とほぼ一致しており、同じ資料が出所と確認できた</b></li>
+        <li><b>売電単価16.5円/kWh（全国一律）</b>——FIT（固定価格買取）は経産省が全国一律で決定するため、実例①②と同じ単価をそのまま使用</li>
+        <li>計算式：<b>自家消費2,000kWh（固定）＋残り全量を売電</b>という単純化モデル。発電量が増えるほど売電収入で電気代が黒字化するのは太陽光では自然な帰結だが、実際の自家消費率は世帯人数・在宅時間・EV有無などで変動するため、<b>この数字は「方向性を示す試算」であり個別物件の確定値ではない</b>ことを商談で必ず添える</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. トークの型 -->
+  <section class="block" style="border-left-color:var(--total);">
+    <h2 class="section-title"><span class="section-num">05</span>トークの型（商談での運び方・反論対応つき）</h2>
+    <p class="section-sub">「本体価格の話」から「トータルコストの話」へ切り替える6ステップ。それぞれの段階で客が返してきそうな反論と、その切り返しをセットにしている</p>
+
+    <div class="flow">
+      <div class="step">
+        <div class="step-head">
+          <span class="step-num"></span>
+          <div>
+            <h3>比較の前提を確認する</h3>
+            <p>お客様が今、他社と何を比べているかを確認する。</p>
+            <div class="line">「今、他社さんと比べる時って、建物のお見積り金額だけで見られてますか？」</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-head">
+          <span class="step-num"></span>
+          <div>
+            <h3>トータルコストという視点を提示する</h3>
+            <p>本体価格だけでなく、住んでからの光熱費まで含めて比べるべきだと提案する。</p>
+            <div class="line">「実は家って、建てた金額だけじゃなく、住んでからの毎月の光熱費まで含めた『トータルの支払い』で比べた方が正確なんです。」</div>
+          </div>
+        </div>
+        <div class="objection">
+          <div class="q">客「それって結局、太陽光を売りたいだけですよね？」</div>
+          <div class="a">「太陽光ありきでお話ししているわけじゃなくて、比べ方の話です。もし太陽光を載せない方がお客様にとって得なら、そうお伝えします。まずは両方の数字を並べて見てみましょう。」→ 損得の判断はお客様に委ねる姿勢を見せ、売り込み感を消す。</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-head">
+          <span class="step-num"></span>
+          <div>
+            <h3>実例＋エリア別シミュレーションを見せる</h3>
+            <p>まず実在する物件の実績（月1,481円〜3,313円という実質電気代、オール電化平均比で月14,687円〜16,519円の削減）を見せてから、メーカーのエリア別発電シミュレーションで「このお客様の場合」に落とし込む。</p>
+            <div class="line">「実際にお住まいのお客様の例だと、太陽光ありで電気代が実質、月1,500円〜3,300円くらいなんです。オール電化の平均が月1万8千円なので、月1万4千円〜1万6千円くらい浮いている計算になります。このエリアだと同じように計算すると、だいたい月◯◯円になります。」</div>
+          </div>
+        </div>
+        <div class="objection">
+          <div class="q">客「本当にそんなに発電するんですか？シミュレーション通りいくとは思えない」</div>
+          <div class="a">「これは架空の試算ではなく、実際にお住まいの方の年間の電気代実績なんです。天候によって多少上下はしますが、モジュール自体に25〜30年のリニア出力保証がついていて、初年度は保証値の98%、そこから毎年0.55%ずつしか下がらない設計なので、急に発電しなくなることもありません。」→ 数字への懐疑には「実在物件の実績」と「保証の数字」の2枚で応じる。</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-head">
+          <span class="step-num"></span>
+          <div>
+            <h3>「壊れたら？」の不安を先回りして潰す</h3>
+            <p>トータルコストの前提は「壊れずに動き続けること」。ここへの不安を保証内容で解消する。</p>
+            <div class="line">「もし機器に不具合があっても、調査から交換まで基本的にこちら側の負担で対応します。全国に拠点があるので対応も早いです。」</div>
+          </div>
+        </div>
+        <div class="objection">
+          <div class="q">客「太陽光って故障したら修理代が高いって聞くけど？」</div>
+          <div class="a">「そこはよく聞かれるところで、当社が採用しているメーカーは不具合時の交換費用を基本的に負担してくれる保証がついています。なのでその心配で太陽光を諦める必要はないと思っています。」→ 一般論（世間で言われる不安）と自社の実際の条件を切り分けて話す。</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-head">
+          <span class="step-num"></span>
+          <div>
+            <h3>「ローン＋光熱費」の合算で他社と比較する</h3>
+            <p>太陽光分でローンが多少増えても、光熱費削減の方が大きいことを示し、月々の実質負担で比較する。</p>
+            <div class="line">「太陽光を載せる分、月々のお支払いは少し増えますが、電気代の削減の方が大きいので、トータルでは実質◯◯円お得になります。」</div>
+          </div>
+        </div>
+        <div class="objection">
+          <div class="q">客「それでも最初にかかるお金が増えるのはちょっと…」</div>
+          <div class="a">「最初の金額だけ見るとその通りです。ただ住宅ローンは長期間の分割なので、月々で見ると電気代の削減の方が上回ります。『今日の支払い』ではなく『毎月の支払い』で比べていただくのがポイントです。」→ 「初期費用」への抵抗は「月々」の単位に置き換えて解く。</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-head">
+          <span class="step-num"></span>
+          <div>
+            <h3>結論として伝える</h3>
+            <p>本体価格の比較では並ばれても、トータルコストでは優位に立てることを明言する。</p>
+            <div class="line">「お見積りの金額だけ見ると近いかもしれませんが、住んでからのトータルで見ると、うちの方がお得になる可能性が高いんです。」</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REF. 参考：他のトータルコスト要素 -->
+  <section class="block" style="border-left-color:var(--caution);">
+    <h2 class="section-title"><span class="section-num">REF</span>参考｜太陽光以外のトータルコスト要素（メンテナンス・保険・税制）</h2>
+    <span class="source-tag">LIFEX公式セミナー資料 S71〜74より（Gハウス資料S73・74と同一データを含む）</span>
+    <p class="section-sub">LIFEX公式セミナー資料は「イニシャル・ランニング・メンテナンス」の<b>3つのコストをトータルで捉える</b>という構成そのものを持っている（S74「トータルコストで考える未来の安心」）。太陽光はこのうち「ランニング」の柱。残る2つ（メンテナンス・保険）もLIFEX公式資料の実データとして使える。</p>
+
+    <h3 style="font-size:14.5px; margin:18px 0 6px;">メンテナンスコスト（防蟻・防腐・難燃）</h3>
+    <ul class="plain">
+      <li>一般的な防蟻処理は5回の再施工が必要で、累計約60〜75万円かかる</li>
+      <li>LIFEXの「アルトリセット」工法は2回の施工で済み、累計約20〜30万円。<b>一般工法の半分以下のコストで、シロアリ・腐朽から半永久的に住まいを守る</b></li>
+    </ul>
+
+    <h3 style="font-size:14.5px; margin:18px 0 6px;">保険料・税制優遇</h3>
+    <p style="font-size:13.8px; color:var(--ink-soft); margin:0 0 8px;"><b>LIFEXは耐震等級3・省令準耐火構造の両方を取得済み</b>で、この火災保険・地震保険の実例は<b>LIFEX公式セミナー資料に、LIFEX自身の数字として掲載されている</b>（Gハウス資料からの転用ではなく、LIFEXの実データとして確認できた）。<b>ただし地震保険の割引額は地域によって異なる</b>（2026-08-23徳田さん指摘）。</p>
+    <ul class="plain">
+      <li>耐震等級3の証明取得で地震保険が割引になる制度がある（44%ダウンという実績）</li>
+      <li>省令準耐火構造の認定で火災保険が割引になる制度がある（40〜50%ダウンという実績）</li>
+      <li>長期優良住宅の認定で住宅ローン控除の優遇・固定資産税の減額期間延長が受けられる制度がある</li>
+      <li>LIFEXの実例では、火災・地震保険だけで35年累計「一般工務店との比較で約158万円」「高性能工務店との比較で約110万円」の差が出ている（保険会社試算・建物評価額3,500万円モデル）</li>
+    </ul>
+    <div class="ref-note">
+      <b>地震保険は基準地震動が都道府県ごとに異なるため、同じ耐震等級3でも割引の実額（円ベース）は地域によって変わる</b>。「割引率44%」という言い方まではどの地域でも使えるが、「35年で158万円お得」のような円建ての具体額は<b>特定モデル（建物評価額3,500万円・AIG損保試算）での試算例</b>であり、全国一律には使えない。太陽光の発電量が地域で変わるのと同じ構造で、<b>この項目も④地域性型と組み合わせる時は加盟店のエリアで再計算する</b>前提で扱うこと。
+    </div>
+  </section>
+
+  <footer class="note">
+    2026-08-23 佐古顧問MTG宿題（太陽光）の叩き台v3。v1が「まとめすぎ・中身が薄い」という指摘を受けv2で①各タイプの使い方の理由と想定シーン②各レバーの「なぜ効くか」③ネクストエナジーの保証セクション④トークの型の反論対応、を追加。v3ではさらにLIFEX公式セミナー資料（初回セミナースライド）を反映し、⑤実在物件2件の電気代実績（計算のフレームに実数として掲載）⑥防蟻コストの実例⑦保険料実績がLIFEX自身の公式データであることの確認、を追加した。2026-08-19 ネクストエナジーからエリア別発電シミュレーション21エリア分が到着し、v4でセクション04に反映。規格住宅PLAN40（10.695kW／9.9kW）の年間発電量が最大14,369kWh（愛知西尾）〜最小11,692kWh（秋田）で確定。円換算は単純な比例計算（実例①②から逆算した約19円/kWh）だと外挿時に不自然な数字になったため、自家消費量を固定値（実例平均の年間2,000kWh）とする試算モデルに組み替え。さらに買電単価を関西電力で全国一律にしていた点を指摘され、Gハウス本体資料の全国電力料金比較データ（9電力会社のオール電化向けプラン実質料金）に差し替えて21エリア全ての月間削減額を算出し直した（中国電力46.13円〜九州電力27.59円で最大1.7倍近い差）。結果、削減額が最小のエリアは発電量最下位の秋田ではなく電力単価が安い九州エリアだったという発見があり、両エリアを比較カードとして反映（秋田＝削減額訴求、九州＝電気代ゼロ超え訴求）。8/24佐古さんとの相談で方向性を確定させる想定。
+  </footer>
+
+</div>
