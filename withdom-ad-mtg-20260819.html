@@ -1,5 +1,5 @@
 <!doctype html>
-<title>ウィズダムグループ様 広告運用ご相談</title>
+<title>WITHDOM Group株式会社様 広告運用ご相談</title>
 <meta charset="utf-8">
 <style>
   :root{
@@ -198,52 +198,38 @@
     margin-bottom: 18px;
   }
 
-  /* 費用ロジック図 */
-  .fee-calc {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-wrap: wrap;
+  /* 調整中ノート */
+  .adjust-note {
     background: var(--bg-card);
-    border: 1px solid var(--line);
+    border: 1px dashed #b9c6d6;
     border-radius: 10px;
-    padding: 18px 20px;
-    margin-bottom: 14px;
-  }
-  .fee-block {
-    text-align: center;
-    padding: 10px 16px;
-  }
-  .fee-block .flabel { font-size: 11px; color: var(--ink-soft); margin-bottom: 6px; }
-  .fee-block .fvalue { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
-  .fee-block .fvalue.total { color: var(--accent); font-size: 26px; }
-  .fee-op { font-size: 18px; color: var(--ink-soft); font-weight: 300; }
-
-  .fee-note {
-    font-size: 12.5px;
-    color: var(--ink-soft);
-    line-height: 1.6;
-  }
-
-  table.breakdown {
-    width: 100%;
-    border-collapse: collapse;
+    padding: 16px 20px;
     font-size: 13px;
-    margin-top: 14px;
-  }
-  table.breakdown th, table.breakdown td {
-    text-align: left;
-    padding: 9px 10px;
-    border-top: 1px solid var(--line);
-  }
-  table.breakdown th {
     color: var(--ink-soft);
-    font-weight: 600;
-    font-size: 11.5px;
-    letter-spacing: 0.02em;
+    line-height: 1.7;
   }
-  table.breakdown td.num, table.breakdown th.num { text-align: right; font-variant-numeric: tabular-nums; }
-  table.breakdown tr.total td { font-weight: 700; border-top: 2px solid var(--accent); }
+  .adjust-note .an-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    margin-right: 6px;
+  }
+
+  /* 数値の確認中マーク */
+  .pending-tag {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--amber);
+    background: var(--amber-soft);
+    border-radius: 4px;
+    padding: 1px 7px;
+    margin-left: 6px;
+    letter-spacing: 0.02em;
+    vertical-align: middle;
+  }
 
   /* 理由カード（3カラム） */
   .reason-grid {
@@ -386,24 +372,23 @@
   @media (max-width: 600px) {
     .compare { grid-template-columns: 1fr; }
     body { padding: 36px 20px 60px; }
-    .fee-calc { justify-content: center; }
   }
 </style>
 
 <p class="eyebrow">LIFEX 広告運用ミーティング　2026.08.19</p>
-<h1>ウィズダムグループ様　広告運用に関するご相談</h1>
+<h1>WITHDOM Group株式会社様　広告運用に関するご相談</h1>
 <p class="subhead">直近の反響推移を踏まえた、広告運用体制についてのご提案</p>
 
 <section>
   <h2><span class="num">01</span>これまでの反響推移</h2>
-  <p class="section-lead">本部運用期と、8月からの自社運用移行後の状況を並べて確認します。</p>
+  <p class="section-lead">本部運用期と、7月末以降の広告停止後の状況を並べて確認します。</p>
 
   <div class="compare">
     <div class="card">
       <div class="tag">本部運用期（6〜7月・2ヶ月間）</div>
       <div class="metric-row">
         <span class="metric-label">会員登録数</span>
-        <span class="metric-value">55<span class="unit">件</span></span>
+        <span class="metric-value">55<span class="unit">件</span><span class="pending-tag">集計確認中</span></span>
       </div>
       <div class="metric-row">
         <span class="metric-label">月あたり広告費</span>
@@ -415,18 +400,14 @@
       </div>
     </div>
     <div class="card">
-      <div class="tag">自社運用移行後（8月〜）</div>
+      <div class="tag">広告停止後（7月末〜）</div>
       <div class="metric-row">
         <span class="metric-label">会員登録数</span>
         <span class="metric-value">1<span class="unit">件</span></span>
       </div>
       <div class="metric-row">
-        <span class="metric-label">運用開始</span>
-        <span class="metric-value" style="font-size:15px;">7月末〜</span>
-      </div>
-      <div class="metric-row">
-        <span class="metric-label">現状</span>
-        <span class="metric-value" style="font-size:15px;">立ち上げ期</span>
+        <span class="metric-label">状態</span>
+        <span class="metric-value" style="font-size:15px;">本部広告を停止中</span>
       </div>
     </div>
   </div>
@@ -439,11 +420,11 @@
       <span class="bar-num">27.5件</span>
     </div>
     <div class="bar-item">
-      <span class="label">自社運用（8月）</span>
+      <span class="label">広告停止後</span>
       <div class="bar-track"><div class="bar-fill b" style="width:3.6%;"></div></div>
       <span class="bar-num">1件</span>
     </div>
-    <div class="bar-note">※8月は月の途中の実績。自社運用のコスト条件は本部運用期と異なるため、単価の単純比較は行っていません。</div>
+    <div class="bar-note">※広告配信を停止いただいている期間の実績のため、本部運用期との単価の単純比較は行っていません。</div>
   </div>
 </section>
 
@@ -454,13 +435,13 @@
   <div class="reason-grid">
     <div class="reason-card">
       <div class="rk">01</div>
-      <div class="rt">加盟20社・24エリア分のデータ蓄積</div>
+      <div class="rt">加盟18社・23エリア分のデータ蓄積</div>
       <div class="rd">本部運用は自社1エリアだけでなく、LIFEXネットワーク全体の配信結果を横断して学習しています。どの訴求・エリア設定が効くかの精度が、単独運用より高い状態からスタートできます。</div>
     </div>
     <div class="reason-card">
       <div class="rk">02</div>
-      <div class="rt">磨き込まれたLP・クリエイティブ資産</div>
-      <div class="rd">現在使用しているLPや訴求文言は、複数店舗での検証を経て改善を重ねてきたものです。新たに一から構築される場合は、同水準に届くまでに検証のお時間をいただく形になります。</div>
+      <div class="rt">複数店舗の実績を反映したLP・クリエイティブ</div>
+      <div class="rd">現在使用しているLPや訴求文言は、複数店舗での検証を踏まえて継続的に改善しているものです（現在もLPの個別化・本部サイトの改修を並行して進めています）。新たに一から構築される場合は、同水準に届くまでに検証のお時間をいただく形になります。</div>
     </div>
     <div class="reason-card">
       <div class="rk">03</div>
@@ -471,41 +452,41 @@
 </section>
 
 <section>
-  <h2><span class="num">03</span>自社運用移行後の状況（仮説）</h2>
-  <p class="section-lead">お切り替えいただいてからまだお時間が浅く、軌道に乗るまでの立ち上がり期にある可能性があります。</p>
+  <h2><span class="num">03</span>現在の状況について</h2>
+  <p class="section-lead">7月末より本部広告の配信を停止いただいている状態のため、反響が大きく落ち込んでいます。</p>
 
   <div class="hypothesis">
-    <div class="htag">仮説（要すり合わせ）</div>
+    <div class="htag">現状の整理</div>
     <ul>
-      <li>本部運用から自社運用へお切り替えいただいてからの期間がまだ浅く、LP・配信設定・クリエイティブ等が十分に浸透するまでのお時間を要している可能性</li>
-      <li>本部側で2ヶ月かけて積み上げてきた配信の学習データ・最適化を、改めて積み上げていただいている段階である可能性</li>
-      <li>運用体制（工数・専門知識）を新たに整えていただいている段階である可能性</li>
+      <li>7月末より本部からの広告配信を停止いただいており、現在は配信が止まっている状態にある</li>
+      <li>今後の運用（自社で行うか、本部へ継続いただくか）については、まだご検討・すり合わせの途中と認識している</li>
+      <li>配信を停止している以上、反響が生まれにくいのは自然な状況であり、貴社の取り組み自体の問題ではないと考えている</li>
     </ul>
   </div>
 </section>
 
 <section>
   <h2><span class="num">04</span>二つの選択肢</h2>
-  <p class="section-lead">このまま自社運用を続ける場合と、本部へ再委託いただく場合を並べて整理します。</p>
+  <p class="section-lead">今後、自社での運用に切り替える場合と、本部での運用を再開いただく場合を並べて整理します。</p>
 
   <table class="vs">
     <thead>
       <tr>
         <th class="row-label"></th>
-        <th class="col-a">自社運用を継続</th>
-        <th class="col-a col-b-title">本部へ再委託</th>
+        <th class="col-a">自社運用へ切り替える場合</th>
+        <th class="col-a col-b-title">本部運用を再開する場合</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <th class="row-label">月額費用</th>
         <td class="col-a">貴社にて設定</td>
-        <td class="col-a strong">37.5万円</td>
+        <td class="col-a strong">調整中（本部にてご案内）</td>
       </tr>
       <tr>
         <th class="row-label">見込み反響</th>
-        <td class="col-a">立ち上がり期のため、今後の推移を見ていく段階</td>
-        <td class="col-a strong">月27.5件相当（実績ベース）</td>
+        <td class="col-a">実績なし・これから立ち上げ</td>
+        <td class="col-a strong">月27.5件相当（実績ベースの参考値）</td>
       </tr>
       <tr>
         <th class="row-label">運用体制</th>
@@ -515,47 +496,26 @@
       <tr>
         <th class="row-label">学習データ・LP資産</th>
         <td class="col-a">これから蓄積</td>
-        <td class="col-a">本部の蓄積を継続活用</td>
+        <td class="col-a">本部の蓄積を土台に継続運用</td>
       </tr>
       <tr>
         <th class="row-label">切替の手間</th>
-        <td class="col-a">ー</td>
-        <td class="col-a">再委託のご了承のみで完了</td>
+        <td class="col-a">アカウント・LP等の新規整備が必要</td>
+        <td class="col-a">運用再開のご了承のみで完了</td>
       </tr>
     </tbody>
   </table>
 </section>
 
 <section>
-  <h2><span class="num">05</span>ご提案：広告運用の本部再委託</h2>
+  <h2><span class="num">05</span>ご提案：広告運用の本部再開</h2>
   <div class="proposal-box">
-    <div class="ptitle">本部運用期と同水準（月30万円相当）の広告費を確保する形で、運用を本部へお戻しいただきたく存じます</div>
-    <div class="plead">本部委託の場合、運用手数料として2割のマージンを頂戴する形となるため、同水準を維持するには下記の広告費が必要となります。</div>
+    <div class="ptitle">本部運用期と同水準の広告費を確保する形で、配信を本部にて再開させていただきたく存じます</div>
+    <div class="plead">運用手数料を含めた月額の設定については、他店舗様との条件を踏まえて本部内で調整している段階です。</div>
 
-    <div class="fee-calc">
-      <div class="fee-block">
-        <div class="flabel">実広告費（配信に充当）</div>
-        <div class="fvalue">30.0<span style="font-size:14px;">万円</span></div>
-      </div>
-      <div class="fee-op">÷</div>
-      <div class="fee-block">
-        <div class="flabel">本部取分を除いた割合</div>
-        <div class="fvalue">80<span style="font-size:14px;">%</span></div>
-      </div>
-      <div class="fee-op">=</div>
-      <div class="fee-block">
-        <div class="flabel">ご負担いただく広告費</div>
-        <div class="fvalue total">37.5<span style="font-size:16px;">万円</span></div>
-      </div>
+    <div class="adjust-note">
+      <span class="an-label">調整中</span>運用手数料込みの月額費用は、他店舗様にご案内している条件との整合を確認したうえで、あらためてご提示いたします。
     </div>
-
-    <table class="breakdown">
-      <tr><th>内訳</th><th class="num">金額</th></tr>
-      <tr><td>実配信に充当される広告費</td><td class="num">300,000円</td></tr>
-      <tr><td>本部運用マージン（20%）</td><td class="num">75,000円</td></tr>
-      <tr class="total"><td>ご負担額（月額）</td><td class="num">375,000円</td></tr>
-    </table>
-    <p class="fee-note">※本部運用期（6〜7月）と同じ月30万円分の実広告費を配信に充当する前提での試算です。</p>
   </div>
 </section>
 
@@ -565,13 +525,13 @@
 
   <div class="invest-row">
     <div class="cpa-card">
-      <div class="clabel">本部運用期の登録1件あたり広告費</div>
+      <div class="clabel">本部運用期の登録1件あたり広告費<span class="pending-tag">集計確認中</span></div>
       <div class="cvalue">10,909<span class="unit">円</span></div>
-      <div class="cnote">60万円（月30万円×2ヶ月）÷ 55件で算出。この先の来場・面談への転換が見えると、広告費の投資対効果として評価しやすくなります。</div>
+      <div class="cnote">60万円（月30万円×2ヶ月）÷ 55件で算出（55件の集計方法は確認中）。この先の来場・面談への転換が見えると、広告費の投資対効果として評価しやすくなります。</div>
     </div>
     <div class="ask-list">
       <div class="alabel">この場で伺いたい数字</div>
-      <div class="ask-single">会員登録55件のうち、来場・面談に至った件数（<span class="blank"></span>件）</div>
+      <div class="ask-single">会員登録いただいた件数のうち、来場・面談に至った件数（<span class="blank"></span>件）</div>
     </div>
   </div>
 </section>
@@ -584,26 +544,26 @@
     <div class="tl-step">
       <div class="tl-dot">1</div>
       <div class="tl-title">本日：方針のご了承</div>
-      <div class="tl-desc">本部再委託・月37.5万円の負担についてご確認いただく</div>
+      <div class="tl-desc">本部運用再開の方向性についてご確認いただく（費用は別途ご案内）</div>
     </div>
     <div class="tl-step">
       <div class="tl-dot">2</div>
-      <div class="tl-title">引き継ぎ</div>
-      <div class="tl-desc">配信アカウント・LP・クリエイティブを本部側へ集約</div>
+      <div class="tl-title">条件のご案内</div>
+      <div class="tl-desc">運用手数料込みの月額費用を本部にて確定し、あらためてご案内</div>
     </div>
     <div class="tl-step">
       <div class="tl-dot">3</div>
       <div class="tl-title">配信再開</div>
-      <div class="tl-desc">本部の蓄積データを引き継いだ状態で運用再開</div>
+      <div class="tl-desc">本部の蓄積データをそのままに運用再開</div>
     </div>
     <div class="tl-step">
       <div class="tl-dot">4</div>
       <div class="tl-title">1ヶ月後：反響確認</div>
-      <div class="tl-desc">本部運用期の水準（月27.5件）への到達状況を確認</div>
+      <div class="tl-desc">本部運用期の水準（月27.5件）を参考に、反響の推移を確認</div>
     </div>
   </div>
 </section>
 
 <footer>
-  ウィズダムグループ様　広告運用ご相談資料　2026.08.19作成
+  WITHDOM Group株式会社様　広告運用ご相談資料　2026.08.19作成
 </footer>
