@@ -1,0 +1,493 @@
+<title>LIFEX MTG 8/21｜答え合わせ＋聞く力を強くする 投影資料</title>
+<style>
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+  --p1:#1e4e79; --p2:#2e7d6e; --p3:#b05c1f;
+  --p1bg:#e8eff6; --p2bg:#e7f2ef; --p3bg:#f9efe4;
+  --leak:#b3372b; --leakbg:#fbe9e7;
+  --win:#2e7d6e; --winbg:#e7f2ef;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.6; font-feature-settings:"palt"}
+.wrap{width:min(1100px,96vw); margin:26px auto}
+.draft{width:1100px; margin:0 auto 14px; font-size:12px; color:#8a5a00; background:#fdf3dd;
+  border:1px solid #ecd9a8; border-radius:4px; padding:6px 14px; font-weight:700}
+.sl{width:1100px; height:619px; background:#fff; border-radius:8px;
+  box-shadow:0 2px 16px rgba(20,40,60,.09); padding:32px 50px 24px;
+  display:flex; flex-direction:column; position:relative; overflow:hidden; margin:0 auto 22px}
+.top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+.chip{font-size:11.5px; font-weight:700; letter-spacing:.08em; padding:3px 12px; border-radius:99px}
+.c0{background:#eceff2;color:var(--sub)}
+.c1{background:var(--p1bg);color:var(--p1)}
+.c2{background:var(--p2bg);color:var(--p2)}
+.c3{background:var(--p3bg);color:var(--p3)}
+.step{background:var(--navy); color:#fff}
+.new{background:var(--p3); color:#fff}
+.pg{margin-left:auto; font-size:12px; color:#b6c0ca; font-variant-numeric:tabular-nums}
+.tt{font-size:28px; font-weight:800; line-height:1.3; margin:2px 0 4px; text-wrap:balance}
+.ms{font-size:13.5px; color:var(--sub); margin:0 0 11px}
+.body{flex:1; display:flex; gap:20px; min-height:0; overflow:hidden}
+.foot{display:flex; gap:12px; margin-top:9px; align-items:center}
+.cap{font-size:12px; color:var(--sub)}
+.todo{font-size:11px; color:#8a5a00; background:#fdf3dd; border:1px solid #ecd9a8; border-radius:3px; padding:2px 10px; font-weight:700}
+.real{font-size:11px; color:var(--p2); background:var(--p2bg); border:1px solid #bfdcd5; border-radius:3px; padding:2px 10px; font-weight:700}
+.live{font-size:11.5px; color:#fff; background:var(--navy); border-radius:3px; padding:3px 12px; font-weight:700; letter-spacing:.06em}
+.num{font-variant-numeric:tabular-nums}
+.col{display:flex; flex-direction:column; gap:10px; min-width:0}
+.grow{flex:1}
+.box{border:1px solid var(--line); border-radius:6px; padding:12px 16px; background:#fff}
+.box h4{margin:0 0 4px; font-size:13.5px; color:var(--navy)}
+.box p{margin:0; font-size:12.5px; color:var(--sub)}
+.say{background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:10px; padding:12px 16px; font-size:13px}
+.say b{color:var(--navy)}
+.say .lbl{display:block; font-size:11px; letter-spacing:.1em; color:var(--navy); font-weight:700; margin-bottom:4px}
+.ag{border:1px solid var(--line); border-radius:8px; padding:18px 22px; display:flex; align-items:center; gap:18px; background:#fff}
+.ag .no{font-size:12.5px; font-weight:800; color:var(--sub); flex-shrink:0; width:64px; line-height:1.3}
+.ag b{font-size:16.5px}
+.ag .cap{margin-left:auto; text-align:right; flex-shrink:0; max-width:380px}
+.flow{display:flex; align-items:stretch; gap:8px}
+.flow .st{flex:1; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:9px 12px; font-size:12px; text-align:center}
+.flow .st b{display:block; font-size:12.5px; color:var(--navy); margin-bottom:2px}
+.flow .ar{align-self:center; color:#b6c0ca; font-weight:700; flex-shrink:0}
+.rhythm{display:flex; gap:6px; margin-bottom:9px}
+.rhythm span{flex:1; text-align:center; font-size:12px; font-weight:700; padding:6px 4px; border-radius:5px; background:var(--panel); color:#aab4bf; border:1px solid var(--line)}
+.rhythm span.on{background:var(--navy); color:#fff; border-color:var(--navy)}
+
+/* 道のりタイムライン */
+.tl{display:flex; gap:0; align-items:stretch; margin-bottom:6px}
+.tl-item{flex:1; display:flex; flex-direction:column; position:relative}
+.tl-item::after{content:''; position:absolute; right:0; top:22px; width:1px; height:calc(100% - 44px); background:var(--line)}
+.tl-item:last-child::after{display:none}
+.tl-dot{width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:800; flex-shrink:0; margin:0 auto 8px; border:2px solid var(--line); color:var(--sub); background:#fff}
+.tl-dot.done{background:var(--navy); border-color:var(--navy); color:#fff}
+.tl-dot.today{background:var(--p2); border-color:var(--p2); color:#fff}
+.tl-body{flex:1; border:1px solid var(--line); border-radius:6px; padding:10px 14px; margin:0 6px; background:#fff}
+.tl-body.done{background:var(--panel)}
+.tl-body.today{background:var(--p2bg); border-color:var(--p2)}
+.tl-body .th{font-size:13px; font-weight:800; color:var(--navy); margin-bottom:4px; line-height:1.3}
+.tl-body .td{font-size:11.5px; color:var(--sub); line-height:1.5}
+
+/* 目標ゲージ */
+.gauge{background:#fff; border:1px solid var(--line); border-radius:8px; padding:12px 16px}
+.gauge .gh{display:flex; align-items:baseline; gap:10px; margin-bottom:8px}
+.gauge .gn{font-size:14px; font-weight:800}
+.gauge .track{position:relative; height:22px; background:var(--panel); border-radius:5px; overflow:hidden; border:1px solid var(--line)}
+.gauge .fill{position:absolute; left:0; top:0; bottom:0; background:var(--navy); border-radius:5px 0 0 5px}
+.gauge .fill.win{background:var(--win)}
+.gauge .goal{position:absolute; top:-4px; bottom:-4px; width:3px; background:var(--p3)}
+
+/* 答え合わせ比較行 */
+.cmp-list{display:flex; flex-direction:column; gap:6px}
+.cmp{display:flex; align-items:center; gap:14px; border:1px solid var(--line); border-radius:7px; padding:8px 16px; background:#fff}
+.cmp.win{border-color:#bfdcd5; background:var(--winbg)}
+.cmp.gap{border-color:#f0c9c2; background:#fdf5f3}
+.cmp .nm{width:150px; flex-shrink:0; font-size:13px; font-weight:800; color:var(--ink)}
+.cmp .nm span{display:block; font-size:10.5px; font-weight:600; color:var(--sub)}
+.cmp .track{flex:1; position:relative; height:16px; background:var(--panel); border-radius:4px; overflow:hidden; border:1px solid var(--line)}
+.cmp .fill{position:absolute; left:0; top:0; bottom:0; background:var(--blue); border-radius:4px 0 0 4px}
+.cmp.win .fill{background:var(--win)}
+.cmp .goal{position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--p3)}
+.cmp .nums{width:150px; flex-shrink:0; text-align:right; font-size:12px; font-variant-numeric:tabular-nums; color:var(--sub)}
+.cmp .nums b{font-size:14px; color:var(--ink)}
+.badge{display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:800; padding:2px 10px; border-radius:99px; flex-shrink:0; width:74px; justify-content:center}
+.badge.win{background:var(--win); color:#fff}
+.badge.gap{background:var(--leak); color:#fff}
+
+/* ステータスドット */
+.dot-check{display:flex; align-items:center; gap:8px}
+.dc{width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; color:#fff; flex-shrink:0}
+.dc.done{background:var(--win)}
+.dc.pend{background:#c8d2da}
+
+/* ===== 会話法パーツ ===== */
+/* VS比較（思い込み vs 成果視点） */
+.vs2{display:flex; gap:0; align-items:stretch; position:relative; flex:1}
+.vs2>div{flex:1; border:1px solid var(--line); border-radius:8px; padding:14px 18px; display:flex; flex-direction:column; gap:14px; justify-content:center}
+.vs2 .neg{background:#fafbfc}
+.vs2 .pos{background:var(--navy-soft); border-color:var(--navy)}
+.vs2 h5{margin:0; font-size:12.5px; font-weight:800; color:var(--sub); display:flex; align-items:center; gap:6px}
+.vs2 .pos h5{color:var(--navy)}
+.vs2 .vs-badge{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:36px; height:36px; border-radius:50%;
+  background:#fff; border:2px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; color:var(--sub); z-index:2}
+.vs2 .result{text-align:center; font-size:15px; font-weight:800; border-radius:6px; padding:10px; background:#fff; border:1px solid var(--line)}
+.vs2 .chatline{margin-top:0}
+.vs2 .pos .result{background:var(--p3bg); color:var(--p3); border-color:#e8cfae}
+.vs2 .neg .result{color:var(--sub)}
+
+/* リングチャート（話す:聴く=7:3） */
+.ring-box{display:flex; align-items:center; gap:20px}
+.ring-legend{display:flex; flex-direction:column; gap:8px; font-size:12.5px}
+.ring-legend span{display:flex; align-items:center; gap:6px}
+.ring-legend i{width:10px; height:10px; border-radius:50%; flex-shrink:0}
+
+/* 共感3技術カード */
+.tech3{display:flex; gap:12px; flex:1}
+.tc-card{flex:1; border:1px solid var(--line); border-radius:8px; padding:14px 16px; display:flex; flex-direction:column; gap:8px; background:#fff}
+.tc-card .tc-h{display:flex; align-items:center; gap:8px}
+.tc-num{width:24px; height:24px; border-radius:50%; background:var(--navy); color:#fff; font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0}
+.tc-card h4{margin:0; font-size:14.5px; color:var(--ink)}
+.tc-card p{margin:0; font-size:11.5px; color:var(--sub); line-height:1.6}
+.chatline{background:var(--panel); border-radius:6px; padding:8px 10px; font-size:11px; margin-top:auto}
+.chatline b{display:block; color:var(--navy); font-size:11.5px; margin-top:2px}
+
+/* 復唱レベルインジケーター */
+.lvl-row{display:flex; gap:10px; flex:1}
+.lvl-card{flex:1; border:1px solid var(--line); border-radius:8px; padding:12px 14px; display:flex; flex-direction:column; gap:6px; background:#fff}
+.lvl-card.hi{border-color:var(--p3); background:var(--p3bg)}
+.lvl-dots{display:flex; gap:4px; margin-bottom:2px}
+.lvl-dot{width:13px; height:13px; border-radius:50%; border:2px solid var(--line); background:#fff}
+.lvl-dot.on{background:var(--navy); border-color:var(--navy)}
+.lvl-card.hi .lvl-dot.on{background:var(--p3); border-color:var(--p3)}
+.lvl-card h5{margin:0; font-size:13px; color:var(--ink)}
+.lvl-eff{font-size:10.5px; font-weight:700; color:var(--navy); letter-spacing:.04em}
+.lvl-card.hi .lvl-eff{color:var(--p3)}
+.lvl-card .chatline{font-size:10.5px}
+
+/* Do/Don't */
+.dodont{display:flex; gap:14px; flex:1}
+.dd-col{flex:1; border-radius:8px; padding:12px 16px; display:flex; flex-direction:column; gap:8px}
+.dd-col.do{background:var(--winbg); border:1px solid #bfdcd5}
+.dd-col.dont{background:var(--leakbg); border:1px solid #f0c9c2}
+.dd-col h5{margin:0; font-size:12.5px; font-weight:800; display:flex; align-items:center; gap:6px}
+.dd-col.do h5{color:var(--win)}
+.dd-col.dont h5{color:var(--leak)}
+.dd-item{font-size:11.5px; color:var(--ink); line-height:1.5; display:flex; gap:6px}
+.dd-item b{flex-shrink:0}
+
+/* 5つの「ど」 */
+.d5{display:flex; gap:8px; flex:1}
+.d5-card{flex:1; border:1px solid var(--line); border-radius:8px; padding:18px 10px; text-align:center; background:#fff; display:flex; flex-direction:column; gap:8px; align-items:center}
+.d5-badge{width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:19px; font-weight:800; color:#fff}
+.d5-card h5{margin:0; font-size:17px}
+.d5-card span{font-size:12.5px; color:var(--sub); line-height:1.4}
+
+/* 循環図（1セットで回す） */
+.loop3{position:relative; flex:1; display:flex; align-items:center; justify-content:center}
+.loop-node{width:110px; height:110px; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  color:#fff; font-weight:800; font-size:13px; position:absolute; text-align:center; line-height:1.3}
+.loop-node span{font-size:10px; font-weight:600; opacity:.85; margin-top:2px}
+.loop-center{width:130px; height:130px; border-radius:50%; background:var(--navy); color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; font-weight:800; font-size:13px; line-height:1.4; z-index:2}
+.loop-center span{font-size:10.5px; font-weight:600; opacity:.85; margin-top:3px}
+
+@media print{body{background:#fff}.draft{display:none}.sl{box-shadow:none; border:1px solid var(--line); page-break-after:always}}
+</style>
+
+<div class="wrap">
+
+<!-- 1 表紙 -->
+<div class="sl" style="justify-content:center; text-align:center">
+  <div style="font-size:13px; letter-spacing:.22em; color:var(--sub); font-weight:700">2026.8.21（金）16:00〜　LIFEX 月2棟目標達成MTG</div>
+  <div style="font-size:50px; font-weight:800; margin:22px 0 12px; letter-spacing:.02em">答え合わせ、そして「聞く力」を強くする。</div>
+  <div style="font-size:17px; color:var(--navy); font-weight:700; line-height:1.7">営業の武器は説明力ではない。<br>お客様が自分で決断できる状態をつくる「会話法」を、今日渡します。</div>
+  <div style="margin-top:32px; font-size:15px; color:var(--ink)">
+    <b style="color:var(--sub)">観る→診る→処方→決める→</b><b style="color:var(--navy)">答え合わせ</b>
+    <div style="color:var(--sub); margin-top:10px; font-size:13.5px">進行：Gハウス LIFEX FC事業部　徳田</div>
+  </div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px">1 / 15</div>
+</div>
+
+<!-- 2 これまでの道のり -->
+<div class="sl">
+  <div class="top"><span class="chip c0">これまでの道のり</span><span class="pg">2 / 15</span></div>
+  <div class="tt" style="font-size:23px">アポ率の型は渡した。今日からは「面談を強くする」2部作、第1回。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:7px">
+    <div class="tl">
+      <div class="tl-item"><div class="tl-dot done" style="font-size:9.5px">7/17</div><div class="tl-body done"><div class="th">月2棟の型を公開</div><div class="td">佐古社長対談。電話7項目・冒頭90秒・総額先出し</div></div></div>
+      <div class="tl-item"><div class="tl-dot done" style="font-size:9.5px">7/24</div><div class="tl-body done"><div class="th">通電率UP</div><div class="td">通電率上位3社の架電法を横展開</div></div></div>
+      <div class="tl-item"><div class="tl-dot done" style="font-size:9.5px">7/31</div><div class="tl-body done"><div class="th">KPI診断・アポ率目標</div><div class="td">自店カルテで穴を特定。アポ率目標を宣言</div></div></div>
+      <div class="tl-item"><div class="tl-dot done" style="font-size:9.5px">8/7</div><div class="tl-body done"><div class="th">商談を磨く</div><div class="td">ふりかえりシート・鉄板トーク集を配布</div></div></div>
+      <div class="tl-item"><div class="tl-dot today" style="font-size:9.5px">8/21</div><div class="tl-body today"><div class="th" style="color:var(--p2)">聞く力　▶ 本日</div><div class="td">答え合わせ＋共感・復唱・関連質問</div></div></div>
+    </div>
+    <div class="say" style="margin-top:8px"><span class="lbl">今日から2回シリーズ</span>今日（8/21）は「話を引き出す技術」、次回8/28は「間を使って決めさせる技術」。1回で終わらせず、じっくり2週かけて面談の質そのものを上げます。</div>
+  </div>
+</div>
+
+<!-- 3 本日の流れ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">本日の流れ</span><span class="pg">3 / 15</span></div>
+  <div class="tt">今日のメインは「会話法」1本。各店の発言は1回にまとめます。</div>
+  <p class="ms">アポ率が伸びても、面談で話が続かなければ契約になりません。今日は、Gハウスの新人営業教育で使っている「共感・復唱・関連質問」を丸ごとLIFEXの型として渡します。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:16px">
+    <div class="ag" style="border-color:var(--navy)"><span class="no" style="color:var(--navy)">答え合わせ</span><b>宣言の実践＋アポ率結果＋次の一手を1回で発表</b><span class="cap">8/7の道具・7/31のアポ率目標・次回までの宣言をまとめて</span></div>
+    <div class="ag" style="border-color:var(--p3)"><span class="no" style="color:var(--p3)">新しい型</span><b>共感・復唱・関連質問を"1セット"で回す</b><span class="cap">Gハウス新人営業教育資料より。今日はこれだけを深く</span></div>
+    <div class="ag" style="border-color:#6b4fa0"><span class="no" style="color:#6b4fa0">ご案内</span><b>AX戦略部の同席・ポータル改善アンケート</b><span class="cap">本部より　＊詳細確認中</span></div>
+  </div>
+  <div class="foot"><span class="cap"><b style="color:var(--navy)">今日のゴール。</b>「共感→復唱→関連質問」を、今日の商談から1回使ってみられる状態にすること。</span></div>
+</div>
+
+<!-- 4 答え合わせ -->
+<div class="sl">
+  <div class="rhythm"><span>観る</span><span>診る</span><span>処方</span><span class="on">決める</span><span class="on">答え合わせ</span></div>
+  <div class="top"><span class="chip step">答え合わせ</span><span class="pg">4 / 15</span></div>
+  <div class="tt">宣言・アポ率・次の一手。1回の発表でまとめて聞きます。</div>
+  <p class="ms">各店1回、3つを続けて発表してください。「明日のAさんで使う」の答え合わせと、アポ率目標の進捗と、次回までの宣言です。</p>
+  <div class="body" style="flex-direction:column; gap:10px">
+    <div style="display:flex; gap:16px; flex:1">
+      <div class="col" style="flex:0 0 34%; justify-content:center; gap:8px">
+        <div class="dot-check" style="gap:14px">
+          <div style="display:flex; align-items:center; gap:6px"><div class="dc done">✓</div><span class="cap">宣言どおり使えた</span></div>
+          <div style="display:flex; align-items:center; gap:6px"><div class="dc pend">?</div><span class="cap">まだ・機会がなかった</span></div>
+        </div>
+        <div class="say" style="font-size:11.5px; padding:8px 12px"><span class="lbl">聞くこと</span>ふりかえりシート・鉄板トーク集をどの商談で使ったか。使えなかった店は何が引っかかったか。</div>
+      </div>
+      <div class="col grow" style="justify-content:center">
+        <div class="cmp-list">
+          <div class="cmp win"><div class="nm">中央建設様<span>鳥取店</span></div><div class="track"><div class="fill win" style="width:100%"></div><div class="goal" style="left:80%"></div></div><div class="nums"><b class="num">100.0%</b>/目標80%</div><span class="badge win">達成 ✓</span></div>
+          <div class="cmp gap"><div class="nm">坂本建設工業様<span>楠木様</span></div><div class="track"><div class="fill" style="width:44.4%"></div><div class="goal" style="left:50%"></div></div><div class="nums"><b class="num">44.4%</b>/目標50%</div><span class="badge gap">あと5.6pt</span></div>
+          <div class="cmp gap"><div class="nm">竹村工務店様<span>知花様</span></div><div class="track"><div class="fill" style="width:55.6%"></div><div class="goal" style="left:70%"></div></div><div class="nums"><b class="num">55.6%</b>/目標70%</div><span class="badge gap">あと14.4pt</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="box" style="border-color:var(--navy)"><h4>③ 次の一手（発表フォーマット）</h4><p style="color:var(--ink); font-size:13.5px">「宣言は<b>使えた／まだ</b>。アポ率は<b>__%</b>。次回までに<b>________</b>（共感／復唱／関連質問のどれか1つ）を意識します。」</p></div>
+  </div>
+  <div class="foot"><span class="todo">当日：各店1回の発言で①宣言の実践状況②アポ率③次の一手を聞く（1店あたり1分目安）</span></div>
+</div>
+
+<!-- 5 つなぎ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">つなぎ</span><span class="pg">5 / 15</span></div>
+  <div class="tt">アポは取れる。面談で、何が起きているか。</div>
+  <p class="ms">8/7で「人物金時敵」という"何を聞くべきか"の型を渡しました。今日は、その先——"どう聞けば本音が出るか"の技術です。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:14px">
+    <div class="flow">
+      <div class="st" style="padding:14px 10px"><b>8/7</b>人物金時敵<br><span style="font-size:10.5px; color:var(--sub)">何を聞くべきか</span></div>
+      <div class="ar">→</div>
+      <div class="st" style="padding:14px 10px; background:var(--p3bg); border-color:#e8cfae"><b style="color:var(--p3)">8/21・今日</b>共感・復唱・関連質問<br><span style="font-size:10.5px; color:var(--sub)">どう聞けば本音が出るか</span></div>
+      <div class="ar">→</div>
+      <div class="st" style="padding:14px 10px"><b>8/28</b>間・テストクロージング<br><span style="font-size:10.5px; color:var(--sub)">どう決めさせるか</span></div>
+    </div>
+    <div class="say"><span class="lbl">出典</span>Gハウス新人営業向け教育資料（2025年度版）「営業の武器は会話法」。社内で新人に教えている、体系化された会話術です。</div>
+    <div class="box" style="border-color:var(--line); background:#fff"><h4>なぜ今、会話法か</h4><p>アポ率が上がっても、契約を決めるのは面談の質です。「何を聞くか」の次は「どう聞くか」——ここを鍛えます。</p></div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span></div>
+</div>
+
+<!-- 6 VS比較 -->
+<div class="sl">
+  <div class="top"><span class="chip new">会話法①</span><span class="pg">6 / 15</span></div>
+  <div class="tt">営業を左右するのは、説明力ではなく「会話の質」。</div>
+  <p class="ms">「詳しく話せば売れる」は思い込みです。現場で起きているのは、その逆です。</p>
+  <div class="body">
+    <div class="vs2">
+      <div class="neg">
+        <h5>✕ これまでの思い込み</h5>
+        <div class="box" style="font-size:12px; padding:8px 12px">知識が増えれば売れる／詳しく説明するほど有利</div>
+        <div class="chatline">ありがちな一言<b>「当社の家は耐震等級3で、断熱性能も…」と、聞かれる前から説明が続く</b></div>
+        <div class="result">たくさん説明しても<br>決まらない</div>
+      </div>
+      <div class="vs-badge">VS</div>
+      <div class="pos">
+        <h5>◯ 成果を出す営業の視点</h5>
+        <div class="box" style="font-size:12px; padding:8px 12px; background:#fff">本音を安心して話せる場を作る／「決めさせる」より「決められる」</div>
+        <div class="chatline" style="margin-top:0">効く一言<b>「そこ、気になりますよね。もう少し詳しく聞かせてください」</b></div>
+        <div class="result">ほとんど説明しなくても<br>決まる</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">この差を生むのが「共感×復唱×関連質問」の会話の質です。</span></div>
+</div>
+
+<!-- 7 黄金比率 -->
+<div class="sl">
+  <div class="top"><span class="chip new">会話法②</span><span class="pg">7 / 15</span></div>
+  <div class="tt">本音は、お客様が話している時に出る。</div>
+  <p class="ms">営業が話しすぎると、お客様は「聞く側」に回って思考が止まります。話してもらうほど、お客様自身も気づいていない本音が出てきます。</p>
+  <div class="body" style="align-items:center">
+    <div class="ring-box" style="flex:1; justify-content:center">
+      <svg width="180" height="180" viewBox="0 0 180 180">
+        <circle cx="90" cy="90" r="70" fill="none" stroke="#e8eff6" stroke-width="28"/>
+        <circle cx="90" cy="90" r="70" fill="none" stroke="#b05c1f" stroke-width="28"
+          stroke-dasharray="307.9 439.8" stroke-dashoffset="0" transform="rotate(-90 90 90)"/>
+        <circle cx="90" cy="90" r="70" fill="none" stroke="#1e4e79" stroke-width="28"
+          stroke-dasharray="131.9 439.8" stroke-dashoffset="-307.9" transform="rotate(-90 90 90)"/>
+        <text x="90" y="86" text-anchor="middle" font-size="26" font-weight="800" fill="#1b2530">7:3</text>
+        <text x="90" y="106" text-anchor="middle" font-size="11" fill="#5c6c7d">Golden Ratio</text>
+      </svg>
+      <div class="ring-legend">
+        <span><i style="background:#b05c1f"></i>お客様の話す量　7</span>
+        <span><i style="background:#1e4e79"></i>営業の話す量　3</span>
+      </div>
+    </div>
+    <div class="col grow" style="justify-content:center; gap:8px">
+      <div class="box" style="border-color:var(--p3)"><h4 style="color:var(--p3)">共感（肯定）</h4><p>まず認める。心の扉が開く</p></div>
+      <div class="box" style="border-color:var(--navy)"><h4>復唱（安心）</h4><p>受け止める。本音が続いて出る</p></div>
+      <div class="box" style="border-color:var(--p2)"><h4 style="color:var(--p2)">関連質問（深掘り）</h4><p>角度を変えて聞く。芯が見える</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">この3つを「肯定・安心・深掘り」の機能として理解します。</span></div>
+</div>
+
+<!-- 8 共感の3技術 -->
+<div class="sl">
+  <div class="top"><span class="chip new">会話法③　STEP1：共感</span><span class="pg">8 / 15</span></div>
+  <div class="tt">共感の3つの技術。否定から入る営業は信用されない。</div>
+  <p class="ms">共感とは「軽い合わせ」ではなく、「あなたの意見には価値がある」と示す承認です。</p>
+  <div class="body">
+    <div class="tech3">
+      <div class="tc-card">
+        <div class="tc-h"><span class="tc-num">1</span><h4>褒める</h4></div>
+        <p>本人でなく"行動・選択"を褒める。お世辞ではなく観察の結果として。</p>
+        <div class="chatline">お子様が良い子にしていたら<b>「素敵な教育方針ですね」</b></div>
+      </div>
+      <div class="tc-card">
+        <div class="tc-h"><span class="tc-num">2</span><h4>気遣う</h4></div>
+        <p>「売るためだけではない」を伝える。余裕と誠実さが敵対心を解く。</p>
+        <div class="chatline">他社検討中と言われたら<b>「ぜひ他社様もしっかり見てきてください」</b></div>
+      </div>
+      <div class="tc-card">
+        <div class="tc-h"><span class="tc-num">3</span><h4>楽しませる</h4></div>
+        <p>表情・テンションを合わせる。楽しく聞いてくれる人はもっと話したくなる。</p>
+        <div class="chatline">こだわりの話が出たら<b>「それすごく気になります！」</b></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">「でも」「しかし」から入る／形だけの相槌——これらは拒絶のサインとして伝わります。</span></div>
+</div>
+
+<!-- 9 復唱の3レベル -->
+<div class="sl">
+  <div class="top"><span class="chip new">会話法④　STEP2：復唱</span><span class="pg">9 / 15</span></div>
+  <div class="tt">復唱の3レベル。「ただ繰り返す」から「心を掴む」へ。</div>
+  <p class="ms">復唱は共感と関連質問をつなぐ橋。レベルが上がるほど、深い共感が伝わります。</p>
+  <div class="body">
+    <div class="lvl-row">
+      <div class="lvl-card">
+        <div class="lvl-dots"><div class="lvl-dot on"></div><div class="lvl-dot"></div><div class="lvl-dot"></div></div>
+        <h5>LEVEL1　そのまま返す</h5><span class="lvl-eff">効果：安心感</span>
+        <div class="chatline">「南向きのリビングがいいな」<b>「南向きのリビングがいいんですね」</b></div>
+      </div>
+      <div class="lvl-card">
+        <div class="lvl-dots"><div class="lvl-dot on"></div><div class="lvl-dot on"></div><div class="lvl-dot"></div></div>
+        <h5>LEVEL2　意図をまとめる</h5><span class="lvl-eff">効果：理解</span>
+        <div class="chatline">「子供が走り回るから広いLDKが…」<b>「のびのび遊べる空間をお求めなんですね」</b></div>
+      </div>
+      <div class="lvl-card hi">
+        <div class="lvl-dots"><div class="lvl-dot on"></div><div class="lvl-dot on"></div><div class="lvl-dot on"></div></div>
+        <h5>LEVEL3　感情を代弁する</h5><span class="lvl-eff">効果：深い共感 ★最強</span>
+        <div class="chatline">「他社が高くて、ここも心配で…」<b>「金額が見えない状態って、怖いですよね」</b></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">コツ：復唱のあと一呼吸（沈黙）を置く。まずはLv1から確実に。</span></div>
+</div>
+
+<!-- 10 復唱Do/Don't -->
+<div class="sl">
+  <div class="top"><span class="chip new">会話法⑤　STEP2：復唱の実践</span><span class="pg">10 / 15</span></div>
+  <div class="tt">復唱はテクニックでなく"姿勢"。</div>
+  <p class="ms">うまい営業と下手な営業の分かれ道は、この4つです。</p>
+  <div class="body">
+    <div class="dodont">
+      <div class="dd-col do">
+        <h5>◯ Do（やるべきこと）</h5>
+        <div class="dd-item"><b>・</b>復唱→一呼吸（沈黙）を置く</div>
+        <div class="dd-item"><b>・</b>うなづきの強弱で共感の深さを伝える</div>
+        <div class="dd-item"><b>・</b>奥様を主役に戻す：「奥様はどのようにお感じですか？」</div>
+      </div>
+      <div class="dd-col dont">
+        <h5>✕ Don't（避けること）</h5>
+        <div class="dd-item"><b>・</b>先回りして答える（遮ると心を閉じる）</div>
+        <div class="dd-item"><b>・</b>復唱の段階で解決を急ぐ</div>
+        <div class="dd-item"><b>・</b>「つまり◯◯でしょ？」と結論を決めつける</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">「奥様を主役に戻す」——ご主人が代弁してしまう場面で特に効きます。</span></div>
+</div>
+
+<!-- 11 関連質問5つのど -->
+<div class="sl">
+  <div class="top"><span class="chip new">会話法⑥　STEP3：関連質問</span><span class="pg">11 / 15</span></div>
+  <div class="tt">深掘りの実践法：5つの「ど」。</div>
+  <p class="ms">角度を変えて3回以上掘ることで、初めて本質的な「芯」が見えてきます。</p>
+  <div class="body" style="flex-direction:column; gap:12px">
+    <div class="d5">
+      <div class="d5-card"><div class="d5-badge" style="background:#e64980">D</div><h5>どうして</h5><span>理由・きっかけ</span></div>
+      <div class="d5-card"><div class="d5-badge" style="background:#2e7d6e">D</div><h5>どんな</h5><span>理想のイメージ</span></div>
+      <div class="d5-card"><div class="d5-badge" style="background:#3b82c4">D</div><h5>どこで</h5><span>場所・シーン</span></div>
+      <div class="d5-card"><div class="d5-badge" style="background:#1e4e79">D</div><h5>誰に</h5><span>対象・関係性</span></div>
+      <div class="d5-card"><div class="d5-badge" style="background:#7048e8">D</div><h5>どのように</h5><span>使い方・行動</span></div>
+    </div>
+    <div class="say">
+      <span class="lbl">深掘りの実例：テーマ「広いリビング」</span>
+      「広いリビングが欲しいんです」→<b>「どうして</b>リビングの広さに一番こだわりたいと感じられましたか？」→「今の家が狭くて、子供も走り回れなくて…」→<b>「では、新しい家では<b>どのように</b>過ごしたいですか？」</b>→見えた芯：<b style="color:var(--navy)">家族が安心してゆったり過ごせる時間</b>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">矢継ぎ早に聞く「尋問」ではなく、お客様への興味・関心がすべて。</span></div>
+</div>
+
+<!-- 12 1セットで回す -->
+<div class="sl">
+  <div class="top"><span class="chip new">会話法⑦　3つを"1セット"で回す</span><span class="pg">12 / 15</span></div>
+  <div class="tt">この流れを繰り返すだけで、商談が整う。</div>
+  <p class="ms">3つを循環させることで、お客様が自分で決断できる状態が生まれます。これが「押さない営業」の正体です。</p>
+  <div class="body" style="align-items:center">
+    <div class="loop3" style="flex:1">
+      <div class="loop-node" style="background:#b05c1f; top:0; left:calc(50% - 55px)">共感<span>「大事な視点ですね」</span></div>
+      <div class="loop-node" style="background:#2e7d6e; bottom:0; left:0">復唱<span>「◯◯ということですね」</span></div>
+      <div class="loop-node" style="background:#3b82c4; bottom:0; right:0">関連質問<span>「どうしてそこに？」</span></div>
+      <div class="loop-center">商談が<br>勝手に整う<span>お客様が自分で決める</span></div>
+    </div>
+    <div class="col grow" style="justify-content:center; gap:8px">
+      <div class="box" style="border-color:var(--win); background:var(--winbg)"><h4 style="color:var(--win)">お客様が気持ちよく話す</h4><p>7:3の黄金比率が自然と維持できる</p></div>
+      <div class="box" style="border-color:var(--win); background:var(--winbg)"><h4 style="color:var(--win)">価値観レベルの話が出る</h4><p>表面的な条件交渉にならない</p></div>
+      <div class="box" style="border-color:var(--win); background:var(--winbg)"><h4 style="color:var(--win)">強いクロージング不要</h4><p>信頼関係ができているので背中を押すだけ</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">説明力で勝負しなくていい。「聴く力」が最強の武器になる。</span></div>
+</div>
+
+<!-- 13 AX戦略部・アンケート -->
+<div class="sl">
+  <div class="top"><span class="chip" style="background:#efe9f7; color:#6b4fa0">本部より</span><span class="pg">13 / 15</span></div>
+  <div class="tt">AX戦略部の同席と、ポータル改善アンケート。</div>
+  <p class="ms">8/17に本部より全店へ告知済みの件です。ここからはAX戦略部様にバトンタッチします。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:16px">
+    <div class="box" style="border-color:#6b4fa0; background:#efe9f7; padding:20px 22px"><h4 style="color:#6b4fa0; font-size:16px">① AX戦略部様より　ご説明・質疑応答</h4><p style="color:var(--ink); font-size:13.5px">進行はAX戦略部様にお願いします。加盟店の皆様からの質問・ご要望は、この場で直接お聞きいただきます。</p></div>
+    <div class="box" style="border-color:#6b4fa0; background:#efe9f7; padding:20px 22px"><h4 style="color:#6b4fa0; font-size:16px">② ポータル改善アンケート（8/21 12:00締切）</h4><p style="color:var(--ink); font-size:13.5px">ご回答ありがとうございました。この場で追加のご意見・ご要望があれば承ります。</p></div>
+  </div>
+  <div class="foot"><span class="live">▶ 徳田より「ここからAX戦略部様にお願いします」とお繋ぎします</span></div>
+</div>
+
+<!-- 14 まとめ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">今日のまとめ</span><span class="pg">14 / 15</span></div>
+  <div class="tt">今日持ち帰るのは、たった1セット。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:12px">
+    <div class="flow">
+      <div class="st" style="padding:12px 8px; background:var(--p3bg); border-color:#e8cfae"><b style="color:var(--p3)">共感</b>まず認める</div>
+      <div class="ar">→</div>
+      <div class="st" style="padding:12px 8px"><b>復唱</b>受け止める</div>
+      <div class="ar">→</div>
+      <div class="st" style="padding:12px 8px"><b>関連質問</b>角度を変えて掘る</div>
+      <div class="ar">→</div>
+      <div class="st" style="padding:12px 8px; background:var(--winbg); border-color:#bfdcd5"><b style="color:var(--win)">また共感へ</b>循環させる</div>
+    </div>
+    <div class="say"><span class="lbl">次回8/28に向けて</span>今日決めた一手を、次の商談で1回試してください。次回は「間の取り方」と「テストクロージング」——引き出した本音を、迷わせず決断に導く技術です。</div>
+  </div>
+  <div class="foot"><span class="cap">説明力で勝負しなくていい。<b style="color:var(--navy)">「聴く力」が最強の武器になる。</b></span></div>
+</div>
+
+<!-- 15 次回予告 -->
+<div class="sl" style="justify-content:center; text-align:center">
+  <div class="top" style="justify-content:center"><span class="chip c0">次回</span></div>
+  <div style="font-size:16px; font-weight:700; color:var(--sub); margin:18px 0 8px; letter-spacing:.1em">2026.8.28（金）16:00〜</div>
+  <div style="font-size:40px; font-weight:800; margin:0 0 20px; letter-spacing:.02em">間を使いこなし、決断に導く。</div>
+  <div style="display:flex; gap:16px; margin:0 auto; width:640px">
+    <div style="flex:1; background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:8px; padding:18px 20px; text-align:left">
+      <div style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:6px">① 今日決めた一手の答え合わせ</div>
+      <div style="font-size:12.5px; color:var(--sub); line-height:1.7">共感・復唱・関連質問、どれを試したか</div>
+    </div>
+    <div style="flex:1; background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:8px; padding:18px 20px; text-align:left">
+      <div style="font-size:13px; font-weight:700; color:var(--navy); margin-bottom:6px">② 間の取り方・テストクロージング</div>
+      <div style="font-size:12.5px; color:var(--sub); line-height:1.7">沈黙を武器にする技術と、迷いを整理して決断に導く技術</div>
+    </div>
+  </div>
+  <div style="margin-top:26px; font-size:15px; color:var(--sub); font-style:italic">聞く力の次は、決めさせる力。</div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px">15 / 15</div>
+</div>
+
+</div>

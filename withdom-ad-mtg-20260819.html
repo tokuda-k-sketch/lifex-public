@@ -1,0 +1,569 @@
+<!doctype html>
+<title>WITHDOM Group株式会社様 広告運用ご相談</title>
+<meta charset="utf-8">
+<style>
+  :root{
+    --bg: #ffffff;
+    --bg-soft: #f5f7fa;
+    --bg-card: #ffffff;
+    --ink: #1c2536;
+    --ink-soft: #5b6474;
+    --line: #dfe3ea;
+    --accent: #274b7a;
+    --accent-soft: #e8eef7;
+    --amber: #a8672c;
+    --amber-soft: #faf1e6;
+  }
+  :root[data-theme="dark"]{
+    --bg: #ffffff;
+    --bg-soft: #f5f7fa;
+    --bg-card: #ffffff;
+    --ink: #1c2536;
+    --ink-soft: #5b6474;
+    --line: #dfe3ea;
+    --accent: #274b7a;
+    --accent-soft: #e8eef7;
+    --amber: #a8672c;
+    --amber-soft: #faf1e6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg: #ffffff;
+      --bg-soft: #f5f7fa;
+      --bg-card: #ffffff;
+      --ink: #1c2536;
+      --ink-soft: #5b6474;
+      --line: #dfe3ea;
+      --accent: #274b7a;
+      --accent-soft: #e8eef7;
+      --amber: #a8672c;
+      --amber-soft: #faf1e6;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    font-feature-settings: "palt";
+    margin: 0;
+    line-height: 1.7;
+  }
+  body {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 56px 40px 80px;
+  }
+  .eyebrow {
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    font-weight: 700;
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    margin: 0 0 6px;
+    text-wrap: balance;
+  }
+  .subhead {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    margin: 0 0 36px;
+  }
+  h2 {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0 0 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  h2 .num {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+  .section-lead {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+  }
+  section {
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+  }
+  section:first-of-type { border-top: none; padding-top: 0; }
+
+  /* 比較カード */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .card {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+  .card .tag {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .card .period {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .metric-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-top: 1px solid var(--line);
+  }
+  .metric-row:first-of-type { border-top: none; }
+  .metric-label { font-size: 13px; color: var(--ink-soft); }
+  .metric-value {
+    font-size: 20px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .metric-value .unit { font-size: 12.5px; font-weight: 500; color: var(--ink-soft); margin-left: 2px; }
+
+  /* 反響バー比較 */
+  .bar-compare {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 22px 24px 20px;
+    margin-bottom: 8px;
+  }
+  .bar-title { font-size: 12.5px; color: var(--ink-soft); margin-bottom: 16px; font-weight: 600; }
+  .bar-item { display: grid; grid-template-columns: 130px 1fr 70px; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .bar-item:last-child { margin-bottom: 0; }
+  .bar-item .label { font-size: 12.5px; color: var(--ink-soft); }
+  .bar-track { background: #e9ecf1; border-radius: 5px; height: 20px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 5px; }
+  .bar-fill.a { background: var(--accent); }
+  .bar-fill.b { background: var(--amber); }
+  .bar-num { font-size: 13.5px; font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+  .bar-note { font-size: 11.5px; color: var(--ink-soft); margin-top: 4px; }
+
+  /* 仮説ボックス */
+  .hypothesis {
+    background: var(--amber-soft);
+    border: 1px solid #ecd9bc;
+    border-radius: 10px;
+    padding: 18px 22px;
+    font-size: 13.5px;
+    color: var(--ink);
+  }
+  .hypothesis .htag {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+  }
+  .hypothesis ul { margin: 8px 0 0; padding-left: 18px; }
+  .hypothesis li { margin-bottom: 4px; }
+
+  /* 提案ブロック */
+  .proposal-box {
+    background: var(--accent-soft);
+    border: 1px solid #c9d8ec;
+    border-radius: 12px;
+    padding: 24px 26px;
+  }
+  .proposal-box .ptitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .proposal-box .plead {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+  }
+
+  /* 調整中ノート */
+  .adjust-note {
+    background: var(--bg-card);
+    border: 1px dashed #b9c6d6;
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .adjust-note .an-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    margin-right: 6px;
+  }
+
+  /* 数値の確認中マーク */
+  .pending-tag {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--amber);
+    background: var(--amber-soft);
+    border-radius: 4px;
+    padding: 1px 7px;
+    margin-left: 6px;
+    letter-spacing: 0.02em;
+    vertical-align: middle;
+  }
+
+  /* 理由カード（3カラム） */
+  .reason-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .reason-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 18px;
+  }
+  .reason-card .rk {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.03em;
+    margin-bottom: 8px;
+  }
+  .reason-card .rt {
+    font-size: 13.5px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .reason-card .rd {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  /* 選択肢比較表 */
+  table.vs {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  table.vs th, table.vs td {
+    padding: 12px 14px;
+    border-top: 1px solid var(--line);
+    text-align: left;
+    vertical-align: top;
+  }
+  table.vs thead th {
+    border-top: none;
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  table.vs th.row-label {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  table.vs td.col-a, table.vs th.col-a { background: var(--bg-soft); }
+  table.vs td.col-b, table.vs th.col-b { background: var(--accent-soft); }
+  table.vs .col-b-title { color: var(--accent); font-weight: 700; }
+  table.vs td.strong { font-weight: 700; }
+
+  /* 投資対効果 */
+  .invest-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .cpa-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+  .cpa-card .clabel { font-size: 12px; color: var(--ink-soft); margin-bottom: 8px; }
+  .cpa-card .cvalue { font-size: 28px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .cpa-card .cvalue .unit { font-size: 13px; font-weight: 500; color: var(--ink-soft); margin-left: 3px; }
+  .cpa-card .cnote { font-size: 12px; color: var(--ink-soft); margin-top: 8px; line-height: 1.6; }
+
+  .ask-list {
+    background: var(--bg-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 22px;
+  }
+  .ask-list .alabel { font-size: 11.5px; font-weight: 700; color: var(--ink-soft); margin-bottom: 10px; letter-spacing: 0.02em; }
+  .ask-list .ask-single { font-size: 13.5px; line-height: 1.7; }
+  .ask-list .blank { display: inline-block; min-width: 80px; border-bottom: 1px solid var(--ink-soft); margin: 0 2px; }
+
+  /* タイムライン */
+  .timeline {
+    display: flex;
+    gap: 0;
+  }
+  .tl-step {
+    flex: 1;
+    position: relative;
+    padding: 0 16px 0 0;
+  }
+  .tl-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 9px;
+    right: 0;
+    width: 16px;
+    height: 1px;
+    background: var(--line);
+  }
+  .tl-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10.5px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .tl-title { font-size: 13px; font-weight: 700; margin-bottom: 5px; }
+  .tl-desc { font-size: 12px; color: var(--ink-soft); line-height: 1.6; }
+
+  @media (max-width: 700px) {
+    .reason-grid { grid-template-columns: 1fr; }
+    .invest-row { grid-template-columns: 1fr; }
+    .timeline { flex-direction: column; gap: 18px; }
+    .tl-step:not(:last-child)::after { display: none; }
+    table.vs { font-size: 12px; }
+  }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 11.5px;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 600px) {
+    .compare { grid-template-columns: 1fr; }
+    body { padding: 36px 20px 60px; }
+  }
+</style>
+
+<p class="eyebrow">LIFEX 広告運用ミーティング　2026.08.19</p>
+<h1>WITHDOM Group株式会社様　広告運用に関するご相談</h1>
+<p class="subhead">直近の反響推移を踏まえた、広告運用体制についてのご提案</p>
+
+<section>
+  <h2><span class="num">01</span>これまでの反響推移</h2>
+  <p class="section-lead">本部運用期と、7月末以降の広告停止後の状況を並べて確認します。</p>
+
+  <div class="compare">
+    <div class="card">
+      <div class="tag">本部運用期（6〜7月・2ヶ月間）</div>
+      <div class="metric-row">
+        <span class="metric-label">会員登録数</span>
+        <span class="metric-value">55<span class="unit">件</span><span class="pending-tag">集計確認中</span></span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">月あたり広告費</span>
+        <span class="metric-value">30<span class="unit">万円</span></span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">月あたり登録数</span>
+        <span class="metric-value">27.5<span class="unit">件</span></span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="tag">広告停止後（7月末〜）</div>
+      <div class="metric-row">
+        <span class="metric-label">会員登録数</span>
+        <span class="metric-value">1<span class="unit">件</span></span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-label">状態</span>
+        <span class="metric-value" style="font-size:15px;">本部広告を停止中</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bar-compare">
+    <div class="bar-title">月あたり会員登録数（イメージ）</div>
+    <div class="bar-item">
+      <span class="label">本部運用期（月平均）</span>
+      <div class="bar-track"><div class="bar-fill a" style="width:100%;"></div></div>
+      <span class="bar-num">27.5件</span>
+    </div>
+    <div class="bar-item">
+      <span class="label">広告停止後</span>
+      <div class="bar-track"><div class="bar-fill b" style="width:3.6%;"></div></div>
+      <span class="bar-num">1件</span>
+    </div>
+    <div class="bar-note">※広告配信を停止いただいている期間の実績のため、本部運用期との単価の単純比較は行っていません。</div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">02</span>本部運用期になぜ55件の登録が生まれていたか</h2>
+  <p class="section-lead">月30万円という金額そのものより、その裏にある運用の中身に反響の差が出ています。</p>
+
+  <div class="reason-grid">
+    <div class="reason-card">
+      <div class="rk">01</div>
+      <div class="rt">加盟18社・23エリア分のデータ蓄積</div>
+      <div class="rd">本部運用は自社1エリアだけでなく、LIFEXネットワーク全体の配信結果を横断して学習しています。どの訴求・エリア設定が効くかの精度が、単独運用より高い状態からスタートできます。</div>
+    </div>
+    <div class="reason-card">
+      <div class="rk">02</div>
+      <div class="rt">複数店舗の実績を反映したLP・クリエイティブ</div>
+      <div class="rd">現在使用しているLPや訴求文言は、複数店舗での検証を踏まえて継続的に改善しているものです（現在もLPの個別化・本部サイトの改修を並行して進めています）。新たに一から構築される場合は、同水準に届くまでに検証のお時間をいただく形になります。</div>
+    </div>
+    <div class="reason-card">
+      <div class="rk">03</div>
+      <div class="rt">専任運用担当による日次調整</div>
+      <div class="rd">入札額・配信予算の配分は日々の数字を見ながら細かく調整しています。この調整頻度・精度を単独で維持するには、専任の工数確保が必要になります。</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">03</span>現在の状況について</h2>
+  <p class="section-lead">7月末より本部広告の配信を停止いただいている状態のため、反響が大きく落ち込んでいます。</p>
+
+  <div class="hypothesis">
+    <div class="htag">現状の整理</div>
+    <ul>
+      <li>7月末より本部からの広告配信を停止いただいており、現在は配信が止まっている状態にある</li>
+      <li>今後の運用（自社で行うか、本部へ継続いただくか）については、まだご検討・すり合わせの途中と認識している</li>
+      <li>配信を停止している以上、反響が生まれにくいのは自然な状況であり、貴社の取り組み自体の問題ではないと考えている</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">04</span>二つの選択肢</h2>
+  <p class="section-lead">今後、自社での運用に切り替える場合と、本部での運用を再開いただく場合を並べて整理します。</p>
+
+  <table class="vs">
+    <thead>
+      <tr>
+        <th class="row-label"></th>
+        <th class="col-a">自社運用へ切り替える場合</th>
+        <th class="col-a col-b-title">本部運用を再開する場合</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th class="row-label">月額費用</th>
+        <td class="col-a">貴社にて設定</td>
+        <td class="col-a strong">調整中（本部にてご案内）</td>
+      </tr>
+      <tr>
+        <th class="row-label">見込み反響</th>
+        <td class="col-a">実績なし・これから立ち上げ</td>
+        <td class="col-a strong">月27.5件相当（実績ベースの参考値）</td>
+      </tr>
+      <tr>
+        <th class="row-label">運用体制</th>
+        <td class="col-a">貴社側で工数・知見を新たに整備</td>
+        <td class="col-a">本部専任チームが継続運用</td>
+      </tr>
+      <tr>
+        <th class="row-label">学習データ・LP資産</th>
+        <td class="col-a">これから蓄積</td>
+        <td class="col-a">本部の蓄積を土台に継続運用</td>
+      </tr>
+      <tr>
+        <th class="row-label">切替の手間</th>
+        <td class="col-a">アカウント・LP等の新規整備が必要</td>
+        <td class="col-a">運用再開のご了承のみで完了</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="num">05</span>ご提案：広告運用の本部再開</h2>
+  <div class="proposal-box">
+    <div class="ptitle">本部運用期と同水準の広告費を確保する形で、配信を本部にて再開させていただきたく存じます</div>
+    <div class="plead">運用手数料を含めた月額の設定については、他店舗様との条件を踏まえて本部内で調整している段階です。</div>
+
+    <div class="adjust-note">
+      <span class="an-label">調整中</span>運用手数料込みの月額費用は、他店舗様にご案内している条件との整合を確認したうえで、あらためてご提示いたします。
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">06</span>広告費を投資として見た場合</h2>
+  <p class="section-lead">会員登録から先の来場・面談・契約への転換は店舗ごとに異なるため、この場で数字を伺えればと存じます。</p>
+
+  <div class="invest-row">
+    <div class="cpa-card">
+      <div class="clabel">本部運用期の登録1件あたり広告費<span class="pending-tag">集計確認中</span></div>
+      <div class="cvalue">10,909<span class="unit">円</span></div>
+      <div class="cnote">60万円（月30万円×2ヶ月）÷ 55件で算出（55件の集計方法は確認中）。この先の来場・面談への転換が見えると、広告費の投資対効果として評価しやすくなります。</div>
+    </div>
+    <div class="ask-list">
+      <div class="alabel">この場で伺いたい数字</div>
+      <div class="ask-single">会員登録いただいた件数のうち、来場・面談に至った件数（<span class="blank"></span>件）</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">07</span>今後の進め方</h2>
+  <p class="section-lead">本日ご了承いただけた場合の想定スケジュールです（配信再開までのリードタイムは本部側で要確認）。</p>
+
+  <div class="timeline">
+    <div class="tl-step">
+      <div class="tl-dot">1</div>
+      <div class="tl-title">本日：方針のご了承</div>
+      <div class="tl-desc">本部運用再開の方向性についてご確認いただく（費用は別途ご案内）</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-dot">2</div>
+      <div class="tl-title">条件のご案内</div>
+      <div class="tl-desc">運用手数料込みの月額費用を本部にて確定し、あらためてご案内</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-dot">3</div>
+      <div class="tl-title">配信再開</div>
+      <div class="tl-desc">本部の蓄積データをそのままに運用再開</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-dot">4</div>
+      <div class="tl-title">1ヶ月後：反響確認</div>
+      <div class="tl-desc">本部運用期の水準（月27.5件）を参考に、反響の推移を確認</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  WITHDOM Group株式会社様　広告運用ご相談資料　2026.08.19作成
+</footer>

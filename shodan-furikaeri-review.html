@@ -53,36 +53,6 @@
   .comment-box .saved{font-size:11.5px; color:var(--p2); opacity:0; transition:opacity .2s}
   .comment-box .saved.show{opacity:1}
   .refresh{font-size:12px; color:var(--navy); background:none; border:none; text-decoration:underline; cursor:pointer; padding:0}
-
-  /* AI採点（2026-08-18追加） */
-  .ai-status{font-size:11.5px; color:var(--sub); margin-top:14px}
-  .ai-error{font-size:12px; color:var(--leak); background:var(--leakbg); border-radius:7px; padding:9px 13px; margin-top:14px}
-  .ai-toggle{margin-top:14px; font-size:12.5px; font-weight:700; color:var(--navy); background:#fff; border:1px solid var(--navy); border-radius:7px; padding:7px 14px; cursor:pointer}
-  .ai-panel{display:none; margin-top:14px; border-top:1px dashed var(--line); padding-top:14px}
-  .ai-panel.open{display:block}
-  .ai-summary{font-size:12.5px; color:var(--ink); background:var(--panel); border-radius:8px; padding:10px 14px; margin-bottom:14px; line-height:1.7}
-  .ai-score-head{display:flex; align-items:center; gap:18px; margin-bottom:14px; flex-wrap:wrap}
-  .ai-ring{font-size:26px; font-weight:800; color:var(--navy); line-height:1}
-  .ai-ring .d{font-size:11px; color:var(--sub); font-weight:600; margin-left:3px}
-  .ai-subtotals{display:flex; gap:14px; font-size:12px; color:var(--sub)}
-  .ai-subtotals b{color:var(--ink)}
-  .ai-group-h{font-size:12.5px; font-weight:800; color:var(--navy); margin:14px 0 6px}
-  table.ai-items{width:100%; border-collapse:collapse; font-size:12px; margin-bottom:4px}
-  table.ai-items th{text-align:left; font-size:10.5px; color:var(--sub); font-weight:700; padding:5px 7px; border-bottom:1px solid var(--line)}
-  table.ai-items td{padding:8px 7px; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.6}
-  table.ai-items tr:last-child td{border-bottom:none}
-  .ai-itemname{font-weight:700; white-space:nowrap; width:96px}
-  .ai-score-cell{width:66px; font-weight:800; font-variant-numeric:tabular-nums; white-space:nowrap}
-  .ai-bar{height:6px; border-radius:99px; background:var(--line); overflow:hidden; width:46px; display:inline-block; vertical-align:middle; margin-right:6px}
-  .ai-bar i{display:block; height:100%; background:var(--navy); border-radius:99px}
-  .ai-na{color:var(--sub); font-size:11px; font-weight:400}
-  .ai-diff{margin-top:8px; border-radius:8px; padding:10px 13px; font-size:12px; line-height:1.6}
-  .ai-diff.open{background:var(--p2bg); border:1px solid #bfdcd5}
-  .ai-diff.locked{background:var(--panel); border:1px dashed var(--line); color:var(--sub)}
-  .ai-diff .lbl{font-size:10.5px; font-weight:800; margin-bottom:5px; display:block; color:inherit}
-  .ai-diff.open .lbl{color:var(--p2)}
-  .ai-flag{margin-top:10px; background:#f4eefc; border:1px solid #ddc9f5; border-radius:8px; padding:9px 13px; font-size:12px; color:#5b3a94}
-  .ai-flag b{color:#5b3a94}
 </style>
 
 <div class="wrap">
@@ -124,117 +94,13 @@
     return '';
   }
 
-  function aiStatusBadge(status){
-    if (!status) return '';
-    if (status === '完了') return '<span class="badge win">AI採点済み</span>';
-    if (status === '要確認（エラー）') return '<span class="badge lose">AI採点エラー</span>';
-    return '<span class="badge">AI採点待ち</span>';
-  }
-
-  // AI採点のnullを許容しない項目（PART A・B）／N/Aを許容する項目（PART C）を1行に描画
-  function aiItemRow(it, nullable){
-    if (!it) return '';
-    if (nullable && it.na) {
-      return '<tr><td class="ai-itemname">' + esc(it.key) + '</td>' +
-        '<td class="ai-score-cell ai-na">N/A</td>' +
-        '<td colspan="2" class="ai-na">' + nl2br(it.naReason || '音声データなしのため判定不可') + '</td></tr>';
-    }
-    const score = Number(it.score) || 0;
-    const pct = Math.round((score / 4) * 100);
-    return '<tr><td class="ai-itemname">' + esc(it.key) + '</td>' +
-      '<td class="ai-score-cell"><span class="ai-bar"><i style="width:' + pct + '%"></i></span>' + score + '/4</td>' +
-      '<td>' + nl2br(it.good) + '</td><td>' + nl2br(it.grow) + '</td></tr>';
-  }
-
-  function aiGroupTable(title, items, nullable){
-    if (!items || !items.length) return '';
-    const rows = items.map(function(it){ return aiItemRow(it, nullable); }).join('');
-    return '<div class="ai-group-h">' + esc(title) + '</div>' +
-      '<table class="ai-items"><tr><th>項目</th><th>スコア</th><th>良かった点</th><th>伸びしろ</th></tr>' + rows + '</table>';
-  }
-
-  function aiScoreSum(items){
-    let sum = 0, max = 0;
-    (items || []).forEach(function(it){
-      if (it && it.na) return;
-      sum += Number(it.score) || 0;
-      max += 4;
-    });
-    return { sum: sum, max: max };
-  }
-
-  function renderAiSection(en, isStoreView){
-    const status = en['AI採点ステータス'];
-    if (!status) return ''; // 録音・文字起こしとも未提出＝AI採点対象外
-
-    if (status === '未処理' || status === '処理中') {
-      return '<div class="ai-status">🤖 AI採点：処理待ちです。しばらくすると自動で反映されます。</div>';
-    }
-    if (status !== '完了') {
-      return '<div class="ai-error">AI採点でエラーが発生しました。お手数ですが本部にご確認ください。</div>';
-    }
-
-    let data;
-    try { data = JSON.parse(en['AI採点結果JSON']); } catch (e) { data = null; }
-    if (!data || data.error) {
-      return '<div class="ai-error">AI採点でエラーが発生しました。お手数ですが本部にご確認ください。</div>';
-    }
-
-    const a = aiScoreSum(data.partA), b = aiScoreSum(data.partB), c = aiScoreSum(data.partC);
-    const total = { sum: a.sum + b.sum + c.sum, max: a.max + b.max + c.max };
-
-    let html = '<button class="ai-toggle" type="button">🤖 AI採点結果を見る（' + total.sum + '/' + total.max + '点）</button>';
-    html += '<div class="ai-panel">';
-    if (data.summary) html += '<div class="ai-summary">' + nl2br(data.summary) + '</div>';
-    html += '<div class="ai-score-head"><div class="ai-ring">' + total.sum + '<span class="d">/ ' + total.max + '点</span></div>' +
-      '<div class="ai-subtotals"><span>PART A <b>' + a.sum + '/' + a.max + '</b></span>' +
-      '<span>PART B <b>' + b.sum + '/' + b.max + '</b></span>' +
-      '<span>PART C <b>' + c.sum + '/' + c.max + '</b></span></div></div>';
-
-    html += aiGroupTable('PART A｜ヒアリング力（人物金時敵）', data.partA, false);
-    html += aiGroupTable('PART B｜訴求力（LIFEXの勝ち筋4軸）', data.partB, false);
-    html += aiGroupTable('PART C｜商談の型の実践度', data.partC, true);
-
-    if (data.selfDiff) {
-      if (data.selfDiff.noticedStrengths) {
-        html += '<div class="ai-diff open"><span class="lbl">✓ 気づいていない強み</span>' + nl2br(data.selfDiff.noticedStrengths) + '</div>';
-      }
-      // 自己評価とのギャップは非公開情報。本部ビュー（トークンなし）には出さず、自店ビューのみに表示する
-      if (isStoreView && data.selfDiff.gapsPrivate) {
-        html += '<div class="ai-diff locked"><span class="lbl">🔒 自己評価とのギャップ（自店限定）</span>' + nl2br(data.selfDiff.gapsPrivate) + '</div>';
-      }
-    }
-
-    if (data.overallComment) {
-      html += '<div class="kv" style="margin-top:12px"><b>AIの総合コメント：</b>' + nl2br(data.overallComment) + '</div>';
-    }
-    if (data.nextOneChange) {
-      html += '<div class="decide-box"><b>次に変える1つ（AIより）：</b>' + nl2br(data.nextOneChange) + '</div>';
-    }
-    if (data.trainingCandidate && data.trainingCandidate.flag) {
-      html += '<div class="ai-flag"><b>★ 研修事例候補</b><br>' + nl2br(data.trainingCandidate.reason || '') + '</div>';
-    }
-
-    html += '</div>';
-    return html;
-  }
-
-  function wireAiToggles(){
-    document.querySelectorAll('.ai-toggle').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        btn.nextElementSibling.classList.toggle('open');
-      });
-    });
-  }
-
-  function renderCard(en, isStoreView){
+  function renderCard(en){
     const honne = String(en['本音チェック'] || '').split('、').filter(Boolean);
     const id = esc(en['ID']);
     return '<div class="card" data-id="' + id + '">' +
       '<div class="card-hd">' +
         '<span class="store">' + esc(en['店舗名']) + (en['支店'] ? '（' + esc(en['支店']) + '）' : '') + '</span>' +
         resultBadge(en['結果']) +
-        aiStatusBadge(en['AI採点ステータス']) +
         '<span class="meta2">' +
           (en['商談日'] ? '<span>商談日 ' + esc(en['商談日']) + '</span>' : '') +
           (en['対象のお客様'] ? '<span>' + esc(en['対象のお客様']) + '様</span>' : '') +
@@ -252,7 +118,6 @@
         (en['分かれ目の場面'] ? '<div class="kv"><b>分かれ目の場面：</b>' + nl2br(en['分かれ目の場面']) + '</div>' : '') +
         (honne.length ? '<div class="honne-chips">' + honne.map(function(h){ return '<span>' + esc(h) + '</span>'; }).join('') + '</div>' : '') +
         (en['次に変える1つ'] ? '<div class="decide-box"><b>次に変える1つ：</b>' + nl2br(en['次に変える1つ']) + (en['いつ誰で試すか'] ? '<br><span style="color:var(--sub)">' + nl2br(en['いつ誰で試すか']) + '</span>' : '') + '</div>' : '') +
-        renderAiSection(en, isStoreView) +
         '<div class="comment-box">' +
           '<span class="lbl">上司からのコメント</span>' +
           '<textarea placeholder="ここにコメントを書いて保存してください">' + esc(en['店長コメント']) + '</textarea>' +
@@ -311,9 +176,8 @@
         listEl.innerHTML = '<div class="state">まだ提出がありません。</div>';
         return;
       }
-      listEl.innerHTML = data.entries.map(function(en){ return renderCard(en, data.isStoreView); }).join('');
+      listEl.innerHTML = data.entries.map(renderCard).join('');
       wireComments();
-      wireAiToggles();
     }).catch(function(){
       listEl.innerHTML = '<div class="state">通信エラーです。時間をおいて再度お試しください。<br><button class="refresh" onclick="load()">再読み込み</button></div>';
     });

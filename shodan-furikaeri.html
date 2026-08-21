@@ -200,20 +200,6 @@
       </div>
     </div>
 
-    <!-- PART 5 AI採点用データ（任意） -->
-    <div class="sec">
-      <div class="sec-h"><span class="no">任意</span><h2>AIに自動採点してほしい場合</h2></div>
-      <p class="sec-note">録音・録画のリンク、または文字起こしのどちらかを入れると、AIがこの商談を15項目で自動採点します（結果は一覧ページの詳細パネルに後で表示されます）。不要な場合は空欄のまま提出してください。</p>
-      <div class="q">
-        <div class="ask">録音・録画ファイルのGoogleドライブ共有リンク<span class="sub">共有設定を「リンクを知っている人は閲覧可」にしてから貼り付けてください</span></div>
-        <input type="text" class="free" id="f-recording-url" style="width:100%; border:1px solid var(--line); border-radius:7px; background:#fcfdfe; font:inherit; font-size:13.5px; padding:9px 12px; color:var(--ink);" placeholder="https://drive.google.com/...">
-      </div>
-      <div class="q" style="margin-bottom:0">
-        <div class="ask">文字起こしテキスト<span class="sub">録音の用意が難しい場合はこちらだけでも採点できます</span></div>
-        <textarea class="free" id="f-transcript" rows="6" placeholder="商談の文字起こしを貼り付けてください"></textarea>
-      </div>
-    </div>
-
   </div>
 
   <div class="foot">
@@ -277,9 +263,7 @@
       turningPoint: document.getElementById('f-turning').value,
       honneChecks: Array.from(document.querySelectorAll('input[name=honne]:checked')).map(function(c){ return c.value; }),
       nextAction: document.getElementById('f-next').value,
-      nextWhen: document.getElementById('f-when').value,
-      recordingUrl: document.getElementById('f-recording-url').value,
-      transcriptText: document.getElementById('f-transcript').value
+      nextWhen: document.getElementById('f-when').value
     };
 
     btn.disabled = true;
