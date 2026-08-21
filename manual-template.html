@@ -1,0 +1,267 @@
+<title>商談ふりかえりシート 利用マニュアル</title>
+<style>
+  :root{
+    --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+    --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+    --p2:#2e7d6e; --p2bg:#e7f2ef; --leak:#b3372b; --leakbg:#fbe9e7;
+    --amber:#8a5a00; --amberbg:#fdf3dd; --amberln:#ecd9a8;
+  }
+  *{box-sizing:border-box}
+  body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif; color:var(--ink);
+    background:#eef2f6; margin:0; line-height:1.7; font-feature-settings:"palt"}
+  .page{width:210mm; margin:20px auto; background:#fff; border-radius:6px;
+    box-shadow:0 2px 18px rgba(20,40,60,.09); padding:20mm 18mm 16mm; position:relative;
+    page-break-after:always}
+  .page:last-child{page-break-after:auto}
+
+  /* 表紙 */
+  .cover{display:flex; flex-direction:column; justify-content:center; align-items:center; height:257mm; text-align:center}
+  .cover .eyebrow{font-size:13px; letter-spacing:.2em; color:var(--sub); font-weight:700}
+  .cover h1{font-size:34px; font-weight:800; margin:22px 0 10px; letter-spacing:.02em}
+  .cover .lead{font-size:15px; color:var(--sub); max-width:420px; line-height:1.9}
+  .cover .store-box{margin-top:46px; border:2px solid var(--navy); border-radius:10px; padding:20px 46px; background:var(--navy-soft)}
+  .cover .store-box .lbl{font-size:11px; letter-spacing:.14em; color:var(--navy); font-weight:700}
+  .cover .store-box .name{font-size:24px; font-weight:800; color:var(--navy); margin-top:6px}
+  .cover .date{margin-top:40px; font-size:12.5px; color:var(--sub)}
+
+  /* 章見出し */
+  .part-tag{display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:.1em;
+    padding:5px 16px; border-radius:99px; margin-bottom:14px}
+  .part-tag.staff{background:var(--navy-soft); color:var(--navy)}
+  .part-tag.chief{background:var(--p2bg); color:var(--p2)}
+  h2.sec-title{font-size:23px; font-weight:800; margin:0 0 6px; letter-spacing:.01em}
+  .sec-lead{font-size:13.5px; color:var(--sub); margin:0 0 22px; line-height:1.8}
+
+  .step{display:flex; gap:14px; margin-bottom:18px}
+  .step .num{flex-shrink:0; width:30px; height:30px; border-radius:50%; background:var(--navy); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px}
+  .step .body{flex:1; padding-top:3px}
+  .step .body b{font-size:14.5px; color:var(--ink)}
+  .step .body p{margin:4px 0 0; font-size:13px; color:var(--sub); line-height:1.75}
+
+  .shot{border:1px solid var(--line); border-radius:10px; overflow:hidden; margin:14px auto 16px; box-shadow:0 1px 8px rgba(20,40,60,.06);
+    text-align:center; max-width:fit-content}
+  .shot img{display:block; max-width:100%; max-height:95mm; width:auto; height:auto}
+  .shot-cap{font-size:11.5px; color:var(--sub); text-align:center; margin-top:-8px; margin-bottom:16px}
+
+  .note{background:var(--amberbg); border:1px solid var(--amberln); border-radius:8px; padding:12px 16px; font-size:12.5px; color:#6b4a00; margin:16px 0}
+  .note b{color:var(--amber)}
+  .tip{background:var(--p2bg); border:1px solid #bfdcd5; border-radius:8px; padding:12px 16px; font-size:12.5px; color:#1c5c4f; margin:16px 0}
+  .tip b{color:var(--p2)}
+
+  /* URL一覧 */
+  .url-card{border:2px solid var(--navy); border-radius:12px; padding:22px 26px; background:var(--navy-soft); margin-bottom:18px}
+  .url-card.chief{border-color:var(--p2); background:var(--p2bg)}
+  .url-card .tag{font-size:11px; font-weight:700; letter-spacing:.1em; color:var(--navy)}
+  .url-card.chief .tag{color:var(--p2)}
+  .url-card h3{font-size:17px; font-weight:800; margin:6px 0 8px; color:var(--ink)}
+  .url-card p{font-size:12.5px; color:var(--sub); margin:0 0 12px; line-height:1.7}
+  .url-box{background:#fff; border:1px solid var(--line); border-radius:7px; padding:12px 16px; font-size:12.5px;
+    color:var(--blue); word-break:break-all; font-family:"Courier New",monospace}
+
+  /* 複数支店（複数URL）用のコンパクト表示 */
+  .url-card.compact{padding:9px 16px; margin-bottom:6px}
+  .url-card.compact .tag{font-size:9.5px}
+  .url-card.compact h3{font-size:13px; margin:2px 0 4px}
+  .url-card.compact p{font-size:10.5px; margin:0 0 5px; line-height:1.5}
+  .url-card.compact .url-box{padding:6px 10px; font-size:10.5px}
+
+  /* Q&A */
+  .qa{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin-bottom:12px; background:#fff}
+  .qa .q{font-size:13.5px; font-weight:800; color:var(--navy); margin-bottom:5px}
+  .qa .q::before{content:"Q. "; color:var(--sub); font-weight:800}
+  .qa .a{font-size:12.5px; color:var(--ink); line-height:1.75}
+  .qa .a::before{content:"A. "; color:var(--p2); font-weight:800}
+
+  .pf{position:absolute; bottom:12mm; left:18mm; right:18mm; display:flex; justify-content:space-between;
+    font-size:10.5px; color:#b6c0ca; border-top:1px solid var(--line); padding-top:8px}
+
+  @page{ size: A4; margin: 0; }
+  @media print{
+    body{background:#fff}
+    .page{box-shadow:none; margin:0; border-radius:0; width:auto}
+  }
+</style>
+
+<!-- 表紙 -->
+<div class="page">
+  <div class="cover">
+    <div class="eyebrow">LIFEX 月2棟プロジェクト</div>
+    <h1>商談ふりかえりシート<br>利用マニュアル</h1>
+    <p class="lead">営業担当の方の「記入・提出」から、店長・管理者の方の「閲覧・コメント」まで。<br>このマニュアル1冊で使い方が分かります。</p>
+    <div class="store-box">
+      <div class="lbl">ご利用加盟店様</div>
+      <div class="name">{{STORE_LABEL}}　様</div>
+    </div>
+    <div class="date">発行：{{ISSUE_DATE}}　LIFEX FC事業部</div>
+  </div>
+</div>
+
+<!-- 1. 記入の仕方 -->
+<div class="page">
+  <span class="part-tag staff">営業担当の方へ ①</span>
+  <h2 class="sec-title">記入の仕方</h2>
+  <p class="sec-lead">商談が終わったあと（できれば当日中に）、下記のURLを開いて記入します。録画を見返しながらでも、記憶をたどりながらでも構いません。</p>
+
+  <div class="step">
+    <div class="num">1</div>
+    <div class="body"><b>店舗名・商談日・お客様名・結果を入力</b>
+      <p>店舗名は必須です。複数の店舗をお持ちの会社様は「支店」欄に支店名も入れてください（例：鳥取店）。1店舗のみの会社様は空欄で構いません。</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">2</div>
+    <div class="body"><b>「人物金時敵」の5つの視点を埋める</b>
+      <p>左＝今回つかめたこと、右＝まだ掘れていない・次に聞くこと、を書きます。<b>全部埋める必要はありません。</b>右側の空欄が多いほど「次に何を聞けばいいか」が見えてくる、という趣旨のシートです。空欄のまま提出して問題ありません。</p>
+    </div>
+  </div>
+
+  <div class="shot"><img src="{{SHOT_INPUT}}"></div>
+  <div class="shot-cap">記入画面（人物金時敵の入力例）</div>
+
+  <div class="step">
+    <div class="num">3</div>
+    <div class="body"><b>PART2（鉄板トークの型）は読むだけでOK</b>
+      <p>ここは記入欄ではなく、深掘りの会話例を紹介しているパートです。参考にしてPART1・3・4を埋めてください。</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">4</div>
+    <div class="body"><b>PART3（分かれ目と本音）・PART4（次に変える1つ）を記入</b>
+      <p>商談の流れが決まった瞬間のセリフや、次の商談で変えることを1つだけ書きます。ここは箇条書きでなく、実際の言葉で書くほど後で見返したときに役立ちます。</p>
+    </div>
+  </div>
+
+  <div class="pf"><span>商談ふりかえりシート 利用マニュアル</span><span>1 / {{TOTAL_PAGES}}</span></div>
+</div>
+
+<!-- 2. 提出のしかた -->
+<div class="page">
+  <span class="part-tag staff">営業担当の方へ ②</span>
+  <h2 class="sec-title">「提出する」ボタンの使い方</h2>
+  <p class="sec-lead">書き終えたら、画面いちばん下の3つのボタンを使います。</p>
+
+  <div class="shot"><img src="{{SHOT_FOOTER}}"></div>
+  <div class="shot-cap">画面下部のボタン（提出する／印刷・PDF保存／入力をリセット）</div>
+
+  <div class="step">
+    <div class="num">1</div>
+    <div class="body"><b>「提出する」を押す</b>
+      <p>店舗名だけ入力されていれば提出できます。押すと本部・店長が見られる一覧に記録され、<b>入力欄は自動で空になります。</b>次に使う人と内容が混ざる心配はありません。</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">2</div>
+    <div class="body"><b>個人の控えが欲しいときは、提出「前」に印刷</b>
+      <p>「印刷 / PDF保存」ボタンを押すと、その場でPDF保存できます。提出すると入力欄が空になるため、<b>控えが必要な場合は提出する前に</b>このボタンを使ってください。</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">3</div>
+    <div class="body"><b>「入力をリセット」は書き直したいときに</b>
+      <p>提出せずに最初から書き直したい場合に使います。全ての入力欄が空になります。</p>
+    </div>
+  </div>
+
+  <div class="note"><b>間違えて提出してしまったら：</b>ご自身で内容を削除する機能は今のところありません。お手数ですが、担当の徳田までご連絡ください。</div>
+
+  <div class="pf"><span>商談ふりかえりシート 利用マニュアル</span><span>2 / {{TOTAL_PAGES}}</span></div>
+</div>
+
+<!-- 3. 一覧ページの見方 -->
+<div class="page">
+  <span class="part-tag chief">店長・管理者の方へ ①</span>
+  <h2 class="sec-title">一覧ページの見方</h2>
+  <p class="sec-lead">営業担当が提出したふりかえりは、貴社専用のURL（このマニュアル最終ページに記載）で確認できます。</p>
+
+  <div class="shot"><img src="{{SHOT_REVIEW}}"></div>
+  <div class="shot-cap">一覧・コメントページ（自店の提出だけが表示されます）</div>
+
+  <div class="step">
+    <div class="num">1</div>
+    <div class="body"><b>専用URLを開く</b>
+      <p>最終ページの「一覧・コメント用URL」を開くと、<b>貴社の営業担当が提出した分だけ</b>が新しい順に並びます。他社の内容は表示されません。</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">2</div>
+    <div class="body"><b>内容を確認する</b>
+      <p>人物金時敵の5視点・分かれ目の場面・次に変える1つ、など提出内容がそのままカード形式で表示されます。</p>
+    </div>
+  </div>
+
+  <div class="tip"><b>URLの取り扱いについて：</b>このURLは貴社専用です。第三者に共有しないようお願いいたします。</div>
+
+  <div class="pf"><span>商談ふりかえりシート 利用マニュアル</span><span>3 / {{TOTAL_PAGES}}</span></div>
+</div>
+
+<!-- 4. コメントの残し方 -->
+<div class="page">
+  <span class="part-tag chief">店長・管理者の方へ ②</span>
+  <h2 class="sec-title">コメントの残し方</h2>
+  <p class="sec-lead">各提出カードの下に、コメントを書く欄があります。</p>
+
+  <div class="step">
+    <div class="num">1</div>
+    <div class="body"><b>「上司からのコメント」欄に入力</b>
+      <p>アドバイスや次にやってほしいことなどを自由に書いてください。</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">2</div>
+    <div class="body"><b>「コメントを保存」ボタンを押す</b>
+      <p>これだけで保存が完了します。営業担当が印刷して見返す際にも、このコメントが反映されます。</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="num">3</div>
+    <div class="body"><b>いつでも書き直せます</b>
+      <p>同じ提出に何度でもコメントを上書きできます。最新の内容だけが保存されます。</p>
+    </div>
+  </div>
+
+  <div class="note"><b>ページの更新について：</b>新しい提出があったかどうかは、ページを再読み込みすると最新の状態が表示されます。</div>
+
+  <div class="pf"><span>商談ふりかえりシート 利用マニュアル</span><span>4 / {{TOTAL_PAGES}}</span></div>
+</div>
+
+<!-- よくある質問 -->
+<div class="page">
+  <span class="part-tag staff">よくある質問</span>
+  <h2 class="sec-title">Q&amp;A</h2>
+  <p class="sec-lead">ご不明点は、まずこちらをご確認ください。</p>
+
+  <div class="qa"><div class="q">「支店」欄には何を書けばいいですか？</div><div class="a">複数の店舗・支店をお持ちの会社様のみご記入ください。1店舗の会社様は空欄で大丈夫です。</div></div>
+  <div class="qa"><div class="q">全部の項目を埋めないと提出できませんか？</div><div class="a">店舗名以外は空欄でも提出できます。「まだ掘れていない」ことが分かるだけでも十分な記録になります。</div></div>
+  <div class="qa"><div class="q">1つの商談を複数人で分担して記入できますか？</div><div class="a">現在は1回の入力を1人で完結する仕様です。分担が必要な場合は、いったん印刷してから手元で内容をまとめ、代表者が入力・提出してください。</div></div>
+  <div class="qa"><div class="q">スマートフォンでも使えますか？</div><div class="a">閲覧・入力は可能ですが、表が横に広いためパソコンやタブレットでのご利用を推奨します。</div></div>
+  <div class="qa"><div class="q">提出した内容は誰が見られますか？</div><div class="a">貴社の店長・管理者様（専用URLをお持ちの方）と、LIFEX本部が確認できます。他の加盟店様には公開されません。</div></div>
+  <div class="qa"><div class="q">URLを忘れてしまったら？</div><div class="a">担当の徳田までご連絡ください。再度お送りします。</div></div>
+
+  <div class="pf"><span>商談ふりかえりシート 利用マニュアル</span><span>5 / {{TOTAL_PAGES}}</span></div>
+</div>
+
+<!-- URL一覧 -->
+<div class="page">
+  <span class="part-tag staff">ご利用URL</span>
+  <h2 class="sec-title">{{STORE_LABEL}} 様　専用URL</h2>
+  <p class="sec-lead">ブックマーク（お気に入り）への登録をおすすめします。</p>
+
+  <div class="url-card">
+    <div class="tag">営業担当の方が使う</div>
+    <h3>①　商談ふりかえりシート（記入・提出用）</h3>
+    <p>全店共通のURLです。記入して「提出する」を押すと、貴社専用の一覧に記録されます。</p>
+    <div class="url-box">{{SUBMIT_URL}}</div>
+  </div>
+
+  <div class="url-card chief">
+    <div class="tag">店長・管理者の方が使う</div>
+    <h3>②　一覧・コメントページ（貴社専用）</h3>
+    <p>貴社の提出内容だけが表示される専用URLです。第三者に共有しないでください。</p>
+    <div class="url-box">{{REVIEW_URL}}</div>
+  </div>
+
+  <div class="note"><b>ご不明な点があれば：</b>LIFEX FC事業部 徳田までお気軽にご連絡ください。</div>
+
+  <div class="pf"><span>商談ふりかえりシート 利用マニュアル</span><span>{{TOTAL_PAGES}} / {{TOTAL_PAGES}}</span></div>
+</div>
