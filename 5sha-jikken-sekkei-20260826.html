@@ -1,0 +1,651 @@
+<title>5社実験設計 ― 10月答え合わせへの設計図</title>
+<style>
+  :root{
+    --ink:#16202B;
+    --ink-soft:#3D4A57;
+    --paper:#F4F5F7;
+    --card:#FFFFFF;
+    --line:#D9DDE3;
+    --line-soft:#E7EAEF;
+    --blue:#274B8E;
+    --blue-soft:#5C7BB5;
+    --blue-wash:#EAEFF7;
+    --gold:#B7822E;
+    --gold-wash:#F6EEDD;
+    --good:#2F7A4F;
+    --good-wash:#EEF7F1;
+    --warn:#B3372B;
+    --warn-wash:#FBE9E7;
+    --mute:#7A8593;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);}
+  .wrap{
+    font-family:"Yu Gothic","YuGothic","Hiragino Kaku Gothic ProN","Noto Sans JP","Meiryo",sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+    padding:24px;
+  }
+  .sheet{
+    max-width:1180px;
+    margin:0 auto;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:4px;
+    box-shadow:0 1px 0 rgba(22,32,43,.03),0 12px 32px -20px rgba(22,32,43,.28);
+    overflow:hidden;
+  }
+  header{
+    padding:22px 30px 18px;
+    border-bottom:2px solid var(--ink);
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+  }
+  .eyebrow{
+    font-size:11px;letter-spacing:.18em;font-weight:700;color:var(--blue);
+    text-transform:uppercase;margin:0 0 6px;
+  }
+  h1{
+    font-size:23px;line-height:1.3;margin:0;font-weight:800;letter-spacing:.01em;
+    text-wrap:balance;
+  }
+  .thesis{margin:9px 0 0;font-size:13.5px;color:var(--ink-soft);font-weight:600;max-width:900px;}
+  .thesis b{color:var(--gold);font-weight:800;}
+  .byline{text-align:right;font-size:11px;color:var(--mute);line-height:1.7;white-space:nowrap;}
+  .byline .who{color:var(--ink);font-weight:700;font-size:12px;}
+  .body{padding:20px 30px 12px;}
+  .sec-label{display:flex;align-items:center;gap:10px;margin:0 0 12px;}
+  .sec-label .no{
+    font-size:11px;font-weight:800;color:#fff;background:var(--ink);
+    width:20px;height:20px;border-radius:3px;display:grid;place-items:center;flex-shrink:0;
+  }
+  .sec-label h2{font-size:15px;margin:0;font-weight:800;letter-spacing:.02em;}
+  .sec-label .hint{font-size:11px;color:var(--mute);margin-left:2px;font-weight:600;}
+
+  /* ---- 前回FB振り返り ---- */
+  .recap{
+    display:flex;gap:14px;align-items:flex-start;
+    background:var(--blue-wash);border-left:3px solid var(--blue);
+    border-radius:0 4px 4px 0;padding:13px 16px;margin-bottom:14px;
+    font-size:12px;color:var(--ink-soft);font-weight:600;line-height:1.8;
+  }
+  .recap b{color:var(--blue);}
+  .change-note{
+    display:flex;gap:14px;align-items:flex-start;
+    background:var(--gold-wash);border-left:3px solid var(--gold);
+    border-radius:0 4px 4px 0;padding:11px 16px;margin-bottom:26px;
+    font-size:12px;color:var(--ink-soft);font-weight:600;line-height:1.75;
+  }
+  .change-note b{color:var(--gold);}
+
+  /* ---- 1行サマリー表 ---- */
+  .summary-table{width:100%;border-collapse:separate;border-spacing:0;margin-bottom:8px;font-size:12px;}
+  .summary-table th{
+    text-align:left;font-size:10.5px;color:var(--mute);font-weight:800;letter-spacing:.03em;
+    padding:0 12px 8px;border-bottom:2px solid var(--ink);white-space:nowrap;
+  }
+  .summary-table td{
+    padding:11px 12px;border-bottom:1px solid var(--line-soft);vertical-align:top;font-weight:600;color:var(--ink-soft);
+  }
+  .summary-table tr:last-child td{border-bottom:1px solid var(--line);}
+  .summary-table .store-cell{white-space:nowrap;}
+  .summary-table .store-name{font-weight:800;color:var(--ink);font-size:13px;}
+  .summary-table .store-tag{
+    display:block;margin-top:3px;font-size:9.5px;font-weight:800;color:#fff;background:var(--blue-soft);
+    padding:1px 6px;border-radius:20px;display:inline-block;
+  }
+  .summary-table .store-tag.warn{background:var(--warn);}
+  .summary-table .n-small{color:var(--warn);font-size:10px;font-weight:700;display:block;margin-top:3px;}
+  .summary-table .arrival{color:var(--ink);font-weight:800;}
+  .summary-table .draft{font-size:9.5px;color:var(--mute);font-weight:700;margin-left:4px;}
+
+  .roadnote{
+    font-size:11px;color:var(--ink-soft);margin:14px 0 26px;padding:9px 12px;
+    background:var(--gold-wash);border-left:3px solid var(--gold);border-radius:0 4px 4px 0;
+    font-weight:600;line-height:1.65;
+  }
+  .roadnote b{color:var(--gold);}
+
+  /* ---- グループ見出し ---- */
+  .group-head{
+    display:flex;align-items:baseline;gap:10px;margin:0 0 12px;padding:8px 14px;
+    background:var(--paper);border:1px solid var(--line);border-radius:5px;
+  }
+  .group-head .gname{font-size:13.5px;font-weight:800;color:var(--ink);}
+  .group-head .gdesc{font-size:11px;color:var(--ink-soft);font-weight:600;}
+
+  /* ---- 店舗カード ---- */
+  .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px;}
+  .duo{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:10px;}
+  .kcard{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff;display:flex;flex-direction:column;}
+  .kcard-top{padding:12px 15px 11px;border-bottom:1px solid var(--line-soft);background:var(--blue-wash);}
+  .kcard.is-lead .kcard-top{background:var(--gold-wash);}
+  .kcard.is-thin .kcard-top{background:var(--warn-wash);}
+  .kcard-top .badge{
+    display:inline-block;font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px;
+    background:var(--blue);color:#fff;margin-bottom:6px;letter-spacing:.02em;margin-right:5px;
+  }
+  .kcard.is-lead .kcard-top .badge{background:var(--gold);}
+  .kcard.is-thin .kcard-top .badge.thin{background:var(--warn);}
+  .kcard-top .name{font-size:15px;font-weight:800;}
+  .kcard-top .who{font-size:11px;color:var(--ink-soft);font-weight:700;margin-top:1px;}
+  .kcard-top .diag{font-size:11px;color:var(--ink-soft);font-weight:600;margin-top:7px;line-height:1.6;}
+  .kcard-top .diag b{color:var(--ink);}
+
+  .funnel{
+    display:flex;align-items:center;justify-content:space-between;gap:2px;
+    padding:11px 12px 10px;border-bottom:1px solid var(--line-soft);background:#FAFBFC;
+  }
+  .funnel .st{display:flex;flex-direction:column;align-items:center;flex:1;}
+  .funnel .st .n{font-size:16px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--ink);}
+  .funnel .st .l{font-size:9px;color:var(--mute);font-weight:700;margin-top:1px;}
+  .funnel .arw{color:var(--line);font-size:12px;font-weight:700;padding:0 1px;}
+
+  .kgate{padding:10px 15px 12px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .kgate .row{display:flex;flex-direction:column;gap:3px;}
+  .kgate .row-head{display:flex;align-items:baseline;justify-content:space-between;font-size:11.5px;flex-wrap:wrap;gap:2px;}
+  .kgate .row-head .lab{color:var(--ink-soft);font-weight:700;}
+  .kgate .row-head .num{font-variant-numeric:tabular-nums;font-weight:800;}
+  .kgate .row-head .num small{font-size:10px;color:var(--mute);font-weight:600;}
+  .kgate .bar-track{height:6px;background:var(--line-soft);border-radius:3px;position:relative;overflow:hidden;}
+  .kgate .bar-fill{height:100%;border-radius:3px;background:var(--blue);}
+  .kgate .bar-hq{
+    position:absolute;top:-4px;bottom:-4px;width:0;border-left:2px dashed var(--blue-soft);
+  }
+  .kgate .tag-ok{color:var(--good);font-weight:800;}
+  .kgate .tag-gap{color:var(--warn);font-weight:800;}
+  .kgate .tag-na{color:var(--mute);font-weight:700;}
+
+  .kcard-note{
+    padding:10px 15px 12px;font-size:11px;color:var(--ink-soft);font-weight:600;line-height:1.65;
+    background:var(--paper);border-top:1px dashed var(--line);
+  }
+  .kcard-note b{color:var(--ink);}
+  .kcard-note .exp{
+    margin-top:7px;padding-top:7px;border-top:1px solid var(--line-soft);
+  }
+  .kcard-note .exp b{color:var(--blue);}
+
+  .thin-warn{
+    font-size:10px;font-weight:700;color:var(--warn);background:var(--warn-wash);
+    padding:5px 10px;margin:0 15px 10px;border-radius:4px;line-height:1.5;
+  }
+
+  /* ---- 共通施策 ---- */
+  .common-band{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 6px;}
+  .abox{border:1px solid var(--line);border-radius:6px;padding:12px 15px;background:#fff;}
+  .abox h4{margin:0 0 7px;font-size:12.5px;font-weight:800;display:flex;align-items:center;gap:7px;}
+  .abox h4 .ico{
+    width:18px;height:18px;border-radius:3px;background:var(--blue);color:#fff;font-size:10px;
+    display:grid;place-items:center;flex-shrink:0;
+  }
+  .abox ul{margin:0;padding-left:15px;}
+  .abox li{font-size:11px;color:var(--ink-soft);font-weight:600;line-height:1.65;margin-bottom:4px;}
+  .abox li:last-child{margin-bottom:0;}
+  .abox li b{color:var(--ink);}
+
+  /* ---- 支援→棟数の骨格 ---- */
+  .roi-frame{
+    border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-bottom:10px;background:#fff;
+  }
+  .roi-formula{
+    display:flex;align-items:center;justify-content:center;gap:14px;
+    padding:20px 20px 16px;background:var(--blue-wash);flex-wrap:wrap;
+  }
+  .roi-box{
+    background:#fff;border:1px solid var(--line);border-radius:6px;padding:10px 16px;text-align:center;min-width:130px;
+  }
+  .roi-box .lab{font-size:10px;color:var(--mute);font-weight:700;margin-bottom:3px;}
+  .roi-box .val{font-size:16px;font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;}
+  .roi-box .val.tbd{color:var(--mute);font-size:13px;}
+  .roi-arrow{font-size:18px;color:var(--blue);font-weight:800;}
+  .roi-result{
+    background:var(--gold-wash);border:1px solid var(--gold);
+  }
+  .roi-result .val{color:var(--gold);}
+  .roi-detail{padding:12px 16px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .roi-detail .item{font-size:10.5px;color:var(--ink-soft);font-weight:600;text-align:center;}
+  .roi-detail .item .num{display:block;font-size:11px;font-weight:800;color:var(--blue);margin-bottom:2px;}
+
+  /* ---- 支援モデル マトリクス ---- */
+  .model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:6px;}
+  .mtype{border-radius:6px;overflow:hidden;border:1px solid var(--line);}
+  .mtype-head{padding:10px 14px 9px;font-weight:800;font-size:12.5px;color:#fff;}
+  .mtype.a .mtype-head{background:var(--warn);}
+  .mtype.b .mtype-head{background:var(--blue);}
+  .mtype.c .mtype-head{background:var(--gold);}
+  .mtype-body{padding:11px 14px 13px;background:#fff;font-size:11px;color:var(--ink-soft);font-weight:600;line-height:1.7;}
+  .mtype-body .stores{
+    font-size:10px;color:var(--ink);font-weight:800;margin-bottom:7px;padding-bottom:7px;
+    border-bottom:1px dashed var(--line);
+  }
+  .mtype-body b{color:var(--ink);}
+
+  footer{
+    padding:12px 30px 20px;border-top:1px solid var(--line-soft);margin-top:14px;
+    display:flex;justify-content:space-between;gap:20px;align-items:flex-start;
+  }
+  .legend{font-size:10.5px;color:var(--mute);line-height:1.7;max-width:850px;}
+  .legend b{color:var(--ink-soft);}
+  .stamp{font-size:10.5px;color:var(--mute);text-align:right;line-height:1.7;white-space:nowrap;}
+  .prov{color:var(--gold);font-weight:700;}
+
+  @media (max-width:980px){
+    .trio,.duo,.common-band,.model-grid,.roi-detail{grid-template-columns:1fr;}
+    header{flex-direction:column;align-items:flex-start;}
+    .byline{text-align:left;}
+    .summary-table{font-size:11px;}
+  }
+  @media print{
+    .wrap{padding:0;background:#fff;}
+    .sheet{border:none;box-shadow:none;max-width:none;}
+    @page{size:A4 landscape;margin:10mm;}
+  }
+</style>
+
+<div class="wrap">
+  <div class="sheet">
+
+    <header>
+      <div>
+        <p class="eyebrow">来期目標設定資料 ／ 8月中間報告 Part2</p>
+        <h1>5社実験設計 ― 10月に「何を変えたら何が変わったか」を答え合わせする</h1>
+        <p class="thesis">前回8/21のFBを受け「分析」から「実験」へ。3社を5社に拡大し、各社「現状→今回打つ施策→10月到達ライン」を1行で明示。<b>ゴールは5社の数字改善だけでなく、加盟店をタイプ別に診断しボトルネック別の支援を当てる「LIFEX加盟店支援モデル」を作ること。</b></p>
+      </div>
+      <div class="byline">
+        <div class="who">BtoB事業部　LIFEX FC担当　徳田</div>
+        丸山顧問MTG<br>
+        2026年8月26日（KPIは8月25日時点）
+      </div>
+    </header>
+
+    <div class="body">
+
+      <div class="recap">
+        <div><b>前回（8/21）丸山顧問FB：</b>3社確定とボトルネック分類（量不足／初動不足／通電不足）を評価いただいた上で、「分析から実験に進み、10月に答え合わせできる状態にしたい」「3社それぞれ現状・施策・到達ラインを1行で」「本部支援◯時間・◯万円→契約＋◯棟まで見えると来期の有償支援メニューの原型になる」「中央建設・竹村はまだ母数が小さいので成功事例と言い切らず仮説で置く」とのご指摘。</div>
+      </div>
+      <div class="change-note">
+        <div><b>今回の変更点：</b>①対象を<b>3社→5社</b>に拡大（竹村工務店・キノシタ・WITHDOM Group・河原工務店・中央建設出雲店）。竹村・キノシタ・河原は奈良・伊丹エリアで近接のため<b>全商談への同席</b>が可能な体制、WITHDOM・中央建設出雲はオンライン商談がほぼ無いため<b>事前アンケート→作戦会議→振り返り共有</b>の型で対応。②KPIは今回からKPIスプレッドシートの実データを直接使用。③全店共通で商談録音・文字起こしの依頼を開始し、AI自動採点への蓄積を進める。</div>
+      </div>
+
+      <div class="sec-label">
+        <span class="no">1</span>
+        <h2>5社「現状 → 施策 → 10月到達ライン」1行サマリー</h2>
+        <span class="hint">― 丸山顧問への最重要ポイント。到達ラインは叩き台（当日ご確認）</span>
+      </div>
+      <table class="summary-table">
+        <tr>
+          <th style="width:15%;">店舗</th>
+          <th style="width:27%;">現状（8/25 KPI実績）</th>
+          <th style="width:33%;">今回打つ施策</th>
+          <th style="width:25%;">10月到達ライン（叩き台）</th>
+        </tr>
+        <tr>
+          <td class="store-cell">
+            <span class="store-name">竹村工務店様</span><br>
+            <span class="store-tag">初動不足仮説</span>
+          </td>
+          <td>登録25→面談6→契約2。通電52.0%・アポ69.2%・<b style="color:var(--good);">契約率33.3%（好調）</b></td>
+          <td>奈良・伊丹エリアで近接のため<b>全商談に同席</b>し、初動フォロー即応化を横で直接指導</td>
+          <td><span class="arrival">通電率60%（本部標準達成）・契約3件</span><span class="draft">叩き台</span></td>
+        </tr>
+        <tr>
+          <td class="store-cell">
+            <span class="store-name">キノシタ様</span><br>
+            <span class="store-tag warn">量不足仮説</span><span class="n-small">母数6件</span>
+          </td>
+          <td>登録6→面談5→契約0。通電83.3%・アポ100%だが<b>契約率0%</b>（面談まで届くが量が薄い）</td>
+          <td>同エリアのため<b>全商談に同席</b>。面談後の詰め・クロージングの型を直接指導</td>
+          <td><span class="arrival">契約1件（初契約を作る）</span><span class="draft">叩き台</span></td>
+        </tr>
+        <tr>
+          <td class="store-cell">
+            <span class="store-name">河原工務店様</span><br>
+            <span class="store-tag warn">初動不足仮説</span><span class="n-small">母数14件</span>
+          </td>
+          <td>登録14→面談2→契約1。<b style="color:var(--warn);">通電率28.6%</b>と低いが、面談まで進めば<b style="color:var(--good);">契約率50%</b></td>
+          <td>同エリアのため<b>全商談に同席</b>し、竹村工務店様と同じ初動フォロー即応化を指導</td>
+          <td><span class="arrival">通電率40%台・契約2件目</span><span class="draft">叩き台</span></td>
+        </tr>
+        <tr>
+          <td class="store-cell">
+            <span class="store-name">WITHDOM Group様</span><br>
+            <span class="store-tag warn">通電不足</span>
+          </td>
+          <td>登録56→面談10→契約1。<b style="color:var(--warn);">通電率26.8%が全店最低クラス</b>。アポ取得率73.3%は良好</td>
+          <td>来場確定メールに<b>事前アンケート添付</b>→回答をもとに商談前作戦会議→振り返りシートで対策共有。外部アウトソーシングも検討中</td>
+          <td><span class="arrival">通電率40%台（目標60%への中間点）</span><span class="draft">叩き台</span></td>
+        </tr>
+        <tr>
+          <td class="store-cell">
+            <span class="store-name">中央建設様 出雲店</span><br>
+            <span class="store-tag warn">量不足仮説</span><span class="n-small">母数6件</span>
+          </td>
+          <td>登録6→通話3→面談1→契約0。歩留まり自体は悪くないが絶対数が小さい</td>
+          <td><b>事前アンケート添付</b>→作戦会議→振り返り共有の型で対応（オンライン商談自体がほぼ発生しないため）</td>
+          <td><span class="arrival">面談2件・契約1件（集客量次第）</span><span class="draft">叩き台</span></td>
+        </tr>
+      </table>
+
+      <div class="roadnote">
+        <b>5社を並べて見えること：</b>竹村・河原＝通電率さえ整えば面談以降は強い「初動不足」型、キノシタ・中央建設出雲＝母数が小さく「量不足」自体が仮説（成功/失敗を語れる段階にまだ無い）、WITHDOM Group＝唯一「量はあるが通電できていない」型。<b>母数が小さい店は10月に「量が確保できたか」、初動不足型の2社は「通電率が上がったか」が最初の検証項目</b>になる。
+      </div>
+
+      <div class="sec-label">
+        <span class="no">2</span>
+        <h2>実験設計の全体像 ― 2つの支援フォーマット</h2>
+        <span class="hint">― エリア・商談形態に応じて型を変える</span>
+      </div>
+
+      <div class="group-head">
+        <span class="gname">A. 対面同席型</span>
+        <span class="gdesc">竹村工務店・キノシタ・河原工務店　― 奈良・伊丹エリアで近接。可能な限り全商談に同席</span>
+      </div>
+      <div class="trio">
+
+        <div class="kcard">
+          <div class="kcard-top">
+            <span class="badge">初動不足仮説</span>
+            <div class="name">竹村工務店様</div>
+            <div class="who">担当：知花さん</div>
+            <div class="diag">面談まで進めば<b>契約率33.3%と好調</b>。ボトルネックは通電率（本部標準まで8pt）。</div>
+          </div>
+          <div class="funnel">
+            <div class="st"><div class="n">25</div><div class="l">登録</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">13</div><div class="l">通話</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">9</div><div class="l">アポ</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">6</div><div class="l">面談</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">2</div><div class="l">契約</div></div>
+          </div>
+          <div class="kgate">
+            <div class="row">
+              <div class="row-head"><span class="lab">① 通電率</span><span class="num">52.0% <small>／本部標準60%</small> <span class="tag-gap">あと8pt</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:52%;"></div><div class="bar-hq" style="left:60%;"></div></div>
+            </div>
+            <div class="row">
+              <div class="row-head"><span class="lab">② アポ取得率</span><span class="num">69.2% <small>／本部標準60%</small> <span class="tag-ok">達成✓</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:69.2%;background:var(--good);"></div><div class="bar-hq" style="left:60%;"></div></div>
+            </div>
+            <div class="row">
+              <div class="row-head"><span class="lab">③ 契約率</span><span class="num">33.3% <small>／本部標準40%</small> <span class="tag-gap">あと7pt</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:33.3%;background:var(--good);"></div><div class="bar-hq" style="left:40%;"></div></div>
+            </div>
+          </div>
+          <div class="kcard-note">
+            <b>所見：</b>田中様＝注文と一緒に提案中。山田様＝8/12土地契約（更地渡し・調査は9月以降）、注文契約に振替見込み。隅山様＝9/6次回アポ（住宅ローン可否が論点）。
+            <div class="exp"><b>実験：</b>全商談に同席し、初動フォロー即応化（GAS即時通知×1時間以内架電）を横で直接指導。未経験スタートで契約率50%超を出した過去実績の型を他店に横展開できるかも並行検証。</div>
+          </div>
+        </div>
+
+        <div class="kcard is-thin">
+          <div class="kcard-top">
+            <span class="badge thin">量不足仮説</span>
+            <div class="name">キノシタ様</div>
+            <div class="who">担当：岩本様</div>
+            <div class="diag">通電・アポは高水準だが<b>母数6件・契約0</b>。歩留まりの善し悪しを語るには量が足りない。</div>
+          </div>
+          <div class="funnel">
+            <div class="st"><div class="n">6</div><div class="l">登録</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">5</div><div class="l">通話</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">5</div><div class="l">アポ</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">5</div><div class="l">面談</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">0</div><div class="l">契約</div></div>
+          </div>
+          <div class="kgate">
+            <div class="row">
+              <div class="row-head"><span class="lab">① 通電率</span><span class="num">83.3% <small>／本部標準60%</small> <span class="tag-ok">達成✓</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:83.3%;background:var(--good);"></div><div class="bar-hq" style="left:60%;"></div></div>
+            </div>
+            <div class="row">
+              <div class="row-head"><span class="lab">② アポ取得率</span><span class="num">100% <small>／本部標準60%</small> <span class="tag-ok">達成✓</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:100%;background:var(--good);"></div><div class="bar-hq" style="left:60%;"></div></div>
+            </div>
+            <div class="row">
+              <div class="row-head"><span class="lab">③ 契約率</span><span class="num">0.0% <small>／本部標準40%</small> <span class="tag-gap">あと40pt</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:0%;"></div><div class="bar-hq" style="left:40%;"></div></div>
+            </div>
+          </div>
+          <div class="thin-warn">⚠ 母数6件のため率の変動が大きい。今回は「量不足仮説」として置き、10月に量が増えた上で契約が出るかを検証する。</div>
+          <div class="kcard-note">
+            <div class="exp"><b>実験：</b>全商談に同席し、面談後の詰め・クロージングの型を直接指導。並行して集客量そのものが増えるかを観察。</div>
+          </div>
+        </div>
+
+        <div class="kcard is-thin">
+          <div class="kcard-top">
+            <span class="badge thin">初動不足仮説</span>
+            <div class="name">河原工務店様</div>
+            <div class="who">担当：未記入</div>
+            <div class="diag"><b>母数14件</b>とまだ小さいが契約1件・<b>契約率50%</b>が出た。ボトルネックは通電率。</div>
+          </div>
+          <div class="funnel">
+            <div class="st"><div class="n">14</div><div class="l">登録</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">4</div><div class="l">通話</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">2</div><div class="l">アポ</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">2</div><div class="l">面談</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">1</div><div class="l">契約</div></div>
+          </div>
+          <div class="kgate">
+            <div class="row">
+              <div class="row-head"><span class="lab">① 通電率</span><span class="num">28.6% <small>／本部標準60%</small> <span class="tag-gap">あと31pt</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:28.6%;background:var(--warn);"></div><div class="bar-hq" style="left:60%;"></div></div>
+            </div>
+            <div class="row">
+              <div class="row-head"><span class="lab">② アポ取得率</span><span class="num">50.0% <small>／本部標準60%</small> <span class="tag-gap">あと10pt</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:50%;"></div><div class="bar-hq" style="left:60%;"></div></div>
+            </div>
+            <div class="row">
+              <div class="row-head"><span class="lab">③ 契約率</span><span class="num">50.0% <small>／本部標準40%</small> <span class="tag-ok">達成✓</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--good);"></div><div class="bar-hq" style="left:40%;"></div></div>
+            </div>
+          </div>
+          <div class="thin-warn">⚠ 母数14件のため率の変動はまだ大きい。契約率50%を成功事例と言い切らず「初動改善仮説」として置き、10月に検証する。</div>
+          <div class="kcard-note">
+            <b>所見：</b>S13対象外5件（業者等）を除いた実質母数は9件。契約1件・契約率50%と、面談以降の歩留まりは竹村工務店様に近い型が見え始めている。<br>
+            <div class="exp"><b>実験：</b>全商談に同席し、竹村工務店様と同じ初動フォロー即応化（GAS即時通知×1時間以内架電）を指導。通電率が改善すれば母数14件でも契約数がさらに伸びる型と見立てる。</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="group-head">
+        <span class="gname">B. アンケート先行型</span>
+        <span class="gdesc">WITHDOM Group・中央建設出雲店　― オンライン商談での同席を想定していたが両社ともオンライン商談がほぼ無いため、事前アンケート起点の型に変更</span>
+      </div>
+      <div class="duo">
+
+        <div class="kcard is-lead">
+          <div class="kcard-top">
+            <span class="badge">通電不足・最優先</span>
+            <div class="name">WITHDOM Group様</div>
+            <div class="who">担当：松尾さん</div>
+            <div class="diag">5社最大の集客量（登録56）だが<b>通電率26.8%が全店最低クラス</b>。架電〜追客〜再アプローチまで松尾さん一人で対応中。</div>
+          </div>
+          <div class="funnel">
+            <div class="st"><div class="n">56</div><div class="l">登録</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">15</div><div class="l">通話</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">11</div><div class="l">アポ</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">10</div><div class="l">面談</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">1</div><div class="l">契約</div></div>
+          </div>
+          <div class="kgate">
+            <div class="row">
+              <div class="row-head"><span class="lab">① 通電率</span><span class="num">26.8% <small>／店目標60%・本部60%</small> <span class="tag-gap">あと33pt</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:26.8%;background:var(--warn);"></div><div class="bar-hq" style="left:60%;"></div></div>
+            </div>
+            <div class="row">
+              <div class="row-head"><span class="lab">② アポ取得率</span><span class="num">73.3% <small>／店目標90%・本部60%</small> <span class="tag-ok">本部標準は達成✓</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:73.3%;background:var(--good);"></div><div class="bar-hq" style="left:60%;"></div></div>
+            </div>
+            <div class="row">
+              <div class="row-head"><span class="lab">③ 契約率</span><span class="num">10.0% <small>／店目標66.7%・本部40%</small> <span class="tag-gap">あと30pt</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:10%;background:var(--warn);"></div><div class="bar-hq" style="left:40%;"></div></div>
+            </div>
+          </div>
+          <div class="kcard-note">
+            <b>実験（アンケート先行型）：</b>①来場予約確定時の案内メール（地図等）に<b>事前アンケート</b>を添付 → ②回答内容をもとに商談前に<b>作戦会議</b>を実施 → ③商談後は<b>振り返りシート</b>に記入いただき、対策と良かった点を担当営業（松尾さん）へ共有。<br>
+            <div class="exp"><b>並行対応：</b>週1ショートミーティング（初回8/25開始）で数値・状態を確認。架電時間帯・SMS・メール文言の指導。電話対応の外部アウトソーシング起用も検討中（30件/月・35万円税抜）。9月に増員1名確定・10月フル稼働。</div>
+          </div>
+        </div>
+
+        <div class="kcard is-thin">
+          <div class="kcard-top">
+            <span class="badge thin">量不足仮説</span>
+            <div class="name">中央建設様　出雲店</div>
+            <div class="who">担当：出雲店</div>
+            <div class="diag"><b>母数6件</b>。歩留まり自体は悪くないが、そもそもの絶対数が小さい。</div>
+          </div>
+          <div class="funnel">
+            <div class="st"><div class="n">6</div><div class="l">登録</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">3</div><div class="l">通話</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">1</div><div class="l">アポ</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">1</div><div class="l">面談</div></div>
+            <div class="arw">→</div>
+            <div class="st"><div class="n">0</div><div class="l">契約</div></div>
+          </div>
+          <div class="kgate">
+            <div class="row">
+              <div class="row-head"><span class="lab">① 通電率</span><span class="num">50.0% <small>／本部標準60%</small> <span class="tag-gap">あと10pt</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:50%;"></div><div class="bar-hq" style="left:60%;"></div></div>
+            </div>
+            <div class="row">
+              <div class="row-head"><span class="lab">② アポ取得率</span><span class="num">33.3% <small>／本部標準60%</small> <span class="tag-gap">あと27pt</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:33.3%;"></div><div class="bar-hq" style="left:60%;"></div></div>
+            </div>
+            <div class="row">
+              <div class="row-head"><span class="lab">③ 契約率</span><span class="num">0.0% <small>／本部標準40%</small> <span class="tag-gap">あと40pt</span></span></div>
+              <div class="bar-track"><div class="bar-fill" style="width:0%;"></div><div class="bar-hq" style="left:40%;"></div></div>
+            </div>
+          </div>
+          <div class="thin-warn">⚠ 母数6件のため率の変動が大きい。「量不足仮説」として置き、10月に検証する。</div>
+          <div class="kcard-note">
+            <div class="exp"><b>実験（アンケート先行型）：</b>WITHDOM Group様と同じ型（事前アンケート→作戦会議→振り返り共有）で対応。オンライン商談自体がほぼ発生しないため、この型に切り替えた。</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sec-label" style="margin-top:8px;">
+        <span class="no">3</span>
+        <h2>全社共通の型化 ― 5社に限らず横展開する仕組み</h2>
+      </div>
+      <div class="common-band">
+        <div class="abox">
+          <h4><span class="ico">録</span>商談録音・文字起こし → AI採点への蓄積</h4>
+          <ul>
+            <li>全店共通で<b>商談の録音・文字起こし</b>を依頼（既に運用開始）</li>
+            <li>文字起こしをAI自動商談採点に蓄積し、クロの見解を積み重ねて<b>精度を継続的に向上</b>させる</li>
+            <li>良かった点は研修事例として横展開、気づいていない強みも拾う設計（減点方式にしない）</li>
+          </ul>
+        </div>
+        <div class="abox">
+          <h4><span class="ico">会</span>週1時間MTG ― 数値と状態を随時確認</h4>
+          <ul>
+            <li>5社それぞれ<b>最低週1時間のMTG</b>を設定し、数値・状態を随時確認</li>
+            <li>通電率が悪い店には<b>架電の時間帯</b>を指導</li>
+            <li>架電後の<b>ショートメッセージ・メールの文言</b>も内容まで踏み込んで指導</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sec-label" style="margin-top:22px;">
+        <span class="no">4</span>
+        <h2>本部支援 → 契約棟数の骨格</h2>
+        <span class="hint">― 来期の有償支援メニューの原型。数値は8月実績集計中のため今回は骨格提示、10月に確定</span>
+      </div>
+      <div class="roi-frame">
+        <div class="roi-formula">
+          <div class="roi-box">
+            <div class="lab">本部支援時間</div>
+            <div class="val tbd">◯時間／月</div>
+          </div>
+          <span class="roi-arrow">×</span>
+          <div class="roi-box">
+            <div class="lab">支援コスト相当</div>
+            <div class="val tbd">◯万円</div>
+          </div>
+          <span class="roi-arrow">→</span>
+          <div class="roi-box roi-result">
+            <div class="lab">契約棟数への効果</div>
+            <div class="val">契約 ＋◯棟</div>
+          </div>
+        </div>
+        <div class="roi-detail">
+          <div class="item"><span class="num">①架電・追客代行</span>時間を月次で記録</div>
+          <div class="item"><span class="num">②商談同席</span>時間を月次で記録</div>
+          <div class="item"><span class="num">③MTG・FB・準備</span>時間を月次で記録</div>
+          <div class="item"><span class="num">④その他連絡対応</span>時間を月次で記録</div>
+        </div>
+      </div>
+      <div class="roadnote" style="margin-top:0;">
+        <b>進め方：</b>8月の支援時間はこの4分解で計測フォーマットを確定済み、集計中。10月に「支援コスト（時間）vs 棟数改善効果」として答え合わせし、上記の◯を実数に置き換える。この実測値が来期の有償支援メニュー（本部IS代行・広告運用代行等）の価格設計の土台になる。
+      </div>
+
+      <div class="sec-label" style="margin-top:22px;">
+        <span class="no">5</span>
+        <h2>LIFEX加盟店支援モデル（原型）</h2>
+        <span class="hint">― ボトルネックのタイプ別に支援を当てる。5社の実験がこのモデルの検証データになる</span>
+      </div>
+      <div class="model-grid">
+        <div class="mtype a">
+          <div class="mtype-head">通電不足型</div>
+          <div class="mtype-body">
+            <div class="stores">対象：WITHDOM Group様</div>
+            量はあるが架電がつながらない・つないだ後の実態が見えていない。<b>架電時間帯・SMS・メール文言の指導</b>、<b>事前アンケート→作戦会議</b>、必要に応じて<b>外部アウトソーシング</b>を当てる。
+          </div>
+        </div>
+        <div class="mtype b">
+          <div class="mtype-head">初動不足型</div>
+          <div class="mtype-body">
+            <div class="stores">対象：竹村工務店様・河原工務店様</div>
+            面談以降の歩留まりは良好だが、通話〜アポの初動が甘い。<b>初動フォロー即応化</b>（即時通知×1時間以内架電）と<b>商談同席での型指導</b>を当てる。
+          </div>
+        </div>
+        <div class="mtype c">
+          <div class="mtype-head">量不足型（仮説）</div>
+          <div class="mtype-body">
+            <div class="stores">対象：キノシタ様・中央建設様出雲店</div>
+            歩留まり自体の善し悪しを語るには母数が足りない。<b>集客量の確保</b>を最優先に置き、<b>商談同席</b>で歩留まりを維持しながら量の変化を観察する。
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <footer>
+      <div class="legend">
+        <b>指標の定義：</b>①通電率＝架電がつながった率（社内用語。ダッシュボード表記の「通話接続率」と同一指標）。②アポ取得率＝通話済みからの来場予約率。③契約率＝面談済みからの内定・契約率。「登録」はエントリー総数（S2〜S13合計）。<br>
+        <b>データ出典：</b>LIFEX KPIスプレッドシート（2026年8月25日時点の実データを直接集計）。青の点線＝本部標準目標（通電60%／アポ60%／契約40%）。店舗別個別目標は「目標」シート未確認分のため今回は本部標準のみ表示。<br>
+        <b>前提の引き継ぎ：</b>選定基準・支援モードは7/31・8/21丸山顧問MTGおよび来期目標資料に基づく。10月到達ラインは叩き台であり、当日のMTGで確定する。
+      </div>
+      <div class="stamp">
+        <span class="prov">加盟店様の成功 ＝ 私の来期目標</span><br>
+        LIFEX FC事業 ／ 5社実験設計
+      </div>
+    </footer>
+
+  </div>
+</div>
