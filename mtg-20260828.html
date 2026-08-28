@@ -1,0 +1,460 @@
+<title>LIFEX MTG 8/28｜間の取り方＋テストクロージング 投影資料</title>
+<style>
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+  --p1:#1e4e79; --p2:#2e7d6e; --p3:#b05c1f;
+  --p1bg:#e8eff6; --p2bg:#e7f2ef; --p3bg:#f9efe4;
+  --leak:#b3372b; --leakbg:#fbe9e7;
+  --win:#2e7d6e; --winbg:#e7f2ef;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.6; font-feature-settings:"palt"}
+.wrap{width:min(1100px,96vw); margin:26px auto}
+.draft{width:1100px; margin:0 auto 14px; font-size:12px; color:#8a5a00; background:#fdf3dd;
+  border:1px solid #ecd9a8; border-radius:4px; padding:6px 14px; font-weight:700}
+.sl{width:1100px; height:619px; background:#fff; border-radius:8px;
+  box-shadow:0 2px 16px rgba(20,40,60,.09); padding:32px 50px 24px;
+  display:flex; flex-direction:column; position:relative; overflow:hidden; margin:0 auto 22px}
+.top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+.chip{font-size:11.5px; font-weight:700; letter-spacing:.08em; padding:3px 12px; border-radius:99px}
+.c0{background:#eceff2;color:var(--sub)}
+.c1{background:var(--p1bg);color:var(--p1)}
+.c2{background:var(--p2bg);color:var(--p2)}
+.c3{background:var(--p3bg);color:var(--p3)}
+.step{background:var(--navy); color:#fff}
+.new{background:var(--p3); color:#fff}
+.pg{margin-left:auto; font-size:12px; color:#b6c0ca; font-variant-numeric:tabular-nums}
+.tt{font-size:28px; font-weight:800; line-height:1.3; margin:2px 0 4px; text-wrap:balance}
+.ms{font-size:13.5px; color:var(--sub); margin:0 0 11px}
+.body{flex:1; display:flex; gap:20px; min-height:0; overflow:hidden}
+.foot{display:flex; gap:12px; margin-top:9px; align-items:center}
+.cap{font-size:12px; color:var(--sub)}
+.todo{font-size:11px; color:#8a5a00; background:#fdf3dd; border:1px solid #ecd9a8; border-radius:3px; padding:2px 10px; font-weight:700}
+.real{font-size:11px; color:var(--p2); background:var(--p2bg); border:1px solid #bfdcd5; border-radius:3px; padding:2px 10px; font-weight:700}
+.live{font-size:11.5px; color:#fff; background:var(--navy); border-radius:3px; padding:3px 12px; font-weight:700; letter-spacing:.06em}
+.num{font-variant-numeric:tabular-nums}
+.col{display:flex; flex-direction:column; gap:10px; min-width:0}
+.grow{flex:1}
+.box{border:1px solid var(--line); border-radius:6px; padding:12px 16px; background:#fff}
+.box h4{margin:0 0 4px; font-size:13.5px; color:var(--navy)}
+.box p{margin:0; font-size:12.5px; color:var(--sub)}
+.say{background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:10px; padding:12px 16px; font-size:13px}
+.say b{color:var(--navy)}
+.say .lbl{display:block; font-size:11px; letter-spacing:.1em; color:var(--navy); font-weight:700; margin-bottom:4px}
+.ag{border:1px solid var(--line); border-radius:8px; padding:18px 22px; display:flex; align-items:center; gap:18px; background:#fff}
+.ag .no{font-size:12.5px; font-weight:800; color:var(--sub); flex-shrink:0; width:64px; line-height:1.3}
+.ag b{font-size:16.5px}
+.ag .cap{margin-left:auto; text-align:right; flex-shrink:0; max-width:380px}
+.flow{display:flex; align-items:stretch; gap:8px}
+.flow .st{flex:1; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:9px 12px; font-size:12px; text-align:center}
+.flow .st b{display:block; font-size:12.5px; color:var(--navy); margin-bottom:2px}
+.flow .ar{align-self:center; color:#b6c0ca; font-weight:700; flex-shrink:0}
+
+/* 道のりタイムライン */
+.tl{display:flex; gap:0; align-items:stretch; margin-bottom:6px}
+.tl-item{flex:1; display:flex; flex-direction:column; position:relative}
+.tl-item::after{content:''; position:absolute; right:0; top:22px; width:1px; height:calc(100% - 44px); background:var(--line)}
+.tl-item:last-child::after{display:none}
+.tl-dot{width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:800; flex-shrink:0; margin:0 auto 8px; border:2px solid var(--line); color:var(--sub); background:#fff}
+.tl-dot.done{background:var(--navy); border-color:var(--navy); color:#fff}
+.tl-dot.today{background:var(--p2); border-color:var(--p2); color:#fff}
+.tl-body{flex:1; border:1px solid var(--line); border-radius:6px; padding:10px 14px; margin:0 6px; background:#fff}
+.tl-body.done{background:var(--panel)}
+.tl-body.today{background:var(--p2bg); border-color:var(--p2)}
+.tl-body .th{font-size:13px; font-weight:800; color:var(--navy); margin-bottom:4px; line-height:1.3}
+.tl-body .td{font-size:11.5px; color:var(--sub); line-height:1.5}
+
+/* VS比較 */
+.vs2{display:flex; gap:0; align-items:stretch; position:relative; flex:1}
+.vs2>div{flex:1; border:1px solid var(--line); border-radius:8px; padding:14px 18px; display:flex; flex-direction:column; gap:14px; justify-content:center}
+.vs2 .neg{background:#fafbfc}
+.vs2 .pos{background:var(--navy-soft); border-color:var(--navy)}
+.vs2 h5{margin:0; font-size:12.5px; font-weight:800; color:var(--sub); display:flex; align-items:center; gap:6px}
+.vs2 .pos h5{color:var(--navy)}
+.vs2 .vs-badge{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:36px; height:36px; border-radius:50%;
+  background:#fff; border:2px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; color:var(--sub); z-index:2}
+.vs2 .result{text-align:center; font-size:15px; font-weight:800; border-radius:6px; padding:10px; background:#fff; border:1px solid var(--line)}
+.vs2 .chatline{margin-top:0}
+.vs2 .pos .result{background:var(--p3bg); color:var(--p3); border-color:#e8cfae}
+.vs2 .neg .result{color:var(--sub)}
+.chatline{background:var(--panel); border-radius:6px; padding:8px 10px; font-size:11px; margin-top:auto}
+.chatline b{display:block; color:var(--navy); font-size:11.5px; margin-top:2px}
+
+/* 4プロセス（間の心理メカニズム） */
+.proc4{display:flex; gap:10px; flex:1}
+.proc4 .pc{flex:1; border:1px solid var(--line); border-radius:8px; padding:14px 12px; background:#fff; display:flex; flex-direction:column; gap:8px; text-align:center; position:relative}
+.proc4 .pc.hi{border-color:var(--p3); background:var(--p3bg)}
+.proc4 .pn{width:26px; height:26px; border-radius:50%; background:var(--navy); color:#fff; font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto}
+.proc4 .pc.hi .pn{background:var(--p3)}
+.proc4 h5{margin:0; font-size:13.5px}
+.proc4 p{margin:0; font-size:11px; color:var(--sub); line-height:1.5}
+.proc-ar{align-self:center; color:#b6c0ca; font-weight:700; flex-shrink:0}
+
+/* 実践4カード（間の作り方） */
+.prac4{display:grid; grid-template-columns:1fr 1fr; gap:10px; flex:1}
+.prac4 .pr{border:1px solid var(--line); border-radius:8px; padding:12px 16px; background:#fff; display:flex; flex-direction:column; gap:5px}
+.prac4 .pr.hi{border-color:var(--p3); background:var(--p3bg)}
+.prac4 h5{margin:0; font-size:13.5px; display:flex; align-items:center; gap:8px}
+.prac4 p{margin:0; font-size:11.5px; color:var(--sub); line-height:1.5}
+
+/* NG3カード（共通） */
+.ng3{display:flex; gap:12px; flex:1}
+.ng3 .card{flex:1; border:1px solid #f0c9c2; border-radius:8px; padding:14px 16px; background:var(--leakbg); display:flex; flex-direction:column; gap:8px}
+.ng3 h5{margin:0; font-size:14px; color:var(--leak)}
+.ng3 .ex{background:#fff; border-radius:6px; padding:7px 10px; font-size:11.5px; color:var(--ink); border:1px solid #f0c9c2}
+.ng3 .res{font-size:11px; color:var(--leak); font-weight:700}
+
+/* NG6カード（2行3列グリッド） */
+.ng-grid{display:grid; grid-template-columns:repeat(3,1fr); grid-template-rows:1fr 1fr; gap:9px; flex:1}
+.ng-grid .card{border:1px solid #f0c9c2; border-radius:7px; padding:9px 12px; background:var(--leakbg); display:flex; flex-direction:column; gap:5px}
+.ng-grid h5{margin:0; font-size:12px; color:var(--leak); line-height:1.3}
+.ng-grid .ex{background:#fff; border-radius:5px; padding:5px 8px; font-size:10.5px; color:var(--ink); border:1px solid #f0c9c2; line-height:1.4}
+.ng-grid .res{font-size:9.5px; color:var(--leak); font-weight:700; margin-top:auto}
+
+/* Weak/Strong バー */
+.ws{display:flex; border-radius:8px; overflow:hidden}
+.ws>div{flex:1; padding:11px 18px; font-size:13.5px; font-weight:800}
+.ws .weak{background:var(--panel); color:var(--sub)}
+.ws .strong{background:var(--navy); color:#fff}
+
+/* テスクロ質問4カテゴリ */
+.q4{display:grid; grid-template-columns:1fr 1fr; gap:10px; flex:1}
+.q4 .qc{border:1px solid var(--line); border-radius:8px; padding:12px 16px; background:#fff; display:flex; flex-direction:column; gap:6px}
+.q4 .qc.hi{border-color:var(--navy); background:var(--navy-soft)}
+.q4 h5{margin:0; font-size:13px; color:var(--navy); display:flex; align-items:center; gap:6px}
+.q4 .qc.hi h5{color:var(--navy)}
+.q4 .qtag{font-size:10px; color:var(--sub)}
+.q4 .qline{background:var(--panel); border-radius:5px; padding:7px 10px; font-size:12px; color:var(--ink)}
+.q4 .qc.hi .qline{background:#fff}
+
+/* 迷いの3パターン */
+.pat3{display:flex; gap:12px; flex:1}
+.pat3 .pc{flex:1; border:1px solid var(--line); border-radius:8px; padding:12px 14px; background:#fff; display:flex; flex-direction:column; gap:8px}
+.pat3 h5{margin:0; font-size:13px}
+.pat3 .exs{font-size:11px; color:var(--sub); line-height:1.7}
+.pat3 .say-ex{background:var(--panel); border-radius:6px; padding:7px 10px; font-size:11.5px; color:var(--ink); font-style:italic}
+.pat3 .fix{margin-top:auto; background:var(--panel); border-radius:6px; padding:8px 10px; font-size:11.5px; font-weight:700; color:var(--navy)}
+
+/* 会話フロー実演 */
+.convo{display:flex; flex-direction:column; gap:7px}
+.convo .ln{display:flex; gap:10px; align-items:flex-start}
+.convo .who{width:52px; flex-shrink:0; font-size:11px; font-weight:800; color:var(--sub); text-align:right; padding-top:8px}
+.convo .ln.you .who{color:var(--navy)}
+.convo .bub{background:var(--panel); border-radius:10px; padding:9px 15px; font-size:13px; flex:1}
+.convo .ln.you .bub{background:var(--navy-soft)}
+.convo .ln.win .bub{background:var(--p3bg); border:1px solid #e8cfae}
+.convo .bub .flag{background:var(--p3); color:#fff; font-size:10px; font-weight:800; padding:2px 9px; border-radius:99px; margin-left:8px}
+.convo .pause{display:flex; align-items:center; gap:8px; padding:0 0 0 62px; font-size:11px; color:var(--p2); font-weight:700}
+.convo .pause::before{content:'⏸'; font-size:11px}
+
+@media print{body{background:#fff}.draft{display:none}.sl{box-shadow:none; border:1px solid var(--line); page-break-after:always}}
+</style>
+
+<div class="wrap">
+
+<!-- 1 表紙 -->
+<div class="sl" style="justify-content:center; text-align:center">
+  <div style="font-size:13px; letter-spacing:.22em; color:var(--sub); font-weight:700">2026.8.28（金）16:00〜　LIFEX 月2棟目標達成MTG</div>
+  <div style="font-size:46px; font-weight:800; margin:22px 0 12px; letter-spacing:.02em">「間」と「決断」を、味方につける。</div>
+  <div style="font-size:17px; color:var(--navy); font-weight:700; line-height:1.7">本音を引き出せても、決めさせられなければ意味がない。<br>沈黙とテストクロージングで、面談を最後まで強くします。</div>
+  <div style="margin-top:32px; font-size:15px; color:var(--ink)">
+    <b style="color:var(--sub)">聞く力→</b><b style="color:var(--navy)">決めさせる力</b>
+    <div style="color:var(--sub); margin-top:10px; font-size:13.5px">進行：Gハウス LIFEX FC事業部　徳田</div>
+  </div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px">1 / 17</div>
+</div>
+
+<!-- 2 これまでの道のり -->
+<div class="sl">
+  <div class="top"><span class="chip c0">これまでの道のり</span><span class="pg">2 / 17</span></div>
+  <div class="tt" style="font-size:23px">「面談を強くする」2部作、第2回。本音を、決断まで導く。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:7px">
+    <div class="tl">
+      <div class="tl-item"><div class="tl-dot done" style="font-size:9.5px">7/17</div><div class="tl-body done"><div class="th">月2棟の型を公開</div><div class="td">佐古社長対談。電話7項目・冒頭90秒・総額先出し</div></div></div>
+      <div class="tl-item"><div class="tl-dot done" style="font-size:9.5px">7/24</div><div class="tl-body done"><div class="th">通電率UP</div><div class="td">通電率上位3社の架電法を横展開</div></div></div>
+      <div class="tl-item"><div class="tl-dot done" style="font-size:9.5px">7/31</div><div class="tl-body done"><div class="th">KPI診断・アポ率目標</div><div class="td">自店カルテで穴を特定。アポ率目標を宣言</div></div></div>
+      <div class="tl-item"><div class="tl-dot done" style="font-size:9.5px">8/7</div><div class="tl-body done"><div class="th">商談を磨く</div><div class="td">ふりかえりシート・鉄板トーク集を配布</div></div></div>
+      <div class="tl-item"><div class="tl-dot done" style="font-size:9.5px">8/21</div><div class="tl-body done"><div class="th">聞く力</div><div class="td">共感・復唱・関連質問で本音を引き出す</div></div></div>
+      <div class="tl-item"><div class="tl-dot today" style="font-size:9.5px">8/28</div><div class="tl-body today"><div class="th" style="color:var(--p2)">決めさせる力　▶ 本日</div><div class="td">間の取り方・テストクロージング</div></div></div>
+    </div>
+    <div class="say" style="margin-top:8px"><span class="lbl">聞く力の続き</span>前回、本音を引き出す会話法を渡しました。今日はその本音を、迷わせず・急がせず、自然な決断まで導く技術です。</div>
+  </div>
+</div>
+
+<!-- 3 本日の流れ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">本日の流れ</span><span class="pg">3 / 17</span></div>
+  <div class="tt">今日は「間の取り方」と「テストクロージング」の2本立て。</div>
+  <p class="ms">アポも取れて、本音も引き出せた。でも決め手がなければ商談は流れます。今日は答え合わせを挟まず、Gハウスの新人営業教育で使っている「間の取り方」「テストクロージング」を丸ごとLIFEXの型として渡す時間に全振りします。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:16px">
+    <div class="ag" style="border-color:var(--navy); padding:22px 28px"><span class="no" style="color:var(--navy)">前半</span><b style="font-size:18px">間の取り方</b><span class="cap">沈黙を「怖いもの」から「最大の武器」に変える</span></div>
+    <div class="ag" style="border-color:var(--p2); padding:22px 28px"><span class="no" style="color:var(--p2)">後半</span><b style="font-size:18px">テストクロージング</b><span class="cap">買う気を"測る"のではなく"整える"技術</span></div>
+  </div>
+  <div class="foot"><span class="cap"><b style="color:var(--navy)">今日のゴール。</b>「沈黙を怖がらず待てる」「テスクロで迷いを言葉にできる」——この2つを、次の商談から使える状態にすること。</span></div>
+</div>
+
+<!-- 4 つなぎ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">つなぎ</span><span class="pg">4 / 17</span></div>
+  <div class="tt">本音は出た。それを、決断までどう運ぶか。</div>
+  <p class="ms">8/21で「共感・復唱・関連質問」——本音を引き出す型を渡しました。ここで焦って話を被せたり、決めさせようと急いたりすると、せっかく出た本音が台無しになります。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:14px">
+    <div class="flow">
+      <div class="st" style="padding:14px 10px"><b>8/21</b>共感・復唱・関連質問<br><span style="font-size:10.5px; color:var(--sub)">本音を引き出す</span></div>
+      <div class="ar">→</div>
+      <div class="st" style="padding:14px 10px; background:var(--p3bg); border-color:#e8cfae"><b style="color:var(--p3)">8/28・今日</b>間・テストクロージング<br><span style="font-size:10.5px; color:var(--sub)">迷いを整理し決断に導く</span></div>
+    </div>
+    <div class="say"><span class="lbl">出典</span>Gハウス新人営業向け教育資料（2025年度版）「営業の武器は会話法」第6章②③。8/7・8/21と同じく、Gハウスの型をLIFEX全店向けに翻案したものです。</div>
+    <div class="box" style="border-color:var(--line); background:#fff"><h4>なぜ今、間とテスクロか</h4><p>本音が出た直後に「間」を奪う。迷いを整理せずに「テスクロ」を飛ばして押す。——これが、決まりそうで決まらない商談の典型パターンです。</p></div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span></div>
+</div>
+
+<!-- 5 間の誤解と本質 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">間の取り方①</span><span class="pg">5 / 17</span></div>
+  <div class="tt">沈黙は敵ではない。整理と決断の"余白"。</div>
+  <p class="ms">多くの営業が「何か話さないと気まずい」と焦り、空白を埋めようとします。トップ営業ほど、実は沈黙が長いのです。</p>
+  <div class="body">
+    <div class="vs2">
+      <div class="neg">
+        <h5>✕ 沈黙＝怖い</h5>
+        <div class="box" style="font-size:12px; padding:8px 12px">空白を埋めようとして営業が一方的に話し続ける／お客様は考える暇がなく混乱したままになる</div>
+        <div class="chatline">よくある場面<b>お客様「うーん…」（食い気味に）「あ、それでしたら価格帯についてもご説明しますと…」</b></div>
+        <div class="result">説明過多の<br>「押し売り営業」</div>
+      </div>
+      <div class="vs-badge">VS</div>
+      <div class="pos">
+        <h5>◯ 沈黙＝最大の味方</h5>
+        <div class="box" style="font-size:12px; padding:8px 12px; background:#fff">「お客様が整理してくれている」と考え、余裕を持って待つ／自ら答えを出すので納得感が段違いに高まる</div>
+        <div class="chatline" style="margin-top:0">同じ場面<b>お客様「うーん…」（にっこり頷いて、5秒待つ）→「実は、予算のことがちょっと…」</b></div>
+        <div class="result">押していないのに<br>決まる営業</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">"間"は、相手に主導権を渡す行為。渡された人は、心を開きやすくなります。</span></div>
+</div>
+
+<!-- 6 間の心理メカニズム -->
+<div class="sl">
+  <div class="top"><span class="chip c1">間の取り方②</span><span class="pg">6 / 17</span></div>
+  <div class="tt">沈黙の数秒で、お客様の頭の中は動いている。</div>
+  <p class="ms">沈黙のあいだ、お客様の中では本音が言葉になるまでの4つのプロセスが進んでいます。</p>
+  <div class="body" style="flex-direction:column; gap:10px">
+    <div class="proc4">
+      <div class="pc"><div class="pn">1</div><h5>情報の整理</h5><p>さっき聞いた説明を頭の中で咀嚼している</p></div>
+      <div class="proc-ar">→</div>
+      <div class="pc"><div class="pn">2</div><h5>価値観との照合</h5><p>「自分たちに合うかな？」と基準に当てている</p></div>
+      <div class="proc-ar">→</div>
+      <div class="pc"><div class="pn">3</div><h5>本音の言語化</h5><p>「本当は何を大事にしたい？」と心の奥を探っている</p></div>
+      <div class="proc-ar">→</div>
+      <div class="pc hi"><div class="pn">4</div><h5>自分で選びたい</h5><p>決めさせられるのではなく、自分で決めたい心理が発動</p></div>
+    </div>
+    <div class="box" style="border-color:var(--leak); background:var(--leakbg)"><h4 style="color:var(--leak)">STOP　ここで営業が口を挟むと…</h4><p style="color:var(--ink)">不安になって言葉を足した瞬間、この大事なプロセスは全部、途中で止まってしまいます。</p></div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span></div>
+</div>
+
+<!-- 7 実演：間を使うとこうなる -->
+<div class="sl">
+  <div class="top"><span class="chip c1">間の取り方③　実演イメージ</span><span class="pg">7 / 17</span></div>
+  <div class="tt">"間"を使うと、実際の商談はこう動く。</div>
+  <p class="ms">たった数秒の間を2回はさむだけで、お客様の口から自然に本音が出てきます。</p>
+  <div class="body">
+    <div class="col" style="flex:1.3; justify-content:center">
+      <div class="convo">
+        <div class="ln you"><div class="who">営業</div><div class="bub">「将来、どんな暮らしが理想ですか？」</div></div>
+        <div class="pause">1.5秒の間（微笑んで待つ）</div>
+        <div class="ln"><div class="who">奥様</div><div class="bub">「うーん…そうですね、家事がもう少し楽になったらなって思います」</div></div>
+        <div class="ln you"><div class="who">営業</div><div class="bub">（復唱）「家事が今より楽になる、というのが理想なんですね。差し支えなければ、どんな時にそう感じられますか？」</div></div>
+        <div class="pause">1秒の間（うなづいて見守る）</div>
+        <div class="ln win"><div class="who">奥様</div><div class="bub">「実は下の子がまだ小さくて…目を離さず家事もできる家だと、安心なんです」<span class="flag">本音が出た！</span></div></div>
+      </div>
+    </div>
+    <div class="col grow" style="justify-content:center; gap:10px">
+      <div class="say" style="text-align:center"><b style="font-size:15px">間（沈黙）＝<br>お客様の心が開くための"余白"</b></div>
+      <div class="box"><p>「家事が楽に」という表面的な要望の裏に、「子供から目を離さず安心して過ごしたい」という本音があった。間を置いて理由を聞いたからこそ、ここまで深掘りできています。</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span></div>
+</div>
+
+<!-- 8 間の実践4パターン -->
+<div class="sl">
+  <div class="top"><span class="chip c1">間の取り方④</span><span class="pg">8 / 17</span></div>
+  <div class="tt">明日から使える、間の作り方。</div>
+  <p class="ms">難しい技術ではありません。この4つを、今の面談に足すだけです。</p>
+  <div class="body">
+    <div class="prac4">
+      <div class="pr"><h5>① 質問のあと1.5秒待つ</h5><p>即答を求めないことで、お客様は「ゆっくり考えていいんだ」と安心できる。</p><div class="chatline" style="margin-top:0">セリフ例<b>「収納は、どのくらい欲しいですか？」（…1.5秒…）</b></div></div>
+      <div class="pr"><h5>② うなづき＋微笑みで見守る</h5><p>ただ黙るだけだと「無言の圧」になる。微笑むことで「待ってくれている」安心感に変わる。</p><div class="chatline" style="margin-top:0">動作例<b>お客様が考え込んだら、資料から目線を外して軽く頷く</b></div></div>
+      <div class="pr"><h5>③ 大事な説明のあとに沈黙を置く</h5><p>性能や金額など重要な話のあとは、指差し確認しながら黙る。理解する時間が生まれる。</p><div class="chatline" style="margin-top:0">セリフ例<b>「月々のお支払いはこちらです」（見積を指差し、無言で数秒）</b></div></div>
+      <div class="pr hi"><h5>④ 奥様の話を待つ（意図的に間をつくる）</h5><p style="margin-bottom:4px">奥様は「自分も主役」と感じ、安心して本音を話し始める。信頼を勝ち取る最大のポイント。</p><div class="chatline" style="margin-top:0">魔法のフレーズ<b>「奥様のお考えもお聞きしたいので、少しお待ちいただけますか？」</b></div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span></div>
+</div>
+
+<!-- 9 間を壊すNG行動 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">間の取り方⑤</span><span class="pg">9 / 17</span></div>
+  <div class="tt">これをやると、お客様の心は閉じる。</div>
+  <p class="ms">現場でよく見かける、避けるべき6つのパターンです。</p>
+  <div class="body" style="flex-direction:column; gap:11px">
+    <div class="ng-grid">
+      <div class="card"><h5>すぐに説明をかぶせる</h5><div class="ex">客「うーん…」→営業（食い気味に）「もしよろしければ他のプランも」</div><div class="res">考える時間を奪い、本音が飲み込まれる</div></div>
+      <div class="card"><h5>沈黙に耐えられず質問を畳みかける</h5><div class="ex">営業「気になる点は？」「予算は？」「間取りは大丈夫そう？」</div><div class="res">「焦り」が伝わり、警戒心と圧迫感を生む</div></div>
+      <div class="card"><h5>顔を覗き込む・体を前に出す</h5><div class="ex">営業（身を乗り出して）「どうですか？　率直なところ」</div><div class="res">強い威圧感が生まれ、安心感が消える</div></div>
+      <div class="card"><h5>沈黙の後、答えを決めつける</h5><div class="ex">客が黙った直後、営業「たぶん、ご予算のことですよね？」</div><div class="res">見当違いだと噛み合わなくなり信頼を失う</div></div>
+      <div class="card"><h5>そわそわ・時計を気にする</h5><div class="ex">沈黙が続き、書類をめくったり時計をちらちら見てしまう</div><div class="res">「早く決めて」の圧が態度から伝わる</div></div>
+      <div class="card"><h5>気まずさを愛想笑いでごまかす</h5><div class="ex">営業「あはは、変なこと聞いちゃってすみません」と自分から崩す</div><div class="res">質問の重みが消え、本音を話す間が失われる</div></div>
+    </div>
+    <div class="ws">
+      <div class="weak">"沈黙が怖い営業"は弱い</div>
+      <div class="strong">"沈黙を使える営業"は強い</div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料＋現場でよくある失敗例</span><span class="cap">新人は特に要注意。</span></div>
+</div>
+
+<!-- 10 テスクロの定義 -->
+<div class="sl">
+  <div class="top"><span class="chip c2">テストクロージング①</span><span class="pg">10 / 17</span></div>
+  <div class="tt">テスクロは「押す」行為ではない。</div>
+  <p class="ms">お客様と一緒に「今どこにいるか」を確認する、"診断行為"です。</p>
+  <div class="body">
+    <div class="vs2">
+      <div class="neg">
+        <h5>OLD 押す営業</h5>
+        <div class="box" style="font-size:12px; padding:8px 12px">決めてもらうための行為／営業が勝手にゴールへ走る</div>
+      </div>
+      <div class="vs-badge">VS</div>
+      <div class="pos">
+        <h5>NEW 整える営業</h5>
+        <div class="box" style="font-size:12px; padding:8px 12px; background:#fff">決められる状態をつくる／現在地を確認する診断</div>
+        <div class="chatline" style="margin-top:0">セリフ例<b>「ここまでのお話で、気になるところはありますか？」</b></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">テスクロ＝健康診断のようなもの。悪い箇所を見つけて治すためのステップです。</span></div>
+</div>
+
+<!-- 11 なぜテスクロが必要か -->
+<div class="sl">
+  <div class="top"><span class="chip c2">テストクロージング②</span><span class="pg">11 / 17</span></div>
+  <div class="tt">なぜ、テストクロージングが要るのか。</div>
+  <p class="ms">押さない営業だからこそ、このプロセスが不可欠です。</p>
+  <div class="body">
+    <div class="pat3">
+      <div class="pc"><h5>①お客様は"どこで迷っているか"を言えない</h5><div class="exs">多くのお客様は、何が不安かを自分でも言語化できていない。</div><div class="say-ex">聞かれれば「実は…資金計画のことがちょっと」と初めて言葉になる</div><div class="fix">質問することで、迷いが言葉になり前に進める</div></div>
+      <div class="pc"><h5>②誤った前提のまま商談が進むのを防ぐ</h5><div class="exs">「いけるな」と思っていても、実は奥様だけ不安、ということはよくある。</div><div class="say-ex">ご主人「大丈夫です」の裏で、奥様は月々の支払いが気がかりというケース</div><div class="fix">確認することで、認識のズレを早期発見できる</div></div>
+      <div class="pc"><h5>③押し売り感ゼロのままクロージングへ</h5><div class="exs">優しいスタイルに、強引なクロージングは合わない。</div><div class="say-ex">「一度整理させてください」の一言が、押し込む代わりのクッションになる</div><div class="fix">主導権を渡したまま、自然な流れで成約へ</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">テスクロの上手さ＝商談の安定感＝成約率の高さ。</span></div>
+</div>
+
+<!-- 12 質問4カテゴリ -->
+<div class="sl">
+  <div class="top"><span class="chip c2">テストクロージング③</span><span class="pg">12 / 17</span></div>
+  <div class="tt">テスクロの基本フォーマット。4つの質問。</div>
+  <p class="ms">商談の流れで自然に使える、4つの質問カテゴリです。</p>
+  <div class="body">
+    <div class="q4">
+      <div class="qc"><h5>理解の確認<span class="qtag">ひっかかりの可視化</span></h5><div class="qline">「ここまでで気になるところはありますか？」</div></div>
+      <div class="qc"><h5>気持ちの確認<span class="qtag">買う気の温度感</span></h5><div class="qline">「もし金額が許容範囲なら、申し込みは前向きに考えられますか？」</div></div>
+      <div class="qc"><h5>優先順位の確認<span class="qtag">決め方の軸</span></h5><div class="qline">「この条件は"絶対条件"ですか？それとも"できれば"ですか？」</div></div>
+      <div class="qc hi"><h5>★ 奥様の気持ち確認<span class="qtag">最重要の本音を引き出す</span></h5><div class="qline">「奥様はいかがですか？率直にお聞きしたいです。」</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">お客様が"今どこで止まっているか"を、一緒に確認するための質問です。</span></div>
+</div>
+
+<!-- 13 迷いの3パターン -->
+<div class="sl">
+  <div class="top"><span class="chip c2">テストクロージング④</span><span class="pg">13 / 17</span></div>
+  <div class="tt">出てきた"迷い"は、正しく分類して整える。</div>
+  <p class="ms">迷いを消すのではなく、パターンごとに対応を変えます。</p>
+  <div class="body">
+    <div class="pat3">
+      <div class="pc"><h5>情報不足の迷い</h5><div class="say-ex">「他社さんと比べてどうなのか、正直分からなくて…」</div><div class="exs">・金額の全体像が見えない<br>・間取りのイメージがぼんやり<br>・他社との違いが不明確</div><div class="fix">"見える化"する：追加説明・図解・比較表</div></div>
+      <div class="pc"><h5>感情の迷い</h5><div class="say-ex">「なんとなくなんですけど、まだ踏み切れなくて…」</div><div class="exs">・急いで決めたくない<br>・過去の失敗が頭をよぎる</div><div class="fix">寄り添い＋間：共感・復唱で受け止める（×説明増し ○沈黙）</div></div>
+      <div class="pc"><h5>外部要因の迷い</h5><div class="say-ex">「親にも一度相談してからと思っていて…」</div><div class="exs">・実家の土地・他社比較が未了<br>・転職・収入の見通し</div><div class="fix">整理＋待つ勇気：優先順位の整理、一度持ち帰りも促す</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">迷いは"間違い"ではなく"正常な状態"。テスクロは、それを見える形にして整える儀式です。</span></div>
+</div>
+
+<!-- 14 NG行動 -->
+<div class="sl">
+  <div class="top"><span class="chip c2">テストクロージング⑤</span><span class="pg">14 / 17</span></div>
+  <div class="tt">絶対にやってはいけないNG行動。</div>
+  <p class="ms">押さない営業のスタイルと真逆のものです。</p>
+  <div class="body">
+    <div class="ng3">
+      <div class="card"><h5>"決めさせに行く"質問</h5><div class="ex">「じゃあ、今日決めちゃいましょうか？」</div><div class="res">結果：お客様にとっては「圧」でしかない</div></div>
+      <div class="card"><h5>誘導質問（〜ですよね？の多用）</h5><div class="ex">「この内容なら、悪くないですよね？」</div><div class="res">結果：本音を飲み込み、「言わされた感」が残る</div></div>
+      <div class="card"><h5>奥様を置き去りにする</h5><div class="ex">営業「〇〇様（ご主人）、こちらの方向で進めましょう」→奥様は「うん…」とだけ</div><div class="res">結果：後で「やっぱり反対」となる典型パターン</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">信頼を積み上げる営業において、これらは「絶対NG」です。</span></div>
+</div>
+
+<!-- 15 意見を求められた時の返し方 -->
+<div class="sl">
+  <div class="top"><span class="chip c2">テストクロージング⑥　最重要スキル</span><span class="pg">15 / 17</span></div>
+  <div class="tt">「どう思いますか？」と聞かれた時の、正しい返し方。</div>
+  <p class="ms">お客様に意見を求められた場面での、返し方ひとつが信頼を左右します。</p>
+  <div class="body">
+    <div class="vs2">
+      <div class="neg">
+        <h5>✕ 自分の意見を直接言う</h5>
+        <div class="box" style="font-size:12px; padding:8px 12px">「私は〜と思います」</div>
+        <div class="result" style="font-size:12.5px">営業の意見＝"営業が決めた"になり、後悔した時に他責にされやすい</div>
+      </div>
+      <div class="vs-badge">VS</div>
+      <div class="pos">
+        <h5>◯ 第三者話法で"判断を返す"</h5>
+        <div class="chatline" style="margin-top:0; font-size:11.5px">「皆様は、◯◯という理由でご決断される方が多いです。お客様も同じように感じられるのであれば、進められて良いと思います。逆に、そう感じられないのであれば、無理に進めず一度止めておかれる方が良いと思います。」</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="real">Gハウス新人営業教育資料より</span><span class="cap">営業は"決める人"ではなく、"決められる状態に整える人"です。</span></div>
+</div>
+
+<!-- 16 まとめ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">今日のまとめ</span><span class="pg">16 / 17</span></div>
+  <div class="tt">今日持ち帰るのは、「待つ」と「整える」。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:12px">
+    <div class="flow">
+      <div class="st" style="padding:12px 8px; background:var(--p1bg); border-color:var(--navy)"><b style="color:var(--navy)">間で待つ</b>沈黙を怖がらない</div>
+      <div class="ar">→</div>
+      <div class="st" style="padding:12px 8px"><b>本音が深まる</b>お客様が自分で整理する</div>
+      <div class="ar">→</div>
+      <div class="st" style="padding:12px 8px; background:var(--p2bg); border-color:var(--p2)"><b style="color:var(--p2)">テスクロで整える</b>迷いを言葉にする</div>
+      <div class="ar">→</div>
+      <div class="st" style="padding:12px 8px; background:var(--winbg); border-color:#bfdcd5"><b style="color:var(--win)">自然に決まる</b>押さなくても決まる</div>
+    </div>
+    <div class="say"><span class="lbl">次回に向けて</span>今日の「間」と「テスクロ」を、次の商談で1回試してください。次回のテーマは追ってご案内します。</div>
+  </div>
+  <div class="foot"><span class="cap">説明力で勝負しなくていい。<b style="color:var(--navy)">「聴く力」と「待つ力」が最強の武器になる。</b></span></div>
+</div>
+
+<!-- 17 次回予告 -->
+<div class="sl" style="justify-content:center; text-align:center">
+  <div class="top" style="justify-content:center"><span class="chip c0">次回</span></div>
+  <div style="font-size:16px; font-weight:700; color:var(--sub); margin:18px 0 8px; letter-spacing:.1em">次回、日程は追ってご案内します</div>
+  <div style="font-size:34px; font-weight:800; margin:0 0 20px; letter-spacing:.02em">イニシャルでなく、トータルコストで戦う。</div>
+  <div style="width:640px; margin:0 auto; background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:8px; padding:20px 24px; text-align:left">
+    <div style="font-size:14px; font-weight:700; color:var(--navy); margin-bottom:6px">太陽光×トータルコスト訴求法</div>
+    <div style="font-size:13px; color:var(--sub); line-height:1.7">本体価格の安さで比べられると、価格が近い競合に競り負けます。太陽光発電で光熱費を下げ、「本体価格＋光熱費」の合算で比較の土俵を変える新しい武器を渡します。</div>
+  </div>
+  <div style="margin-top:26px; font-size:15px; color:var(--sub); font-style:italic">面談を強くする2部作は、今日で完了。次は、価格競争からの脱出。</div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px">17 / 17</div>
+</div>
+
+</div>
