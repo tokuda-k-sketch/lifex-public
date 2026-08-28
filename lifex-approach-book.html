@@ -1,0 +1,2063 @@
+<title>LIFEXアプローチブック</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@600;700&family=Shippori+Mincho:wght@500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+  /* ============ design tokens ============ */
+  /* LIFEX資料は印刷前提のためライト固定。ダークモード分岐は持たない。 */
+  :root{
+    --paper:#FFFFFF;
+    --paper-shade:#F3F3F0;
+    --paper-shade-2:#E9E9E4;
+    --ink:#201E1B;
+    --ink-soft:#5B564A;
+    --ink-faint:#8A8375;
+    --line:#DBDAD2;
+    --backdrop:#E7E6E1;
+
+    --c-brand:#C1592A;
+    --c-indigo:#2C4A6B;
+    --c-moss:#516B3E;
+    --c-wine:#7A2E3D;
+    --c-brass:#A6832A;
+
+    --c-indigo-tint:#E3E9EF;
+    --c-moss-tint:#E6EBE1;
+    --c-wine-tint:#EFE1E3;
+    --c-brass-tint:#F1E9D6;
+
+    --font-display:"Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+    --font-accent:"Shippori Mincho", "Hiragino Mincho ProN", serif;
+    --font-label:"Archivo Expanded", "Zen Kaku Gothic New", sans-serif;
+
+    --radius-s:2px;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--backdrop);
+    color:var(--ink);
+    font-family:var(--font-display);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .draft-banner{
+    max-width:210mm;
+    margin:0 auto 18px;
+    padding:10px 16px;
+    background:var(--paper-shade-2);
+    border:1px dashed var(--ink-faint);
+    color:var(--ink-soft);
+    font-size:.8rem;
+    line-height:1.6;
+    border-radius:var(--radius-s);
+  }
+  .draft-banner b{color:var(--ink);}
+
+  .book{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:28px;
+    padding:28px 12px 60px;
+  }
+
+  /* ============ the page ============ */
+  .page{
+    container-type:inline-size;
+    width:100%;
+    max-width:210mm;
+    aspect-ratio:210/297;
+    min-height:0;
+    flex-shrink:0;
+    background:var(--paper);
+    box-shadow:0 3px 4px rgba(20,16,8,.06), 0 18px 40px rgba(20,16,8,.16);
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+
+  .page__inner{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    padding: 7cqw 6.6cqw 6cqw;
+    min-height:0;
+  }
+
+  /* colored thumb-index tab, position depends on pillar order */
+  .tab{
+    position:absolute;
+    right:0;
+    width:3.6cqw;
+    min-width:15px;
+    height:auto;
+    padding:14px 0;
+    background:var(--pillar);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    letter-spacing:.1em;
+    font-family:var(--font-label);
+    font-weight:700;
+    font-size:12px;
+    writing-mode:vertical-rl;
+    text-orientation:upright;
+  }
+  .page[data-pillar="indigo"]{ --pillar:var(--c-indigo); --pillar-tint:var(--c-indigo-tint); }
+  .page[data-pillar="moss"]  { --pillar:var(--c-moss);   --pillar-tint:var(--c-moss-tint); }
+  .page[data-pillar="wine"]  { --pillar:var(--c-wine);   --pillar-tint:var(--c-wine-tint); }
+  .page[data-pillar="brass"] { --pillar:var(--c-brass);  --pillar-tint:var(--c-brass-tint); }
+  .page[data-pillar="indigo"] .tab{ top:8%; }
+  .page[data-pillar="moss"]   .tab{ top:30%; }
+  .page[data-pillar="wine"]   .tab{ top:52%; }
+  .page[data-pillar="brass"]  .tab{ top:74%; }
+
+  .kicker{
+    font-family:var(--font-label);
+    font-weight:700;
+    font-size:13.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--pillar, var(--c-brand));
+    display:flex;
+    align-items:center;
+    gap:.6em;
+    margin:0 0 1.4cqw;
+  }
+  .kicker::before{
+    content:"";
+    width:1.6em;height:2px;
+    background:var(--pillar, var(--c-brand));
+    display:inline-block;
+  }
+
+  h1.page-title{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:23px;
+    line-height:1.28;
+    text-wrap:balance;
+    margin:0 0 3cqw;
+    color:var(--ink);
+  }
+
+  .lede{
+    font-size:16px;
+    line-height:1.85;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin:0 0 3.6cqw;
+  }
+
+  .foot{
+    margin-top:auto;
+    padding-top:2.4cqw;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:12px;
+  }
+  .foot__source{
+    font-size:12.5px;
+    line-height:1.7;
+    color:var(--ink-faint);
+    max-width:76%;
+  }
+  .foot__source b{color:var(--ink-soft);font-weight:700;}
+  .foot__folio{
+    font-family:var(--font-label);
+    font-weight:700;
+    font-size:14.5px;
+    color:var(--ink-faint);
+    white-space:nowrap;
+  }
+
+  /* ============ reusable bits ============ */
+  .talk{
+    font-family:var(--font-accent);
+    font-weight:600;
+    font-size:17.5px;
+    line-height:1.7;
+    color:var(--pillar);
+  }
+  .talk::before{content:"❝";margin-right:.15em;}
+  .talk::after{content:"❞";margin-left:.15em;}
+
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:2.4cqw;
+    margin-bottom:3.4cqw;
+  }
+  .stat-tile{
+    background:var(--pillar-tint, var(--paper-shade));
+    padding:2.8cqw 2cqw 2.2cqw;
+    display:flex;
+    flex-direction:column;
+    gap:.7cqw;
+  }
+  .stat-tile__label{
+    font-family:var(--font-label);
+    font-weight:700;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--pillar, var(--ink-faint));
+  }
+  .stat-tile__value{
+    font-weight:900;
+    font-size:27px;
+    line-height:1.1;
+    font-variant-numeric:tabular-nums;
+    color:var(--ink);
+  }
+  .stat-tile__value small{
+    font-weight:700;
+    font-size:.46em;
+    color:var(--ink-soft);
+    margin-left:.2em;
+  }
+  .stat-tile__why{
+    font-size:14px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    padding-top:.7cqw;
+    border-top:1px solid color-mix(in srgb, var(--pillar, var(--ink-faint)) 30%, transparent);
+  }
+
+  .ref-note{
+    background:var(--pillar-tint, var(--paper-shade));
+    padding:2.6cqw 3cqw;
+    display:flex;
+    gap:2.6cqw;
+    align-items:flex-start;
+    margin-top:auto;
+    margin-bottom:2.4cqw;
+  }
+  .ref-note__num{
+    font-family:var(--font-accent);
+    font-weight:700;
+    font-size:25px;
+    font-variant-numeric:tabular-nums;
+    color:var(--pillar, var(--ink-soft));
+    white-space:nowrap;
+    padding-top:.05em;
+  }
+  .ref-note__num small{font-size:.44em;font-weight:700;margin-left:.15em;color:var(--ink-faint);font-family:var(--font-label);}
+  .ref-note__body{font-size:14.5px;line-height:1.75;color:var(--ink-soft);}
+  .ref-note__body b{color:var(--ink);}
+
+  .spec-list{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    flex:1;
+  }
+  .spec-item{
+    display:grid;
+    grid-template-columns:22cqw 1fr;
+    gap:1.6cqw 2.4cqw;
+    padding:2.4cqw 0;
+    border-bottom:1px solid var(--line);
+  }
+  .spec-item:first-child{padding-top:0;}
+  .spec-item:last-child{border-bottom:none;}
+  .spec-item__label{
+    font-family:var(--font-label);
+    font-weight:700;
+    font-size:14.5px;
+    letter-spacing:.06em;
+    color:var(--pillar);
+    padding-top:.2cqw;
+  }
+  .spec-item__label small{
+    display:block;
+    margin-top:.6cqw;
+    font-weight:600;
+    letter-spacing:0;
+    font-size:12.5px;
+    color:var(--ink-faint);
+    text-transform:none;
+  }
+  .spec-item__head{
+    font-weight:900;
+    font-size:17.5px;
+    line-height:1.55;
+    color:var(--ink);
+    margin:0 0 .8cqw;
+    text-wrap:balance;
+  }
+  .spec-item__worry{
+    font-size:15px;
+    color:var(--ink-faint);
+    line-height:1.75;
+    margin:0 0 1.1cqw;
+  }
+  .spec-item__answer{
+    font-size:16px;
+    line-height:1.85;
+    color:var(--ink-soft);
+  }
+  .spec-item__answer b{color:var(--ink);font-weight:700;}
+  .spec-item__bridge{
+    display:inline;
+    font-family:var(--font-accent);
+    font-weight:700;
+    color:var(--pillar);
+  }
+
+  .two-col{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3cqw;
+    flex:1;
+    min-height:0;
+  }
+
+  /* ============ visual density: charts / photo slots ============ */
+  .barchart{display:flex;flex-direction:column;gap:1.6cqw;}
+  .barchart__row{display:flex;flex-direction:column;gap:.7cqw;}
+  .barchart__row-head{display:flex;justify-content:space-between;align-items:baseline;gap:1.2cqw;}
+  .barchart__label{font-size:13.5px;color:var(--ink-soft);line-height:1.4;}
+  .barchart__label b{color:var(--ink);font-weight:700;}
+  .barchart__value{font-weight:900;font-size:15px;font-variant-numeric:tabular-nums;color:var(--ink);white-space:nowrap;}
+  .barchart__track{position:relative;height:16px;background:var(--paper-shade-2);overflow:hidden;}
+  .barchart__fill{height:100%;min-width:4px;background:var(--paper-shade-2);}
+  .barchart__fill--tint{background:color-mix(in srgb, var(--pillar) 35%, var(--paper-shade-2));}
+  .barchart__fill--hero{background:var(--pillar);}
+  .barchart__note{font-size:13px;color:var(--ink-faint);margin-top:.4cqw;}
+
+  .scale{display:flex;flex-direction:column;gap:.6cqw;}
+  .scale__track{position:relative;height:16px;background:linear-gradient(90deg,var(--c-moss) 0%,var(--c-brass) 55%,var(--c-wine) 100%);opacity:.85;}
+  .scale__pin{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink);}
+  .scale__labels{display:flex;justify-content:space-between;gap:1cqw;}
+  .scale__labels span{font-size:12.5px;color:var(--ink-soft);line-height:1.4;}
+  .scale__labels b{color:var(--ink);font-weight:700;}
+
+  .flow{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1.4cqw;}
+  .flow__box{background:var(--paper-shade);padding:2cqw;text-align:center;display:flex;flex-direction:column;gap:.6cqw;}
+  .flow__box b{font-size:15px;}
+  .flow__box small{font-size:13px;color:var(--ink-faint);}
+  .flow__arrow{font-size:20px;color:var(--pillar);}
+
+  .photo-slot{
+    position:relative;
+    background:repeating-linear-gradient(135deg, var(--paper-shade) 0 3px, var(--paper-shade-2) 3px 6px);
+    border:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:.8cqw;
+    color:var(--ink-faint);
+    text-align:center;
+    padding:2cqw;
+    min-height:22cqw;
+  }
+  .photo-slot svg{width:2.6cqw;height:2.6cqw;min-width:18px;min-height:18px;opacity:.55;}
+  .photo-slot__label{font-family:var(--font-label);font-weight:700;font-size:12.5px;letter-spacing:.05em;line-height:1.5;}
+
+  /* ============ chapter opener (扉ページ) ============ */
+  .chapter{
+    position:relative;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    padding:8cqw 7.4cqw 6cqw;
+    background:var(--pillar);
+    color:#fff;
+    overflow:hidden;
+  }
+  .chapter__num{
+    position:absolute;
+    right:5cqw;
+    top:1cqw;
+    font-family:var(--font-label);
+    font-weight:700;
+    font-size:180px;
+    line-height:.8;
+    letter-spacing:-.02em;
+    color:#fff;
+    opacity:.14;
+  }
+  .chapter__eyebrow{
+    font-family:var(--font-label);
+    font-weight:700;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    font-size:13px;
+    opacity:.85;
+  }
+  .chapter__title{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:50px;
+    line-height:1.2;
+    margin:1.4cqw 0 0;
+    text-wrap:balance;
+  }
+  .chapter__thesis{
+    font-family:var(--font-accent);
+    font-weight:600;
+    font-size:19px;
+    line-height:1.95;
+    max-width:90%;
+    opacity:.96;
+  }
+  .chapter__foot{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    font-family:var(--font-label);
+    font-weight:700;
+    font-size:12px;
+    letter-spacing:.08em;
+    opacity:.8;
+    border-top:1px solid rgba(255,255,255,.3);
+    padding-top:1.6cqw;
+  }
+
+  /* ============ print ============ */
+  @media print{
+    :root{
+      --paper:#FEFEFD !important;
+      --paper-shade:#F1F0EC !important;
+      --paper-shade-2:#E6E5DF !important;
+      --ink:#201E1B !important;
+      --ink-soft:#5B564A !important;
+      --ink-faint:#8A8375 !important;
+      --line:#D8D7CE !important;
+      --backdrop:#FFFFFF !important;
+      --c-brand:#C1592A !important;
+      --c-indigo:#2C4A6B !important;
+      --c-moss:#516B3E !important;
+      --c-wine:#7A2E3D !important;
+      --c-brass:#A6832A !important;
+    }
+    body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .draft-banner,.book-toolbar{display:none !important;}
+    .book{padding:0;gap:0;}
+    .page{
+      box-shadow:none;
+      width:210mm;height:297mm;
+      aspect-ratio:auto;
+      page-break-after:always;
+      max-width:none;
+    }
+    @page{size:A4;margin:0;}
+  }
+</style>
+
+<div class="draft-banner">
+  <b>たたき台 v0.6</b> — 内容（P.01〜P.31）は据え置きのまま、デザインを全面刷新しました。「よくできた社内提案資料」に見えないよう、①クリーム×テラコッタという配色クリシェから脱却しカードの縁取り装飾を大幅削減、②4本柱それぞれの扉ページを新設して本としての緩急を作り、③要所の文字サイズに強弱をつけています。数値・事実の追加/変更はありません。この項目は印刷時には表示されません。
+</div>
+
+<div class="book">
+
+  <!-- ============ 00 COVER ============ -->
+  <section class="page" id="p00">
+    <div class="page__inner" style="padding:0;gap:0;">
+      <div style="position:relative;flex:1.3;min-height:0;background:linear-gradient(155deg, var(--c-indigo) 0%, var(--c-wine) 45%, var(--c-brass) 100%);overflow:hidden;">
+        <div style="position:absolute;inset:0;background:
+          repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 12mm),
+          repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 1px, transparent 1px 12mm);"></div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1cqw;color:#fff;text-align:center;padding:3cqw;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.2" opacity=".8" style="width:34px;height:34px;"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div style="font-family:var(--font-label);font-weight:700;letter-spacing:.08em;font-size:14px;opacity:.9;">表紙メイン写真<br>完成した外観 or 窓から光が差し込むLDK</div>
+          <div style="font-family:var(--font-label);font-weight:700;letter-spacing:.06em;font-size:12px;opacity:.7;">夕方〜golden hour、生活感のある暖かい構図を推奨</div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-height:0;padding:5cqw 6.6cqw 6cqw;display:flex;flex-direction:column;justify-content:space-between;background:var(--paper);">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div style="display:flex;flex-direction:column;gap:.8cqw;">
+            <span style="font-family:var(--font-label);font-weight:700;letter-spacing:.22em;font-size:13px;color:var(--c-brand);">Brand new BASIC.</span>
+            <h1 style="margin:0;font-weight:900;font-size:48px;letter-spacing:.01em;color:var(--c-brand);line-height:.92;">LIFE X</h1>
+            <h2 style="margin:0;font-weight:900;font-size:21px;line-height:1.3;color:var(--ink);">アプローチブック</h2>
+          </div>
+          <p style="margin:.3em 0 0;font-family:var(--font-accent);font-weight:500;font-size:15px;color:var(--ink-soft);text-align:right;max-width:22ch;line-height:1.7;">私たちの家が<br>新しい基準と<br>新しい暮らしをつくる。</p>
+        </div>
+
+        <div>
+          <div style="font-family:var(--font-label);font-weight:700;font-size:12.5px;letter-spacing:.1em;color:var(--ink-faint);margin-bottom:1.2cqw;">4つの柱 ― INDEX</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.6cqw;">
+            <div style="border-top:3px solid var(--c-indigo);padding-top:.8cqw;">
+              <div style="font-family:var(--font-label);font-weight:700;font-size:12.5px;color:var(--c-indigo);">01</div>
+              <div style="font-weight:700;font-size:16px;color:var(--ink);">コスパ</div>
+            </div>
+            <div style="border-top:3px solid var(--c-moss);padding-top:.8cqw;">
+              <div style="font-family:var(--font-label);font-weight:700;font-size:12.5px;color:var(--c-moss);">02</div>
+              <div style="font-weight:700;font-size:16px;color:var(--ink);">デザイン</div>
+            </div>
+            <div style="border-top:3px solid var(--c-wine);padding-top:.8cqw;">
+              <div style="font-family:var(--font-label);font-weight:700;font-size:12.5px;color:var(--c-wine);">03</div>
+              <div style="font-weight:700;font-size:16px;color:var(--ink);">高性能</div>
+            </div>
+            <div style="border-top:3px solid var(--c-brass);padding-top:.8cqw;">
+              <div style="font-family:var(--font-label);font-weight:700;font-size:12.5px;color:var(--c-brass);">04</div>
+              <div style="font-weight:700;font-size:16px;color:var(--ink);">高水準の設備</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 01 THESIS ============ -->
+  <section class="page">
+    <div class="page__inner">
+      <div class="kicker">LIFE X</div>
+      <h1 class="page-title" style="font-size:30px;">「どれかを選ぶ家」ではなく<br>「すべてを叶える」新しい規格住宅。</h1>
+      <p class="lede" style="max-width:70ch;">どんな家を選ぶのか。それは家族の健康や暮らしの安全<br>そしてお金の使い方など、生き方までも左右する重要なテーマです。<br>性能を取れば価格が上がり、価格を抑えればデザインを諦める ―<br>LIFEXは、そのどちらも選ばずに済む家として生まれました。</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.2cqw;">
+        <div style="background:var(--c-indigo-tint);padding:2.8cqw;display:flex;flex-direction:column;gap:1.2cqw;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-indigo)" stroke-width="1.5" style="width:26px;height:26px;"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1 1-2 2.5-2s2.5 1 2.5 2-1 1.5-2.5 2-2.5 1-2.5 2 1 2 2.5 2 2.5-1 2.5-2"/></svg>
+          <div style="font-family:var(--font-label);font-weight:700;font-size:13.5px;color:var(--c-indigo);letter-spacing:.04em;">01 ― コスパ</div>
+          <div style="font-weight:700;font-size:17px;line-height:1.5;">全部込みの価格で<br>迷わず選べる。</div>
+          <p style="font-size:15px;line-height:1.8;color:var(--ink-soft);margin:0;">「欲しい」は、もう標準仕様。<br>値引きも、追加費用も要りません。</p>
+          <div style="margin-top:auto;padding-top:1cqw;font-family:var(--font-label);font-weight:700;font-size:12.5px;color:var(--c-indigo);">→ 詳しくはP.03</div>
+        </div>
+        <div style="background:var(--c-moss-tint);padding:2.8cqw;display:flex;flex-direction:column;gap:1.2cqw;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-moss)" stroke-width="1.5" style="width:26px;height:26px;"><circle cx="8" cy="8" r="4.5"/><circle cx="16" cy="16" r="4.5"/></svg>
+          <div style="font-family:var(--font-label);font-weight:700;font-size:13.5px;color:var(--c-moss);letter-spacing:.04em;">02 ― デザイン</div>
+          <div style="font-weight:700;font-size:17px;line-height:1.5;">性能を保ったまま<br>好みの世界観を選べる。</div>
+          <p style="font-size:15px;line-height:1.8;color:var(--ink-soft);margin:0;">選択肢を5つに絞ることで<br>決められないという<br>迷いをなくしました。</p>
+          <div style="margin-top:auto;padding-top:1cqw;font-family:var(--font-label);font-weight:700;font-size:12.5px;color:var(--c-moss);">→ 詳しくはP.09</div>
+        </div>
+        <div style="background:var(--c-wine-tint);padding:2.8cqw;display:flex;flex-direction:column;gap:1.2cqw;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-wine)" stroke-width="1.5" style="width:26px;height:26px;"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <div style="font-family:var(--font-label);font-weight:700;font-size:13.5px;color:var(--c-wine);letter-spacing:.04em;">03 ― 高性能</div>
+          <div style="font-weight:700;font-size:17px;line-height:1.5;">数字と証明書で語れる<br>確かな性能。</div>
+          <p style="font-size:15px;line-height:1.8;color:var(--ink-soft);margin:0;">耐震等級3や断熱等級6は<br>第三者機関の認定を受けた<br>標準仕様です。</p>
+          <div style="margin-top:auto;padding-top:1cqw;font-family:var(--font-label);font-weight:700;font-size:12.5px;color:var(--c-wine);">→ 詳しくはP.17</div>
+        </div>
+        <div style="background:var(--c-brass-tint);padding:2.8cqw;display:flex;flex-direction:column;gap:1.2cqw;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-brass)" stroke-width="1.5" style="width:26px;height:26px;"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M10 10v10"/></svg>
+          <div style="font-family:var(--font-label);font-weight:700;font-size:13.5px;color:var(--c-brass);letter-spacing:.04em;">04 ― 高水準の設備</div>
+          <div style="font-weight:700;font-size:17px;line-height:1.5;">毎日使う場所ほど<br>妥協しない標準仕様。</div>
+          <p style="font-size:15px;line-height:1.8;color:var(--ink-soft);margin:0;">制振ダンパーから洗面台まで<br>目に見える所も見えない所も<br>標準仕様です。</p>
+          <div style="margin-top:auto;padding-top:1cqw;font-family:var(--font-label);font-weight:700;font-size:12.5px;color:var(--c-brass);">→ 詳しくはP.25</div>
+        </div>
+      </div>
+
+      <p style="font-family:var(--font-accent);font-weight:600;font-size:16px;color:var(--ink-soft);text-align:right;margin:2.4cqw 0 0;">気になるページから、自由にお読みください。</p>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.01</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 TOC ============ -->
+  <section class="page">
+    <div class="page__inner">
+      <div class="kicker">Index</div>
+      <h1 class="page-title">目次</h1>
+
+      <div style="display:flex;flex-direction:column;gap:0;flex:1;">
+        <div style="display:grid;grid-template-columns:2.6cqw 5cqw 1fr auto;align-items:center;gap:1.6cqw;padding:1.6cqw 0;border-bottom:1px solid var(--line);">
+          <div style="width:1cqw;height:1.6cqw;background:var(--c-brand);"></div>
+          <div style="font-family:var(--font-label);font-weight:700;color:var(--c-brand);font-size:14.5px;">―</div>
+          <div>
+            <div style="font-weight:700;font-size:16px;">「どれかを選ぶ家」ではなく「すべてを叶える」</div>
+          </div>
+          <div style="font-family:var(--font-label);color:var(--ink-faint);font-size:14.5px;">P.01</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:2.6cqw 5cqw 1fr auto;gap:1.6cqw;padding:1.6cqw 0;border-bottom:1px solid var(--line);">
+          <div style="width:1cqw;height:1.6cqw;background:var(--c-indigo);"></div>
+          <div style="font-family:var(--font-label);font-weight:700;color:var(--c-indigo);font-size:14.5px;">01</div>
+          <div>
+            <div style="font-weight:700;font-size:16px;">コスパ</div>
+            <div style="font-size:13px;color:var(--ink-faint);margin-top:.3cqw;line-height:1.7;">本体価格の内訳／実例で見る光熱費／基礎・防蟻／保険料・BELSが生むお金のメリット／標準仕様の総額換算／設計期間の短縮</div>
+          </div>
+          <div style="font-family:var(--font-label);color:var(--ink-faint);font-size:14.5px;white-space:nowrap;">P.03―08</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:2.6cqw 5cqw 1fr auto;gap:1.6cqw;padding:1.6cqw 0;border-bottom:1px solid var(--line);">
+          <div style="width:1cqw;height:1.6cqw;background:var(--c-moss);"></div>
+          <div style="font-family:var(--font-label);font-weight:700;color:var(--c-moss);font-size:14.5px;">02</div>
+          <div>
+            <div style="font-weight:700;font-size:16px;">デザイン</div>
+            <div style="font-size:13px;color:var(--ink-faint);margin-top:.3cqw;line-height:1.7;">5スタイル概要／標準装備マップとヒアリングの流れ／5スタイル個別詳細（ナチュラル・ホテルライク・北欧・シンプル・ジャパンディ）</div>
+          </div>
+          <div style="font-family:var(--font-label);color:var(--ink-faint);font-size:14.5px;white-space:nowrap;">P.09―16</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:2.6cqw 5cqw 1fr auto;gap:1.6cqw;padding:1.6cqw 0;border-bottom:1px solid var(--line);">
+          <div style="width:1cqw;height:1.6cqw;background:var(--c-wine);"></div>
+          <div style="font-family:var(--font-label);font-weight:700;color:var(--c-wine);font-size:14.5px;">03</div>
+          <div>
+            <div style="font-weight:700;font-size:16px;">高性能</div>
+            <div style="font-size:13px;color:var(--ink-faint);margin-top:.3cqw;line-height:1.7;">4指標概要／断熱と健康・2030年基準の先取り／耐震等級3の深掘り／制振ダンパーevoltz／気密性能（C値）／窓・樹脂サッシ／換気システム／よくある質問</div>
+          </div>
+          <div style="font-family:var(--font-label);color:var(--ink-faint);font-size:14.5px;white-space:nowrap;">P.17―24</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:2.6cqw 5cqw 1fr auto;gap:1.6cqw;padding:1.6cqw 0;">
+          <div style="width:1cqw;height:1.6cqw;background:var(--c-brass);"></div>
+          <div style="font-family:var(--font-label);font-weight:700;color:var(--c-brass);font-size:14.5px;">04</div>
+          <div>
+            <div style="font-weight:700;font-size:16px;">高水準の設備</div>
+            <div style="font-size:13px;color:var(--ink-faint);margin-top:.3cqw;line-height:1.7;">構造・制振・窓・換気・キッチン・洗面・建具・照明・玄関・断熱・基礎・防耐火・創エネ・EV充電・収納・食洗機・水回り（全17項目）</div>
+          </div>
+          <div style="font-family:var(--font-label);color:var(--ink-faint);font-size:14.5px;white-space:nowrap;">P.25―30</div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.02 ― 目次</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 01：コスパ ============ -->
+  <section class="page" data-pillar="indigo">
+    <div class="chapter">
+      <div class="chapter__num">01</div>
+      <div>
+        <div class="chapter__eyebrow">Chapter 01 ― Cost performance</div>
+        <h1 class="chapter__title">コスパ</h1>
+      </div>
+      <p class="chapter__thesis">全部込みの価格で、迷わず選べる。<br>「欲しい」は、もう標準仕様。<br>値引きも、追加費用も要りません。</p>
+      <div class="chapter__foot"><span>LIFEX APPROACH BOOK</span><span>→ P.03</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 03 COST A ============ -->
+  <section class="page" data-pillar="indigo">
+    <div class="tab">コスパ</div>
+    <div class="page__inner">
+      <div class="kicker">01 Cost performance</div>
+      <h1 class="page-title">見えている金額が、最後の金額です。</h1>
+
+      <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:3cqw;margin-bottom:2.6cqw;">
+        <div style="display:flex;flex-direction:column;gap:2cqw;">
+          <div style="background:var(--c-indigo-tint);padding:2.6cqw;">
+            <div style="font-family:var(--font-label);font-weight:700;font-size:13.5px;color:var(--c-indigo);letter-spacing:.06em;">本体価格（税抜）</div>
+            <div style="font-weight:900;font-size:29px;line-height:1.1;margin-top:.5cqw;">2,110<span style="font-size:.4em;font-weight:700;">万円〜</span></div>
+            <div style="font-size:14.5px;color:var(--ink-soft);margin-top:.7cqw;">LITEプラン 1,890万円〜／全国対応</div>
+          </div>
+          <p class="lede" style="margin:0;">太陽光発電・全熱交換型換気・<br>オール樹脂サッシ・グレードキッチンなど<br>注文住宅なら追加オプションに<br>なりやすい項目が標準仕様。<br>値引き交渉ゼロ・後からの追加費用なしで<br>最初の見積が最後の金額になります。</p>
+        </div>
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">外観 or 玄関アプローチ<br>完成の安心感が伝わる構図</div>
+        </div>
+      </div>
+
+      <div class="kicker">Where the price goes</div>
+      <div style="margin-bottom:1.2cqw;">
+        <div style="display:grid;grid-template-columns:7fr 3fr;height:5.4cqw;min-height:34px;gap:2px;">
+          <div style="background:var(--c-indigo);"></div>
+          <div style="background:var(--paper-shade-2);"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:7fr 3fr;gap:2cqw;margin-top:1cqw;">
+          <div>
+            <div style="font-weight:900;font-size:17.5px;color:var(--c-indigo);">約70%</div>
+            <div style="font-weight:700;font-size:16px;margin-top:.4cqw;">建物本体価格<br>＋オプション費用</div>
+            <div style="font-size:13.5px;color:var(--ink-faint);margin-top:.5cqw;">家そのものを建てるメインコストと<br>グレードアップ・太陽光増設等</div>
+          </div>
+          <div>
+            <div style="font-weight:900;font-size:17.5px;color:var(--ink-soft);">約30%</div>
+            <div style="font-weight:700;font-size:16px;margin-top:.4cqw;">付帯工事・土地関連<br>＋諸経費</div>
+            <div style="font-size:13.5px;color:var(--ink-faint);margin-top:.5cqw;">給排水・地盤・外構と<br>登記・ローン・保険関連</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ref-note" style="margin-bottom:0;">
+        <div class="ref-note__num" style="font-size:19px;">Point</div>
+        <div class="ref-note__body">「本体価格」だけで比較すると、この見えやすい部分しか見えません。<b>本体価格＋オプション費用の総額</b>を契約前にしっかり確認しておくことが、後悔しない家づくりの第一歩です。<br>本体価格は全国一律ですが、積雪地域など一部エリアでは<br>積雪対応費が付帯工事として別途かかります。</div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.03 ― コスパ①</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 COST B ============ -->
+  <section class="page" data-pillar="indigo">
+    <div class="tab">コスパ</div>
+    <div class="page__inner">
+      <div class="kicker">01 Cost performance</div>
+      <h1 class="page-title">建てた後も、家計にやさしく。</h1>
+
+      <div class="two-col" style="margin-bottom:2.6cqw;flex:none;">
+        <div style="background:var(--paper-shade);padding:2.6cqw;display:flex;flex-direction:column;gap:1.2cqw;">
+          <div style="font-family:var(--font-label);font-weight:700;font-size:13.5px;color:var(--c-indigo);">施工実例①／床面積104.74㎡</div>
+          <div style="font-size:14.5px;color:var(--ink-faint);">UA値0.46W/㎡K・太陽光9.3kW搭載</div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px dotted var(--line);padding-top:1.2cqw;">
+            <span style="font-size:15px;color:var(--ink-soft);">実質光熱費</span>
+            <span style="font-weight:900;font-size:19px;font-variant-numeric:tabular-nums;">17,768<small style="font-size:.55em;">円/年</small></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;">
+            <span style="font-size:15px;color:var(--ink-soft);">オール電化住宅平均</span>
+            <span style="font-weight:700;font-size:17px;color:var(--ink-faint);font-variant-numeric:tabular-nums;">216,000円/年</span>
+          </div>
+          <div style="background:var(--c-indigo-tint);padding:1.4cqw 1.6cqw;display:flex;justify-content:space-between;align-items:baseline;">
+            <span style="font-size:15px;font-weight:700;color:var(--c-indigo);">実質メリット</span>
+            <span style="font-weight:900;font-size:19px;color:var(--c-indigo);font-variant-numeric:tabular-nums;">198,232<small style="font-size:.55em;">円/年</small></span>
+          </div>
+          <div style="font-size:11px;color:var(--ink-faint);">出典②（P.31参照）</div>
+        </div>
+
+        <div style="background:var(--paper-shade);padding:2.6cqw;display:flex;flex-direction:column;gap:1.2cqw;">
+          <div style="font-family:var(--font-label);font-weight:700;font-size:13.5px;color:var(--c-indigo);">施工実例②／床面積133.52㎡</div>
+          <div style="font-size:14.5px;color:var(--ink-faint);">UA値0.46W/㎡K・太陽光8.3kW搭載</div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px dotted var(--line);padding-top:1.2cqw;">
+            <span style="font-size:15px;color:var(--ink-soft);">実質光熱費</span>
+            <span style="font-weight:900;font-size:19px;font-variant-numeric:tabular-nums;">39,754<small style="font-size:.55em;">円/年</small></span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;">
+            <span style="font-size:15px;color:var(--ink-soft);">オール電化住宅平均</span>
+            <span style="font-weight:700;font-size:17px;color:var(--ink-faint);font-variant-numeric:tabular-nums;">216,000円/年</span>
+          </div>
+          <div style="background:var(--c-indigo-tint);padding:1.4cqw 1.6cqw;display:flex;justify-content:space-between;align-items:baseline;">
+            <span style="font-size:15px;font-weight:700;color:var(--c-indigo);">実質メリット</span>
+            <span style="font-weight:900;font-size:19px;color:var(--c-indigo);font-variant-numeric:tabular-nums;">176,246<small style="font-size:.55em;">円/年</small></span>
+          </div>
+          <div style="font-size:11px;color:var(--ink-faint);">出典②（P.31参照）</div>
+        </div>
+      </div>
+
+      <div class="kicker">Maintenance cost</div>
+      <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:2cqw;">
+        <div style="background:var(--c-indigo-tint);padding:2.4cqw;display:flex;flex-direction:column;gap:1cqw;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-indigo)" stroke-width="1.5" style="width:2.2cqw;height:2.2cqw;min-width:18px;min-height:18px;"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg>
+          <div>
+            <div style="font-weight:700;font-size:16.5px;">基礎・防蟻</div>
+            <div style="font-family:var(--font-label);font-size:12.5px;color:var(--ink-faint);margin-top:.3cqw;">ベタ基礎＋エコボロン</div>
+          </div>
+          <p style="font-size:14.5px;color:var(--ink-soft);line-height:1.75;margin:0;">防蟻剤には、揮発しない無機物のホウ酸塩「エコボロン」を使用。化学薬品特有の臭いがなく、赤ちゃんが誤って触れても安心な成分で、効果が長期間持続します。</p>
+        </div>
+        <div style="background:var(--c-indigo-tint);padding:2.4cqw;display:flex;flex-direction:column;gap:1cqw;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--c-indigo)" stroke-width="1.5" style="width:2.2cqw;height:2.2cqw;min-width:18px;min-height:18px;"><path d="M12 3a9 9 0 0 1 9 9H3a9 9 0 0 1 9-9z"/><path d="M8 12v6a2 2 0 0 0 4 0v-.5"/></svg>
+          <div style="font-weight:700;font-size:16.5px;">火災・地震保険料も、標準仕様で下がる</div>
+          <p style="font-size:14.5px;color:var(--ink-soft);line-height:1.75;margin:0 0 .4cqw;">耐震等級3は地震保険を<br>省令準耐火構造は火災保険を<br>それぞれ倒壊・延焼リスクが低いとみなされることで<br>割安にします<br>（35年間の総額差・保険会社の試算より）。</p>
+          <div style="display:flex;flex-direction:column;gap:.6cqw;">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px dotted var(--line);padding-top:.6cqw;">
+              <span style="font-size:13.5px;font-weight:700;color:var(--c-indigo);">LIFEX（耐震等級3＋省令準耐火）</span>
+              <span style="font-weight:900;font-size:17.5px;color:var(--c-indigo);font-variant-numeric:tabular-nums;">141万1,480円</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;">
+              <span style="font-size:13.5px;color:var(--ink-faint);">耐震等級3のみ（省令準耐火なし）</span>
+              <span style="font-weight:900;font-size:17.5px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">250万8,100円<small style="font-size:.55em;color:var(--ink-faint);">（+109万6,620円）</small></span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;">
+              <span style="font-size:13.5px;color:var(--ink-faint);">耐震等級なしの一般工務店</span>
+              <span style="font-weight:900;font-size:17.5px;color:var(--ink-soft);font-variant-numeric:tabular-nums;">299万6,280円<small style="font-size:.55em;color:var(--ink-faint);">（+158万4,800円）</small></span>
+            </div>
+            <div style="font-size:12.5px;color:var(--ink-faint);">※（　）内はLIFEXとの35年間の総額差。1つ目の差額は省令準耐火構造だけによる効果です。</div>
+            <div style="font-size:11px;color:var(--ink-faint);">出典③（P.31参照）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"><b>出典：</b>各数値の出典番号（①〜④）はP.31「出典一覧」に対応</div>
+        <div class="foot__folio">P.04 ― コスパ②</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04B COST C：基礎・防蟻 ============ -->
+  <section class="page" data-pillar="indigo">
+    <div class="tab">コスパ</div>
+    <div class="page__inner">
+      <div class="kicker">01 Cost performance</div>
+      <h1 class="page-title">見えない場所こそ、あとから困らない仕様に。</h1>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.2cqw;margin-bottom:2cqw;">
+        <div>
+          <p class="spec-item__head">床下は完成後、二度と見えない場所だから。</p>
+          <p class="spec-item__worry">シロアリ被害はもちろん、防蟻剤特有の薬品臭や<br>子どもへの健康影響も、無視できないポイントです。</p>
+          <p class="spec-item__answer"><span class="spec-item__bridge">LIFEXなら、</span>床下全面をコンクリートで塞ぐベタ基礎に<br>揮発しない無機物のホウ酸塩<br>「エコボロン」を標準採用。<br>化学薬品特有の臭いがなく<br>赤ちゃんが誤って触れても<br>安心な成分です。</p>
+        </div>
+        <div class="photo-slot" style="min-height:0;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">基礎工事の現場写真<br>ベタ基礎の打設段階</div>
+        </div>
+      </div>
+
+      <div class="kicker">Concrete foundation vs. Standard</div>
+      <div class="flow">
+        <div class="flow__box"><b>布基礎（一般的な工法）</b><small>建物の下に帯状の基礎<br>床下の土がむき出しになりやすい</small></div>
+        <div class="flow__arrow">→</div>
+        <div class="flow__box" style="background:var(--c-indigo-tint);"><b>ベタ基礎（LIFEX標準）</b><small>床下全面をコンクリートで一体化<br>湿気・シロアリの侵入経路を根本から遮断</small></div>
+      </div>
+
+      <div class="ref-note" style="margin-top:1.8cqw;margin-bottom:0;">
+        <div class="ref-note__num" style="font-size:16.5px;">エコボロン</div>
+        <div class="ref-note__body">ホウ酸塩を主原料とする無機物の防蟻剤。木材の中に浸透すると揮発せず、長期間その場にとどまり続けるため、一般的な有機系防蟻剤のように数年ごとの再施工を前提としません。</div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.05 ― コスパ③</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04C COST D：保険料・BELS ============ -->
+  <section class="page" data-pillar="indigo">
+    <div class="tab">コスパ</div>
+    <div class="page__inner">
+      <div class="kicker">01 Cost performance</div>
+      <h1 class="page-title">性能は、保険料やローンという形でも還ってくる。</h1>
+      <p class="lede">耐震等級3や省令準耐火構造、長期優良住宅・BELSは、建てる時だけの安心ではありません。<br>保険料・ローン・税制まで、実際のお金の面で優遇を受けられます。</p>
+
+      <div class="kicker">35年間の保険料総額</div>
+      <div class="barchart" style="margin-bottom:1.4cqw;--pillar:var(--c-indigo);">
+        <div class="barchart__row">
+          <div class="barchart__row-head">
+            <div class="barchart__label"><b>LIFEX（耐震等級3＋省令準耐火）</b></div>
+            <div class="barchart__value">141万1,480円</div>
+          </div>
+          <div class="barchart__track"><div class="barchart__fill barchart__fill--hero" style="width:47%;"></div></div>
+        </div>
+        <div class="barchart__row">
+          <div class="barchart__row-head">
+            <div class="barchart__label">耐震等級3のみ（省令準耐火なし）</div>
+            <div class="barchart__value">250万8,100円</div>
+          </div>
+          <div class="barchart__track"><div class="barchart__fill barchart__fill--tint" style="width:84%;"></div></div>
+        </div>
+        <div class="barchart__row">
+          <div class="barchart__row-head">
+            <div class="barchart__label">耐震等級なしの一般工務店</div>
+            <div class="barchart__value">299万6,280円</div>
+          </div>
+          <div class="barchart__track"><div class="barchart__fill barchart__fill--tint" style="width:100%;"></div></div>
+        </div>
+      </div>
+
+      <div class="kicker">長期優良住宅・BELSが生む優遇</div>
+      <div class="stat-grid">
+        <div class="stat-tile">
+          <div class="stat-tile__label">住宅ローン</div>
+          <div class="stat-tile__value" style="font-size:19px;">金利優遇</div>
+          <div class="stat-tile__why">フラット35S等の適用条件</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile__label">資産価値</div>
+          <div class="stat-tile__value" style="font-size:19px;">評価維持</div>
+          <div class="stat-tile__why">将来の売却・相続でも評価対象</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile__label">税制</div>
+          <div class="stat-tile__value" style="font-size:19px;">減税対象</div>
+          <div class="stat-tile__why">登録免許税・不動産取得税を軽減</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile__label">説得力</div>
+          <div class="stat-tile__value" style="font-size:19px;">証明書1枚</div>
+          <div class="stat-tile__why">口頭説明より公的認定の重み</div>
+        </div>
+      </div>
+
+      <div class="ref-note" style="margin-top:1.4cqw;margin-bottom:0;">
+        <div class="ref-note__body">LIFEXと一般工務店の差は35年間で158万4,800円。保険料もBELS・長期優良住宅の優遇も、根拠は同じです。耐震等級3・断熱等級6という標準仕様が、保険会社にも金融機関にも「リスクが低い建物」として評価されるからです。性能は、口頭説明より先に、数字と証明書がお客様を納得させます。</div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"><b>出典：</b>③（P.31参照）</div>
+        <div class="foot__folio">P.06 ― コスパ④</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04E COST F：標準仕様の総額換算 ============ -->
+  <section class="page" data-pillar="indigo">
+    <div class="tab">コスパ</div>
+    <div class="page__inner">
+      <div class="kicker">01 Cost performance</div>
+      <h1 class="page-title">「オプション」になりがちな17項目が、全部標準。</h1>
+      <p class="lede">注文住宅なら見積の後から積み上がりやすい項目を、LIFEXは最初から標準仕様にしています。<br>それぞれの詳細はP.25〜P.30の設備ページで確認できます。</p>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:1.4cqw 1.2cqw;flex:1;">
+        <div style="background:var(--paper-shade);padding:1.2cqw;display:flex;flex-direction:column;gap:.8cqw;">
+          <div>
+            <div style="font-weight:700;font-size:13.5px;">構造・制振</div>
+            <div style="font-size:12px;color:var(--ink-faint);margin-top:.3cqw;">許容応力度計算<br>evoltz制振ダンパー</div>
+          </div>
+          <div class="photo-slot" style="flex:1;min-height:0;padding:.8cqw;gap:.3cqw;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+            <div class="photo-slot__label" style="font-size:10.5px;">建て方・骨組み</div>
+          </div>
+        </div>
+        <div style="background:var(--paper-shade);padding:1.2cqw;display:flex;flex-direction:column;gap:.8cqw;">
+          <div>
+            <div style="font-weight:700;font-size:13.5px;">断熱・窓</div>
+            <div style="font-size:12px;color:var(--ink-faint);margin-top:.3cqw;">オール樹脂サッシ<br>Low-Eペアガラス</div>
+          </div>
+          <div class="photo-slot" style="flex:1;min-height:0;padding:.8cqw;gap:.3cqw;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+            <div class="photo-slot__label" style="font-size:10.5px;">窓まわりアップ</div>
+          </div>
+        </div>
+        <div style="background:var(--paper-shade);padding:1.2cqw;display:flex;flex-direction:column;gap:.8cqw;">
+          <div>
+            <div style="font-weight:700;font-size:13.5px;">換気</div>
+            <div style="font-size:12px;color:var(--ink-faint);margin-top:.3cqw;">第一種全熱交換型</div>
+          </div>
+          <div class="photo-slot" style="flex:1;min-height:0;padding:.8cqw;gap:.3cqw;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+            <div class="photo-slot__label" style="font-size:10.5px;">換気システム機器</div>
+          </div>
+        </div>
+        <div style="background:var(--paper-shade);padding:1.2cqw;display:flex;flex-direction:column;gap:.8cqw;">
+          <div>
+            <div style="font-weight:700;font-size:13.5px;">基礎・防耐火</div>
+            <div style="font-size:12px;color:var(--ink-faint);margin-top:.3cqw;">ベタ基礎＋エコボロン<br>省令準耐火構造</div>
+          </div>
+          <div class="photo-slot" style="flex:1;min-height:0;padding:.8cqw;gap:.3cqw;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+            <div class="photo-slot__label" style="font-size:10.5px;">基礎工事の現場</div>
+          </div>
+        </div>
+        <div style="background:var(--paper-shade);padding:1.2cqw;display:flex;flex-direction:column;gap:.8cqw;">
+          <div>
+            <div style="font-weight:700;font-size:13.5px;">創エネ</div>
+            <div style="font-size:12px;color:var(--ink-faint);margin-top:.3cqw;">太陽光発電<br>最大11.04kW</div>
+          </div>
+          <div class="photo-slot" style="flex:1;min-height:0;padding:.8cqw;gap:.3cqw;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+            <div class="photo-slot__label" style="font-size:10.5px;">屋根の太陽光パネル</div>
+          </div>
+        </div>
+        <div style="background:var(--paper-shade);padding:1.2cqw;display:flex;flex-direction:column;gap:.8cqw;">
+          <div>
+            <div style="font-weight:700;font-size:13.5px;">キッチン・食洗機</div>
+            <div style="font-size:12px;color:var(--ink-faint);margin-top:.3cqw;">タッチレス水栓<br>フロントオープン食洗機</div>
+          </div>
+          <div class="photo-slot" style="flex:1;min-height:0;padding:.8cqw;gap:.3cqw;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+            <div class="photo-slot__label" style="font-size:10.5px;">キッチン全体</div>
+          </div>
+        </div>
+        <div style="background:var(--paper-shade);padding:1.2cqw;display:flex;flex-direction:column;gap:.8cqw;">
+          <div>
+            <div style="font-weight:700;font-size:13.5px;">洗面・水回り</div>
+            <div style="font-size:12px;color:var(--ink-faint);margin-top:.3cqw;">幅120cm以上の洗面台<br>フチなしトイレ</div>
+          </div>
+          <div class="photo-slot" style="flex:1;min-height:0;padding:.8cqw;gap:.3cqw;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+            <div class="photo-slot__label" style="font-size:10.5px;">洗面台正面</div>
+          </div>
+        </div>
+        <div style="background:var(--paper-shade);padding:1.2cqw;display:flex;flex-direction:column;gap:.8cqw;">
+          <div>
+            <div style="font-weight:700;font-size:13.5px;">建具・照明</div>
+            <div style="font-size:12px;color:var(--ink-faint);margin-top:.3cqw;">ハイドア＋突板<br>全部屋照明器具付</div>
+          </div>
+          <div class="photo-slot" style="flex:1;min-height:0;padding:.8cqw;gap:.3cqw;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+            <div class="photo-slot__label" style="font-size:10.5px;">LDK建具・間接照明</div>
+          </div>
+        </div>
+        <div style="background:var(--paper-shade);padding:1.2cqw;display:flex;flex-direction:column;gap:.8cqw;">
+          <div>
+            <div style="font-weight:700;font-size:13.5px;">玄関</div>
+            <div style="font-size:12px;color:var(--ink-faint);margin-top:.3cqw;">タッチキー玄関ドア</div>
+          </div>
+          <div class="photo-slot" style="flex:1;min-height:0;padding:.8cqw;gap:.3cqw;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+            <div class="photo-slot__label" style="font-size:10.5px;">玄関ドア外観</div>
+          </div>
+        </div>
+        <div style="background:var(--paper-shade);padding:1.2cqw;display:flex;flex-direction:column;gap:.8cqw;">
+          <div>
+            <div style="font-weight:700;font-size:13.5px;">収納</div>
+            <div style="font-size:12px;color:var(--ink-faint);margin-top:.3cqw;">システム可動棚</div>
+          </div>
+          <div class="photo-slot" style="flex:1;min-height:0;padding:.8cqw;gap:.3cqw;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+            <div class="photo-slot__label" style="font-size:10.5px;">可動棚収納</div>
+          </div>
+        </div>
+        <div style="background:var(--paper-shade);padding:1.2cqw;display:flex;flex-direction:column;gap:.8cqw;">
+          <div>
+            <div style="font-weight:700;font-size:13.5px;">EV充電</div>
+            <div style="font-size:12px;color:var(--ink-faint);margin-top:.3cqw;">屋外EV用コンセント</div>
+          </div>
+          <div class="photo-slot" style="flex:1;min-height:0;padding:.8cqw;gap:.3cqw;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+            <div class="photo-slot__label" style="font-size:10.5px;">駐車スペースの充電口</div>
+          </div>
+        </div>
+        <div style="background:var(--c-indigo-tint);padding:1.2cqw;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+          <div style="font-weight:900;font-size:16px;color:var(--c-indigo);text-align:center;">全17項目<br>標準仕様</div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.07 ― コスパ⑤</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04F COST G：設計期間の短縮 ============ -->
+  <section class="page" data-pillar="indigo">
+    <div class="tab">コスパ</div>
+    <div class="page__inner">
+      <div class="kicker">01 Cost performance</div>
+      <h1 class="page-title">打ち合わせの期間だけ、最大2か月早くなる。</h1>
+      <p class="lede">着工してからの工期は、一般的な注文住宅とほとんど変わりません。<br>短くなるのは、間取りやプランを決めるまでの「設計期間」です。</p>
+
+      <div class="flow" style="margin-top:1.2cqw;">
+        <div class="flow__box"><b>注文住宅</b><small>ゼロから間取りを検討<br>打ち合わせが長期化しやすい</small></div>
+        <div class="flow__arrow">→</div>
+        <div class="flow__box" style="background:var(--c-indigo-tint);"><b>LIFEX</b><small>5スタイル×標準仕様から選ぶ<br>設計期間を最大2か月短縮</small></div>
+      </div>
+
+      <div class="ref-note" style="margin-top:1.8cqw;margin-bottom:0;">
+        <div class="ref-note__body">標準仕様と5スタイルという「選ぶだけ」の設計プロセスだから、ゼロから間取りを検討する注文住宅に比べて、プラン確定までの打ち合わせ期間を短縮できます。着工後の工事期間は一般的な注文住宅と同程度ですが、この差は仮住まい費用や二重の住居費負担の軽減に直結します。</div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.08 ― コスパ⑥</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 02：デザイン ============ -->
+  <section class="page" data-pillar="moss">
+    <div class="chapter">
+      <div class="chapter__num">02</div>
+      <div>
+        <div class="chapter__eyebrow">Chapter 02 ― Design</div>
+        <h1 class="chapter__title">デザイン</h1>
+      </div>
+      <p class="chapter__thesis">性能を保ったまま、好みの世界観を選べる。<br>選択肢を5つに絞ることで<br>決められないという迷いをなくしました。</p>
+      <div class="chapter__foot"><span>LIFEX APPROACH BOOK</span><span>→ P.09</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 05 DESIGN A ============ -->
+  <section class="page" data-pillar="moss">
+    <div class="tab">デザイン</div>
+    <div class="page__inner">
+      <div class="kicker">02 Design</div>
+      <h1 class="page-title">好みの世界観を、5つから選ぶ。</h1>
+      <p class="lede">選択肢が多すぎると、人は決められなくなります。だからLIFEXは、あえて5つのスタイルに絞りました。性能はそのままに、暮らし方に合った世界観を選ぶだけで、空間づくりが完成します。</p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr auto;gap:1.2cqw 1.8cqw;flex:1;">
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">ナチュラルLDK<br>無垢床・白壁・観葉植物</div>
+        </div>
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">ホテルライク リビング/寝室<br>間接照明・陰影のある夜カット</div>
+        </div>
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">北欧 キッチン/ダイニング<br>自然光・整理された収納が見える構図</div>
+        </div>
+
+        <div style="border-top:1px solid var(--line);padding-top:1cqw;">
+          <div style="font-weight:900;font-size:17px;">ナチュラル</div>
+          <div style="font-size:14.5px;color:var(--ink-soft);margin-top:.3cqw;">木・白・自然素材</div>
+          <p style="font-size:13.5px;color:var(--ink-faint);line-height:1.7;margin:.6cqw 0 0;">無垢材や漆喰など自然素材の質感を活かした<br>温もりのある空間。<br>子育て家族に選ばれています。</p>
+        </div>
+        <div style="border-top:1px solid var(--line);padding-top:1cqw;">
+          <div style="font-weight:900;font-size:17px;">ホテルライク</div>
+          <div style="font-size:14.5px;color:var(--ink-soft);margin-top:.3cqw;">上質・非日常感</div>
+          <p style="font-size:13.5px;color:var(--ink-faint);line-height:1.7;margin:.6cqw 0 0;">帰宅するたびに非日常を感じられる<br>上質な空間づくり。<br>DINKs世帯を中心に人気です。</p>
+        </div>
+        <div style="border-top:1px solid var(--line);padding-top:1cqw;">
+          <div style="font-weight:900;font-size:17px;">北欧</div>
+          <div style="font-size:14.5px;color:var(--ink-soft);margin-top:.3cqw;">明るく機能的</div>
+          <p style="font-size:13.5px;color:var(--ink-faint);line-height:1.7;margin:.6cqw 0 0;">明るい色使いと機能的な収納で<br>片づけやすさを重視。<br>整理好きなアクティブ家族に。</p>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.09 ― デザイン①</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 DESIGN B ============ -->
+  <section class="page" data-pillar="moss">
+    <div class="tab">デザイン</div>
+    <div class="page__inner">
+      <div class="kicker">02 Design</div>
+      <h1 class="page-title">心が動いたスタイルは、もう「自分の家」。</h1>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:1fr auto;gap:1.4cqw 2.4cqw;flex:1;">
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">シンプルLDK<br>家具点数を絞った余白のある構図</div>
+        </div>
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">ジャパンディ 和室/畳コーナー<br>木調×畳・障子が調和する構図</div>
+        </div>
+
+        <div style="border-top:1px solid var(--line);padding-top:1.2cqw;">
+          <div style="font-weight:900;font-size:17.5px;">シンプル</div>
+          <div style="font-size:15px;color:var(--ink-soft);margin-top:.4cqw;">ミニマル・余白</div>
+          <p style="font-size:14.5px;color:var(--ink-faint);line-height:1.75;margin:.7cqw 0 0;">装飾を削ぎ落とし、余白そのものを楽しむ空間。<br>ものを厳選して暮らす<br>こだわり派に人気です。</p>
+        </div>
+        <div style="border-top:1px solid var(--line);padding-top:1.2cqw;">
+          <div style="font-weight:900;font-size:17.5px;">ジャパンディ</div>
+          <div style="font-size:15px;color:var(--ink-soft);margin-top:.4cqw;">和×北欧の融合</div>
+          <p style="font-size:14.5px;color:var(--ink-faint);line-height:1.75;margin:.7cqw 0 0;">和の落ち着きと北欧の機能美を融合。<br>洗練された落ち着きを求める方に人気です。</p>
+        </div>
+      </div>
+
+      <p class="talk" style="--pillar:var(--c-moss);text-align:right;margin:2cqw 0 0;">心が動いたスタイルは、もう「自分の家」になり始めています。</p>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.10 ― デザイン②</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06B DESIGN C：標準装備マップ ============ -->
+  <section class="page" data-pillar="moss">
+    <div class="tab">デザイン</div>
+    <div class="page__inner">
+      <div class="kicker">02 Design</div>
+      <h1 class="page-title">どのスタイルを選んでも、性能は変わらない。</h1>
+      <p class="lede">5スタイルはあくまで見た目・素材の選択肢です。<br>構造・断熱・換気などの標準仕様は、どのスタイルでも共通です。</p>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.6cqw;flex:1;align-content:start;">
+        <div style="background:var(--c-wine-tint);padding:2cqw;">
+          <div style="font-weight:700;font-size:15px;color:var(--c-wine);">構造・安全</div>
+          <div style="font-size:13.5px;color:var(--ink-soft);margin-top:.5cqw;">evoltz制振ダンパー（速度依存型）</div>
+        </div>
+        <div style="background:var(--c-wine-tint);padding:2cqw;">
+          <div style="font-weight:700;font-size:15px;color:var(--c-wine);">断熱・窓</div>
+          <div style="font-size:13.5px;color:var(--ink-soft);margin-top:.5cqw;">オール樹脂サッシ（YKK AP APW330）</div>
+        </div>
+        <div style="background:var(--c-brass-tint);padding:2cqw;">
+          <div style="font-weight:700;font-size:15px;color:var(--c-brass);">換気・空気</div>
+          <div style="font-size:13.5px;color:var(--ink-soft);margin-top:.5cqw;">第一種全熱交換型換気（Panasonic製）</div>
+        </div>
+        <div style="background:var(--c-brass-tint);padding:2cqw;">
+          <div style="font-weight:700;font-size:15px;color:var(--c-brass);">キッチン</div>
+          <div style="font-size:13.5px;color:var(--ink-soft);margin-top:.5cqw;">GRAFTEKT or LIXILリシェル／タッチレス水栓</div>
+        </div>
+        <div style="background:var(--c-brass-tint);padding:2cqw;">
+          <div style="font-weight:700;font-size:15px;color:var(--c-brass);">洗面</div>
+          <div style="font-size:13.5px;color:var(--ink-soft);margin-top:.5cqw;">AICAスマートサニタリー／ワイド洗面</div>
+        </div>
+        <div style="background:var(--c-brass-tint);padding:2cqw;">
+          <div style="font-weight:700;font-size:15px;color:var(--c-brass);">建具・内装</div>
+          <div style="font-size:13.5px;color:var(--ink-soft);margin-top:.5cqw;">全室ハイドア／薄床見切り／薄窓台</div>
+        </div>
+      </div>
+
+      <div class="kicker" style="margin-top:1.6cqw;">お客様のライフスタイルを聞くことが、提案の入口</div>
+      <div class="flow" style="margin-top:.4cqw;">
+        <div class="flow__box"><b>暮らし方を聞く</b><small>家族構成・帰宅時間・趣味<br>大切にしている時間</small></div>
+        <div class="flow__arrow">→</div>
+        <div class="flow__box" style="background:var(--c-moss-tint);"><b>スタイルを提案</b><small>5スタイルから合うものを提示<br>写真を見ながらすり合わせ</small></div>
+      </div>
+      <p class="talk" style="--pillar:var(--c-moss);margin:1.6cqw 0 0;">暮らし方をお伺いしてから、ぴったりのスタイルをご提案します。</p>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.11 ― デザイン③</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06D DESIGN E：ナチュラル ============ -->
+  <section class="page" data-pillar="moss">
+    <div class="tab">デザイン</div>
+    <div class="page__inner">
+      <div class="kicker">02 Design ― Style 01</div>
+      <h1 class="page-title">ナチュラル ― 木・白・自然素材</h1>
+
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr auto;gap:1.4cqw 2cqw;flex:1;">
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">ナチュラルLDK 全景<br>無垢床・白壁・観葉植物が入る構図</div>
+        </div>
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">造作棚 or 造作テーブル<br>木の質感が伝わる寄りの構図</div>
+        </div>
+        <div style="grid-column:1/-1;border-top:1px solid var(--line);padding-top:1.2cqw;display:flex;flex-direction:column;gap:1cqw;">
+          <p style="font-size:14.5px;color:var(--ink-soft);line-height:1.8;margin:0;">無垢材や漆喰など自然素材の質感を活かした<br>温もりのある空間づくりです。子育て家族から選ばれる理由は<br>木の香りや手触りが、家族の時間を穏やかにしてくれるからです。</p>
+          <div style="font-size:12.5px;color:var(--ink-faint);"><b style="color:var(--c-moss);">相性の良い標準仕様：</b>無垢調フローリング／漆喰調の内装仕上げ／観葉植物が映える大開口窓</div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.12 ― デザイン④</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06E DESIGN F：ホテルライク ============ -->
+  <section class="page" data-pillar="moss">
+    <div class="tab">デザイン</div>
+    <div class="page__inner">
+      <div class="kicker">02 Design ― Style 02</div>
+      <h1 class="page-title">ホテルライク ― 上質・非日常感</h1>
+
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr auto;gap:1.4cqw 2cqw;flex:1;">
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">リビング夜景<br>間接照明・陰影のある構図</div>
+        </div>
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">寝室 or バスルーム<br>非日常感の伝わる寄りの構図</div>
+        </div>
+        <div style="grid-column:1/-1;border-top:1px solid var(--line);padding-top:1.2cqw;display:flex;flex-direction:column;gap:1cqw;">
+          <p style="font-size:14.5px;color:var(--ink-soft);line-height:1.8;margin:0;">帰宅するたびに非日常を感じられる、上質な空間づくりです。<br>DINKs世帯を中心に人気のスタイルで<br>「帰宅そのものがリゾート」という感覚を大切にしています。</p>
+          <div style="font-size:12.5px;color:var(--ink-faint);"><b style="color:var(--c-moss);">相性の良い標準仕様：</b>LDK間接照明（調光調色機能付き）／全室ハイドアの高い建具／造作テレビボード</div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.13 ― デザイン⑤</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06F DESIGN G：北欧 ============ -->
+  <section class="page" data-pillar="moss">
+    <div class="tab">デザイン</div>
+    <div class="page__inner">
+      <div class="kicker">02 Design ― Style 03</div>
+      <h1 class="page-title">北欧 ― 明るく機能的</h1>
+
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr auto;gap:1.4cqw 2cqw;flex:1;">
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">キッチン・ダイニング<br>自然光の入る明るい構図</div>
+        </div>
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">造作収納 or パントリー<br>整理された収納が見える構図</div>
+        </div>
+        <div style="grid-column:1/-1;border-top:1px solid var(--line);padding-top:1.2cqw;display:flex;flex-direction:column;gap:1cqw;">
+          <p style="font-size:14.5px;color:var(--ink-soft);line-height:1.8;margin:0;">明るい色使いと機能的な収納で、片づけやすさを重視したスタイルです。<br>整理好きなアクティブ家族に選ばれており<br>「散らかりにくい家」を求める方との相性が良い傾向にあります。</p>
+          <div style="font-size:12.5px;color:var(--ink-faint);"><b style="color:var(--c-moss);">相性の良い標準仕様：</b>システム可動棚の収納計画／GRAFTEKT・LIXILリシェルのキッチン／自然光の入る大開口</div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.14 ― デザイン⑥</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06G DESIGN H：シンプル ============ -->
+  <section class="page" data-pillar="moss">
+    <div class="tab">デザイン</div>
+    <div class="page__inner">
+      <div class="kicker">02 Design ― Style 04</div>
+      <h1 class="page-title">シンプル ― ミニマル・余白</h1>
+
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr auto;gap:1.4cqw 2cqw;flex:1;">
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">シンプルLDK 全景<br>家具点数を絞った余白のある構図</div>
+        </div>
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">造作収納 or 壁面<br>余白そのものが主役になる構図</div>
+        </div>
+        <div style="grid-column:1/-1;border-top:1px solid var(--line);padding-top:1.2cqw;display:flex;flex-direction:column;gap:1cqw;">
+          <p style="font-size:14.5px;color:var(--ink-soft);line-height:1.8;margin:0;">装飾を削ぎ落とし、余白そのものを楽しむ空間づくりです。<br>ものを厳選して暮らすこだわり派に選ばれており<br>「足す」より「引く」ことに価値を感じる方との相性が良い傾向にあります。</p>
+          <div style="font-size:12.5px;color:var(--ink-faint);"><b style="color:var(--c-moss);">相性の良い標準仕様：</b>薄床見切り・薄窓台のミニマルな納まり／すっきりしたハイドア建具</div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.15 ― デザイン⑦</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06H DESIGN I：ジャパンディ ============ -->
+  <section class="page" data-pillar="moss">
+    <div class="tab">デザイン</div>
+    <div class="page__inner">
+      <div class="kicker">02 Design ― Style 05</div>
+      <h1 class="page-title">ジャパンディ ― 和×北欧の融合</h1>
+
+      <div style="display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:1fr auto;gap:1.4cqw 2cqw;flex:1;">
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">和室 or 畳コーナー<br>木調×畳・障子が調和する構図</div>
+        </div>
+        <div class="photo-slot">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">造作テレビボード等<br>低め家具・水平ラインが見える構図</div>
+        </div>
+        <div style="grid-column:1/-1;border-top:1px solid var(--line);padding-top:1.2cqw;display:flex;flex-direction:column;gap:1cqw;">
+          <p style="font-size:14.5px;color:var(--ink-soft);line-height:1.8;margin:0;">和の落ち着きと北欧の機能美を融合させたスタイルです。<br>洗練された落ち着きを求める方に人気があり<br>「和モダン」より軽やかで、暮らしになじみやすい点が特徴です。</p>
+          <div style="font-size:12.5px;color:var(--ink-faint);"><b style="color:var(--c-moss);">相性の良い標準仕様：</b>木調×畳の造作コーナー／低めの造作家具／障子調の建具</div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.16 ― デザイン⑧</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 03：高性能 ============ -->
+  <section class="page" data-pillar="wine">
+    <div class="chapter">
+      <div class="chapter__num">03</div>
+      <div>
+        <div class="chapter__eyebrow">Chapter 03 ― High performance</div>
+        <h1 class="chapter__title">高性能</h1>
+      </div>
+      <p class="chapter__thesis">数字と証明書で語れる、確かな性能。<br>耐震等級3や断熱等級6は<br>第三者機関の認定を受けた標準仕様です。</p>
+      <div class="chapter__foot"><span>LIFEX APPROACH BOOK</span><span>→ P.17</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 07 PERFORMANCE ============ -->
+  <section class="page" data-pillar="wine">
+    <div class="tab">高性能</div>
+    <div class="page__inner">
+      <div class="kicker">03 High performance</div>
+      <h1 class="page-title">「なんとなく高性能」ではなく、証明できる性能を。</h1>
+      <p class="lede">口頭の「高性能です」より、証明書1枚の重みの方が信頼できます。<br>以下の4つは、いずれも標準仕様として<br>第三者機関の認定を受けています。</p>
+
+      <div class="stat-grid">
+        <div class="stat-tile">
+          <div class="stat-tile__label">耐震等級3</div>
+          <div class="stat-tile__value">2.4<small>〜2.7倍</small></div>
+          <div class="stat-tile__why">許容応力度計算（構造計算）採用</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile__label">断熱等級6</div>
+          <div class="stat-tile__value">UA0.46<small>W/㎡K</small></div>
+          <div class="stat-tile__why">室温23℃以上を保つための必要条件</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile__label">BELS</div>
+          <div class="stat-tile__value">★6<small>最高評価</small></div>
+          <div class="stat-tile__why">ZEH相当。第三者機関の認定</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile__label">太陽光発電</div>
+          <div class="stat-tile__value">最大11.04<small>kW</small></div>
+          <div class="stat-tile__why">標準搭載・追加費用ゼロ</div>
+        </div>
+      </div>
+
+      <div class="kicker">同じ「耐震等級3」でも、中身が違う</div>
+      <p style="font-size:15px;color:var(--ink-soft);line-height:1.8;margin:0 0 1.6cqw;">耐震等級3には計算方法が3種類あり、強度は最大2.7倍の差になります。<br>LIFEXは全棟、専門家が構造計算を行う<b>許容応力度計算</b>を採用しています。</p>
+      <div class="barchart" style="margin-bottom:2.2cqw;--pillar:var(--c-wine);">
+        <div class="barchart__row">
+          <div class="barchart__row-head">
+            <div class="barchart__label">①「相当」表記（仕様規定・壁量計算）</div>
+            <div class="barchart__value">1.0倍</div>
+          </div>
+          <div class="barchart__track"><div class="barchart__fill barchart__fill--tint" style="width:37%;"></div></div>
+        </div>
+        <div class="barchart__row">
+          <div class="barchart__row-head">
+            <div class="barchart__label">②品確法 等級3（性能表示計算）</div>
+            <div class="barchart__value">1.9〜2.0倍</div>
+          </div>
+          <div class="barchart__track"><div class="barchart__fill barchart__fill--tint" style="width:72%;"></div></div>
+        </div>
+        <div class="barchart__row">
+          <div class="barchart__row-head">
+            <div class="barchart__label"><b>③許容応力度計算</b>（構造計算・LIFEX採用）</div>
+            <div class="barchart__value">2.4〜2.7倍</div>
+          </div>
+          <div class="barchart__track"><div class="barchart__fill barchart__fill--hero" style="width:94%;"></div></div>
+        </div>
+      </div>
+
+      <div class="ref-note" style="margin-bottom:0;">
+        <div class="ref-note__num">0.24<small>c㎡/㎡</small></div>
+        <div class="ref-note__body">
+          <b>気密性能（C値）について</b>：開発元・Gハウスの2025年度173棟における実績平均値です。気密測定は<b>オプション項目</b>のため、この数値を保証するものではなく、実際の値は施工の品質によって変わります。<br><span style="font-size:11px;">出典④（P.31参照）</span>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.17 ― 高性能</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07B PERFORMANCE B：断熱と健康・2030年基準の先取り ============ -->
+  <section class="page" data-pillar="wine">
+    <div class="tab">高性能</div>
+    <div class="page__inner">
+      <div class="kicker">03 Performance</div>
+      <h1 class="page-title">暖かい家に住むだけで、病気のリスクが下がる。</h1>
+      <p class="lede">断熱性能は、快適さだけの話ではありません。<br>暖かい家への転居前後で、実際の疾患リスクが変化したという調査結果があります。</p>
+
+      <div class="stat-grid">
+        <div class="stat-tile">
+          <div class="stat-tile__label">高血圧</div>
+          <div class="stat-tile__value" style="font-size:19px;">8.6%<small>→3.6%</small></div>
+          <div class="stat-tile__why">暖かい家への転居後</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile__label">心疾患</div>
+          <div class="stat-tile__value" style="font-size:19px;">2.0%<small>→0.4%</small></div>
+          <div class="stat-tile__why">暖かい家への転居後</div>
+        </div>
+        <div class="stat-tile">
+          <div class="stat-tile__label">脳血管疾患</div>
+          <div class="stat-tile__value" style="font-size:19px;">1.4%<small>→0.2%</small></div>
+          <div class="stat-tile__why">暖かい家への転居後</div>
+        </div>
+      </div>
+
+      <div class="kicker">断熱等級6は、2030年基準の先取り</div>
+      <div class="flow" style="margin-top:.4cqw;">
+        <div class="flow__box"><b>断熱等級4</b><small>2030年に義務化予定<br>多くの住宅がこの水準</small></div>
+        <div class="flow__arrow">→</div>
+        <div class="flow__box" style="background:var(--c-wine-tint);"><b>断熱等級6（LIFEX標準）</b><small>UA値0.46W/㎡K<br>2030年基準を先取り済み</small></div>
+      </div>
+
+      <div class="ref-note" style="margin-top:1.2cqw;margin-bottom:0;">
+        <div class="ref-note__body">WHOは健康リスクを避けるために室温18℃以上を推奨しており、LIFEXのUA値<b>0.46</b>・断熱等級<b>6</b>は室温23℃以上を年間通じて保つための必要条件です。義務化される最低水準ではなく、その先を最初から標準仕様にすることで、健康・光熱費・将来の資産価値の3つに同時に効きます。</div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"><b>出典：</b>①（P.31参照）</div>
+        <div class="foot__folio">P.18 ― 高性能②</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07D PERFORMANCE D：耐震等級3の深掘り ============ -->
+  <section class="page" data-pillar="wine">
+    <div class="tab">高性能</div>
+    <div class="page__inner">
+      <div class="kicker">03 Performance</div>
+      <h1 class="page-title">「等級3」という言葉は同じでも、中身は違う。</h1>
+      <p class="lede">P.17で示した3種類の計算方法の差を、ここではもう少し深く見ていきます。<br>「なぜLIFEXが許容応力度計算にこだわるのか」を、数字の中身から説明します。</p>
+
+      <div class="two-col" style="flex:none;">
+        <div style="background:var(--paper-shade);padding:2.2cqw;">
+          <div style="font-weight:700;font-size:15px;color:var(--c-wine);">①②の弱点（1.0〜2.0倍）</div>
+          <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin:.6cqw 0 0;">壁の量を数えるだけの簡易計算。<br>柱・梁1本ごとの強さまでは見ていません。</p>
+        </div>
+        <div style="background:var(--c-wine-tint);padding:2.2cqw;">
+          <div style="font-weight:700;font-size:15px;color:var(--c-wine);">③許容応力度計算の強み（2.4〜2.7倍）</div>
+          <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin:.6cqw 0 0;">100〜200ページに及ぶ構造計算書を作成。<br>柱・梁1本1本にかかる力を緻密に計算します。</p>
+        </div>
+      </div>
+
+      <div class="ref-note" style="margin-top:1.8cqw;flex:none;">
+        <div class="ref-note__body">耐震等級3の強度比較グラフはP.17に掲載しています。ここでは「同じ等級3という表記でも、計算方法によって中身がまったく違う」という点を、実務の視点から補足します。</div>
+      </div>
+
+      <div class="photo-slot" style="flex:1;margin-top:1.4cqw;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+        <div class="photo-slot__label">構造計算書 or 建て方中の骨組み<br>柱・梁の接合部が分かる構図</div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.19 ― 高性能③</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07E PERFORMANCE E：制振ダンパーevoltz ============ -->
+  <section class="page" data-pillar="wine">
+    <div class="tab">高性能</div>
+    <div class="page__inner">
+      <div class="kicker">03 Performance</div>
+      <h1 class="page-title">「耐える」だけでなく、「吸収する」構造へ。</h1>
+      <p class="lede">本震に耐えられても、繰り返す余震で家がじわじわ傷むケースがあります。<br>evoltzは、車のサスペンションのように揺れを吸収する制振ダンパーです。</p>
+
+      <div class="two-col" style="margin-bottom:1.8cqw;flex:none;">
+        <div style="background:var(--paper-shade);padding:2.2cqw;">
+          <div style="font-weight:700;font-size:15px;">一般的な制振装置（変位依存型）</div>
+          <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin:.6cqw 0 0;">建物が大きく変形してから効果を発揮。<br>壁や構造材がダメージを受けた後に働きます。</p>
+        </div>
+        <div style="background:var(--c-wine-tint);padding:2.2cqw;">
+          <div style="font-weight:700;font-size:15px;color:var(--c-wine);">evoltz（速度依存型）</div>
+          <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin:.6cqw 0 0;">わずか1mmの揺れから減衰力を発揮。<br>3mmの揺れで既に<br>フルパフォーマンスに達します。</p>
+        </div>
+      </div>
+
+      <div class="scale" style="--pillar:var(--c-wine);">
+        <div class="scale__track"><div class="scale__pin" style="left:2%;"></div></div>
+        <div class="scale__labels">
+          <span><b>▼ evoltz発動：1mmから</b></span>
+          <span>33mm＝筋かい破損</span>
+          <span>100mm＝倒壊の危険</span>
+        </div>
+      </div>
+
+      <p style="font-size:13.5px;color:var(--ink-faint);margin-top:1.4cqw;">Gハウスが20年以上使い続けてきた理由は、この「壁の中を守りたい」という思想が変わらないからです。</p>
+
+      <div class="photo-slot" style="flex:1;margin-top:1.2cqw;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+        <div class="photo-slot__label">evoltz制振ダンパー実物<br>壁内の設置箇所が分かる構図</div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.20 ― 高性能④</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07F PERFORMANCE F：気密性能（C値）の詳しい話 ============ -->
+  <section class="page" data-pillar="wine">
+    <div class="tab">高性能</div>
+    <div class="page__inner">
+      <div class="kicker">03 Performance</div>
+      <h1 class="page-title">断熱・換気の性能は、気密があってはじめて活きる。</h1>
+      <p class="lede">どれだけ高性能な断熱材・換気システムを使っても、家に隙間があれば効果は半減します。<br>気密性能（C値）は、その隙間の少なさを示す数値です。</p>
+
+      <div class="ref-note" style="margin-bottom:1.6cqw;">
+        <div class="ref-note__num">0.24<small>c㎡/㎡</small></div>
+        <div class="ref-note__body">
+          <b>開発元・Gハウスの2025年度173棟における実績平均値</b>です。気密測定は<b>オプション項目</b>のため、この数値を保証するものではなく、実際の値は施工の品質によって変わります。
+        </div>
+      </div>
+
+      <div class="two-col" style="flex:none;">
+        <div style="background:var(--paper-shade);padding:2.2cqw;">
+          <div style="font-weight:700;font-size:15px;color:var(--c-wine);">気密と換気の関係</div>
+          <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin:.6cqw 0 0;">隙間があると<br>計画した通りに空気が入れ替わりません。<br>気密が伴って初めて、換気計画が意味を持ちます。</p>
+        </div>
+        <div style="background:var(--paper-shade);padding:2.2cqw;">
+          <div style="font-weight:700;font-size:15px;color:var(--c-wine);">気密と断熱の関係</div>
+          <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin:.6cqw 0 0;">隙間から熱が逃げると<br>断熱材の性能を発揮しきれません。<br>気密は、断熱性能を無駄にしないための土台です。</p>
+        </div>
+      </div>
+
+      <div class="photo-slot" style="flex:1;margin-top:1.6cqw;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+        <div class="photo-slot__label">気密測定（気密検査）の実施風景<br>測定機器と施工中の壁が写る構図</div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"><b>出典：</b>④（P.31参照）</div>
+        <div class="foot__folio">P.21 ― 高性能⑤</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07G PERFORMANCE G：窓・樹脂サッシの深掘り ============ -->
+  <section class="page" data-pillar="wine">
+    <div class="tab">高性能</div>
+    <div class="page__inner">
+      <div class="kicker">03 Performance</div>
+      <h1 class="page-title">断熱等級6を実現する、最大のネックが窓。</h1>
+      <p class="lede">壁の断熱をどれだけ頑張っても、窓の性能が弱いと家全体の快適さはそこで頭打ちになります。<br>だからLIFEXは、窓を全てオール樹脂サッシとしています。</p>
+
+      <div class="barchart" style="margin-bottom:1.2cqw;--pillar:var(--c-wine);">
+        <div class="barchart__row">
+          <div class="barchart__row-head"><div class="barchart__label">アルミ</div><div class="barchart__value">200 W/m・K</div></div>
+          <div class="barchart__track" style="height:12px;"><div class="barchart__fill barchart__fill--tint" style="width:94%;"></div></div>
+        </div>
+        <div class="barchart__row">
+          <div class="barchart__row-head"><div class="barchart__label"><b>樹脂（LIFEX採用）</b></div><div class="barchart__value">0.17 W/m・K ― 約1000分の1</div></div>
+          <div class="barchart__track" style="height:12px;"><div class="barchart__fill barchart__fill--hero" style="width:1%;"></div></div>
+        </div>
+      </div>
+
+      <div class="two-col" style="flex:none;">
+        <div style="background:var(--paper-shade);padding:1.8cqw;">
+          <div style="font-weight:700;font-size:15px;">❌ アルミ・ハイブリッド</div>
+          <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.6;margin:.5cqw 0 0;">縦枠・コーナー部で結露が発生しやすく<br>「ハイブリッド」もアルミに樹脂を被せただけです。</p>
+        </div>
+        <div style="background:var(--c-wine-tint);padding:1.8cqw;">
+          <div style="font-weight:700;font-size:15px;color:var(--c-wine);">✅ オール樹脂 APW330</div>
+          <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.6;margin:.5cqw 0 0;">Low-Eペアガラス＋アルゴンガスで断熱性+10〜20%。<br>スペーサーも樹脂製で熱橋を最小化。</p>
+        </div>
+      </div>
+
+      <div class="photo-slot" style="flex:1;min-height:11cqw;margin-top:1.2cqw;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+        <div class="photo-slot__label">窓サッシの断面 or 施工写真<br>樹脂サッシの厚みが分かる構図</div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.22 ― 高性能⑥</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07H PERFORMANCE H：換気システムの深掘り ============ -->
+  <section class="page" data-pillar="wine">
+    <div class="tab">高性能</div>
+    <div class="page__inner">
+      <div class="kicker">03 Performance</div>
+      <h1 class="page-title">換気していても、部屋の温度を逃さない。</h1>
+      <p class="lede">換気扇の近くが寒い（暑い）、花粉やPM2.5が入ってくる気がする。<br>そうした不満の多くは、換気方式そのものの違いから生まれています。</p>
+
+      <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13.5px;margin-top:1cqw;">
+        <thead>
+          <tr style="border-bottom:2px solid var(--c-wine);">
+            <th style="text-align:left;padding:.8cqw;color:var(--ink-faint);font-weight:700;">項目</th>
+            <th style="text-align:left;padding:.8cqw;color:var(--ink-faint);font-weight:700;">第3種（一般）</th>
+            <th style="text-align:left;padding:.8cqw;color:var(--c-wine);font-weight:700;">第1種全熱交換（LIFEX）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:.8cqw;color:var(--ink-soft);">給気の温度</td>
+            <td style="padding:.8cqw;color:var(--ink-faint);">外気温がそのまま（冬は0℃も）</td>
+            <td style="padding:.8cqw;font-weight:700;">熱交換で温度・湿度を調整</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:.8cqw;color:var(--ink-soft);">花粉・PM2.5</td>
+            <td style="padding:.8cqw;color:var(--ink-faint);">直接室内に侵入</td>
+            <td style="padding:.8cqw;font-weight:700;">フィルターで除去してから給気</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--line);">
+            <td style="padding:.8cqw;color:var(--ink-soft);">気密との関係</td>
+            <td style="padding:.8cqw;color:var(--ink-faint);">隙間があると換気計画が崩れる</td>
+            <td style="padding:.8cqw;font-weight:700;">C値実績平均と組み合わせて真価を発揮</td>
+          </tr>
+          <tr>
+            <td style="padding:.8cqw;color:var(--ink-soft);">メンテナンス</td>
+            <td style="padding:.8cqw;color:var(--ink-faint);">フィルター汚れで換気量が低下</td>
+            <td style="padding:.8cqw;font-weight:700;">「そもそも入れない」設計でお手入れ最小限</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="ref-note" style="margin-top:1.8cqw;margin-bottom:0;">
+        <div class="ref-note__body">LIFEXが採用する第一種全熱交換型換気システムは、Panasonic製・高性能フィルター搭載です。気密性能（C値実績平均0.24）と組み合わせて初めて、計画通りの空気の入れ替えが実現します。</div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.23 ― 高性能⑦</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07I PERFORMANCE I：証明書の重み・Q&A ============ -->
+  <section class="page" data-pillar="wine">
+    <div class="tab">高性能</div>
+    <div class="page__inner">
+      <div class="kicker">03 Performance ― Q&A</div>
+      <h1 class="page-title">よくある質問に、数字で即答する。</h1>
+
+      <div style="display:flex;flex-direction:column;gap:1.6cqw;flex:1;">
+        <div style="background:var(--c-wine-tint);padding:2cqw;">
+          <div style="font-weight:700;font-size:14.5px;color:var(--c-wine);">Q. 他社も「高性能」と言っています。何が違うのですか？</div>
+          <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.75;margin:.6cqw 0 0;">A. LIFEXは性能を「証明できる」点が違います。<br>耐震等級3も断熱等級6も、公的な認定書があります。</p>
+        </div>
+        <div style="background:var(--c-wine-tint);padding:2cqw;">
+          <div style="font-weight:700;font-size:14.5px;color:var(--c-wine);">Q. 規格住宅は自由度が低そうですが？</div>
+          <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.75;margin:.6cqw 0 0;">A. 5スタイル×豊富な間取りプランから選べます。<br>選択肢を絞ることで、迷わず決められることも価値です。</p>
+        </div>
+        <div style="background:var(--c-wine-tint);padding:2cqw;">
+          <div style="font-weight:700;font-size:14.5px;color:var(--c-wine);">Q. 断熱等級6は高すぎでは？お金の無駄になりませんか？</div>
+          <p style="font-size:13.5px;color:var(--ink-soft);line-height:1.75;margin:.6cqw 0 0;">A. 光熱費で回収できます。2030年義務化の先取りで<br>資産価値も守れる、長期的な投資です。</p>
+        </div>
+        <div class="photo-slot" style="flex:1;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg>
+          <div class="photo-slot__label">認定書・証明書の実物<br>耐震等級3やBELSの証書が写る構図</div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.24 ― 高性能⑧</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 04：高水準の設備 ============ -->
+  <section class="page" data-pillar="brass">
+    <div class="chapter">
+      <div class="chapter__num">04</div>
+      <div>
+        <div class="chapter__eyebrow">Chapter 04 ― High-grade equipment</div>
+        <h1 class="chapter__title">高水準の<br>設備</h1>
+      </div>
+      <p class="chapter__thesis">毎日使う場所ほど、妥協しない標準仕様。<br>制振ダンパーから洗面台まで<br>目に見える所も見えない所も標準仕様です。</p>
+      <div class="chapter__foot"><span>LIFEX APPROACH BOOK</span><span>→ P.25</span></div>
+    </div>
+  </section>
+
+  <!-- ============ 08 EQUIPMENT A ============ -->
+  <section class="page" data-pillar="brass">
+    <div class="tab">設備</div>
+    <div class="page__inner">
+      <div class="kicker">04 High-grade equipment</div>
+      <h1 class="page-title">目に見えない部分こそ、標準仕様で。</h1>
+
+      <div class="spec-list">
+        <div class="spec-item" style="padding:1.6cqw 0;">
+          <div class="spec-item__label">構造<small>ハイブリッド木造軸組み工法<br>＋許容応力度計算</small></div>
+          <div>
+            <p class="spec-item__head">大きな地震が来ても、家族の命を守れる強さを。</p>
+            <p class="spec-item__worry" style="margin-bottom:.7cqw;">地震のたびに「この家は本当に大丈夫だろうか」と不安になる家では<br>安心して長く暮らせません。</p>
+            <p class="spec-item__answer" style="line-height:1.65;"><span class="spec-item__bridge">LIFEXなら、</span>消防署や警察署と同じレベルの最高強度の骨組みを標準仕様に。<br>専門家が<b>100〜200ページに及ぶ許容応力度計算</b>を行い、柱や梁1本1本にかかる力を緻密に計算しています（等級3の中身の違いはP.17参照）。</p>
+          </div>
+        </div>
+
+        <div class="spec-item" style="padding:1.6cqw 0;">
+          <div class="spec-item__label">制振<small>evoltz<br>（BILSTEIN社製）<br>速度依存型</small></div>
+          <div>
+            <p class="spec-item__head">本震だけでなく、繰り返す余震から壁の中を守る。</p>
+            <p class="spec-item__worry" style="margin-bottom:.7cqw;">一度の大きな揺れに耐えられても<br>その後何度も来る余震で家がじわじわ傷んでしまうことがあります。</p>
+            <p class="spec-item__answer" style="line-height:1.65;"><span class="spec-item__bridge">LIFEXなら、</span>車のサスペンションのように揺れを吸収する制振ダンパー「evoltz」を標準搭載。<br>壁や柱がダメージを受けてから効く一般的な制振（変位依存型）と違い<br>わずか<b>1mmの揺れ</b>から効果を発揮し<b>3mmでフル性能</b>を発揮します。</p>
+            <div class="scale" style="margin-top:.8cqw;--pillar:var(--c-wine);">
+              <div class="scale__track" style="height:11px;"><div class="scale__pin" style="left:2%;"></div></div>
+              <div class="scale__labels">
+                <span><b>▼ evoltz発動：1mmから</b></span>
+                <span>33mm＝筋かい破損</span>
+                <span>100mm＝倒壊の危険</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spec-item" style="padding:1.6cqw 0;">
+          <div class="spec-item__label">窓<small>APW330（YKK AP）<br>オール樹脂サッシ</small></div>
+          <div>
+            <p class="spec-item__head">窓際のヒヤッと、朝の結露拭きから卒業する。</p>
+            <p class="spec-item__worry" style="margin-bottom:.7cqw;">断熱をどれだけ頑張っても、窓の性能が弱いと<br>家全体の快適さはそこで頭打ちになってしまいます。</p>
+            <p class="spec-item__answer" style="line-height:1.65;"><span class="spec-item__bridge">LIFEXなら、</span>窓は全てオール樹脂サッシ＋Low-Eペアガラス（アルゴンガス入）とし<br>断熱性を<b>10〜20%</b>底上げ。アルミに樹脂カバーをつけただけの「ハイブリッド」とは中身が違います。</p>
+            <div class="barchart" style="margin-top:.8cqw;--pillar:var(--c-wine);">
+              <div class="barchart__row">
+                <div class="barchart__row-head"><div class="barchart__label">アルミ</div><div class="barchart__value">200 W/m・K</div></div>
+                <div class="barchart__track" style="height:11px;"><div class="barchart__fill barchart__fill--tint" style="width:94%;"></div></div>
+              </div>
+              <div class="barchart__row">
+                <div class="barchart__row-head"><div class="barchart__label"><b>樹脂（LIFEX採用）</b></div><div class="barchart__value">0.17 W/m・K ― 約1000分の1</div></div>
+                <div class="barchart__track" style="height:11px;"><div class="barchart__fill barchart__fill--hero" style="width:1%;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.25 ― 高水準の設備①</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 09 EQUIPMENT B ============ -->
+  <section class="page" data-pillar="brass">
+    <div class="tab">設備</div>
+    <div class="page__inner">
+      <div class="kicker">04 High-grade equipment</div>
+      <h1 class="page-title">毎日使う場所ほど、妥協しない。</h1>
+
+      <div class="spec-list">
+        <div class="spec-item" style="padding:1.8cqw 0;">
+          <div class="spec-item__label">換気<small>第一種全熱交換型換気<br>システム（Panasonic製）</small></div>
+          <div>
+            <p class="spec-item__head">換気していても、部屋の温度は逃さない。</p>
+            <p class="spec-item__answer" style="line-height:1.7;"><span class="spec-item__bridge">LIFEXなら、</span>外の空気を室内の快適な温度に近づけてから取り込む<br>第一種全熱交換型換気システムを標準搭載。冷暖房の効率を落とさず<br>高性能フィルターが花粉やPM2.5もブロックします。</p>
+            <div class="flow" style="margin-top:.8cqw;">
+              <div class="flow__box"><b>第3種換気（一般的）</b><small>外気温がそのまま入る<br>花粉・PM2.5が直接侵入</small></div>
+              <div class="flow__arrow">→</div>
+              <div class="flow__box" style="background:var(--c-brass-tint);"><b>第1種全熱交換（LIFEX）</b><small>温度・湿度を交換してから給気<br>フィルターで有害物質を除去</small></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="spec-item" style="padding:1.8cqw 0;">
+          <div class="spec-item__label">キッチン<small>GRAFTEKT<br>または LIXILリシェル</small></div>
+          <div style="display:grid;grid-template-columns:1fr 15cqw;gap:1.6cqw;">
+            <div>
+              <p class="spec-item__head">毎日の手入れを、サッと拭くだけに。</p>
+              <p class="spec-item__worry">傷や汚れが目立つ天板や、汚れた手で触りたくない水栓は<br>日々の小さなストレスになります。</p>
+              <p class="spec-item__answer"><span class="spec-item__bridge">LIFEXなら、</span>傷・熱・汚れに圧倒的に強い最高級の天板と<br>タッチレス水栓を標準搭載。大容量のフロントオープン食洗機で<br>大鍋もまとめて洗えます。</p>
+            </div>
+            <div class="photo-slot" style="min-height:10cqw;padding:1cqw;gap:.5cqw;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg><div class="photo-slot__label">キッチン<br>正面〜斜め45度</div></div>
+          </div>
+        </div>
+
+        <div class="spec-item" style="padding:1.8cqw 0;">
+          <div class="spec-item__label">洗面<small>AICA スマートサニタリーU<br>（W1200〜1675）</small></div>
+          <div style="display:grid;grid-template-columns:1fr 15cqw;gap:1.6cqw;">
+            <div>
+              <p class="spec-item__head">忙しい朝を、家族みんなでゆったりと。</p>
+              <p class="spec-item__worry">洗面台が1つしかないと、朝の身支度の時間が<br>家族で重なり合ってしまいます。</p>
+              <p class="spec-item__answer"><span class="spec-item__bridge">LIFEXなら、</span>横幅<b>120cm以上</b>ある造作風の洗面台を標準搭載。<br>収納力のある3面鏡で洗面所がいつもすっきりします。<br>面材デザインは約100種類から選べます。</p>
+            </div>
+            <div class="photo-slot" style="min-height:10cqw;padding:1cqw;gap:.5cqw;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg><div class="photo-slot__label">洗面台<br>正面カット</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.26 ― 高水準の設備②</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 10 EQUIPMENT C ============ -->
+  <section class="page" data-pillar="brass">
+    <div class="tab">設備</div>
+    <div class="page__inner">
+      <div class="kicker">04 High-grade equipment</div>
+      <h1 class="page-title">細部のディテールが、空間の質を決める。</h1>
+
+      <div class="spec-list">
+        <div class="spec-item">
+          <div class="spec-item__label">建具・内装<small>ハイドア<br>（Panasonic H2400）<br>＋突板フローリング</small></div>
+          <div style="display:grid;grid-template-columns:1fr 15cqw;gap:1.6cqw;">
+            <div>
+              <p class="spec-item__head">規格住宅とは思えない、ホテルのような質感を。</p>
+              <p class="spec-item__worry">「規格住宅」と聞くと、ドアの上に壁が残っていたり<br>床がシートのようで安っぽく見えないか心配になる方もいます。</p>
+              <p class="spec-item__answer"><span class="spec-item__bridge">LIFEXなら、</span>天井まで届く高さの<br>建具「ハイドア」と本物の木を薄くスライスした突板フローリングを標準搭載。<br>空間が広く見え、年月とともに味わいが増す仕上がりです。</p>
+            </div>
+            <div class="photo-slot" style="min-height:10cqw;padding:1cqw;gap:.5cqw;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg><div class="photo-slot__label">廊下 or<br>LDK入口</div></div>
+          </div>
+        </div>
+
+        <div class="spec-item">
+          <div class="spec-item__label">照明<small>全部屋照明器具付<br>＋LDK間接照明<br>（調光調色機能付き）</small></div>
+          <div style="display:grid;grid-template-columns:1fr 15cqw;gap:1.6cqw;">
+            <div>
+              <p class="spec-item__head">照明選びの手間も、費用も、最初からゼロに。</p>
+              <p class="spec-item__worry">照明器具をすべて自分で選ぶのは<br>思いのほか時間もお金もかかるものです。</p>
+              <p class="spec-item__answer"><span class="spec-item__bridge">LIFEXなら、</span>間取りに合わせてプロがデザインした<br>照明器具を全部屋に標準搭載。<br>LDKには、食事の時は明るい白、くつろぐ時は温かいオレンジと<br>切り替えられる調光調色機能付きの間接照明も付いています。</p>
+            </div>
+            <div class="photo-slot" style="min-height:10cqw;padding:1cqw;gap:.5cqw;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg><div class="photo-slot__label">LDK<br>夜景・点灯</div></div>
+          </div>
+        </div>
+
+        <div class="spec-item">
+          <div class="spec-item__label">玄関<small>ヴェナートD30<br>（YKK AP・ポケットキー）</small></div>
+          <div style="display:grid;grid-template-columns:1fr 15cqw;gap:1.6cqw;">
+            <div>
+              <p class="spec-item__head">両手が荷物でふさがっていても、鍵を探さない。</p>
+              <p class="spec-item__worry">買い物帰りなど、両手が荷物でふさがっている時に<br>鍵を探すのは、地味に大変な作業です。</p>
+              <p class="spec-item__answer"><span class="spec-item__bridge">LIFEXなら、</span>カギをカバンに入れたまま、ドアのボタンを押すだけで<br>開け閉めできる玄関ドアを標準搭載。<br>オートロック機能付きで、閉め忘れの心配も減ります。</p>
+            </div>
+            <div class="photo-slot" style="min-height:10cqw;padding:1cqw;gap:.5cqw;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg><div class="photo-slot__label">玄関ドア<br>外観</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.27 ― 高水準の設備③</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 11 EQUIPMENT D ============ -->
+  <section class="page" data-pillar="brass">
+    <div class="tab">設備</div>
+    <div class="page__inner">
+      <div class="kicker">04 High-grade equipment</div>
+      <h1 class="page-title">見えない場所も、選び抜いた標準仕様で。</h1>
+
+      <div class="spec-list">
+        <div class="spec-item">
+          <div class="spec-item__label">断熱<small>吹付硬質ウレタンフォーム<br>＋防湿気密シート</small></div>
+          <div>
+            <p class="spec-item__head">魔法瓶のように、家全体を隙間なく包み込む。</p>
+            <p class="spec-item__worry">冷暖房が効きにくい家では、冬の廊下やお風呂が驚くほど寒く<br>ヒートショックのリスクも見過ごせません。</p>
+            <p class="spec-item__answer"><span class="spec-item__bridge">LIFEXなら、</span>UA値<b>0.46</b>・断熱等級<b>6</b>の高い断熱性能に<br>防湿気密シートで隙間をなくした施工を標準搭載。<br>冬の朝も布団からスッと出られ、冷暖房費の節約にも直結します。</p>
+          </div>
+        </div>
+
+        <div class="spec-item">
+          <div class="spec-item__label">基礎<small>ベタ基礎<br>＋エコボロン</small></div>
+          <div>
+            <p class="spec-item__head">床下から、シロアリの不安をなくす。</p>
+            <p class="spec-item__worry">シロアリ被害はもちろん、防蟻剤の薬品臭や<br>子どもへの健康影響も、家づくりでは気になるところです。</p>
+            <p class="spec-item__answer"><span class="spec-item__bridge">LIFEXなら、</span>床下全面をコンクリートで塞ぐベタ基礎に<br>揮発しない無機物のホウ酸塩「エコボロン」を標準採用。<br>化学薬品特有の臭いがなく、効果が長期間持続します。</p>
+          </div>
+        </div>
+
+        <div class="spec-item">
+          <div class="spec-item__label">防耐火<small>省令準耐火構造</small></div>
+          <div>
+            <p class="spec-item__head">建てた後の保険料まで、標準仕様で下げる。</p>
+            <p class="spec-item__worry">火事そのものの心配に加えて、火災保険料など<br>入居後もずっと続く維持費が家計にのしかかります。</p>
+            <p class="spec-item__answer"><span class="spec-item__bridge">LIFEXなら、</span>延焼を防ぐファイヤーストップ材を用いた<br>省令準耐火構造を標準採用。避難時間を確保できるだけでなく<br>火災保険料の割引にもつながります（試算例はP.06参照）。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.28 ― 高水準の設備④</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 12 EQUIPMENT E ============ -->
+  <section class="page" data-pillar="brass">
+    <div class="tab">設備</div>
+    <div class="page__inner">
+      <div class="kicker">04 High-grade equipment</div>
+      <h1 class="page-title">今日の暮らしにも、この先の暮らしにも。</h1>
+
+      <div class="spec-list">
+        <div class="spec-item">
+          <div class="spec-item__label">創エネ<small>太陽光発電システム<br>（次世代N型セル）</small></div>
+          <div>
+            <p class="spec-item__head">上がり続ける電気代を、屋根の上から迎え撃つ。</p>
+            <p class="spec-item__worry">毎月の電気代は上がり続け<br>家計をじわじわと圧迫しています。</p>
+            <p class="spec-item__answer"><span class="spec-item__bridge">LIFEXなら、</span>次世代N型セルの太陽光発電を最大<b>11.04kW</b>まで搭載可能。<br>パネルメーカー30年出力保証付きで、日中の電気代を賄うだけでなく<br>売電収入や災害時の非常用電源としても活躍します。</p>
+          </div>
+        </div>
+
+        <div class="spec-item">
+          <div class="spec-item__label">設備<small>屋外EV用<br>充電コンセント標準装備</small></div>
+          <div>
+            <p class="spec-item__head">将来の電気自動車も、後工事なしで迎えられる。</p>
+            <p class="spec-item__worry">電気自動車への乗り換えを考えるたびに<br>後付け工事の手間と費用が頭をよぎります。</p>
+            <p class="spec-item__answer"><span class="spec-item__bridge">LIFEXなら、</span>屋外EV用コンセントを標準装備。<br>後から設置すると壁に穴を開ける工事や高額な費用がかかりますが<br>標準装備なら無駄な出費なく未来のカーライフに備えられます。</p>
+          </div>
+        </div>
+
+        <div class="spec-item">
+          <div class="spec-item__label">収納<small>システム可動棚</small></div>
+          <div style="display:grid;grid-template-columns:1fr 15cqw;gap:1.6cqw;">
+            <div>
+              <p class="spec-item__head">しまうモノに合わせて、収納そのものが変化する。</p>
+              <p class="spec-item__worry">棚の高さが固定されていると<br>収納の中に無駄な空間ができたり<br>モノの高さがバラバラで<br>片付けにくくなったりします。</p>
+              <p class="spec-item__answer"><span class="spec-item__bridge">LIFEXなら、</span>棚板の高さを自由に動かせる<br>システム可動棚を標準搭載。耐荷重25〜40kg/段で<br>その時のライフスタイルに合わせて空間を無駄なく使い切れます。</p>
+            </div>
+            <div class="photo-slot" style="min-height:10cqw;padding:1cqw;gap:.5cqw;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg><div class="photo-slot__label">収納棚<br>可動棚が見える構図</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.29 ― 高水準の設備⑤</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 13 EQUIPMENT F ============ -->
+  <section class="page" data-pillar="brass">
+    <div class="tab">設備</div>
+    <div class="page__inner">
+      <div class="kicker">04 High-grade equipment</div>
+      <h1 class="page-title">毎日の家事を、根本から時短する。</h1>
+
+      <div class="spec-list">
+        <div class="spec-item">
+          <div class="spec-item__label">食洗機<small>フロントオープン食洗機<br>（BOSCH／Panasonic製）</small></div>
+          <div style="display:grid;grid-template-columns:1fr 15cqw;gap:1.6cqw;">
+            <div>
+              <p class="spec-item__head">大鍋もフライパンも、悩まず放り込める。</p>
+              <p class="spec-item__worry">毎日の食器洗いは地味に面倒なうえ<br>フライパンや大きな鍋は<br>食洗機に入らないことも多いものです。</p>
+              <p class="spec-item__answer"><span class="spec-item__bridge">LIFEXなら、</span>前面が大きく開くフロントオープン食洗機を標準搭載。<br>大容量で出し入れがしやすく、毎晩の食器洗いから解放される分<br>家族でゆっくり過ごす時間が増えます。</p>
+            </div>
+            <div class="photo-slot" style="min-height:10cqw;padding:1cqw;gap:.5cqw;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg><div class="photo-slot__label">食洗機<br>開いた状態</div></div>
+          </div>
+        </div>
+
+        <div class="spec-item">
+          <div class="spec-item__label">水回り<small>GG-J1（トイレ）<br>／AX（バス）</small></div>
+          <div style="display:grid;grid-template-columns:1fr 15cqw;gap:1.6cqw;">
+            <div>
+              <p class="spec-item__head">毎日の水回り掃除を、根本から時短する。</p>
+              <p class="spec-item__worry">トイレのフチ裏の掃除や<br>お風呂の排水溝の掃除に<br>気づけば週末の時間を取られてしまいます。</p>
+              <p class="spec-item__answer"><span class="spec-item__bridge">LIFEXなら、</span>フチなし形状のトイレと<br>ゴミがまとまりやすい排水口のバスを標準搭載。<br>毎日使う場所だからこそ、お掃除の手間を根本から減らします。</p>
+            </div>
+            <div class="photo-slot" style="min-height:10cqw;padding:1cqw;gap:.5cqw;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="1"/><circle cx="8" cy="9" r="1.6"/><path d="M3 17l5-5 3 3 4-5 6 7"/></svg><div class="photo-slot__label">バスルーム<br>浴槽まわり</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.30 ― 高水準の設備⑥</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 13B CLOSING ============ -->
+  <section class="page" style="position:relative;background:
+    repeating-linear-gradient(0deg, rgba(32,30,27,.04) 0 1px, transparent 1px 12mm),
+    repeating-linear-gradient(90deg, rgba(32,30,27,.04) 0 1px, transparent 1px 12mm);
+    background-color:var(--paper);">
+    <div class="page__inner" style="justify-content:center;align-items:center;text-align:center;">
+      <div style="max-width:60ch;display:flex;flex-direction:column;align-items:center;gap:2.4cqw;">
+        <div style="font-family:var(--font-label);font-weight:700;letter-spacing:.22em;font-size:13px;color:var(--c-brand);">CLOSING</div>
+        <h1 style="margin:0;font-weight:900;font-size:33px;line-height:1.4;color:var(--ink);text-wrap:balance;">「どれかを選ぶ家」ではなく<br>「すべてを叶える」家。</h1>
+        <p style="font-size:15px;line-height:1.9;color:var(--ink-soft);margin:0;">コスパも、デザインも、高性能も、高水準の設備も。<br>ひとつを選ぶために、なにかを諦める必要はありません。</p>
+        <p class="talk" style="--pillar:var(--c-brand);font-size:20px;margin:1cqw 0 0;">私たちの家が、新しい基準と<br>新しい暮らしをつくる。</p>
+        <p style="font-size:13.5px;color:var(--ink-faint);margin-top:1.6cqw;">気になるページがあれば、担当までお気軽にお尋ねください。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 14 SOURCES ============ -->
+  <section class="page">
+    <div class="page__inner">
+      <div class="kicker">Sources</div>
+      <h1 class="page-title">出典一覧</h1>
+      <p class="lede">本書に記載した数値・データの出典です。数字の根拠を確かめたいときは、いつでもここに立ち戻ってください。</p>
+
+      <div style="display:flex;flex-direction:column;gap:0;flex:1;">
+        <div style="display:grid;grid-template-columns:3.4cqw 13cqw 1fr;gap:1cqw 2cqw;padding:1.5cqw 0;border-bottom:1px solid var(--line);">
+          <div style="font-weight:900;font-size:16px;color:var(--c-brand);">①</div>
+          <div style="font-weight:700;font-size:15px;color:var(--ink-soft);">健康・室温</div>
+          <div style="font-size:15px;line-height:1.9;">厚生労働省（転居前後の疾病罹患率調査）／世界保健機関（WHO）住宅と健康に関するガイドライン（室温18℃基準）</div>
+        </div>
+        <div style="display:grid;grid-template-columns:3.4cqw 13cqw 1fr;gap:1cqw 2cqw;padding:1.5cqw 0;border-bottom:1px solid var(--line);">
+          <div style="font-weight:900;font-size:16px;color:var(--c-brand);">②</div>
+          <div style="font-weight:700;font-size:15px;color:var(--ink-soft);">光熱費試算</div>
+          <div style="font-size:15px;line-height:1.9;">総務省 家計調査／家計収支編 総世帯 詳細結果表／関西電力 実質平均料金（基本使用料・燃料調達費・再エネ賦課金含む）</div>
+        </div>
+        <div style="display:grid;grid-template-columns:3.4cqw 13cqw 1fr;gap:1cqw 2cqw;padding:1.5cqw 0;border-bottom:1px solid var(--line);">
+          <div style="font-weight:900;font-size:16px;color:var(--c-brand);">③</div>
+          <div style="font-weight:700;font-size:15px;color:var(--ink-soft);">保険料試算</div>
+          <div style="font-size:15px;line-height:1.9;">AIG損害保険 見積り（建物評価額3,500万円・家財評価額300万円／補償内容：火災・風災・雪災・水災・水漏れ・盗難・破損汚損）</div>
+        </div>
+        <div style="display:grid;grid-template-columns:3.4cqw 13cqw 1fr;gap:1cqw 2cqw;padding:1.5cqw 0;">
+          <div style="font-weight:900;font-size:16px;color:var(--c-brand);">④</div>
+          <div style="font-weight:700;font-size:15px;color:var(--ink-soft);">施工実績</div>
+          <div style="font-size:15px;line-height:1.9;">開発元・株式会社Gハウス 2025年度施工実績（173棟平均値）※気密性能（C値）は同社実績値であり、LIFEXの保証値ではありません</div>
+        </div>
+      </div>
+      <p style="font-size:12.5px;color:var(--ink-faint);margin:1cqw 0 0;">各ページの数値には、該当する番号（①〜④）を添えています。</p>
+
+      <div class="foot">
+        <div class="foot__source"></div>
+        <div class="foot__folio">P.31 ― 出典一覧</div>
+      </div>
+    </div>
+  </section>
+
+</div>
