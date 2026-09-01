@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>目標達成MTGアーカイブ｜LIFEX</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
+
+  :root{
+    --bg: #f6f4ee;
+    --surface: #ffffff;
+    --surface-2: #f0ede4;
+    --ink: #1e2b25;
+    --ink-soft: #5e6b63;
+    --ink-faint: #8b968e;
+    --accent: #2f5d50;
+    --accent-ink: #ffffff;
+    --accent-soft: #dee8e2;
+    --line: #e2ddd0;
+    --shadow: 0 1px 2px rgba(30,43,37,0.04), 0 8px 24px -16px rgba(30,43,37,0.18);
+  }
+
+  *{ box-sizing: border-box; }
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+    line-height: 1.7;
+  }
+  h1, .display{
+    font-family: "Zen Old Mincho", "Hiragino Mincho ProN", serif;
+    text-wrap: balance;
+  }
+  .num{
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .page{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
+
+  header.hero{ margin-bottom: 56px; }
+  .eyebrow{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .eyebrow::before{
+    content: "";
+    width: 22px;
+    height: 1px;
+    background: var(--accent);
+    display: inline-block;
+  }
+  h1{
+    font-size: clamp(30px, 5vw, 40px);
+    font-weight: 700;
+    margin: 0 0 16px;
+    letter-spacing: 0.01em;
+  }
+  .lede{
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin: 0 0 28px;
+  }
+  .meta-row{ display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .meta-chip{
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 7px 14px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    box-shadow: var(--shadow);
+  }
+  .meta-chip strong{ color: var(--ink); font-weight: 700; }
+
+  .list{ display: flex; flex-direction: column; gap: 14px; }
+
+  .session{
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  @media (hover: hover){
+    .session:hover{ transform: translateY(-2px); border-color: var(--accent); }
+    .session:hover .thumb img{ transform: scale(1.04); }
+  }
+  .session:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .session-inner{ display: grid; grid-template-columns: 108px 1fr; gap: 0; }
+
+  .datebar{
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 6px;
+    text-align: center;
+    gap: 2px;
+  }
+  .datebar .month{ font-size: 11px; font-weight: 700; letter-spacing: 0.06em; opacity: 0.85; }
+  .datebar .day{ font-size: 26px; font-weight: 700; line-height: 1; }
+  .datebar .year{ font-size: 10.5px; opacity: 0.7; margin-top: 4px; }
+
+  .body{
+    display: grid;
+    grid-template-columns: 148px 1fr;
+    gap: 18px;
+    padding: 16px 18px 16px 16px;
+    align-items: center;
+  }
+
+  .thumb{
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--surface-2);
+    flex-shrink: 0;
+  }
+  .thumb img{ width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.25s ease; }
+  .thumb .play{ position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .thumb .play span{
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(15, 26, 22, 0.55);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .thumb .play svg{ width: 12px; height: 12px; fill: #fff; margin-left: 2px; }
+
+  .content{ min-width: 0; }
+  .session-label{ font-size: 11.5px; font-weight: 700; color: var(--ink-faint); letter-spacing: 0.08em; margin-bottom: 4px; }
+  .session-title{ font-size: 16px; font-weight: 600; color: var(--ink); margin: 0 0 6px; letter-spacing: 0.005em; }
+  .session-sub{ font-size: 12.5px; color: var(--ink-soft); display: flex; align-items: center; gap: 6px; }
+  .session-sub .dot{ width: 3px; height: 3px; border-radius: 50%; background: var(--ink-faint); }
+
+  .gap-note{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 2px 4px 2px 122px;
+    color: var(--ink-faint);
+    font-size: 12px;
+  }
+  .gap-note .line{
+    flex: 1;
+    height: 1px;
+    background: repeating-linear-gradient(to right, var(--line) 0 4px, transparent 4px 8px);
+  }
+
+  footer{
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  @media (max-width: 480px){
+    .session-inner{ grid-template-columns: 64px 1fr; }
+    .datebar{ padding: 10px 4px; }
+    .datebar .day{ font-size: 20px; }
+    .datebar .month{ font-size: 9.5px; }
+    .datebar .year{ display: none; }
+    .body{ grid-template-columns: 92px 1fr; gap: 12px; padding: 12px; }
+    .gap-note{ padding-left: 76px; }
+    h1{ font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="hero">
+    <p class="eyebrow">加盟店様向け</p>
+    <h1>目標達成MTGアーカイブ</h1>
+    <p class="lede">「2棟目標達成MTG」の録画一覧です。見逃した回や振り返りたい回は、こちらから視聴してください。タイトルをクリックするとYouTubeで再生されます。</p>
+    <div class="meta-row">
+      <span class="meta-chip"><strong class="num">7</strong>&nbsp;回分を収録</span>
+      <span class="meta-chip">期間　<strong class="num">2026.07.03</strong> 〜 <strong class="num">2026.08.21</strong></span>
+    </div>
+  </header>
+
+  <div class="list">
+
+    <a class="session" href="https://youtu.be/5P9psno4uHM" target="_blank" rel="noopener noreferrer">
+      <div class="session-inner">
+        <div class="datebar"><span class="month num">2026 / 07</span><span class="day num">03</span><span class="year">Fri</span></div>
+        <div class="body">
+          <div class="thumb">
+            <img src="https://img.youtube.com/vi/5P9psno4uHM/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+          </div>
+          <div class="content">
+            <p class="session-label">第1回</p>
+            <p class="session-title">LIFEX　2棟目標達成MTG</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <a class="session" href="https://youtu.be/9VF5WLgwzKw" target="_blank" rel="noopener noreferrer">
+      <div class="session-inner">
+        <div class="datebar"><span class="month num">2026 / 07</span><span class="day num">10</span><span class="year">Fri</span></div>
+        <div class="body">
+          <div class="thumb">
+            <img src="https://img.youtube.com/vi/9VF5WLgwzKw/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+          </div>
+          <div class="content">
+            <p class="session-label">第2回</p>
+            <p class="session-title">LIFEX　2棟目標達成MTG</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <a class="session" href="https://youtu.be/80l9h6Z1kO0" target="_blank" rel="noopener noreferrer">
+      <div class="session-inner">
+        <div class="datebar"><span class="month num">2026 / 07</span><span class="day num">17</span><span class="year">Fri</span></div>
+        <div class="body">
+          <div class="thumb">
+            <img src="https://img.youtube.com/vi/80l9h6Z1kO0/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+          </div>
+          <div class="content">
+            <p class="session-label">第3回</p>
+            <p class="session-title">LIFEX　2棟目標達成MTG</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <a class="session" href="https://youtu.be/XNOXrUfzdqM" target="_blank" rel="noopener noreferrer">
+      <div class="session-inner">
+        <div class="datebar"><span class="month num">2026 / 07</span><span class="day num">24</span><span class="year">Fri</span></div>
+        <div class="body">
+          <div class="thumb">
+            <img src="https://img.youtube.com/vi/XNOXrUfzdqM/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+          </div>
+          <div class="content">
+            <p class="session-label">第4回</p>
+            <p class="session-title">LIFEX　2棟目標達成MTG</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <a class="session" href="https://youtu.be/-MNnr94wtsY" target="_blank" rel="noopener noreferrer">
+      <div class="session-inner">
+        <div class="datebar"><span class="month num">2026 / 07</span><span class="day num">31</span><span class="year">Fri</span></div>
+        <div class="body">
+          <div class="thumb">
+            <img src="https://img.youtube.com/vi/-MNnr94wtsY/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+          </div>
+          <div class="content">
+            <p class="session-label">第5回</p>
+            <p class="session-title">LIFEX　2棟目標達成MTG</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <a class="session" href="https://youtu.be/Gbmt2rr9XoE" target="_blank" rel="noopener noreferrer">
+      <div class="session-inner">
+        <div class="datebar"><span class="month num">2026 / 08</span><span class="day num">07</span><span class="year">Fri</span></div>
+        <div class="body">
+          <div class="thumb">
+            <img src="https://img.youtube.com/vi/Gbmt2rr9XoE/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+          </div>
+          <div class="content">
+            <p class="session-label">第6回</p>
+            <p class="session-title">2棟目標達成MTG</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+    <div class="gap-note"><span class="line"></span>2週分の開催なし<span class="line"></span></div>
+
+    <a class="session" href="https://youtu.be/Fqx_RH00qSI" target="_blank" rel="noopener noreferrer">
+      <div class="session-inner">
+        <div class="datebar"><span class="month num">2026 / 08</span><span class="day num">21</span><span class="year">Fri</span></div>
+        <div class="body">
+          <div class="thumb">
+            <img src="https://img.youtube.com/vi/Fqx_RH00qSI/hqdefault.jpg" alt="" loading="lazy">
+            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+          </div>
+          <div class="content">
+            <p class="session-label">第7回</p>
+            <p class="session-title">LIFEX　2棟目標達成MTG</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+          </div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <footer>
+    <span>収録元：G-ハウス営業用（YouTube）</span>
+    <span>最終更新　2026.09.01</span>
+  </footer>
+</div>
+
+</body>
+</html>
