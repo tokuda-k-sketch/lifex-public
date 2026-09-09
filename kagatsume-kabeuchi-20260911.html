@@ -142,19 +142,20 @@
     <h2><span class="n">4</span>壁打ちしたい4つの論点</h2>
 
     <div class="point">
-      <div class="pt"><span class="pn">①</span><span class="pttl">効くのはどの店？　3類型に当てはまらないかもしれない</span></div>
-      <div class="pb">竹村・河原（初動不足型）は「面談以降の歩留まりは良好」。つまりボトルネックは面談の手前で、商談の中身ではない。このツールが一番効くのは「面談後の契約率（商談力）」がボトルネックの店だが、それは今の3類型（初動不足・量不足・通電不足）のどれにも該当しない。4類型目「商談力不足型」を立てるべきか、既存店の中に隠れているか。</div>
-      <div class="caveat">⚠️ WebFetchでの資料要約から立てた仮説。各店の生の商談内容までは見ていない。</div>
+      <div class="pt"><span class="pn">①</span><span class="pttl">効くのはどの店？　今はまだ検証できない仮説</span></div>
+      <div class="pb">竹村・河原（初動不足型）は「面談以降の歩留まりは良好」。つまりボトルネックは面談の手前で、商談の中身ではない。このツールが一番効くのは「面談後の契約率（商談力）」がボトルネックの店だが、それは今の3類型のどれにも該当しない。4類型目「商談力不足型」を立てるべきか、既存店の中に隠れているか。</div>
+      <div class="caveat">⚠️ この仮説は今の時点では検証できない。商談AI採点はまだ「いえプロ」1店舗の試験運用のみで、この5社では動いていない（未確認）。検証するには、まずこの5社に商談AI採点を入れる必要がある＝論点③と依存関係にある。</div>
     </div>
 
     <div class="point">
-      <div class="pt"><span class="pn">②</span><span class="pttl">B型2社限定なら、今すぐ検証に組み込める</span></div>
-      <div class="pb">新しい仮説を持ち込まなくても、WITHDOM・出雲の「作戦会議」時間が導入前後でどう変わるかは、既存の実験対象だけで測れる。一番地に足がついた論点。</div>
+      <div class="pt"><span class="pn">②</span><span class="pttl">B型2社限定なら検証できる……が、まず計測の仕組みから</span></div>
+      <div class="pb">WITHDOM・出雲の「作戦会議」時間が導入前後でどう変わるかは、既存の実験対象だけで測れるはず。</div>
+      <div class="caveat">⚠️ ただし「作戦会議に何分かけているか」を今、誰かが記録しているかは未確認。記録が無ければ「今すぐ測れる」ではなく、まず計測の仕組み（本部担当者が時間を記録する運用）を作るところからになる。</div>
     </div>
 
     <div class="point">
-      <div class="pt"><span class="pn">③</span><span class="pttl">商談AI採点と組み合わせると面白い</span></div>
-      <div class="pb">AI採点＝結果（実施した商談の質）、このツール＝準備。「良い準備をした商談ほど、採点や契約率が良いか」をこの実験の枠組みで検証できる。2つのツールを繋ぐ話で、一番説得力が出る。</div>
+      <div class="pt"><span class="pn">③</span><span class="pttl">商談AI採点と組み合わせると面白い（①の前提条件でもある）</span></div>
+      <div class="pb">AI採点＝結果（実施した商談の質）、このツール＝準備。「良い準備をした商談ほど、採点や契約率が良いか」を検証できる。ただし今の5社実験対象にAI採点がまだ入っていないなら、これは①を検証するための前提作業でもある。</div>
     </div>
 
     <div class="point">
@@ -163,8 +164,35 @@
     </div>
   </div>
 
+  <div class="sec">
+    <h2><span class="n">5</span>今後の展開・ロードマップ</h2>
+    <div class="flow">
+      <div class="box hi">Phase1（完成）<br>資金レンジ・プラン提案<br>トーク準備（Gemini不要）</div>
+      <div class="arrow">→</div>
+      <div class="box">Phase2（未着手）<br>Gemini連携で自動化<br>推測ポイント含む</div>
+    </div>
+    <p class="flow-note">現在のブロッカーは商談AI採点プロジェクトと同じ＝<b>Gemini APIキーが未取得</b>。Phase1は今すぐ1〜2店舗で試せる状態。Phase2（全自動化）はAPIキー取得後。</p>
+    <p class="flow-note" style="margin-top:8px"><b>判断ポイント（案）</b>：①どの店で最初に試すか（WITHDOM・出雲のB型が候補）②作戦会議の時間計測をいつから始めるか③商談AI採点をこの5社にいつ入れるか④1か月後・3か月後にそれぞれ何が確認できていれば「うまくいっている」と言えるか、をこの場で仮決めしたい。</p>
+  </div>
+
+  <div class="sec">
+    <h2><span class="n">6</span>リスク・懸念</h2>
+    <div class="point">
+      <div class="pt"><span class="pttl">お客様の抵抗感</span></div>
+      <div class="pb">来店前に年収・勤務先などの機微情報を聞くことに、心理的なハードルがある可能性。フォームへの回答率がそもそもどれくらいになるか、まだ実績が無い。</div>
+    </div>
+    <div class="point">
+      <div class="pt"><span class="pttl">開発体制の持続可能性</span></div>
+      <div class="pb">商談AI採点と同じく、私一人で作って一人で保守している。全店展開後の問い合わせ・不具合対応まで一人で回せるかは未検証。</div>
+    </div>
+    <div class="point">
+      <div class="pt"><span class="pttl">数字の精度</span></div>
+      <div class="pb">資金レンジの一部（付帯工事費用A・外構費）は加盟店ごとに実際の金額が異なる。店舗が設定を入れ忘れると、全国目安値のまま不正確な数字がお客様に出てしまうリスクがある。</div>
+    </div>
+  </div>
+
   <div class="next">
-    <b>この場で決めたいこと：</b>①〜④のうちどれを優先して検証するか／4類型目を立てる価値があるか／他に見落としている観点はないか
+    <b>この場で決めたいこと：</b>①〜④のうちどれを優先して検証するか／4類型目を立てる価値があるか／ロードマップの判断ポイントの仮決め／他に見落としている観点はないか
   </div>
 
   <p style="font-size:10.5px; color:var(--sub); margin-top:16px; line-height:1.8">
