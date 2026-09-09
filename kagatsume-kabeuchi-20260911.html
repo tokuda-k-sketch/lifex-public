@@ -1,0 +1,176 @@
+<title>商談準備ツール壁打ち</title>
+<style>
+  :root{
+    --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9; --bg:#eef2f6;
+    --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+    --good:#2e7d6e; --goodbg:#e7f2ef;
+    --warn:#b05c1f; --warnbg:#fdf3dd; --warnln:#ecd9a8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif; color:var(--ink);
+    background:var(--bg); line-height:1.7; font-feature-settings:"palt"}
+  .wrap{width:min(760px,92vw); margin:32px auto 60px}
+
+  .hd{background:#fff; border-radius:12px; box-shadow:0 2px 14px rgba(20,40,60,.09); padding:24px 28px; margin-bottom:18px}
+  .hd .eyebrow{font-size:11.5px; font-weight:700; color:var(--sub); letter-spacing:.08em}
+  .hd h1{font-size:23px; font-weight:800; color:var(--navy); margin:6px 0 10px; text-wrap:balance}
+  .hd .lead{font-size:14px; color:var(--ink)}
+
+  .sec{background:#fff; border-radius:12px; box-shadow:0 2px 14px rgba(20,40,60,.09); padding:22px 28px; margin-bottom:16px}
+  .sec h2{font-size:14px; font-weight:800; color:var(--navy); margin-bottom:14px; display:flex; align-items:center; gap:8px}
+  .sec h2 .n{width:22px; height:22px; border-radius:6px; background:var(--navy); color:#fff; font-size:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0}
+
+  .flow{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:6px 0 14px}
+  .flow .box{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px 14px; font-size:12.5px; font-weight:700; text-align:center; flex:1; min-width:110px}
+  .flow .box.hi{background:var(--navy-soft); border-color:#c6d6e6; color:var(--navy)}
+  .flow .arrow{color:var(--sub); font-weight:800; font-size:14px}
+  .flow-note{font-size:11.5px; color:var(--sub)}
+
+  .point{border:1px solid var(--line); border-radius:10px; padding:16px 18px; margin-bottom:12px}
+  .point:last-child{margin-bottom:0}
+  .point .pt{display:flex; align-items:baseline; gap:8px; margin-bottom:8px}
+  .point .pn{font-size:11px; font-weight:800; color:#fff; background:var(--navy); border-radius:99px; padding:2px 10px; flex-shrink:0}
+  .point .pttl{font-size:14px; font-weight:800; color:var(--ink)}
+  .point .pb{font-size:13px; color:var(--ink); line-height:1.75}
+  .point .caveat{font-size:11.5px; color:var(--warn); background:var(--warnbg); border:1px solid var(--warnln); border-radius:6px; padding:6px 10px; margin-top:8px}
+
+  .next{background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:10px; padding:16px 18px; font-size:13.5px; color:var(--ink)}
+  .next b{color:var(--navy)}
+
+  .demo-link{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:700; color:var(--blue); text-decoration:none; margin-top:10px}
+  .demo-link:hover{text-decoration:underline}
+
+  @media print{
+    body{background:#fff}
+    .sec,.hd{box-shadow:none; border:1px solid var(--line)}
+  }
+</style>
+
+<div class="wrap">
+  <div class="hd">
+    <div class="eyebrow">加賀爪顧問 壁打ちMTG（9/11 木）</div>
+    <h1>商談準備自動化ツール</h1>
+    <p class="lead">来店前アンケートの回答から、資金レンジ・おすすめプラン・商談トークを自動生成する仕組みを作った。進行中の5社実験にどう組み込めるか、もっと良い手がないか、壁打ちしたい。</p>
+  </div>
+
+  <div class="sec">
+    <h2><span class="n">1</span>何を作ったか</h2>
+    <p style="font-size:13px">Googleフォーム「LIFEX初回アンケート」の回答をもとに、①資金レンジ ②おすすめプラン3選（実在87プランから） ③商談ストーリー・トークポイント を自動生成。実際のテスト回答で動作確認済み。</p>
+    <a class="demo-link" href="https://claude.ai/code/artifact/4f826328-3447-463f-b5ea-850222b50775" target="_blank" rel="noopener">→ 実物デモを見る</a>
+  </div>
+
+  <div class="sec">
+    <h2><span class="n">2</span>5社実験との接続</h2>
+    <p style="font-size:13px; margin-bottom:10px">WITHDOM・出雲店（アンケート先行型＝B型）は、すでに人力でこの流れをやっている。</p>
+    <div class="flow">
+      <div class="box">来場確定メール＋事前アンケート</div>
+      <div class="arrow">→</div>
+      <div class="box hi">商談前作戦会議<br>（本部が人力）</div>
+      <div class="arrow">→</div>
+      <div class="box">振り返りシート</div>
+    </div>
+    <p class="flow-note">「商談前作戦会議」の本部稼働時間は、④本部支援ROI骨格の投入側として既に計測対象。ここを自動化で置き換えられれば、時間の変化を10月の答え合わせにそのまま追加できる。</p>
+  </div>
+
+  <div class="sec">
+    <h2><span class="n">3</span>5社の数値の変化（8/24→9/9）</h2>
+    <div style="overflow-x:auto">
+    <table style="width:100%; border-collapse:collapse; font-size:12px">
+      <tr style="background:var(--panel)">
+        <th style="text-align:left; padding:7px 8px; border:1px solid var(--line)">店舗</th>
+        <th style="padding:7px 8px; border:1px solid var(--line)">類型</th>
+        <th style="padding:7px 8px; border:1px solid var(--line)">登録</th>
+        <th style="padding:7px 8px; border:1px solid var(--line)">通電率</th>
+        <th style="padding:7px 8px; border:1px solid var(--line)">アポ率</th>
+        <th style="padding:7px 8px; border:1px solid var(--line)">契約率</th>
+        <th style="padding:7px 8px; border:1px solid var(--line)">契約数</th>
+      </tr>
+      <tr>
+        <td style="padding:7px 8px; border:1px solid var(--line); font-weight:700">竹村工務店</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">初動不足</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">20→25</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">45.0%→<b style="color:var(--good)">52.0%</b></td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">55.6%→<b style="color:var(--good)">69.2%</b></td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">50.0%→<b style="color:var(--warn)">33.3%</b></td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">2→2</td>
+      </tr>
+      <tr>
+        <td style="padding:7px 8px; border:1px solid var(--line); font-weight:700">河原工務店</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">初動不足</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">3→14</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">100%→<b style="color:var(--warn)">28.6%</b></td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">33.3%→<b style="color:var(--good)">50.0%</b></td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">面談0→<b style="color:var(--good)">50.0%</b></td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">0→1</td>
+      </tr>
+      <tr>
+        <td style="padding:7px 8px; border:1px solid var(--line); font-weight:700">キノシタ</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">量不足</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">6→6</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">83.3%（変化なし）</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">100%（変化なし）</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">0%（変化なし）</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">0→0</td>
+      </tr>
+      <tr>
+        <td style="padding:7px 8px; border:1px solid var(--line); font-weight:700">中央建設 出雲店</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">量不足</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">4→6</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">50.0%（変化なし）</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">50.0%→<b style="color:var(--warn)">33.3%</b></td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">0%（変化なし）</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">0→0</td>
+      </tr>
+      <tr>
+        <td style="padding:7px 8px; border:1px solid var(--line); font-weight:700">WITHDOM Group</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">通電不足</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">56→70</td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">26.8%→<b style="color:var(--good)">34.3%</b></td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">73.3%→<b style="color:var(--warn)">62.5%</b></td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">10.0%→<b style="color:var(--good)">18.2%</b></td>
+        <td style="text-align:center; padding:7px 8px; border:1px solid var(--line)">1→2</td>
+      </tr>
+    </table>
+    </div>
+    <p class="flow-note" style="margin-top:10px">
+      WITHDOM（通電不足型）は登録・通電率・契約率のすべてが改善傾向。竹村・河原（初動不足型）は通電率・アポ率は伸びているが、契約率は逆に下がっている＝面談以降の歩留まりに課題が出ている可能性があり、論点①（4類型目「商談力不足型」の仮説）を裏付ける材料になるかもしれない。<br>
+      キノシタ・出雲は登録数が一桁のままでほぼ動きがなく、率の変化自体が数件の差で大きく振れる（河原の通電率100%→28.6%も、母数3件→14件になったことによる規模効果の可能性が高い）。母数が小さい店の変化は割り引いて見る必要がある。
+    </p>
+  </div>
+
+  <div class="sec">
+    <h2><span class="n">4</span>壁打ちしたい4つの論点</h2>
+
+    <div class="point">
+      <div class="pt"><span class="pn">①</span><span class="pttl">効くのはどの店？　3類型に当てはまらないかもしれない</span></div>
+      <div class="pb">竹村・河原（初動不足型）は「面談以降の歩留まりは良好」。つまりボトルネックは面談の手前で、商談の中身ではない。このツールが一番効くのは「面談後の契約率（商談力）」がボトルネックの店だが、それは今の3類型（初動不足・量不足・通電不足）のどれにも該当しない。4類型目「商談力不足型」を立てるべきか、既存店の中に隠れているか。</div>
+      <div class="caveat">⚠️ WebFetchでの資料要約から立てた仮説。各店の生の商談内容までは見ていない。</div>
+    </div>
+
+    <div class="point">
+      <div class="pt"><span class="pn">②</span><span class="pttl">B型2社限定なら、今すぐ検証に組み込める</span></div>
+      <div class="pb">新しい仮説を持ち込まなくても、WITHDOM・出雲の「作戦会議」時間が導入前後でどう変わるかは、既存の実験対象だけで測れる。一番地に足がついた論点。</div>
+    </div>
+
+    <div class="point">
+      <div class="pt"><span class="pn">③</span><span class="pttl">商談AI採点と組み合わせると面白い</span></div>
+      <div class="pb">AI採点＝結果（実施した商談の質）、このツール＝準備。「良い準備をした商談ほど、採点や契約率が良いか」をこの実験の枠組みで検証できる。2つのツールを繋ぐ話で、一番説得力が出る。</div>
+    </div>
+
+    <div class="point">
+      <div class="pt"><span class="pn">④</span><span class="pttl">スケール時の制約は正直に持っていく</span></div>
+      <div class="pb">商談AI採点の時と同じく、社長から「追加リソースを使うな」という制約がある。今回も私が一人で作った叩き台で、全店展開には店舗ごとの設定作業が必要。「広げたい」ではなく「どこから検証すべきか」で持っていく。</div>
+    </div>
+  </div>
+
+  <div class="next">
+    <b>この場で決めたいこと：</b>①〜④のうちどれを優先して検証するか／4類型目を立てる価値があるか／他に見落としている観点はないか
+  </div>
+
+  <p style="font-size:10.5px; color:var(--sub); margin-top:16px; line-height:1.8">
+    出典：類型定義は https://tokuda-k-sketch.github.io/lifex-public/5sha-jikken-sekkei-20260826.html／
+    数値の変化(8/24→9/9)はKPIダッシュボードの週次スナップショット履歴（script.google.com、?history=30）を直接取得して算出／
+    母数が一桁〜10数件の店（河原・キノシタ・出雲）は数件の差で率が大きく振れるため、変化の解釈は割り引いて見る必要がある／
+    論点①は本資料作成時点での仮説であり、各店の生の商談内容は未確認。
+  </p>
+</div>
