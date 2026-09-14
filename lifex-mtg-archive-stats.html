@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTGアーカイブ視聴状況｜本部用</title>
+<style>
+  :root{
+    --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+    --navy:#1e4e79; --navy-soft:#e8eff6;
+    --surface:#ffffff;
+    --ok:#2f9e63; --ok-bg:#e5f6ec;
+    --ng:#c9432f; --ng-bg:#fbe9e7;
+    --shadow: 0 1px 2px rgba(20,40,60,.04), 0 8px 20px -14px rgba(20,40,60,.16);
+  }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; background:#e9edf1; color:var(--ink);
+    font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+    line-height:1.7; font-feature-settings:"palt";
+  }
+  .header{ background:#1a1f24; color:#fff; padding:28px 24px 24px; text-align:center; }
+  .header .label{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#8B949E; margin-bottom:8px; }
+  .header h1{ margin:0; font-size:22px; font-weight:700; color:#fff; }
+  .header p{ font-size:13px; color:#8B949E; margin:8px auto 0; max-width:52ch; line-height:1.6; }
+
+  .page{ max-width:1080px; margin:0 auto; padding:32px 20px 80px; }
+
+  .summary-row{ display:flex; flex-wrap:wrap; gap:12px; margin-bottom:24px; }
+  .summary-card{
+    flex:1; min-width:160px; background:var(--surface); border:1px solid var(--line);
+    border-radius:10px; padding:16px 18px; box-shadow:var(--shadow);
+  }
+  .summary-card .num{ font-size:26px; font-weight:800; font-variant-numeric:tabular-nums; }
+  .summary-card .lbl{ font-size:12px; color:var(--sub); margin-top:4px; }
+
+  .toolbar{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px; }
+  .toolbar .note{ font-size:12.5px; color:var(--sub); }
+  .reload-btn{
+    font-size:12.5px; font-weight:700; color:var(--navy); background:var(--navy-soft);
+    border:1px solid #c6d6e6; border-radius:100px; padding:6px 16px; cursor:pointer;
+  }
+  .reload-btn:hover{ background:var(--navy); color:#fff; }
+
+  .table-wrap{
+    background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    box-shadow:var(--shadow); overflow-x:auto;
+  }
+  table{ border-collapse:collapse; width:100%; min-width:760px; font-size:13px; }
+  thead th{
+    position:sticky; top:0; background:var(--navy-soft); color:var(--navy);
+    font-size:11.5px; font-weight:700; padding:10px 6px; text-align:center; white-space:nowrap;
+    border-bottom:1px solid var(--line);
+  }
+  thead th.store-col{ text-align:left; padding-left:14px; min-width:150px; }
+  tbody td{ padding:8px 6px; text-align:center; border-bottom:1px solid var(--line); }
+  tbody td.store-col{ text-align:left; padding-left:14px; font-weight:700; white-space:nowrap; }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr:hover{ background:var(--panel); }
+
+  .mark{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:22px; height:22px; border-radius:50%; font-size:11px; font-weight:800;
+  }
+  .mark.yes{ background:var(--ok-bg); color:var(--ok); }
+  .mark.no{ background:var(--ng-bg); color:var(--ng); opacity:.55; }
+
+  .rate-cell{ font-weight:800; font-variant-numeric:tabular-nums; }
+  .rate-cell.low{ color:var(--ng); }
+  .rate-cell.high{ color:var(--ok); }
+
+  .session-th-date{ font-size:9.5px; color:var(--sub); font-weight:400; display:block; margin-top:2px; }
+
+  footer{ margin-top:24px; font-size:12px; color:var(--sub); text-align:center; }
+  .loading, .error{ text-align:center; padding:40px 20px; color:var(--sub); font-size:13px; }
+  .error{ color:var(--ng); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="label">本部用・非公開</div>
+  <h1>目標達成MTGアーカイブ　視聴状況</h1>
+  <p>各加盟店様の個別URL（?s=トークン）経由のクリックを記録した実測ログです。トークンなしの旧URLでの閲覧は記録されません。</p>
+</div>
+
+<div class="page">
+  <div id="summaryRow" class="summary-row"></div>
+
+  <div class="toolbar">
+    <span class="note">「視聴済み」＝クリックでYouTubeへ遷移した記録あり（最後まで見たかは含まない）</span>
+    <button class="reload-btn" onclick="load()">再読み込み</button>
+  </div>
+
+  <div class="table-wrap">
+    <div id="tableHost"><div class="loading">読み込み中…</div></div>
+  </div>
+
+  <footer id="footNote"></footer>
+</div>
+
+<script>
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbwriC9V4xS2ZZ8rGhfsQydsBmXKzTWo9CKiJUs7kPt5naU3NWXQy_IKbB6ytZfw_WtE/exec';
+
+// 研修スケジュール（project_lifex_kenshu_schedule.mdベース）。第1・2回はテーマ未確認のため空欄。
+const SESSIONS = [
+  { n:1,  date:'07/03', theme:'' },
+  { n:2,  date:'07/10', theme:'' },
+  { n:3,  date:'07/17', theme:'月2棟の型を公開' },
+  { n:4,  date:'07/24', theme:'通電率・接続率UP' },
+  { n:5,  date:'07/31', theme:'KPI観察分析判断' },
+  { n:6,  date:'08/07', theme:'商談を磨く' },
+  { n:7,  date:'08/21', theme:'答え合わせ' },
+  { n:8,  date:'08/28', theme:'間の取り方＋テストクロージング' },
+  { n:9,  date:'09/04', theme:'太陽光×トータルコスト訴求法' },
+  { n:10, date:'09/11', theme:'TorneoPlus＋エコボロンPRO' },
+];
+
+async function load(){
+  document.getElementById('tableHost').innerHTML = '<div class="loading">読み込み中…</div>';
+  try{
+    const res = await fetch(GAS_URL + '?archiveData=1&t=' + Date.now());
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    render(data.entries || [], data.stores || []);
+  }catch(err){
+    document.getElementById('tableHost').innerHTML =
+      '<div class="error">読み込みに失敗しました：' + String(err.message || err) + '</div>';
+  }
+}
+
+function render(entries, stores){
+  // (店舗, 回) のセットを作る
+  const seen = new Set();
+  entries.forEach(function(e){
+    const store = String(e['店舗（グループ表示名）'] || '').trim();
+    const session = String(e['回'] || '').trim();
+    if (store && session) seen.add(store + '|' + session);
+  });
+
+  const sortedStores = stores.slice().sort(function(a, b){ return a.localeCompare(b, 'ja'); });
+
+  // サマリー
+  const totalCells = sortedStores.length * SESSIONS.length;
+  const watchedCells = sortedStores.reduce(function(acc, store){
+    return acc + SESSIONS.filter(function(s){ return seen.has(store + '|' + s.n); }).length;
+  }, 0);
+  const zeroStores = sortedStores.filter(function(store){
+    return !SESSIONS.some(function(s){ return seen.has(store + '|' + s.n); });
+  });
+  document.getElementById('summaryRow').innerHTML =
+    '<div class="summary-card"><div class="num">' + sortedStores.length + '</div><div class="lbl">加盟店数（トークン登録済）</div></div>' +
+    '<div class="summary-card"><div class="num">' + (totalCells ? Math.round(watchedCells / totalCells * 100) : 0) + '%</div><div class="lbl">全体の視聴率（店舗×回の実測ベース）</div></div>' +
+    '<div class="summary-card"><div class="num">' + zeroStores.length + '</div><div class="lbl">1回も視聴記録がない店舗</div></div>';
+
+  if (!sortedStores.length){
+    document.getElementById('tableHost').innerHTML =
+      '<div class="loading">まだ視聴ログがありません。個別URL（?s=トークン）でのアクセスが必要です。</div>';
+    return;
+  }
+
+  let thead = '<tr><th class="store-col">加盟店</th>';
+  SESSIONS.forEach(function(s){
+    thead += '<th>第' + s.n + '回<span class="session-th-date">' + s.date + '</span></th>';
+  });
+  thead += '<th>視聴率</th></tr>';
+
+  let tbody = '';
+  sortedStores.forEach(function(store){
+    const watchedCount = SESSIONS.filter(function(s){ return seen.has(store + '|' + s.n); }).length;
+    const rate = Math.round(watchedCount / SESSIONS.length * 100);
+    const rateClass = rate === 0 ? 'low' : (rate >= 80 ? 'high' : '');
+    tbody += '<tr><td class="store-col">' + escapeHtml(store) + '</td>';
+    SESSIONS.forEach(function(s){
+      const watched = seen.has(store + '|' + s.n);
+      tbody += '<td><span class="mark ' + (watched ? 'yes' : 'no') + '">' + (watched ? '✓' : '−') + '</span></td>';
+    });
+    tbody += '<td class="rate-cell ' + rateClass + '">' + rate + '%</td></tr>';
+  });
+
+  document.getElementById('tableHost').innerHTML = '<table><thead>' + thead + '</thead><tbody>' + tbody + '</tbody></table>';
+  document.getElementById('footNote').textContent = '最終取得：' + new Date().toLocaleString('ja-JP');
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, function(c){
+    return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c];
+  });
+}
+
+load();
+</script>
+
+</body>
+</html>
