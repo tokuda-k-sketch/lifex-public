@@ -1,0 +1,684 @@
+<title>LIFEX MTG 9/18｜耐震等級3×evoltz 投影資料</title>
+<style>
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+  --p1:#1e4e79; --p2:#2e7d6e; --p3:#b05c1f;
+  --p1bg:#e8eff6; --p2bg:#e7f2ef; --p3bg:#f9efe4;
+  --leak:#b3372b; --leakbg:#fbe9e7;
+  --win:#2e7d6e; --winbg:#e7f2ef;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.6; font-feature-settings:"palt"}
+.wrap{width:min(1100px,96vw); margin:26px auto}
+.draft{width:1100px; margin:0 auto 14px; font-size:12px; color:#8a5a00; background:#fdf3dd;
+  border:1px solid #ecd9a8; border-radius:4px; padding:6px 14px; font-weight:700}
+.sl{width:1100px; height:619px; background:#fff; border-radius:8px;
+  box-shadow:0 2px 16px rgba(20,40,60,.09); padding:32px 50px 24px;
+  display:flex; flex-direction:column; position:relative; overflow:hidden; margin:0 auto 22px}
+.top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+.chip{font-size:11.5px; font-weight:700; letter-spacing:.08em; padding:3px 12px; border-radius:99px}
+.c0{background:#eceff2;color:var(--sub)}
+.c1{background:var(--p1bg);color:var(--p1)}
+.c2{background:var(--p2bg);color:var(--p2)}
+.c3{background:var(--p3bg);color:var(--p3)}
+.cLeak{background:var(--leakbg);color:var(--leak)}
+.pg{margin-left:auto; font-size:12px; color:#b6c0ca; font-variant-numeric:tabular-nums}
+.tt{font-size:27px; font-weight:800; line-height:1.35; margin:2px 0 4px; text-wrap:balance}
+.ms{font-size:14.5px; color:var(--sub); margin:0 0 11px; line-height:1.75}
+.body{flex:1; display:flex; gap:20px; min-height:0; overflow:hidden}
+.foot{display:flex; gap:12px; margin-top:9px; align-items:center}
+.cap{font-size:13px; color:var(--sub); line-height:1.5}
+.real{font-size:12px; color:var(--p2); background:var(--p2bg); border:1px solid #bfdcd5; border-radius:3px; padding:3px 10px; font-weight:700}
+.ag{border:1px solid var(--line); border-radius:8px; padding:16px 22px; display:flex; align-items:center; gap:16px; background:#fff}
+.ag .no{font-size:12.5px; font-weight:800; color:var(--sub); flex-shrink:0; width:70px; line-height:1.3}
+.ag b{font-size:16px}
+.ag .cap{margin-left:auto; text-align:right; flex-shrink:0; max-width:340px}
+.box{border:1px solid var(--line); border-radius:6px; padding:12px 16px; background:#fff; min-width:0}
+.box h4{margin:0 0 4px; font-size:15px; color:var(--navy)}
+.box p{margin:0; font-size:13.5px; color:var(--sub); line-height:1.65}
+.box.roomy{padding:22px 26px}
+.box.roomy h4{font-size:19px; margin-bottom:14px}
+.box.roomy>p{font-size:15px; line-height:1.85; color:var(--ink)}
+
+/* 番号バッジ付きリスト(余白解消・案2) */
+.numlist{display:flex; flex-direction:column; gap:16px}
+.numlist .nl{display:flex; align-items:center; gap:14px}
+.numlist .nl .no{width:38px; height:38px; border-radius:50%; background:var(--navy); color:#fff; font-size:16px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0}
+.numlist .nl .tx{font-size:15px; color:var(--ink); line-height:1.5}
+
+/* 震度別の進行スケール(余白解消・案2) */
+.quakeScale{display:flex; flex-direction:column; gap:10px; margin:14px 0}
+.quakeScale .qs{display:flex; align-items:center; gap:12px}
+.quakeScale .qs .qlv{width:52px; font-size:12.5px; font-weight:800; color:var(--leak); flex-shrink:0}
+.quakeScale .qs .qtrack{flex:1; height:11px; background:#f0d9d5; border-radius:6px; overflow:hidden; min-width:0}
+.quakeScale .qs .qbar{height:100%; background:var(--leak); border-radius:6px}
+.quakeScale .qs .qtx{font-size:12.5px; color:var(--ink); flex-shrink:0; width:165px}
+
+/* 強度指数ランキング(逆転現象を見せる) */
+.rankList{display:flex; flex-direction:column; gap:6px; flex:1; justify-content:center}
+.rankList .rk{display:grid; grid-template-columns:172px 1fr 84px; align-items:center; gap:14px}
+.rankList .rk .label{line-height:1.3}
+.rankList .rk .label b{font-size:13.5px; display:block}
+.rankList .rk .label span{font-size:10.5px; color:var(--sub)}
+.rankList .track{background:#eef1f4; border-radius:6px; height:30px; position:relative}
+.rankList .bar{height:100%; border-radius:6px; background:#f7dd8f; min-width:34px}
+.rankList .rk.r1 .bar{background:var(--leak)}
+.rankList .rk.r2 .bar{background:#e8a552}
+.rankList .rk.r3 .bar{background:var(--p3)}
+.rankList .val{font-size:15px; font-weight:800; text-align:right; color:var(--ink)}
+.rankList .rk.r1 .val{color:var(--leak)}
+.rankList .rk.r3 .val{color:var(--p3)}
+.rankList .flip{display:grid; grid-template-columns:172px 1fr 84px; align-items:center; gap:14px; margin:-2px 0}
+.rankList .flip .fl{grid-column:2; display:flex; align-items:center; gap:8px}
+.rankList .flip .fl .ln{flex:0 0 20px; border-top:2px dashed var(--p3)}
+.rankList .flip .fl .tx{font-size:11.5px; font-weight:800; color:var(--p3); background:var(--p3bg); padding:4px 12px; border-radius:99px; white-space:nowrap}
+
+/* 建物強度グリッド(行=耐震等級・列=計算方法、固定位置で重なりを防ぐ) */
+.sgrid{display:grid; grid-template-columns:110px repeat(3,1fr); grid-template-rows:auto repeat(3,1fr); gap:8px; flex:1}
+.sgrid .sgHead{display:flex; flex-direction:column; align-items:center; justify-content:flex-end; text-align:center; padding-bottom:6px}
+.sgrid .sgHead b{font-size:14.5px; color:var(--ink)}
+.sgrid .sgHead span{font-size:10.5px; color:var(--sub)}
+.sgrid .sgRow{display:flex; align-items:center; font-size:13px; font-weight:800; color:var(--sub); justify-content:flex-end; padding-right:10px; text-align:right}
+.sgrid .sgCell{border:1px solid var(--line); border-radius:10px; background:#fff; display:flex; align-items:center; gap:10px; padding:0 16px}
+.sgrid .sgCell .dot{width:16px; height:16px; border-radius:50%; flex-shrink:0}
+.sgrid .sgCell .v{font-size:16px; font-weight:800; color:var(--ink)}
+.sgrid .sgCell.none{color:#c3ccd4; background:#fafbfc; justify-content:center}
+.sgrid .sgCell.none .v{color:#c3ccd4; font-weight:700; font-size:14px}
+.sgrid .sgCell.lv-low .dot{background:#f7dd8f}
+.sgrid .sgCell.lv-mid .dot{background:#e8a552}
+.sgrid .sgCell.lv-mid .v{color:#8a5a1f}
+.sgrid .sgCell.lv-hero{border:2px solid var(--leak); background:var(--leakbg)}
+.sgrid .sgCell.lv-hero .dot{background:var(--leak); width:20px; height:20px}
+.sgrid .sgCell.lv-hero .v{color:var(--leak); font-size:19px}
+.sgrid .sgCell.lv-hero .tag{margin-left:auto; font-size:10.5px; font-weight:800; color:#fff; background:var(--leak); padding:3px 9px; border-radius:99px}
+
+/* 繰り返す地震の実例 */
+.quakeMain{border-radius:12px; background:var(--leakbg); border:2px solid var(--leak); padding:20px 30px; display:flex; align-items:center; gap:26px}
+.quakeMain .place{flex-shrink:0; text-align:center; width:150px}
+.quakeMain .place .pname{font-size:17px; font-weight:800; color:var(--ink)}
+.quakeMain .place .pref{font-size:11.5px; color:var(--sub); margin-top:2px}
+.quakeMain .timeline{flex:1; display:flex; align-items:center; justify-content:center; gap:18px}
+.quakeMain .tl-item{text-align:center; width:110px}
+.quakeMain .tl-item .date{font-size:11.5px; color:var(--sub); font-weight:700}
+.quakeMain .tl-item .sd{font-size:30px; font-weight:800; color:var(--leak); margin:3px 0}
+.quakeMain .tl-item .nm{font-size:11.5px; color:var(--ink)}
+.quakeMain .tl-arrow{font-size:12.5px; font-weight:800; color:var(--leak); background:#fff; border:1px solid var(--leak); border-radius:99px; padding:5px 14px; white-space:nowrap; flex-shrink:0}
+.quakeGrid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px}
+.quakeGrid .qc{border:1px solid var(--line); border-radius:8px; padding:13px 15px; background:#fff; display:flex; flex-direction:column; gap:3px; min-width:0}
+.quakeGrid .qc .pname{font-size:13px; font-weight:800}
+.quakeGrid .qc .pref{font-size:10.5px; color:var(--sub)}
+.quakeGrid .qc .hist{font-size:11.5px; color:var(--ink); line-height:1.65; margin-top:5px}
+.quakeGrid .qc .hist b{color:var(--leak)}
+
+/* 検討項目の○×マトリクス */
+.gradeTbl{display:flex; flex-direction:column; gap:6px; flex:1; justify-content:center}
+.gradeTbl .ghead{display:grid; grid-template-columns:168px repeat(7,1fr) 76px; gap:4px}
+.gradeTbl .ghead .hc{font-size:10.5px; color:var(--sub); text-align:center; line-height:1.3; padding:0 2px; align-self:end}
+.gradeTbl .gr{display:grid; grid-template-columns:168px repeat(7,1fr) 76px; gap:4px; align-items:stretch; border-radius:8px; overflow:hidden}
+.gradeTbl .gr .lbl{background:var(--panel); padding:10px 14px; display:flex; flex-direction:column; justify-content:center; gap:2px}
+.gradeTbl .gr .lbl b{font-size:13.5px}
+.gradeTbl .gr .lbl span{font-size:10.5px; color:var(--sub)}
+.gradeTbl .gr .cell{display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid var(--line); font-weight:800; font-size:15px}
+.gradeTbl .gr .cell.ok{color:var(--win); background:var(--winbg); border-color:#bfdcd5}
+.gradeTbl .gr .cell.ng{color:#c3ccd4; background:#fafbfc}
+.gradeTbl .gr .total{display:flex; flex-direction:column; align-items:center; justify-content:center; background:var(--panel); font-weight:800; font-size:14px; gap:1px}
+.gradeTbl .gr .total span{font-size:9.5px; font-weight:700; color:var(--sub)}
+.gradeTbl .gr.hero .lbl{background:var(--navy); color:#fff}
+.gradeTbl .gr.hero .lbl span{color:#cfe0ef}
+.gradeTbl .gr.hero .cell.ok{background:var(--navy); color:#fff; border-color:var(--navy)}
+.gradeTbl .gr.hero .total{background:var(--navy); color:#fff}
+.gradeTbl .gr.hero .total span{color:#cfe0ef}
+
+/* 動画リンクバー(コンパクト・グラフ等と併用) */
+.vidbar{display:flex; align-items:center; gap:14px; background:#12181f; color:#fff; border-radius:8px; padding:11px 20px; flex-shrink:0; text-decoration:none; cursor:pointer}
+.vidbar:hover{background:#1c242e}
+.vidbar .play{width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.15); border:2px solid rgba(255,255,255,.6); display:flex; align-items:center; justify-content:center; flex-shrink:0}
+.vidbar .play::after{content:""; border-style:solid; border-width:7px 0 7px 11px; border-color:transparent transparent transparent #fff; margin-left:2px}
+.vidbar .vtx b{font-size:13.5px; display:block}
+.vidbar .vtx span{font-size:11px; color:#9fb0c0}
+
+/* 実験グラフ(SVG的な棒表現) */
+.expwrap{display:flex; gap:18px; flex:1; align-items:stretch}
+.explegend{width:200px; flex-shrink:0; display:flex; flex-direction:column; gap:10px; justify-content:center}
+.explegend .lg{display:flex; align-items:center; gap:8px; font-size:13px}
+.explegend .sw{width:14px; height:14px; border-radius:3px; flex-shrink:0}
+.expchart{flex:1; display:flex; align-items:flex-end; gap:10px; padding:10px 6px 0; border-bottom:2px solid var(--ink); position:relative}
+.expchart .bargrp{flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end}
+.expchart .bar{width:100%; border-radius:3px 3px 0 0; position:relative}
+.expchart .bar .bv{position:absolute; top:-18px; left:0; right:0; text-align:center; font-size:10.5px; font-weight:800; color:var(--ink)}
+.expchart .xlbl{font-size:10px; color:var(--sub); text-align:center}
+
+/* 動画リンクカード */
+.vidcard{border-radius:12px; overflow:hidden; background:#12181f; position:relative; display:flex; flex-direction:column; color:#fff; flex:1; min-width:0; text-decoration:none; cursor:pointer}
+.vidcard .thumb{flex:1; display:flex; align-items:center; justify-content:center; position:relative; background:linear-gradient(135deg,#1b2530,#354a5f)}
+.vidcard .thumb .play{width:60px; height:60px; border-radius:50%; background:rgba(255,255,255,.14); border:2px solid rgba(255,255,255,.7); display:flex; align-items:center; justify-content:center}
+.vidcard .thumb .play::after{content:""; border-style:solid; border-width:11px 0 11px 18px; border-color:transparent transparent transparent #fff; margin-left:4px}
+.vidcard .thumb .tag{position:absolute; top:14px; left:14px; font-size:11px; font-weight:800; background:rgba(255,255,255,.16); padding:4px 11px; border-radius:99px; letter-spacing:.05em}
+.vidcard .meta{padding:13px 18px; background:#1b2530}
+.vidcard .meta .ti{font-size:14.5px; font-weight:800}
+.vidcard .meta .url{font-size:11.5px; color:#9fb0c0; margin-top:3px; word-break:break-all}
+
+/* 動画スチール比較(2枚並び) */
+.vidcompare{display:flex; gap:14px; flex:1}
+.vidcompare .vc{flex:1; border-radius:10px; overflow:hidden; display:flex; flex-direction:column; border:1px solid var(--line); text-decoration:none; color:inherit; cursor:pointer}
+.vidcompare .vc .head{padding:9px 14px; font-size:13px; font-weight:800; color:#fff}
+.vidcompare .vc.no .head{background:var(--leak)}
+.vidcompare .vc.yes .head{background:var(--win)}
+.vidcompare .vc .stage{flex:1; background:linear-gradient(160deg,#e7ecf1,#cfd8e0); display:flex; align-items:center; justify-content:center; position:relative}
+.vidcompare .vc .quote{padding:11px 14px; font-size:12.5px; background:#fff; line-height:1.6}
+.vidcompare .vc.no .quote{color:var(--leak); font-weight:700}
+.vidcompare .vc.yes .quote{color:var(--win); font-weight:700}
+
+/* 家具転倒の恐怖ボックス */
+.fear{display:flex; gap:16px; flex:1}
+.fear .fbox{flex:1; border-radius:10px; padding:18px 20px; display:flex; flex-direction:column; gap:8px; justify-content:center}
+.fear .fbox.stat{background:var(--leakbg); border:1px solid #f0c9c2; align-items:center; text-align:center}
+.fear .fbox.stat .big{font-size:46px; font-weight:800; color:var(--leak); line-height:1}
+.fear .fbox.stat .lbl{font-size:12.5px; color:var(--ink); margin-top:4px}
+.fear .fbox.list{border:1px solid var(--line); background:#fff; gap:16px; padding:24px 26px}
+.fear .fbox.list .it{display:flex; gap:14px; align-items:center; font-size:14.5px; line-height:1.7; color:var(--ink)}
+.fear .fbox.list .it .tag{flex-shrink:0; font-size:12px; font-weight:800; color:#fff; padding:5px 4px; border-radius:99px; width:44px; text-align:center}
+.fear .fbox.list .it.taish .tag{background:var(--navy)}
+.fear .fbox.list .it.seishin .tag{background:var(--p3)}
+.fear .fbox.list .concl{font-size:14.5px; font-weight:800; color:var(--ink); border-top:1px solid var(--line); padding-top:16px; line-height:1.7}
+
+/* 一条比較(2ボックス+推論マーク) */
+.stance{display:flex; gap:0; align-items:stretch; position:relative; flex:1}
+.stance>div{flex:1; border:1px solid var(--line); border-radius:8px; padding:28px 30px; display:flex; flex-direction:column; gap:14px; justify-content:center}
+.stance .rigid{background:#fafbfc}
+.stance .hybrid{background:var(--navy-soft); border-color:var(--navy)}
+.stance h5{margin:0; font-size:14.5px; font-weight:800; color:var(--sub); letter-spacing:.03em}
+.stance .hybrid h5{color:var(--navy)}
+.stance .catch{font-size:23px; font-weight:800; margin:2px 0}
+.stance .hybrid .catch{color:var(--navy)}
+.stance p{margin:0; font-size:15px; color:var(--ink); line-height:1.85}
+.stance .infer{font-size:12px; color:var(--p3); background:var(--p3bg); border-radius:4px; padding:5px 11px; font-weight:700; width:fit-content}
+.stance .plus{font-size:12px; color:var(--navy); background:#fff; border:1px solid var(--navy); border-radius:4px; padding:5px 11px; font-weight:700; width:fit-content}
+.stance .vsbadge{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:34px; height:34px; border-radius:50%;
+  background:#fff; border:2px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; color:var(--sub); z-index:2}
+
+/* 他社比較テーブル */
+.cmpTbl{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:8px; overflow:hidden; flex:1}
+.cmpTbl .r{display:grid; grid-template-columns:110px repeat(3,1fr)}
+.cmpTbl .r+.r{border-top:1px solid var(--line)}
+.cmpTbl .r.head div{background:var(--navy); color:#fff; font-weight:800; font-size:12px}
+.cmpTbl .r div{padding:11px 13px; font-size:12px; color:var(--ink); line-height:1.55; border-right:1px solid var(--line); display:flex; flex-direction:column; justify-content:center; gap:2px}
+.cmpTbl .r div:last-child{border-right:none}
+.cmpTbl .r:not(.head) div:first-child{font-weight:800; color:var(--navy); background:var(--panel); font-size:11.5px}
+.cmpTbl .r .hi{background:var(--navy-soft)}
+.cmpTbl .r div b{font-size:12.5px}
+.cmpTbl .r div span{color:var(--sub); font-size:10.5px}
+
+/* 技術特徴+実績カード */
+.techrow{display:flex; gap:16px; flex:1}
+.techrow .tc{flex:1; border:1px solid var(--line); border-radius:10px; padding:26px 22px; background:#fff; display:flex; flex-direction:column; gap:10px; justify-content:center}
+.techrow .tc h5{margin:0; font-size:15px; color:var(--navy)}
+.techrow .tc .v{font-size:36px; font-weight:800; color:var(--navy)}
+.techrow .tc p{margin:0; font-size:13.5px; color:var(--sub); line-height:1.7}
+.achieve{border-radius:10px; padding:16px 22px; background:linear-gradient(135deg,#fff8ec,#ffedd0); border:1px solid #ecd9a8; text-align:center}
+.achieve .n{font-size:38px; font-weight:800; color:var(--p3)}
+.achieve .d{font-size:13px; color:var(--ink); margin-top:4px}
+
+/* 断熱伏線カード */
+.chain{display:flex; align-items:center; gap:8px; flex:1; flex-wrap:wrap; justify-content:center}
+.chain .cbox{flex:1; min-width:150px; border:1px solid var(--line); border-radius:8px; padding:14px 14px; background:#fff; text-align:center; font-size:12.5px; line-height:1.55}
+.chain .cbox.warn{border-color:#f0c9c2; background:var(--leakbg); color:var(--leak); font-weight:700}
+.chain .arrow{font-size:18px; color:var(--sub); flex-shrink:0}
+
+/* まとめ:全部そろう図 */
+.pillars{display:flex; align-items:center; gap:8px; flex:1}
+.pillars .pl{flex:1; border:1px solid var(--line); border-radius:10px; padding:26px 14px; background:#fff; text-align:center; display:flex; flex-direction:column; align-items:center; gap:10px; justify-content:center; min-width:0}
+.pillars .pl.crack{border-style:dashed; border-color:var(--leak); background:var(--leakbg)}
+.pillars .pl .no{width:34px; height:34px; border-radius:50%; background:var(--navy); color:#fff; font-size:15px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0}
+.pillars .pl b{font-size:16px; color:var(--ink)}
+.pillars .pl .desc{font-size:12.5px; color:var(--sub); line-height:1.55}
+.pillars .pl .sub{font-size:11px; color:var(--navy); background:var(--navy-soft); border-radius:99px; padding:4px 10px; line-height:1.4}
+.pillars .plus{font-size:20px; font-weight:800; color:var(--sub); flex-shrink:0}
+
+/* 会話フロー */
+.convo{display:flex; flex-direction:column; gap:16px}
+.convo .ln{display:flex; gap:14px; align-items:flex-start}
+.convo .who{width:56px; flex-shrink:0; font-size:13px; font-weight:800; color:var(--sub); text-align:right; padding-top:13px}
+.convo .ln.you .who{color:var(--navy)}
+.convo .bub{background:var(--panel); border-radius:10px; padding:14px 20px; font-size:15px; line-height:1.75; flex:1}
+.convo .ln.you .bub{background:var(--navy-soft)}
+.convo .ln.win .bub{background:var(--p3bg); border:1px solid #e8cfae}
+
+/* 他社の震度7訴求・引用カード */
+.quoteRow{display:flex; gap:14px}
+.quoteRow .qc{flex:1; border:1px solid var(--line); border-radius:10px; padding:16px 18px; background:#fff; display:flex; flex-direction:column; gap:8px}
+.quoteRow .qc h5{margin:0; font-size:13.5px; color:var(--sub); font-weight:800}
+.quoteRow .qc .say{margin:0; font-size:13.5px; color:var(--ink); line-height:1.6; font-style:normal}
+.quoteRow .qc .say::before{content:"“"; color:var(--line); font-size:20px; font-weight:800}
+
+/* 出典一覧 */
+.src{font-size:11.5px; color:var(--sub); line-height:2; overflow-y:auto; flex:1}
+.src b{color:var(--ink)}
+
+@media print{body{background:#fff}.draft{display:none}.sl{box-shadow:none; border:1px solid var(--line); page-break-after:always}}
+</style>
+
+<div class="wrap">
+<div class="draft">DRAFT｜数字・出典は末尾の出典一覧を要確認。動画は当日ブラウザ別タブ/実機で再生（本資料には埋め込みなし）。</div>
+
+<!-- 1 表紙 -->
+<div class="sl" style="justify-content:center; text-align:center">
+  <div style="font-size:13px; letter-spacing:.22em; color:var(--sub); font-weight:700">2026.9.18（金）16:00〜　LIFEX 月2棟目標達成MTG</div>
+  <div style="font-size:42px; font-weight:800; margin:22px 0 12px; letter-spacing:.02em">なぜ、耐震等級3+evoltzなのか。</div>
+  <div style="font-size:16.5px; color:var(--navy); font-weight:700; line-height:1.8">「何で耐震等級3取ってるんですか？」<br>その一言に、迷わず答えられる状態へ。</div>
+  <div style="margin-top:30px; font-size:14px; color:var(--sub)">進行：Gハウス LIFEX FC事業部　徳田</div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px">1 / 18</div>
+</div>
+
+<!-- 2 本日の流れ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">本日の流れ</span><span class="pg">2 / 18</span></div>
+  <div class="tt">今日のゴールは、構造から理解して「語れる」状態になること。</div>
+  <p class="ms">耐震等級3とevoltzを「知っている」から、お客様に自分の言葉で説明できる状態へ。<br>今日のスライドは要点だけの教科書。<br>数字の根拠・想定質問への回答・トークの型は、別途配布する参考書に全部入れています。</p>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:10px">
+    <div class="ag"><span class="no" style="color:var(--navy)">①</span><b>耐震等級3には3種類ある</b><span class="cap">許容応力度計算・品確法・仕様規定の違い</span></div>
+    <div class="ag"><span class="no" style="color:var(--navy)">②</span><b>耐震＋制振が必要な理由</b><span class="cap">実験データと動画で見る、揺れの差</span></div>
+    <div class="ag"><span class="no" style="color:var(--navy)">③</span><b>「家を硬くする」の代償</b><span class="cap">一条工務店との考え方の違い</span></div>
+    <div class="ag"><span class="no" style="color:var(--navy)">④</span><b>他社制振との方式の違い＋evoltzの実力</b><span class="cap">ミライエ・アイダンパーとの比較</span></div>
+    <div class="ag"><span class="no" style="color:var(--navy)">⑤</span><b>お客様との会話の型</b><span class="cap">示唆質問からクロージングまで</span></div>
+  </div>
+</div>
+
+<!-- 3 耐震等級3には3種類ある -->
+<div class="sl">
+  <div class="top"><span class="chip c1">耐震①</span><span class="pg">3 / 18</span></div>
+  <div class="tt">「耐震等級3だから安心」とは限らない。</div>
+  <p class="ms">強度指数（等級1の仕様規定＝1.0を基準にした強さの倍率）を順に並べると<br>性能表示計算（品確法）の耐震等級3より、構造計算（許容応力度計算）の耐震等級2の方が強い。<br>等級の数字だけでなく、計算方法まで確認する必要がある。</p>
+  <div class="body">
+    <div class="rankList">
+      <div class="rk r1">
+        <div class="label"><b>耐震等級3</b><span>構造計算（許容応力度計算）・LIFEX</span></div>
+        <div class="track"><div class="bar" style="width:91%"></div></div>
+        <div class="val">2.4〜2.7</div>
+      </div>
+      <div class="rk r2">
+        <div class="label"><b>耐震等級2</b><span>構造計算（許容応力度計算）</span></div>
+        <div class="track"><div class="bar" style="width:65%"></div></div>
+        <div class="val">2.0〜2.2</div>
+      </div>
+      <div class="flip"><div class="fl"><span class="ln"></span><span class="tx">⚠ 同じ「耐震等級3」でも、計算方法次第でここより弱い</span></div></div>
+      <div class="rk r3">
+        <div class="label"><b>耐震等級3</b><span>性能表示計算（品確法）</span></div>
+        <div class="track"><div class="bar" style="width:56%"></div></div>
+        <div class="val">1.9〜2.0</div>
+      </div>
+      <div class="rk">
+        <div class="label"><b>耐震等級1</b><span>構造計算（許容応力度計算）</span></div>
+        <div class="track"><div class="bar" style="width:41%"></div></div>
+        <div class="val">1.6〜1.8</div>
+      </div>
+      <div class="rk">
+        <div class="label"><b>耐震等級2</b><span>性能表示計算（品確法）</span></div>
+        <div class="track"><div class="bar" style="width:38%"></div></div>
+        <div class="val">1.6〜1.7</div>
+      </div>
+      <div class="rk">
+        <div class="label"><b>耐震等級1</b><span>性能表示計算・仕様規定</span></div>
+        <div class="track"><div class="bar" style="width:0%"></div></div>
+        <div class="val">1.0</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap"><b style="color:var(--navy)">トークの起点。</b>「耐震等級3って、何で計算して取ってますか？」と聞くだけで、他社との差がお客様に伝わります。（出典：LIFEX公式初回セミナースライド）</span></div>
+</div>
+
+<!-- 4 検討項目の○×マトリクス -->
+<div class="sl">
+  <div class="top"><span class="chip c1">耐震②</span><span class="pg">4 / 18</span></div>
+  <div class="tt">計算方法によって、実際にチェックする項目数が違う。</div>
+  <p class="ms">建物の安全性は「壁量計算・壁バランス・水平構面・柱の座屈・接合部の検討・横架材の検討・基礎の設計」の7項目で検討する。<br>計算方法が変わると、この7項目のうち何項目を個別にチェックするかが変わる。</p>
+  <div class="body">
+    <div class="gradeTbl">
+      <div class="ghead">
+        <div></div>
+        <div class="hc">壁量<br>計算</div><div class="hc">壁<br>バランス</div><div class="hc">水平<br>構面</div><div class="hc">柱の<br>座屈</div><div class="hc">接合部<br>の検討</div><div class="hc">横架材<br>の検討</div><div class="hc">基礎の<br>設計</div>
+        <div class="hc">検討<br>項目数</div>
+      </div>
+      <div class="gr">
+        <div class="lbl"><b>①仕様規定</b><span>建築基準法</span></div>
+        <div class="cell ok">○</div><div class="cell ok">○</div><div class="cell ng">－</div><div class="cell ng">－</div><div class="cell ok">○</div><div class="cell ng">－</div><div class="cell ng">－</div>
+        <div class="total">3<span>／ 7項目</span></div>
+      </div>
+      <div class="gr">
+        <div class="lbl"><b>②性能表示計算</b><span>品確法</span></div>
+        <div class="cell ok">○</div><div class="cell ok">○</div><div class="cell ok">○</div><div class="cell ok">○</div><div class="cell ok">○</div><div class="cell ng">－</div><div class="cell ng">－</div>
+        <div class="total">5<span>／ 7項目</span></div>
+      </div>
+      <div class="gr hero">
+        <div class="lbl"><b>③構造計算</b><span>許容応力度計算・LIFEX</span></div>
+        <div class="cell ok">○</div><div class="cell ok">○</div><div class="cell ok">○</div><div class="cell ok">○</div><div class="cell ok">○</div><div class="cell ok">○</div><div class="cell ok">○</div>
+        <div class="total">7<span>／ 7項目</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">LIFEXは7項目全てを個別に計算。A4用紙200枚以上に及ぶ計算をかけ、固定荷重・積雪荷重・地震荷重などへの応力を1棟ごとに算出している。<br>（出典：LIFEX公式初回セミナースライド）</span></div>
+</div>
+
+<!-- 5 繰り返す地震の脅威 -->
+<div class="sl">
+  <div class="top"><span class="chip c2">制振①</span><span class="pg">5 / 18</span></div>
+  <div class="tt">「倒壊しない」だけでは、まだ足りない。</div>
+  <p class="ms">地震は一度では終わらない。<br>前震・本震・繰り返す余震——南海トラフ巨大地震は今後40年以内に90%の確率で発生すると言われる時代。<br>住宅ローン35〜50年の間に大きな地震に遭う可能性は決して低くない。</p>
+  <div class="body" style="gap:14px">
+    <div class="box roomy" style="flex:1; display:flex; flex-direction:column; justify-content:center">
+      <h4>家族を守るために求められる3つの性能</h4>
+      <div class="numlist">
+        <div class="nl"><span class="no">1</span><span class="tx">震度7が来ても<b>倒壊しない</b>家づくり</span></div>
+        <div class="nl"><span class="no">2</span><span class="tx">震度7が来ても<b>損傷しない</b>家づくり</span></div>
+        <div class="nl"><span class="no">3</span><span class="tx">繰り返しの<b>前震・余震に耐える</b>家づくり</span></div>
+      </div>
+    </div>
+    <div class="box roomy" style="flex:1; display:flex; flex-direction:column; justify-content:center; border-color:var(--leak); background:var(--leakbg)">
+      <h4 style="color:var(--leak)">壁の中は、見えない</h4>
+      <p>震度が上がるごとに、壁の中では見えないダメージが進行する（evoltz社独自データ）。</p>
+      <div class="quakeScale">
+        <div class="qs"><span class="qlv">震度4</span><div class="qtrack"><div class="qbar" style="width:45%"></div></div><span class="qtx">石膏ボードの強度が低下</span></div>
+        <div class="qs"><span class="qlv">震度5弱</span><div class="qtrack"><div class="qbar" style="width:76%"></div></div><span class="qtx">構造用合板の強度が低下</span></div>
+        <div class="qs"><span class="qlv">震度5強</span><div class="qtrack"><div class="qbar" style="width:100%"></div></div><span class="qtx">筋交いが危険域に入る</span></div>
+      </div>
+      <p style="font-size:13px">壁の中のダメージは外から確認できないからこそ、予防が重要。</p>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">※変形角・震度の対応値はevoltz社独自の整理によるもので、公的機関の検証データではありません。</span></div>
+</div>
+
+<!-- 5.5 繰り返す地震の実例 -->
+<div class="sl">
+  <div class="top"><span class="chip cLeak">制振①-2</span><span class="pg">6 / 18</span></div>
+  <div class="tt">「繰り返す地震」は、実際に起きている。</div>
+  <p class="ms">同じ地域が震度6弱以上の大地震に複数回襲われるケースは、過去の観測記録に実際にある。</p>
+  <div class="body" style="flex-direction:column; gap:16px; justify-content:center">
+    <div class="quakeMain">
+      <div class="place"><div class="pname">熊本県益城町</div><div class="pref">2016年 熊本地震</div></div>
+      <div class="timeline">
+        <div class="tl-item"><div class="date">4/14 21:26</div><div class="sd">震度7</div><div class="nm">前震（M6.5）</div></div>
+        <div class="tl-arrow">わずか28時間後</div>
+        <div class="tl-item"><div class="date">4/16 01:25</div><div class="sd">震度7</div><div class="nm">本震（M7.3）</div></div>
+      </div>
+    </div>
+    <div style="font-size:12px; color:var(--sub); text-align:center">気象庁観測史上初、同一地点で震度7を2回記録（出典：気象庁「熊本地震から10年」特設サイト・益城町公式サイト）</div>
+    <div class="quakeGrid">
+      <div class="qc"><div class="pname">石川県志賀町</div><div class="pref">能登半島</div><div class="hist">2007年<b>震度6強</b>→2024年<b>震度7</b>ほか<br>17年間で計4回</div></div>
+      <div class="qc"><div class="pname">宮城県蔵王町</div><div class="pref">東北</div><div class="hist">2011・2021・2022年<br>いずれも<b>震度6強</b>、11年で3回</div></div>
+      <div class="qc"><div class="pname">新潟県長岡市</div><div class="pref">中越</div><div class="hist">2004年・2007年<br>いずれも<b>震度6強</b>、3年間隔で2回</div></div>
+      <div class="qc"><div class="pname">北海道厚真町</div><div class="pref">胆振</div><div class="hist">2018年<b>震度7</b>→2019年<b>震度6弱</b><br>5ヶ月間隔で2回</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">気象庁公式「震度6または6弱以上を観測した地震の一覧表」から作成した事例（益城町以外は自己集計、公式の複数回リストではない）。<br>全国的に同様のケースは他にもあると考えられるが、正式な全国集計値は確認できていない。</span></div>
+</div>
+
+<!-- 6 耐震+制振の役割分担 -->
+<div class="sl">
+  <div class="top"><span class="chip c2">制振②</span><span class="pg">7 / 18</span></div>
+  <div class="tt">耐震は「倒壊防止」、制振は「損傷防止」。役割が違う。</div>
+  <p class="ms">耐震は壁や柱を強化して振動に対抗する構造。制振はダンパーで揺れそのものを吸収する構造。どちらか一方ではなく、両方が必要な理由がここにある。</p>
+  <div class="body" style="gap:18px">
+    <div class="box" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center">
+      <div style="font-size:20px; font-weight:800; color:var(--navy)">耐震＝倒壊防止</div>
+      <p style="text-align:center">壁や柱を強化し、振動に抵抗する構造。<br><b style="color:var(--leak)">住宅内部への衝撃は高いまま</b></p>
+    </div>
+    <div style="font-size:26px; font-weight:800; color:var(--sub); align-self:center">＋</div>
+    <div class="box" style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; text-align:center; border-color:var(--p3); background:var(--p3bg)">
+      <div style="font-size:20px; font-weight:800; color:var(--p3)">制振＝損傷防止</div>
+      <p style="text-align:center">ダンパーが揺れを吸収する構造。<br><b style="color:var(--win)">柱高3mで3ミリの揺れから制振すれば住宅寿命は長くなる</b></p>
+    </div>
+  </div>
+</div>
+
+<!-- 7 実験で見る差 -->
+<div class="sl">
+  <div class="top"><span class="chip c2">制振③</span><span class="pg">8 / 18</span></div>
+  <div class="tt">耐震等級3のみは大地震2回目で損傷。3+evoltzは3回耐えた。</div>
+  <p class="ms">2023年、富山の振動台で行われた公開実験。<br>耐震等級2・耐震等級3のみ・耐震等級3+evoltzの3パターンに<br>中地震（震度5相当）→大地震（震度7相当）を交互に加振した結果。</p>
+  <div class="body" style="flex-direction:column; gap:12px">
+    <div class="expwrap">
+      <div class="explegend">
+        <div class="lg"><span class="sw" style="background:#9fb0c0"></span>耐震のみ（等級2）</div>
+        <div class="lg"><span class="sw" style="background:var(--leak)"></span>耐震のみ（等級3）</div>
+        <div class="lg"><span class="sw" style="background:var(--win)"></span>耐震等級3＋evoltz</div>
+        <div class="box" style="margin-top:10px; padding:10px 12px"><p style="font-size:11.5px">縦軸＝変位量(mm)。数値が小さいほど揺れを抑えられている</p></div>
+      </div>
+      <div class="expchart">
+        <div class="bargrp"><div class="bar" style="height:15%; background:#9fb0c0"><span class="bv">20.5</span></div><span class="xlbl">等級2<br>1波目(中)</span></div>
+        <div class="bargrp"><div class="bar" style="height:85%; background:#9fb0c0"><span class="bv">116.2<br>中止</span></div><span class="xlbl">等級2<br>2波目(大)</span></div>
+        <div class="bargrp"><div class="bar" style="height:14%; background:var(--leak)"><span class="bv">19.7</span></div><span class="xlbl">等級3<br>1波目(中)</span></div>
+        <div class="bargrp"><div class="bar" style="height:59%; background:var(--leak)"><span class="bv">80.7<br>損傷</span></div><span class="xlbl">等級3<br>2波目(大)</span></div>
+        <div class="bargrp"><div class="bar" style="height:9%; background:var(--win)"><span class="bv">12.9</span></div><span class="xlbl">3+evoltz<br>1波目(中)</span></div>
+        <div class="bargrp"><div class="bar" style="height:29%; background:var(--win)"><span class="bv">39.6</span></div><span class="xlbl">3+evoltz<br>2波目(大)</span></div>
+        <div class="bargrp"><div class="bar" style="height:56%; background:var(--win)"><span class="bv">76.4</span></div><span class="xlbl">3+evoltz<br>8波目(中)</span></div>
+      </div>
+    </div>
+    <a class="vidbar" href="https://www.youtube.com/watch?v=VVOlT4apUZ4" target="_blank" rel="noopener">
+      <div class="play"></div>
+      <div class="vtx"><b>この実験の様子を動画で見る（クリックでYouTubeへ）</b><span>evoltz公式YouTube「evoltz公開振動台実験 ダイジェスト」（youtube.com/watch?v=VVOlT4apUZ4）</span></div>
+    </a>
+  </div>
+  <div class="foot"><span class="cap"><b style="color:var(--win)">結果。</b>耐震等級3のみは大地震2回目で損傷が進み実験中止。evoltz併用は大地震3回・中地震5回、計8回の加振に耐えた。（出典：evoltz社公開実験誌 evoltz Times Vol.2）</span></div>
+</div>
+
+<!-- 8 動画:揺れの差 -->
+<div class="sl">
+  <div class="top"><span class="chip cLeak">動画①</span><span class="pg">9 / 18</span></div>
+  <div class="tt">「倒壊しないが、音の恐怖」——実際のお施主様宅の映像。</div>
+  <p class="ms">同程度の震度で、evoltzなしの家とevoltzありの家を比較した実録映像。当日はこの動画を再生してください（78秒）。</p>
+  <div class="body">
+    <div class="vidcompare">
+      <a class="vc no" href="https://www.youtube.com/watch?v=xsF0UOTTq2Q" target="_blank" rel="noopener">
+        <div class="head">evoltz無し｜耐震等級3のみ</div>
+        <div class="stage"><div style="font-size:12px; color:var(--sub); text-align:center; padding:0 14px">2022/3/20 宮城沖地震・仙台市内<br>震度5強・2階建て</div></div>
+        <div class="quote">「倒壊しないが"音の恐怖"」——吊り下げ装飾が激しく揺れ続ける</div>
+      </a>
+      <a class="vc yes" href="https://www.youtube.com/watch?v=xsF0UOTTq2Q" target="_blank" rel="noopener">
+        <div class="head">evoltz有り｜耐震工法＋evoltz</div>
+        <div class="stage"><div style="font-size:12px; color:var(--sub); text-align:center; padding:0 14px">2021/10/7 千葉北部地震・町田市内<br>震度5弱・2階建て</div></div>
+        <div class="quote">「1つ目の動画と同じ震度」——時計や観葉植物がほぼ揺れない</div>
+      </a>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">動画URL：youtube.com/watch?v=xsF0UOTTq2Q（evoltz公式チャンネル）</span></div>
+</div>
+
+<!-- 9 家を硬くする代償 -->
+<div class="sl">
+  <div class="top"><span class="chip cLeak">制振④</span><span class="pg">10 / 18</span></div>
+  <div class="tt">家を硬く作るほど、地震のエネルギーは室内にそのまま伝わる。</div>
+  <p class="ms">「揺れに耐える」構造は、揺れそのものを吸収しない。地震のケガの主な原因は、実は倒壊ではなく家具・家電の転倒や落下。</p>
+  <div class="body">
+    <div class="fear">
+      <div class="fbox stat"><div class="big">30〜50%</div><div class="lbl">地震のケガの原因のうち、家具類の転倒・落下・移動によるもの<br><span style="font-size:11px">（出典：東京消防庁／総務省消防庁）</span></div></div>
+      <div class="fbox list">
+        <div class="it taish"><span class="tag">耐震</span><span>建物が地震力に耐えるため<br>揺れそのものは室内にそのまま伝わる</span></div>
+        <div class="it seishin"><span class="tag">制振</span><span>ダンパーが揺れのエネルギーを吸収し、室内への伝達を抑える</span></div>
+        <div class="concl">「倒壊しない」ことと「家の中が安全」であることは、別の話。</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">お客様の不安は「家が壊れるか」だけでなく「揺れている最中、家族は無事か」。ここに刺さる話。<br>（耐震・制振構造の揺れの伝わり方の違いは各社技術解説より）</span></div>
+</div>
+
+<!-- 10 一条工務店との違い -->
+<div class="sl">
+  <div class="top"><span class="chip c3">比較①</span><span class="pg">11 / 18</span></div>
+  <div class="tt">「2倍耐震」は、硬さで対抗する思想。LIFEXは両輪で対抗する。</div>
+  <p class="ms">一条工務店は「2倍耐震」を掲げるほど、建物自体を硬く・強くする設計思想を貫いている（公式サイトより）。<br>制振ダンパーを標準搭載していない背景には、この設計思想があると考えられる。</p>
+  <div class="body">
+    <div class="stance">
+      <div class="rigid">
+        <h5>硬さで対抗する思想</h5>
+        <div class="catch">2倍耐震</div>
+        <p>建築基準法の2倍の強さを、面（ツインモノコック構造）で実現。<br>外壁厚は2×4工法の約1.6倍、釘打ちは基準の最大2倍。</p>
+        <div class="infer">これは一条工務店公式の説明。制振非搭載の理由づけはLIFEX側の見立て</div>
+      </div>
+      <div class="vsbadge">VS</div>
+      <div class="hybrid">
+        <h5>両輪で対抗する思想</h5>
+        <div class="catch">耐震等級3＋制振evoltz</div>
+        <p>硬さ（倒壊防止）と柔らかさ（損傷防止）を両立。<br>繰り返す地震・室内の揺れの両方に対応する設計。</p>
+        <div class="plus">耐震と制振を役割分担、どちらも妥協しない設計</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 11 他社比較テーブル -->
+<div class="sl">
+  <div class="top"><span class="chip c3">比較②</span><span class="pg">12 / 18</span></div>
+  <div class="tt">制振ダンパーにも、方式の違いがある。</div>
+  <p class="ms">「制振装置がついている」だけでは差別化にならない。方式まで理解して説明できるかが分かれ目。</p>
+  <div class="body">
+    <div class="cmpTbl">
+      <div class="r head"><div>項目</div><div>ミライエ（住友ゴム）</div><div>アイダンパー（アイ工務店）</div><div class="hi">evoltz（LIFEX標準）</div></div>
+      <div class="r"><div>方式</div><div>高減衰ゴム系</div><div>摩擦式</div><div class="hi"><b>速度依存型・油圧系</b></div></div>
+      <div class="r"><div>壁倍率</div><div>公表なし</div><div><b>最大5倍</b><span>国交大臣認定・耐力壁として算入</span></div><div class="hi">壁倍率を持たない<span>耐震と制振を役割分担</span></div></div>
+      <div class="r"><div>作動の目安</div><div>公表なし</div><div>公表なし</div><div class="hi"><b>1mm</b>の揺れから作動</div></div>
+      <div class="r"><div>訴求実績</div><div>90年メンテナンスフリー（同社試験）</div><div>震度7地震での変形抑制を謳う</div><div class="hi">能登半島地震で573棟ゼロ被害</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">壁倍率を持つ制振装置で耐震等級を下げてよい、という考え方には構造の専門家から慎重論もある（耐震と制振は住み分けるべき、という指摘）。</span></div>
+</div>
+
+<!-- 11.5 震度4〜5では効いていない可能性 -->
+<div class="sl">
+  <div class="top"><span class="chip c3">比較③</span><span class="pg">13 / 18</span></div>
+  <div class="tt">震度7には強くても、震度4〜5では効いていない可能性がある。</div>
+  <p class="ms">ミライエ・アイダンパーはいずれも大地震（震度7相当）での性能を強調している。<br>変位依存型（ゴム系・摩擦式）は、ある程度の変形が起きてから本格的に効き始めるとされ、震度4〜5程度の段階では十分な効果を発揮しない可能性がある。</p>
+  <div class="body" style="flex-direction:column; gap:14px">
+    <svg viewBox="0 0 900 280" style="width:100%; height:100%; max-height:220px" role="img" aria-label="速度依存型と変位依存型の、震度に対する効き具合の比較図">
+      <rect x="100" y="40" width="320" height="185" fill="#eaf1f8"/>
+      <rect x="420" y="40" width="260" height="185" fill="#fdf3d9"/>
+      <rect x="680" y="40" width="170" height="185" fill="#fbe9e7"/>
+      <text x="260" y="240" text-anchor="middle" font-size="13" fill="#5c6c7d">震度1〜3</text>
+      <text x="550" y="240" text-anchor="middle" font-size="13" font-weight="800" fill="#b3372b">震度4〜5</text>
+      <text x="765" y="240" text-anchor="middle" font-size="13" fill="#5c6c7d">震度6以上</text>
+      <polyline points="100,220 130,90 250,75 420,65 680,50 850,35" fill="none" stroke="#2e7d6e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="100,225 300,222 420,210 550,150 680,90 850,45" fill="none" stroke="#9fb0c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="420" cy="65" r="6" fill="#2e7d6e"/>
+      <circle cx="420" cy="210" r="6" fill="#9fb0c0"/>
+      <text x="100" y="60" font-size="13" font-weight="800" fill="#2e7d6e">evoltz（速度依存型）— 震度1〜3から効き始める</text>
+      <text x="100" y="270" font-size="13" font-weight="800" fill="#5c6c7d">一般的な変位依存型（ゴム系・摩擦式）— 震度4〜5で効きが弱い</text>
+      <line x1="100" y1="225" x2="850" y2="225" stroke="#c7d0d8" stroke-width="1.5"/>
+    </svg>
+    <div class="quoteRow">
+      <div class="qc">
+        <h5>ミライエ（住友ゴム）公式サイトより</h5>
+        <p class="say">熊本地震・能登半島地震での採用実績（全壊・半壊ゼロ）を訴求。震度7クラスの大地震での実績を前面に出している。</p>
+      </div>
+      <div class="qc">
+        <h5>アイダンパー（アイ工務店）公式サイトより</h5>
+        <p class="say">「震度7の地震でも耐力壁として建物の変形を抑え、固有周期の延びを抑える効果が期待できる」と説明。</p>
+      </div>
+    </div>
+    <a class="vidbar" href="https://www.youtube.com/watch?v=X2nPHh6tOUU" target="_blank" rel="noopener">
+      <div class="play"></div>
+      <div class="vtx"><b>佐藤実先生の解説を動画で見る（クリックでYouTubeへ）</b><span>evoltz公式YouTube「evoltz公開振動台実験#1」実験立会人・構造塾 佐藤実先生インタビュー</span></div>
+    </a>
+  </div>
+  <div class="foot"><span class="cap">「変位依存型は、ある程度の傾きが出てから効く。だから変形が大きくなるところで効くが、その手前は効かない」（構造塾塾長・佐藤実氏、evoltz社公開実験誌より）。<br>震度4〜5での"見えないダメージ"は5ページ目参照。</span></div>
+</div>
+
+<!-- 12 evoltzの技術特徴+能登実績 -->
+<div class="sl">
+  <div class="top"><span class="chip c2">制振⑤</span><span class="pg">14 / 18</span></div>
+  <div class="tt">1mmの揺れから効き、能登半島地震で実証された。</div>
+  <div class="body" style="flex-direction:column; gap:16px; justify-content:center">
+    <div class="techrow">
+      <div class="tc"><h5>作動開始</h5><div class="v">1mm</div><p>交通振動や震度1の小さな揺れから効き始める速度依存型オイルダンパー</p></div>
+      <div class="tc"><h5>特許</h5><div class="v">3か国</div><p>「超バイリニア特性」で日本・アメリカ・ドイツで<br>特許取得</p></div>
+      <div class="tc"><h5>耐久性</h5><div class="v">100万回</div><p>耐久試験をクリアし性能劣化がほとんどない</p></div>
+    </div>
+    <div class="achieve">
+      <div class="n">573棟 中 0棟</div>
+      <div class="d">令和6年能登半島地震（石川・富山）での倒壊・全壊・半壊の実績</div>
+    </div>
+  </div>
+</div>
+
+<!-- 13 動画:断熱材への影響(伏線) -->
+<div class="sl">
+  <div class="top"><span class="chip cLeak">動画②</span><span class="pg">15 / 18</span></div>
+  <div class="tt">揺れの影響は、断熱材にも及ぶ。</div>
+  <p class="ms">evoltz公式チャンネルの実証実験シリーズ。制振装置の有無で、断熱材の損傷にどれだけ差が出るかを検証している。</p>
+  <div class="body" style="gap:14px">
+    <a class="vidcard" style="flex:1 1 0" href="https://www.youtube.com/@evoltz_official" target="_blank" rel="noopener">
+      <div class="thumb"><span class="tag">evoltz公式・実証実験シリーズ</span><div class="play"></div></div>
+      <div class="meta"><div class="ti">地震で断熱材（吹付発泡ウレタン／パネル断熱／グラスウール＋気密シート）はどうなる？（クリックでYouTubeへ）</div><div class="url">youtube.com/@evoltz_official（実証実験 第1〜3弾）</div></div>
+    </a>
+    <div class="box" style="flex:1 1 0; min-width:0; border-color:var(--p3); background:var(--p3bg)">
+      <h4 style="color:var(--p3)">次回・断熱気密研修への伏線</h4>
+      <p style="color:var(--ink)">断熱材が揺れで割れる → 断熱性能が場所によってムラになる<br>→ 局所的な温度差が生まれる → 壁体内結露のリスクが上がる。<br>この流れは次回の断熱気密研修で詳しく扱います。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 14 まとめ:一つでも欠かせない -->
+<div class="sl">
+  <div class="top"><span class="chip c1">まとめ①</span><span class="pg">16 / 18</span></div>
+  <div class="tt">一つでも欠けると、性能は成立しない。</div>
+  <p class="ms">耐震等級3も、evoltzも、それぞれ単体の「売り」ではなく、住宅性能を長く保つための一つのシステム。どれか一つを削ると、他の要素の効果も目減りする。</p>
+  <div class="body">
+    <div class="pillars">
+      <div class="pl"><span class="no">1</span><b>許容応力度計算</b><span class="desc">耐震等級3（2.4〜2.7倍）</span><span class="sub">7項目全てを個別に計算</span></div>
+      <div class="plus">＋</div>
+      <div class="pl"><span class="no">2</span><b>制振evoltz</b><span class="desc">繰り返す地震への耐性</span><span class="sub">1mmの揺れから作動</span></div>
+      <div class="plus">＋</div>
+      <div class="pl"><span class="no">3</span><b>断熱・気密</b><span class="desc">次回研修で詳しく</span><span class="sub">揺れで性能を落とさない</span></div>
+      <div class="plus">＋</div>
+      <div class="pl"><span class="no">4</span><b>防蟻仕様</b><span class="desc">エコボロンPRO（9/11研修）</span><span class="sub">木部を長く守る標準仕様</span></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">「なぜLIFEXはこの仕様なのか」を一つずつ理解していくと、他社と比較されたときに迷わず答えられるようになります。</span></div>
+</div>
+
+<!-- 15 会話の型 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">まとめ②</span><span class="pg">17 / 18</span></div>
+  <div class="tt">お客様との会話の型。</div>
+  <div class="body">
+    <div class="convo" style="flex:1; justify-content:center">
+      <div class="ln you"><span class="who">営業</span><div class="bub">「耐震等級3って、よく聞く言葉ですが、実は計算方法が3種類あるのをご存じですか？」</div></div>
+      <div class="ln"><span class="who">お客様</span><div class="bub">「知らないです。全部同じじゃないんですか？」</div></div>
+      <div class="ln you"><span class="who">営業</span><div class="bub">「同じ等級3でも、中身は全然違うんです。LIFEXは一番手間のかかる構造計算で取っています」</div></div>
+      <div class="ln"><span class="who">お客様</span><div class="bub">「じゃあ耐震だけで十分安心ということですか？」</div></div>
+      <div class="ln win"><span class="who">営業</span><div class="bub">「実は、揺れに耐えるだけだと、その揺れは家の中にそのまま伝わります。地震のケガの3〜5割は家具の転倒が原因、というデータもあります。だからLIFEXは耐震にプラスして、揺れそのものを吸収するevoltzを標準搭載しているんです」</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">想定される追加質問・切り返しは参考書の想定QA集を参照してください。</span></div>
+</div>
+
+<!-- 16 出典一覧 -->
+<div class="sl" style="height:auto; overflow:visible">
+  <div class="top"><span class="chip c0">出典一覧</span><span class="pg">18 / 18</span></div>
+  <div class="tt" style="font-size:20px">本資料で使用した数字・データの出典</div>
+  <div class="body" style="overflow:visible">
+    <div class="src" style="overflow-y:visible">
+      <p><b>耐震等級3の3種類・構造安全のピラミッド・強度指数</b>：LIFEX公式初回セミナースライド（社内資料）</p>
+      <p><b>能登半島地震 573棟中0棟の実績</b>：LIFEX公式初回セミナースライド（被災度区分判定による倒壊・全壊・半壊の集計、社内資料）</p>
+      <p><b>熊本地震・益城町での震度7×2回（2016年）</b>：気象庁「熊本地震から10年」特設サイト・益城町公式サイト</p>
+      <p><b>繰り返し震度6弱以上を観測した地域の事例（石川県志賀町・宮城県蔵王町・新潟県長岡市・北海道厚真町）</b>：気象庁公式「震度6または6弱以上を観測した地震の一覧表」（地震・火山月報防災編付録9）をもとにした自己集計。全国的な件数の公式集計値ではなく、あくまで代表事例</p>
+      <p><b>震度と変形角・内装材（石膏ボード・構造用合板・筋かい）の対応（震度4/5弱/5強での損傷進行）</b>：evoltz社独自データ。<b style="color:var(--p3)">※気象庁「震度階級の解説」等の公的資料には震度と変形角・部材別の対応関係の記載はなく、公的機関による検証データではありません</b></p>
+      <p><b>耐震等級2/3/3+evoltzの振動台実験データ</b>：evoltz社公開実験誌「evoltz Times Vol.2」2023年夏号（2023年5月富山振動台実験）</p>
+      <p><b>「変位依存型は変形が大きくなってから効き、その手前は効かない」というコメント</b>：構造塾塾長・佐藤実氏（一級建築士）、evoltz社公開実験誌「evoltz Times Vol.2」内の対談より。evoltz社の実験に立ち会った第三者の構造専門家の発言</p>
+      <p><b>佐藤実先生インタビュー動画</b>：evoltz公式YouTubeチャンネル「evoltz公開振動台実験#1」（実験立会人・構造塾 佐藤実先生インタビュー）</p>
+      <p><b>ミライエ・アイダンパーが震度7クラスでの性能・実績を訴求している旨</b>：住友ゴム工業 MIRAIE公式サイト／アイ工務店公式サイト（各社公式の記載内容。震度4〜5での効き具合についての言及は両社公式に記載なし）</p>
+      <p><b>実験の様子を収めた動画</b>：evoltz公式YouTubeチャンネル「evoltz公開振動台実験 ダイジェスト」（2023年12月公開）</p>
+      <p><b>evoltzの技術仕様（1mmから作動・3か国特許・100万回耐久）</b>：evoltz社作成資料（営業トークスクリプト・知識確認テスト・LIFEXセミナースライド）</p>
+      <p><b>evoltzあり/なし比較動画</b>：evoltz公式YouTubeチャンネル「地震発生時のお施主様ご自宅 evoltz比較動画」（2024年版）</p>
+      <p><b>断熱材の実証実験動画</b>：evoltz公式YouTubeチャンネル「実証実験 第1〜3弾」（吹付発泡ウレタン・パネル断熱・グラスウール＋気密シート）</p>
+      <p><b>地震のケガの原因(家具類の転倒・落下・移動 約30〜50%)</b>：東京消防庁公式サイト／総務省消防庁公式サイト（元調査は日本建築学会「阪神・淡路大震災 住宅内部被害調査報告書」）</p>
+      <p><b>耐震構造と制振構造の揺れの伝わり方の違い</b>：ヤマト住建・大成建設・鹿島建設の技術解説記事（各社公式サイト）</p>
+      <p><b>ミライエの仕様（ゴム系・90年メンテナンスフリー等）</b>：住友ゴム工業 MIRAIE公式サイト</p>
+      <p><b>アイダンパーの仕様（摩擦式・壁倍率5倍・大臣認定）</b>：アイ工務店公式サイト</p>
+      <p><b>一条工務店「2倍耐震」「ツインモノコック構造」</b>：一条工務店公式サイト。<b style="color:var(--p3)">※制振装置を標準搭載していない理由についての一条工務店公式の説明は確認できておらず、スライド11の解説はLIFEX側の推論です</b></p>
+      <p><b>他社（大手ハウスメーカー各社）の耐震計算方法・制振方式の一覧</b>：evoltz社（株式会社LiBコンサルティング作成）の加盟店向け営業資料内比較表。各社公式発表ではない点に留意</p>
+    </div>
+  </div>
+</div>
+
+</div>
