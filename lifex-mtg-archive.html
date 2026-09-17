@@ -72,9 +72,12 @@
     transition: border-color 0.15s ease;
   }
   @media (hover: hover){
-    .session:hover{ border-color: var(--navy); }
+    .session:hover{ border-color: var(--navy); box-shadow: 0 2px 12px -6px rgba(30,78,121,.3), var(--shadow); }
     .session:hover .thumb img{ transform: scale(1.04); }
   }
+  .session.is-latest{ border-color: #c6d6e6; }
+  .session.is-latest .datebar{ background: var(--navy); color: #fff; }
+  .session.is-latest .datebar .year{ opacity: 0.85; }
 
   .session-inner{ display: grid; grid-template-columns: 108px 1fr; gap: 0; }
 
@@ -126,7 +129,17 @@
   .thumb .play svg{ width: 12px; height: 12px; fill: #fff; margin-left: 2px; }
 
   .content{ min-width: 0; }
-  .session-label{ font-size: 11.5px; font-weight: 700; color: #94a1ad; letter-spacing: 0.08em; margin-bottom: 4px; }
+  .session-label{ font-size: 11.5px; font-weight: 700; color: #94a1ad; letter-spacing: 0.08em; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .new-badge{
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    color: #fff;
+    background: var(--navy);
+    border-radius: 4px;
+    padding: 1.5px 6px;
+    letter-spacing: 0.04em;
+  }
   .session-title{
     display: inline-block;
     font-size: 16px;
@@ -134,7 +147,16 @@
     color: var(--ink);
     margin: 0 0 6px;
     letter-spacing: 0.005em;
+    line-height: 1.5;
     text-decoration: none;
+  }
+  .title-sub{
+    display: block;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--sub);
+    letter-spacing: 0;
+    margin-top: 1px;
   }
   @media (hover: hover){
     .session-title:hover{ color: var(--navy); }
@@ -232,7 +254,7 @@
           </a>
           <div class="content">
             <p class="session-label">第1回</p>
-            <a class="session-title" href="https://youtu.be/5P9psno4uHM" target="_blank" rel="noopener noreferrer" data-session="1" data-video="5P9psno4uHM">LIFEX　2棟目標達成MTG</a>
+            <a class="session-title" href="https://youtu.be/5P9psno4uHM" target="_blank" rel="noopener noreferrer" data-session="1" data-video="5P9psno4uHM">なぜ、月2棟MTGをやるのか<span class="title-sub">不通対策とアポ取得術</span></a>
             <div class="session-foot">
               <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
               <a class="material-link" href="lifex-mtg-20260703.html" target="_blank" rel="noopener noreferrer">
@@ -255,7 +277,7 @@
           </a>
           <div class="content">
             <p class="session-label">第2回</p>
-            <a class="session-title" href="https://youtu.be/9VF5WLgwzKw" target="_blank" rel="noopener noreferrer" data-session="2" data-video="9VF5WLgwzKw">LIFEX　2棟目標達成MTG</a>
+            <a class="session-title" href="https://youtu.be/9VF5WLgwzKw" target="_blank" rel="noopener noreferrer" data-session="2" data-video="9VF5WLgwzKw">初回面談 実践ガイド</a>
             <div class="session-foot">
               <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
               <a class="material-link" href="desktop/lifex-guide.html" target="_blank" rel="noopener noreferrer">
@@ -278,7 +300,7 @@
           </a>
           <div class="content">
             <p class="session-label">第3回</p>
-            <a class="session-title" href="https://youtu.be/80l9h6Z1kO0" target="_blank" rel="noopener noreferrer" data-session="3" data-video="80l9h6Z1kO0">LIFEX　2棟目標達成MTG</a>
+            <a class="session-title" href="https://youtu.be/80l9h6Z1kO0" target="_blank" rel="noopener noreferrer" data-session="3" data-video="80l9h6Z1kO0">月2棟の型を公開<span class="title-sub">佐古社長対談</span></a>
             <div class="session-foot">
               <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
               <a class="material-link" href="LIFEX研修_20260717/05_投影資料_対談形式.html" target="_blank" rel="noopener noreferrer">
@@ -301,7 +323,7 @@
           </a>
           <div class="content">
             <p class="session-label">第4回</p>
-            <a class="session-title" href="https://youtu.be/XNOXrUfzdqM" target="_blank" rel="noopener noreferrer" data-session="4" data-video="XNOXrUfzdqM">LIFEX　2棟目標達成MTG</a>
+            <a class="session-title" href="https://youtu.be/XNOXrUfzdqM" target="_blank" rel="noopener noreferrer" data-session="4" data-video="XNOXrUfzdqM">通電率・接続率UP<span class="title-sub">上位3社の横展開</span></a>
             <div class="session-foot">
               <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
               <a class="material-link" href="LIFEX_MTG_20260724/01_投影資料_架電率UP.html" target="_blank" rel="noopener noreferrer">
@@ -324,7 +346,7 @@
           </a>
           <div class="content">
             <p class="session-label">第5回</p>
-            <a class="session-title" href="https://youtu.be/-MNnr94wtsY" target="_blank" rel="noopener noreferrer" data-session="5" data-video="-MNnr94wtsY">LIFEX　2棟目標達成MTG</a>
+            <a class="session-title" href="https://youtu.be/-MNnr94wtsY" target="_blank" rel="noopener noreferrer" data-session="5" data-video="-MNnr94wtsY">KPI観察分析判断MTG<span class="title-sub">アポ率目標設定</span></a>
             <div class="session-foot">
               <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
               <a class="material-link" href="mtg-20260731.html" target="_blank" rel="noopener noreferrer">
@@ -347,7 +369,7 @@
           </a>
           <div class="content">
             <p class="session-label">第6回</p>
-            <a class="session-title" href="https://youtu.be/Gbmt2rr9XoE" target="_blank" rel="noopener noreferrer" data-session="6" data-video="Gbmt2rr9XoE">2棟目標達成MTG</a>
+            <a class="session-title" href="https://youtu.be/Gbmt2rr9XoE" target="_blank" rel="noopener noreferrer" data-session="6" data-video="Gbmt2rr9XoE">商談を磨く<span class="title-sub">商談ツール2点を配布</span></a>
             <div class="session-foot">
               <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
               <a class="material-link" href="lifex-kenshu-20260807.html" target="_blank" rel="noopener noreferrer">
@@ -372,7 +394,7 @@
           </a>
           <div class="content">
             <p class="session-label">第7回</p>
-            <a class="session-title" href="https://youtu.be/Fqx_RH00qSI" target="_blank" rel="noopener noreferrer" data-session="7" data-video="Fqx_RH00qSI">LIFEX　2棟目標達成MTG</a>
+            <a class="session-title" href="https://youtu.be/Fqx_RH00qSI" target="_blank" rel="noopener noreferrer" data-session="7" data-video="Fqx_RH00qSI">答え合わせ<span class="title-sub">アポ率目標×商談ツール使用</span></a>
             <div class="session-foot">
               <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
               <a class="material-link" href="mtg-20260821.html" target="_blank" rel="noopener noreferrer">
@@ -395,7 +417,7 @@
           </a>
           <div class="content">
             <p class="session-label">第8回</p>
-            <a class="session-title" href="https://youtu.be/0J-cfNXCgcg" target="_blank" rel="noopener noreferrer" data-session="8" data-video="0J-cfNXCgcg">LIFEX　2棟目標達成MTG</a>
+            <a class="session-title" href="https://youtu.be/0J-cfNXCgcg" target="_blank" rel="noopener noreferrer" data-session="8" data-video="0J-cfNXCgcg">間の取り方とテストクロージング</a>
             <div class="session-foot">
               <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
               <a class="material-link" href="mtg-20260828.html" target="_blank" rel="noopener noreferrer">
@@ -418,7 +440,7 @@
           </a>
           <div class="content">
             <p class="session-label">第9回</p>
-            <a class="session-title" href="https://youtu.be/7rDl2H4IH7w" target="_blank" rel="noopener noreferrer" data-session="9" data-video="7rDl2H4IH7w">LIFEX　2棟目標達成MTG</a>
+            <a class="session-title" href="https://youtu.be/7rDl2H4IH7w" target="_blank" rel="noopener noreferrer" data-session="9" data-video="7rDl2H4IH7w">太陽光×トータルコスト訴求法</a>
             <div class="session-foot">
               <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
               <a class="material-link" href="taiyoko-total-cost-appeal-final.html" target="_blank" rel="noopener noreferrer">
@@ -431,7 +453,7 @@
       </div>
     </div>
 
-    <div class="session">
+    <div class="session is-latest">
       <div class="session-inner">
         <div class="datebar"><span class="month num">2026 / 09</span><span class="day num">11</span><span class="year">Fri</span></div>
         <div class="body">
@@ -440,8 +462,8 @@
             <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
           </a>
           <div class="content">
-            <p class="session-label">第10回</p>
-            <a class="session-title" href="https://youtu.be/HbHEVbytk_E" target="_blank" rel="noopener noreferrer" data-session="10" data-video="HbHEVbytk_E">LIFEX　2棟目標達成MTG</a>
+            <p class="session-label">第10回<span class="new-badge">NEW</span></p>
+            <a class="session-title" href="https://youtu.be/HbHEVbytk_E" target="_blank" rel="noopener noreferrer" data-session="10" data-video="HbHEVbytk_E">TorneoPlus紹介＋エコボロンPRO標準仕様</a>
             <div class="session-foot">
               <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
               <a class="material-link" href="mtg-20260911.html" target="_blank" rel="noopener noreferrer">
