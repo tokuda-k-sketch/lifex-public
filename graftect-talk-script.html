@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>LIFEXご紹介トークスクリプト</title>
+<style>
+:root {
+  --navy: #0F2240;
+  --forest: #1B3D2A;
+  --forest-light: #E8EFE9;
+  --gold: #C4983A;
+  --gold-pale: rgba(196,152,58,0.10);
+  --gold-muted: #8A6820;
+  --bg: #F5F3EE;
+  --white: #FFFFFF;
+  --text: #1C1C1C;
+  --border: #DEDAD1;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #E8E4DC;
+  font-family: 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 800px;
+  margin: 28px auto;
+  background: var(--white);
+  box-shadow: 0 8px 48px rgba(0,0,0,0.14);
+}
+
+.header {
+  background: var(--forest);
+  padding: 22px 36px;
+}
+.header-eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 700;
+}
+.header-title {
+  font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 6px;
+  letter-spacing: 0.03em;
+}
+.header-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+.body { padding: 28px 36px 8px; display: flex; flex-direction: column; gap: 24px; }
+
+.section-head {
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* speak lines */
+.speak-list { display: flex; flex-direction: column; gap: 8px; }
+.speak-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  background: var(--bg);
+  border-radius: 2px;
+}
+.speak-tag {
+  flex-shrink: 0;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--gold-muted);
+  background: var(--gold-pale);
+  padding: 3px 8px;
+  border-radius: 2px;
+  white-space: nowrap;
+  margin-top: 1px;
+}
+.speak-text {
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--text);
+}
+
+/* points */
+.point-grid { display: flex; flex-direction: column; gap: 10px; }
+.point-card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--forest-light);
+  border-left: 3px solid var(--forest);
+  padding: 13px 16px;
+  border-radius: 0 2px 2px 0;
+}
+.point-num {
+  width: 24px; height: 24px;
+  background: var(--forest);
+  color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+  flex-shrink: 0;
+}
+.point-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.point-desc {
+  font-size: 11px;
+  color: #3A4A3E;
+  line-height: 1.72;
+}
+
+/* qa */
+.qa-list { display: flex; flex-direction: column; gap: 12px; }
+.qa-item { border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+.qa-q {
+  padding: 10px 14px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  gap: 8px;
+}
+.qa-q .mark { color: var(--gold); }
+.qa-a {
+  padding: 12px 14px;
+  font-size: 11.5px;
+  line-height: 1.75;
+  color: #333;
+  display: flex;
+  gap: 8px;
+}
+.qa-a .mark { color: var(--gold-muted); font-weight: 700; flex-shrink: 0; }
+
+/* caution box */
+.caution {
+  padding: 14px 16px;
+  background: var(--gold-pale);
+  border: 1px dashed rgba(196,152,58,0.4);
+  border-radius: 2px;
+  font-size: 11.5px;
+  line-height: 1.75;
+  color: #6A5520;
+}
+.caution b { color: var(--gold-muted); }
+
+.footer {
+  padding: 14px 36px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-co {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--navy);
+  font-family: 'Yu Mincho', serif;
+  letter-spacing: 0.04em;
+}
+.footer-note { font-size: 10px; color: #AAA; }
+
+@media print {
+  body { background: none; }
+  .page { box-shadow: none; margin: 0; }
+  @page { size: A4; margin: 10mm; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <div class="header-eyebrow">グラフテクト営業様専用・社内メモ</div>
+    <div class="header-title">LIFEXご紹介トークスクリプト</div>
+    <div class="header-note">工務店様との商談・雑談の中で「LIFEXという規格住宅FCがある」と一言お伝えいただくためのカンペです。詳しい説明は不要です。興味を持たれたら、資料をお渡しいただくだけで大丈夫です。</div>
+  </div>
+
+  <div class="body">
+
+    <div>
+      <div class="section-head">覚えておくと良い数字</div>
+      <div class="caution" style="background:var(--forest-light);border:1px dashed rgba(27,61,42,0.3);color:#3A4A3E;">
+        現在<b style="color:var(--forest);">21社・全国25エリア</b>が加盟中（2026年4月スタートから約5.5か月）。「最近増えてるんですよ」と話すときの裏付けに使ってください。金額や個社の実績には触れず、この2つの数字だけで十分です。
+      </div>
+    </div>
+
+    <div>
+      <div class="section-head">まずは一言、こんな切り出し方で</div>
+      <div class="speak-list">
+        <div class="speak-item">
+          <div class="speak-tag">通常訪問時</div>
+          <div class="speak-text">「そういえば、最近お付き合いのある工務店さんで、規格住宅のフランチャイズに加盟され始めてるところが増えてるんですよ。もしよかったら資料だけでも置いていきましょうか。」</div>
+        </div>
+        <div class="speak-item">
+          <div class="speak-tag">世間話の流れで</div>
+          <div class="speak-text">「最近、注文住宅だけだと厳しいという話、よく聞きませんか。実はうちのお客さんで、規格住宅を新しい柱にし始めてる工務店さんも結構いるんです。」</div>
+        </div>
+        <div class="speak-item">
+          <div class="speak-tag">資料を渡すとき</div>
+          <div class="speak-text">「これ、LIFEXっていう規格住宅のフランチャイズの資料なんですけど、うちの標準採用先にもなってるので、興味あれば見てみてください。詳しいことは私もそこまで分からないので、気になれば聞いてみます。」</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-head">深掘りされたら、この3点だけ</div>
+      <div class="point-grid">
+        <div class="point-card">
+          <div class="point-num">1</div>
+          <div>
+            <div class="point-title">注文住宅の「代わり」ではなく「もう一つの商品」</div>
+            <div class="point-desc">規格住宅は注文住宅を置き換えるものではなく、価格帯の違うお客様を取りこぼさないための新しい商品ラインとして持つ工務店が増えている、という説明で十分です。</div>
+          </div>
+        </div>
+        <div class="point-card">
+          <div class="point-num">2</div>
+          <div>
+            <div class="point-title">気密・断熱などの性能で差別化するブランド</div>
+            <div class="point-desc">安さだけで戦う商品ではなく、住宅性能をきちんと打ち出すブランドだという点を伝えると印象が変わります。</div>
+          </div>
+        </div>
+        <div class="point-card">
+          <div class="point-num">3</div>
+          <div>
+            <div class="point-title">グラフテクトとの関係で紹介している</div>
+            <div class="point-desc">聞かれたら正直に、LIFEX加盟店はキッチンをグラフテクト標準採用にしているため、良い工務店様が増えるとお互いにとって良い関係になる、という背景を伝えて構いません。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-head">よくある質問と答え方</div>
+      <div class="qa-list">
+        <div class="qa-item">
+          <div class="qa-q"><span class="mark">Q.</span>うちは注文住宅一本でやってきたのに、今更規格住宅なんて。</div>
+          <div class="qa-a"><span class="mark">A.</span>置き換えではなく追加、という位置づけです。「今のお客様層はそのままに、届いていなかった層を取り込む商品、という位置づけみたいですよ」くらいで十分です。</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="mark">Q.</span>加盟にはどれくらい費用がかかるの？</div>
+          <div class="qa-a"><span class="mark">A.</span>「そこは私では詳しく分からないので、興味があれば聞いておきますね」で構いません。金額の話はご自身で答えず、必ず持ち帰ってください。</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="mark">Q.</span>うちのエリアはもう埋まってるんじゃないの？</div>
+          <div class="qa-a"><span class="mark">A.</span>「エリアの状況は私も把握していないので、興味があれば確認してみます」で大丈夫です。空き状況を推測で答えないでください。</div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="mark">Q.</span>他の工務店にも同じ話してるの？</div>
+          <div class="qa-a"><span class="mark">A.</span>正直に「はい、いくつかお付き合い先にはお伝えしています」で問題ありません。</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-head">興味を持たれたあと</div>
+      <div class="caution">
+        <b>現時点で本部への具体的な繋ぎ方は未確定です。</b>まずは資料をお渡しいただき、「詳しいことはあらためてご案内します」とお伝えいただければ十分です。連携方法が固まり次第、追ってご案内します。この場で連絡先や日程を確定させる必要はありません。
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-co">LIFEX / Gハウス BtoB事業部</div>
+    <div class="footer-note">本資料は社内参考メモです（工務店様への配布不可）　2026.09</div>
+  </div>
+
+</div>
+
+</body>
+</html>
