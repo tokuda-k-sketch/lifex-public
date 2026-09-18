@@ -1,0 +1,532 @@
+<title>断熱×気密×換気 参考書</title>
+<style>
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+  --p3:#b05c1f; --p3bg:#f9efe4;
+  --leak:#b3372b; --leakbg:#fbe9e7;
+  --win:#2e7d6e; --winbg:#e7f2ef;
+  --surface:#ffffff;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.9; font-feature-settings:"palt"}
+.num{font-variant-numeric:tabular-nums}
+
+.header{background:#12181f; color:#fff; padding:48px 24px 40px; text-align:center}
+.header .eyebrow{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#8b98a5; margin-bottom:14px}
+.header h1{margin:0; font-size:26px; font-weight:800; letter-spacing:.01em; text-wrap:balance; overflow-wrap:break-word}
+.header .sub{font-size:14px; color:#a8b4bf; margin-top:12px; line-height:1.8; max-width:52ch; margin-left:auto; margin-right:auto}
+.header .meta{margin-top:20px; font-size:12px; color:#7c8a96}
+@media (max-width:480px){
+  .header{padding:36px 18px 28px}
+  .header h1{font-size:20px}
+  .header .sub{max-width:none; font-size:13px}
+}
+
+.shell{display:flex; max-width:1180px; margin:0 auto; align-items:flex-start}
+.toc{width:264px; flex-shrink:0; position:sticky; top:0; height:100vh; overflow-y:auto; padding:36px 20px 60px 28px; border-right:1px solid var(--line)}
+.toc .toc-label{font-size:11px; font-weight:800; letter-spacing:.1em; color:var(--sub); text-transform:uppercase; margin-bottom:14px}
+.toc a{display:block; font-size:13px; color:var(--ink); text-decoration:none; padding:6px 10px; border-radius:6px; line-height:1.5}
+.toc a:hover{background:var(--navy-soft); color:var(--navy)}
+.toc a.chapter{font-weight:800; margin-top:14px; color:var(--navy)}
+.toc a.chapter:first-child{margin-top:0}
+.toc a.section{padding-left:20px; color:var(--sub); font-size:12.5px}
+.main{flex:1; min-width:0; padding:40px 48px 120px; max-width:840px}
+
+@media (max-width:900px){
+  .shell{flex-direction:column}
+  .toc{position:static; width:auto; height:auto; border-right:none; border-bottom:1px solid var(--line); padding:24px 20px}
+  .main{padding:32px 20px 80px; max-width:none}
+}
+
+.chapter{padding-top:56px; margin-top:56px; border-top:4px solid var(--navy)}
+.chapter:first-of-type{margin-top:0}
+.chapter .no{font-size:12px; font-weight:800; letter-spacing:.12em; color:var(--navy); text-transform:uppercase}
+.chapter h2{font-size:26px; font-weight:800; margin:8px 0 6px; letter-spacing:.005em; text-wrap:balance}
+.chapter .lead{font-size:14.5px; color:var(--sub); line-height:1.9; margin:0 0 8px}
+.section{margin-top:40px}
+.section h3{font-size:19px; font-weight:800; margin:0 0 14px; padding-bottom:10px; border-bottom:2px solid var(--line); color:var(--ink)}
+.section h4{font-size:15.5px; font-weight:800; margin:26px 0 10px; color:var(--navy)}
+p{margin:0 0 14px; font-size:14.5px; color:var(--ink)}
+.section p:last-child{margin-bottom:0}
+
+.fact{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:16px 20px; margin:16px 0}
+.fact .k{font-size:11.5px; font-weight:800; color:var(--sub); letter-spacing:.05em}
+.fact .v{font-size:22px; font-weight:800; color:var(--navy); margin:4px 0}
+.fact .d{font-size:13px; color:var(--sub); line-height:1.7}
+.fact .d p{margin:0 0 10px; font-size:13px; color:var(--sub)}
+.fact .d p:last-child{margin-bottom:0}
+.fact .d ul{margin:6px 0 0; padding-left:20px; font-size:13px; color:var(--sub)}
+.fact .d li{margin-bottom:4px}
+.fact .src{font-size:11.5px; color:#94a1ad; margin-top:8px; padding-top:8px; border-top:1px dashed var(--line)}
+
+.cite{border-left:3px solid var(--navy); background:var(--navy-soft); border-radius:0 8px 8px 0; padding:14px 20px; margin:16px 0; font-size:14px; line-height:1.85; color:var(--ink)}
+.cite .who{font-size:12px; font-weight:800; color:var(--navy); margin-bottom:6px; display:block}
+.cite.warn{border-left-color:var(--leak); background:var(--leakbg)}
+.cite.warn .who{color:var(--leak)}
+
+.law{background:#fafbfc; border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:14px 0; font-size:13px; color:var(--sub); line-height:1.8}
+.law b{color:var(--ink)}
+
+.unverified{font-size:12.5px; color:var(--p3); background:var(--p3bg); border-radius:6px; padding:8px 14px; margin:10px 0; line-height:1.7}
+.unverified b{font-weight:800}
+
+.nb{display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%; background:var(--navy); color:#fff; font-size:10px; font-weight:800; margin-right:6px; flex-shrink:0; vertical-align:-1px; font-feature-settings:"tnum"}
+.nb.warn{background:var(--leak)}
+
+.diagram-box{display:flex; gap:22px; flex-wrap:wrap; margin:16px 0; background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:18px 20px 14px}
+.diagram-box figure{flex:1 1 300px; min-width:260px; margin:0}
+.diagram-box figcaption{font-size:12.5px; font-weight:800; color:var(--navy); margin-top:6px; text-align:center}
+.diagram-box svg{width:100%; height:auto; display:block; overflow:visible}
+.diagram-box .dgtxt{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif}
+
+table.dtbl{width:100%; border-collapse:collapse; margin:16px 0; font-size:13px}
+table.dtbl th{background:var(--navy); color:#fff; font-weight:800; text-align:left; padding:9px 12px; font-size:12px}
+table.dtbl td{padding:9px 12px; border-bottom:1px solid var(--line)}
+table.dtbl tr:nth-child(even) td{background:var(--panel)}
+table.dtbl td.hi{color:var(--navy); font-weight:800}
+.tblwrap{overflow-x:auto}
+
+.section ul, .section ol{margin:0 0 14px; padding-left:22px; font-size:14.5px; color:var(--ink)}
+.section li{margin-bottom:6px}
+
+.qa{border:1px solid var(--line); border-radius:10px; padding:18px 22px; margin:16px 0; background:var(--surface)}
+.qa .q{font-size:14.5px; font-weight:800; color:var(--ink); display:flex; gap:10px}
+.qa .q .tag{flex-shrink:0; font-size:11px; font-weight:800; color:#fff; background:var(--sub); border-radius:99px; padding:2px 10px; height:fit-content}
+.qa .a{font-size:14px; color:var(--sub); margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); line-height:1.85}
+.qa .a b{color:var(--ink)}
+
+.column{background:linear-gradient(135deg,#fff8ec,#fff3e2); border:1px solid #ecd9a8; border-radius:10px; padding:18px 22px; margin:20px 0}
+.column .label{font-size:11px; font-weight:800; color:var(--p3); letter-spacing:.08em; margin-bottom:6px}
+.column p{font-size:13.5px}
+
+footer{max-width:840px; margin:0 auto; padding:40px 48px 80px; border-top:1px solid var(--line); font-size:12px; color:var(--sub)}
+@media (max-width:900px){footer{padding:32px 20px 60px}}
+</style>
+
+<div class="header">
+  <div class="eyebrow">LIFEX 月2棟目標達成MTG・参考資料</div>
+  <h1>断熱×気密×換気　参考書</h1>
+  <p class="sub">9/25投影資料（教科書）の内容を<br>一次資料・施工マニュアルに基づいて<br>掘り下げた詳細版です。<br>お客様からの深い質問にも<br>根拠を持って答えられるように。</p>
+  <div class="meta">2026年9月25日　Gハウス LIFEX FC事業部</div>
+</div>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">目次</div>
+    <a href="#intro" class="section">この参考書の使い方</a>
+    <a href="#ch1" class="chapter">第1章　断熱を正確に理解する</a>
+    <a href="#ch1-1" class="section">1-1　断熱等級とUA値の基準</a>
+    <a href="#ch1-2" class="section">1-2　等級7を追わない3つの理由</a>
+    <a href="#ch1-3" class="section">1-3　同じ会社でもUA値が割れる理由</a>
+    <a href="#ch1-4" class="section">1-4　光熱費試算の前提条件</a>
+    <a href="#ch2" class="chapter">第2章　気密を技術から理解する</a>
+    <a href="#ch2-1" class="section">2-1　C値と換気効率の関係</a>
+    <a href="#ch2-2" class="section">2-2　気密が悪いと断熱・換気が空回りする</a>
+    <a href="#ch2-3" class="section">2-3　気密シートと壁体内結露</a>
+    <a href="#ch2-4" class="section">2-4　C値0.5以下という基準の意味</a>
+    <a href="#ch2-5" class="section">2-5　全棟施工の中身——標準施工マニュアルより</a>
+    <a href="#ch2-6" class="section">2-6　気密測定という論点</a>
+    <a href="#ch3" class="chapter">第3章　換気を技術から理解する</a>
+    <a href="#ch3-1" class="section">3-1　第一種換気とCO2濃度</a>
+    <a href="#ch3-2" class="section">3-2　カビ発生率のデータ</a>
+    <a href="#ch3-3" class="section">3-3　IAQ制御・メンテナンス性</a>
+    <a href="#ch3-4" class="section">3-4　他社比較で何が違うか</a>
+    <a href="#ch4" class="chapter">第4章　3点セットという考え方</a>
+    <a href="#ch5" class="chapter">第5章　想定QA集</a>
+    <a href="#ch6" class="chapter">第6章　出典・参考資料一覧</a>
+  </nav>
+
+  <main class="main">
+
+    <section id="intro" class="section" style="margin-top:0">
+      <h3>この参考書の使い方</h3>
+      <p>投影資料（教科書）は当日の説明用に要点だけを絞っています。この参考書は、お客様から一歩踏み込んだ質問（「その気密シートって具体的にどう施工してるんですか」「他社と比べて何が違うんですか」）を受けたときに、自分の言葉で正確に答えるための種本です。</p>
+      <p>全ての数字・主張には出典を明記しています。「LIFEXの資料に書いてあるから」ではなく、「標準施工マニュアルのこのページにこう書いてある」「この試算はこの前提で計算している」と説明できる状態を目指してください。一次資料に当たれなかった項目、証言ベースの数字は「未確認」「証言ベース」と明記しています——分からないことは分からないと正直に言うのも、信頼を得る技術です。</p>
+    </section>
+
+    <div id="ch1" class="chapter">
+      <div class="no">Chapter 1</div>
+      <h2>断熱を正確に理解する</h2>
+      <p class="lead">「断熱等級7じゃないんですか？」という質問に、迷わず、正直に答えられるようになる。等級とUA値の対応、そして「なぜLIFEXは等級6で止めているのか」の理由を技術面から押さえる。</p>
+
+      <section id="ch1-1" class="section">
+        <h3>1-1　断熱等級とUA値の基準</h3>
+        <p>断熱性能は「UA値」という数字で表す。家全体の外皮（壁・屋根・床・窓など）から、どれだけ熱が逃げやすいかを示す値で、数字が小さいほど熱が逃げにくい＝高性能。国の断熱等級は、このUA値の基準ごとに区分されている。</p>
+        <div class="tblwrap">
+        <table class="dtbl">
+          <tr><th>区分</th><th>UA値</th><th>備考</th></tr>
+          <tr><td>等級7</td><td>0.26</td><td>国内最高等級</td></tr>
+          <tr><td>G2.5相当</td><td>0.36</td><td>HEAT20の任意基準の一つ</td></tr>
+          <tr><td class="hi">等級6★LIFEX標準</td><td class="hi">0.46</td><td>LIFEXの全棟標準仕様</td></tr>
+          <tr><td>等級5</td><td>0.56</td><td>ZEH基準相当</td></tr>
+          <tr><td>等級4</td><td>0.87</td><td>現行の省エネ基準（義務化ライン）</td></tr>
+        </table>
+        </div>
+        <p style="font-size:12px; color:var(--sub)">出典：LIFEX公式初回セミナースライド20260521／Ｆ式エアコン容量・COP実測計算シート内基準値表（社内資料）</p>
+        <p>ここで押さえておきたいのは、LIFEXの等級6（UA0.46）は現行の義務基準（等級4・UA0.87）の約半分の数値で、性能としては大きく上回っているという点。「最高等級ではない」ことと「性能が低い」ことはイコールではない。</p>
+      </section>
+
+      <section id="ch1-2" class="section">
+        <h3>1-2　等級7ではなく、トータル設計に投資する理由</h3>
+        <p>以前は「電気代の差は月数百円〜千円程度だから」という消極的な理由付けだったが、この数字は具体的な計算根拠（延床面積・地域・使用機器）が確認できない目安値だった。未検証の数字をお客様への説明にそのまま使うリスクを避けるため、2026-09-19に定性的なロジックへ転換した。</p>
+        <h4>① エアコン容量の実質的な下限（客観的事実）</h4>
+        <p>断熱性能を上げるほど必要なエアコン能力は下がるが、家庭用エアコンには販売されている最小容量（6畳用クラス）という下限がある。等級7まで断熱を上げても、この下限を下回る容量のエアコンは市場にほぼ存在しないため、性能を上げた分がそのまま機器選定に反映されにくい領域に入る。</p>
+        <h4>② 投資の振り向け先——太陽光・窓</h4>
+        <p>等級7へ性能を上げるための追加コストがあるなら、LIFEXはそれを太陽光パネル（創エネ）や窓の大きさ・開放感に投資する、という考え方。「差が小さいからやらない」という言い訳ではなく、「限られた予算をどこに振り向けるのが暮らし全体にとって得か」という提案に変える。</p>
+        <h4>③ 目指す結果——トータルの光熱費削減</h4>
+        <p>断熱等級6単体の性能訴求ではなく、断熱・太陽光・オール電化を組み合わせたトータル設計で光熱費を下げる、という考え方。1-4の内容と直結する。</p>
+        <p style="font-size:12px; color:var(--sub)">出典：Ｆ式エアコン容量・COP実測計算シート内基準値表（社内資料）</p>
+        <div class="unverified"><b>正直に：</b>等級6→7の追加工事費・投資回収年数について、LIFEXとして確定した試算はまだない。お客様から「具体的にいくら差があるのか」と聞かれたら、「その場で数字を作らず、確認して回答する」と正直に答えること。</div>
+      </section>
+
+      <section id="ch1-3" class="section">
+        <h3>1-3　同じ会社でもUA値が割れる理由</h3>
+        <p>教科書スライドで「同じ一条工務店でもUA値0.25（アイスマート）とUA値0.35（セゾンA）で差がある」と紹介した。これは工法の違いによるもの。</p>
+        <div class="fact">
+          <div class="k">工法とUA値の対応（参考値）</div>
+          <div class="d">
+            <ul>
+              <li>枠組壁工法系（ツーバイフォー系）：アイスマート等　UA値0.25</li>
+              <li>軸組工法系：セゾンA等　UA値0.35</li>
+            </ul>
+          </div>
+          <div class="src">出典：Ｆ式エアコン容量・COP実測計算シート内参考値。同シートは工法区分での参考値のため、モデル名との対応は代表例として記載</div>
+        </div>
+        <p>伝えたいのは「一条工務店の数字が正解」でも「LIFEXの数字が劣る」でもなく、UA値は工法によって変わる一要素にすぎず、家づくり全体のバランスで見るべきという視点。断熱性能だけを切り出して他社比較すると、話がすり替わりやすい領域でもある。</p>
+      </section>
+
+      <section id="ch1-4" class="section">
+        <h3>1-4　光熱費試算の前提条件</h3>
+        <p>教科書スライドの「一般的な戸建て月23,000円→LIFEX月7,000円」という数字の内訳。</p>
+        <div class="fact">
+          <div class="k">比較の前提</div>
+          <div class="v">年間差額 約19.2万円／30年累計 約576万円</div>
+          <div class="d">
+            <p><b>一般的な戸建て（月23,000円）</b>：総務省「家計調査」2024年・4人世帯・電気代＋ガス代合計。</p>
+            <p><b>LIFEX（月7,000円）</b>：断熱等級6＋太陽光11.04kW・オール電化の試算値。</p>
+          </div>
+          <div class="src">出典：LIFEX公式初回セミナースライド20260521（社内試算、第三者機関による検証は未確認）</div>
+        </div>
+        <div class="unverified"><b>断熱単体の効果データは存在しない：</b>LIFEXの社内資料には、断熱等級6だけを取り出した削減効果の試算データが現状ない。だから教科書スライドでは「等級6の効果」ではなく「断熱・太陽光・オール電化のパッケージ試算」として明示する構成に変更した（2026-09-19）。お客様に「断熱だけでこの差が出る」と誤解させる説明は避けること。</div>
+      </section>
+    </div>
+
+    <div id="ch2" class="chapter">
+      <div class="no">Chapter 2</div>
+      <h2>気密を技術から理解する</h2>
+      <p class="lead">「C値はどれくらいですか」と聞かれたときに、断定でも言い訳でもなく、施工プロセスへの自信として答えられるようになる。この章の後半（2-5）は、今回初めてLIFEX標準施工マニュアル（第1版2026-08-11）という一次資料に基づいて具体化した部分。</p>
+
+      <section id="ch2-1" class="section">
+        <h3>2-1　C値と換気効率の関係</h3>
+        <p>教科書スライドのグラフの元になっているのは、Gハウス社内セミナー資料「【セミナー資料】20260213　全館空調・断熱修正」（社内PowerPoint、スライド42）の「気密性と漏気の関係」の図。縦軸は、自然給気口から入ってくる空気の割合（残りは隙間からの漏気）を示す。</p>
+        <div class="fact">
+          <div class="k">読み取れる関係（近似値）</div>
+          <div class="d">
+            <ul>
+              <li>LIFEX推奨のC値0.5：給気口からの給気割合は約70%</li>
+              <li>C値1（一般的な高気密住宅の基準）：約50%</li>
+              <li>C値2：約30%まで低下</li>
+            </ul>
+          </div>
+          <div class="src">出典：Gハウス社内セミナー資料「【セミナー資料】20260213　全館空調・断熱修正」スライド42の元画像を確認して再構成。C値1＝50%・C値0.5＝約70%は、北海道の断熱気密資格制度「BIS」（一般社団法人北海道建築技術協会）のテキスト記載の数値とも一致（<a href="https://www.gaiki-seijouki.jp/column4/826/" target="_blank">トルネックスのコラム</a>経由、2026年9月時点）</div>
+        </div>
+        <div class="unverified"><b>数値を訂正した経緯：</b>当初、この教科書ではC値0.5の給気割合を「約80%」としていたが、2026-09-19に元画像を実際に確認したところ約70%が近く、外部の一次資料（BISテキスト）とも70%で一致したため訂正した。目視での近似値は誤差が出やすいので、複数の情報源で突き合わせることが大事。</div>
+        <div class="unverified"><b>混同注意：</b>同じPowerPointのスライド43には「Ｇハウスは全棟気密測定実施、C値0.24（2024年8月〜2025年7月完工、母数177棟の平均）」という記載がある。これはGハウス自社（直営）の実測データであり、LIFEX（FC加盟店全体）の数値ではない。この教科書はLIFEX向けなので、Gハウスの実測値をLIFEXの実績として引用しないこと。</div>
+        <p>伝えたい構造はシンプル：断熱や換気にどれだけ投資しても、気密（C値）が悪ければ、計画した通りには空気が入れ替わらない。気密は断熱・換気の「土台」にあたる。</p>
+      </section>
+
+      <section id="ch2-2" class="section">
+        <h3>2-2　気密が悪いと断熱・換気が空回りする</h3>
+        <p>気密性能が低い（隙間が多い）住宅で起きることは、大きく2つ。</p>
+        <div class="diagram-box">
+          <figure>
+            <svg viewBox="0 0 320 200" class="dgtxt" role="img" aria-label="隙間から熱が出入りし夏暑く冬寒くなる様子を示す図">
+              <rect x="20" y="20" width="280" height="160" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.5"/>
+              <path d="M40 60 q10 -12 20 0 q10 12 20 0" stroke="var(--leak)" stroke-width="2" fill="none"/>
+              <path d="M40 90 q10 -12 20 0 q10 12 20 0" stroke="var(--leak)" stroke-width="2" fill="none"/>
+              <text x="160" y="45" text-anchor="middle" font-size="13" font-weight="800" fill="var(--leak)">隙間から熱が出入りする</text>
+              <text x="160" y="160" text-anchor="middle" font-size="12" fill="var(--sub)">夏は暑く、冬は寒い</text>
+            </svg>
+            <figcaption>断熱が効かなくなる</figcaption>
+          </figure>
+          <figure>
+            <svg viewBox="0 0 320 200" class="dgtxt" role="img" aria-label="隙間から空気が漏れ計画換気が機能しない様子を示す図">
+              <rect x="20" y="20" width="280" height="160" fill="var(--leakbg)" stroke="var(--leak)" stroke-width="1.5"/>
+              <path d="M250 60 L280 40 M250 90 L280 70" stroke="var(--leak)" stroke-width="2"/>
+              <text x="160" y="45" text-anchor="middle" font-size="13" font-weight="800" fill="var(--leak)">隙間から空気が漏れる</text>
+              <text x="160" y="160" text-anchor="middle" font-size="12" fill="var(--sub)">換気が計画通り働かない</text>
+            </svg>
+            <figcaption>換気が空回りする</figcaption>
+          </figure>
+        </div>
+        <p>優秀な換気システムを入れても、気密が悪ければ「計画換気」にならない。設計上の給気・排気バランスが崩れ、結局は隙間からの自然な出入りに頼る状態になる。</p>
+        <p style="font-size:12px; color:var(--sub)">出典：Gハウス社内セミナー資料「【セミナー資料】20260213　全館空調・断熱修正」内の一般解説部分を再構成</p>
+      </section>
+
+      <section id="ch2-3" class="section">
+        <h3>2-3　気密シートと壁体内結露</h3>
+        <p>もう一つ、気密シートが果たしている役割が結露対策。室内の水蒸気が壁の中の冷たい部分に触れると水に変わる現象を「壁体内結露」と呼ぶ。防湿気密シートは、この水蒸気が壁の中に侵入するのを防ぐ役割を持つ。</p>
+        <table class="dtbl">
+          <tr><th>状態</th><th>結果</th></tr>
+          <tr><td class="hi">防湿気密シートがある場合</td><td>水蒸気を遮断し、壁内の結露を防ぐ</td></tr>
+          <tr><td>シートがない、または施工が不十分な場合</td><td>壁の中で結露が発生し、木材の腐朽・断熱材の性能低下につながるおそれ</td></tr>
+        </table>
+        <p style="font-size:12px; color:var(--sub)">出典：Gハウス社内セミナー資料「【セミナー資料】20260213　全館空調・断熱修正」内の一般原理部分を再構成。具体的な施工方法は2-5「全棟施工の中身」を参照</p>
+      </section>
+
+      <section id="ch2-4" class="section">
+        <h3>2-4　C値0.5以下という基準の意味</h3>
+        <p>C値（相当隙間面積）は、家全体の隙間の合計を延床面積で割った数値。数字が小さいほど隙間が少ない。</p>
+        <div class="fact">
+          <div class="k">30坪（約100㎡）の家での目安</div>
+          <div class="d">
+            <ul>
+              <li>C値1（一般的な高気密住宅の基準）：隙間の合計は約100c㎡＝はがき1枚分</li>
+              <li>LIFEX推奨のC値0.5以下：その半分以下</li>
+            </ul>
+          </div>
+          <div class="src">出典：LIFEX_話法マニュアル</div>
+        </div>
+        <div class="column">
+          <div class="label">この数字の来歴（正直に）</div>
+          <p>LIFEX_話法マニュアルの初版（2026-06-12 16:43時点）は、実はC値0.36を「実測値」として記載していた。約1時間後の改訂（同日）で「0.5以下・推奨」という表現に修正され、以降の全改訂版（〜2026-06-14 v4_5）で一貫してこの表現が維持されている。つまり現在の「0.5以下」は目標として掲げている推奨値であり、全棟の実測平均値という意味ではない。気密測定（実測して数値を確認すること）自体は加盟店ごとのオプションという位置づけ（徳田・佐古顧問間の確認事項2026-09-17）。</p>
+        </div>
+        <p>だからこそ教科書スライドの会話例では、「はい、0.5です」と測定なしで断定するのはNGとしている。言えるのは「施工プロセスに自信がある」ことと「推奨値として0.5以下を掲げている」こと。実測して数値で証明したい場合は、気密測定オプションの案内とセットで提案する。</p>
+      </section>
+
+      <section id="ch2-5" class="section">
+        <h3>2-5　全棟施工の中身——標準施工マニュアルより</h3>
+        <p>教科書スライド11「C値0.5以下は、丁寧な施工の結果」の裏付け。これまで「施工手引き書に基づく処理」という抽象的な説明だったが、LIFEX標準施工マニュアル第1版（2026-08-11、全71ページ）を確認したところ、以下の3工程が具体的に標準化されていることが分かった。</p>
+
+        <h4>① 防湿気密シート全棟施工</h4>
+        <div class="fact">
+          <div class="k">造作工事　p26-27「防湿気密シート（ジェイベック：ボーダー）」</div>
+          <div class="d">
+            <ul>
+              <li>使用シート：t=0.2mm（ジェイベック製）</li>
+              <li>施工範囲：1階床（合板と接するように施工）、最上階天井（屋根断熱直下・石膏ボード施工前）、外気に接する床・天井</li>
+              <li>重なり代：左右455mm・上下150mm、内壁への折り返し455mm</li>
+              <li>壁のシートは床面へ30mm以上折り返し、気密テープで押さえる（1・2階共通）</li>
+              <li>オーバーハング部のシートは建方業者施工、端部は気密テープで留める</li>
+              <li>下屋・ルーフバルコニー部分は2階外壁ラインで垂れ壁を造り、空気の流入を防ぐ</li>
+              <li>換気扇・エアコンスリーブ、汚水スリーブは気密シート施工後、JOTO防水役物（WPA-P50〜150）で気密処理</li>
+              <li>火打ち金物周り・母屋束周りは気密テープで四方処理</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4>② 気流止め</h4>
+        <div class="fact">
+          <div class="k">造作工事　p28「UB気流止め施工」／建て方工事　p7「土台〜床梁」</div>
+          <div class="d">
+            <ul>
+              <li>1階にユニットバスを設置する場合、UB廻り全てを気密テープで気密処理（気流止めの目的）</li>
+              <li>建て方工事の段階でも、内部柱・外周部柱・間柱周りには気密テープを施工（建方大工が施工）</li>
+              <li>2階・3階オーバーハング部分は、床断熱材（ネオマフォーム　厚み170mm＝上90mm＋下80mm）施工後、防湿フィルム（ジェイペックボーダー10）を1階床同様に施工</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4>③ 気密コーキング</h4>
+        <div class="fact">
+          <div class="k">外壁工事　p39「気密・防水」</div>
+          <div class="d">
+            <p>外壁面材の隙間および内部取り合い部に気密コーキングを施工。対象箇所は以下の通り。</p>
+            <ul>
+              <li>外壁面材（土台、横架材ジョイント部、水平方向と入隅部）</li>
+              <li>玄関・UBの気密パッキン施工部（外側からコーキング）</li>
+              <li>内部取り合い部（1階床合板・柱・間柱下部、2階床の下階が外気に接する柱・間柱・HDボルト土台貫通部、外周金物周囲）</li>
+            </ul>
+          </div>
+        </div>
+
+        <p style="font-size:12px; color:var(--sub)">出典：LIFEX標準施工マニュアル第1版（2026-08-11）造作工事p26-27・p28、外壁工事p39、建て方工事p7</p>
+        <div class="column">
+          <div class="label">お客様への説明の仕方</div>
+          <p>細かい数値（重なり455mmなど）をそのまま話す必要はない。伝えたいのは「図面の性能値ではなく、この3つの工程を全棟で標準化しているからこそ、施工品質に自信を持って説明できる」という構造。数値を聞かれたら、この参考書に立ち返って正確に答える。</p>
+        </div>
+        <div class="unverified"><b>次回研修へ温存：</b>次の2つのキラーコンテンツは、次回の壁体内結露編（結露単体で1時間の研修）のために温存することにした（2026-09-19）。今回のカリキュラムは3点セットの全体像理解にフォーカスするため、ここでは深掘りしない。
+          <ul>
+            <li><b>気密シートの厚み（0.2mm）にこだわる理由</b>：気密性能に加え、大工が間柱等の長物を扱う際に気づかず穴を開けてしまう「うっかりミス」から現場を守るため。（出典：徳田さんの現場経験に基づく所見）</li>
+            <li><b>上棟後、仮張りの床を一度剥がして乾燥させる工程</b>：基礎コンクリートから発生する水分の蒸発や、建て方中に濡れた木材から出る水蒸気を完全に飛ばすため。これをせずに床を塞ぐと、基礎下や壁体内に湿気が閉じ込められる。（出典：徳田さんの現場経験に基づく所見、2026-09-20確認。標準施工マニュアルのp6-7には「1階床合板仮張りとする（野地板・外壁面材施工後本締め）」という記載はあるが、乾燥目的で意図的に剥がす工程についての記載はない。マニュアル外の実務知識として扱う）</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="ch2-6" class="section">
+        <h3>2-6　気密測定という論点</h3>
+        <p>標準施工マニュアル全71ページを確認したが、気密測定（実測でのC値確認）に関する規定は一つも見つからなかった。マニュアルが標準化しているのはあくまで「施工プロセス」であり、「測定して数値を確認する工程」は、現状LIFEXの標準工程に含まれていない。</p>
+        <div class="unverified"><b>営業トークの上限：</b>「施工プロセスには自信がある」とは言えても、「この家は確実にC値0.5以下です」と実測なしで断定することはできない。気密測定は加盟店ごとのオプション。数値で証明したいお客様には、オプション案内とセットで提案する。</div>
+        <p>この構造的な弱さについては、本部内で「気密測定の全棟標準化」を検討する提案メモを別途まとめている（森山さん・佐古さん・藤本さんへ共有済み）。研修の場でこの論点に踏み込む必要はないが、鋭い質問が来た場合に「本部でも議論している最中の論点」として答えられるようにしておく。</p>
+      </section>
+    </div>
+
+    <div id="ch3" class="chapter">
+      <div class="no">Chapter 3</div>
+      <h2>換気を技術から理解する</h2>
+      <p class="lead">換気方式の違いだけでなく、「気密とセットで初めて効く」という前提を押さえた上で、第一種換気の効果を数字で説明できるようにする。</p>
+
+      <section id="ch3-1" class="section">
+        <h3>3-1　第一種換気とCO2濃度</h3>
+        <p>LIFEXが標準採用しているのは第一種（給気・排気とも機械で行う）全熱交換型の換気システム（Panasonic製）。</p>
+        <div class="fact">
+          <div class="k">CO2濃度の実測比較</div>
+          <div class="d">
+            <ul>
+              <li>第一種・常時運転：1000ppm以下でキープ</li>
+              <li>第三種（自然給気・機械排気）：運転状況によって変動が大きい</li>
+            </ul>
+          </div>
+          <div class="src">出典：パナソニックリビング近畿株式会社「ダクト式熱交換気システム」提案書2023年6月・Gハウス様向け、2012年冬季実測グラフ</div>
+        </div>
+        <p>CO2濃度1000ppmは、文部科学省の学校環境衛生基準等でも室内空気環境の目安として使われる水準。常時換気し続けることの意味を、この数字で説明できる。</p>
+      </section>
+
+      <section id="ch3-2" class="section">
+        <h3>3-2　カビ発生率のデータ</h3>
+        <div class="fact">
+          <div class="k">調査対象</div>
+          <div class="v">2003年7月以降の住宅5,062世帯</div>
+          <div class="d">
+            <ul>
+              <li>第一種熱交換気設置住宅：第三種設置住宅と比べカビ発生率▲30%</li>
+              <li>24時間換気を止めている住宅：換気している住宅と比べ約2倍のカビ発生率</li>
+            </ul>
+          </div>
+          <div class="src">出典：秋田県立大学・長谷川教授調査。パナソニックリビング近畿「ダクト式熱交換気システム」提案書2023年6月内引用</div>
+        </div>
+        <p>この数字は「換気システムの方式の違い」に加えて、「そもそも24時間換気を止めないこと」自体の重要性も示している。お客様が引き渡し後に換気を止めてしまうケースへの注意喚起にも使える。</p>
+      </section>
+
+      <section id="ch3-3" class="section">
+        <h3>3-3　IAQ制御・メンテナンス性</h3>
+        <p>IAQ制御は、屋外と室内の温度差、室内の湿度をセンサーで検知し、給気・排気それぞれのDCモーターの風量を自動調整する機能。室内外の温度差が小さい時は排気風量を絞って省エネにし、冬季で室内が乾燥している時は過乾燥防止のため換気量を下げる。</p>
+        <p style="font-size:12px; color:var(--sub)">出典：Panasonic公式サイト「<a href="https://sumai.panasonic.jp/air/kanki/iaq/plesant.html" target="_blank">IAQ向上で省エネ・健康的な住環境を</a>」／<a href="https://www.youtube.com/watch?v=gtTU1Sxd8sY" target="_blank">公式動画「IAQ制御搭載 熱交気調カセット形」特長編</a></p>
+
+        <div class="column">
+          <div class="label">グレードの正確な位置づけ（2026-09-19確認）</div>
+          <p>Panasonicの気調システム（VBD3シリーズ）は3グレードに分かれる。最上位の<b>VBD3A</b>（温・湿度センサー付、AiSEG対応）、中位のVBD3N（温度センサーのみ）、下位の無印VBD3（センサーなし）。<b>LIFEXが採用しているのは最上位のVBD3A</b>。公式サイトに「IAQ制御 ※VBD3タイプを除く」という注記があるが、これは下位の無印VBD3を指しており、LIFEXの採用機種（VBD3A）はIAQ制御の対象内。2024年6月3日発売の型番で、従来機比で消費電力約10%減。</p>
+        </div>
+        <div class="src" style="font-size:12px; color:var(--sub)">出典：DENZAI TERASU新商品情報2024年3月（www2.panasonic.biz/jp/terasu/product/newproducts/202403/housing.html）</div>
+
+        <table class="dtbl">
+          <tr><th>項目</th><th>内容</th></tr>
+          <tr><td class="hi">自動運転</td><td>室内外の温度差・室内湿度をセンサーで検知し、給排気の風量を自動調整</td></tr>
+          <tr><td class="hi">湿度制御</td><td>冬の過乾燥・結露を防ぐ</td></tr>
+          <tr><td class="hi">お手入れ</td><td>排気フィルター・粗塵防虫フィルターは月1回程度、熱交換素子は年1回程度、給気清浄フィルターの交換目安は約2年</td></tr>
+          <tr><td class="hi">サイクロン給気フード</td><td>旋回流で虫を分離し、自然風で排出する仕組み</td></tr>
+        </table>
+        <p style="font-size:12px; color:var(--sub)">出典：Panasonic公式FAQ</p>
+
+        <div class="unverified"><b>未確認のまま残っていること：</b>2023年提案書にあった熱交換率（冷房73〜76%・暖房83〜86%）が、現行の最上位グレード（VBD3A）でも同じ数値かは、2026年9月時点のWebリサーチでは確認できなかった（カタログページへのアクセスが阻まれた）。お客様から熱交換率の具体的な数値を聞かれた場合は、この場で断定せず、カタログか販売店に確認してから回答する。同様に、CO2連動については別売のIAQセンサー（型番FY-SSGN1）が必要という情報が見つかったが、これは通販サイト経由の二次情報で、一次資料での裏付けが取れていない。</div>
+      </section>
+
+      <section id="ch3-4" class="section">
+        <h3>3-4　他社比較をやめた理由——絶対価値の訴求へ</h3>
+        <p>教科書スライド16は、以前はアイ工務店・一条工務店との換気方式・熱交換率・気密との連動を並べた比較表だった。2026-09-19に、他社の数値を並べない絶対価値の訴求（3-1〜3-3の内容）へ全面リニューアルした。理由を正確に共有しておく。</p>
+
+        <div class="column">
+          <div class="label">事実確認の結果——比較表には誤りがあった</div>
+          <p>旧・比較表は一条工務店の「気密との連動」を「不明」と記載していたが、これは誤り。一条工務店は公式サイトで「他社では任意実施の場合も多い気密測定を、一条ではすべての家で実施」「平均実測値0.59cm²/m²」と明記しており、全棟気密測定を標準化し実測値を公表している。</p>
+        </div>
+        <div class="fact">
+          <div class="k">一条工務店の気密測定（参考情報）</div>
+          <div class="d">
+            <ul>
+              <li>全棟で気密測定を標準実施（「他社では任意実施の場合も多い」との自社比較コメント付き）</li>
+              <li>平均実測値0.59cm²/m²を公式サイトで公表</li>
+              <li>具体的な自社合格基準の数値（施主ブログ等では「C値0.7以下」という情報あり）は公式サイトに記載なく、未確認</li>
+            </ul>
+          </div>
+          <div class="src">出典：一条工務店公式サイト「<a href="https://www.ichijo.co.jp/technology/element/airproof/" target="_blank">高気密構造</a>」（2026年9月時点）</div>
+        </div>
+        <div class="unverified"><b>営業として押さえておくべきこと：</b>気密の実測・公表という土俵では、一条工務店は現状LIFEXより強い。この事実を隠して比較表に「不明」と書くのは、知識のあるお客様や競合の営業に見抜かれた瞬間に信頼を失う。だから比較表自体をやめ、他社の数値を出さない絶対価値の訴求に切り替えた。気密測定の全棟標準化は本部で別途検討中（2-6参照）。</div>
+        <p>年2〜5万円の節約という数字は、換気・気密・断熱をトータル設計したお客様の実感（証言ベース）であり、第三者機関による検証データではない。出典：営業トークスクリプト_換気システム（気密×光熱費）.docx（社内資料）。</p>
+      </section>
+    </div>
+
+    <div id="ch4" class="chapter">
+      <div class="no">Chapter 4</div>
+      <h2>3点セットという考え方</h2>
+      <p class="lead">断熱・気密・換気は、どれか一つだけを取り出して他社と比べても勝ち負けは決まらない。3つの組み合わせで初めて機能する、という説明の骨格を最後にもう一度まとめる。</p>
+      <ul>
+        <li><b>断熱（等級6・UA0.46）</b>：現行義務基準の約半分の熱損失。等級7は追わないが理由がある</li>
+        <li><b>気密（C値0.5以下推奨）</b>：断熱・換気が計画通り機能するための土台。全棟施工の3工程（防湿気密シート・気流止め・気密コーキング）で担保</li>
+        <li><b>換気（第一種・全熱交換）</b>：気密が伴って初めて計画換気として機能する</li>
+        <li><b>結露</b>：次回研修で詳しく扱う</li>
+      </ul>
+      <p>この組み合わせで説明できることそのものがLIFEXの強み、という立て付け。単体のスペック競争に持ち込まれたときは、この3点セットの話に戻す。</p>
+    </div>
+
+    <div id="ch5" class="chapter">
+      <div class="no">Chapter 5</div>
+      <h2>想定QA集</h2>
+
+      <div class="qa">
+        <div class="q"><span class="tag">断熱</span>「等級7の会社の方が安心じゃないですか？」</div>
+        <div class="a"><b>回答の骨子：</b>等級7と6の差は、エアコン容量の実質下限・電気代の差（月数百円〜千円程度・感覚値）・窓の犠牲というトレードオフの中にある。「性能が低い」のではなく、「バランスを見て6を選んでいる」という説明にする。数字を根拠に、感覚値であることも隠さない。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q"><span class="tag">気密</span>「この家、気密測定してくれますか？」</div>
+        <div class="a"><b>回答の骨子：</b>気密測定はオプション。「施工プロセスには全棟共通の標準（防湿気密シート・気流止め・気密コーキングの3工程）があり、そこには自信がある。数値として実測したい場合は、気密測定オプションでご案内できる」と伝える。測定なしで数値を断定しない。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q"><span class="tag">気密</span>「気密テープとか防湿シートって、具体的にどこにどう貼ってるんですか？」</div>
+        <div class="a"><b>回答の骨子：</b>2-5の内容を使う。防湿気密シートは1階床・最上階天井・外気に接する床天井に全棟施工（重なり455mm・150mm）、気流止めは火打ち金物・母屋束・UB周りを気密テープで四方処理、外壁面材の継目は気密コーキングで処理——という3工程が標準施工マニュアルに定められている、と具体的に答える。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q"><span class="tag">換気</span>「この換気システム、他社より熱交換率低くないですか？」</div>
+        <div class="a"><b>回答の骨子：</b>数字は隠さない。「70%台後半〜80%台前半で、一条工務店・アイ工務店の公表値より低いのは事実。ただ、LIFEXが大事にしているのは方式や交換率の一点比較ではなく、断熱・気密・換気の組み合わせで実現するCO2濃度の安定やカビの抑制といった、実際の暮らしの質」という流れにする。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q"><span class="tag">気密</span>「一条工務店は全棟気密測定してるらしいですが、LIFEXは？」</div>
+        <div class="a"><b>回答の骨子：</b>ごまかさない。「一条工務店が全棟で実測して公表しているのは事実です。LIFEXは施工プロセス（防湿気密シート・気流止め・気密コーキングの3工程）を全棟標準化していますが、実測での証明は現状オプションです」と正直に伝えた上で、必要なら気密測定オプションを案内する。この論点は本部でも標準化を検討中（2-6参照）。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q"><span class="tag">換気</span>「24時間換気って止めちゃダメなんですか？」</div>
+        <div class="a"><b>回答の骨子：</b>秋田県立大学の調査（住宅5,062世帯）で、24時間換気を止めている住宅はカビ発生率が約2倍というデータがある。気密が高い家ほど、換気を止めた際の空気のよどみが早い。引き渡し後の説明でも必ず伝えるべきポイント。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q"><span class="tag">換気</span>「このIAQ制御って、グレードによって違うんですか？」</div>
+        <div class="a"><b>回答の骨子：</b>「はい、Panasonicの気調システムは3グレードあって、LIFEXは温・湿度センサー付の最上位グレードを採用しています。センサーが室内外の温度差や湿度を見て、給気・排気の風量を自動で調整する仕組みです」と伝える。2024年6月発売で従来機比消費電力約10%減、という新しさも合わせて話せる。熱交換率の具体的な数値やCO2連動の有無は未確認事項なので、その場で断定せず持ち帰る。</div>
+      </div>
+    </div>
+
+    <div id="ch6" class="chapter">
+      <div class="no">Chapter 6</div>
+      <h2>出典・参考資料一覧</h2>
+      <p>本資料で使用した数字・データの出典。教科書（投影資料）の出典一覧と同一の情報源に基づく。</p>
+      <ul>
+        <li><b>UA値0.46＝断熱等級6が全棟標準という位置づけ</b>：LIFEX公式初回セミナースライド20260521（社内資料）</li>
+        <li><b>断熱等級とUA値・Q値の対応表、一条工務店の参考値</b>：Ｆ式エアコン容量・COP実測計算シート内基準値表（社内資料）。モデル名は工法区分に対する代表例として記載</li>
+        <li><b>C値と自然給気口からの給気割合の関係グラフ（C値0.5＝約70%・C値1＝約50%・C値2＝約30%）</b>：Gハウス社内セミナー資料「【セミナー資料】20260213　全館空調・断熱修正」スライド42の元画像を確認して再構成。C値1・C値0.5の数値は北海道の断熱気密資格制度「BIS」（一般社団法人北海道建築技術協会）のテキストとも一致（<a href="https://www.gaiki-seijouki.jp/column4/826/" target="_blank">トルネックスのコラム</a>経由、2026年9月時点）</li>
+        <li><b>一般的な戸建ての光熱費（月約23,000円）</b>：総務省「家計調査」2024年・4人世帯・電気代＋ガス代合計</li>
+        <li><b>LIFEXの光熱費試算（月約7,000円）・年間差額19.2万円・30年累計576万円</b>：LIFEX公式初回セミナースライド20260521に記載の試算値。断熱等級6単体の効果ではなく、断熱等級6＋太陽光11.04kW＋オール電化を組み合わせたトータル設計での試算値（社内試算、第三者機関による検証は未確認）</li>
+        <li><b>気密シートによる壁体内結露の防止原理</b>：Gハウス社内セミナー資料「【セミナー資料】20260213　全館空調・断熱修正」内の一般解説部分、およびLIFEX_話法マニュアルの記載を再構成</li>
+        <li><b>C値0.5以下を推奨、「はがき1枚分の隙間」の例え</b>：LIFEX_話法マニュアル（2026年6月改訂版・v2以降で一貫）。初版（2026-06-12 16:43）はC値0.36を実測値として記載していたが、約1時間後の改訂で0.5以下・推奨に修正され、以降の全改訂版（〜2026-06-14 v4_5）で維持。気密測定自体は加盟店ごとのオプション（徳田・佐古顧問間の確認事項2026-09-17）</li>
+        <li><b>防湿気密シート全棟施工（重なり455mm・上下150mm）、気流止め（火打ち金物・母屋束・UB廻りの気密テープ処理）、気密コーキング（外壁面材の継目・入隅部）</b>：LIFEX標準施工マニュアル第1版（2026-08-11）造作工事p26-27・p28、外壁工事p39、建て方工事p7。同マニュアル全71ページ中、気密測定に関する規定は確認されなかった</li>
+        <li><b>第一種熱交換換気と第三種換気のCO2濃度実測比較</b>：パナソニックリビング近畿株式会社「ダクト式熱交換気システム」提案書2023年6月・Gハウス様向け</li>
+        <li><b>カビ発生率（第一種で約30%減少、24時間換気停止で約2倍）</b>：同資料内、秋田県立大学・長谷川教授調査（対象：2003年7月以降の住宅5,062世帯）の引用</li>
+        <li><b>IAQ制御の仕組み（温度・湿度センサーで給排気風量を自動調整）</b>：Panasonic公式サイト「<a href="https://sumai.panasonic.jp/air/kanki/iaq/plesant.html" target="_blank">IAQ向上で省エネ・健康的な住環境を</a>」／<a href="https://www.youtube.com/watch?v=gtTU1Sxd8sY" target="_blank">公式動画「IAQ制御搭載 熱交気調カセット形」特長編</a>（2026年9月時点）</li>
+        <li><b>LIFEX採用機種のグレード構成（VBD3シリーズは3グレード。最上位VBD3Aのみ温・湿度センサー＋AiSEG対応でIAQ制御対象。LIFEXはVBD3Aを採用）、2024年6月3日発売・従来機比消費電力約10%減</b>：DENZAI TERASU新商品情報2024年3月（www2.panasonic.biz/jp/terasu/product/newproducts/202403/housing.html）</li>
+        <li><b>お手入れ頻度（排気フィルター・粗塵防虫フィルターは月1回程度、熱交換素子は年1回程度、給気清浄フィルターの交換目安は約2年）、サイクロン給気フードの仕組み</b>：Panasonic公式FAQ（2026年9月時点）</li>
+        <li><b>LIFEX標準の換気システムの熱交換率（2023年提案書時点：冷房73〜76%・暖房83〜86%）</b>：パナソニックリビング近畿提案書2023年6月・Gハウス様向け。現行の最上位グレード（VBD3A）での数値は2026年9月時点のリサーチでは未確認</li>
+        <li><b>一条工務店の気密測定（全棟実施・平均実測値0.59cm²/m²）</b>：一条工務店公式サイト「<a href="https://www.ichijo.co.jp/technology/element/airproof/" target="_blank">高気密構造</a>」（2026年9月時点）</li>
+        <li><b>年2〜5万円の光熱費節約</b>：営業トークスクリプト_換気システム（気密×光熱費）.docx（社内資料）記載の顧客の声（証言ベース、第三者機関検証なし）</li>
+      </ul>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  この参考書はDRAFT（叩き台）です。数字・出典の最終確認は投影資料本体と合わせて行ってください。
+</footer>

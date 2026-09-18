@@ -1,0 +1,505 @@
+<title>LIFEX MTG｜断熱×気密×換気 投影資料</title>
+<style>
+:root{color-scheme:light}
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+  --p1:#1e4e79; --p2:#2e7d6e; --p3:#b05c1f;
+  --p1bg:#e8eff6; --p2bg:#e7f2ef; --p3bg:#f9efe4;
+  --leak:#b3372b; --leakbg:#fbe9e7;
+  --win:#2e7d6e; --winbg:#e7f2ef;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.6; font-feature-settings:"palt"}
+.wrap{width:min(1100px,96vw); margin:26px auto}
+.draft{width:1100px; margin:0 auto 14px; font-size:12px; color:#8a5a00; background:#fdf3dd;
+  border:1px solid #ecd9a8; border-radius:4px; padding:6px 14px; font-weight:700}
+.sl{width:1100px; height:619px; background:#fff; border-radius:8px;
+  box-shadow:0 2px 16px rgba(20,40,60,.09); padding:32px 50px 24px;
+  display:flex; flex-direction:column; position:relative; overflow:hidden; margin:0 auto 22px}
+.top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+.chip{font-size:11.5px; font-weight:700; letter-spacing:.08em; padding:3px 12px; border-radius:99px}
+.c0{background:#eceff2;color:var(--sub)}
+.c1{background:var(--p1bg);color:var(--p1)}
+.c2{background:var(--p2bg);color:var(--p2)}
+.c3{background:var(--p3bg);color:var(--p3)}
+.cLeak{background:var(--leakbg);color:var(--leak)}
+.pg{margin-left:auto; font-size:12px; color:#b6c0ca; font-variant-numeric:tabular-nums}
+.tt{font-size:26px; font-weight:800; line-height:1.35; margin:2px 0 4px; text-wrap:balance}
+.ms{font-size:14.5px; color:var(--sub); margin:0 0 11px; line-height:1.75}
+.body{flex:1; display:flex; gap:20px; min-height:0; overflow:hidden}
+.foot{display:flex; gap:12px; margin-top:9px; align-items:center}
+.cap{font-size:13px; color:var(--sub); line-height:1.5}
+.ag{border:1px solid var(--line); border-radius:8px; padding:16px 22px; display:flex; align-items:center; gap:16px; background:#fff}
+.ag .no{font-size:12.5px; font-weight:800; color:var(--sub); flex-shrink:0; width:70px; line-height:1.3}
+.ag b{font-size:16px}
+.box{border:1px solid var(--line); border-radius:6px; padding:12px 16px; background:#fff; min-width:0}
+.box h4{margin:0 0 4px; font-size:15px; color:var(--navy)}
+.box p{margin:0; font-size:13.5px; color:var(--sub); line-height:1.65}
+.box.roomy{padding:22px 26px}
+.box.roomy h4{font-size:19px; margin-bottom:14px}
+.box.roomy>p{font-size:15px; line-height:1.85; color:var(--ink)}
+
+.rankList{display:flex; flex-direction:column; gap:8px; flex:1; justify-content:center}
+.rankList .rk{display:grid; grid-template-columns:190px 1fr 84px; align-items:center; gap:14px}
+.rankList .rk .label{line-height:1.3}
+.rankList .rk .label b{font-size:13.5px; display:block}
+.rankList .track{background:#eef1f4; border-radius:6px; height:28px; position:relative}
+.rankList .bar{height:100%; border-radius:6px; background:#c7d0d8; min-width:6px}
+.rankList .rk.hero .bar{background:var(--win)}
+.rankList .rk.hero .label b{color:var(--win)}
+.rankList .rk.warn .bar{background:var(--p3)}
+.rankList .val{font-size:14.5px; font-weight:800; text-align:right; color:var(--ink)}
+.rankList .rk.hero .val{color:var(--win)}
+
+.stance{display:flex; gap:0; align-items:stretch; position:relative; flex:1}
+.stance>div{flex:1; border:1px solid var(--line); border-radius:8px; padding:24px 26px; display:flex; flex-direction:column; gap:10px; justify-content:center; text-align:center}
+.stance .rigid{background:#fafbfc}
+.stance .hybrid{background:var(--navy-soft); border-color:var(--navy)}
+.stance h5{margin:0; font-size:13.5px; font-weight:800; color:var(--sub); letter-spacing:.03em}
+.stance .hybrid h5{color:var(--navy)}
+.stance .catch{font-size:22px; font-weight:800; margin:2px 0}
+.stance .hybrid .catch{color:var(--navy)}
+.stance .vsbadge{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:34px; height:34px; border-radius:50%;
+  background:#fff; border:2px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; color:var(--sub); z-index:2}
+
+.cmpTbl{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:8px; overflow:hidden; flex:1}
+.cmpTbl .r{display:grid; grid-template-columns:130px repeat(3,1fr)}
+.cmpTbl .r+.r{border-top:1px solid var(--line)}
+.cmpTbl .r.head div{background:var(--navy); color:#fff; font-weight:800; font-size:12px}
+.cmpTbl .r div{padding:11px 13px; font-size:12px; color:var(--ink); line-height:1.55; border-right:1px solid var(--line); display:flex; flex-direction:column; justify-content:center; gap:2px}
+.cmpTbl .r div:last-child{border-right:none}
+.cmpTbl .r:not(.head) div:first-child{font-weight:800; color:var(--navy); background:var(--panel); font-size:11.5px}
+.cmpTbl .r .hi{background:var(--navy-soft)}
+.cmpTbl .r div b{font-size:12.5px}
+
+.achieve{border-radius:10px; padding:16px 22px; background:linear-gradient(135deg,#fff8ec,#ffedd0); border:1px solid #ecd9a8; text-align:center}
+
+.linkRow{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+.linkBtn{display:inline-flex; align-items:center; gap:8px; font-size:15px; font-weight:800; padding:12px 26px; border-radius:99px; text-decoration:none; box-shadow:0 3px 10px rgba(20,40,60,.15); transition:transform .1s}
+.linkBtn:hover{transform:translateY(-1px)}
+.linkBtn.video{background:#ff3b30; color:#fff}
+.linkBtn.web{background:var(--navy); color:#fff}
+.linkBtn .ic{font-size:16px}
+.achieve .n{font-size:34px; font-weight:800; color:var(--p3)}
+.achieve .d{font-size:12.5px; color:var(--ink); margin-top:4px}
+
+.techrow{display:flex; gap:16px; flex:1}
+.techrow .tc{flex:1; border:1px solid var(--line); border-radius:10px; padding:22px 18px; background:#fff; display:flex; flex-direction:column; gap:8px; justify-content:center; text-align:center}
+.techrow .tc h5{margin:0; font-size:14px; color:var(--navy)}
+.techrow .tc .v{font-size:28px; font-weight:800; color:var(--navy)}
+.techrow .tc p{margin:0; font-size:12.5px; color:var(--sub); line-height:1.6}
+
+.moneyRow{display:flex; align-items:center; gap:16px; flex:1}
+.moneyRow .mc{flex:1; border:1px solid var(--line); border-radius:10px; padding:22px; background:#fff; text-align:center; display:flex; flex-direction:column; gap:6px; justify-content:center}
+.moneyRow .mc.hi{border-color:var(--win); background:var(--winbg)}
+.moneyRow .mc .lbl{font-size:12.5px; color:var(--sub); font-weight:700}
+.moneyRow .mc .v{font-size:30px; font-weight:800; color:var(--ink)}
+.moneyRow .mc.hi .v{color:var(--win)}
+.moneyRow .arrow{font-size:22px; font-weight:800; color:var(--sub); flex-shrink:0}
+
+.pillars{display:flex; align-items:center; gap:8px; flex:1}
+.pillars .pl{flex:1; border:1px solid var(--line); border-radius:10px; padding:22px 12px; background:#fff; text-align:center; display:flex; flex-direction:column; align-items:center; gap:8px; justify-content:center; min-width:0}
+.pillars .pl.dashed{border-style:dashed; border-color:var(--p3); background:var(--p3bg)}
+.pillars .pl .no{width:32px; height:32px; border-radius:50%; background:var(--navy); color:#fff; font-size:14px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0}
+.pillars .pl b{font-size:15px; color:var(--ink)}
+.pillars .pl .desc{font-size:11.5px; color:var(--sub); line-height:1.5}
+.pillars .plus{font-size:18px; font-weight:800; color:var(--sub); flex-shrink:0}
+
+.convo{display:flex; flex-direction:column; gap:14px}
+.convo .ln{display:flex; gap:14px; align-items:flex-start}
+.convo .who{width:56px; flex-shrink:0; font-size:13px; font-weight:800; color:var(--sub); text-align:right; padding-top:13px}
+.convo .ln.you .who{color:var(--navy)}
+.convo .bub{background:var(--panel); border-radius:10px; padding:13px 18px; font-size:14px; line-height:1.7; flex:1}
+.convo .ln.you .bub{background:var(--navy-soft)}
+.convo .ln.win .bub{background:var(--p3bg); border:1px solid #e8cfae}
+.convo .ln.warn .bub{background:var(--leakbg); border:1px solid #f0c9c2}
+
+.src{font-size:11.5px; color:var(--sub); line-height:2; overflow-y:auto; flex:1}
+.src b{color:var(--ink)}
+
+.flowH{display:flex; align-items:center; gap:10px; flex:1}
+.flowH .fb{flex:1; border:1px solid var(--line); border-radius:10px; padding:18px 14px; background:#fff; text-align:center; display:flex; flex-direction:column; gap:6px; justify-content:center; min-width:0}
+.flowH .fb.warn{border-color:var(--leak); background:var(--leakbg)}
+.flowH .fb.win{border-color:var(--win); background:var(--winbg)}
+.flowH .fb b{font-size:14px}
+.flowH .fb span{font-size:11px; color:var(--sub)}
+.flowH .arrow{font-size:20px; font-weight:800; color:var(--sub); flex-shrink:0}
+
+.riskList{display:flex; flex-direction:column; gap:10px; flex:1; justify-content:center}
+.riskList .rw{display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:center; border:1px solid var(--line); border-radius:8px; padding:12px 18px}
+.riskList .ng{color:var(--leak); font-size:14px; font-weight:700}
+.riskList .ok{color:var(--win); font-size:14px; font-weight:700}
+.riskList .tag{font-size:10px; font-weight:800; letter-spacing:.05em; display:block; margin-bottom:3px}
+.riskList .ng .tag{color:var(--leak)}
+.riskList .ok .tag{color:var(--win)}
+
+.twocol{display:grid; grid-template-columns:1fr 1fr; gap:18px; flex:1}
+.card{border:1px solid var(--line); border-radius:10px; padding:22px; background:#fff; display:flex; flex-direction:column; gap:8px; justify-content:center; text-align:center}
+.card.hero{border-color:var(--navy); background:var(--navy-soft)}
+.card h5{margin:0; font-size:13px; color:var(--sub); font-weight:800}
+.card .big{font-size:26px; font-weight:800; color:var(--ink)}
+.card.hero .big{color:var(--navy)}
+
+.qaGrid{display:grid; grid-template-columns:1fr 1fr; gap:12px; flex:1}
+.qaGrid .qa{border:1px solid var(--line); border-radius:8px; padding:12px 16px; background:#fff; display:flex; flex-direction:column; gap:5px; justify-content:center}
+.qaGrid .qa .q{font-size:12.5px; font-weight:800; color:var(--navy)}
+.qaGrid .qa .a{font-size:12px; color:var(--ink); line-height:1.55}
+
+@media print{body{background:#fff}.draft{display:none}.sl{box-shadow:none; border:1px solid var(--line); page-break-after:always}}
+</style>
+
+<div class="wrap">
+<div class="draft">DRAFT｜佐古顧問チェック前の叩き台です。数字・出典は末尾の出典一覧を参照。</div>
+
+<!-- 1 表紙 -->
+<div class="sl" style="justify-content:center; text-align:center">
+  <div style="font-size:13px; letter-spacing:.22em; color:var(--sub); font-weight:700">2026.9.25（金）16:00〜　LIFEX 月2棟目標達成MTG</div>
+  <div style="font-size:38px; font-weight:800; margin:22px 0 12px; letter-spacing:.02em">なぜ、断熱・気密・換気を<br>一体で考えるのか。</div>
+  <div style="font-size:16px; color:var(--navy); font-weight:700; line-height:1.8">「断熱等級7じゃないんですか？」<br>迷わず、正直に答えられる状態へ。</div>
+  <div style="margin-top:30px; font-size:14px; color:var(--sub)">進行：Gハウス LIFEX FC事業部　徳田</div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px">1 / 20</div>
+</div>
+
+<!-- 2 アジェンダ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">本日の流れ</span><span class="pg">2 / 20</span></div>
+  <div class="tt">断熱・気密・換気を、ひとつの話にする。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:12px">
+    <div class="ag"><span class="no" style="color:var(--navy)">断熱</span><b>等級6で十分な理由</b></div>
+    <div class="ag"><span class="no" style="color:var(--navy)">気密</span><b>C値0.5以下、隙間の本当の意味</b></div>
+    <div class="ag"><span class="no" style="color:var(--navy)">換気</span><b>気密とセットで効く理由</b></div>
+    <div class="ag"><span class="no" style="color:var(--navy)">会話</span><b>言い切る／言い切らない</b></div>
+  </div>
+  <div class="foot"><span class="cap">要点だけの教科書。想定質問・切り返しは参考書を参照。</span></div>
+</div>
+
+<!-- 3 断熱① -->
+<div class="sl">
+  <div class="top"><span class="chip c1">断熱①</span><span class="pg">3 / 20</span></div>
+  <div class="tt">LIFEX標準は断熱等級6。UA値0.46。</div>
+  <div class="body">
+    <div class="rankList">
+      <div class="rk warn"><div class="label"><b>等級7</b></div><div class="track"><div class="bar" style="width:26%"></div></div><div class="val">0.26</div></div>
+      <div class="rk"><div class="label"><b>G2.5</b></div><div class="track"><div class="bar" style="width:36%"></div></div><div class="val">0.36</div></div>
+      <div class="rk hero"><div class="label"><b>等級6★LIFEX</b></div><div class="track"><div class="bar" style="width:46%"></div></div><div class="val">0.46</div></div>
+      <div class="rk"><div class="label"><b>等級5</b></div><div class="track"><div class="bar" style="width:56%"></div></div><div class="val">0.56</div></div>
+      <div class="rk"><div class="label"><b>等級4</b></div><div class="track"><div class="bar" style="width:87%"></div></div><div class="val">0.87</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">UA値。数字が小さいほど高性能。現行基準（等級4）よりLIFEXは大きく上。<br>（出典：LIFEX公式初回セミナースライド20260521／Ｆ式エアコン容量・COP実測計算シート内基準値表）</span></div>
+</div>
+
+<!-- 4 断熱② -->
+<div class="sl">
+  <div class="top"><span class="chip cLeak">断熱②</span><span class="pg">4 / 20</span></div>
+  <div class="tt">等級7ではなく、トータル設計に投資する。</div>
+  <div class="body">
+    <div class="techrow">
+      <div class="tc"><h5>実質の下限</h5><div class="v">6畳</div><p>エアコンはここより小さくならない</p></div>
+      <div class="tc"><h5>投資の振り向け先</h5><div class="v">太陽光・窓</div><p>等級7への追加コストを、創エネと開放感に</p></div>
+      <div class="tc"><h5>目指す結果</h5><div class="v">トータルの光熱費削減</div><p>断熱単体でなく、暮らし全体の設計で</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">等級7へ性能を上げるための追加コストがあるなら、LIFEXはそれを太陽光パネルや窓の大きさに投資し、トータルの光熱費削減と暮らしの快適性を両立させる、という考え方。（出典：Ｆ式エアコン容量・COP実測計算シート内基準値表）</span></div>
+</div>
+
+<!-- 5 断熱③ -->
+<div class="sl">
+  <div class="top"><span class="chip c1">断熱③</span><span class="pg">5 / 20</span></div>
+  <div class="tt">同じ会社でも、UA値は割れる。</div>
+  <div class="body">
+    <div class="stance">
+      <div class="rigid"><h5>アイスマート</h5><div class="catch">UA 0.25</div></div>
+      <div class="vsbadge">VS</div>
+      <div class="hybrid"><h5>セゾンA</h5><div class="catch">UA 0.35</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">同じ一条工務店でも、枠組壁工法のアイスマート系と軸組工法のセゾンA系で数字が変わる。UA値は絶対の正解ではなく、家づくり全体のバランスの一要素。（出典：Ｆ式エアコン容量・COP実測計算シート内参考値。同シートは工法区分での参考値のため、モデル名との対応は代表例として記載）</span></div>
+</div>
+
+<!-- 6 断熱④ -->
+<div class="sl">
+  <div class="top"><span class="chip c1">断熱④</span><span class="pg">6 / 20</span></div>
+  <div class="tt">断熱6×太陽光11kW。トータル設計だから、月7,000円。</div>
+  <div class="body" style="flex-direction:column; gap:14px; justify-content:center">
+    <div style="text-align:center; font-size:13.5px; color:var(--sub); font-weight:700">断熱等級6　＋　太陽光11.04kW　＋　オール電化　のパッケージ試算</div>
+    <div class="moneyRow">
+      <div class="mc"><div class="lbl">一般的な戸建て</div><div class="v">月23,000円</div></div>
+      <div class="arrow">→</div>
+      <div class="mc hi"><div class="lbl">LIFEXのトータル設計</div><div class="v">月7,000円</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap"><b style="color:var(--win)">年間差額 約19.2万円／30年累計 約576万円。</b>断熱単体の効果ではなく、断熱等級6＋太陽光11.04kW＋オール電化を組み合わせたトータル設計での試算値。一般戸建ては電気＋ガス合計（総務省家計調査2024年・4人世帯）（出典：LIFEX公式初回セミナースライド20260521）</span></div>
+</div>
+
+<!-- 7 気密① -->
+<div class="sl">
+  <div class="top"><span class="chip c2">気密①</span><span class="pg">7 / 20</span></div>
+  <div class="tt">C値が上がるほど、換気は計画通り働かなくなる。</div>
+  <div class="body" style="flex-direction:column">
+    <svg viewBox="0 0 900 260" style="width:100%; height:100%" role="img" aria-label="C値と自然給気口からの給気量の割合の関係グラフ">
+      <line x1="90" y1="240" x2="860" y2="240" stroke="#c7d0d8" stroke-width="1.5"/>
+      <line x1="90" y1="20" x2="90" y2="240" stroke="#c7d0d8" stroke-width="1.5"/>
+      <text x="82" y="35" text-anchor="end" font-size="12" fill="#5c6c7d">100%</text>
+      <text x="82" y="135" text-anchor="end" font-size="12" fill="#5c6c7d">50%</text>
+      <text x="82" y="245" text-anchor="end" font-size="12" fill="#5c6c7d">0%</text>
+      <text x="90" y="258" font-size="12" fill="#5c6c7d">0</text>
+      <text x="228" y="258" text-anchor="middle" font-size="12" fill="#5c6c7d">1</text>
+      <text x="366" y="258" text-anchor="middle" font-size="12" fill="#5c6c7d">2</text>
+      <text x="504" y="258" text-anchor="middle" font-size="12" fill="#5c6c7d">3</text>
+      <text x="850" y="258" text-anchor="end" font-size="12" fill="#5c6c7d">C値</text>
+      <polygon points="90,240 90,31 159,86 228,130 297,156 366,174 435,183 504,189 573,196 643,198 712,203 781,207 850,209 850,240" fill="#f9efe4" stroke="none"/>
+      <polyline points="90,31 159,86 228,130 297,156 366,174 435,183 504,189 573,196 643,198 712,203 781,207 850,209" fill="none" stroke="#b05c1f" stroke-width="3"/>
+      <line x1="228" y1="20" x2="228" y2="240" stroke="#1e4e79" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <text x="232" y="45" font-size="12" font-weight="800" fill="#1e4e79">C値1（一般的な高気密住宅の基準）</text>
+      <circle cx="228" cy="130" r="5" fill="#1e4e79"/>
+      <text x="232" y="120" font-size="13" font-weight="800" fill="#1e4e79">約50%</text>
+      <line x1="159" y1="20" x2="159" y2="240" stroke="#2e7d6e" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <text x="163" y="70" font-size="12" font-weight="800" fill="#2e7d6e">LIFEX推奨C値0.5</text>
+      <circle cx="159" cy="86" r="5" fill="#2e7d6e"/>
+      <text x="103" y="100" font-size="13" font-weight="800" fill="#2e7d6e">約70%</text>
+    </svg>
+  </div>
+  <div class="foot"><span class="cap">縦軸は、換気の給気口から入る空気の割合（残りは隙間からの漏気）。LIFEX推奨のC値0.5で約70%、C値1で約50%、C値2では約30%まで下がる（いずれも目安）。断熱や換気にどれだけ投資しても、気密が悪ければ計画通り機能しない。（出典：Gハウス社内セミナー資料「【セミナー資料】20260213　全館空調・断熱修正」内「気密性と漏気の関係」の元画像を実際に確認し再構成。C値0.5＝約70%・C値1＝50%は、北海道の断熱気密資格制度「BIS」テキストの数値とも整合）</span></div>
+</div>
+
+<!-- 8 気密② -->
+<div class="sl">
+  <div class="top"><span class="chip c2">気密②</span><span class="pg">8 / 20</span></div>
+  <div class="tt">気密が悪いと、断熱も換気も効かない。</div>
+  <div class="body" style="gap:18px">
+    <div class="box roomy" style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center">
+      <h4>夏暑・冬寒</h4>
+      <p>隙間から熱が出入りする</p>
+    </div>
+    <div class="box roomy" style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; border-color:var(--leak); background:var(--leakbg)">
+      <h4 style="color:var(--leak)">換気が働かない</h4>
+      <p style="color:var(--ink)">隙間から空気が漏れる</p>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">優秀な換気システムでも、気密が悪ければ計画通り換気できていない。（出典：Gハウス見学会説明資料の一般解説部分を再構成）</span></div>
+</div>
+
+<!-- 9 気密③ -->
+<div class="sl">
+  <div class="top"><span class="chip c2">気密③</span><span class="pg">9 / 20</span></div>
+  <div class="tt">気密シートが、壁の中の結露を防ぐ。</div>
+  <div class="body" style="flex-direction:column; gap:14px; justify-content:center">
+    <div class="twocol">
+      <div class="card hero"><h5>シートがある場合</h5><div class="big">水蒸気を遮断</div></div>
+      <div class="card"><h5>シートがない場合</h5><div class="big">壁内で結露</div></div>
+    </div>
+    <div class="achieve"><div class="n">次回、1時間まるごと「結露編」</div><div class="d">なぜLIFEXがここまで気密にこだわるのか。現場の裏側まで、次回すべて明かす</div></div>
+  </div>
+  <div class="foot"><span class="cap">室内の水蒸気が壁の中の冷たい部分に触れると水に変わる（壁体内結露）。防湿気密シートが水蒸気の侵入を防ぐ。（出典：Gハウス見学会説明資料の一般原理部分を再構成）</span></div>
+</div>
+
+<!-- 10 気密④ -->
+<div class="sl">
+  <div class="top"><span class="chip cLeak">気密④</span><span class="pg">10 / 20</span></div>
+  <div class="tt">C値0.5以下。隙間は、はがき半分以下。</div>
+  <div class="body">
+    <div class="twocol">
+      <div class="card"><h5>一般的な高気密住宅の基準</h5><div class="big">C値1</div></div>
+      <div class="card hero"><h5>LIFEXが推奨</h5><div class="big">C値0.5以下</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">30坪（約100㎡）の家でC値1なら隙間は約100c㎡＝はがき1枚分。C値0.5以下ならその半分以下。C値は設計値でなく施工品質の結果。（出典：LIFEX_話法マニュアル）</span></div>
+</div>
+
+<!-- 11 気密⑤ -->
+<div class="sl">
+  <div class="top"><span class="chip c2">気密⑤</span><span class="pg">11 / 20</span></div>
+  <div class="tt">C値0.5以下は、丁寧な施工の結果。</div>
+  <div class="body">
+    <div class="techrow">
+      <div class="tc"><h5>防湿気密シート</h5><div class="v">全棟施工</div><p>重なり455mm・上下150mm、気密テープで押さえる</p></div>
+      <div class="tc"><h5>気流止め</h5><div class="v">気密テープ四方処理</div><p>火打ち金物・母屋束周り・UB廻り</p></div>
+      <div class="tc"><h5>気密コーキング</h5><div class="v">外壁面材の継目</div><p>土台・横架材ジョイント部・入隅部</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">C値は図面ではなく現場の施工精度で決まる。この3工程を全棟標準化しているのが、施工プロセスへの自信の根拠。（出典：LIFEX標準施工マニュアル第1版2026-08-11／造作工事p26-27・p28、外壁工事p39）</span></div>
+</div>
+
+<!-- 12 換気① -->
+<div class="sl">
+  <div class="top"><span class="chip c3">換気①</span><span class="pg">12 / 20</span></div>
+  <div class="tt">人は一生で、何を一番多く体に取り込むか。</div>
+  <div class="body">
+    <div class="techrow">
+      <div class="tc"><h5>食べ物</h5><div class="v">7%</div><p>一生で体に取り込む物質の重量比</p></div>
+      <div class="tc"><h5>飲料</h5><div class="v">8%</div><p>食べ物よりわずかに多い程度</p></div>
+      <div class="tc" style="border-color:var(--navy); background:var(--navy-soft)"><h5 style="color:var(--navy)">空気</h5><div class="v" style="color:var(--navy)">83%</div><p>うち室内の空気が57%</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">人が一生のうちに摂取する物質は、重さで言えば圧倒的に空気が多い。しかもその過半数は室内の空気。断熱・気密・換気にこだわる理由は、ここにある。（出典：臨床環境医学第9巻第2号　村上周三「住まいと人体－工学的視点から」。数値はBlueair公式サイト経由の引用で、元論文は今回未確認）</span></div>
+</div>
+
+<!-- 13 換気② -->
+<div class="sl">
+  <div class="top"><span class="chip c3">換気②</span><span class="pg">13 / 20</span></div>
+  <div class="tt">穴の空いたストローは、いくら吸っても意味がない。</div>
+  <div class="body" style="flex-direction:column; justify-content:center">
+    <svg viewBox="0 0 900 300" style="width:100%; height:100%" role="img" aria-label="気密が良い場合と悪い場合のストローのイラスト比較。気密が良いとジュースがしっかり吸い上がるが、穴が空いていると空気が漏れて吸えない">
+      <defs>
+        <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+          <path d="M0 0 L10 5 L0 10 Z" fill="#2e7d6e"/>
+        </marker>
+        <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+          <path d="M0 0 L10 5 L0 10 Z" fill="#b3372b"/>
+        </marker>
+      </defs>
+
+      <g>
+        <path d="M100 250 L90 130 L210 130 L200 250 Z" fill="#fff" stroke="#94a1ad" stroke-width="2"/>
+        <path d="M104 240 L96 165 L204 165 L196 240 Z" fill="#f9efe4"/>
+        <rect x="140" y="40" width="16" height="180" rx="7" fill="#fff" stroke="#2e7d6e" stroke-width="3" transform="rotate(10 148 130)"/>
+        <path d="M160 70 L160 30" stroke="#2e7d6e" stroke-width="4" marker-end="url(#arrowGreen)"/>
+        <text x="150" y="20" text-anchor="middle" font-size="15" font-weight="800" fill="#2e7d6e">グーッと吸える</text>
+        <text x="150" y="280" text-anchor="middle" font-size="16" font-weight="800" fill="#2e7d6e">気密◯　計画換気が成立する</text>
+      </g>
+
+      <line x1="450" y1="20" x2="450" y2="270" stroke="#dbe3ea" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+      <g transform="translate(500 0)">
+        <path d="M100 250 L90 130 L210 130 L200 250 Z" fill="#fff" stroke="#94a1ad" stroke-width="2"/>
+        <path d="M104 240 L96 165 L204 165 L196 240 Z" fill="#fbe9e7"/>
+        <g transform="rotate(10 148 130)">
+          <rect x="140" y="40" width="16" height="180" rx="7" fill="#fff" stroke="#b3372b" stroke-width="3"/>
+          <circle cx="148" cy="85" r="5.5" fill="#fbe9e7" stroke="#b3372b" stroke-width="2"/>
+          <circle cx="148" cy="130" r="5.5" fill="#fbe9e7" stroke="#b3372b" stroke-width="2"/>
+          <circle cx="148" cy="175" r="5.5" fill="#fbe9e7" stroke="#b3372b" stroke-width="2"/>
+        </g>
+        <path d="M158 86 L200 72" stroke="#b3372b" stroke-width="2.3" stroke-dasharray="2 3" marker-end="url(#arrowRed)"/>
+        <path d="M150 130 L200 122" stroke="#b3372b" stroke-width="2.3" stroke-dasharray="2 3" marker-end="url(#arrowRed)"/>
+        <path d="M142 174 L200 172" stroke="#b3372b" stroke-width="2.3" stroke-dasharray="2 3" marker-end="url(#arrowRed)"/>
+        <text x="245" y="100" text-anchor="middle" font-size="12.5" font-weight="800" fill="#b3372b">複数の穴から</text>
+        <text x="245" y="116" text-anchor="middle" font-size="12.5" font-weight="800" fill="#b3372b">空気が漏れる</text>
+        <path d="M160 65 L160 45" stroke="#b3372b" stroke-width="3" stroke-dasharray="3 3"/>
+        <text x="150" y="20" text-anchor="middle" font-size="15" font-weight="800" fill="#b3372b">吸えない</text>
+        <text x="150" y="280" text-anchor="middle" font-size="16" font-weight="800" fill="#b3372b">気密✗　換気システムが空回りする</text>
+      </g>
+    </svg>
+  </div>
+  <div class="foot"><span class="cap">どんなに高性能な換気方式でも、気密（穴）が悪ければストローに穴が空いているのと同じで、狙った空気を吸い上げられない。「換気は最新式です」という他社トークへの切り返しにもなる。</span></div>
+</div>
+
+<!-- 14 換気② -->
+<div class="sl">
+  <div class="top"><span class="chip c3">換気③</span><span class="pg">14 / 20</span></div>
+  <div class="tt">第一種は、空気の質が違う。</div>
+  <div class="body">
+    <div class="techrow">
+      <div class="tc"><h5>CO2濃度</h5><div class="v">1000ppm以下</div><p>第一種・常時運転でキープ</p></div>
+      <div class="tc"><h5>第三種の場合</h5><div class="v">変動大</div><p>運転状況で大きく変わる</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">（出典：パナソニックリビング近畿「ダクト式熱交換気システム」提案書2023年6月・Gハウス様向け、2012年冬季実測グラフ）</span></div>
+</div>
+
+<!-- 15 換気③ -->
+<div class="sl">
+  <div class="top"><span class="chip c3">換気③</span><span class="pg">15 / 20</span></div>
+  <div class="tt">止めると、カビが増える。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:14px">
+    <div class="achieve"><div class="n">第一種で▲30%</div><div class="d">第三種設置住宅と比べたカビ発生率</div></div>
+    <div class="achieve"><div class="n">換気停止で約2倍</div><div class="d">24時間換気を止めている住宅のカビ発生率</div></div>
+  </div>
+  <div class="foot"><span class="cap">（出典：秋田県立大学・長谷川教授調査、2003年7月以降の住宅5,062世帯。パナソニックリビング近畿提案書2023年6月内引用）</span></div>
+</div>
+
+<!-- 16 換気④ -->
+<div class="sl">
+  <div class="top"><span class="chip c3">換気④</span><span class="pg">16 / 20</span></div>
+  <div class="tt">IAQ制御は、温度・湿度をみて自動で動く。</div>
+  <div class="body" style="flex-direction:column; gap:16px; justify-content:center">
+    <div class="techrow">
+      <div class="tc"><h5>自動運転</h5><div class="v">温湿度センサー連動</div><p>室内外の温度差・湿度を検知し給排気を自動調整</p></div>
+      <div class="tc"><h5>湿度制御</h5><div class="v">冬の過乾燥を防止</div><p>室内湿度が低い時は換気量を抑える</p></div>
+      <div class="tc"><h5>最新モデル</h5><div class="v">2024年6月発売</div><p>従来機比で消費電力約10%減。LIFEXは最上位グレード採用</p></div>
+    </div>
+    <div class="linkRow">
+      <a href="https://www.youtube.com/watch?v=gtTU1Sxd8sY" target="_blank" class="linkBtn video"><span class="ic">▶</span>公式動画で見る（特長編）</a>
+      <a href="https://sumai.panasonic.jp/air/kanki/iaq/plesant.html" target="_blank" class="linkBtn web"><span class="ic">🔗</span>Panasonic公式ページ</a>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">LIFEXが採用しているのは温・湿度センサー付の最上位グレード（VBD3A）。お手入れは排気フィルター・粗塵防虫フィルターが月1回程度、熱交換素子が年1回程度、給気清浄フィルターの交換目安は約2年。（出典：Panasonic公式サイトIAQ制御解説・DENZAI TERASU新商品情報2024年3月・Panasonic公式FAQ）</span></div>
+</div>
+
+<!-- 17 換気⑤ -->
+<div class="sl">
+  <div class="top"><span class="chip c3">換気⑤</span><span class="pg">17 / 20</span></div>
+  <div class="tt">断熱×気密×換気が揃うと、暮らしはこう変わる。</div>
+  <div class="body">
+    <div class="techrow">
+      <div class="tc"><h5>CO2濃度</h5><div class="v">1000ppm以下</div><p>第一種・常時運転でキープ</p></div>
+      <div class="tc"><h5>カビ発生率</h5><div class="v">▲30%</div><p>第三種設置住宅との比較（24時間換気停止で約2倍）</p></div>
+      <div class="tc"><h5>光熱費</h5><div class="v">年2〜5万円の節約の声</div><p>トータル設計したお客様の実感（証言ベース）</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">方式や熱交換率の一点比較ではなく、断熱・気密・換気を組み合わせた結果として実現する室内環境。（出典：パナソニックリビング近畿「ダクト式熱交換気システム」提案書2023年6月・Gハウス様向け／同資料内、秋田県立大学・長谷川教授調査／光熱費節約額はGハウス営業トークスクリプト記載の顧客の声で第三者機関の検証データではない）</span></div>
+</div>
+
+<!-- 18 まとめ -->
+<div class="sl">
+  <div class="top"><span class="chip c1">まとめ</span><span class="pg">18 / 20</span></div>
+  <div class="tt">断熱・気密・換気は、3点セットで完成する。</div>
+  <div class="body">
+    <div class="pillars">
+      <div class="pl"><span class="no">1</span><b>断熱</b><span class="desc">等級6</span></div>
+      <div class="plus">＋</div>
+      <div class="pl"><span class="no">2</span><b>気密</b><span class="desc">C0.5以下推奨</span></div>
+      <div class="plus">＋</div>
+      <div class="pl"><span class="no">3</span><b>換気</b><span class="desc">第一種</span></div>
+      <div class="plus">＋</div>
+      <div class="pl dashed"><span class="no">4</span><b>結露</b><span class="desc">次回</span></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">どれか一つだけを他社と比べても勝ち負けは決まらない。組み合わせで説明できることがLIFEXの強み。断熱・気密・換気のバランスが崩れたときに起きるのが壁体内結露。次回は、LIFEXが現場でこれをどう防いでいるか（分厚い気密シートで大工のうっかりミスを防ぐ理由、上棟後にあえて床を一度剥がして乾燥させる理由）を掘り下げる。</span></div>
+</div>
+
+<!-- 19 会話の型 総合 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">会話の型</span><span class="pg">19 / 20</span></div>
+  <div class="tt">最後に、想定QAをもう一度。</div>
+  <div class="body">
+    <div class="qaGrid">
+      <div class="qa"><div class="q">結露って、気密と関係あるの？</div><div class="a">防湿気密シートが水蒸気の侵入を防いでいる。気密が甘いとここが崩れる。詳しくは次回の結露編で</div></div>
+      <div class="qa"><div class="q">この換気、高いけど意味ある？</div><div class="a">気密とセットで初めて効く。外気温をそのまま入れず光熱費も抑える</div></div>
+      <div class="qa"><div class="q">C値ってなぜ大事？</div><div class="a">隙間の量。気密が悪いと断熱も換気も設計通り働かない</div></div>
+      <div class="qa"><div class="q">他社より本当にお得？</div><div class="a">方式のスペック比較ではなく、CO2濃度の安定やカビの抑制など、暮らしの中で実感できる価値で見てほしい</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">より詳しい想定質問・切り返しは参考書の想定QA集を参照。</span></div>
+</div>
+
+<!-- 20 出典一覧 -->
+<div class="sl" style="height:auto; overflow:visible">
+  <div class="top"><span class="chip c0">出典一覧</span></div>
+  <div class="tt" style="font-size:20px">本資料で使用した数字・データの出典</div>
+  <div class="body" style="overflow:visible">
+    <div class="src" style="overflow-y:visible">
+      <p><b>UA値0.46＝断熱等級6が全棟標準という位置づけ</b>：LIFEX公式初回セミナースライド20260521（社内資料）</p>
+      <p><b>断熱等級とUA値・Q値の対応表、一条工務店の参考値（枠組壁工法系＝アイスマート等 UA0.25／軸組工法系＝セゾンA等 UA0.35）</b>：Ｆ式エアコン容量・COP実測計算シート内基準値表（社内資料）。モデル名は工法区分に対する代表例として記載</p>
+      <p><b>C値と、自然給気口から入る空気の割合（残りは漏気）の関係グラフ（C値0.5＝約70%・C値1＝約50%・C値2＝約30%）</b>：Gハウス社内セミナー資料「【セミナー資料】20260213　全館空調・断熱修正」（社内PowerPoint、スライド42）内「気密性と漏気の関係」の元画像を確認して再構成。数値は元画像からの近似値。C値1＝50%・C値0.5＝70%は、北海道の断熱気密資格制度「BIS」（一般社団法人北海道建築技術協会）のテキストに記載の数値とも一致（トルネックスコラム gaiki-seijouki.jp/column4/826/ 経由、2026年9月時点）。同スライド内には別途「Ｇハウスは全棟気密測定実施、C値0.24（2024年8月〜2025年7月完工、母数177棟の平均）」という記載もあるが、これはGハウス自社の実測値でありLIFEX全体の数値ではないため、本資料には使用していない</p>
+      <p><b>一般的な戸建ての光熱費（月約23,000円）</b>：総務省「家計調査」2024年・4人世帯・電気代＋ガス代合計</p>
+      <p><b>LIFEXの光熱費試算（月約7,000円）・年間差額192,000円・30年累計576万円</b>：LIFEX公式初回セミナースライド20260521に記載の試算値。断熱等級6単体の効果ではなく、断熱等級6＋太陽光11.04kW＋オール電化を組み合わせたトータル設計での試算値（社内試算、第三者機関による検証は未確認）</p>
+      <p><b>気密シート（防湿気密シート）による壁体内結露の防止原理、全棟施工という記載</b>：Gハウス社内セミナー資料「【セミナー資料】20260213 全館空調・断熱修正」内の一般解説部分、およびLIFEX_話法マニュアルの記載を再構成</p>
+      <p><b>C値0.5以下を推奨、「はがき1枚分の隙間」の例え、C値は設計値でなく施工品質の結果という説明</b>：LIFEX_話法マニュアル（2026年6月改訂版・v2以降で一貫）。同マニュアル初版（2026-06-12 16:43）はC値0.36を実測値として記載していたが、約1時間後の改訂で0.5以下・推奨という表現に修正され、以降の全改訂版（〜2026-06-14 v4_5）で維持。気密測定（実測して数値を確認すること）自体は加盟店ごとのオプションという位置づけ（徳田・佐古顧問間の確認事項2026-09-17）</p>
+      <p><b>防湿気密シート全棟施工（重なり455mm・上下150mm、気密テープで押さえる）、気流止め（気密テープによる火打ち金物・母屋束周り・UB廻りの四方処理）、気密コーキング（外壁面材の継目・入隅部・横架材ジョイント部）</b>：LIFEX標準施工マニュアル第1版（2026-08-11）造作工事p26-27「防湿気密シート」・p28「UB気流止め施工」、外壁工事p39「気密・防水」。なお同マニュアル全71ページ中、気密測定（実測でのC値確認）に関する規定は確認されなかった</p>
+      <p><b>ストローの比喩、換気・気密・空調をセットで考える説明の枠組み</b>：LIFEX_話法マニュアルおよび営業トークスクリプト_換気システム（気密×光熱費）.docx（社内資料）内の説明を、LIFEX全体に一般化できる原理部分のみ再構成</p>
+      <p><b>次回予告（分厚い気密シートで大工のうっかりミスを防ぐ理由、上棟後にあえて床を一度剥がして乾燥させる理由）</b>：徳田さんの現場経験に基づく所見（2026-09-19〜20）。標準施工マニュアル第1版にも仮張り→本締めの記載はあるが、乾燥目的で意図的に剥がす工程の記載はなく、マニュアル外の実務知識として次回の壁体内結露編で詳述する</p>
+      <p><b>年2〜5万円の光熱費節約という数字</b>：営業トークスクリプト_換気システム（気密×光熱費）.docx（社内資料）に記載のGハウスの顧客の声（証言ベース。第三者機関による検証データではない）</p>
+      <p><b>第一種熱交換換気と第三種換気のCO2濃度実測比較</b>：パナソニックリビング近畿株式会社「ダクト式熱交換気システム」提案書 2023年6月・Gハウス様向け</p>
+      <p><b>換気設備の運転状況・種類によるカビ発生率（第一種熱交換気で約30%減少、24時間換気停止で約2倍）</b>：同資料内、秋田県立大学・長谷川教授調査（対象：2003年7月以降の住宅5,062世帯）の引用</p>
+      <p><b>IAQ制御の仕組み（屋外・室内の温度差や室内湿度をセンサーで検知し、給気・排気の風量を自動調整。冬季の過乾燥防止）</b>：Panasonic公式サイト「<a href="https://sumai.panasonic.jp/air/kanki/iaq/plesant.html" target="_blank">IAQ向上で省エネ・健康的な住環境を</a>」／<a href="https://www.youtube.com/watch?v=gtTU1Sxd8sY" target="_blank">公式動画「IAQ制御搭載 熱交気調カセット形」特長編</a></p>
+      <p><b>LIFEX標準の換気システムのグレード構成（VBD3シリーズは3グレードに分かれ、LIFEXが採用する最上位VBD3Aのみ温・湿度センサー＋AiSEG対応でIAQ制御の対象。下位の無印VBD3はセンサーなしでIAQ制御対象外）、2024年6月3日発売・従来機比で消費電力約10%減</b>：<a href="https://www2.panasonic.biz/jp/terasu/product/newproducts/202403/housing.html" target="_blank">DENZAI TERASU新商品情報2024年3月</a></p>
+      <p><b>お手入れ頻度（排気フィルター・粗塵防虫フィルターは月1回程度、熱交換素子は年1回程度、給気清浄フィルターの交換目安は約2年）、サイクロン給気フードの仕組み（旋回流で虫を分離し自然風で排出）</b>：Panasonic公式FAQ</p>
+      <p><b>熱交換率（旧・2023年提案書時点でVBD2シリーズ：冷房73〜76%・暖房83〜86%）</b>：現行の最上位グレード（VBD3A）での数値は2026年9月時点のリサーチでは確認できておらず、未確認。カタログまたは販売店経由での再確認が必要</p>
+    </div>
+  </div>
+</div>
+
+</div>
