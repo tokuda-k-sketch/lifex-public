@@ -97,36 +97,36 @@
   .datebar .year{ font-size: 10.5px; opacity: 0.7; margin-top: 4px; }
 
   .body{
-    display: grid;
-    grid-template-columns: 148px 1fr;
-    gap: 18px;
-    padding: 16px 18px 16px 16px;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 14px 16px 18px;
   }
 
   .thumb{
     display: block;
     position: relative;
-    aspect-ratio: 4 / 3;
-    border-radius: 6px;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
     overflow: hidden;
     background: var(--panel);
-    flex-shrink: 0;
   }
   .thumb:focus-visible{ outline: 2px solid var(--navy); outline-offset: 3px; }
   .thumb img{ width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.25s ease; }
   .thumb .play{ position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
   .thumb .play span{
-    width: 34px;
-    height: 34px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    background: rgba(27, 37, 48, 0.55);
+    background: rgba(27, 37, 48, 0.6);
     backdrop-filter: blur(2px);
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,.25);
   }
-  .thumb .play svg{ width: 12px; height: 12px; fill: #fff; margin-left: 2px; }
+  .thumb .play svg{ width: 20px; height: 20px; fill: #fff; margin-left: 3px; }
 
   .content{ min-width: 0; }
   .session-label{ font-size: 11.5px; font-weight: 700; color: #94a1ad; letter-spacing: 0.08em; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
@@ -162,32 +162,38 @@
     .session-title:hover{ color: var(--navy); }
   }
   .session-title:focus-visible{ outline: 2px solid var(--navy); outline-offset: 3px; }
-  .session-foot{ display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; }
-  .session-sub{ font-size: 12.5px; color: var(--sub); display: flex; align-items: center; gap: 6px; }
+  .session-sub{ font-size: 12.5px; color: var(--sub); display: flex; align-items: center; gap: 6px; margin: 0; }
   .session-sub .dot{ width: 3px; height: 3px; border-radius: 50%; background: #94a1ad; }
+
+  .material-links{ display: flex; gap: 10px; margin-top: 2px; }
 
   .material-link{
     display: inline-flex;
+    flex: 1;
     align-items: center;
-    gap: 5px;
-    font-size: 12px;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14.5px;
     font-weight: 700;
-    color: var(--navy);
-    background: var(--navy-soft);
-    border: 1px solid #c6d6e6;
-    border-radius: 100px;
-    padding: 4px 12px 4px 10px;
+    color: #fff;
+    background: var(--navy);
+    border: 1px solid var(--navy);
+    border-radius: 8px;
+    padding: 12px 16px;
     text-decoration: none;
-    transition: background 0.15s ease, color 0.15s ease;
+    box-shadow: 0 2px 8px -2px rgba(30,78,121,.45);
+    transition: background 0.15s ease, transform 0.1s ease;
   }
-  .material-link svg{ width: 11px; height: 11px; fill: none; stroke: currentColor; stroke-width: 2; }
+  .material-link svg{ width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; flex-shrink: 0; }
   @media (hover: hover){
-    .material-link:hover{ background: var(--navy); color: #fff; border-color: var(--navy); }
+    .material-link:hover{ background: #163d61; }
   }
+  .material-link:active{ transform: scale(0.98); }
   .material-link.is-disabled{
     color: #94a1ad;
     background: var(--panel);
     border-color: var(--line);
+    box-shadow: none;
     pointer-events: none;
   }
 
@@ -223,7 +229,8 @@
     .datebar .day{ font-size: 20px; }
     .datebar .month{ font-size: 9.5px; }
     .datebar .year{ display: none; }
-    .body{ grid-template-columns: 92px 1fr; gap: 12px; padding: 12px; }
+    .body{ padding: 12px; gap: 12px; }
+    .material-links{ flex-direction: column; }
     .gap-note{ padding-left: 76px; }
   }
 </style>
@@ -255,8 +262,8 @@
           <div class="content">
             <p class="session-label">第1回</p>
             <a class="session-title" href="https://youtu.be/5P9psno4uHM" target="_blank" rel="noopener noreferrer" data-session="1" data-video="5P9psno4uHM">なぜ、月2棟MTGをやるのか<span class="title-sub">不通対策とアポ取得術</span></a>
-            <div class="session-foot">
-              <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <div class="material-links">
               <a class="material-link" href="lifex-mtg-20260703.html" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M15 3v5h5"/></svg>
                 投影資料
@@ -278,8 +285,8 @@
           <div class="content">
             <p class="session-label">第2回</p>
             <a class="session-title" href="https://youtu.be/9VF5WLgwzKw" target="_blank" rel="noopener noreferrer" data-session="2" data-video="9VF5WLgwzKw">初回面談 実践ガイド</a>
-            <div class="session-foot">
-              <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <div class="material-links">
               <a class="material-link" href="desktop/lifex-guide.html" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M15 3v5h5"/></svg>
                 投影資料
@@ -301,8 +308,8 @@
           <div class="content">
             <p class="session-label">第3回</p>
             <a class="session-title" href="https://youtu.be/80l9h6Z1kO0" target="_blank" rel="noopener noreferrer" data-session="3" data-video="80l9h6Z1kO0">月2棟の型を公開<span class="title-sub">佐古社長対談</span></a>
-            <div class="session-foot">
-              <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <div class="material-links">
               <a class="material-link" href="LIFEX研修_20260717/05_投影資料_対談形式.html" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M15 3v5h5"/></svg>
                 投影資料
@@ -324,8 +331,8 @@
           <div class="content">
             <p class="session-label">第4回</p>
             <a class="session-title" href="https://youtu.be/XNOXrUfzdqM" target="_blank" rel="noopener noreferrer" data-session="4" data-video="XNOXrUfzdqM">通電率・接続率UP<span class="title-sub">上位3社の横展開</span></a>
-            <div class="session-foot">
-              <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <div class="material-links">
               <a class="material-link" href="LIFEX_MTG_20260724/01_投影資料_架電率UP.html" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M15 3v5h5"/></svg>
                 投影資料
@@ -347,8 +354,8 @@
           <div class="content">
             <p class="session-label">第5回</p>
             <a class="session-title" href="https://youtu.be/-MNnr94wtsY" target="_blank" rel="noopener noreferrer" data-session="5" data-video="-MNnr94wtsY">KPI観察分析判断MTG<span class="title-sub">アポ率目標設定</span></a>
-            <div class="session-foot">
-              <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <div class="material-links">
               <a class="material-link" href="mtg-20260731.html" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M15 3v5h5"/></svg>
                 投影資料
@@ -370,8 +377,8 @@
           <div class="content">
             <p class="session-label">第6回</p>
             <a class="session-title" href="https://youtu.be/Gbmt2rr9XoE" target="_blank" rel="noopener noreferrer" data-session="6" data-video="Gbmt2rr9XoE">商談を磨く<span class="title-sub">商談ツール2点を配布</span></a>
-            <div class="session-foot">
-              <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <div class="material-links">
               <a class="material-link" href="lifex-kenshu-20260807.html" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M15 3v5h5"/></svg>
                 投影資料
@@ -395,8 +402,8 @@
           <div class="content">
             <p class="session-label">第7回</p>
             <a class="session-title" href="https://youtu.be/Fqx_RH00qSI" target="_blank" rel="noopener noreferrer" data-session="7" data-video="Fqx_RH00qSI">答え合わせ<span class="title-sub">アポ率目標×商談ツール使用</span></a>
-            <div class="session-foot">
-              <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <div class="material-links">
               <a class="material-link" href="mtg-20260821.html" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M15 3v5h5"/></svg>
                 投影資料
@@ -418,8 +425,8 @@
           <div class="content">
             <p class="session-label">第8回</p>
             <a class="session-title" href="https://youtu.be/0J-cfNXCgcg" target="_blank" rel="noopener noreferrer" data-session="8" data-video="0J-cfNXCgcg">間の取り方とテストクロージング</a>
-            <div class="session-foot">
-              <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <div class="material-links">
               <a class="material-link" href="mtg-20260828.html" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M15 3v5h5"/></svg>
                 投影資料
@@ -441,8 +448,8 @@
           <div class="content">
             <p class="session-label">第9回</p>
             <a class="session-title" href="https://youtu.be/7rDl2H4IH7w" target="_blank" rel="noopener noreferrer" data-session="9" data-video="7rDl2H4IH7w">太陽光×トータルコスト訴求法</a>
-            <div class="session-foot">
-              <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <div class="material-links">
               <a class="material-link" href="taiyoko-total-cost-appeal-final.html" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M15 3v5h5"/></svg>
                 投影資料
@@ -464,8 +471,8 @@
           <div class="content">
             <p class="session-label">第10回</p>
             <a class="session-title" href="https://youtu.be/HbHEVbytk_E" target="_blank" rel="noopener noreferrer" data-session="10" data-video="HbHEVbytk_E">TorneoPlus紹介＋エコボロンPRO標準仕様</a>
-            <div class="session-foot">
-              <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <div class="material-links">
               <a class="material-link" href="mtg-20260911.html" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M15 3v5h5"/></svg>
                 投影資料
@@ -487,8 +494,8 @@
           <div class="content">
             <p class="session-label">第11回<span class="new-badge">NEW</span></p>
             <a class="session-title" href="https://youtu.be/zYQ0SCHs-K4" target="_blank" rel="noopener noreferrer" data-session="11" data-video="zYQ0SCHs-K4">耐震等級3×制振evoltz<span class="title-sub">なぜLIFEXはevoltzを標準搭載するか</span></a>
-            <div class="session-foot">
-              <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
+            <div class="material-links">
               <a class="material-link" href="mtg-20260918.html" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M15 3v5h5"/></svg>
                 教科書
