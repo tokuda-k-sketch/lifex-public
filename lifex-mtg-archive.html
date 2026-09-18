@@ -119,45 +119,57 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 6px;
-    padding: 20px 24px;
-    background: linear-gradient(135deg, var(--navy) 0%, #12293f 100%);
-    transition: transform 0.25s ease;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px 22px 18px;
+    background: linear-gradient(135deg, #4a97d6 0%, #1c4a76 65%, #123350 100%);
+    transition: transform 0.25s ease, filter 0.2s ease;
+  }
+  @media (hover: hover){
+    .session:hover .thumb-card{ filter: brightness(1.06); }
   }
   .thumb-num{
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 800;
     letter-spacing: 0.12em;
-    color: #9dc0de;
+    color: #dcf0ff;
     text-transform: uppercase;
   }
   .thumb-ttl{
-    font-size: 19px;
+    display: block;
+    font-size: 23px;
     font-weight: 800;
     color: #fff;
-    line-height: 1.5;
+    line-height: 1.42;
     letter-spacing: 0.01em;
+    margin-top: 6px;
   }
   .thumb-sub{
-    font-size: 13px;
+    display: block;
+    font-size: 14px;
     font-weight: 500;
-    color: #b9cfe2;
+    color: #e3f0fb;
+    margin-top: 6px;
   }
 
-  .thumb .play{ position: absolute; right: 12px; bottom: 12px; display: flex; }
-  .thumb .play span{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(2px);
-    display: flex;
+  .thumb-watch{
+    align-self: flex-start;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,.2);
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--navy);
+    background: #fff;
+    border-radius: 100px;
+    padding: 9px 18px 9px 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.22);
+    transition: transform 0.15s ease;
   }
-  .thumb .play svg{ width: 14px; height: 14px; fill: #fff; margin-left: 2px; }
+  .thumb-watch svg{ width: 11px; height: 11px; fill: var(--navy); flex-shrink: 0; }
+  @media (hover: hover){
+    .session:hover .thumb-watch{ transform: scale(1.04); }
+  }
 
   .content{ min-width: 0; }
   .session-label{ font-size: 11.5px; font-weight: 700; color: #94a1ad; letter-spacing: 0.08em; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
@@ -292,7 +304,7 @@
               <span class="thumb-ttl">なぜ、月2棟MTGをやるのか</span>
               <span class="thumb-sub">不通対策とアポ取得術</span>
             </div>
-            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+            <div class="thumb-watch"><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg>動画を見る</div>
           </a>
           <div class="content">
             <p class="session-label">第1回</p>
@@ -318,7 +330,7 @@
               <span class="thumb-num">第2回</span>
               <span class="thumb-ttl">初回面談 実践ガイド</span>
             </div>
-            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+            <div class="thumb-watch"><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg>動画を見る</div>
           </a>
           <div class="content">
             <p class="session-label">第2回</p>
@@ -345,7 +357,7 @@
               <span class="thumb-ttl">月2棟の型を公開</span>
               <span class="thumb-sub">佐古社長対談</span>
             </div>
-            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+            <div class="thumb-watch"><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg>動画を見る</div>
           </a>
           <div class="content">
             <p class="session-label">第3回</p>
@@ -372,7 +384,7 @@
               <span class="thumb-ttl">通電率・接続率UP</span>
               <span class="thumb-sub">上位3社の横展開</span>
             </div>
-            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+            <div class="thumb-watch"><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg>動画を見る</div>
           </a>
           <div class="content">
             <p class="session-label">第4回</p>
@@ -399,7 +411,7 @@
               <span class="thumb-ttl">KPI観察分析判断MTG</span>
               <span class="thumb-sub">アポ率目標設定</span>
             </div>
-            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+            <div class="thumb-watch"><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg>動画を見る</div>
           </a>
           <div class="content">
             <p class="session-label">第5回</p>
@@ -426,7 +438,7 @@
               <span class="thumb-ttl">商談を磨く</span>
               <span class="thumb-sub">商談ツール2点を配布</span>
             </div>
-            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+            <div class="thumb-watch"><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg>動画を見る</div>
           </a>
           <div class="content">
             <p class="session-label">第6回</p>
@@ -455,7 +467,7 @@
               <span class="thumb-ttl">答え合わせ</span>
               <span class="thumb-sub">アポ率目標×商談ツール使用</span>
             </div>
-            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+            <div class="thumb-watch"><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg>動画を見る</div>
           </a>
           <div class="content">
             <p class="session-label">第7回</p>
@@ -481,7 +493,7 @@
               <span class="thumb-num">第8回</span>
               <span class="thumb-ttl">間の取り方とテストクロージング</span>
             </div>
-            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+            <div class="thumb-watch"><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg>動画を見る</div>
           </a>
           <div class="content">
             <p class="session-label">第8回</p>
@@ -507,7 +519,7 @@
               <span class="thumb-num">第9回</span>
               <span class="thumb-ttl">太陽光×トータルコスト訴求法</span>
             </div>
-            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+            <div class="thumb-watch"><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg>動画を見る</div>
           </a>
           <div class="content">
             <p class="session-label">第9回</p>
@@ -533,7 +545,7 @@
               <span class="thumb-num">第10回</span>
               <span class="thumb-ttl">TorneoPlus紹介＋エコボロンPRO標準仕様</span>
             </div>
-            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+            <div class="thumb-watch"><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg>動画を見る</div>
           </a>
           <div class="content">
             <p class="session-label">第10回</p>
@@ -560,7 +572,7 @@
               <span class="thumb-ttl">耐震等級3×制振evoltz</span>
               <span class="thumb-sub">なぜLIFEXはevoltzを標準搭載するか</span>
             </div>
-            <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
+            <div class="thumb-watch"><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg>動画を見る</div>
           </a>
           <div class="content">
             <p class="session-label">第11回<span class="new-badge">NEW</span></p>
