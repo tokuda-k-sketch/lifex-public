@@ -1,0 +1,1087 @@
+<title>耐震等級3×evoltz 参考書</title>
+<style>
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+  --p3:#b05c1f; --p3bg:#f9efe4;
+  --leak:#b3372b; --leakbg:#fbe9e7;
+  --win:#2e7d6e; --winbg:#e7f2ef;
+  --surface:#ffffff;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.9; font-feature-settings:"palt"}
+.num{font-variant-numeric:tabular-nums}
+
+/* ヘッダー */
+.header{background:#12181f; color:#fff; padding:48px 24px 40px; text-align:center}
+.header .eyebrow{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#8b98a5; margin-bottom:14px}
+.header h1{margin:0; font-size:26px; font-weight:800; letter-spacing:.01em; text-wrap:balance; overflow-wrap:break-word}
+.header .sub{font-size:14px; color:#a8b4bf; margin-top:12px; line-height:1.8; max-width:52ch; margin-left:auto; margin-right:auto}
+.header .meta{margin-top:20px; font-size:12px; color:#7c8a96}
+@media (max-width:480px){
+  .header{padding:36px 18px 28px}
+  .header h1{font-size:20px}
+  .header .sub{max-width:none; font-size:13px}
+}
+
+/* レイアウト */
+.shell{display:flex; max-width:1180px; margin:0 auto; align-items:flex-start}
+.toc{width:264px; flex-shrink:0; position:sticky; top:0; height:100vh; overflow-y:auto; padding:36px 20px 60px 28px; border-right:1px solid var(--line)}
+.toc .toc-label{font-size:11px; font-weight:800; letter-spacing:.1em; color:var(--sub); text-transform:uppercase; margin-bottom:14px}
+.toc a{display:block; font-size:13px; color:var(--ink); text-decoration:none; padding:6px 10px; border-radius:6px; line-height:1.5}
+.toc a:hover{background:var(--navy-soft); color:var(--navy)}
+.toc a.chapter{font-weight:800; margin-top:14px; color:var(--navy)}
+.toc a.chapter:first-child{margin-top:0}
+.toc a.section{padding-left:20px; color:var(--sub); font-size:12.5px}
+.main{flex:1; min-width:0; padding:40px 48px 120px; max-width:840px}
+
+/* 目次モバイル対応 */
+@media (max-width:900px){
+  .shell{flex-direction:column}
+  .toc{position:static; width:auto; height:auto; border-right:none; border-bottom:1px solid var(--line); padding:24px 20px}
+  .main{padding:32px 20px 80px; max-width:none}
+}
+
+/* 章・節見出し */
+.chapter{padding-top:56px; margin-top:56px; border-top:4px solid var(--navy)}
+.chapter:first-of-type{margin-top:0}
+.chapter .no{font-size:12px; font-weight:800; letter-spacing:.12em; color:var(--navy); text-transform:uppercase}
+.chapter h2{font-size:26px; font-weight:800; margin:8px 0 6px; letter-spacing:.005em; text-wrap:balance}
+.chapter .lead{font-size:14.5px; color:var(--sub); line-height:1.9; margin:0 0 8px}
+.section{margin-top:40px}
+.section h3{font-size:19px; font-weight:800; margin:0 0 14px; padding-bottom:10px; border-bottom:2px solid var(--line); color:var(--ink)}
+.section h4{font-size:15.5px; font-weight:800; margin:26px 0 10px; color:var(--navy)}
+p{margin:0 0 14px; font-size:14.5px; color:var(--ink)}
+.section p:last-child{margin-bottom:0}
+
+/* 出典付き数値ボックス */
+.fact{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:16px 20px; margin:16px 0}
+.fact .k{font-size:11.5px; font-weight:800; color:var(--sub); letter-spacing:.05em}
+.fact .v{font-size:22px; font-weight:800; color:var(--navy); margin:4px 0}
+.fact .d{font-size:13px; color:var(--sub); line-height:1.7}
+.fact .d p{margin:0 0 10px; font-size:13px; color:var(--sub)}
+.fact .d p:last-child{margin-bottom:0}
+.fact .d ul{margin:6px 0 0; padding-left:20px; font-size:13px; color:var(--sub)}
+.fact .d li{margin-bottom:4px}
+.fact .src{font-size:11.5px; color:#94a1ad; margin-top:8px; padding-top:8px; border-top:1px dashed var(--line)}
+
+/* 出典引用 */
+.cite{border-left:3px solid var(--navy); background:var(--navy-soft); border-radius:0 8px 8px 0; padding:14px 20px; margin:16px 0; font-size:14px; line-height:1.85; color:var(--ink)}
+.cite .who{font-size:12px; font-weight:800; color:var(--navy); margin-bottom:6px; display:block}
+.cite.warn{border-left-color:var(--leak); background:var(--leakbg)}
+.cite.warn .who{color:var(--leak)}
+
+/* 法令・条文ボックス */
+.law{background:#fafbfc; border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:14px 0; font-size:13px; color:var(--sub); line-height:1.8}
+.law b{color:var(--ink)}
+
+/* 未確認注記 */
+.unverified{font-size:12.5px; color:var(--p3); background:var(--p3bg); border-radius:6px; padding:8px 14px; margin:10px 0; line-height:1.7}
+.unverified b{font-weight:800}
+
+/* 番号バッジ（図と表の対応用） */
+.nb{display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%; background:var(--navy); color:#fff; font-size:10px; font-weight:800; margin-right:6px; flex-shrink:0; vertical-align:-1px; font-feature-settings:"tnum"}
+.nb.warn{background:var(--leak)}
+
+/* 構造図解 */
+.diagram-box{display:flex; gap:22px; flex-wrap:wrap; margin:16px 0; background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:18px 20px 14px}
+.diagram-box figure{flex:1 1 300px; min-width:260px; margin:0}
+.diagram-box figcaption{font-size:12.5px; font-weight:800; color:var(--navy); margin-top:6px; text-align:center}
+.diagram-box svg{width:100%; height:auto; display:block; overflow:visible}
+.diagram-box .dgtxt{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif}
+
+/* 表 */
+table.dtbl{width:100%; border-collapse:collapse; margin:16px 0; font-size:13px}
+table.dtbl th{background:var(--navy); color:#fff; font-weight:800; text-align:left; padding:9px 12px; font-size:12px}
+table.dtbl td{padding:9px 12px; border-bottom:1px solid var(--line)}
+table.dtbl tr:nth-child(even) td{background:var(--panel)}
+table.dtbl td.hi{color:var(--navy); font-weight:800}
+.tblwrap{overflow-x:auto}
+
+/* リスト */
+.section ul, .section ol{margin:0 0 14px; padding-left:22px; font-size:14.5px; color:var(--ink)}
+.section li{margin-bottom:6px}
+
+/* QAカード */
+.qa{border:1px solid var(--line); border-radius:10px; padding:18px 22px; margin:16px 0; background:var(--surface)}
+.qa .q{font-size:14.5px; font-weight:800; color:var(--ink); display:flex; gap:10px}
+.qa .q .tag{flex-shrink:0; font-size:11px; font-weight:800; color:#fff; background:var(--sub); border-radius:99px; padding:2px 10px; height:fit-content}
+.qa .a{font-size:14px; color:var(--sub); margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); line-height:1.85}
+.qa .a b{color:var(--ink)}
+
+/* コラム */
+.column{background:linear-gradient(135deg,#fff8ec,#fff3e2); border:1px solid #ecd9a8; border-radius:10px; padding:18px 22px; margin:20px 0}
+.column .label{font-size:11px; font-weight:800; color:var(--p3); letter-spacing:.08em; margin-bottom:6px}
+.column p{font-size:13.5px}
+
+footer{max-width:840px; margin:0 auto; padding:40px 48px 80px; border-top:1px solid var(--line); font-size:12px; color:var(--sub)}
+@media (max-width:900px){footer{padding:32px 20px 60px}}
+</style>
+
+<div class="header">
+  <div class="eyebrow">LIFEX 月2棟目標達成MTG 第11回・参考資料</div>
+  <h1>耐震等級3×evoltz　参考書</h1>
+  <p class="sub">9/18投影資料（教科書）の内容を<br>一次資料・法令・専門家の発言に基づいて<br>掘り下げた詳細版です。<br>お客様からの深い質問にも<br>根拠を持って答えられるように。</p>
+  <div class="meta">2026年9月18日　Gハウス LIFEX FC事業部</div>
+</div>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">目次</div>
+    <a href="#intro" class="section">この参考書の使い方</a>
+    <a href="#expert" class="section">専門家紹介・構造塾佐藤実氏</a>
+    <a href="#ch1" class="chapter">第1章　耐震等級3を正確に理解する</a>
+    <a href="#ch1-1" class="section">1-1　3つの計算体系と法的根拠</a>
+    <a href="#ch1-2" class="section">1-2　仕様規定の中身</a>
+    <a href="#ch1-3" class="section">1-3　許容応力度計算7項目の意味</a>
+    <a href="#ch1-4" class="section">1-4　熊本地震の悉皆調査</a>
+    <a href="#ch1-5" class="section">1-5　「2.4〜2.7倍」の出どころ</a>
+    <a href="#ch2" class="chapter">第2章　制振装置evoltzを技術で理解する</a>
+    <a href="#ch2-1" class="section">2-1　速度依存型と変位依存型</a>
+    <a href="#ch2-2" class="section">2-2　壁倍率を持たせる危うさ</a>
+    <a href="#ch2-3" class="section">2-3　evoltzTIMES公開実験の全記録</a>
+    <a href="#ch2-4" class="section">2-4　evoltzの技術仕様</a>
+    <a href="#ch3" class="chapter">第3章　繰り返す地震、その実例</a>
+    <a href="#ch3-1" class="section">3-1　熊本地震・益城町の詳細</a>
+    <a href="#ch3-2" class="section">3-2　全国の繰り返し地震データ</a>
+    <a href="#ch4" class="chapter">第4章　「家を硬くする」代償の裏付け</a>
+    <a href="#ch4-1" class="section">4-1　耐震構造と制振構造の違い</a>
+    <a href="#ch4-2" class="section">4-2　家具転倒の被害データ</a>
+    <a href="#ch4-3" class="section">4-3　家具が転倒する震度の目安</a>
+    <a href="#ch5" class="chapter">第5章　一条工務店との違い</a>
+    <a href="#ch5-1" class="section">5-1　ツインモノコック構造</a>
+    <a href="#ch5-2" class="section">5-2　「2倍耐震」の技術的背景</a>
+    <a href="#ch5-3" class="section">5-3　推論部分の扱い方</a>
+    <a href="#ch6" class="chapter">第6章　他社制振ダンパーとの違い</a>
+    <a href="#ch6-1" class="section">6-1　ミライエの技術詳細</a>
+    <a href="#ch6-2" class="section">6-2　アイダンパーの技術詳細</a>
+    <a href="#ch6-3" class="section">6-3　震度4〜5での効き方の違い</a>
+    <a href="#ch7" class="chapter">第7章　想定QA集</a>
+    <a href="#ch8" class="chapter">第8章　出典・参考資料一覧</a>
+  </nav>
+
+  <main class="main">
+
+    <section id="intro" class="section" style="margin-top:0">
+      <h3>この参考書の使い方</h3>
+      <p>投影資料（教科書）は当日の説明用に要点だけを絞っています。この参考書は、お客様から一歩踏み込んだ質問（「その計算方法の法的根拠は？」「他社の壁倍率って何？」）を受けたときに、自分の言葉で正確に答えるための種本です。</p>
+      <p>全ての数字・主張には出典を明記しています。「LIFEXの資料に書いてあるから」ではなく、「建築基準法のこの条文に基づいている」「この専門家がこう言っている」と説明できる状態を目指してください。一次資料に当たれなかった項目は「未確認」と明記しています——分からないことは分からないと正直に言うのも、信頼を得る技術です。</p>
+    </section>
+
+    <section id="expert" class="section">
+      <h3>この参考書で繰り返し引用する専門家について——構造塾・佐藤実氏</h3>
+      <p>この先、第1章1-5と第2章で、佐藤実氏の発言を何度も引用する。「その専門家って誰？」とお客様に聞かれたときのために、まずこの人がどれくらいの専門家なのかを先に押さえておく。</p>
+      <div class="fact">
+        <div class="k">プロフィール</div>
+        <div class="d">
+          <p>1968年新潟県五泉市生まれ。1990年に東北工業大学工学部建築学科を卒業し、同年に株式会社佐藤住建へ入社。2006年に株式会社M's構造設計を設立して代表取締役に就任し、2010年に「構造塾」を設立、同年に東京大学大学院修士課程を修了している。</p>
+          <p>資格は、一級建築士・構造設計一級建築士・農学修士（木質構造建築物基礎構法）・性能評価員など。</p>
+          <p>「構造塾」は、全国の工務店・設計事務所向けに木構造セミナーや構造計算技術者の育成講座を開いている団体。塾生は全国1,500社・2,000名規模で、全国28会場で年間150回余りの研修を行っている（規模は概数）。2020年からはYouTube「構造塾チャンネル」（「日本中の木造住宅を地震で倒壊させない！」）でも、一般の人向けに発信している。業界紙・新建ハウジング発行元の新建新聞社とのコラボ講座も、複数年にわたって続けている。著書に『楽しく分かる！木構造入門』『最高に楽しい木構造入門』『ぜんぶ絵でわかる建物が壊れない仕組み』（いずれもエクスナレッジ）などがある。</p>
+        </div>
+        <div class="src">出典：M's構造設計 企業情報・著書紹介ページ（ms-structure.co.jp）／みんなの住宅研究所 理事紹介／構造塾YouTubeチャンネル</div>
+      </div>
+      <p>阪神淡路大震災をきっかけに、日本中の木造住宅が地震で一棟も倒れないようにする活動を続けている人物。被災地へ何度も足を運び、木造住宅がどう倒れたのかを自分の目で調査してきた——というのが、evoltz Times内での紹介文。evoltz社の実験には「メーカーである自分たちのポジショントークにならないため」の第三者・立会人として招かれている、という位置づけも押さえておきたい。</p>
+      <div class="cite">
+        <span class="who">渥美幸久氏（evoltz代表取締役、evoltz Times Vol.2 P2）</span>
+        「佐藤先生に立ち会って頂くのは、実は初めてです。なぜ今回お呼びしたかというのは、メーカーである当社のポジショントークにならないためです。目の前で起きていることが全てだし、公正な実験を行っているので、その差を客観的に見て頂くため今回お呼びしたという事ですね。」
+      </div>
+      <p style="font-size:12.5px; color:var(--sub)">このあと本書に出てくる「佐藤実氏」「構造塾塾長」は、すべてこの人物を指す。</p>
+    </section>
+
+    <div id="ch1" class="chapter">
+      <div class="no">Chapter 1</div>
+      <h2>耐震等級3を正確に理解する</h2>
+      <p class="lead">「耐震等級3を取っています」という一言の中身は、実は3種類ある。その法的根拠と技術的な意味を、営業担当者自身が正確に理解しておく。</p>
+
+      <section id="ch1-1" class="section">
+        <h3>1-1　3つの計算方法と、その法的な裏付け</h3>
+        <p>家の地震への強さは、法律（建築基準法）で「どうやって安全を確かめるか」が決められている。そのやり方には、簡単なものから精密なものまで幅があり、それが教科書スライドで説明した3つの計算方法の正体。1つずつ見ていく。</p>
+
+        <h4>① 仕様規定（一番シンプルな方法）</h4>
+        <p>「この広さの家なら、これくらいの壁が必要」という早見表を使って、壁の量をチェックする方法。柱を固定する金物も、同じように早見表や簡単な計算で選ぶ。手間はかからないが、その分、精密さでは③に劣る。</p>
+        <div class="law">法的根拠：建築基準法施行令 第3章第3節（第40〜49条）。壁量計算は施行令第46条第4項、金物の選び方（N値計算法）は平成12年建設省告示第1460号、壁の配置バランスの確認（四分割法）は同第1352号。</div>
+
+        <h4>② 性能表示計算（国の「お墨付き」制度で使う方法）</h4>
+        <p>「住宅性能表示制度」という国の制度で使う計算方法。①より少し詳しく計算する。この制度では、耐震等級2は等級1の1.25倍、耐震等級3は等級1の1.5倍の強さ、と国が数字で定義している。</p>
+        <div class="law">法的根拠：住宅の品質確保の促進等に関する法律（品確法、平成11年法律第81号）。等級の定義は日本住宅性能表示基準（平成13年国交告示第1346号）と評価方法基準（同第1347号）。</div>
+
+        <h4>③ 構造計算（許容応力度計算、一番手間のかかる方法）</h4>
+        <p>柱1本1本、梁1本1本に、地震のときどれくらいの力がかかるかを、全部計算で確かめる方法。この③が法律上いつ義務になるかは、建物の規模によって決まっている。</p>
+        <ul>
+          <li><b>木造2階建て以下・延床面積500㎡以下・高さ13m以下・軒高9m以下</b>（いわゆる旧4号建築物）：①の仕様規定で足り、③の構造計算は法律上の義務ではない。<b>LIFEXは、義務ではないこの規模の住宅でも、あえて③までやっている</b>、という位置づけ。</li>
+          <li><b>木造3階建て、または上のどれか1つでも超える場合</b>：③の構造計算（許容応力度計算）は、以前から法律上の義務。</li>
+        </ul>
+        <div class="law">法的根拠：建築基準法6条1項（2025年3月31日以前の4号建築物の区分。木造2階建て以下・延床面積500㎡以下・高さ13m以下・軒高9m以下）・同施行令第81条（構造計算の種類）・第82条（許容応力度等計算）。</div>
+
+        <div class="unverified"><b>ここまで分かって、ここから先は未確認：</b>②と③は、実は別々の制度ではなく重なり合っている。③の精密な計算をした結果を使って、②の国の制度（耐震等級3）を取ることもできる。ただし、この関係を法律のどの条文が定めているかまでは、今回突き止められていない。</div>
+
+        <div class="column">
+          <div class="label">補足・2025年4月からの法改正</div>
+          <p>2025年4月から、一定の広さ（延床面積300㎡）を超える木造の平屋・2階建てでは、③の精密な計算が義務になる方向で法律が変わった。太陽光パネルなどで家がどんどん重くなっていることに対応するための改正。（出典：国土交通省「必要な壁量等の基準（案）の概要」）</p>
+        </div>
+      </section>
+
+      <section id="ch1-2" class="section">
+        <h3>1-2　「①の簡単な方法でも耐震等級3は取れる」の中身</h3>
+        <p>ここが誤解されやすいポイント。①のシンプルな方法でも「耐震等級3」を名乗ることはできる。でも精密さは③に及ばない。実際に何を計算しているのか、具体的に見ておく。</p>
+
+        <h4>壁量計算——「必要な壁の量」の早見表チェック</h4>
+        <p>地震や風に耐えるために必要な壁の量を、早見表の数字から求める。それと、実際に家にある壁の量（壁の長さ×壁の強さ）を比べて、実際の方が多ければOK、というシンプルな確認。</p>
+
+        <h4>四分割法——壁が偏っていないかのチェック</h4>
+        <p>家を4つに区切って、両端にちゃんと壁があるかを確認する方法。壁が片側に偏っていると、地震のときに家が「ねじれ」ながら壊れやすくなる。それを防ぐための簡易チェック。</p>
+
+        <div class="diagram-box">
+          <figure style="flex:1 1 100%; max-width:320px; margin-left:auto; margin-right:auto">
+            <svg viewBox="0 0 300 230" class="dgtxt" role="img" aria-label="家を4つに区切り、各区画の端に壁があるかを確認する四分割法のイメージ図。1区画だけ壁が足りない例">
+              <rect x="40" y="30" width="220" height="140" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.5"/>
+              <line x1="150" y1="30" x2="150" y2="170" stroke="var(--ink)" stroke-width="1" stroke-dasharray="4 3"/>
+              <line x1="40" y1="100" x2="260" y2="100" stroke="var(--ink)" stroke-width="1" stroke-dasharray="4 3"/>
+
+              <line x1="40" y1="40" x2="40" y2="90" stroke="var(--navy)" stroke-width="6"/>
+              <line x1="160" y1="30" x2="250" y2="30" stroke="var(--navy)" stroke-width="6"/>
+              <line x1="50" y1="170" x2="140" y2="170" stroke="var(--navy)" stroke-width="6"/>
+              <line x1="250" y1="160" x2="260" y2="168" stroke="var(--leak)" stroke-width="6"/>
+
+              <text x="45" y="65" font-size="14" font-weight="800" fill="var(--win)">✓</text>
+              <text x="245" y="50" font-size="14" font-weight="800" fill="var(--win)">✓</text>
+              <text x="60" y="190" font-size="14" font-weight="800" fill="var(--win)">✓</text>
+              <text x="220" y="150" font-size="14" font-weight="800" fill="var(--leak)">✕</text>
+              <text x="220" y="135" text-anchor="middle" font-size="10.5" font-weight="800" fill="var(--leak)">この区画だけ</text>
+              <text x="220" y="122" text-anchor="middle" font-size="10.5" font-weight="800" fill="var(--leak)">壁が足りない</text>
+            </svg>
+            <figcaption>四分割法のイメージ——1区画だけ壁が不足している例</figcaption>
+          </figure>
+        </div>
+
+        <h4>N値計算法——柱を留める金物を選ぶ計算</h4>
+        <p>地震のとき、柱は上に引き抜かれるような力を受ける。その力の大きさをざっくり計算し、それに見合う金物を選ぶ方法。早見表からそのまま選ぶよりも無駄がなく、実務でよく使われている。</p>
+      </section>
+
+      <section id="ch1-3" class="section">
+        <h3>1-3　「7項目」って、結局何を見ているのか</h3>
+        <p>教科書スライドの「LIFEXは7項目全て検討する」の中身。「7項目」という数字だけ覚えても意味がなく、それぞれ何を守るための確認かを知っていると、お客様への説明の説得力が変わる。まず、それぞれが家のどこの話をしているのかを図で押さえておく。</p>
+
+        <div class="diagram-box">
+          <figure>
+            <svg viewBox="0 0 360 320" class="dgtxt" role="img" aria-label="建物の断面図。柱・梁・接合部・床・基礎・壁の位置を示す">
+              <!-- 地面 -->
+              <line x1="15" y1="300" x2="345" y2="300" stroke="#94a1ad" stroke-width="1.5"/>
+              <!-- 基礎 -->
+              <rect x="45" y="280" width="270" height="20" fill="var(--panel)" stroke="var(--navy)" stroke-width="1.5"/>
+              <!-- 1F柱 -->
+              <rect x="66" y="190" width="10" height="90" fill="var(--navy-soft)" stroke="var(--navy)" stroke-width="1.5"/>
+              <rect x="175" y="190" width="10" height="90" fill="var(--navy-soft)" stroke="var(--navy)" stroke-width="1.5"/>
+              <rect x="284" y="190" width="10" height="90" fill="var(--navy-soft)" stroke="var(--navy)" stroke-width="1.5"/>
+              <!-- 1F壁パネル（①）左側 -->
+              <rect x="76" y="196" width="99" height="84" fill="var(--navy-soft)" opacity="0.6" stroke="var(--navy)" stroke-width="1" stroke-dasharray="3 2"/>
+              <path d="M78 278 L173 198 M78 198 L173 278" stroke="var(--navy)" stroke-width="1.3" fill="none"/>
+              <!-- 1F梁（⑥） -->
+              <rect x="58" y="178" width="244" height="12" fill="var(--navy-soft)" stroke="var(--navy)" stroke-width="1.5"/>
+              <!-- 2F柱 -->
+              <rect x="66" y="90" width="10" height="88" fill="var(--navy-soft)" stroke="var(--navy)" stroke-width="1.5"/>
+              <rect x="175" y="90" width="10" height="88" fill="var(--navy-soft)" stroke="var(--navy)" stroke-width="1.5"/>
+              <rect x="284" y="90" width="10" height="88" fill="var(--navy-soft)" stroke="var(--navy)" stroke-width="1.5"/>
+              <!-- 2F梁 -->
+              <rect x="58" y="78" width="244" height="12" fill="var(--navy-soft)" stroke="var(--navy)" stroke-width="1.5"/>
+              <!-- 屋根 -->
+              <path d="M50 78 L180 24 L310 78 Z" fill="var(--panel)" stroke="var(--navy)" stroke-width="1.5"/>
+              <!-- 床（水平構面③）ハイライト -->
+              <rect x="58" y="174" width="244" height="5" fill="var(--blue)" opacity="0.55"/>
+              <path d="M40 176 h14 M306 176 h14" stroke="var(--blue)" stroke-width="1.3"/>
+              <!-- 接合部（⑤）ハイライト -->
+              <circle cx="289" cy="184" r="15" fill="none" stroke="var(--leak)" stroke-width="1.6" stroke-dasharray="3 2"/>
+              <!-- 柱の座屈（④）ハイライト -->
+              <rect x="171" y="190" width="18" height="90" fill="none" stroke="var(--leak)" stroke-width="1.6" stroke-dasharray="3 2"/>
+              <path d="M180 205 q-9 15 0 30 q9 15 0 30" fill="none" stroke="var(--leak)" stroke-width="1.2" stroke-dasharray="2 2"/>
+
+              <!-- ラベル -->
+              <circle cx="120" cy="238" r="9" fill="var(--navy)"/><text x="120" y="241.5" text-anchor="middle" font-size="10" font-weight="800" fill="#fff">1</text>
+              <text x="120" y="264" text-anchor="middle" font-size="11" font-weight="800" fill="var(--navy)">壁</text>
+
+              <circle cx="180" cy="204" r="9" fill="var(--leak)"/><text x="180" y="207.5" text-anchor="middle" font-size="10" font-weight="800" fill="#fff">4</text>
+              <text x="180" y="118" text-anchor="middle" font-size="11" font-weight="800" fill="var(--leak)">柱</text>
+
+              <circle cx="289" cy="169" r="9" fill="var(--leak)"/><text x="289" y="172.5" text-anchor="middle" font-size="10" font-weight="800" fill="#fff">5</text>
+              <text x="330" y="172" text-anchor="middle" font-size="11" font-weight="800" fill="var(--leak)">接合部</text>
+
+              <circle cx="58" cy="160" r="9" fill="var(--navy)"/><text x="58" y="163.5" text-anchor="middle" font-size="10" font-weight="800" fill="#fff">6</text>
+              <text x="58" y="145" text-anchor="middle" font-size="11" font-weight="800" fill="var(--navy)">梁</text>
+
+              <circle cx="30" cy="176" r="9" fill="var(--blue)"/><text x="30" y="179.5" text-anchor="middle" font-size="10" font-weight="800" fill="#fff">3</text>
+              <text x="30" y="196" text-anchor="middle" font-size="11" font-weight="800" fill="var(--blue)">床</text>
+
+              <circle cx="330" cy="270" r="9" fill="var(--navy)"/><text x="330" y="273.5" text-anchor="middle" font-size="10" font-weight="800" fill="#fff">7</text>
+              <text x="330" y="294" text-anchor="middle" font-size="11" font-weight="800" fill="var(--navy)">基礎</text>
+            </svg>
+            <figcaption>断面図——柱・梁・床・基礎・接合部の位置</figcaption>
+          </figure>
+
+          <figure>
+            <svg viewBox="0 0 360 280" class="dgtxt" role="img" aria-label="建物の平面図。重心と剛心のズレを示す">
+              <!-- 建物外形 -->
+              <rect x="50" y="40" width="260" height="180" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.5"/>
+              <!-- 外周の壁（太線） -->
+              <rect x="50" y="40" width="260" height="180" fill="none" stroke="var(--navy)" stroke-width="6"/>
+              <!-- 左側に偏った内壁（壁バランスが悪い例） -->
+              <rect x="112" y="40" width="8" height="120" fill="var(--navy)"/>
+              <rect x="50" y="96" width="70" height="8" fill="var(--navy)"/>
+              <rect x="70" y="160" width="8" height="60" fill="var(--navy)"/>
+
+              <!-- 重心（建物の重さの中心＝ほぼ中央） -->
+              <circle cx="180" cy="130" r="6" fill="var(--ink)"/>
+              <text x="180" y="112" text-anchor="middle" font-size="11" font-weight="800" fill="var(--ink)">重心</text>
+
+              <!-- 剛心（壁が集中している左側に寄る） -->
+              <circle cx="122" cy="130" r="6" fill="var(--leak)"/>
+              <text x="122" y="112" text-anchor="middle" font-size="11" font-weight="800" fill="var(--leak)">剛心</text>
+
+              <!-- ズレを示す線 -->
+              <line x1="122" y1="130" x2="180" y2="130" stroke="var(--leak)" stroke-width="1.6" stroke-dasharray="4 3"/>
+              <text x="151" y="148" text-anchor="middle" font-size="11" font-weight="800" fill="var(--leak)">ズレ</text>
+
+              <circle cx="30" cy="130" r="9" fill="var(--leak)"/><text x="30" y="133.5" text-anchor="middle" font-size="10" font-weight="800" fill="#fff">2</text>
+              <text x="30" y="155" text-anchor="middle" font-size="11" font-weight="800" fill="var(--leak)">壁バランス</text>
+              <text x="180" y="245" text-anchor="middle" font-size="10.5" fill="var(--sub)">壁が左に偏っている＝剛心が重心からズレている例</text>
+            </svg>
+            <figcaption>平面図（上から見た図）——壁量計算と壁バランス</figcaption>
+          </figure>
+        </div>
+
+        <div class="tblwrap">
+        <table class="dtbl" style="table-layout:fixed">
+          <colgroup><col style="width:170px"><col></colgroup>
+          <tr><th style="white-space:nowrap">項目</th><th>ひとことで言うと</th></tr>
+          <tr><td class="hi" style="white-space:nowrap"><span class="nb">1</span>壁量計算</td><td>①と同じ考え方だが、屋根や雪の重さなど実際の数字を細かく積み上げて、必要な壁の量を精密に出す</td></tr>
+          <tr><td class="hi" style="white-space:nowrap"><span class="nb warn">2</span>壁バランス</td><td>家の「重さの中心」と「壁の強さの中心」がズレていないかを数字で確認する。ズレが大きいと、地震で家がねじれて壊れやすい</td></tr>
+          <tr><td class="hi" style="white-space:nowrap"><span class="nb" style="background:var(--blue)">3</span>水平構面</td><td>床や屋根が、地震の力をちゃんと壁に伝えられているかを確認する。床がしっかりしていないと、壁がいくら強くても効果が出ない</td></tr>
+          <tr><td class="hi" style="white-space:nowrap"><span class="nb warn">4</span>柱の座屈</td><td>細長い柱は、押しつぶす力を受けると急に折れ曲がることがある。それが起きない太さ・強さかを確認する</td></tr>
+          <tr><td class="hi" style="white-space:nowrap"><span class="nb warn">5</span>接合部の検討</td><td>柱や筋交いを留めている金物が、実際にかかる力に耐えられるかを1つ1つ計算する</td></tr>
+          <tr><td class="hi" style="white-space:nowrap"><span class="nb">6</span>横架材の検討</td><td>梁や桁が、重さでたわみすぎないか、折れないかを確認する</td></tr>
+          <tr><td class="hi" style="white-space:nowrap"><span class="nb">7</span>基礎の設計</td><td>基礎が弱いと、上の建物がいくら強くても意味がない。地面の強さも含めて基礎を設計する</td></tr>
+        </table>
+        </div>
+        <p style="font-size:11.5px; color:var(--sub); margin-top:-6px">図の番号は、下の表の番号バッジと対応（実際の建物・耐力壁の配置を再現したものではなく、位置関係を説明するための模式図）</p>
+        <p style="font-size:12px; color:var(--sub)">出典：kakunin-shinsei.com各記事／kenchiku-kouzou.jp／バッコ博士の構造塾／makehouse.co.jp「木造住宅に許容応力度計算は必要なのか」</p>
+      </section>
+
+      <section id="ch1-4" class="section">
+        <h3>1-4　熊本地震が教えてくれること</h3>
+        <p>「なぜ精密な計算までする耐震等級3なのか」を、能登半島地震だけでなく、もう一つの実例で説明できるようにする。国（国土交通省・国総研・建築研究所）が熊本地震のあと、被害の原因を調べる委員会を作った。その調査等をもとに、日本建築学会が熊本県益城町の木造住宅を1軒1軒調べた結果が、これ。</p>
+
+        <div class="tblwrap">
+        <table class="dtbl">
+          <tr><th>いつの基準で建てたか</th><th>倒壊</th><th>大きく壊れた</th><th>中くらい〜小さく壊れた</th><th>ほぼ無傷</th></tr>
+          <tr><td>1981年より前の古い基準</td><td>214棟(28.2%)</td><td>133棟(17.5%)</td><td>373棟(49.1%)</td><td>39棟(5.1%)</td></tr>
+          <tr><td>1981〜2000年の基準</td><td>76棟(8.7%)</td><td>85棟(9.7%)</td><td>537棟(61.2%)</td><td>179棟(20.4%)</td></tr>
+          <tr><td>2000年以降の基準</td><td>7棟(2.2%)</td><td>12棟(3.8%)</td><td>104棟(32.6%)</td><td>196棟(61.4%)</td></tr>
+          <tr><td class="hi">うち耐震等級3（国の性能表示制度）</td><td class="hi">0棟(0%)</td><td class="hi">0棟(0%)</td><td>2棟(12.5%)</td><td>14棟(87.5%)</td></tr>
+        </table>
+        </div>
+        <p style="font-size:12px; color:var(--sub)">出典：国土交通省「熊本地震における建築物被害の原因分析を行う委員会」報告書等をもとにした、五十田博氏監修「熊本地震を教訓に。耐震等級3のススメ」（一般社団法人くまもと型住宅生産者連合会、平成28年度国土交通省サステナブル建築物等先導事業）</p>
+
+        <p>2000年以降の基準でも、倒壊が7棟、大きく壊れた家が12棟あった。でも、耐震等級3を取っていた家は、倒壊も大きな損壊もゼロだった。「新しい基準で建てたから安心」ではなく、「耐震等級3までしっかり取っているか」で結果が変わる——このデータが伝えているのは、そういうこと。</p>
+        <div class="unverified"><b>注記：</b>この委員会の報告書そのものは今回読めておらず、五十田教授が監修した資料を通じての確認にとどまる。</div>
+      </section>
+
+      <section id="ch1-5" class="section">
+        <h3>1-5　「2.4〜2.7倍」って、どこから来た数字？</h3>
+        <p>教科書スライドで「LIFEXの強さは2.4〜2.7倍」と説明している。この数字がどこから来ているのか、たどってみる。</p>
+        <div class="fact">
+          <div class="k">今回たどり着いた、一番具体的な情報源</div>
+          <div class="v">構造塾・佐藤実さんのコラム</div>
+          <div class="d">
+            <p>YKKap A-PLUGというサイトで連載されている、構造塾の佐藤実さんのコラム（第22回「耐震等級の目安を付ける」）に、こんな目安が書かれていた。</p>
+            <ul>
+              <li>精密な計算（③）で取った耐震等級1：1.6〜1.8倍くらい</li>
+              <li>国の性能表示制度（②）で取った耐震等級3：1.9〜2.0倍くらい</li>
+              <li>精密な計算（③）で取った耐震等級3：2.4〜2.7倍くらい</li>
+            </ul>
+          </div>
+          <div class="src">出典：YKKap A-PLUG「構造塾」佐藤実氏コラム第22回<br>https://aplug.ykkap.co.jp/communities/50/contents/752</div>
+        </div>
+        <div class="unverified"><b>ここは正直に：</b>このコラムは会員限定で、冒頭部分しか読めなかった。どんな条件で計算した数字か、学術的な検証を経た値か佐藤さん個人の実務上の目安かまでは確認できていない。ネット上の多くの工務店サイトがこの数字を紹介しているが、出典を書いているところはほとんどなく、たどり着けた一番具体的な情報源がこのコラムだった。</div>
+        <p>もう一つ知っておきたいのは、国の制度で「耐震等級3は等級1の1.5倍」と決まっているのは、あくまで「必要な強さ」の倍率だということ。壁の量がそのまま1.5倍になるわけではない。計算のやり方や条件によって、実際に必要な壁の量の増え方は変わる——ここも聞かれたら説明できるようにしておきたい。</p>
+      </section>
+    </div>
+
+    <div id="ch2" class="chapter">
+      <div class="no">Chapter 2</div>
+      <h2>制振装置evoltzを技術から理解する</h2>
+      <p class="lead">「1mmから効く」とはどういうことか、専門用語ではなく仕組みから理解する。この章の内容の多くは、evoltz社が公開実験に構造の専門家（佐藤実さん、経歴は本書冒頭「専門家紹介」を参照）を招いて行った対談誌「evoltz Times Vol.2」（2023年夏号）に基づく。</p>
+
+      <section id="ch2-1" class="section">
+        <h3>2-1　「すぐ効くダンパー」と「ある程度揺れてから効くダンパー」</h3>
+        <p>制振ダンパーには、大きく分けて2つのタイプがある。これはevoltz社だけが言っていることではなく、業界全体で使われている分類。</p>
+
+        <table class="dtbl">
+          <tr><th>タイプ</th><th>どう動くか</th><th>代表的な種類</th></tr>
+          <tr><td class="hi">ある程度揺れてから<br>効くタイプ<br>（変位依存型）</td><td>建物がある程度変形して、ダンパーに一定以上の力がかかって初めて動き出す。壁と同じような強さ（壁倍率）を持つ製品が多いが、小さな揺れではあまり効かない</td><td>金属系、ゴム系</td></tr>
+          <tr><td class="hi">すぐに効くタイプ<br>（速度依存型）</td><td>揺れの「速さ」そのものに反応するので、壁のような強さは持たない代わりに、車が通る振動のような小さな揺れから、大地震まで途切れずに働く</td><td>油圧系（オイルダンパー）＝evoltz</td></tr>
+        </table>
+        <p style="font-size:12px; color:var(--sub)">出典：evoltz Times Vol.2 P7「じゃあ具体的に制振装置の話になると」渥美幸久氏（evoltz代表取締役）発言より。一般的な解説としては「バッコ博士の構造塾」制振・制震ダンパーの種類と特徴も参照</p>
+
+        <div class="diagram-box">
+          <figure style="flex:1 1 100%">
+            <svg viewBox="0 0 520 300" class="dgtxt" role="img" aria-label="揺れの大きさとダンパーの効き目の関係を示す折れ線グラフ。速度依存型は小さな揺れから効き、変位依存型は大きな揺れになってから効く">
+              <!-- 軸 -->
+              <line x1="60" y1="30" x2="60" y2="252" stroke="#94a1ad" stroke-width="1.5"/>
+              <line x1="60" y1="252" x2="490" y2="252" stroke="#94a1ad" stroke-width="1.5"/>
+              <text x="60" y="20" text-anchor="middle" font-size="11" fill="var(--sub)">効き目 大</text>
+              <text x="60" y="268" text-anchor="middle" font-size="11" fill="var(--sub)">効き目 小</text>
+              <text x="90" y="280" text-anchor="start" font-size="11" fill="var(--sub)">揺れ 小（1mmくらい）</text>
+              <text x="490" y="280" text-anchor="end" font-size="11" fill="var(--sub)">揺れ 大（大地震）</text>
+
+              <!-- 小さな揺れゾーンの強調 -->
+              <rect x="60" y="30" width="90" height="222" fill="var(--navy-soft)" opacity="0.5"/>
+              <text x="105" y="45" text-anchor="middle" font-size="10.5" font-weight="800" fill="var(--navy)">ここで差が出る</text>
+
+              <!-- 変位依存型（ある程度揺れてから効く） -->
+              <path d="M60,246 L150,243 L230,236 L280,192 L340,120 L410,75 L470,55" fill="none" stroke="var(--leak)" stroke-width="2.5"/>
+              <text x="345" y="105" font-size="12" font-weight="800" fill="var(--leak)">ある程度揺れてから効くタイプ</text>
+              <text x="345" y="120" font-size="10.5" fill="var(--leak)">（変位依存型・金属系/ゴム系）</text>
+
+              <!-- 速度依存型（evoltz、すぐ効く） -->
+              <path d="M60,190 L150,165 L230,140 L300,115 L370,90 L430,68 L470,58" fill="none" stroke="var(--navy)" stroke-width="2.5"/>
+              <text x="150" y="150" text-anchor="middle" font-size="12" font-weight="800" fill="var(--navy)">すぐに効くタイプ（evoltz）</text>
+              <text x="150" y="165" text-anchor="middle" font-size="10.5" fill="var(--navy)">（速度依存型）</text>
+
+              <circle cx="60" cy="190" r="4.5" fill="var(--navy)"/>
+              <circle cx="60" cy="246" r="4.5" fill="var(--leak)"/>
+            </svg>
+            <figcaption>揺れの大きさと、ダンパーの効き目の関係（イメージ図）</figcaption>
+          </figure>
+        </div>
+        <p style="font-size:11.5px; color:var(--sub); margin-top:-8px">※実測データのグラフではなく、上の表・対談内の説明を模式化したイメージ図。速度依存型は小さな揺れ（左端）ですでに効き始めているのに対し、変位依存型は左端でほぼ効いておらず、揺れが大きくなってから急に効き始める、という「差の出方」を示している。</p>
+
+        <p>evoltzは「すぐに効くタイプ」。小さな揺れの段階からずっと働き続けるのが特徴で、これが教科書スライドの「1mmから効く」という説明の正体になる。</p>
+      </section>
+
+      <section id="ch2-2" class="section">
+        <h3>2-2　「制振装置に壁の強さを持たせる」ことの落とし穴</h3>
+        <p>教科書スライドの比較表で「アイダンパーは壁の強さ（壁倍率）が最大5倍・国のお墨付き（大臣認定）あり」という事実を紹介した。でも「壁の強さがある制振装置の方が優れている」と単純に考えるのは早計——専門家がそう強く指摘している。</p>
+
+        <div class="cite warn">
+          <span class="who">構造塾塾長・佐藤実氏（evoltz Times Vol.2 P7より）</span>
+          「変位依存型はちょっと危険な考えだと僕は思っています。よく質問を受けるのは、耐震等級3に制振装置を付ける時にメーカーの営業マンが『私たちの制振装置は壁倍率があるから、耐震等級を下げていいです！』という売り方をされるという話。一見すると、壁倍率を持っているから、それを付けることで結果その壁倍率の影響で耐震等級3になり、さらに制振装置があるように聞こえます。けど実はそうじゃないです。ホンネを言えば、私たちの制振装置を耐震等級3に付けたら、硬くて効かないです。だからできるだけ耐震性能は下げて、地震がきたら建物が早く壊れる状況にしてください、壊れてきて傾きだしたら制振装置が効きますから——というのは、制振装置を効かせるには建物を弱くしてくださいと言っているのとイコールです。制振装置が効くタイミングは、もうある程度傾いて建物の耐震性能が落ちてきてから効く場合が多い。『倒れなくて良かったですね、もう住めませんね』という状況を作るのとイコールなので、そういう営業トークはやめた方がいいです。」
+        </div>
+
+        <div class="cite">
+          <span class="who">同・佐藤実氏（続き）</span>
+          「やっぱり耐震性能を確実に取れる状況っていうのがよく分かってないですよね。たまたま制振装置の実験をしたら壁倍率がたまたま出ただけで、それを本当にそのまま耐力壁と同等に置き換えて設計して良いものかなと。だからやっぱり耐震と制振は、住み分けるべき。耐震は耐震として耐力壁でしっかりとるべきで、制振は制振なんですよ。そこをごちゃ混ぜにする考え、それがまるで合理的なような考えにすり替えるのは、ちょっと違うかなと。」
+        </div>
+
+        <p>これが、教科書スライドの他社比較表で「evoltzは壁の強さを持たない＝耐震と制振を分けて考えている」と書いている理由。壁の強さを持つこと自体は悪くない。でも「壁の強さがあるから、耐震の方を弱くしてよい」という考え方には、実験に立ち会った構造の専門家自身が、はっきり「それは違う」と言っている——これが伝えたい事実。</p>
+      </section>
+
+      <section id="ch2-3" class="section">
+        <h3>2-3　実際どんな実験をしたのか——全記録</h3>
+        <p>教科書スライドで使った実験グラフの、詳しい中身。</p>
+
+        <h4>実験の内容</h4>
+        <ul>
+          <li>2023年5月、富山にある「振動台」（人工的に地震の揺れを再現できる実験施設）で実施。実験に使った建物の骨組みは、延べ床面積30坪の2階建て住宅を想定し、1階が支える重さ（6トン）をかけた状態で揺らした</li>
+          <li>揺れは国のルールに沿って作られた、実際の地震に近い人工的な波形を使用。中くらいの地震と、大きな地震の2種類を交互にかけた</li>
+          <li>①耐震等級2のみ　②耐震等級3のみ　③耐震等級3＋evoltz、の3パターンを比較</li>
+          <li>知りたかったことは2つ。1つ目は「耐震等級2と3で実際どのくらい差があるか」、2つ目は「等級3にevoltzを追加すると、建物へのダメージがどう変わるか」</li>
+        </ul>
+
+        <h4>結果——建物がどれだけ動いたか（単位はmm、数字が小さいほど揺れを抑えられている）</h4>
+        <div class="tblwrap">
+        <table class="dtbl">
+          <tr><th>回数</th><th>揺れの大きさ</th><th>耐震のみ（等級2）</th><th>耐震のみ（等級3）</th><th>耐震等級3＋evoltz</th></tr>
+          <tr><td>1回目</td><td>中地震</td><td>20.5</td><td>19.7</td><td>12.9</td></tr>
+          <tr><td>2回目</td><td>大地震</td><td class="hi">116.2（実験中止）</td><td>39.6</td><td>39.6</td></tr>
+          <tr><td>3回目</td><td>中地震</td><td>—</td><td class="hi">64.0（傷み、実験中止）</td><td>28.9</td></tr>
+          <tr><td>4回目</td><td>大地震</td><td>—</td><td>—</td><td>59.4</td></tr>
+          <tr><td>5回目</td><td>中地震</td><td>—</td><td>—</td><td>37.9</td></tr>
+          <tr><td>6回目</td><td>大地震</td><td>—</td><td>—</td><td>93.8</td></tr>
+          <tr><td>7回目</td><td>中地震</td><td>—</td><td>—</td><td>71.4</td></tr>
+          <tr><td>8回目</td><td>中地震</td><td>—</td><td>—</td><td>76.4</td></tr>
+        </table>
+        </div>
+        <p style="font-size:12px; color:var(--sub)">目安：柱の先が約10cm動いたら「倒壊のおそれあり」というラインになる（基準法の考え方）。出典：evoltz Times Vol.2 P3-6</p>
+
+        <div class="diagram-box">
+          <figure style="flex:1 1 100%">
+            <svg viewBox="0 0 560 300" class="dgtxt" role="img" aria-label="8回の揺れに対する建物の変位量の推移グラフ。耐震等級2は2回目、耐震等級3は3回目で実験中止となったが、evoltz付きは8回目まで完走した">
+              <!-- 軸 -->
+              <line x1="60" y1="20" x2="60" y2="260" stroke="#94a1ad" stroke-width="1.5"/>
+              <line x1="60" y1="260" x2="540" y2="260" stroke="#94a1ad" stroke-width="1.5"/>
+              <!-- y目盛 -->
+              <line x1="55" y1="260" x2="540" y2="260" stroke="var(--line)" stroke-width="1"/>
+              <line x1="55" y1="167.7" x2="540" y2="167.7" stroke="var(--line)" stroke-width="1"/>
+              <text x="48" y="264" text-anchor="end" font-size="10.5" fill="var(--sub)">0</text>
+              <text x="48" y="171.7" text-anchor="end" font-size="10.5" fill="var(--sub)">50</text>
+              <text x="48" y="79.4" text-anchor="end" font-size="10.5" fill="var(--sub)">100</text>
+              <text x="14" y="150" font-size="10.5" fill="var(--sub)">変位量(mm)</text>
+              <!-- 倒壊のおそれラインの目安 -->
+              <line x1="60" y1="75.4" x2="540" y2="75.4" stroke="var(--leak)" stroke-width="1.3" stroke-dasharray="5 3"/>
+              <text x="534" y="70" text-anchor="end" font-size="10.5" font-weight="800" fill="var(--leak)">倒壊のおそれラインの目安（約100mm）</text>
+
+              <!-- x軸ラベル -->
+              <text x="70" y="278" text-anchor="middle" font-size="10.5" fill="var(--sub)">1回目</text>
+              <text x="134" y="278" text-anchor="middle" font-size="10.5" fill="var(--sub)">2</text>
+              <text x="199" y="278" text-anchor="middle" font-size="10.5" fill="var(--sub)">3</text>
+              <text x="263" y="278" text-anchor="middle" font-size="10.5" fill="var(--sub)">4</text>
+              <text x="327" y="278" text-anchor="middle" font-size="10.5" fill="var(--sub)">5</text>
+              <text x="391" y="278" text-anchor="middle" font-size="10.5" fill="var(--sub)">6</text>
+              <text x="456" y="278" text-anchor="middle" font-size="10.5" fill="var(--sub)">7</text>
+              <text x="520" y="278" text-anchor="middle" font-size="10.5" fill="var(--sub)">8回目</text>
+
+              <!-- 耐震のみ（等級2）：2回目で中止 -->
+              <polyline points="70,222.1 134,45.4" fill="none" stroke="var(--leak)" stroke-width="2.2"/>
+              <circle cx="70" cy="222.1" r="3.5" fill="var(--leak)"/>
+              <circle cx="134" cy="45.4" r="3.5" fill="var(--leak)"/>
+              <text x="134" y="35" text-anchor="middle" font-size="10.5" font-weight="800" fill="var(--leak)">✕実験中止</text>
+              <text x="70" y="238" text-anchor="middle" font-size="10.5" fill="var(--leak)">耐震のみ（等級2）</text>
+
+              <!-- 耐震のみ（等級3）：3回目で中止 -->
+              <polyline points="70,223.6 134,186.9 199,141.8" fill="none" stroke="var(--p3)" stroke-width="2.2"/>
+              <circle cx="70" cy="223.6" r="3.5" fill="var(--p3)"/>
+              <circle cx="134" cy="186.9" r="3.5" fill="var(--p3)"/>
+              <circle cx="199" cy="141.8" r="3.5" fill="var(--p3)"/>
+              <text x="199" y="131" text-anchor="middle" font-size="10.5" font-weight="800" fill="var(--p3)">✕実験中止</text>
+              <text x="240" y="210" text-anchor="middle" font-size="10.5" fill="var(--p3)">耐震のみ（等級3）</text>
+
+              <!-- 耐震等級3＋evoltz：8回目まで完走 -->
+              <polyline points="70,236.2 134,186.9 199,206.7 263,150.3 327,190.0 391,86.9 456,128.2 520,118.9" fill="none" stroke="var(--navy)" stroke-width="2.6"/>
+              <circle cx="70" cy="236.2" r="3.5" fill="var(--navy)"/>
+              <circle cx="134" cy="186.9" r="3.5" fill="var(--navy)"/>
+              <circle cx="199" cy="206.7" r="3.5" fill="var(--navy)"/>
+              <circle cx="263" cy="150.3" r="3.5" fill="var(--navy)"/>
+              <circle cx="327" cy="190.0" r="3.5" fill="var(--navy)"/>
+              <circle cx="391" cy="86.9" r="3.5" fill="var(--navy)"/>
+              <circle cx="456" cy="128.2" r="3.5" fill="var(--navy)"/>
+              <circle cx="520" cy="118.9" r="4.5" fill="var(--navy)" stroke="#fff" stroke-width="1.5"/>
+              <text x="440" y="150" text-anchor="middle" font-size="11.5" font-weight="800" fill="var(--navy)">耐震等級3＋evoltz——8回目まで完走</text>
+            </svg>
+            <figcaption>富山での公開実験——8回の揺れに対する建物の変位量の推移</figcaption>
+          </figure>
+        </div>
+
+        <p>耐震等級2は、大地震1回目（表の2回目）で116.2mmまで動いてしまい、実験は中止。耐震等級3は大地震を1回は耐えたが、その後の中地震（表の3回目）で64.0mmまで傷みが進み、これも中止。evoltzを付けた場合は、大地震3回・中地震5回、合計8回の揺れに最後まで耐えた。</p>
+
+        <h4>実際にどう壊れたのか</h4>
+        <p>揺らした後、実際に骨組みを分解して確認した。耐震等級2の骨組みは、板を留めていたビスが折れ、柱に開いた釘の穴も大きく広がっていた。佐藤さんはこれを見て「釘の穴がこんなに大きく開いているということは、それだけ変形しているということ」とコメントしている。</p>
+        <div class="cite">
+          <span class="who">佐藤実氏（evoltz Times Vol.2 P3）</span>
+          「やっぱり、明らかな差として耐震等級2の壊れ方ですよね。耐震等級2の壊れ方が大きいなというのがよくわかりましたね。耐震等級3が同じような実験をしても、やっぱりある程度耐力を保ち続けている差は大きいかなという感じはしますね。その差を見た時に、少し予算を上乗せするなど手を加えることで、あれだけの差が出るのだったら、選択肢としては耐震等級3しかないと思う。最低限、耐震等級3しかないという感じがします。」
+        </div>
+
+        <h4>「小さな揺れから、大きな揺れまで、ずっと効き続けている」</h4>
+        <p>今回の実験で佐藤さんが一番強調していたのは、evoltzが「すぐに効くタイプ」であることの、実際の意味。</p>
+        <div class="cite">
+          <span class="who">佐藤実氏（evoltz Times Vol.2 P10）</span>
+          「evoltzを付けた場合、最後は結果的に大地震を3回連続かけた時に見えた最後の結果は、耐力壁の耐力が無くなっていますけど、evoltzのみの力で、最後は耐え抜いた。微小変形から変異が大きくなった所まで、ずっと効き続けているのはすごく効果的ですね。これが一般的に変異依存型の場合だと、ある程度の傾きが出てから効くっていうのは、これは皆さん知ってきている事です。だから変異が大きくなるところで効く、だけどそれはその手前が効かない。逆に言うと、もっと変異依存型を柔らかくして早く効くようにすれば微小変形に効きますよ。だけど微小変形で効くけど、それがもっと進んで大きく損傷してくると、効き目がなくなる可能性があると。どっちかに効かせるけど、どっちかに効かない可能性がある。そう考えていくとやっぱり、変異依存型の広範囲に効き続けるっていうのはかなり有効的だなと感じますね。」
+        </div>
+        <p>言葉を補うと、こういうこと。「ある程度揺れてから効くタイプ」は、大きな変形には強いが、小さな揺れには反応しない。逆に小さな揺れに反応するように柔らかく作ると、今度は大きな変形のときに効かなくなる——どちらかを選ばなければいけない。evoltzのような「すぐに効くタイプ」は、小さな揺れから大きな変形まで、その両方でずっと効き続けられる。ここがevoltzの技術的な核心という位置づけ。</p>
+
+        <h4>「壁の量の差」と「実際のダメージの差」は比例しない</h4>
+        <p>対談でもう一つ興味深かったのが、壁の量の「数字上の差」と、実際に受けたダメージの差が、全く一致しなかったという話。</p>
+        <div class="cite">
+          <span class="who">渥美幸久氏・佐藤実氏（evoltz Times Vol.2 P9）</span>
+          渥美「変位量で言うと耐震等級2から遡ると、耐震等級2のフレームが最初の大地震を揺らしたところで115mmの変異、等級3の時に80。evoltz装着が36。115、80、36、そこで6割か7割近い変異が収まった...壁量で言うと等級1の1.25倍。そこからまた1.25倍なので数値で言うと、1.25くらいの差が壁量だという数字的な感覚と、実際同じ揺れを発生させたときのダメージの具合、全然そこが比例していないというか、1.25倍の差じゃないなと率直に感じましたが。」<br>
+          佐藤「全然違いますよね。1〜2が1.25で、1〜3が1.5ってなると、2〜3の差って1.2倍です。ですけど、その差って計算上はさほど大きくないし、じゃあ耐力壁を増やすっていうのはさほど大きくはないですよね、実は。だけど、この実験の結果を見ると、かなり大きいですよね。この差が数字以上に大きく感じましたね。」
+        </div>
+        <p>第1章1-5で紹介した「耐震等級1の1.25倍が等級2、1.5倍が等級3」という数字。壁の量で見れば、その差はほんの少しに見える。でも実際に地震で揺らしてみると、ダメージの差は数字よりずっと大きかった——これが実験でわかったこと。「壁の量の差は小さく見えても、実際の安全性への効果は数字以上に大きい」という説明にそのまま使える。</p>
+      </section>
+
+      <section id="ch2-4" class="section">
+        <h3>2-4　evoltzの技術仕様</h3>
+        <div class="tblwrap">
+        <table class="dtbl">
+          <tr><th>項目</th><th>内容</th></tr>
+          <tr><td class="hi">タイプ</td><td>すぐに効くタイプ（速度依存型）の、油を使ったダンパー。車のサスペンション（ショックアブソーバー）と同じ仕組みを住宅用にしたもの</td></tr>
+          <tr><td class="hi">効き始め</td><td>わずか約1mm（震度1程度の小さな揺れ）動いただけで、もう効き始める</td></tr>
+          <tr><td class="hi">効き方の特徴</td><td>小さな揺れにも大きな揺れにも効くよう設計された独自の効き方（「超バイリニア特性」という名前がついている）。日本・アメリカ・ドイツの3か国で特許を取得している</td></tr>
+          <tr><td class="hi">耐久性</td><td>100万回動かす耐久試験をクリアしており、性能はほとんど落ちない</td></tr>
+          <tr><td class="hi">対応する建て方</td><td>日本の伝統的な木造の建て方（木造軸組工法）、ツーバイフォー工法、どちらにも使える</td></tr>
+        </table>
+        </div>
+        <p style="font-size:12px; color:var(--sub)">出典：evoltz社作成資料（営業トークスクリプト・知識確認テスト・LIFEXセミナースライド）。個々の特許番号・耐久試験の第三者機関名までは今回未確認</p>
+      </section>
+    </div>
+
+    <div id="ch3" class="chapter">
+      <div class="no">Chapter 3</div>
+      <h2>繰り返す地震、その実例</h2>
+      <p class="lead">「地震は一度では終わらない」を、実際に同じ地域が複数回の震度6弱以上に襲われた記録で語れるようにする。</p>
+
+      <section id="ch3-1" class="section">
+        <h3>3-1　熊本地震・益城町の詳細</h3>
+        <div class="fact">
+          <div class="k">2016年熊本地震</div>
+          <div class="v">震度7を28時間で2回</div>
+          <div class="d">
+            <ul>
+              <li>4月14日21:26　前震（マグニチュード6.5）震度7</li>
+              <li>4月16日01:25　本震（マグニチュード7.3）震度7</li>
+              <li>気象庁の観測史上はじめて、同じ場所で震度7を2回記録した。</li>
+            </ul>
+          </div>
+          <div class="src">出典：気象庁「熊本地震から10年」特設サイト／益城町公式サイト「震度7×2からの復興」</div>
+        </div>
+
+        <div class="diagram-box">
+          <figure style="flex:1 1 100%">
+            <svg viewBox="0 0 520 170" class="dgtxt" role="img" aria-label="熊本地震のタイムライン。4月14日21時26分の前震から28時間後の4月16日1時25分に本震が起き、どちらも震度7だった">
+              <line x1="40" y1="120" x2="480" y2="120" stroke="#94a1ad" stroke-width="1.5"/>
+
+              <line x1="110" y1="120" x2="110" y2="55" stroke="var(--leak)" stroke-width="4"/>
+              <circle cx="110" cy="120" r="4" fill="var(--leak)"/>
+              <text x="110" y="45" text-anchor="middle" font-size="13" font-weight="800" fill="var(--leak)">震度7</text>
+              <text x="110" y="138" text-anchor="middle" font-size="11" font-weight="800" fill="var(--ink)">前震</text>
+              <text x="110" y="153" text-anchor="middle" font-size="10.5" fill="var(--sub)">4/14 21:26</text>
+
+              <line x1="410" y1="120" x2="410" y2="55" stroke="var(--leak)" stroke-width="4"/>
+              <circle cx="410" cy="120" r="4" fill="var(--leak)"/>
+              <text x="410" y="45" text-anchor="middle" font-size="13" font-weight="800" fill="var(--leak)">震度7</text>
+              <text x="410" y="138" text-anchor="middle" font-size="11" font-weight="800" fill="var(--ink)">本震</text>
+              <text x="410" y="153" text-anchor="middle" font-size="10.5" fill="var(--sub)">4/16 01:25</text>
+
+              <line x1="120" y1="85" x2="400" y2="85" stroke="var(--navy)" stroke-width="1.3" stroke-dasharray="4 3"/>
+              <polygon points="120,85 128,81 128,89" fill="var(--navy)"/>
+              <polygon points="400,85 392,81 392,89" fill="var(--navy)"/>
+              <text x="260" y="75" text-anchor="middle" font-size="12.5" font-weight="800" fill="var(--navy)">28時間後</text>
+            </svg>
+            <figcaption>熊本地震のタイムライン——震度7が28時間おいて2回</figcaption>
+          </figure>
+        </div>
+
+        <p>「一度大きな地震が来たら、しばらくは大丈夫だろう」——この地震では、その直感は通用しなかった。前震で耐えた建物が、その28時間後の本震で倒壊したケースが多数報告されている。だからこそ「倒壊しない」だけでなく「繰り返しに耐える」性能が必要という話を、そのまま裏づける事例。</p>
+      </section>
+
+      <section id="ch3-2" class="section">
+        <h3>3-2　全国の繰り返し地震データ</h3>
+        <p>熊本地震は特殊な例ではない。気象庁公式「震度6または6弱以上を観測した地震の一覧表」（地震・火山月報防災編付録9、1926〜2024年）を見ると、同じ場所が別々の地震で何度も震度6弱以上を記録しているケースが、ほかにも見つかる（益城町以外は自分たちで集計したもの。気象庁が「複数回観測した地点」として公式にリスト化しているわけではない点に注意）。</p>
+        <table class="dtbl">
+          <tr><th>地域</th><th>該当地震・年</th><th>震度</th><th>間隔</th></tr>
+          <tr><td class="hi">石川県志賀町</td><td>2007年能登半島地震／2024年能登半島地震ほか</td><td>6強→7ほか</td><td>17年間で計4回</td></tr>
+          <tr><td class="hi">宮城県蔵王町</td><td>2011年東日本大震災／2021年・2022年福島県沖</td><td>いずれも6強</td><td>11年で3回</td></tr>
+          <tr><td class="hi">新潟県長岡市</td><td>2004年新潟県中越地震／2007年新潟県中越沖地震</td><td>いずれも6強</td><td>3年間隔で2回</td></tr>
+          <tr><td class="hi">北海道厚真町</td><td>2018年北海道胆振東部地震／2019年</td><td>7→6弱</td><td>5ヶ月間隔で2回</td></tr>
+        </table>
+        <div class="unverified"><b>注記：</b>全国的な件数の公式集計値（「震度6弱以上を2回以上観測した市区町村は全国で◯箇所」）は今回の調査では見つからず、不明。上記4地域はあくまで代表事例として使う。</div>
+      </section>
+    </div>
+
+    <div id="ch4" class="chapter">
+      <div class="no">Chapter 4</div>
+      <h2>「家を硬くする」代償の裏付け</h2>
+      <p class="lead">「倒壊しない」ことと「家の中が安全」であることは別の話——この主張を、構造の一般論と公的な被害統計の両方から補強する。</p>
+
+      <section id="ch4-1" class="section">
+        <h3>4-1　耐震構造と制振構造、揺れの伝わり方の違い</h3>
+        <p>「家を硬くするほど、地震の揺れはそのまま室内に伝わる」——これは大手建設会社の技術解説でも共通して説明されている、構造の世界では一般的な考え方。</p>
+        <table class="dtbl">
+          <tr><th>構造</th><th>説明</th></tr>
+          <tr><td class="hi">耐震構造</td><td>建物が地震の力に耐えて倒れないようにする構造。ただし揺れそのものは、室内にそのまま伝わる</td></tr>
+          <tr><td class="hi">制振構造</td><td>ダンパーなどで揺れのエネルギーを吸い取り、建物の変形や揺れの伝わり方を抑える</td></tr>
+          <tr><td class="hi">免震構造</td><td>地面と建物を切り離してしまい、そもそも揺れが建物に伝わりにくくする</td></tr>
+        </table>
+        <p style="font-size:12px; color:var(--sub)">出典：ヤマト住建・大成建設・鹿島建設の技術解説記事（各社公式サイト）</p>
+
+        <div class="diagram-box">
+          <figure style="flex:1 1 100%">
+            <svg viewBox="0 0 560 250" class="dgtxt" role="img" aria-label="耐震構造・制振構造・免震構造で、地震の揺れが建物の中にどれだけ伝わるかを示す図">
+              <rect x="200" y="60" width="170" height="150" fill="var(--navy-soft)" opacity="0.5" rx="8"/>
+              <text x="285" y="52" text-anchor="middle" font-size="10.5" font-weight="800" fill="var(--navy)">LIFEXはここ（両方を備える）</text>
+
+              <line x1="20" y1="200" x2="540" y2="200" stroke="#94a1ad" stroke-width="1.5"/>
+
+              <!-- 耐震構造 -->
+              <polygon points="60,80 95,110 25,110" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+              <rect x="25" y="110" width="70" height="90" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+              <path d="M60,200 L47,179 L73,158 L47,137 L73,116 L60,95" fill="none" stroke="var(--leak)" stroke-width="2.3"/>
+              <text x="60" y="222" text-anchor="middle" font-size="12.5" font-weight="800" fill="var(--ink)">耐震構造</text>
+              <text x="60" y="237" text-anchor="middle" font-size="10.5" fill="var(--leak)">揺れがそのまま伝わる</text>
+
+              <!-- 制振構造 -->
+              <polygon points="285,80 320,110 250,110" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+              <rect x="250" y="110" width="70" height="90" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+              <path d="M285,200 L272,175 L298,150" fill="none" stroke="var(--navy)" stroke-width="2.3"/>
+              <rect x="276" y="143" width="18" height="14" fill="var(--leak)" opacity="0.18" stroke="var(--leak)" stroke-width="1.2"/>
+              <text x="285" y="135" text-anchor="middle" font-size="9" font-weight="800" fill="var(--leak)">ダンパー</text>
+              <path d="M285,150 L280,131.7 L290,113.3 L285,95" fill="none" stroke="var(--navy)" stroke-width="2.3"/>
+              <text x="285" y="222" text-anchor="middle" font-size="12.5" font-weight="800" fill="var(--ink)">制振構造</text>
+              <text x="285" y="237" text-anchor="middle" font-size="10.5" fill="var(--navy)">揺れを吸収する</text>
+
+              <!-- 免震構造 -->
+              <polygon points="475,80 510,110 440,110" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+              <rect x="440" y="110" width="70" height="90" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.3"/>
+              <ellipse cx="457" cy="180" rx="9" ry="5" fill="var(--blue)" opacity="0.35" stroke="var(--blue)" stroke-width="1"/>
+              <ellipse cx="475" cy="180" rx="9" ry="5" fill="var(--blue)" opacity="0.35" stroke="var(--blue)" stroke-width="1"/>
+              <ellipse cx="493" cy="180" rx="9" ry="5" fill="var(--blue)" opacity="0.35" stroke="var(--blue)" stroke-width="1"/>
+              <text x="475" y="196" text-anchor="middle" font-size="8.5" font-weight="800" fill="var(--blue)">免震層</text>
+              <path d="M475,200 L462,190 L488,180" fill="none" stroke="var(--blue)" stroke-width="2.3"/>
+              <path d="M475,180 L472,151.7 L478,123.3 L475,95" fill="none" stroke="var(--blue)" stroke-width="2.3"/>
+              <text x="475" y="222" text-anchor="middle" font-size="12.5" font-weight="800" fill="var(--ink)">免震構造</text>
+              <text x="475" y="237" text-anchor="middle" font-size="10.5" fill="var(--blue)">揺れがほとんど伝わらない</text>
+            </svg>
+            <figcaption>地面の揺れが、建物の中までどう伝わるか（イメージ図）</figcaption>
+          </figure>
+        </div>
+        <p style="font-size:11.5px; color:var(--sub); margin-top:-8px">※実測データではなく、各社解説記事の説明を模式化したイメージ図。波の振れ幅が「揺れの強さ」を表し、制振・免震は建物の中に入るところで振れ幅が小さくなっている。</p>
+
+        <p>LIFEXが提案しているのは、耐震（倒れない）と制振（傷まない・伝わり方を抑える）の両方を備えた構成。「硬さだけで対抗する」という考え方（第5章で扱う一条工務店の例）との違いを説明するときの軸になる。</p>
+      </section>
+
+      <section id="ch4-2" class="section">
+        <h3>4-2　家具転倒の被害データ（詳細版）</h3>
+        <p>教科書スライドで紹介した「地震のケガの原因の約30〜50%は家具類の転倒・落下・移動」という数字の、もとになっているデータ。</p>
+
+        <div class="fact">
+          <div class="k">出典の大元</div>
+          <div class="v">日本建築学会『阪神淡路大震災住宅内部被害調査報告書』</div>
+          <div class="d">
+            <p>編者は日本建築学会建築計画委員会 兵庫県南部地震調査研究部会 建築内部空間における被害ワーキンググループ。1996年9月発行、273ページ。</p>
+            <p>3部構成で、第1部は地震のときの行動や各部屋の散らかり方、家具・家電の被害を数字で分析。第2部は家具の形と転倒しやすさの関係を事例で分析。第3部は、地震に強い部屋づくりの提案をしている。</p>
+          </div>
+          <div class="src">出典：国立国会図書館書誌（請求記号 NA241-M206）／神戸大学附属図書館「震災文庫」</div>
+        </div>
+
+        <h4>地震ごとの「家具転倒・落下・移動が原因のけが人」の割合</h4>
+        <table class="dtbl">
+          <tr><th>地震</th><th>年</th><th>割合</th></tr>
+          <tr><td>宮城県北部地震</td><td>2003年</td><td class="hi">49.4%</td></tr>
+          <tr><td>岩手・宮城内陸地震</td><td>2008年</td><td class="hi">44.6%</td></tr>
+          <tr><td>新潟県中越地震</td><td>2004年</td><td>41.2%</td></tr>
+          <tr><td>新潟県中越沖地震</td><td>2007年</td><td>40.7%</td></tr>
+          <tr><td>十勝沖地震</td><td>2003年</td><td>36.3%</td></tr>
+          <tr><td>福岡県西方沖地震</td><td>2005年</td><td>36.0%</td></tr>
+          <tr><td>能登半島地震</td><td>2007年</td><td>29.4%</td></tr>
+        </table>
+        <p style="font-size:12px; color:var(--sub)">出典：東京消防庁『家具類の転倒・落下・移動防止対策ハンドブック―室内の地震対策―』平成27年度版 P1（教科書スライドの「30〜50%」の直接の出典）</p>
+
+        <h4>熊本地震（2016年）での実態調査</h4>
+        <p>東京消防庁が熊本地震のあとに行った室内被害の実態調査（戸建住宅編：熊本市消防局管内800世帯に配布・407件回収／マンション編：熊本市中央区6棟547世帯に配布・245件回収）では、こんな結果が出ている。</p>
+        <ul>
+          <li>戸建住宅：負傷率5.8%、うち家具類の転倒等による負傷は<b>29.2%</b>（過去の同種調査の「3〜5割」とほぼ同水準かやや少ない、と報告書内で評価）</li>
+          <li>マンション：負傷率6.1%、うち家具類の転倒等による負傷は<b>40.0%</b></li>
+          <li>負傷の内訳（マンション）：ガラス・食器類の破片50.0%／転倒した家具類の下敷き33.3%／タンス上等からの落下物16.7%</li>
+          <li>負傷の内訳（戸建）：転倒した家具類の下敷き57.1%／タンス上等からの落下物28.6%</li>
+        </ul>
+        <p style="font-size:12px; color:var(--sub)">出典：東京消防庁「平成28年熊本地震に伴う室内被害の実態調査結果」戸建住宅編・マンション編</p>
+      </section>
+
+      <section id="ch4-3" class="section">
+        <h3>4-3　家具が倒れ始める震度・加速度の目安</h3>
+        <p>「震度いくつから家具が倒れ始めるのか」と具体的に聞かれたときに使える、学術的な実験データ。表の中に出てくる「gal（ガル）」という単位を、先に押さえておく。</p>
+
+        <div class="column">
+          <div class="label">そもそも「gal（ガル）」って何？——車のブレーキで例えると</div>
+          <p>gal（ガル）は、地震の「揺れの加速度」を表す単位。実は、車の運転でよく聞く「G（急ブレーキで◯Gかかった、のG）」と同じ考え方の数字で、単位を変えただけ。重力そのものの強さ＝1G が、ちょうど約980galにあたる。</p>
+          <p>車の運転に置き換えると、普通に踏むブレーキは0.2〜0.3G程度、「急ブレーキ」と言われるレベルで0.4〜0.6G程度、タイヤが滑り始める限界に近いフルブレーキでも0.8G程度が一般的な目安。</p>
+          <p>これで表の数字を読むと、本棚が倒れ始める174gal（約0.18G）は、普通のブレーキよりも弱いレベル。洋服だんす・整理だんすが倒れ始める327〜315gal（約0.3G強）は、ちょうど「急ブレーキ」くらいの強さ。ダイニングテーブルの535gal（約0.55G）は、フルブレーキに近いレベルまで倒れない、ということになる。「本棚は、車の普通のブレーキ程度の揺れでも倒れ始める」と言うと、お客様にも実感が伝わりやすい。</p>
+          <p style="font-size:11.5px; color:var(--sub); margin-bottom:0">※車のG値は、運転時の一般的な目安として複数の自動車・フリート管理関連の解説記事で言及されている数字（学術的な公式統計ではなく、あくまで感覚をつかむための概算）。1G=980gal（正確には980.665gal）は物理定数。</p>
+        </div>
+
+        <table class="dtbl">
+          <tr><th>家具</th><th>高さ</th><th>転倒限界加速度</th><th>転倒率50%となる加速度</th></tr>
+          <tr><td>洋服だんす</td><td>180cm</td><td class="hi">327gal</td><td>436gal</td></tr>
+          <tr><td>整理だんす</td><td>140cm</td><td class="hi">315gal</td><td>416gal</td></tr>
+          <tr><td>食器戸棚</td><td>190cm</td><td class="hi">232gal</td><td>287gal</td></tr>
+          <tr><td>本棚</td><td>180cm</td><td class="hi">174gal</td><td>205gal</td></tr>
+          <tr><td>ダイニングテーブル</td><td>110cm</td><td class="hi">535gal</td><td>826gal</td></tr>
+        </table>
+        <p style="font-size:12px; color:var(--sub)">出典：日本建築学会「非構造部材の耐震設計施工指針・同解説および耐震設計施工要領」2003年／金子美香・林康裕「剛体の転倒率曲線の提案」日本建築学会構造系論文集第536号、2000年（国土技術政策総合研究所 参考資料4-Aに引用）</p>
+        <p>大まかな目安としては、岡田成幸・鏡味洋史による研究（1991年）で「震度4.0を超えると不安定な置物が落ち始め、震度5.0を超えると重い家具（たんす、書棚など）が倒れ始める」とされている。表の中では本棚（174gal）が一番小さな揺れで倒れ始める——ここは会話でそのまま使いやすいポイント。</p>
+      </section>
+    </div>
+
+    <div id="ch5" class="chapter">
+      <div class="no">Chapter 5</div>
+      <h2>一条工務店との違い</h2>
+      <p class="lead">「2倍耐震」という強い訴求文句を持つ競合に対して、どこまでが公式情報でどこからが推論か、線引きを明確にした上で語れるようにする。</p>
+
+      <section id="ch5-1" class="section">
+        <h3>5-1　ツインモノコック構造の詳細</h3>
+        <div class="fact">
+          <div class="k">一条工務店公式の説明</div>
+          <div class="d">
+            <p>「壁」「床」「天井」を一体化した箱型の構造で、地震の力を「面」全体で受け止めて分散させる。壁の厚みは、2×4工法の約1.6倍にあたる2×6工法を採用している。</p>
+            <p>耐力壁（地震に耐える壁）は、建築基準法の認定で一番強い区分にあたる「壁倍率5倍」。釘打ちも、基準の最大2倍の本数、長さ最大1.5倍の釘を使っている。</p>
+            <p>床は「剛床」という硬い構造で、1階・2階の天井にも構造用合板を使って、横方向の強さを高めている。壁の四面を上下から挟み込んで、箱のような「六面体」を作っている。</p>
+          </div>
+          <div class="src">出典：一条工務店公式サイト「ツインモノコック構造」</div>
+        </div>
+
+        <p>「モノコック構造」という言葉自体は、もともと自動車や航空機の分野で使われる言葉。「外側の面そのものが強さを支える部材を兼ねている構造」を指す一般的な呼び方で、カニやエビのような甲殻類の外骨格に例えられることが多い。木造軸組構法（柱・梁のような線や点で支える構造）と比べると、面全体で力を受け止めて分散させるので、一か所に力が集中しにくい——という説明が、住宅の解説記事レベルでは確認できる。2×4工法やSW工法（スーパーウォール工法）なども、この仲間に入るとされている。</p>
+
+        <div class="diagram-box">
+          <figure>
+            <svg viewBox="0 0 260 260" class="dgtxt" role="img" aria-label="軸組構造は柱と梁の一点に力が集中し、モノコック構造は面全体に力が分散することを示す図">
+              <line x1="70" y1="80" x2="190" y2="80" stroke="var(--ink)" stroke-width="2.2"/>
+              <line x1="70" y1="200" x2="190" y2="200" stroke="var(--ink)" stroke-width="2.2"/>
+              <line x1="70" y1="80" x2="70" y2="200" stroke="var(--ink)" stroke-width="4"/>
+              <line x1="190" y1="80" x2="190" y2="200" stroke="var(--ink)" stroke-width="4"/>
+              <line x1="70" y1="200" x2="190" y2="80" stroke="var(--ink)" stroke-width="1.3" opacity="0.55"/>
+              <line x1="190" y1="200" x2="70" y2="80" stroke="var(--ink)" stroke-width="1.3" opacity="0.55"/>
+
+              <line x1="235" y1="140" x2="196" y2="140" stroke="var(--leak)" stroke-width="2.5"/>
+              <polygon points="196,140 206,134 206,146" fill="var(--leak)"/>
+              <text x="234" y="128" text-anchor="end" font-size="10.5" fill="var(--leak)">外からの力</text>
+              <circle cx="190" cy="140" r="7" fill="none" stroke="var(--leak)" stroke-width="2" stroke-dasharray="2.5 2"/>
+              <text x="190" y="222" text-anchor="middle" font-size="10.5" font-weight="800" fill="var(--leak)">力が一点に集中しやすい</text>
+              <text x="130" y="240" text-anchor="middle" font-size="12" font-weight="800" fill="var(--ink)">軸組構造（柱・梁で支える）</text>
+            </svg>
+            <figcaption>木造軸組構法のイメージ</figcaption>
+          </figure>
+          <figure>
+            <svg viewBox="0 0 260 260" class="dgtxt" role="img" aria-label="モノコック構造は面全体に力が分散することを示す図">
+              <rect x="70" y="80" width="120" height="120" fill="var(--navy-soft)" stroke="var(--navy)" stroke-width="2.2"/>
+
+              <line x1="235" y1="140" x2="196" y2="140" stroke="var(--navy)" stroke-width="2.5"/>
+              <polygon points="196,140 206,134 206,146" fill="var(--navy)"/>
+              <text x="234" y="128" text-anchor="end" font-size="10.5" fill="var(--navy)">外からの力</text>
+
+              <line x1="190" y1="140" x2="100" y2="95" stroke="var(--navy)" stroke-width="1.1" opacity="0.5"/>
+              <line x1="190" y1="140" x2="82" y2="140" stroke="var(--navy)" stroke-width="1.1" opacity="0.5"/>
+              <line x1="190" y1="140" x2="100" y2="185" stroke="var(--navy)" stroke-width="1.1" opacity="0.5"/>
+              <line x1="190" y1="140" x2="140" y2="90" stroke="var(--navy)" stroke-width="1.1" opacity="0.5"/>
+              <line x1="190" y1="140" x2="140" y2="190" stroke="var(--navy)" stroke-width="1.1" opacity="0.5"/>
+              <circle cx="190" cy="140" r="5" fill="var(--navy)"/>
+              <text x="130" y="222" text-anchor="middle" font-size="10.5" font-weight="800" fill="var(--navy)">力が面全体に分散する</text>
+              <text x="130" y="240" text-anchor="middle" font-size="12" font-weight="800" fill="var(--ink)">モノコック構造（面で支える）</text>
+            </svg>
+            <figcaption>ツインモノコック構造のイメージ</figcaption>
+          </figure>
+        </div>
+        <p style="font-size:11.5px; color:var(--sub); margin-top:-6px">※一条工務店の実際の構造図ではなく、「線・点で支える」と「面で支える」の違いを説明するための一般的な模式図。</p>
+
+        <div class="unverified"><b>注記：</b>この一般的な説明は住宅情報サイトの解説記事レベルの確認にとどまり、大学の構造力学の教科書のような一次資料から直接引用したものではない。</div>
+
+        <h4>E-ディフェンスでの実大実験</h4>
+        <p>一条工務店は2005年（平成17年）、実物大の建物を揺らして壊す実験施設「E-ディフェンス」の最初の稼働イベントで、初回の公開震動実験のパートナーとして参加した。それ以降「業界最多」と言われる回数の実物大実験を重ねているとされ、判定の基準を「倒れないこと」ではなく「地震のあとも安心して生活を続けられること」に置いているという説明がある。</p>
+        <div class="unverified"><b>未確認：</b>具体的な実験の実施年・回数・建物タイプごとの詳しいデータは、一条工務店の公式サイト・プレスリリースのどちらにも書かれておらず、不明。</div>
+      </section>
+
+      <section id="ch5-2" class="section">
+        <h3>5-2　「2倍耐震」の技術的背景</h3>
+        <p>一条工務店の「2倍耐震」は、建築基準法の基準の2倍の強さを実現するという意味の耐震性能を指し、公式サイトでは「耐震等級3を凌駕する強さ」と表現されている。この数値や実験実績（40年以上の実物大実験、E-ディフェンスでの官民共同実験など）は、公式サイトで確認できる。</p>
+      </section>
+
+      <section id="ch5-3" class="section">
+        <h3>5-3　推論部分の扱い方——ここが最重要</h3>
+        <p>一条工務店が制振ダンパーを標準搭載していない（とされる）ことについて、<b>「なぜ搭載しないのか」を一条工務店自身が公式に説明している文章は見当たらなかった</b>。教科書スライドで「制振ダンパーを標準搭載していない背景には、この設計思想があると考えられる」と書いているのは、下の事実から推論したものであって、事実そのものではない。お客様に説明するときも、この違いをはっきり区別すること。</p>
+        <div class="unverified">
+          <b>確認できた事実</b>：一条工務店は「2倍耐震」を掲げるほど、建物自体を硬く・強くする設計思想を貫いている（公式サイトより）。<br>
+          <b>ここからの推論（LIFEX側の見立て）</b>：建物を硬くする設計思想と、揺れを吸収する制振ダンパーの追加は、考え方の方向性が異なる。そのため制振ダンパーを標準搭載していないのではないか、と考えられる。
+        </div>
+        <p>お客様との会話でこの話題が出た場合、「一条工務店さんが制振を使わない理由は公式には説明されていませんが、『2倍耐震』というほど建物を硬くする思想を貫いておられるので、その延長にあるのではと思います」というように、事実と推論を分けて話すと誠実さが伝わる。「一条工務店は制振を軽視している」というような断定的な言い方は避ける。</p>
+      </section>
+    </div>
+
+    <div id="ch6" class="chapter">
+      <div class="no">Chapter 6</div>
+      <h2>他社制振ダンパーとの違い</h2>
+      <p class="lead">「制振装置がついている」という一言だけでは差別化にならない。方式・仕様を正確に理解して初めて、違いを説明できる。</p>
+
+      <section id="ch6-1" class="section">
+        <h3>6-1　ミライエ（住友ゴム工業）の技術詳細</h3>
+        <div class="fact">
+          <div class="k">制振の仕組み</div>
+          <div class="v">高減衰ゴム系</div>
+          <div class="d">公式の説明では「跳ね返る力（運動エネルギー）を、特殊なゴムボールが瞬時に熱に変えて吸収・発散する」仕組み。ゴムと鉄板をくっつける部分には「加硫接着」という独自の技術を使っていて、90年たっても性能がほとんど変わらないとされている（「90年メンテナンスフリー」という訴求の根拠になっている）。</div>
+          <div class="src">出典：住友ゴム工業 MIRAIE公式サイト「制震技術」「特長」</div>
+        </div>
+
+        <h4>製品ラインナップ</h4>
+        <table class="dtbl">
+          <tr><th>製品名</th><th>対応工法・特徴</th></tr>
+          <tr><td class="hi">MIRAIE</td><td>戸建て住宅用の基本モデル</td></tr>
+          <tr><td class="hi">MIRAIE 2×4</td><td>枠組壁工法（2×4工法）向け。階高2450〜2750mm、床面積500㎡以下などの適用範囲規定あり</td></tr>
+          <tr><td class="hi">MIRAIE Σ</td><td>木造軸組工法（在来工法）向け</td></tr>
+          <tr><td class="hi">MIRAIE S</td><td>2026年夏以降発売予定。基礎緊結方式でスリム化、コンパクト住宅向け</td></tr>
+        </table>
+        <p style="font-size:12px; color:var(--sub)">出典：MIRAIE公式サイト各製品ページ／住友ゴム工業ニュースリリース（2026年）</p>
+        <div class="unverified"><b>未確認：</b>「MIRAIE Σは壁倍率3.6・大臣認定取得」という情報は複数の代理店・比較サイトで言及されているが、公式サイト本文中に壁倍率の数値・認定番号の直接記載は確認できていない。MIRAIE無印・2×4・Sの壁倍率・大臣認定の有無も、公式ページ本文では確認できず不明。特許番号・高減衰ゴムの化学組成の詳細も不明。</div>
+      </section>
+
+      <section id="ch6-2" class="section">
+        <h3>6-2　アイダンパー（アイ工務店）の技術詳細</h3>
+        <div class="fact">
+          <div class="k">制振の仕組み</div>
+          <div class="v">摩擦式</div>
+          <div class="d">公式の説明では「ふだんは壁倍率5倍（建築基準法で一番強い区分）の耐力壁として『建物を変形させない』働きをし、耐力壁だけでは受け止めきれない強い揺れのときに『建物の変形を抑える』制振装置としての働きが始まる」仕組み。</div>
+          <div class="src">出典：アイ工務店公式サイト「耐震性能」</div>
+        </div>
+        <p>2023年4月契約分から「AIダンパー」として標準の仕様になった（壁倍率3.3、大臣認定取得、との情報がある）。2025年9月契約分からは進化版の「AIダンパー Dual Shield」に切り替わり、全棟標準装備・壁倍率5倍に強化されたとみられる。「Dual Shield」という名前は、ふだんは耐力壁・大地震のときは制振という「2つの役割（盾）」を持つことに由来する、という説明が代理店側にあるが、これは一条工務店の場合と同じく、アイ工務店の公式な語源説明ではない。</p>
+        <div class="unverified"><b>未確認：</b>大臣認定番号、旧型（壁倍率3.3）の認定を取得した年、摩擦材の材質・摩擦係数などの技術的な詳細は、公式サイト・検索結果のどちらからも確認できず、不明。</div>
+
+        <div class="diagram-box">
+          <figure style="flex:1 1 200px; min-width:180px">
+            <svg viewBox="0 0 200 190" class="dgtxt" role="img" aria-label="evoltzのオイルダンパーの仕組み">
+              <rect x="25" y="75" width="115" height="40" rx="6" fill="var(--navy-soft)" stroke="var(--navy)" stroke-width="1.6"/>
+              <circle cx="55" cy="95" r="3.5" fill="var(--blue)" opacity="0.6"/>
+              <circle cx="78" cy="88" r="3" fill="var(--blue)" opacity="0.6"/>
+              <circle cx="70" cy="103" r="3" fill="var(--blue)" opacity="0.6"/>
+              <circle cx="100" cy="95" r="3.5" fill="var(--blue)" opacity="0.6"/>
+              <rect x="138" y="86" width="40" height="18" fill="var(--navy)"/>
+              <line x1="20" y1="65" x2="20" y2="125" stroke="var(--sub)" stroke-width="1"/>
+              <path d="M25,68 L15,68 M15,68 L19,64 M15,68 L19,72" stroke="var(--sub)" stroke-width="1.2" fill="none"/>
+              <path d="M25,122 L15,122 M15,122 L19,118 M15,122 L19,126" stroke="var(--sub)" stroke-width="1.2" fill="none"/>
+              <text x="100" y="145" text-anchor="middle" font-size="12" font-weight="800" fill="var(--navy)">オイル（油圧）＝evoltz</text>
+              <text x="100" y="162" text-anchor="middle" font-size="10.5" fill="var(--sub)">速度が速いほど強く抵抗</text>
+              <text x="100" y="177" text-anchor="middle" font-size="10.5" fill="var(--sub)">＝小さな揺れからずっと効く</text>
+            </svg>
+            <figcaption>evoltz（速度依存型）</figcaption>
+          </figure>
+          <figure style="flex:1 1 200px; min-width:180px">
+            <svg viewBox="0 0 200 190" class="dgtxt" role="img" aria-label="ミライエの高減衰ゴムの仕組み">
+              <rect x="45" y="65" width="110" height="12" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.4"/>
+              <rect x="45" y="118" width="110" height="12" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.4"/>
+              <circle cx="100" cy="97" r="20" fill="var(--leak)" opacity="0.22" stroke="var(--leak)" stroke-width="1.6"/>
+              <text x="100" y="145" text-anchor="middle" font-size="12" font-weight="800" fill="var(--leak)">高減衰ゴム＝ミライエ</text>
+              <text x="100" y="162" text-anchor="middle" font-size="10.5" fill="var(--sub)">ゴムが変形してから抵抗</text>
+              <text x="100" y="177" text-anchor="middle" font-size="10.5" fill="var(--sub)">＝ある程度揺れてから効く</text>
+            </svg>
+            <figcaption>ミライエ（変位依存型）</figcaption>
+          </figure>
+          <figure style="flex:1 1 200px; min-width:180px">
+            <svg viewBox="0 0 200 190" class="dgtxt" role="img" aria-label="アイダンパーの摩擦式の仕組み">
+              <rect x="40" y="72" width="120" height="16" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.4"/>
+              <rect x="40" y="106" width="120" height="16" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.4"/>
+              <path d="M45,96 L55,88 M60,96 L70,88 M75,96 L85,88 M90,96 L100,88 M105,96 L115,88 M120,96 L130,88 M135,96 L145,88 M150,96 L155,92" stroke="var(--p3)" stroke-width="1.6"/>
+              <text x="100" y="145" text-anchor="middle" font-size="12" font-weight="800" fill="var(--p3)">摩擦材＝アイダンパー</text>
+              <text x="100" y="162" text-anchor="middle" font-size="10.5" fill="var(--sub)">こすれ合う力で抵抗</text>
+              <text x="100" y="177" text-anchor="middle" font-size="10.5" fill="var(--sub)">＝ある程度揺れてから効く</text>
+            </svg>
+            <figcaption>アイダンパー（変位依存型）</figcaption>
+          </figure>
+        </div>
+        <p style="font-size:11.5px; color:var(--sub); margin-top:-6px">※各社の実際の内部構造の再現図ではなく、方式の違いを直感的につかむための模式図。</p>
+      </section>
+
+      <section id="ch6-3" class="section">
+        <h3>6-3　震度4〜5での効き方の違い——再掲と補強</h3>
+        <p>第2章2-1で見た「すぐ効くタイプ／ある程度揺れてから効くタイプ」の区分に戻ると、ミライエ（ゴム系）・アイダンパー（摩擦式）はどちらも「ある程度揺れてから効くタイプ」に入る。教科書スライドのグラフで示した通り、このタイプは「ある程度の変形が起きてから本格的に効き始める」という特性を持つとされ、第2章で紹介した佐藤実氏の発言（「変位依存型の場合だと、ある程度の傾きが出てから効く」）とも一致する、一般的な理解。</p>
+        <p>一方で、ミライエ・アイダンパーはどちらも、自社製品を「震度7」クラスの大地震での実績・性能で訴求している（教科書スライドで引用済み）。これは各社の技術方式からすれば自然な訴求の仕方——大きな変形が起きたときにこそ本領を発揮する方式だから、という理屈で一貫している。震度4〜5程度の小さめ〜中くらいの揺れでの性能について、両社の公式サイトに具体的な記載がないことも、この特性と矛盾しない。</p>
+        <div class="unverified"><b>重要な整理：</b>「ミライエ・アイダンパーは震度4〜5で効果が低く、建物にダメージが入っている」と言い切れる実測データは、どちらの会社も公表しておらず、存在しない。ここで言えるのは「①ある程度揺れてから効くタイプには、一般的にそういう特性があるとされる②両社は震度7クラスでの実績を訴求していて、震度4〜5での性能には触れていない」という2つの事実だけで、そこから先の「だから効いていない」は推論でしかない。営業トークでは「震度4〜5ではどうなんでしょうね、という視点を持っておくといいかもしれません」くらいの投げかけに留め、言い切らないこと。</div>
+      </section>
+    </div>
+
+    <div id="ch7" class="chapter">
+      <div class="no">Chapter 7</div>
+      <h2>想定QA集</h2>
+      <p class="lead">お客様からよく出る質問と、この参考書の内容に基づいた回答例。丸暗記ではなく、自分の言葉に置き換えて使ってほしい。</p>
+
+      <div class="qa">
+        <div class="q"><span class="tag">Q1</span>耐震等級3って、どこの会社でも同じなんですか？</div>
+        <div class="a"><b>回答例：</b>実は計算方法が3種類あって、中身がかなり違うんです。一番簡易な「壁量計算」だけで取る方法から、LIFEXが使っている一番手間のかかる「許容応力度計算（構造計算）」まで幅があります。数字にすると、簡易な方法の耐震等級1を1.0とした場合、LIFEXの構造計算による耐震等級3は2.4〜2.7くらいの強度になる、という目安もあるくらいです（第1章1-5、構造塾・佐藤実氏の目安値）。「何で計算して取っているか」を聞いていただくのが一番早いです。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q"><span class="tag">Q2</span>耐震等級3があれば十分で、制振装置は要らないのでは？</div>
+        <div class="a"><b>回答例：</b>耐震は「倒壊しない」ための性能で、制振は「損傷しない・繰り返しに耐える」ための性能なので、実は役割が違うんです。富山で行われた公開実験では、耐震等級3だけだと大地震2回目で損傷が進んで実験中止になったんですが、制振装置evoltzを付けると大地震3回・中地震5回、計8回の加振に耐えました（第2章2-3）。熊本地震でも前震から28時間後に本震が来て、耐震等級3の建物でも被害が出ています。一度で終わらないのが地震なんです。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q"><span class="tag">Q3</span>evoltzって聞いたことないんですけど、大丈夫な会社なんですか？</div>
+        <div class="a"><b>回答例：</b>evoltz社は自動車のショックアブソーバーの技術を応用した制振装置を作っているメーカーで、実は構造の専門家（構造塾塾長の佐藤実さんという、全国1,500社以上の工務店を指導されている方）を実験に招いて、公開実験をされています。メーカー主催の実験に第三者の専門家を呼ぶのは、実は珍しいことなんです。ポジショントークにならないように、というのが理由だそうです（本書冒頭「専門家紹介」）。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q"><span class="tag">Q4</span>他社の制振装置と何が違うんですか？壁倍率があるって聞きました</div>
+        <div class="a"><b>回答例：</b>方式が違います。ミライエさんはゴム系、アイダンパーさんは摩擦式で、どちらも「変位依存型」——ある程度の変形が起きてから本格的に効き始めるタイプです。evoltzは「速度依存型」のオイルダンパーで、1mm（震度1相当）の小さな揺れから効き始めます。壁倍率については、実は構造の専門家から「制振装置に壁倍率を持たせて、その分耐震性能を下げてよいという営業トークはやめた方がいい」という強い指摘もあるんです（第2章2-2）。壁倍率があること自体が悪いわけではないですが、「だから安心」と単純には言えない、ということですね。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q"><span class="tag">Q5</span>一条工務店さんは制振装置を使っていないと聞きましたが、大丈夫なんですか？</div>
+        <div class="a"><b>回答例：</b>一条工務店さんは「2倍耐震」というくらい、建物自体を硬く・強くする設計を徹底されている会社です。なぜ制振を使わないかの公式な説明は見つからなかったのですが、恐らくこの「硬さで対抗する」という設計思想の延長にあるのだと思います。LIFEXは硬さ（耐震）と柔らかさ（制振）の両方を組み合わせる考え方なので、アプローチが違う、という説明が正確だと思います（第5章）。一条工務店さんを否定する言い方にならないよう気をつけてください。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q"><span class="tag">Q6</span>制振装置は1回使ったら効かなくなるんですよね？</div>
+        <div class="a"><b>回答例：</b>evoltzは違います。100万回の耐久試験をクリアしていて、性能劣化がほとんどないとされています。実際の実験でも、大地震3回・中地震5回、計8回の加振の最後まで効き続けていました（第2章2-3、2-4）。</div>
+      </div>
+
+      <div class="qa">
+        <div class="q"><span class="tag">Q7</span>震度7みたいな大きな地震が来たら、結局どれも同じなんじゃないですか？</div>
+        <div class="a"><b>回答例：</b>実はそこが逆転しやすいポイントなんです。ミライエさんやアイダンパーさんのような変位依存型は、大きな変形が起きてから本領を発揮するタイプなので、震度7クラスでの実績を強く打ち出しています。一方でevoltzは、震度1程度の小さな揺れから震度7の大きな揺れまで、変わらず効き続けるのが特徴です（第2章2-1、2-3）。大きな地震「だけ」ではなく、日常の小さな揺れから繰り返す余震まで、一貫して効くかどうかが違います。</div>
+      </div>
+    </div>
+
+    <div id="ch8" class="chapter">
+      <div class="no">Chapter 8</div>
+      <h2>出典・参考資料一覧</h2>
+      <p class="lead">この参考書で使用した全ての数字・主張の出典。章番号順にまとめている。</p>
+
+      <section class="section">
+        <h4>第1章　耐震等級3の法的根拠・熊本地震データ</h4>
+        <ul>
+          <li>建築基準法・同施行令（第20条、第40〜49条、第46条、第47条、第81条、第82条）：kakunin-shinsei.com／kentiku-kouzou.jp／kouzou-houki.com 各解説記事</li>
+          <li>平成12年建設省告示第1352号（四分割法）・第1460号（N値計算法）：同上</li>
+          <li>住宅の品質確保の促進等に関する法律（品確法）、日本住宅性能表示基準（平成13年国交告1346号）、評価方法基準（同1347号）：国土交通省公表PDF</li>
+          <li>2025年4月施行「4号特例」縮小・壁量基準見直し：国土交通省「必要な壁量等の基準（案）の概要」</li>
+          <li>許容応力度計算7項目の解説：kenchiku-kouzou.jp（偏心率）／構造金物相談所（水平構面）／kenchikuchishiki.com（座屈）／makehouse.co.jp「木造住宅に許容応力度計算は必要なのか」</li>
+          <li>熊本地震・木造住宅の悉皆調査データ：国土交通省「熊本地震における建築物被害の原因分析を行う委員会」報告書（平成28年9月30日）等をもとにした、五十田博氏（京都大学生存圏研究所）監修「熊本地震を教訓に。耐震等級3のススメ」（一般社団法人くまもと型住宅生産者連合会）</li>
+          <li>強度指数「1.9〜2.0」「2.4〜2.7」：YKKap A-PLUG「構造塾」佐藤実氏コラム第22回（<span style="word-break:break-all">https://aplug.ykkap.co.jp/communities/50/contents/752</span>）※会員限定・冒頭のみ確認</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h4>第2章　evoltzの技術・evoltzTIMES対談</h4>
+        <ul>
+          <li>速度依存型／変位依存型の一般的区分：evoltz Times Vol.2（2023年夏号）P7／「バッコ博士の構造塾」制振・制震ダンパーの種類と特徴</li>
+          <li>evoltzTIMES公開実験の全記録（実験条件・結果・対談引用）：evoltz社公開実験誌「evoltz Times Vol.2」2023年夏号 全10ページ（実験：2023年5月富山振動台）</li>
+          <li>evoltzの技術仕様（1mmから作動・3か国特許・100万回耐久）：evoltz社作成資料（営業トークスクリプト・知識確認テスト・LIFEXセミナースライド）</li>
+          <li>構造塾・佐藤実氏の経歴：M's構造設計 企業情報・著書紹介ページ（ms-structure.co.jp）／みんなの住宅研究所 理事紹介／構造塾YouTubeチャンネル／新建新聞社コラボ講座ページ</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h4>第3章　繰り返す地震の実例</h4>
+        <ul>
+          <li>熊本地震・益城町の震度7×2回：気象庁「熊本地震から10年」特設サイト／益城町公式サイト</li>
+          <li>志賀町・蔵王町・長岡市・厚真町の事例：気象庁公式「震度6または6弱以上を観測した地震の一覧表」（地震・火山月報防災編付録9）をもとにした自己集計</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h4>第4章　家具転倒・被害データ</h4>
+        <ul>
+          <li>日本建築学会『阪神淡路大震災住宅内部被害調査報告書』（1996年9月）：国立国会図書館書誌／神戸大学附属図書館「震災文庫」</li>
+          <li>地震ごとの家具転倒起因の負傷割合：東京消防庁『家具類の転倒・落下・移動防止対策ハンドブック』平成27年度版</li>
+          <li>熊本地震の室内被害実態調査：東京消防庁「平成28年熊本地震に伴う室内被害の実態調査結果」戸建住宅編・マンション編</li>
+          <li>家具の転倒限界加速度：日本建築学会「非構造部材の耐震設計施工指針・同解説および耐震設計施工要領」2003年／金子美香・林康裕 日本建築学会構造系論文集第536号（2000年）</li>
+          <li>震度と家具転倒の定性的目安：岡田成幸・鏡味洋史「震度による地震被害系統評価のためのバルナラビリティ関数群の構成」地震2 第44巻（1991年）</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h4>第5章　一条工務店</h4>
+        <ul>
+          <li>ツインモノコック構造・2倍耐震：一条工務店公式サイト「安全性」各ページ</li>
+          <li>モノコック構造の一般的定義：cleverlyhome.com／polaris-hs.jp／コスモ建設 各解説記事（住宅情報サイトレベルの確認）</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h4>第6章　他社制振ダンパー</h4>
+        <ul>
+          <li>ミライエの技術・製品ライン：住友ゴム工業 MIRAIE公式サイト各ページ／同社ニュースリリース（2026年）</li>
+          <li>アイダンパーの技術・仕様：アイ工務店公式サイト「耐震性能」</li>
+        </ul>
+      </section>
+
+      <div class="unverified" style="margin-top:24px">
+        <b>この参考書全体を通じた未確認・要留保事項のまとめ：</b><br>
+        ・許容応力度計算の結果で品確法の耐震等級3を取得できることを明記した評価方法基準の該当条文（未確認、二次情報での確認にとどまる）<br>
+        ・強度指数「2.4〜2.7」の算出根拠となったモデル建物・荷重条件（会員限定記事のため未確認）<br>
+        ・全国での「震度6弱以上を複数回観測した地域」の総数（公式集計値なし）<br>
+        ・ミライエ各製品の壁倍率・大臣認定番号、アイダンパーの大臣認定番号（両社とも公式ページ本文に記載なし）<br>
+        ・一条工務店が制振ダンパーを標準搭載していない理由（公式説明なし、本参考書では推論として明記）<br>
+        ・能登半島地震「573棟中0棟」の実績：evoltz社調べとして教科書スライドに掲載。国交省の公的な悉皆調査集計（2000年以降建築の木造建築物608棟、無被害65.5%等）とは棟数が一致せず、公的統計としての裏付けは取れていない
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <p>この参考書はLIFEX月2棟目標達成MTG第11回（2026年9月18日）の投影資料（教科書）の補足資料として作成しています。内容に誤り・更新すべき点を見つけた場合は、遠慮なく本部までご連絡ください。</p>
+  <p style="margin-top:8px">投影資料（教科書）：<a href="mtg-20260918.html" style="color:var(--navy)">mtg-20260918.html</a></p>
+</footer>

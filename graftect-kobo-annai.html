@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>LIFEX 工務店様向けご案内</title>
+<style>
+:root {
+  --navy: #0F2240;
+  --forest: #1B3D2A;
+  --forest-light: #E8EFE9;
+  --gold: #C4983A;
+  --gold-pale: rgba(196,152,58,0.10);
+  --gold-muted: #8A6820;
+  --bg: #F5F3EE;
+  --white: #FFFFFF;
+  --text: #1C1C1C;
+  --border: #DEDAD1;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #E8E4DC;
+  font-family: 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 800px;
+  margin: 28px auto;
+  background: var(--white);
+  box-shadow: 0 8px 48px rgba(0,0,0,0.14);
+}
+
+/* header */
+.header {
+  background: var(--navy);
+  padding: 22px 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.brand-name {
+  font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.06em;
+}
+.brand-tag {
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 4px;
+}
+.via-badge {
+  text-align: right;
+  font-size: 10px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+}
+.via-badge b { color: var(--gold); font-weight: 700; }
+
+.body { padding: 30px 36px 8px; display: flex; flex-direction: column; gap: 22px; }
+
+.section-head {
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* catch */
+.catch {
+  text-align: center;
+  padding: 26px 24px;
+  background: var(--bg);
+  border-radius: 2px;
+}
+.catch-main {
+  font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.55;
+  letter-spacing: 0.04em;
+}
+.catch-sub {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #555;
+  line-height: 1.75;
+}
+
+/* what is */
+.what-is {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 18px;
+  background: var(--forest-light);
+  border-left: 3px solid var(--forest);
+  border-radius: 0 2px 2px 0;
+}
+.what-is-title {
+  font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  font-weight: 700;
+  color: var(--forest);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.what-is-desc {
+  font-size: 11.5px;
+  color: #3A4A3E;
+  line-height: 1.75;
+}
+
+/* opportunity grid */
+.opp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.opp-card {
+  background: var(--forest-light);
+  border-left: 3px solid var(--forest);
+  padding: 14px 15px;
+  border-radius: 0 2px 2px 0;
+}
+.opp-no {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--forest);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.opp-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 6px;
+  line-height: 1.4;
+  font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+}
+.opp-desc {
+  font-size: 10.5px;
+  color: #3A4A3E;
+  line-height: 1.7;
+}
+
+/* scale */
+.scale-band {
+  background: var(--navy);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.scale-stat { text-align: center; flex: 1; }
+.scale-num {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: 'Yu Mincho', 'Hiragino Mincho ProN', serif;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.scale-num.gold { color: var(--gold); }
+.scale-label {
+  font-size: 9.5px;
+  color: rgba(255,255,255,0.55);
+  margin-top: 4px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+.scale-div { width: 1px; height: 42px; background: rgba(255,255,255,0.15); flex-shrink: 0; }
+.scale-note {
+  margin-top: 6px;
+  font-size: 9.5px;
+  color: #999;
+}
+
+/* steps */
+.step-wrap { display: flex; gap: 10px; }
+.step-box {
+  flex: 1;
+  padding: 14px 14px 12px;
+  background: var(--bg);
+  border-radius: 2px;
+  position: relative;
+}
+.step-num {
+  width: 22px; height: 22px;
+  background: var(--navy);
+  color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+  margin-bottom: 8px;
+}
+.step-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.step-desc {
+  font-size: 10.5px;
+  color: #555;
+  line-height: 1.65;
+}
+
+/* footer */
+.footer {
+  padding: 14px 36px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-co {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--navy);
+  font-family: 'Yu Mincho', serif;
+  letter-spacing: 0.04em;
+}
+.footer-note { font-size: 10px; color: #AAA; }
+
+@media print {
+  body { background: none; }
+  .page { box-shadow: none; margin: 0; }
+  @page { size: A4; margin: 10mm; }
+}
+@media (max-width: 640px) {
+  .opp-grid { grid-template-columns: 1fr; }
+  .step-wrap { flex-direction: column; }
+  .scale-band { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <div>
+      <div class="brand-name">LIFEX</div>
+      <div class="brand-tag">規格住宅フランチャイズ</div>
+    </div>
+    <div class="via-badge">グラフテクト様<br>お取引先ご紹介資料</div>
+  </div>
+
+  <div class="body">
+
+    <div class="catch">
+      <div class="catch-main">注文住宅一本で、この先も戦い続けますか。</div>
+      <div class="catch-sub">価格競争が厳しくなる一方で、規格住宅を新しい商品ラインとして持つ工務店が増えています。<br>LIFEXは、性能訴求と集客の仕組みをセットで提供する規格住宅フランチャイズです。</div>
+    </div>
+
+    <div class="what-is">
+      <div class="what-is-title">LIFEXとは</div>
+      <div class="what-is-desc">気密・断熱性能などの住宅性能を軸にブランド化した規格住宅商品です。注文住宅を置き換えるのではなく、価格帯の異なるお客様を取りこぼさないための「もう一つの商品ライン」として、既存の工務店様に加盟いただいています。</div>
+    </div>
+
+    <div>
+      <div class="section-head">工務店様にとっての機会</div>
+      <div class="opp-grid">
+        <div class="opp-card">
+          <div class="opp-no">機会 ①</div>
+          <div class="opp-title">価格帯の違う<br>お客様を取り込める</div>
+          <div class="opp-desc">注文住宅の予算に届かないお客様の受け皿として、規格住宅ラインを持つことで機会損失を減らせます。</div>
+        </div>
+        <div class="opp-card">
+          <div class="opp-no">機会 ②</div>
+          <div class="opp-title">性能訴求の<br>ノウハウが手に入る</div>
+          <div class="opp-desc">気密・断熱等の性能をどう伝えれば響くか、LIFEXの型を使ってそのまま商談に活かせます。</div>
+        </div>
+        <div class="opp-card">
+          <div class="opp-no">機会 ③</div>
+          <div class="opp-title">集客の仕組みを<br>共有できる</div>
+          <div class="opp-desc">本部側の広告・集客ノウハウを活用でき、自社だけで一から集客の型を作る必要がありません。</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-head">加盟の広がり</div>
+      <div class="scale-band">
+        <div class="scale-stat">
+          <div class="scale-num">21</div>
+          <div class="scale-label">現在の加盟社数(社)<br>全国25エリアに展開</div>
+        </div>
+        <div class="scale-div"></div>
+        <div class="scale-stat">
+          <div class="scale-num">3.8</div>
+          <div class="scale-label">月平均加盟ペース(社)</div>
+        </div>
+        <div class="scale-div"></div>
+        <div class="scale-stat">
+          <div class="scale-num gold">70</div>
+          <div class="scale-label">2027年7月末までの目標(社)</div>
+        </div>
+      </div>
+      <div class="scale-note">※2026年9月時点の実績です(2026年4月スタートから5.5か月で21社・25エリア)。</div>
+    </div>
+
+    <div>
+      <div class="section-head">まずはここから</div>
+      <div class="step-wrap">
+        <div class="step-box">
+          <div class="step-num">1</div>
+          <div class="step-title">この資料に目を通す</div>
+          <div class="step-desc">まずはLIFEXという選択肢があることを知っていただくところからで構いません。</div>
+        </div>
+        <div class="step-box">
+          <div class="step-num">2</div>
+          <div class="step-title">気になれば一言</div>
+          <div class="step-desc">もう少し詳しく聞いてみたいと思われたら、グラフテクト担当営業までお声がけください。</div>
+        </div>
+        <div class="step-box">
+          <div class="step-num">3</div>
+          <div class="step-title">個別にご説明</div>
+          <div class="step-desc">具体的な条件・費用感などは、あらためて個別にご案内します。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-co">LIFEX / Gハウス BtoB事業部</div>
+    <div class="footer-note">本資料はグラフテクト様経由のご紹介資料です　2026.09</div>
+  </div>
+
+</div>
+
+</body>
+</html>
