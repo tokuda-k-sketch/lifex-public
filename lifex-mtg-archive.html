@@ -73,7 +73,7 @@
   }
   @media (hover: hover){
     .session:hover{ border-color: var(--navy); box-shadow: 0 2px 12px -6px rgba(30,78,121,.3), var(--shadow); }
-    .session:hover .thumb img{ transform: scale(1.04); }
+    .session:hover .thumb-card{ transform: scale(1.02); }
   }
   .session.is-latest{ border-color: #c6d6e6; }
   .session.is-latest .datebar{ background: var(--navy); color: #fff; }
@@ -113,20 +113,51 @@
     background: var(--panel);
   }
   .thumb:focus-visible{ outline: 2px solid var(--navy); outline-offset: 3px; }
-  .thumb img{ width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.25s ease; }
-  .thumb .play{ position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+
+  .thumb-card{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, var(--navy) 0%, #12293f 100%);
+    transition: transform 0.25s ease;
+  }
+  .thumb-num{
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: #9dc0de;
+    text-transform: uppercase;
+  }
+  .thumb-ttl{
+    font-size: 19px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+  .thumb-sub{
+    font-size: 13px;
+    font-weight: 500;
+    color: #b9cfe2;
+  }
+
+  .thumb .play{ position: absolute; right: 12px; bottom: 12px; display: flex; }
   .thumb .play span{
-    width: 56px;
-    height: 56px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: rgba(27, 37, 48, 0.6);
+    background: rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(2px);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 16px rgba(0,0,0,.25);
+    box-shadow: 0 2px 10px rgba(0,0,0,.2);
   }
-  .thumb .play svg{ width: 20px; height: 20px; fill: #fff; margin-left: 3px; }
+  .thumb .play svg{ width: 14px; height: 14px; fill: #fff; margin-left: 2px; }
 
   .content{ min-width: 0; }
   .session-label{ font-size: 11.5px; font-weight: 700; color: #94a1ad; letter-spacing: 0.08em; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
@@ -256,7 +287,11 @@
         <div class="datebar"><span class="month num">2026 / 07</span><span class="day num">03</span><span class="year">Fri</span></div>
         <div class="body">
           <a class="thumb" href="https://youtu.be/5P9psno4uHM" target="_blank" rel="noopener noreferrer" data-session="1" data-video="5P9psno4uHM">
-            <img src="https://img.youtube.com/vi/5P9psno4uHM/maxresdefault.jpg" alt="" loading="lazy">
+            <div class="thumb-card">
+              <span class="thumb-num">第1回</span>
+              <span class="thumb-ttl">なぜ、月2棟MTGをやるのか</span>
+              <span class="thumb-sub">不通対策とアポ取得術</span>
+            </div>
             <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
           </a>
           <div class="content">
@@ -279,7 +314,10 @@
         <div class="datebar"><span class="month num">2026 / 07</span><span class="day num">10</span><span class="year">Fri</span></div>
         <div class="body">
           <a class="thumb" href="https://youtu.be/9VF5WLgwzKw" target="_blank" rel="noopener noreferrer" data-session="2" data-video="9VF5WLgwzKw">
-            <img src="https://img.youtube.com/vi/9VF5WLgwzKw/maxresdefault.jpg" alt="" loading="lazy">
+            <div class="thumb-card">
+              <span class="thumb-num">第2回</span>
+              <span class="thumb-ttl">初回面談 実践ガイド</span>
+            </div>
             <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
           </a>
           <div class="content">
@@ -302,7 +340,11 @@
         <div class="datebar"><span class="month num">2026 / 07</span><span class="day num">17</span><span class="year">Fri</span></div>
         <div class="body">
           <a class="thumb" href="https://youtu.be/80l9h6Z1kO0" target="_blank" rel="noopener noreferrer" data-session="3" data-video="80l9h6Z1kO0">
-            <img src="https://img.youtube.com/vi/80l9h6Z1kO0/maxresdefault.jpg" alt="" loading="lazy">
+            <div class="thumb-card">
+              <span class="thumb-num">第3回</span>
+              <span class="thumb-ttl">月2棟の型を公開</span>
+              <span class="thumb-sub">佐古社長対談</span>
+            </div>
             <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
           </a>
           <div class="content">
@@ -325,7 +367,11 @@
         <div class="datebar"><span class="month num">2026 / 07</span><span class="day num">24</span><span class="year">Fri</span></div>
         <div class="body">
           <a class="thumb" href="https://youtu.be/XNOXrUfzdqM" target="_blank" rel="noopener noreferrer" data-session="4" data-video="XNOXrUfzdqM">
-            <img src="https://img.youtube.com/vi/XNOXrUfzdqM/maxresdefault.jpg" alt="" loading="lazy">
+            <div class="thumb-card">
+              <span class="thumb-num">第4回</span>
+              <span class="thumb-ttl">通電率・接続率UP</span>
+              <span class="thumb-sub">上位3社の横展開</span>
+            </div>
             <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
           </a>
           <div class="content">
@@ -348,7 +394,11 @@
         <div class="datebar"><span class="month num">2026 / 07</span><span class="day num">31</span><span class="year">Fri</span></div>
         <div class="body">
           <a class="thumb" href="https://youtu.be/-MNnr94wtsY" target="_blank" rel="noopener noreferrer" data-session="5" data-video="-MNnr94wtsY">
-            <img src="https://img.youtube.com/vi/-MNnr94wtsY/maxresdefault.jpg" alt="" loading="lazy">
+            <div class="thumb-card">
+              <span class="thumb-num">第5回</span>
+              <span class="thumb-ttl">KPI観察分析判断MTG</span>
+              <span class="thumb-sub">アポ率目標設定</span>
+            </div>
             <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
           </a>
           <div class="content">
@@ -371,7 +421,11 @@
         <div class="datebar"><span class="month num">2026 / 08</span><span class="day num">07</span><span class="year">Fri</span></div>
         <div class="body">
           <a class="thumb" href="https://youtu.be/Gbmt2rr9XoE" target="_blank" rel="noopener noreferrer" data-session="6" data-video="Gbmt2rr9XoE">
-            <img src="https://img.youtube.com/vi/Gbmt2rr9XoE/maxresdefault.jpg" alt="" loading="lazy">
+            <div class="thumb-card">
+              <span class="thumb-num">第6回</span>
+              <span class="thumb-ttl">商談を磨く</span>
+              <span class="thumb-sub">商談ツール2点を配布</span>
+            </div>
             <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
           </a>
           <div class="content">
@@ -396,7 +450,11 @@
         <div class="datebar"><span class="month num">2026 / 08</span><span class="day num">21</span><span class="year">Fri</span></div>
         <div class="body">
           <a class="thumb" href="https://youtu.be/Fqx_RH00qSI" target="_blank" rel="noopener noreferrer" data-session="7" data-video="Fqx_RH00qSI">
-            <img src="https://img.youtube.com/vi/Fqx_RH00qSI/maxresdefault.jpg" alt="" loading="lazy">
+            <div class="thumb-card">
+              <span class="thumb-num">第7回</span>
+              <span class="thumb-ttl">答え合わせ</span>
+              <span class="thumb-sub">アポ率目標×商談ツール使用</span>
+            </div>
             <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
           </a>
           <div class="content">
@@ -419,7 +477,10 @@
         <div class="datebar"><span class="month num">2026 / 08</span><span class="day num">28</span><span class="year">Fri</span></div>
         <div class="body">
           <a class="thumb" href="https://youtu.be/0J-cfNXCgcg" target="_blank" rel="noopener noreferrer" data-session="8" data-video="0J-cfNXCgcg">
-            <img src="https://img.youtube.com/vi/0J-cfNXCgcg/maxresdefault.jpg" alt="" loading="lazy">
+            <div class="thumb-card">
+              <span class="thumb-num">第8回</span>
+              <span class="thumb-ttl">間の取り方とテストクロージング</span>
+            </div>
             <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
           </a>
           <div class="content">
@@ -442,7 +503,10 @@
         <div class="datebar"><span class="month num">2026 / 09</span><span class="day num">04</span><span class="year">Fri</span></div>
         <div class="body">
           <a class="thumb" href="https://youtu.be/7rDl2H4IH7w" target="_blank" rel="noopener noreferrer" data-session="9" data-video="7rDl2H4IH7w">
-            <img src="https://img.youtube.com/vi/7rDl2H4IH7w/maxresdefault.jpg" alt="" loading="lazy">
+            <div class="thumb-card">
+              <span class="thumb-num">第9回</span>
+              <span class="thumb-ttl">太陽光×トータルコスト訴求法</span>
+            </div>
             <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
           </a>
           <div class="content">
@@ -465,7 +529,10 @@
         <div class="datebar"><span class="month num">2026 / 09</span><span class="day num">11</span><span class="year">Fri</span></div>
         <div class="body">
           <a class="thumb" href="https://youtu.be/HbHEVbytk_E" target="_blank" rel="noopener noreferrer" data-session="10" data-video="HbHEVbytk_E">
-            <img src="https://img.youtube.com/vi/HbHEVbytk_E/maxresdefault.jpg" alt="" loading="lazy">
+            <div class="thumb-card">
+              <span class="thumb-num">第10回</span>
+              <span class="thumb-ttl">TorneoPlus紹介＋エコボロンPRO標準仕様</span>
+            </div>
             <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
           </a>
           <div class="content">
@@ -488,7 +555,11 @@
         <div class="datebar"><span class="month num">2026 / 09</span><span class="day num">18</span><span class="year">Fri</span></div>
         <div class="body">
           <a class="thumb" href="https://youtu.be/zYQ0SCHs-K4" target="_blank" rel="noopener noreferrer" data-session="11" data-video="zYQ0SCHs-K4">
-            <img src="https://img.youtube.com/vi/zYQ0SCHs-K4/maxresdefault.jpg" alt="" loading="lazy">
+            <div class="thumb-card">
+              <span class="thumb-num">第11回</span>
+              <span class="thumb-ttl">耐震等級3×制振evoltz</span>
+              <span class="thumb-sub">なぜLIFEXはevoltzを標準搭載するか</span>
+            </div>
             <div class="play"><span><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg></span></div>
           </a>
           <div class="content">
