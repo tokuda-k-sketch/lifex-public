@@ -407,22 +407,78 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
   <div class="top"><span class="chip c2">執念①-1</span><span class="pg">12 / 24</span></div>
   <div class="tt">大工が長い木材を運ぶとき、うっかり当ててしまう。</div>
   <div class="body">
-    <svg viewBox="0 0 900 300" style="width:100%; height:100%" role="img" aria-label="大工が長い木材を運搬中に壁の気密シートにうっかり当ててしまう現場のイラスト">
-      <rect x="600" y="30" width="24" height="240" fill="#f3f6f9" stroke="#94a1ad" stroke-width="2"/>
-      <text x="612" y="24" text-anchor="middle" font-size="12" font-weight="800" fill="#5c6c7d">気密シート</text>
-      <g>
-        <circle cx="260" cy="90" r="16" fill="#fff" stroke="#1b2530" stroke-width="2.5"/>
-        <line x1="260" y1="106" x2="260" y2="185" stroke="#1b2530" stroke-width="3"/>
-        <line x1="260" y1="130" x2="210" y2="160" stroke="#1b2530" stroke-width="3"/>
-        <line x1="260" y1="130" x2="330" y2="115" stroke="#1b2530" stroke-width="3"/>
-        <line x1="260" y1="185" x2="230" y2="250" stroke="#1b2530" stroke-width="3"/>
-        <line x1="260" y1="185" x2="295" y2="250" stroke="#1b2530" stroke-width="3"/>
+    <svg viewBox="0 0 900 330" style="width:100%; height:100%" role="img" aria-label="大工が長い木材を運搬中に壁の気密シートにうっかり当ててしまう現場のイラスト">
+      <defs>
+        <linearGradient id="w1jacket" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#3a7fae"/><stop offset="100%" stop-color="#1e4e79"/>
+        </linearGradient>
+        <linearGradient id="w1pants" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#4a5a6b"/><stop offset="100%" stop-color="#333f4c"/>
+        </linearGradient>
+        <radialGradient id="w1skin" cx="35%" cy="30%" r="75%">
+          <stop offset="0%" stop-color="#f6d3ab"/><stop offset="100%" stop-color="#e0ad78"/>
+        </radialGradient>
+        <linearGradient id="w1wood" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#e8d3a8"/><stop offset="50%" stop-color="#d8b978"/><stop offset="100%" stop-color="#b0894f"/>
+        </linearGradient>
+        <radialGradient id="w1woodend" cx="45%" cy="40%" r="65%">
+          <stop offset="0%" stop-color="#e6c88f"/><stop offset="100%" stop-color="#a9793f"/>
+        </radialGradient>
+        <linearGradient id="w1sheet" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#eef2f5"/><stop offset="100%" stop-color="#d6dde2"/>
+        </linearGradient>
+        <filter id="w1shadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1b2530" flood-opacity="0.16"/>
+        </filter>
+        <filter id="w1blur" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="5"/>
+        </filter>
+      </defs>
+
+      <!-- 大工 -->
+      <g filter="url(#w1shadow)">
+        <ellipse cx="232" cy="300" rx="82" ry="10" fill="#1b2530" opacity=".08"/>
+        <line x1="218" y1="236" x2="196" y2="292" stroke="url(#w1pants)" stroke-width="16" stroke-linecap="round"/>
+        <line x1="244" y1="236" x2="270" y2="292" stroke="url(#w1pants)" stroke-width="16" stroke-linecap="round"/>
+        <ellipse cx="193" cy="295" rx="12" ry="6.5" fill="#2b3542"/>
+        <ellipse cx="273" cy="295" rx="12" ry="6.5" fill="#2b3542"/>
+        <line x1="213" y1="192" x2="292" y2="180" stroke="url(#w1jacket)" stroke-width="13" stroke-linecap="round"/>
+        <line x1="215" y1="212" x2="286" y2="204" stroke="url(#w1jacket)" stroke-width="13" stroke-linecap="round"/>
+        <ellipse cx="230" cy="202" rx="28" ry="36" fill="url(#w1jacket)"/>
+        <circle cx="230" cy="148" r="21" fill="url(#w1skin)"/>
+        <path d="M209 141 Q230 120 251 141" stroke="#c0392b" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <circle cx="209" cy="144" r="3.5" fill="#c0392b"/>
       </g>
-      <rect x="300" y="100" width="330" height="20" fill="#e3d9c2" stroke="#b0946a" stroke-width="1.5" transform="rotate(-6 300 110)"/>
-      <text x="440" y="80" text-anchor="middle" font-size="13" font-weight="800" fill="#b05c1f">長い木材を運搬中</text>
-      <path d="M600 100 l30 -16 l6 12 l-30 16 z" fill="#fbe9e7" stroke="#b3372b" stroke-width="2" opacity=".9"/>
-      <text x="700" y="70" font-size="15" font-weight="800" fill="#b3372b">うっかり、当たる</text>
-      <text x="450" y="285" text-anchor="middle" font-size="13" fill="#5c6c7d">現場では、普通に起きること</text>
+
+      <!-- 長い木材 -->
+      <g>
+        <path d="M700 197 Q716 187 732 197" stroke="#c3ccd3" stroke-width="2" fill="none" opacity=".55"/>
+        <path d="M704 229 Q720 239 736 229" stroke="#c3ccd3" stroke-width="2" fill="none" opacity=".55"/>
+        <polygon points="291.2,165.1 761.2,209.1 758.8,234.9 288.8,190.9" fill="url(#w1wood)" stroke="#96723f" stroke-width="1.2" filter="url(#w1shadow)"/>
+        <line x1="290.7" y1="170.0" x2="760.7" y2="214.0" stroke="#96723f" stroke-width="1.1" opacity=".45"/>
+        <line x1="290.3" y1="175.0" x2="760.3" y2="219.0" stroke="#96723f" stroke-width="1.1" opacity=".45"/>
+        <line x1="289.7" y1="181.0" x2="759.7" y2="225.0" stroke="#f3e0b8" stroke-width="1.1" opacity=".6"/>
+        <line x1="289.3" y1="186.0" x2="759.3" y2="230.0" stroke="#96723f" stroke-width="1.1" opacity=".45"/>
+        <ellipse cx="760" cy="222" rx="13" ry="15" transform="rotate(5.4 760 222)" fill="url(#w1woodend)" stroke="#8a6636" stroke-width="1.3"/>
+        <ellipse cx="760" cy="222" rx="7" ry="8.5" transform="rotate(5.4 760 222)" fill="none" stroke="#8a6636" stroke-width="1" opacity=".6"/>
+      </g>
+      <rect x="455" y="153" width="152" height="28" rx="14" fill="#fdf6e3" stroke="#d8b978" stroke-width="1.3"/>
+      <text x="531" y="172" text-anchor="middle" font-size="13" font-weight="800" fill="#b05c1f">長い木材を運搬中</text>
+
+      <!-- 気密シート -->
+      <rect x="758" y="108" width="27" height="205" rx="3" fill="url(#w1sheet)" stroke="#94a1ad" stroke-width="1.5" filter="url(#w1shadow)"/>
+      <line x1="771" y1="102" x2="777" y2="76" stroke="#8fa0ac" stroke-width="1"/>
+      <rect x="722" y="52" width="92" height="26" rx="13" fill="#1e4e79"/>
+      <text x="768" y="70" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">気密シート</text>
+
+      <!-- 衝撃 -->
+      <circle cx="758" cy="222" r="24" fill="#e04b3d" opacity=".22" filter="url(#w1blur)"/>
+      <path d="M758 205 L764 218 L778 216 L767 227 L772 241 L758 233 L744 241 L749 227 L738 216 L752 218 Z" fill="#c0392b"/>
+      <line x1="758" y1="222" x2="719" y2="205" stroke="#b3372b" stroke-width="1" stroke-dasharray="2 3" opacity=".7"/>
+      <rect x="700" y="120" width="118" height="30" rx="15" fill="#fff" stroke="#c0392b" stroke-width="2" filter="url(#w1shadow)"/>
+      <text x="759" y="140" text-anchor="middle" font-size="13.5" font-weight="800" fill="#b3372b">うっかり、当たる</text>
+
+      <text x="232" y="322" text-anchor="middle" font-size="13" fill="#5c6c7d">現場では、普通に起きること</text>
     </svg>
   </div>
   <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「大工さんが長い木材を運ぶとき、うっかり壁に当ててしまうことがあるんです。現場では普通に起きることなんです。」</div></div>
