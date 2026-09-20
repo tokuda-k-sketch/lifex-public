@@ -1,0 +1,338 @@
+<title>壁体内結露編　参考書</title>
+<style>
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+  --p3:#b05c1f; --p3bg:#f9efe4; --p4:#2b6ea0; --p4bg:#e5f0f8;
+  --leak:#b3372b; --leakbg:#fbe9e7;
+  --win:#2e7d6e; --winbg:#e7f2ef;
+  --rot:#6b4a2f; --rotbg:#efe6dc;
+  --surface:#ffffff;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.9; font-feature-settings:"palt"}
+.num{font-variant-numeric:tabular-nums}
+
+.header{background:#12181f; color:#fff; padding:48px 24px 40px; text-align:center}
+.header .eyebrow{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#8b98a5; margin-bottom:14px}
+.header h1{margin:0; font-size:26px; font-weight:800; letter-spacing:.01em; text-wrap:balance; overflow-wrap:break-word}
+.header .sub{font-size:14px; color:#a8b4bf; margin-top:12px; line-height:1.8; max-width:52ch; margin-left:auto; margin-right:auto}
+.header .meta{margin-top:20px; font-size:12px; color:#7c8a96}
+@media (max-width:480px){
+  .header{padding:36px 18px 28px}
+  .header h1{font-size:20px}
+  .header .sub{max-width:none; font-size:13px}
+}
+
+.shell{display:flex; max-width:1180px; margin:0 auto; align-items:flex-start}
+.toc{width:264px; flex-shrink:0; position:sticky; top:0; height:100vh; overflow-y:auto; padding:36px 20px 60px 28px; border-right:1px solid var(--line)}
+.toc .toc-label{font-size:11px; font-weight:800; letter-spacing:.1em; color:var(--sub); text-transform:uppercase; margin-bottom:14px}
+.toc a{display:block; font-size:13px; color:var(--ink); text-decoration:none; padding:6px 10px; border-radius:6px; line-height:1.5}
+.toc a:hover{background:var(--navy-soft); color:var(--navy)}
+.toc a.chapter{font-weight:800; margin-top:14px; color:var(--navy)}
+.toc a.chapter:first-child{margin-top:0}
+.toc a.section{padding-left:20px; color:var(--sub); font-size:12.5px}
+.main{flex:1; min-width:0; padding:40px 48px 120px; max-width:840px}
+
+@media (max-width:900px){
+  .shell{flex-direction:column}
+  .toc{position:static; width:auto; height:auto; border-right:none; border-bottom:1px solid var(--line); padding:24px 20px}
+  .main{padding:32px 20px 80px; max-width:none}
+}
+
+.chapter{padding-top:56px; margin-top:56px; border-top:4px solid var(--navy)}
+.chapter:first-of-type{margin-top:0}
+.chapter .no{font-size:12px; font-weight:800; letter-spacing:.12em; color:var(--navy); text-transform:uppercase}
+.chapter h2{font-size:26px; font-weight:800; margin:8px 0 6px; letter-spacing:.005em; text-wrap:balance}
+.chapter .lead{font-size:14.5px; color:var(--sub); line-height:1.9; margin:0 0 8px}
+.section{margin-top:40px}
+.section h3{font-size:19px; font-weight:800; margin:0 0 14px; padding-bottom:10px; border-bottom:2px solid var(--line); color:var(--ink)}
+.section h4{font-size:15.5px; font-weight:800; margin:26px 0 10px; color:var(--navy)}
+p{margin:0 0 14px; font-size:14.5px; color:var(--ink)}
+.section p:last-child{margin-bottom:0}
+
+.fact{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:16px 20px; margin:16px 0}
+.fact .k{font-size:11.5px; font-weight:800; color:var(--sub); letter-spacing:.05em}
+.fact .v{font-size:22px; font-weight:800; color:var(--navy); margin:4px 0}
+.fact .d{font-size:13px; color:var(--sub); line-height:1.7}
+.fact .d p{margin:0 0 10px; font-size:13px; color:var(--sub)}
+.fact .d p:last-child{margin-bottom:0}
+.fact .d ul{margin:6px 0 0; padding-left:20px; font-size:13px; color:var(--sub)}
+.fact .d li{margin-bottom:4px}
+.fact .src{font-size:11.5px; color:#94a1ad; margin-top:8px; padding-top:8px; border-top:1px dashed var(--line)}
+
+.cite{border-left:3px solid var(--navy); background:var(--navy-soft); border-radius:0 8px 8px 0; padding:14px 20px; margin:16px 0; font-size:14px; line-height:1.85; color:var(--ink)}
+.cite .who{font-size:12px; font-weight:800; color:var(--navy); margin-bottom:6px; display:block}
+.cite.warn{border-left-color:var(--leak); background:var(--leakbg)}
+.cite.warn .who{color:var(--leak)}
+
+.law{background:#fafbfc; border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:14px 0; font-size:13px; color:var(--sub); line-height:1.8}
+.law b{color:var(--ink)}
+
+.unverified{font-size:12.5px; color:var(--p3); background:var(--p3bg); border-radius:6px; padding:8px 14px; margin:10px 0; line-height:1.7}
+.unverified b{font-weight:800}
+
+.nb{display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%; background:var(--navy); color:#fff; font-size:10px; font-weight:800; margin-right:6px; flex-shrink:0; vertical-align:-1px; font-feature-settings:"tnum"}
+.nb.warn{background:var(--leak)}
+
+.diagram-box{display:flex; gap:22px; flex-wrap:wrap; margin:16px 0; background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:18px 20px 14px}
+.diagram-box figure{flex:1 1 300px; min-width:260px; margin:0}
+.diagram-box figcaption{font-size:12.5px; font-weight:800; color:var(--navy); margin-top:6px; text-align:center}
+.diagram-box svg{width:100%; height:auto; display:block; overflow:visible}
+
+table.dtbl{width:100%; border-collapse:collapse; margin:16px 0; font-size:13px}
+table.dtbl th{background:var(--navy); color:#fff; font-weight:800; text-align:left; padding:9px 12px; font-size:12px}
+table.dtbl td{padding:9px 12px; border-bottom:1px solid var(--line)}
+table.dtbl tr:nth-child(even) td{background:var(--panel)}
+table.dtbl td.hi{color:var(--navy); font-weight:800}
+.tblwrap{overflow-x:auto}
+
+.section ul, .section ol{margin:0 0 14px; padding-left:22px; font-size:14.5px; color:var(--ink)}
+.section li{margin-bottom:6px}
+
+.qa{border:1px solid var(--line); border-radius:10px; padding:18px 22px; margin:16px 0; background:var(--surface)}
+.qa .q{font-size:14.5px; font-weight:800; color:var(--ink); display:flex; gap:10px}
+.qa .q .tag{flex-shrink:0; font-size:11px; font-weight:800; color:#fff; background:var(--sub); border-radius:99px; padding:2px 10px; height:fit-content}
+.qa .a{font-size:14px; color:var(--sub); margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); line-height:1.85}
+.qa .a b{color:var(--ink)}
+
+.column{background:linear-gradient(135deg,#fff8ec,#fff3e2); border:1px solid #ecd9a8; border-radius:10px; padding:18px 22px; margin:20px 0}
+.column .label{font-size:11px; font-weight:800; color:var(--p3); letter-spacing:.08em; margin-bottom:6px}
+.column p{font-size:13.5px}
+
+footer{max-width:840px; margin:0 auto; padding:40px 48px 80px; border-top:1px solid var(--line); font-size:12px; color:var(--sub)}
+@media (max-width:900px){footer{padding:32px 20px 60px}}
+</style>
+
+<div class="header">
+  <div class="eyebrow">LIFEX 月2棟目標達成MTG・参考資料</div>
+  <h1>壁体内結露編　参考書</h1>
+  <p class="sub">10/2投影資料（教科書）の内容を<br>湿り空気線図・標準施工マニュアルに<br>基づいて掘り下げた詳細版です。<br>お客様からの深い質問にも<br>根拠を持って答えられるように。</p>
+  <div class="meta">2026年10月2日　Gハウス LIFEX FC事業部</div>
+</div>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">目次</div>
+    <a href="#intro" class="section">この参考書の使い方</a>
+    <a href="#ch1" class="chapter">第1章　壁体内結露の基礎</a>
+    <a href="#ch1-1" class="section">1-1　結露が起きる仕組み</a>
+    <a href="#ch1-2" class="section">1-2　湿り空気線図の読み方</a>
+    <a href="#ch1-3" class="section">1-3　露点温度を計算する</a>
+    <a href="#ch1-4" class="section">1-4　結露→腐朽→シロアリという連鎖</a>
+    <a href="#ch2" class="chapter">第2章　業界の実態と、LIFEXの立ち位置</a>
+    <a href="#ch2-1" class="section">2-1　UA値・C値と壁体内結露は別問題</a>
+    <a href="#ch2-2" class="section">2-2　工期・コスト優先で見過ごされる2つの現場</a>
+    <a href="#ch3" class="chapter">第3章　キラーフック①　分厚い気密シート</a>
+    <a href="#ch3-1" class="section">3-1　現場で実際に起きる「うっかり」</a>
+    <a href="#ch3-2" class="section">3-2　小さな穴が結露につながる理屈</a>
+    <a href="#ch3-3" class="section">3-3　厚みという選択と、出典の現状</a>
+    <a href="#ch4" class="chapter">第4章　キラーフック②　仮張り床の剥がし・乾燥工程</a>
+    <a href="#ch4-1" class="section">4-1　上棟直後、建材はまだ水を含んでいる</a>
+    <a href="#ch4-2" class="section">4-2　乾燥工程と露点温度の関係</a>
+    <a href="#ch4-3" class="section">4-3　工程としての位置づけ</a>
+    <a href="#ch5" class="chapter">第5章　想定QA集</a>
+    <a href="#ch6" class="chapter">第6章　出典・参考資料一覧</a>
+  </nav>
+
+  <main class="main">
+
+    <section id="intro" class="section" style="margin-top:0">
+      <h3>この参考書の使い方</h3>
+      <p>投影資料（教科書）は、当日の説明用にストーリーと要点だけを絞っています。この参考書は、お客様やご自身の中の「なぜ？」に、湿り空気線図という物理の言葉で正確に答えるための種本です。教科書で「怖い」「すごい」と感じた話の裏側に、きちんとした理屈があることを確認してください。</p>
+      <p>全ての数字・主張には出典を明記しています。計算値は使った式を明記し、徳田さんの現場知見に基づく項目は「現場知見・未確認」と明示しています。分からないことは分からないと正直に言うのも、信頼を得る技術です。</p>
+    </section>
+
+    <div id="ch1" class="chapter">
+      <div class="no">Chapter 1</div>
+      <h2>壁体内結露の基礎</h2>
+      <p class="lead">「結露しません」で終わらせず、なぜ結露するのか／なぜLIFEXの家では結露しにくいのかを、物理の言葉で説明できるようになるための章です。</p>
+
+      <div id="ch1-1" class="section">
+        <h3>1-1　結露が起きる仕組み</h3>
+        <p>空気は、温度が高いほど多くの水分（水蒸気）を含むことができます。逆に温度が下がると、その空気が保持できる水分の上限（飽和量）も下がっていきます。空気が含んでいる水分量が変わらないまま温度だけが下がっていくと、やがて「その温度で保持できる上限」に達します。これ以上冷えると、空気は水分を水蒸気の形で保持できなくなり、余った分が水滴として現れます。これが結露です。</p>
+        <p>壁体内結露は、この現象が壁の中（断熱材や構造材の周辺）で起きるものです。室内の暖かく湿った空気が、気密シートの小さな破れや隙間から壁の中に侵入し、外気に近く温度の低い部分（サッシ周り・断熱材の外側・構造材の表面など）に触れて冷やされることで発生します。</p>
+      </div>
+
+      <div id="ch1-2" class="section">
+        <h3>1-2　湿り空気線図の読み方</h3>
+        <p>湿り空気線図は、空気の「温度」と「含んでいる水分量」の関係を1枚のグラフにしたものです。横軸に温度、縦軸に空気1kgあたりに含まれる水分量（g/kg、これを「湿度比」または「絶対湿度」と呼びます）をとります。</p>
+        <p>グラフ上に、相対湿度が同じ点をつないだ曲線を何本も描くことができます。一番上の曲線が相対湿度100%＝「飽和線」で、その温度で空気が保持できる水分量の上限を示します。飽和線より上の領域は、物理的にその状態を保てない領域（＝結露が起きる領域）です。</p>
+        <div class="diagram-box">
+          <figure>
+            <img src="assets/psychrometric-chart-wikimedia.svg" alt="湿り空気線図（Psychrometric Chart）。横軸に乾球温度、縦軸に湿度比をとり、相対湿度ごとの曲線を示す標準的な図"
+              style="width:100%; height:auto; display:block; background:#fff; border:1px solid var(--line); border-radius:6px">
+            <figcaption>図1-1　湿り空気線図（Wikimedia Commons「Psychrometric Chart」、ArthurOgawa作成、CC BY-SA 3.0）</figcaption>
+          </figure>
+        </div>
+        <p>室内の空気は、含んでいる水分量を変えないまま（＝グラフ上を横方向に移動しながら）温度だけが下がっていくと考えると分かりやすくなります。移動していく先で飽和線にぶつかった温度が「露点温度」であり、そこが結露の始まる境目です。</p>
+      </div>
+
+      <div id="ch1-3" class="section">
+        <h3>1-3　露点温度を計算する</h3>
+        <p>露点温度は、気温と相対湿度が分かれば、Magnus-Tetens近似式という気象学で広く使われる式で計算できます。</p>
+        <div class="law">
+          <b>Magnus-Tetens近似式</b><br>
+          γ = ln(RH/100) + 17.27×T ÷ (237.3+T)<br>
+          露点温度Td = 237.3×γ ÷ (17.27−γ)<br>
+          （T：気温[℃]、RH：相対湿度[%]）
+        </div>
+        <p>教科書で使った「室内20℃・相対湿度50%」を例に計算すると、γ≈0.650、Td≈9.3℃となります。つまりこの条件の室内空気が壁の中に入り込んだ場合、壁の中のどこかの温度が約9.3℃を下回ると、その場所で結露が始まる計算になります。</p>
+        <div class="fact">
+          <div class="k">計算例</div>
+          <div class="v">室内20℃・湿度50%　→　露点　約9.3℃</div>
+          <div class="d">
+            <p>冬の外気温が0℃前後まで下がる地域では、壁の中の温度が9.3℃を下回る場所は十分にあり得ます。気密シートが健全であれば、この湿った室内空気が壁の中に入り込むこと自体を防げますが、シートに破れがあると、この計算がそのまま現実になります。</p>
+          </div>
+          <div class="src">計算式：Magnus-Tetens近似式。「室内20℃・湿度50%」は説明用の仮定条件で、実際の住宅の室内環境を測定した値ではない</div>
+        </div>
+        <div class="unverified"><b>留意点：</b>実際の壁内の温度・湿度は、断熱材の種類・厚み、気密の状態、季節、地域の気候などで大きく変わります。ここでの計算はあくまで「原理を理解するための例」であり、LIFEXの住宅で実測した壁内結露データではありません。</div>
+      </div>
+
+      <div id="ch1-4" class="section">
+        <h3>1-4　結露→腐朽→シロアリという連鎖</h3>
+        <p>結露が発生し、木材が湿った状態が続くと、腐朽菌が繁殖し木材の強度が損なわれる腐朽が進みます。また、湿った木材はシロアリが好む環境でもあり、腐朽が進んだ部材はシロアリの被害を受けやすくなります。この連鎖は壁の中で進行するため、住んでいる間は自覚症状がなく、壁を壊すような大規模な工事に至らないと発覚しないケースが多くあります。</p>
+        <p>この一般的なメカニズム自体は建築分野で広く知られたものですが、本参考書では具体的な発生率・被害件数などの定量データは、確度の高い一次資料を確認できていないため使用していません。</p>
+      </div>
+    </div>
+
+    <div id="ch2" class="chapter">
+      <div class="no">Chapter 2</div>
+      <h2>業界の実態と、LIFEXの立ち位置</h2>
+
+      <div id="ch2-1" class="section">
+        <h3>2-1　UA値・C値と壁体内結露は別問題</h3>
+        <p>UA値（外皮平均熱伝達率）やC値（気密性能）は、住宅の断熱・気密の設計性能を表す数値です。これらの数値が優れていることは、壁体内結露が起きないことを直接保証するものではありません。壁体内結露は、気密シートの施工品質（破れ・隙間の有無）や、施工中の乾燥管理といった、カタログスペックには表れない「現場の工程管理」によって決まる部分が大きいためです。</p>
+      </div>
+
+      <div id="ch2-2" class="section">
+        <h3>2-2　工期・コスト優先で見過ごされる2つの現場</h3>
+        <p>住宅業界全体において、工期短縮・コスト削減の圧力の中で、以下の2点が現場で軽視されやすい傾向があることは、一般的な建築実務の課題として指摘されることがあります。</p>
+        <ul>
+          <li>施工中に建材（コンクリート・木材）にこもった水分を、十分乾かす前に次の工程に進んでしまう</li>
+          <li>気密シートに生じた小さな破れが、そのまま次の工程で覆われてしまう</li>
+        </ul>
+        <p>本資料では特定の企業名を挙げた比較は行わず、業界全体の一般的な傾向として紹介しています。</p>
+      </div>
+    </div>
+
+    <div id="ch3" class="chapter">
+      <div class="no">Chapter 3</div>
+      <h2>キラーフック①　分厚い気密シート</h2>
+
+      <div id="ch3-1" class="section">
+        <h3>3-1　現場で実際に起きる「うっかり」</h3>
+        <p>木造住宅の建築現場では、大工が長尺の木材（梁・土台・間柱などの材料）を運搬する際、施工済みの気密シートに資材が接触してしまう場面が起こり得ます。厳重に注意していても、狭い現場・複数人での作業・長い材料の取り回しの中で、完全にゼロにすることは難しい種類のヒューマンエラーです。</p>
+      </div>
+
+      <div id="ch3-2" class="section">
+        <h3>3-2　小さな穴が結露につながる理屈</h3>
+        <p>気密シートに生じる穴は、針で開けた程度の小さなものであっても、そこから室内の湿った空気が壁の中に侵入する経路になります。第1章で説明した通り、この空気が壁内の低温部分に触れて露点温度を下回ると、その場所で結露が発生します。穴が小さいからといって、結露のリスクが小さいわけではありません。</p>
+      </div>
+
+      <div id="ch3-3" class="section">
+        <h3>3-3　厚みという選択と、出典</h3>
+        <div class="fact">
+          <div class="k">教科書で使用した数値</div>
+          <div class="v">防湿気密シート　t=0.2mm</div>
+          <div class="d"><p>「うっかり当ててしまう」事故があっても簡単には破れない厚みを、全棟で採用しているという考え方。</p></div>
+          <div class="src">LIFEX標準仕様書「断熱」欄に記載。1階床・外壁・屋根・外気に接する天井の4箇所すべてで「防湿気密シート t=0.2」と表記されている（2026-09-21確認）。大工が長い木材を運搬中にうっかり当ててしまう事故を想定した設計思想の部分は、徳田さんの現場知見に基づく（2026-09-19〜20確認）。</div>
+        </div>
+        <p>この厚みへのこだわりの本質は、「職人を守るための設計が、結果的にお客様の家を守る」という点にあります。現場の安全・作業性への配慮が、そのまま品質保証の仕組みとして機能しているというロジックです。</p>
+      </div>
+    </div>
+
+    <div id="ch4" class="chapter">
+      <div class="no">Chapter 4</div>
+      <h2>キラーフック②　仮張り床の剥がし・乾燥工程</h2>
+
+      <div id="ch4-1" class="section">
+        <h3>4-1　上棟直後、建材はまだ水を含んでいる</h3>
+        <p>基礎コンクリートは、施工後長期間にわたって水分（水蒸気）を放出し続けます。また構造材となる木材も、含水率が完全に安定するまでには時間がかかります。上棟直後の時点では、これらの建材はまだ相当量の水分を含んだ状態にあります。</p>
+        <p>この状態のまま床を仕上げて壁を閉じてしまうと、建材から放出される水分（水蒸気）が壁の中に閉じ込められ、後から結露・腐朽のリスクを高める要因になります。</p>
+      </div>
+
+      <div id="ch4-2" class="section">
+        <h3>4-2　乾燥工程と露点温度の関係</h3>
+        <p>ここで、第1章の湿り空気線図の考え方がもう一度つながります。壁の中に閉じ込められる水分量が多いほど、その空気の露点温度は高くなります。逆に、閉じる前にしっかり乾燥させて水分量を減らしておけば、同じ空気でも露点温度は低くなり、冬の低温にさらされても飽和線（結露ゾーン）に達しにくくなります。</p>
+        <div class="diagram-box">
+          <figure>
+            <svg viewBox="0 0 640 380" role="img" aria-label="乾燥工程の有無による露点温度の違いを示す湿り空気線図">
+              <line x1="60" y1="30" x2="60" y2="300" stroke="#94a1ad" stroke-width="1.5"/>
+              <line x1="60" y1="300" x2="600" y2="300" stroke="#94a1ad" stroke-width="1.5"/>
+              <text x="60" y="320" font-size="12" fill="#5c6c7d">0℃</text>
+              <text x="230" y="320" text-anchor="middle" font-size="12" fill="#5c6c7d">10℃</text>
+              <text x="400" y="320" text-anchor="middle" font-size="12" fill="#5c6c7d">20℃</text>
+              <text x="570" y="320" text-anchor="middle" font-size="12" fill="#5c6c7d">30℃</text>
+              <path d="M60,270 L145,258 L230,239 L315,213 L400,180 L485,138 L570,84 L600,60 L600,30 L60,30 Z" fill="#fbe9e7" opacity=".4"/>
+              <path d="M60,270 L145,258 L230,239 L315,213 L400,180 L485,138 L570,84 L600,60" fill="none" stroke="#1e4e79" stroke-width="3"/>
+              <text x="510" y="105" text-anchor="middle" font-size="12" font-weight="800" fill="#1e4e79">飽和線</text>
+              <line x1="245" y1="248" x2="400" y2="248" stroke="#b3372b" stroke-width="2" stroke-dasharray="5 4"/>
+              <text x="380" y="238" text-anchor="middle" font-size="11.5" font-weight="800" fill="#b3372b">乾燥工程なし：線を越える</text>
+              <path d="M400,248 Q 330,255 260,268" fill="none" stroke="#2e7d6e" stroke-width="3"/>
+              <text x="330" y="282" text-anchor="middle" font-size="11.5" font-weight="800" fill="#2e7d6e">乾燥工程あり：線を越えない</text>
+              <circle cx="400" cy="248" r="6" fill="#1b2530"/>
+              <text x="430" y="205" font-size="11.5" font-weight="800" fill="#1b2530">上棟直後の状態</text>
+            </svg>
+            <figcaption>図4-1　乾燥工程による露点温度の低下（概念図）</figcaption>
+          </figure>
+        </div>
+        <p>つまり乾燥工程は、単に「水分を飛ばす」という作業以上の意味を持ちます。壁の中に閉じ込められる空気の性質そのものを変え、結露が起きる条件（露点温度）を下げているのです。</p>
+      </div>
+
+      <div id="ch4-3" class="section">
+        <h3>4-3　工程としての位置づけ</h3>
+        <div class="fact">
+          <div class="k">教科書で使用した内容</div>
+          <div class="v">上棟後、仮張りの床を一度剥がして乾燥期間を確保</div>
+          <div class="src">徳田さんの現場知見に基づく、LIFEX全体の実務（2026-09-19〜20確認）。LIFEX標準施工マニュアル第1版には仮張り→本締めの記載があるが、乾燥目的で意図的に床を剥がす工程についての具体的な記載はなく、<b>マニュアル外の実務知識</b>という位置づけです。</div>
+        </div>
+        <p>工期を優先する現場では、こうした乾燥期間を確保せずに次の工程へ進むことがあります。LIFEXでは、この工程にあえて時間をかけている、という姿勢がキラーフック②の核心です。</p>
+      </div>
+    </div>
+
+    <div id="ch5" class="chapter">
+      <div class="no">Chapter 5</div>
+      <h2>想定QA集</h2>
+
+      <div class="qa">
+        <div class="q"><span class="tag">Q1</span>「結露しません」と言い切っていいですか？</div>
+        <div class="a"><b>言い切らない方が信頼される。</b>「結露のリスクを構造的に下げる工程を、他社よりも手間をかけてやっている」という説明の方が、なぜ結露しにくいのかを理解してもらえ、他社比較にも耐えます。</div>
+      </div>
+      <div class="qa">
+        <div class="q"><span class="tag">Q2</span>湿り空気線図の話は、お客様にどこまで話していいですか？</div>
+        <div class="a">「温度が下がると、空気は水分を保ちきれなくなる。それが結露です」という原理の一言で十分です。露点温度の具体的な計算やMagnus-Tetens式まで話す必要はありません。数値を聞かれたら「約9℃という計算例がある」と答え、それ以上の精度を求められたら「詳しい条件によって変わります」と正直に答えてください。</div>
+      </div>
+      <div class="qa">
+        <div class="q"><span class="tag">Q3</span>気密シートの厚みを、数値で伝えていいですか？</div>
+        <div class="a">伝えて構いません。「t=0.2mm」はLIFEX標準仕様書の断熱欄に記載されている正式な数値です。「一般的なシートより明確に厚みのある製品を採用している」という定性的な説明と併せて使ってください。</div>
+      </div>
+      <div class="qa">
+        <div class="q"><span class="tag">Q4</span>工期が延びることをどう説明しますか？</div>
+        <div class="a">「乾燥期間を確保する分、他社より少し時間がかかることがあります。それは結露・腐朽のリスクを構造的に下げるための時間で、後から後悔しないための投資だと考えてください」という説明が使えます。</div>
+      </div>
+      <div class="qa">
+        <div class="q"><span class="tag">Q5</span>シロアリ対策は薬剤処理で十分では？</div>
+        <div class="a">薬剤処理は有効な対策の一つですが、木材を湿らせない・腐らせないという「そもそもシロアリが寄り付きにくい環境をつくる」設計面のアプローチと組み合わさることで、より根本的な対策になるという説明ができます。</div>
+      </div>
+    </div>
+
+    <div id="ch6" class="chapter">
+      <div class="no">Chapter 6</div>
+      <h2>出典・参考資料一覧</h2>
+      <p><b>湿り空気線図（図1-1）</b>：Wikimedia Commons「File:PsychrometricChart.SeaLevel.SI.svg」（作成者ArthurOgawa、Creative Commons Attribution-ShareAlike 3.0ライセンス、要出典表示）。データ出典はCarrier Corporation Cat. No. 794-001（1975年）。LIFEX独自の作図ではなく、公開されている標準的な湿り空気線図をそのまま使用している</p>
+      <p><b>乾燥工程イメージ図（図4-1、飽和線・結露ゾーンの簡略図）</b>：上記とは別に、LIFEXの乾燥工程の効果を説明するためLIFEXのデザインで作成したオリジナルの概念図。実データに基づくグラフではなく、考え方を示す模式図</p>
+      <p><b>露点温度の計算式（Magnus-Tetens近似式）、および「室内20℃・湿度50%→露点約9.3℃」という計算例</b>：気象学・空気調和分野で広く使われる近似式による計算値。「室内20℃・湿度50%」は説明用の仮定条件であり、LIFEXの住宅で実測した室内環境データではない</p>
+      <p><b>結露→腐朽→シロアリ被害の連鎖という一般的なメカニズム</b>：建築分野で広く知られる壁体内結露の一般原理（Gハウス見学会説明資料等の一般解説部分と同種の内容）。具体的な発生率・被害件数の数字は、確度の高い一次資料を確認できていないため本資料では使用していない</p>
+      <p><b>キラーフック①：気密シートの厚みt=0.2mm</b>：LIFEX標準仕様書「断熱」欄に記載（1階床・外壁・屋根・外気に接する天井の4箇所すべてで「防湿気密シート t=0.2」と表記、2026-09-21確認）。大工が長い木材を運搬中にうっかり当ててしまう事故を想定した設計思想の部分は、徳田さんの現場知見に基づく（2026-09-19〜20確認）</p>
+      <p><b>キラーフック②：上棟後、仮張りの床を一度剥がして乾燥させる工程</b>：徳田さんの現場知見に基づく、LIFEX全体の実務（2026-09-19〜20確認）。標準施工マニュアル第1版には仮張り→本締めの記載はあるが、乾燥目的で意図的に剥がす工程の具体的な記載はなく、マニュアル外の実務知識という位置づけ</p>
+      <p><b>断熱等級6・UA値0.46・C値0.5という基本仕様</b>：前回9/25研修「断熱×気密×換気」教科書・参考書に準拠（社内資料LIFEX公式初回セミナースライド20260521・LIFEX_話法マニュアル）</p>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  この参考書はLIFEX加盟店様向けの内部研修資料です。数値・出典の詳細な確認経緯は本部担当（徳田）までお問い合わせください。
+</footer>
