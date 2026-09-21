@@ -318,27 +318,82 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
   <div class="top"><span class="chip cLeak">恐怖⑤</span><span class="pg">7 / 24</span></div>
   <div class="tt">お客様には、この一言で十分。</div>
   <div class="body">
-    <svg viewBox="0 0 900 300" style="width:100%; height:100%" role="img" aria-label="冷たい飲み物の入ったコップの外側に水滴がつく様子。空気が冷やされて水分を保持できなくなり結露することを日常の例えで示す">
-      <path d="M360 70 L 372 250 L 528 250 L 540 70 Z" fill="#eaf4fb" stroke="#1b2530" stroke-width="3"/>
-      <path d="M372 150 L 380 250 L 520 250 L 528 150 Z" fill="#bfe0f2" opacity=".7"/>
-      <line x1="356" y1="70" x2="544" y2="70" stroke="#1b2530" stroke-width="3"/>
-      <path d="M330 130 q-9 13 0 22 q9 -9 0 -22" fill="#3b82c4"/>
-      <path d="M320 175 q-9 13 0 22 q9 -9 0 -22" fill="#3b82c4"/>
-      <path d="M345 205 q-9 13 0 22 q9 -9 0 -22" fill="#3b82c4"/>
-      <path d="M575 140 q-9 13 0 22 q9 -9 0 -22" fill="#3b82c4"/>
-      <path d="M565 190 q-9 13 0 22 q9 -9 0 -22" fill="#3b82c4"/>
-      <text x="450" y="30" text-anchor="middle" font-size="15" font-weight="800" fill="#1b2530">冷たい飲み物のコップ</text>
-      <text x="450" y="285" text-anchor="middle" font-size="13" fill="#5c6c7d">周りの空気が冷やされ、水分を抱えきれず水滴になる</text>
-      <path d="M645 170 L 735 170" stroke="#5c6c7d" stroke-width="2.5" marker-end="url(#a2)"/>
-      <defs><marker id="a2" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#5c6c7d"/></marker></defs>
-      <text text-anchor="middle" font-size="13" font-weight="800" fill="#5c6c7d">
-        <tspan x="690" y="155">壁の中も、</tspan>
-        <tspan x="690" y="172">同じこと</tspan>
+    <svg viewBox="0 0 900 320" style="width:100%; height:100%" role="img" aria-label="冷たい飲み物の入ったコップの外側に水滴がつく様子。空気が冷やされて水分を保持できなくなり結露することを日常の例えで示す">
+      <defs>
+        <linearGradient id="w2glass" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f2fafd" stop-opacity=".9"/><stop offset="100%" stop-color="#cfe6f2" stop-opacity=".55"/>
+        </linearGradient>
+        <linearGradient id="w2liquid" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#8fd0ec"/><stop offset="100%" stop-color="#3f93c7"/>
+        </linearGradient>
+        <linearGradient id="w2ice" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#cdeaf7"/>
+        </linearGradient>
+        <radialGradient id="w2drop" cx="32%" cy="24%" r="78%">
+          <stop offset="0%" stop-color="#cdeafc"/><stop offset="50%" stop-color="#4fa8de"/><stop offset="100%" stop-color="#2b6ea0"/>
+        </radialGradient>
+        <linearGradient id="w2insul" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#fff8e4"/><stop offset="100%" stop-color="#fbe7b3"/>
+        </linearGradient>
+        <radialGradient id="w2rot" cx="50%" cy="45%" r="65%">
+          <stop offset="0%" stop-color="#4f351f"/><stop offset="70%" stop-color="#7a5738" stop-opacity=".9"/><stop offset="100%" stop-color="#7a5738" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="w2shadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1b2530" flood-opacity="0.16"/>
+        </filter>
+        <filter id="w2blur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3"/></filter>
+        <clipPath id="w2wallclip"><rect x="0" y="0" width="150" height="130" rx="8"/></clipPath>
+        <marker id="w2arrow" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#5c6c7d"/></marker>
+      </defs>
+
+      <ellipse cx="450" cy="262" rx="100" ry="11" fill="#1b2530" opacity=".1"/>
+      <g filter="url(#w2shadow)">
+        <path d="M366 74 L 380 248 L 520 248 L 534 74 Z" fill="url(#w2glass)" stroke="#7b9bb0" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M386 152 L 393 244 L 507 244 L 514 152 Z" fill="url(#w2liquid)"/>
+        <ellipse cx="450" cy="152" rx="64" ry="7" fill="#a9dcf2"/>
+        <rect x="408" y="136" width="24" height="24" rx="5" fill="url(#w2ice)" stroke="#bfe0f2" stroke-width="1" transform="rotate(-9 420 148)"/>
+        <rect x="456" y="141" width="22" height="22" rx="5" fill="url(#w2ice)" stroke="#bfe0f2" stroke-width="1" transform="rotate(11 467 152)"/>
+        <ellipse cx="450" cy="74" rx="84" ry="8" fill="url(#w2glass)" stroke="#7b9bb0" stroke-width="2.5"/>
+        <rect x="392" y="90" width="9" height="130" fill="#ffffff" opacity=".35" rx="4"/>
+      </g>
+      <g>
+        <path d="M330 122 C330 122,318 138,318 147 C318 153.6,323.4 158,330 158 C336.6 158,342 153.6,342 147 C342 138,330 122,330 122 Z" fill="url(#w2drop)"/>
+        <ellipse cx="326.5" cy="141" rx="1.8" ry="2.7" fill="#fff" opacity=".65"/>
+        <path d="M316 172 C316 172,308 183,308 189.5 C308 194,311.6 197,316 197 C320.4 197,324 194,324 189.5 C324 183,316 172,316 172 Z" fill="url(#w2drop)"/>
+        <ellipse cx="313.5" cy="184" rx="1.4" ry="2.1" fill="#fff" opacity=".65"/>
+        <path d="M347 202 C347 202,338 214,338 221 C338 226.1,342.1 230,347 230 C351.9 230,356 226.1,356 221 C356 214,347 202,347 202 Z" fill="url(#w2drop)"/>
+        <ellipse cx="344" cy="215" rx="1.8" ry="2.7" fill="#fff" opacity=".65"/>
+        <path d="M578 132 C578 132,568 145,568 153 C568 158.5,572.6 163,578 163 C583.4 163,588 158.5,588 153 C588 145,578 132,578 132 Z" fill="url(#w2drop)"/>
+        <ellipse cx="575" cy="147" rx="1.8" ry="2.7" fill="#fff" opacity=".65"/>
+        <path d="M563 182 C563 182,555 193,555 199.5 C555 204,558.6 207,563 207 C567.4 207,571 204,571 199.5 C571 193,563 182,563 182 Z" fill="url(#w2drop)"/>
+        <ellipse cx="560.5" cy="192" rx="1.4" ry="2.1" fill="#fff" opacity=".65"/>
+      </g>
+      <text x="450" y="34" text-anchor="middle" font-size="15" font-weight="800" fill="#1b2530">冷たい飲み物のコップ</text>
+      <text x="450" y="290" text-anchor="middle" font-size="13" fill="#5c6c7d">周りの空気が冷やされ、水分を抱えきれず水滴になる</text>
+
+      <path d="M628 165 Q 668 150 706 165" stroke="#8b98a3" stroke-width="3" fill="none" marker-end="url(#w2arrow)"/>
+      <text text-anchor="middle" font-size="12.5" font-weight="800" fill="#5c6c7d">
+        <tspan x="668" y="140">壁の中も、同じこと</tspan>
       </text>
-      <rect x="765" y="110" width="100" height="140" fill="#f3f6f9" stroke="#94a1ad" stroke-width="2" rx="4"/>
-      <text x="795" y="155" font-size="15" fill="#3b82c4">💧</text>
-      <text x="825" y="185" font-size="15" fill="#3b82c4">💧</text>
-      <text x="815" y="235" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1b2530">壁の中</text>
+
+      <g transform="translate(725,95)" filter="url(#w2shadow)">
+        <rect x="0" y="0" width="150" height="130" rx="8" fill="#fff"/>
+      </g>
+      <g transform="translate(725,95)" clip-path="url(#w2wallclip)">
+        <rect x="0" y="0" width="24" height="130" fill="#c7d0d8"/>
+        <rect x="24" y="0" width="102" height="130" fill="url(#w2insul)"/>
+        <g stroke="#f0d28a" stroke-width="1.1" fill="none" opacity=".6">
+          <path d="M24 20 q6 -6 12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0"/>
+          <path d="M24 55 q6 -6 12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0"/>
+          <path d="M24 90 q6 -6 12 0 t12 0 t12 0 t12 0 t12 0 t12 0 t12 0"/>
+        </g>
+        <path d="M60 75 C52 62,72 50,86 57 C100 49,114 62,108 78 C114 92,96 102,84 96 C68 104,52 90,60 75 Z" fill="url(#w2rot)" filter="url(#w2blur)"/>
+        <rect x="126" y="0" width="24" height="130" fill="#f7f5f2"/>
+        <path d="M45 25 C45 25,39 34,39 39.5 C39 43.1,41.9 46,45 46 C48.1 46,51 43.1,51 39.5 C51 34,45 25,45 25 Z" fill="url(#w2drop)"/>
+        <path d="M95 30 C95 30,90 38,90 42.5 C90 45.5,92.5 48,95 48 C97.5 48,100 45.5,100 42.5 C100 38,95 30,95 30 Z" fill="url(#w2drop)"/>
+      </g>
+      <rect x="725" y="95" width="150" height="130" rx="8" fill="none" stroke="#dbe3ea" stroke-width="1.5"/>
+      <text x="800" y="240" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1b2530">壁の中</text>
     </svg>
   </div>
   <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px">
