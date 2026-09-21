@@ -544,20 +544,64 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
   <div class="top"><span class="chip c2">執念①-2</span><span class="pg">13 / 24</span></div>
   <div class="tt">見えない小さな穴が、壁の中を一生腐らせる。</div>
   <div class="body">
-    <svg viewBox="0 0 900 260" style="width:100%; height:100%" role="img" aria-label="気密シートに開いた小さな穴から水蒸気が壁内に侵入し結露が発生する拡大図">
-      <rect x="60" y="40" width="60" height="180" fill="#fff" stroke="#94a1ad" stroke-width="2"/>
-      <circle cx="90" cy="130" r="4" fill="#fff" stroke="#b3372b" stroke-width="2"/>
-      <text x="90" y="30" text-anchor="middle" font-size="12" font-weight="800" fill="#5c6c7d">気密シート</text>
-      <text x="90" y="240" text-anchor="middle" font-size="11.5" fill="#b3372b" font-weight="800">針で開けた程度の穴</text>
-      <path d="M140 130 L 260 130" stroke="#3b82c4" stroke-width="2.5" stroke-dasharray="3 4" marker-end="url(#a1)"/>
-      <defs><marker id="a1" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#3b82c4"/></marker></defs>
-      <text x="200" y="115" text-anchor="middle" font-size="12" font-weight="800" fill="#3b82c4">水蒸気が侵入</text>
-      <rect x="280" y="20" width="560" height="220" fill="#fdf6e3" stroke="#e3d9c2" stroke-width="1.5"/>
-      <text x="560" y="15" text-anchor="middle" font-size="12" font-weight="800" fill="#5c6c7d">壁の中（断熱材）</text>
-      <ellipse cx="480" cy="150" rx="70" ry="50" fill="#6b4a2f" opacity=".55"/>
-      <text x="480" y="155" text-anchor="middle" font-size="14" font-weight="800" fill="#fff">結露→腐朽</text>
-      <text x="330" y="70" font-size="16" fill="#3b82c4">💧</text>
-      <text x="380" y="200" font-size="16" fill="#3b82c4">💧</text>
+    <svg viewBox="0 0 900 290" style="width:100%; height:100%" role="img" aria-label="気密シートに開いた小さな穴から水蒸気が壁内に侵入し結露が発生する拡大図">
+      <defs>
+        <linearGradient id="w3sheet" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#ffffff"/><stop offset="60%" stop-color="#eef2f5"/><stop offset="100%" stop-color="#d6dde2"/>
+        </linearGradient>
+        <linearGradient id="w3insul" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#fff8e4"/><stop offset="100%" stop-color="#fbe7b3"/>
+        </linearGradient>
+        <radialGradient id="w3rot" cx="50%" cy="45%" r="60%">
+          <stop offset="0%" stop-color="#4f351f"/><stop offset="65%" stop-color="#7a5738" stop-opacity=".92"/><stop offset="100%" stop-color="#7a5738" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="w3drop" cx="32%" cy="24%" r="78%">
+          <stop offset="0%" stop-color="#cdeafc"/><stop offset="50%" stop-color="#4fa8de"/><stop offset="100%" stop-color="#2b6ea0"/>
+        </radialGradient>
+        <radialGradient id="w3glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#fff3d6" stop-opacity=".95"/><stop offset="100%" stop-color="#fff3d6" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="w3shadow" x="-50%" y="-50%" width="200%" height="200%">
+          <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1b2530" flood-opacity="0.16"/>
+        </filter>
+        <filter id="w3blur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3.5"/></filter>
+        <clipPath id="w3insulclip"><rect x="280" y="25" width="560" height="220" rx="10"/></clipPath>
+      </defs>
+
+      <rect x="62" y="42" width="58" height="176" rx="3" fill="url(#w3sheet)" stroke="#8b98a3" stroke-width="2" filter="url(#w3shadow)"/>
+      <circle cx="91" cy="130" r="16" fill="url(#w3glow)"/>
+      <circle cx="91" cy="130" r="3.5" fill="#fff" stroke="#b3372b" stroke-width="2"/>
+      <rect x="45" y="10" width="92" height="26" rx="13" fill="#1e4e79"/>
+      <text x="91" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">気密シート</text>
+      <text x="91" y="252" text-anchor="middle" font-size="11.5" fill="#b3372b" font-weight="800">針で開けた程度の穴</text>
+
+      <path d="M140 130 Q 195 118 258 130" stroke="#3b82c4" stroke-width="3" fill="none" stroke-dasharray="1 7" stroke-linecap="round" marker-end="url(#w3arrow)"/>
+      <defs><marker id="w3arrow" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#3b82c4"/></marker></defs>
+      <rect x="155" y="90" width="94" height="26" rx="13" fill="#e5f0f8" stroke="#2b6ea0" stroke-width="1.3"/>
+      <text x="202" y="108" text-anchor="middle" font-size="12" font-weight="800" fill="#2b6ea0">水蒸気が侵入</text>
+
+      <rect x="280" y="25" width="560" height="220" rx="10" fill="#fff" filter="url(#w3shadow)"/>
+      <g clip-path="url(#w3insulclip)">
+        <rect x="280" y="25" width="560" height="220" fill="url(#w3insul)"/>
+        <g stroke="#f0d28a" stroke-width="1.4" fill="none" opacity=".6">
+          <path d="M280 60 q14 -12 28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0"/>
+          <path d="M280 105 q14 -12 28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0"/>
+          <path d="M280 200 q14 -12 28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0"/>
+        </g>
+        <path d="M420 118 C400 95,450 68,490 82 C525 62,570 88,558 122 C575 152,530 182,495 172 C455 192,400 158,420 118 Z" fill="url(#w3rot)" filter="url(#w3blur)"/>
+        <ellipse cx="470" cy="105" rx="16" ry="8" fill="#3d2917" opacity=".3"/>
+        <ellipse cx="510" cy="145" rx="12" ry="6" fill="#3d2917" opacity=".28"/>
+      </g>
+      <rect x="280" y="25" width="560" height="220" rx="10" fill="none" stroke="#e3d9c2" stroke-width="1.5"/>
+      <rect x="440" y="0" width="180" height="26" rx="13" fill="#1e4e79"/>
+      <text x="530" y="18" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">壁の中（断熱材）</text>
+      <rect x="440" y="252" width="118" height="30" rx="15" fill="#fff" stroke="#b3372b" stroke-width="2" filter="url(#w3shadow)"/>
+      <text x="499" y="272" text-anchor="middle" font-size="13.5" font-weight="800" fill="#b3372b">結露→腐朽</text>
+
+      <path d="M355 62 C355 62,347 73,347 79.5 C347 84.1,350.6 88,355 88 C359.4 88,363 84.1,363 79.5 C363 73,355 62,355 62 Z" fill="url(#w3drop)"/>
+      <ellipse cx="352.5" cy="76" rx="1.8" ry="2.6" fill="#fff" opacity=".65"/>
+      <path d="M400 175 C400 175,392 186,392 192.5 C392 197.1,395.6 201,400 201 C404.4 201,408 197.1,408 192.5 C408 186,400 175,400 175 Z" fill="url(#w3drop)"/>
+      <ellipse cx="397.5" cy="189" rx="1.8" ry="2.6" fill="#fff" opacity=".65"/>
     </svg>
   </div>
   <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「その時に開く穴は、針で開けたくらい小さい。でもそこから水蒸気が入って、壁の中で結露が始まるんです。」</div></div>
@@ -570,10 +614,32 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
   <div class="body" style="align-items:center">
     <div class="twocol" style="align-items:center">
       <div class="card"><h5>一般的な防湿気密シート</h5>
-        <svg viewBox="0 0 200 80" style="width:100%; height:60px"><rect x="70" y="20" width="60" height="8" fill="#c7d0d8"/></svg>
+        <svg viewBox="0 0 200 100" style="width:100%; height:90px">
+          <defs>
+            <linearGradient id="thinTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#eef2f5"/><stop offset="100%" stop-color="#d3dbe0"/></linearGradient>
+            <linearGradient id="thinFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c7d0d8"/><stop offset="100%" stop-color="#a9b4bc"/></linearGradient>
+            <linearGradient id="stickGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#e8d3a8"/><stop offset="100%" stop-color="#b0894f"/></linearGradient>
+          </defs>
+          <line x1="15" y1="80" x2="185" y2="80" stroke="#dbe3ea" stroke-width="1.5"/>
+          <rect x="75" y="4" width="10" height="48" rx="3" fill="url(#stickGrad)" stroke="#96723f" stroke-width="1" transform="rotate(28 80 28)"/>
+          <circle cx="102" cy="58" r="9" fill="#e04b3d" opacity=".25" filter="blur(2px)"/>
+          <path d="M98 54 L101 60 L107 58 L102 64 L104 70 L98 66 L92 70 L94 64 L89 58 L95 60 Z" fill="#c0392b"/>
+          <polygon points="85,60 100,52 130,52 115,60" fill="url(#thinTop)" stroke="#94a1ad" stroke-width="1"/>
+          <rect x="85" y="60" width="30" height="6" fill="url(#thinFront)" stroke="#94a1ad" stroke-width="1"/>
+        </svg>
         <p>薄いシートは、うっかり当たると穴が開きやすい</p></div>
       <div class="card hero"><h5>LIFEXの防湿気密シート</h5>
-        <svg viewBox="0 0 200 80" style="width:100%; height:60px"><rect x="70" y="8" width="60" height="32" fill="#1e4e79"/></svg>
+        <svg viewBox="0 0 200 100" style="width:100%; height:90px">
+          <defs>
+            <linearGradient id="thickTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3a7fae"/><stop offset="100%" stop-color="#1e4e79"/></linearGradient>
+            <linearGradient id="thickFront" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1e4e79"/><stop offset="100%" stop-color="#13314f"/></linearGradient>
+          </defs>
+          <line x1="15" y1="80" x2="185" y2="80" stroke="#dbe3ea" stroke-width="1.5"/>
+          <rect x="66" y="20" width="10" height="30" rx="3" fill="url(#stickGrad)" stroke="#96723f" stroke-width="1" transform="rotate(28 71 35)"/>
+          <path d="M92 46 Q100 34 112 40" stroke="#5c6c7d" stroke-width="2" fill="none" stroke-dasharray="2 3" opacity=".7"/>
+          <polygon points="85,32 100,24 130,24 115,32" fill="url(#thickTop)" stroke="#153a5c" stroke-width="1"/>
+          <rect x="85" y="32" width="30" height="34" fill="url(#thickFront)" stroke="#153a5c" stroke-width="1"/>
+        </svg>
         <div class="big">厚み t=0.2mm</div>
         <p>当たっても、簡単には破れない</p></div>
     </div>
