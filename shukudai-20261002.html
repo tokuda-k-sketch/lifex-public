@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>壁体内結露編　宿題</title>
+<style>
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6;
+  --accent:#b05c1f; --accentbg:#f9efe4;
+  --surface:#ffffff;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.9; font-feature-settings:"palt"}
+.draft{background:#fff4d6; color:#7a5a00; font-size:12px; text-align:center; padding:6px 16px; border-bottom:1px solid #f0dfa8}
+.header{background:#12181f; color:#fff; padding:44px 24px 36px; text-align:center}
+.header .eyebrow{font-size:11px; letter-spacing:.16em; color:#8b98a5; margin-bottom:12px}
+.header h1{margin:0; font-size:26px; font-weight:800; text-wrap:balance}
+.header .sub{font-size:14px; color:#a8b4bf; margin:12px auto 0; line-height:1.8; max-width:46ch}
+.main{max-width:760px; margin:0 auto; padding:32px 16px 96px}
+.howto{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:18px 22px; margin-bottom:28px; font-size:14px}
+.howto b{color:var(--navy)}
+.howto ol{margin:6px 0 0; padding-left:1.4em}
+.who{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:28px}
+@media (max-width:560px){ .who{grid-template-columns:1fr} }
+label.f{display:block; font-size:12px; font-weight:800; color:var(--sub); margin-bottom:4px}
+input[type=text], textarea{width:100%; font:inherit; font-size:15px; color:var(--ink); background:#fff;
+  border:1px solid var(--line); border-radius:8px; padding:10px 12px}
+textarea{min-height:96px; resize:vertical; line-height:1.7}
+input:focus, textarea:focus{outline:2px solid var(--navy-soft); border-color:var(--navy)}
+.q{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:22px 22px 20px; margin-bottom:18px}
+.q .no{font-size:12px; font-weight:800; letter-spacing:.1em; color:var(--navy)}
+.q h2{font-size:17px; font-weight:800; margin:4px 0 6px; line-height:1.6; text-wrap:pretty}
+.q .hint{font-size:12.5px; color:var(--sub); margin:0 0 12px}
+.q.big{border:2px solid var(--accent)}
+.q.big .no{color:var(--accent)}
+.q.big .scene{background:var(--accentbg); border-radius:8px; padding:12px 16px; margin:8px 0 12px; font-size:14px}
+.sign{background:var(--panel); border:1px dashed #b9c6d2; border-radius:12px; padding:20px 22px; margin-top:28px}
+.sign h2{font-size:16px; font-weight:800; margin:0 0 6px}
+.sign p{font-size:13px; color:var(--sub); margin:0 0 12px}
+.actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:28px}
+button{font:inherit; font-size:15px; font-weight:800; border-radius:8px; padding:12px 22px; cursor:pointer; border:1px solid var(--navy)}
+button.primary{background:var(--navy); color:#fff}
+button.ghost{background:#fff; color:var(--navy)}
+#msg{font-size:13px; color:var(--navy); align-self:center}
+@media print{
+  body{background:#fff}
+  .draft,.actions{display:none}
+  .header{background:#fff; color:var(--ink); padding:0 0 12px; border-bottom:2px solid var(--ink)}
+  .header .eyebrow,.header .sub{color:var(--sub)}
+  .q,.sign,.howto{break-inside:avoid}
+  textarea{min-height:120px}
+}
+</style>
+</head>
+<body>
+<div class="draft">DRAFT｜叩き台です。問題・提出方法は確定前です。</div>
+<header class="header">
+  <div class="eyebrow">LIFEX 月2棟目標達成MTG｜2026.10.9 壁体内結露編</div>
+  <h1>壁体内結露編　宿題</h1>
+  <div class="sub">研修の録画を見てから答えてください。最後の問題は、お客様の前でそのまま話す言葉で書いてください。</div>
+</header>
+
+<main class="main">
+  <div class="howto">
+    <b>進め方</b>
+    <ol>
+      <li>10/9研修の録画を最後まで見る（資料は教科書・参考書も参照可）</li>
+      <li>問1〜問5に答える</li>
+      <li>経営者様に回答を見ていただき、確認欄にお名前をもらう</li>
+      <li>「回答をコピー」を押して、本部に送る</li>
+    </ol>
+  </div>
+
+  <div class="who">
+    <div><label class="f" for="co">会社名</label><input type="text" id="co"></div>
+    <div><label class="f" for="nm">回答者のお名前</label><input type="text" id="nm"></div>
+  </div>
+
+  <section class="q">
+    <div class="no">問1</div>
+    <h2>冬の室内（20℃・湿度50%）の空気は、壁の中で約何℃を下回ると結露が始まりますか。</h2>
+    <p class="hint">湿り空気線図のどの線をたどって読むかも、ひとこと添えてください。</p>
+    <textarea id="a1"></textarea>
+  </section>
+
+  <section class="q">
+    <div class="no">問2</div>
+    <h2>壁の中で結露が起きたあと、家に何が起きますか。順番に書いてください。<br>また、住んでいる方が気づけないのはなぜですか。</h2>
+    <textarea id="a2"></textarea>
+  </section>
+
+  <section class="q">
+    <div class="no">問3</div>
+    <h2>LIFEXの防湿気密シートの厚みは何mmですか。<br>その厚みにしている理由を、現場で起きる場面を使って説明してください。</h2>
+    <textarea id="a3"></textarea>
+  </section>
+
+  <section class="q">
+    <div class="no">問4</div>
+    <h2>上棟後の床について、LIFEXが行っている3つの工程を順番に書いてください。<br>その工程で結露しにくくなる理由も書いてください。</h2>
+    <p class="hint">「露点温度」という言葉を使って説明してみてください。</p>
+    <textarea id="a4"></textarea>
+  </section>
+
+  <section class="q big">
+    <div class="no">問5｜商談の実践</div>
+    <h2>お客様にこう聞かれました。<br>あなたなら、どう答えますか。</h2>
+    <div class="scene">「LIFEXの家って、結露しないんですか？」</div>
+    <p class="hint">「結露しません」と言い切らずに、なぜ結露しにくいのかを伝えてください。コップの例えと、LIFEXの2つの工夫を入れて、実際に話す言葉で書いてください。</p>
+    <textarea id="a5" style="min-height:160px"></textarea>
+  </section>
+
+  <section class="sign">
+    <h2>経営者様の確認</h2>
+    <p>回答を読んでいただいたうえで、お名前をご記入ください。</p>
+    <label class="f" for="boss">確認者のお名前</label>
+    <input type="text" id="boss">
+  </section>
+
+  <div class="actions">
+    <button class="primary" id="copy">回答をコピー</button>
+    <button class="ghost" onclick="window.print()">印刷する</button>
+    <span id="msg" role="status"></span>
+  </div>
+</main>
+
+<script>
+const Q = [
+  ['問1 結露が始まる温度','a1'],
+  ['問2 結露のあとに起きること','a2'],
+  ['問3 気密シートの厚みと理由','a3'],
+  ['問4 床の3工程と理由','a4'],
+  ['問5 「結露しないんですか？」への答え','a5'],
+];
+const v = id => document.getElementById(id).value.trim();
+document.getElementById('copy').addEventListener('click', async () => {
+  const lines = [
+    '【10/9 壁体内結露編 宿題】',
+    '会社名：' + v('co'),
+    '回答者：' + v('nm'),
+    '経営者確認：' + (v('boss') || '（未記入）'),
+    '',
+    ...Q.flatMap(([t,id]) => ['■' + t, v(id) || '（未回答）', '']),
+  ];
+  const text = lines.join('\n');
+  const msg = document.getElementById('msg');
+  try {
+    await navigator.clipboard.writeText(text);
+    msg.textContent = 'コピーしました。そのまま貼り付けて送ってください。';
+  } catch (e) {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); msg.textContent = 'コピーしました。'; }
+    catch (e2) { msg.textContent = 'コピーできませんでした。お手数ですが印刷して提出してください。'; }
+    ta.remove();
+  }
+});
+</script>
+</body>
+</html>
