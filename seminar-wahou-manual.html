@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIFEX 初回顧客セミナー 話法マニュアル</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --navy:      #1A2B3C;
+  --blue:      #1565C0;
+  --blue-mid:  #1E88E5;
+  --blue-lite: #E8F0FB;
+  --amber-bg:  #FFF8E1;
+  --amber-line:#F9A825;
+  --green-bg:  #E8F5E9;
+  --green-line:#388E3C;
+  --gray-bg:   #F5F7FA;
+  --gray-bd:   #DDE3EC;
+  --text:      #1A2B3C;
+  --text-soft: #5A6A7A;
+  --white:     #FFFFFF;
+  --must-dark: #1250A0;
+  --talk-bg:   #F0F7FF;
+  --talk-line: #90CAF9;
+  --radius:    6px;
+  --page-max:  860px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: #EAEFF5;
+  color: var(--text);
+  line-height: 1.75;
+}
+.shell {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  background: var(--white);
+  box-shadow: 0 4px 32px rgba(0,0,0,.12);
+}
+
+/* ── COVER ── */
+.cover {
+  background: var(--navy);
+  padding: 80px 60px 72px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(135deg, transparent, transparent 40px, rgba(255,255,255,.02) 40px, rgba(255,255,255,.02) 80px);
+}
+.cover-logo { font-family: 'Inter', sans-serif; font-size: 64px; font-weight: 700; color: var(--blue-mid); letter-spacing: -2px; line-height: 1; margin-bottom: 8px; position: relative; }
+.cover-tagline { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,.45); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 48px; position: relative; }
+.cover-title-block { border-left: 4px solid var(--blue-mid); padding-left: 24px; position: relative; }
+.cover-title-ja { font-size: 30px; font-weight: 900; color: var(--white); line-height: 1.3; margin-bottom: 10px; }
+.cover-title-sub { font-size: 14px; color: rgba(255,255,255,.6); font-weight: 400; }
+.cover-en { margin-top: 48px; font-family: 'Inter', sans-serif; font-size: 11px; color: rgba(255,255,255,.3); letter-spacing: 1.5px; text-transform: uppercase; position: relative; }
+
+/* ── CHAPTER BAND ── */
+.chapter-band { background: var(--navy); display: flex; align-items: stretch; }
+.chapter-num { background: var(--blue); font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; color: var(--white); letter-spacing: 1px; padding: 0 18px; display: flex; align-items: center; white-space: nowrap; min-width: 120px; justify-content: center; flex-direction: column; text-align: center; line-height: 1.3; }
+.chapter-num .part-label { font-size: 14px; font-weight: 700; }
+.chapter-tag { font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 600; color: rgba(255,255,255,.4); letter-spacing: 2px; text-transform: uppercase; padding: 10px 18px 0; }
+.time-badge { display: inline-block; background: rgba(255,255,255,.12); color: rgba(255,255,255,.65); font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 9px; border-radius: 10px; margin-left: 10px; text-transform: none; font-family: 'Noto Sans JP', sans-serif; }
+.chapter-body { flex: 1; padding: 14px 24px 14px 8px; }
+.chapter-title-ja { font-size: 15px; font-weight: 700; color: var(--white); line-height: 1.4; }
+.chapter-title-en { font-family: 'Inter', sans-serif; font-size: 10px; color: rgba(255,255,255,.35); letter-spacing: .5px; margin-top: 3px; }
+
+/* ── CONTENT ── */
+.content { padding: 48px 56px 56px; }
+
+/* ── SECTION / SUB HEADING ── */
+.section-heading { font-size: 17px; font-weight: 700; color: var(--navy); border-bottom: 2px solid var(--blue); padding-bottom: 8px; margin: 48px 0 20px; }
+.sub-heading { font-size: 15px; font-weight: 700; color: var(--navy); margin: 36px 0 12px; display: flex; align-items: center; gap: 8px; }
+.sub-heading::before { content: '▶'; color: var(--blue); font-size: 12px; }
+.body-text { font-size: 14px; color: var(--text); line-height: 1.95; margin-bottom: 16px; }
+
+/* ── SLIDE REF ── */
+.slide-ref { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--blue-mid); font-weight: 500; margin-bottom: 28px; padding: 12px 16px; background: var(--blue-lite); border-radius: var(--radius); }
+
+/* ── PURPOSE BOX ── */
+.purpose-box { display: flex; border-radius: var(--radius); overflow: hidden; margin: 0 0 40px; }
+.purpose-line { width: 5px; background: var(--green-line); flex-shrink: 0; }
+.purpose-inner { background: var(--green-bg); padding: 14px 18px; flex: 1; }
+.purpose-label { font-size: 11px; font-weight: 700; color: var(--green-line); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+.purpose-text { font-size: 13.5px; color: var(--text); line-height: 1.75; }
+
+/* ── MUST SAY BOX ── */
+.must-say { border-radius: var(--radius); overflow: hidden; margin: 32px 0 0; }
+.must-say-label { background: var(--blue); padding: 10px 20px; font-size: 11px; font-weight: 700; color: rgba(255,255,255,.8); letter-spacing: 1.5px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+.must-say-body { background: var(--must-dark); padding: 22px 26px; font-size: 15px; font-weight: 700; color: var(--white); line-height: 1.8; }
+
+/* ── TALK EXPAND (折りたたみ) ── */
+.talk-wrap { margin: 0 0 36px; }
+.talk-toggle {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--talk-bg);
+  border: 1px solid var(--talk-line);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--blue);
+  text-align: left;
+  transition: background .15s;
+}
+.talk-toggle:hover { background: #DCF0FF; }
+.talk-toggle .arrow { font-size: 10px; transition: transform .2s; flex-shrink: 0; }
+.talk-toggle.open .arrow { transform: rotate(180deg); }
+.talk-toggle-label { flex: 1; }
+
+.talk-body {
+  display: none;
+  background: var(--talk-bg);
+  border: 1px solid var(--talk-line);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 16px 20px 18px;
+  margin-top: -1px;
+}
+.talk-body.open { display: block; }
+.talk-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--text);
+}
+.talk-item:last-child { margin-bottom: 0; }
+.talk-bullet {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--blue);
+  color: var(--white);
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  font-family: 'Inter', sans-serif;
+}
+.talk-item-text { flex: 1; }
+.talk-item-text strong { color: var(--blue); font-weight: 700; }
+
+/* ── COMPETITOR BOX ── */
+.competitor-box { display: flex; border-radius: var(--radius); overflow: hidden; margin: 32px 0 8px; }
+.competitor-line { width: 5px; background: var(--amber-line); flex-shrink: 0; }
+.competitor-inner { background: var(--amber-bg); padding: 18px 22px; flex: 1; }
+.competitor-label { font-size: 11px; font-weight: 700; color: #E65100; letter-spacing: 1px; margin-bottom: 8px; }
+.competitor-text { font-size: 13.5px; color: var(--text); line-height: 1.85; }
+
+/* ── HINT BOX ── */
+.hint-box { background: var(--blue-lite); border-radius: var(--radius); padding: 16px 20px; font-size: 13.5px; color: var(--navy); font-style: italic; margin: 20px 0; display: flex; align-items: flex-start; gap: 10px; }
+
+/* ── MODE SWITCHER ── */
+.mode-switcher {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--navy);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 2px solid var(--blue);
+  flex-wrap: wrap;
+}
+.mode-label {
+  font-size: 11px;
+  color: rgba(255,255,255,.4);
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-right: 4px;
+}
+.mode-btn {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: transparent;
+  color: rgba(255,255,255,.6);
+  cursor: pointer;
+  transition: all .15s;
+}
+.mode-btn:hover { border-color: rgba(255,255,255,.5); color: rgba(255,255,255,.9); }
+.mode-btn.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
+body.mode-seminar .competitor-box,
+body.mode-seminar .purpose-box,
+body.mode-seminar .slide-ref,
+body.mode-seminar .talk-wrap,
+body.mode-individual .purpose-box,
+body.mode-individual .slide-ref,
+body.mode-individual .talk-wrap {
+  display: none;
+}
+.mode-note {
+  width: 100%;
+  text-align: center;
+  font-size: 11px;
+  color: rgba(255,255,255,.4);
+  margin-top: 2px;
+}
+
+/* ── STAR EMPHASIS ── */
+.star-box { background: #FFFDE7; border-left: 4px solid #F9A825; border-radius: 0 var(--radius) var(--radius) 0; padding: 12px 18px; margin: 16px 0; display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--navy); }
+.star-icon { color: #F9A825; font-size: 16px; flex-shrink: 0; margin-top: 1px; font-weight: 700; }
+
+/* ── TABLES ── */
+.data-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13.5px; }
+.data-table th { background: var(--navy); color: var(--white); font-weight: 700; padding: 12px 16px; text-align: left; font-size: 12.5px; }
+.data-table td { padding: 12px 16px; border-bottom: 1px solid var(--gray-bd); color: var(--text); vertical-align: top; line-height: 1.75; }
+.data-table tr:nth-child(odd) td { background: var(--white); }
+.data-table tr:nth-child(even) td { background: var(--gray-bg); }
+.data-table .highlight { color: var(--blue); font-weight: 700; }
+
+.lifestyle-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13.5px; }
+.lifestyle-table .head-row td { background: var(--navy); color: var(--white); font-weight: 700; padding: 12px 16px; font-size: 12.5px; }
+.lifestyle-table .data-row td { padding: 14px 16px; border-bottom: 1px solid var(--gray-bd); vertical-align: top; line-height: 1.8; }
+.lifestyle-table .data-row:nth-child(even) td { background: var(--blue-lite); }
+.lifestyle-table .data-row:nth-child(odd) td { background: var(--white); }
+.lifestyle-table .label-col { font-weight: 700; color: var(--blue); width: 130px; white-space: nowrap; }
+
+.action-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13.5px; }
+.action-table th { background: var(--navy); color: var(--white); font-weight: 700; padding: 10px 16px; text-align: left; font-size: 12.5px; }
+.action-table td { padding: 11px 16px; border-bottom: 1px solid var(--gray-bd); vertical-align: top; }
+.action-table tr:nth-child(odd) td { background: var(--blue-lite); }
+.action-table tr:nth-child(even) td { background: var(--white); }
+.action-table .action-label { font-weight: 700; color: var(--blue); }
+
+.qa-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+.qa-table th { background: var(--navy); color: var(--white); font-weight: 700; padding: 12px 16px; text-align: left; font-size: 12px; }
+.qa-table td { padding: 16px; border-bottom: 1px solid var(--gray-bd); vertical-align: top; line-height: 1.85; }
+.qa-table tr:nth-child(odd) td { background: #FFF3E0; }
+.qa-table tr:nth-child(even) td { background: var(--white); }
+.qa-table .q-col { font-weight: 700; color: #E65100; width: 42%; }
+
+.spec-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13.5px; }
+.spec-table th { background: var(--navy); color: var(--white); font-weight: 700; padding: 12px 16px; text-align: left; font-size: 12.5px; }
+.spec-table td { padding: 13px 16px; border-bottom: 1px solid var(--gray-bd); vertical-align: middle; }
+.spec-table tr:nth-child(odd) td { background: var(--gray-bg); }
+.spec-table tr:nth-child(even) td { background: var(--white); }
+.spec-table .spec-label { font-weight: 700; color: var(--navy); width: 38%; }
+.spec-table .spec-val { font-weight: 700; color: var(--blue); }
+
+.legend-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13.5px; }
+.legend-table td { padding: 11px 16px; border-bottom: 1px solid var(--gray-bd); vertical-align: middle; }
+.legend-table tr:nth-child(odd) td { background: var(--gray-bg); }
+.legend-table tr:nth-child(even) td { background: var(--white); }
+.legend-table .leg-label { font-weight: 700; width: 42%; }
+.legend-must { color: var(--blue); }
+.legend-comp { color: #E65100; }
+.legend-slide { color: var(--blue-mid); }
+.legend-talk { color: #0277BD; }
+
+.part-divider {
+  height: 8px;
+  background: linear-gradient(to right, var(--navy), var(--blue), #90CAF9);
+  opacity: 0.5;
+}
+.part-gap {
+  height: 40px;
+  background: #F0F4F8;
+  border-top: 1px solid #DDE3EC;
+  border-bottom: 1px solid #DDE3EC;
+}
+.closing-note { background: var(--blue-lite); border-radius: var(--radius); padding: 18px 22px; font-size: 14px; font-weight: 500; color: var(--navy); margin: 24px 0; display: flex; align-items: center; gap: 10px; }
+
+.action-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13.5px; }
+.action-table th { background: var(--navy); color: var(--white); font-weight: 700; padding: 12px 16px; text-align: left; font-size: 12.5px; }
+.action-table td { padding: 14px 16px; border-bottom: 1px solid var(--gray-bd); vertical-align: top; line-height: 1.8; }
+.action-table tr:nth-child(odd) td { background: var(--blue-lite); }
+.action-table tr:nth-child(even) td { background: var(--white); }
+.action-table .action-label { font-weight: 700; color: var(--blue); }
+
+.doc-footer { background: var(--navy); padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; }
+.doc-footer-brand { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; color: var(--blue-mid); letter-spacing: 1px; }
+.doc-footer-copy { font-size: 11px; color: rgba(255,255,255,.35); font-family: 'Inter', sans-serif; }
+
+.mt24 { margin-top: 24px; }
+
+@media(max-width:640px){
+  .content { padding: 24px 20px; }
+  .cover { padding: 48px 28px; }
+}
+@media print {
+  body { background: white; }
+  .shell { box-shadow: none; max-width: 100%; }
+  .talk-body { display: block !important; }
+  .talk-toggle { display: none; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<!-- ══ MODE SWITCHER ══ -->
+<div class="mode-switcher">
+  <span class="mode-label">表示モード</span>
+  <button id="btn-practice" class="mode-btn active" onclick="setMode('practice')">📖 準備・練習</button>
+  <button id="btn-seminar" class="mode-btn" onclick="setMode('seminar')">🎤 セミナー本番</button>
+  <button id="btn-individual" class="mode-btn" onclick="setMode('individual')">🤝 個別相談本番</button>
+  <div class="mode-note" id="mode-note">📖 全項目を表示中。練習でこの内容を身につけてから「本番」モードへ。</div>
+</div>
+
+<!-- ══ COVER ══ -->
+<div class="cover">
+  <div class="cover-logo">LIFEX</div>
+  <div class="cover-tagline">Brand new BASIC. &nbsp;Brand new LIFE.</div>
+  <div class="cover-title-block">
+    <div class="cover-title-ja">初回顧客セミナー<br>話法マニュアル</div>
+    <div class="cover-title-sub">営業担当者向け（再現性強化版）</div>
+  </div>
+  <div class="cover-en">Sales Script Manual for LIFEX Opening Seminar &nbsp;／&nbsp; G House Co., Ltd. BtoB Division</div>
+</div>
+
+<!-- ══ HOW TO USE ══ -->
+<div class="chapter-band">
+  <div class="chapter-num"><span class="part-label">GUIDE</span></div>
+  <div style="flex:1; padding: 14px 24px 14px 16px;">
+    <div class="chapter-tag">HOW TO USE</div>
+    <div class="chapter-title-ja">このマニュアルの使い方</div>
+    <div class="chapter-title-en">Manual Legend</div>
+  </div>
+</div>
+<div class="content">
+  <p class="body-text">各パートの見出しの下にある文章（色のついた枠に入っていない部分）は<strong>「トーク例」</strong>です。一言一句同じでなくて大丈夫です。自分の言葉に置き換えて、自然に話してください。</p>
+  <p class="body-text">本文の最後には、🔴へ自然につながる<strong>短いつなぎの一文</strong>を入れています。これも言葉は自由に調整してOKです。そのまま🔴のフレーズに入っていく——という流れで構成されています。🔴の部分だけは、<strong style="color:#1565C0;">できるだけそのままのフレーズ</strong>でお伝えください。</p>
+  <p class="body-text">🔴は「ここだけ話せばOK」という意味では<strong>ありません</strong>。本文の流れがあってこそ、🔴の言葉が効果的に伝わります。本文を省略せず、自然な流れの中で🔴に到達してください。</p>
+  <table class="legend-table">
+    <tr><td class="leg-label">🗣️&nbsp;&nbsp;見出し下の本文・つなぎの一文</td><td>トーク例。言い回しは自由に調整してOK</td></tr>
+    <tr><td class="leg-label legend-must">🔴&nbsp;&nbsp;ここはこのまま伝える</td><td>言葉を変えずに伝えたい核心フレーズ。本文を省略してこれだけ話すのはNG</td></tr>
+    <tr><td class="leg-label legend-talk">💬&nbsp;&nbsp;さらに深く伝えたい時のトーク例</td><td>🔴で伝えた内容を、もっと深く・分かりやすく説明したい時に使う。必須ではなく必要な時だけ。クリックで開閉します</td></tr>
+    <tr><td class="leg-label">★&nbsp;&nbsp;ここを強調して話す</td><td>声のトーンを上げる・間を取るなどの強調ポイント</td></tr>
+    <tr><td class="leg-label legend-comp">🔺&nbsp;&nbsp;競合対策</td><td>一条工務店ハグミーなどと比較されたときの対応ポイント</td></tr>
+    <tr><td class="leg-label legend-slide">📊&nbsp;&nbsp;スライド参照</td><td>該当するセミナースライドの番号と内容</td></tr>
+  </table>
+</div>
+<div class="part-divider"></div><div class="part-gap"></div>
+
+<!-- ══ PART OPEN ══ -->
+<div class="chapter-band">
+  <div class="chapter-num"><span class="part-label">PART<br>OPEN</span></div>
+  <div style="flex:1; padding: 14px 24px 14px 16px;">
+    <div class="chapter-tag">OPENING<span class="time-badge">⏱ 推定3分</span></div>
+    <div class="chapter-title-ja">オープニング：信頼と期待値を作る最初の90秒</div>
+    <div class="chapter-title-en">Building Trust in the First 90 Seconds</div>
+  </div>
+</div>
+<div class="content">
+  <div class="slide-ref"><span>📊</span>スライド1：「Brand new BASIC. Brand new LIFE.（表紙）」</div>
+  <div class="purpose-box">
+    <div class="purpose-line"></div>
+    <div class="purpose-inner">
+      <div class="purpose-label">▶ このパートの目的</div>
+      <div class="purpose-text">お客様の「聞いてみよう」という気持ちをつかみ、LIFEXへの期待値を正しく設定する。最初の一言で場の雰囲気が決まる。緊張せず、温かく、自信を持って入る。</div>
+    </div>
+  </div>
+  <div class="sub-heading">話す内容と気持ちの方向性</div>
+  <p class="body-text">本日はお時間をいただきありがとうございます。これからLIFEXについてご説明させていただきますが、今日ここでお話しする内容は、ほとんどの方がこれまで知らなかった住宅の「常識の盲点」です。</p>
+  <p class="body-text">今日のセミナーで、家づくりに対する見方が少し変わると思います。難しい話も出てきますが、全部覚えなくて大丈夫です。「なるほど、そういうことか」と感じていただければ十分です。</p>
+  <div class="star-box"><span class="star-icon">★</span>ここで一度、笑顔で間を取る。「損をした方は一人もいません」の直前に2秒の沈黙を置くと、言葉が刺さりやすくなる。</div>
+  <p class="body-text">実は、今日一番お伝えしたいのは、これです。</p>
+  <div class="must-say">
+    <div class="must-say-label">🔴&nbsp;&nbsp;ここはこのまま伝える</div>
+    <div class="must-say-body">「今日この話を聞いて、損をしたという方は一人もいません。でも知らずに家を建てて後悔した方は、たくさんいます。」</div>
+  </div>
+  <div class="talk-wrap">
+    <button class="talk-toggle" onclick="toggleTalk(this)">
+      <span class="arrow">▼</span>
+      <span class="talk-toggle-label">💬 さらに深く伝えたい時のトーク例（クリックで開く）</span>
+    </button>
+    <div class="talk-body">
+      <div class="talk-item"><div class="talk-bullet">1</div><div class="talk-item-text"><strong>場の緊張をほぐす：</strong>「難しい専門用語も出てきますが、今日は『知識を覚える』のではなく『判断基準を持って帰る』というイメージで聞いてください。それだけで十分です。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">2</div><div class="talk-item-text"><strong>期待値を上げる：</strong>「今日お伝えする内容は、住宅会社の営業マンがあまり話したがらないことも含まれています。なぜかというと、比べられると困るからです。でも私たちはLIFEXに自信があるので、全部お話しします。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">3</div><div class="talk-item-text"><strong>安心感を与える：</strong>「今日は何かを決める場ではありません。まず知っていただいて、気になることがあれば後でゆっくりお話ししましょう。」</div></div>
+    </div>
+  </div>
+  <div class="hint-box"><span>💡</span>ゆっくり・笑顔で・目線はお客様へ。資料を読むのではなく、「話しかける」姿勢で。</div>
+</div>
+<div class="part-divider"></div><div class="part-gap"></div>
+
+<!-- ══ PART 1 ══ -->
+<div class="chapter-band">
+  <div class="chapter-num"><span class="part-label">PART 1</span></div>
+  <div style="flex:1; padding: 14px 24px 14px 16px;">
+    <div class="chapter-tag">CONCEPT<span class="time-badge">⏱ 推定7分</span></div>
+    <div class="chapter-title-ja">「諦め」の常識を壊す &nbsp;〜 すべてを叶える家は存在する 〜</div>
+    <div class="chapter-title-en">Breaking the Compromise Myth</div>
+  </div>
+</div>
+<div class="content">
+  <div class="slide-ref"><span>📊</span>スライド2：「理想の家づくり、何かを諦めていませんか？」／スライド3：「すべてが揃うLIFEXの規格住宅」</div>
+  <div class="purpose-box">
+    <div class="purpose-line"></div>
+    <div class="purpose-inner">
+      <div class="purpose-label">▶ このパートの目的</div>
+      <div class="purpose-text">お客様が「当たり前」と思っていた住宅の常識（何かを妥協する）を崩す。LIFEXへの期待感を生む入口。ここで共感が取れれば、後半が格段に刺さりやすくなる。</div>
+    </div>
+  </div>
+  <div class="sub-heading">質問を投げかけながら共感を引き出す</div>
+  <p class="body-text">突然ですが、皆さんは家づくりで「これは諦めよう」と思ったことはありますか？</p>
+  <p class="body-text">性能を上げたいけど予算が上がる。デザインにこだわりたいけど快適さを我慢する。設備を充実させたいけど見積もりが跳ね上がる。……これ、全部「当たり前」だと思っていませんか？</p>
+  <div class="star-box"><span class="star-icon">★</span>「終止符を打ちます」は力強く、はっきりと。ここがPART1の山場。スライドを指さしながら言うとより効果的。</div>
+  <p class="body-text">そこで私たちは、こう考えました。</p>
+  <div class="must-say">
+    <div class="must-say-label">🔴&nbsp;&nbsp;ここはこのまま伝える</div>
+    <div class="must-say-body">「この業界の常識は、『何かを選べば何かを諦める』でした。LIFEXは、その常識に終止符を打ちます。」</div>
+  </div>
+  <div class="talk-wrap">
+    <button class="talk-toggle" onclick="toggleTalk(this)">
+      <span class="arrow">▼</span>
+      <span class="talk-toggle-label">💬 さらに深く伝えたい時のトーク例（クリックで開く）</span>
+    </button>
+    <div class="talk-body">
+      <div class="talk-item"><div class="talk-bullet">1</div><div class="talk-item-text"><strong>なぜ「諦め」が生まれるのか：</strong>「今まで住宅業界がそういう構造だったんです。デザイン性を高めれば職人の手間が増えてコストが上がる。性能を上げれば材料費がかかる。だから何かを削るしかなかった。LIFEXはその構造ごと変えました。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">2</div><div class="talk-item-text"><strong>なぜ全部揃えられるのか：</strong>「一般的な注文住宅は、お客様ごとに一から設計して、一から発注します。だからコストが積み上がる。LIFEXは設計を標準化・最適化し、無駄なコストを徹底的に削ぎ落としているから、本来オプションになるものが全部最初から込みにできるんです。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">3</div><div class="talk-item-text"><strong>4つの揃いを印象づける：</strong>「デザイン・性能・設備・価格。この4つが全部揃う、と言うと『そんなうまい話が？』と思われるかもしれません。今日のセミナーでそれを一つひとつお見せします。」</div></div>
+    </div>
+  </div>
+  <p class="body-text">家を建てるのではなく、暮らしをつくる。追加費用を気にせず、理想の間取りを選ぶだけで、デザイン・性能・設備・価格、この4つが全部揃う。それがLIFEXです。</p>
+  <div class="competitor-box">
+    <div class="competitor-line"></div>
+    <div class="competitor-inner">
+      <div class="competitor-label">🔺 競合対策</div>
+      <div class="competitor-text">一条工務店ハグミーと比べているお客様には：「ハグミーも高性能ですが、デザインの自由度と設備の充実度でLIFEXは別格です。今日の話を聞いてから改めて比べてみてください。」</div>
+    </div>
+  </div>
+</div>
+<div class="part-divider"></div><div class="part-gap"></div>
+
+<!-- ══ PART 2 ══ -->
+<div class="chapter-band">
+  <div class="chapter-num"><span class="part-label">PART 2</span></div>
+  <div style="flex:1; padding: 14px 24px 14px 16px;">
+    <div class="chapter-tag">DESIGN<span class="time-badge">⏱ 推定12分</span></div>
+    <div class="chapter-title-ja">デザイン：人生を彩る唯一無二の空間 &nbsp;〜 間取りは誰が描くか、で暮らしが変わる 〜</div>
+    <div class="chapter-title-en">Design — The Space That Shapes Your Life</div>
+  </div>
+</div>
+<div class="content">
+  <div class="slide-ref"><span>📊</span>スライド5〜15：「間取はとても大事ですが、誰が描くの？ ／ 家族の正解はひとつじゃない。」</div>
+  <div class="purpose-box">
+    <div class="purpose-line"></div>
+    <div class="purpose-inner">
+      <div class="purpose-label">▶ このパートの目的</div>
+      <div class="purpose-text">「デザイン」というと表面的な見た目の話と思われがちだが、間取り・動線・子育て環境まで含んだ「暮らし全体のデザイン」であることを伝える。</div>
+    </div>
+  </div>
+  <div class="sub-heading">① 「誰が描くか」で天と地の差が出る</div>
+  <p class="body-text">皆さんに一つ質問です。夢のマイホームの間取り、誰が描くと思いますか？</p>
+  <p class="body-text">実は今でも、営業担当が間取りを描いている会社がかなり多いのが実情です。営業マンが描いた間取りと、一流の設計士が描いた間取りでは、同じ土地・同じ条件でも、出来上がるものが全然違います。（スライドの比較を指さしながら）ほら、見てください。かっこよさも、暮らしやすさも、全然違いますよね。</p>
+  <div class="star-box"><span class="star-icon">★</span>「それが私たちの約束です」はゆっくり、目線をお客様に向けて言い切る。スライドの間取り比較を指さしながら話すと視覚的に伝わりやすい。</div>
+  <p class="body-text">この違いが生まれる理由を、お伝えします。</p>
+  <div class="must-say">
+    <div class="must-say-label">🔴&nbsp;&nbsp;ここはこのまま伝える</div>
+    <div class="must-say-body">「LIFEXの間取りは、一流の設計士が時間をかけて描き切ったものです。敷地のポテンシャルを最大限に引き出す。それが私たちの約束です。」</div>
+  </div>
+  <div class="talk-wrap">
+    <button class="talk-toggle" onclick="toggleTalk(this)">
+      <span class="arrow">▼</span>
+      <span class="talk-toggle-label">💬 さらに深く伝えたい時のトーク例（クリックで開く）</span>
+    </button>
+    <div class="talk-body">
+      <div class="talk-item"><div class="talk-bullet">1</div><div class="talk-item-text"><strong>設計士の違いを具体化：</strong>「一流の設計士は、光の入り方・風の通り道・家族の動線・将来の生活変化まで考えて間取りを描きます。営業マンが描く間取りとは、そもそも出発点が違います。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">2</div><div class="talk-item-text"><strong>「選び抜かれた設計」と伝える：</strong>「LIFEXの間取りは、一流の設計士がありとあらゆる暮らしのパターンを考え抜いて作り上げたプランです。その中からお客様に最も合うものを選んでいただく。ゼロから手探りで決めていくのではなく、プロが時間をかけて練り上げた中から選ぶ——これが一番後悔のない家づくりです。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">3</div><div class="talk-item-text"><strong>打ち合わせ負担の軽さにつなげる：</strong>「ゼロから全部決める注文住宅は、打ち合わせに平均100時間以上かかると言われています。LIFEXはプロが考え抜いたプランの中から選ぶので、打ち合わせ回数が大幅に減ります。決断疲れもしません。」</div></div>
+    </div>
+  </div>
+  <div class="sub-heading">② ライフスタイル別の動線設計（3パターン紹介）</div>
+  <p class="body-text">スライドを見せながら、お客様のライフスタイルに近いものを中心に話す。全部詳しく説明しなくてよい。</p>
+  <table class="lifestyle-table">
+    <tr class="head-row"><td>ライフスタイル</td><td>動線設計の特徴</td></tr>
+    <tr class="data-row"><td class="label-col">清潔スタイル</td><td>帰宅したらリビングを通らず、直接手洗い・着替えへ。お子様が「帰ったらまず手洗い」と自然に習慣化する動線です。「言わなくても、間取りがそうさせる」というのが最高の設計です。</td></tr>
+    <tr class="data-row"><td class="label-col">リラックス<br>スタイル</td><td>2階に水回りを集め、プライベートとパブリックをしっかり分ける。来客があっても慌てない。朝の身支度も2階だけで完結できる。上質な暮らしをデザインする間取りです。</td></tr>
+    <tr class="data-row"><td class="label-col">家事シェア<br>スタイル</td><td>キッチン⇔洗面⇔脱衣が回遊できるスマート設計。共働き夫婦が家事を効率よく分担できる。「どこにある？」「どこに片づける？」というストレスゼロの空間です。</td></tr>
+  </table>
+  <div class="sub-heading">③ 子供の感性を育む空間（親の心に刺さるポイント）</div>
+  <p class="body-text">少し視点を変えてみてください。お子様が小学校低学年ぐらいまでの間、1日のうち学校にいる時間は約8時間。お家にいる時間は約16時間です。</p>
+  <p class="body-text">子供の感性が育まれる一番大切な時期に、その大半を過ごすのはお家です。私たちは家を「箱」として提供したいわけではありません。子供の成長を形作る「環境」をデザインしたいのです。そういう思いでLIFEXの間取りを作っています。</p>
+  <div class="star-box"><span class="star-icon">★</span>お子様連れのご家族には特に刺さるポイント。「子供の未来の環境を選ぶことでもあります」の前に一呼吸おいて、語りかけるように話す。</div>
+  <p class="body-text">だからこそ、私たちはこう考えています。</p>
+  <div class="must-say">
+    <div class="must-say-label">🔴&nbsp;&nbsp;ここはこのまま伝える</div>
+    <div class="must-say-body">「美しい住環境が、子供の創造力・感受性・コミュニケーション力を育てる。家を選ぶことは、子供の未来の環境を選ぶことでもあります。」</div>
+  </div>
+  <div class="talk-wrap">
+    <button class="talk-toggle" onclick="toggleTalk(this)">
+      <span class="arrow">▼</span>
+      <span class="talk-toggle-label">💬 さらに深く伝えたい時のトーク例（クリックで開く）</span>
+    </button>
+    <div class="talk-body">
+      <div class="talk-item"><div class="talk-bullet">1</div><div class="talk-item-text"><strong>感情に訴える：</strong>「どんな習い事をさせるか、どんな学校に行かせるか、そこにはすごく気を使いますよね。でも1日の大半を過ごす家の環境については、意外と考えていないことが多い。家こそが最大の教育環境なんです。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">2</div><div class="talk-item-text"><strong>具体的なイメージを描く：</strong>「美しい色調・素材、自然光の入り方、すっきり片付く動線の中で育った子供と、雑然とした空間で育った子供では、空間感覚や美的センスが変わってくると言われています。LIFEXのデザインはそこまで考えています。」</div></div>
+    </div>
+  </div>
+  <div class="competitor-box">
+    <div class="competitor-line"></div>
+    <div class="competitor-inner">
+      <div class="competitor-label">🔺 競合対策①　一条工務店ハグミーと比較されているお客様へ</div>
+      <div class="competitor-text">「ハグミーは規格住宅ですが、LIFEXは一流設計士が描いた間取りの中からお選びいただきます。デザインの深さと自由度が違います。」</div>
+    </div>
+  </div>
+  <div style="height:12px;"></div>
+  <div class="competitor-box">
+    <div class="competitor-line"></div>
+    <div class="competitor-inner">
+      <div class="competitor-label">🔺 競合対策②　地場の注文住宅と比較されているお客様へ</div>
+      <div class="competitor-text">「注文住宅は確かに自由度が高いです。でも、自由であることと、良い家ができることは別の話です。間取りを一から自分で決めると、何十回もの打ち合わせと膨大な決断が必要になります。しかも、初めての家づくりで手探りで決めた間取りより、プロが暮らしを徹底的に考え抜いた間取りの方が、住み始めてからの満足度が高いというデータもあります。LIFEXは『自由に決める』のではなく『プロが考え抜いた中から選ぶ』形です。決断疲れがなく、後悔も生まれにくい。これが私たちの考える、本当に賢い家づくりです。」</div>
+    </div>
+  </div>
+</div>
+<div class="part-divider"></div><div class="part-gap"></div>
+
+<!-- ══ PART 3 ══ -->
+<div class="chapter-band">
+  <div class="chapter-num"><span class="part-label">PART 3</span></div>
+  <div style="flex:1; padding: 14px 24px 14px 16px;">
+    <div class="chapter-tag">STRUCTURE<span class="time-badge">⏱ 推定12分</span></div>
+    <div class="chapter-title-ja">性能① 耐震・制振：繰り返す地震から家族を守る &nbsp;〜「耐震等級3」には3種類ある 〜</div>
+    <div class="chapter-title-en">Seismic Performance — True Grade 3 Protection</div>
+  </div>
+</div>
+<div class="content">
+  <div class="slide-ref"><span>📊</span>スライド17〜27：「耐震等級とは ／ 地震のこわさ ／ 制振装置evoltz」</div>
+  <div class="purpose-box">
+    <div class="purpose-line"></div>
+    <div class="purpose-inner">
+      <div class="purpose-label">▶ このパートの目的</div>
+      <div class="purpose-text">「耐震等級3があれば安心」という思い込みを崩し、許容応力度計算＋制振（evoltz）の組み合わせが必要な理由を、感情に訴えながら論理的に伝える。南海トラフへの危機感を醸成する。</div>
+    </div>
+  </div>
+  <div class="sub-heading">① 「耐震等級3」という言葉の罠</div>
+  <p class="body-text">耐震等級3、という言葉を聞いたことがある方、手を挙げていただけますか？（挙手を確認）ありがとうございます。では、耐震等級3には「3種類」あることをご存知でしたか？</p>
+  <p class="body-text">これ、実は業界の中でもあまり知られていないことなんですが、同じ「耐震等級3」でも、中身が全然違うんです。</p>
+  <p class="body-text">なぜ計算方法でそんなに差が出るのか。考えてみてください。同じ「3階建て・延床100㎡」の家でも、間取りの形・壁の位置・屋根の重さ・2階の床の重さ、全部違いますよね。地震の力はその家の形や重さによって、どこにどれだけかかるかが全部変わります。</p>
+  <p class="body-text">ところが最も簡易的な「壁量計算」は、壁の量さえ足りていればOKという判断しかしません。家の形や重さの違いをほとんど考慮しません。言ってみれば、人の体格も体質も無視して<strong>「体重だけで健康診断する」</strong>ようなものです。</p>
+  <p class="body-text">許容応力度計算は、骨組み1本1本に実際にかかる力を全部計算します。その家固有の重さ・形・間取りを反映した、本当の意味での構造チェックです。だから同じ「耐震等級3」という名前でも、強さが根本的に違う。LIFEXがこの計算にこだわる理由はここにあります。</p>
+  <div class="star-box"><span class="star-icon">★</span>「必ず聞いてください」は声のトーンを上げて力強く。お客様が他社に行った時の武器になる場面。聴衆がメモを取り始めるポイント。</div>
+  <p class="body-text">だからこそ、今日はぜひ覚えていただきたいことがあります。</p>
+  <div class="must-say">
+    <div class="must-say-label">🔴&nbsp;&nbsp;ここはこのまま伝える</div>
+    <div class="must-say-body">「今日から、『耐震等級3です』と言われたら必ず聞いてください。『何で取ってるんですか？』と。許容応力度計算で取っていなければ、同じ等級3でも建物強度が大きく変わります。」</div>
+  </div>
+  <div class="talk-wrap">
+    <button class="talk-toggle" onclick="toggleTalk(this)">
+      <span class="arrow">▼</span>
+      <span class="talk-toggle-label">💬 さらに深く伝えたい時のトーク例（クリックで開く）</span>
+    </button>
+    <div class="talk-body">
+      <div class="talk-item"><div class="talk-bullet">1</div><div class="talk-item-text"><strong>違いをシンプルに説明：</strong>「一番弱い『等級3相当』は、計算をほとんどしていません。壁の量だけで判断する簡易的な方法です。一方、LIFEXが採用している許容応力度計算は、建物の骨組み1本1本に対して力の流れを計算する、最も精密な方法です。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">2</div><div class="talk-item-text"><strong>コスト面の誤解を解く：</strong>「許容応力度計算は費用がかかるので、ほとんどの工務店がやりたがりません。でもLIFEXは標準でこれをやっています。お客様に本当に安心してもらえる家を作るために、そこはコストをかけています。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">3</div><div class="talk-item-text"><strong>能登の実績でしめる：</strong>「能登半島地震でも、LIFEXと同仕様で建てた573棟のうち倒壊・全壊・半壊はゼロ件でした。数字が証明しています。」</div></div>
+    </div>
+  </div>
+  <table class="data-table">
+    <thead><tr><th>種類</th><th>計算方法</th><th>強度の目安</th></tr></thead>
+    <tbody>
+      <tr><td>① 耐震等級3相当</td><td>仕様規定（壁量計算）</td><td>最も低い（1.6〜1.8）</td></tr>
+      <tr><td>② 品確法の耐震等級3</td><td>性能表示計算（品確法）</td><td>中程度（1.9〜2.0）</td></tr>
+      <tr><td class="highlight">③ 許容応力度計算の耐震等級3 ← LIFEX</td><td class="highlight">構造計算（最も精密）</td><td class="highlight">最も高い（2.4〜2.7）</td></tr>
+    </tbody>
+  </table>
+  <div class="sub-heading">② 「揺れに耐える」だけでは足りない理由</div>
+  <p class="body-text">政府の地震調査委員会は、南海トラフ巨大地震が今後30年以内に発生する確率を「60〜90%程度以上」と公表しています。住宅ローンを組む30〜50年の間に、大きな地震に遭う可能性は十分にある時代です。</p>
+  <p class="body-text">震度4の揺れでも石膏ボードの強度は下がり始める。震度5弱で筋かいが危険になる。壁の中のことだから、外から見ても分からない。でも確実にダメージが蓄積されていくんです。</p>
+  <div class="star-box"><span class="star-icon">★</span>「壁の中を守る」のところで間を取る。「外から見えないから怖い」という直前の話と連動させて、解決策として届けるイメージで話す。</div>
+  <p class="body-text">この問題に対するLIFEXの答えが、こちらです。</p>
+  <div class="must-say">
+    <div class="must-say-label">🔴&nbsp;&nbsp;ここはこのまま伝える</div>
+    <div class="must-say-body">「LIFEXは、1mmの揺れから効き始める制振ダンパー『evoltz』を全商品に標準搭載しています。揺れに耐えるだけでなく、揺れを吸収して壁の中を守る。これが新築時の性能を長く維持する唯一の方法です。」</div>
+  </div>
+  <div class="talk-wrap">
+    <button class="talk-toggle" onclick="toggleTalk(this)">
+      <span class="arrow">▼</span>
+      <span class="talk-toggle-label">💬 さらに深く伝えたい時のトーク例（クリックで開く）</span>
+    </button>
+    <div class="talk-body">
+      <div class="talk-item"><div class="talk-bullet">1</div><div class="talk-item-text"><strong>「耐える」と「吸収する」の違い：</strong>「耐震は揺れに『耐える』設計です。でも何度も揺れ続けると、耐えるたびに少しずつダメージが蓄積します。制振は揺れのエネルギーをダンパーが吸収するので、建物本体へのダメージを最小限に抑えられます。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">2</div><div class="talk-item-text"><strong>evoltzがなぜ必要か：</strong>「耐震だけでは、繰り返しの地震でじわじわと建物にダメージが蓄積します。evoltzはそのエネルギーをダンパーが吸収することで、建物本体へのダメージを最小限に抑える仕組みです。壁の中の劣化を防いで、新築時の性能を長く維持する——それがevoltzを全商品に標準搭載している理由です。」</div></div>
+    </div>
+  </div>
+  <div class="competitor-box">
+    <div class="competitor-line"></div>
+    <div class="competitor-inner">
+      <div class="competitor-label">🔺 競合対策</div>
+      <div class="competitor-text">一条工務店と比較する場合：「一条さんも高耐震ですが、制振ダンパーの搭載は標準ではありません。繰り返しの地震に対してのダメージ蓄積予防という観点で、LIFEXの方が一歩先を行っています。」</div>
+    </div>
+  </div>
+</div>
+<div class="part-divider"></div><div class="part-gap"></div>
+
+<!-- ══ PART 4 ══ -->
+<div class="chapter-band">
+  <div class="chapter-num"><span class="part-label">PART 4</span></div>
+  <div style="flex:1; padding: 14px 24px 14px 16px;">
+    <div class="chapter-tag">HEALTH<span class="time-badge">⏱ 推定15分</span></div>
+    <div class="chapter-title-ja">性能② 断熱・気密・換気・結露：健康を守る家 &nbsp;〜 室温・空気・結露、3つ全部が揃わなければ意味がない 〜</div>
+    <div class="chapter-title-en">Thermal &amp; Air Quality — The Healthy Home</div>
+  </div>
+</div>
+<div class="content">
+  <div class="slide-ref"><span>📊</span>スライド28〜54：「健康・快適な家づくり 全スライド」</div>
+  <div class="purpose-box">
+    <div class="purpose-line"></div>
+    <div class="purpose-inner">
+      <div class="purpose-label">▶ このパートの目的</div>
+      <div class="purpose-text">「暖かい家＝快適」という単純な理解を超え、室温・空気質・結露ゼロの三位一体が健康な住環境を作ることを理解してもらう。数値（UA値・C値）と生活イメージを両方伝える。</div>
+    </div>
+  </div>
+  <div class="sub-heading">① 住宅内に潜む命のリスク</div>
+  <p class="body-text">皆さん、ヒートショックって聞いたことありますよね。実は入浴中の死亡者数は交通事故の4倍以上なんです。そして熱中症で運ばれる方の約4割が、屋外ではなく室内で発症しています。</p>
+  <p class="body-text">つまり家の温度管理が悪いと、命に関わる。WHOは室温18℃以上を最低基準として推奨していますが、LIFEXでは体感温度から考えて23℃以上を目指しています。</p>
+  <div class="star-box"><span class="star-icon">★</span>「家族の健康を選ぶことです」は語尾を落とさず、しっかり言い切る。健康不安を持つご家族がいるお客様には特に響くポイント。</div>
+  <p class="body-text">実際に、こんなデータが出ています。</p>
+  <div class="must-say">
+    <div class="must-say-label">🔴&nbsp;&nbsp;ここはこのまま伝える</div>
+    <div class="must-say-body">「暖かい家に住むだけで、高血圧・糖尿病・アレルギーなど10種類以上の病気のリスクが下がることが厚生労働省のデータで証明されています。家を選ぶことは、家族の健康を選ぶことです。」</div>
+  </div>
+  <div class="talk-wrap">
+    <button class="talk-toggle" onclick="toggleTalk(this)">
+      <span class="arrow">▼</span>
+      <span class="talk-toggle-label">💬 さらに深く伝えたい時のトーク例（クリックで開く）</span>
+    </button>
+    <div class="talk-body">
+      <div class="talk-item"><div class="talk-bullet">1</div><div class="talk-item-text"><strong>身近な例で体感させる：</strong>「冬の朝、リビングは暖かいけど廊下や洗面所は寒い、という経験はありますか？あの温度差が、実は体に大きな負担をかけています。LIFEXの家では、どの部屋もほぼ同じ温度が保たれます。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">2</div><div class="talk-item-text"><strong>医療費の削減につなげる：</strong>「暖かい家に住むと風邪をひきにくくなる、アレルギーが改善される、という実例が多数あります。長い目で見ると医療費の節約にもなります。」</div></div>
+    </div>
+  </div>
+  <div class="sub-heading">② 断熱の話：窓が一番の弱点</div>
+  <p class="body-text">断熱性能を語るとき、まず見るべきは窓です。夏に外から入ってくる熱の約70%が窓から。冬に逃げていく熱の約50%も窓からです。</p>
+  <p class="body-text">LIFEXでは、オール樹脂サッシ一択です。アルミと樹脂では熱伝導率が1000倍も違います。それを組み合わせると結露リスクが上がるので、絶対に避けてください。</p>
+  <p class="body-text">その上でお伝えしたいのが、LIFEXの数値です。</p>
+  <div class="must-say">
+    <div class="must-say-label">🔴&nbsp;&nbsp;ここはこのまま伝える</div>
+    <div class="must-say-body">「LIFEXのUA値は0.46。断熱等級6です。2025年4月から、断熱等級4（UA値0.87）が新築住宅の最低基準として義務化されました。さらに2030年には、断熱等級5（UA値0.6）が次の最低基準になる予定です。LIFEXはその将来の基準すら大きく超えている。これは将来の資産価値にも直結します。」</div>
+  </div>
+  <div class="talk-wrap">
+    <button class="talk-toggle" onclick="toggleTalk(this)">
+      <span class="arrow">▼</span>
+      <span class="talk-toggle-label">💬 さらに深く伝えたい時のトーク例（クリックで開く）</span>
+    </button>
+    <div class="talk-body">
+      <div class="talk-item"><div class="talk-bullet">1</div><div class="talk-item-text"><strong>UA値をわかりやすく：</strong>「UA値は数字が小さいほど優秀です。一般的な家はUA値0.87。LIFEXは0.46。半分近い熱しか逃げない、ということです。冬に暖房をつけたとき、その暖かさが長続きする家と、すぐ逃げていく家の差がここに出ます。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">2</div><div class="talk-item-text"><strong>資産価値の話：</strong>「2025年4月から断熱等級4が最低基準になり、2030年には断熱等級5が次の最低基準になる見込みです。つまり今の基準ぎりぎりで建てた家は、数年で『最低基準未満の家』になってしまう可能性があります。LIFEXは断熱等級6なので、将来の基準にも余裕で対応しています。」</div></div>
+    </div>
+  </div>
+  <div class="sub-heading">③ 気密の話：換気はC値があってこそ</div>
+  <p class="body-text">どんなに高性能な換気システムを入れても、家に隙間があったら換気が機能しないんです。ストローで例えると分かりやすい。穴の空いたストローでは、いくら吸っても飲み物が上がってきません。</p>
+  <p class="body-text">一般的な高気密住宅の基準はC値1以下。LIFEXはC値0.5以下を推奨しており、さらに高い水準を目指しています。C値は設計値ではなく、施工品質の結果です。</p>
+  <p class="body-text">だからこそ、ここは妥協できません。</p>
+  <div class="must-say">
+    <div class="must-say-label">🔴&nbsp;&nbsp;ここはこのまま伝える</div>
+    <div class="must-say-body">「C値は実測値です。同じ図面でも施工の腕次第で変わります。LIFEXが推奨するC値0.5以下という水準は、職人の施工品質の証明です。C値を開示していない会社には要注意です。」</div>
+  </div>
+  <div class="talk-wrap">
+    <button class="talk-toggle" onclick="toggleTalk(this)">
+      <span class="arrow">▼</span>
+      <span class="talk-toggle-label">💬 さらに深く伝えたい時のトーク例（クリックで開く）</span>
+    </button>
+    <div class="talk-body">
+      <div class="talk-item"><div class="talk-bullet">1</div><div class="talk-item-text"><strong>C値の意味を具体化：</strong>「C値とは、床面積1㎡あたりの隙間面積です。たとえば30坪（約100㎡）の家でC値1の場合、家全体で100㎠——はがき1枚分の隙間があることになります。LIFEXが推奨するC値0.5以下だと、その隙間が半分以下。同じ30坪の家でもはがき半枚以下の隙間しかない、ということです。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">2</div><div class="talk-item-text"><strong>C値を開示しない会社への注意喚起：</strong>「C値を載せていない会社のホームページは結構多いです。なぜかというと、測定すると数値が悪くて見せられないから、というケースが少なくありません。LIFEXは堂々と開示しています。」</div></div>
+    </div>
+  </div>
+  <div class="sub-heading">④ 壁体内結露：知らずに建てると100%起きる</div>
+  <p class="body-text">木造住宅で、ある対策をしなければ100%起きてしまうことがあります。それが壁体内結露です。壁の中が濡れると、腐朽菌が発生し木材が腐る。シロアリが来る。断熱材が縮む。耐震性も断熱性も一気に落ちる。しかも壁の中は見えないから気づいた時には手遅れです。</p>
+  <div class="star-box"><span class="star-icon">★</span>「これだけで会社を選んでも良いくらい」は少し強めに言い切る。壁体内結露の怖さを語った直後なので、お客様の不安が高まっているタイミング。解決策として明確に届ける。</div>
+  <p class="body-text">そうならないために、LIFEXが徹底していることがあります。</p>
+  <div class="must-say">
+    <div class="must-say-label">🔴&nbsp;&nbsp;ここはこのまま伝える</div>
+    <div class="must-say-body">「防湿気密シートを施工しているかどうか、これだけで会社を選んでも良いくらい重要です。LIFEXは全棟に防湿気密シートを施工しています。」</div>
+  </div>
+  <div class="talk-wrap">
+    <button class="talk-toggle" onclick="toggleTalk(this)">
+      <span class="arrow">▼</span>
+      <span class="talk-toggle-label">💬 さらに深く伝えたい時のトーク例（クリックで開く）</span>
+    </button>
+    <div class="talk-body">
+      <div class="talk-item"><div class="talk-bullet">1</div><div class="talk-item-text"><strong>「見えない」恐怖を伝える：</strong>「外壁のひびや屋根の劣化は目で見えます。でも壁の中の腐食は見えません。10年後、20年後に気づいたときには、修繕不可で建て替えしかない、というケースも実際にあります。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">2</div><div class="talk-item-text"><strong>他社への確認ポイントを伝える：</strong>「他社を見学するときに一つだけ聞いてみてください。『防湿気密シートは施工していますか？』と。これに即答できない会社は要注意です。」</div></div>
+    </div>
+  </div>
+  <div class="sub-heading">⑤ 換気システム：第1種全熱交換型の理由</div>
+  <p class="body-text">LIFEXは第1種換気システムの全熱交換型を標準採用しています。室内から汚い空気を出すとき、熱だけ回収して、フィルターを通した新鮮な空気に熱を乗せて戻します。せっかく暖めた空気を無駄にしない、とても賢いシステムです。</p>
+  <p class="body-text">さらに、サイクロンフードで虫やほこりをそもそも入れない設計なので、フィルター掃除も最小限で済みます。</p>
+  <div class="competitor-box">
+    <div class="competitor-line"></div>
+    <div class="competitor-inner">
+      <div class="competitor-label">🔺 競合対策</div>
+      <div class="competitor-text">性能を強調する他社を検討中のお客様：「UA値だけ良くて、C値や防湿気密シートの情報が出てこない会社は要確認です。どちらも必要です。片方だけでは健康住宅とは言えません。」</div>
+    </div>
+  </div>
+</div>
+<div class="part-divider"></div><div class="part-gap"></div>
+
+<!-- ══ PART 5 ══ -->
+<div class="chapter-band">
+  <div class="chapter-num"><span class="part-label">PART 5</span></div>
+  <div style="flex:1; padding: 14px 24px 14px 16px;">
+    <div class="chapter-tag">EQUIPMENT<span class="time-badge">⏱ 推定8分</span></div>
+    <div class="chapter-title-ja">ハイグレード設備：「あったらいいな」が全部標準 &nbsp;〜 496万円分の設備が追加費用ゼロ 〜</div>
+    <div class="chapter-title-en">Premium Equipment — All Included as Standard</div>
+  </div>
+</div>
+<div class="content">
+  <div class="slide-ref"><span>📊</span>スライド55〜57：「ハイグレード設備仕様 ／ 追加オプション比較」</div>
+  <div class="purpose-box">
+    <div class="purpose-line"></div>
+    <div class="purpose-inner">
+      <div class="purpose-label">▶ このパートの目的</div>
+      <div class="purpose-text">設備の豪華さを「お得感」として伝えるだけでなく、「最初から全部込み」というLIFEXの価格設計の考え方を理解してもらう。</div>
+    </div>
+  </div>
+  <div class="sub-heading">設備の価値を具体的に伝える</div>
+  <p class="body-text">グラフテクトのキッチン、リクシルのリシェル、海外製食洗機BOSCH、全扉ハイドア、間接照明……普通の注文住宅だったら全部オプションです。</p>
+  <p class="body-text">ざっくり計算してみました。これを全部同じグレードで注文住宅に入れようとすると、約496万円かかります。LIFEXではこれが全部標準仕様です。追加費用ゼロです。</p>
+  <div class="star-box"><span class="star-icon">★</span>「同じグレードで比べてください」は指を1本立てながら言うと印象的。他社比較を検討中のお客様が多い場面では特に力を込めて伝える。</div>
+  <p class="body-text">ただ、ここで一つだけ注意していただきたいことがあります。</p>
+  <div class="must-say">
+    <div class="must-say-label">🔴&nbsp;&nbsp;ここはこのまま伝える</div>
+    <div class="must-say-body">「LIFEXと他社を比較するときは、同じグレードで比べてください。LIFEXのキッチンと同じものを他社で選んだら、それだけで100万円以上変わってきます。見た目の本体価格だけで比べると、大きな間違いをします。」</div>
+  </div>
+  <div class="talk-wrap">
+    <button class="talk-toggle" onclick="toggleTalk(this)">
+      <span class="arrow">▼</span>
+      <span class="talk-toggle-label">💬 さらに深く伝えたい時のトーク例（クリックで開く）</span>
+    </button>
+    <div class="talk-body">
+      <div class="talk-item"><div class="talk-bullet">1</div><div class="talk-item-text"><strong>見積もり比較の注意点：</strong>「他社の見積もりを見るときは、標準仕様のキッチンがどのグレードか必ず確認してください。LIFEXと同じグラフテクトや海外製食洗機BOSCHを入れると、見積もりはどこまで上がりますか？と聞くのが正しい比べ方です。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">2</div><div class="talk-item-text"><strong>「住み始めてから気づく」後悔を伝える：</strong>「引き渡しを受けてから『やっぱりキッチンをもっと良いものにしたかった』と後悔しても、もう追加できません。LIFEXなら最初からそれが全部入っているので、住み始めてからの後悔がない。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">3</div><div class="talk-item-text"><strong>ハイドアの体感：</strong>「全扉ハイドアは実際にモデルハウスで体感していただくと違いがすぐ分かります。天井まで届くドアは空間を広く見せる効果があります。ぜひ一度、その開放感を体感しに来てください。」</div></div>
+    </div>
+  </div>
+  <div class="competitor-box">
+    <div class="competitor-line"></div>
+    <div class="competitor-inner">
+      <div class="competitor-label">🔺 競合対策</div>
+      <div class="competitor-text">他社の価格が安く見える場合：「他社の見積もりはどこまで含まれていますか？標準仕様のキッチンや設備のグレードを確認してください。同じグレードにしたら総額でいくらになるか、必ず聞くようにしてください。」</div>
+    </div>
+  </div>
+</div>
+<div class="part-divider"></div><div class="part-gap"></div>
+
+<!-- ══ PART 6 ══ -->
+<div class="chapter-band">
+  <div class="chapter-num"><span class="part-label">PART 6</span></div>
+  <div style="flex:1; padding: 14px 24px 14px 16px;">
+    <div class="chapter-tag">COST<span class="time-badge">⏱ 推定13分</span></div>
+    <div class="chapter-title-ja">価格：初期費用より「30年の総コスト」で考える &nbsp;〜 見えないコストが家計を圧迫する 〜</div>
+    <div class="chapter-title-en">Total Cost — Thinking Beyond the Purchase Price</div>
+  </div>
+</div>
+<div class="content">
+  <div class="slide-ref"><span>📊</span>スライド58〜74：「生涯コストを見据えた価格」</div>
+  <div class="purpose-box">
+    <div class="purpose-line"></div>
+    <div class="purpose-inner">
+      <div class="purpose-label">▶ このパートの目的</div>
+      <div class="purpose-text">「家の値段＝建てる時の費用」という思い込みを崩す。イニシャルコスト・ランニングコスト・メンテナンスコストの三位一体で総コストを語る。</div>
+    </div>
+  </div>
+  <div class="sub-heading">① 氷山の一角の罠</div>
+  <p class="body-text">家を買う時、ほとんどの方が「建てる時の費用」だけを見ます。でも本当に恐ろしいのは、住み始めてから数十年続く「見えないコスト」です。</p>
+  <p class="body-text">光熱費・修繕費・火災保険・医療費……全部を合わせると、建築費より大きくなることも珍しくありません。</p>
+  <div class="star-box"><span class="star-icon">★</span>「建てたらゴールではありません」でいったん間を取る。ここからトータルコストの本題に入る重要な入口。お客様の表情を確認しながらゆっくり話す。</div>
+  <p class="body-text">ここで、一番大切な考え方をお伝えします。</p>
+  <div class="must-say">
+    <div class="must-say-label">🔴&nbsp;&nbsp;ここはこのまま伝える</div>
+    <div class="must-say-body">「家づくりは建てたらゴールではありません。その家でどんな暮らし・どんな人生を歩むかがゴールです。30年・40年のトータルコストで家を選ぶのが本当に賢い選択です。」</div>
+  </div>
+  <div class="talk-wrap">
+    <button class="talk-toggle" onclick="toggleTalk(this)">
+      <span class="arrow">▼</span>
+      <span class="talk-toggle-label">💬 さらに深く伝えたい時のトーク例（クリックで開く）</span>
+    </button>
+    <div class="talk-body">
+      <div class="talk-item"><div class="talk-bullet">1</div><div class="talk-item-text"><strong>氷山のイメージで視覚化：</strong>「家の費用を氷山に例えると、建築費は水面に出ている部分。光熱費・修繕費・保険料・医療費は水面下に隠れている部分です。実は水面下の方がずっと大きい。ここを見ないで家を選ぶのは、氷山の一角だけを見てタイタニックが安心だと判断したようなものです。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">2</div><div class="talk-item-text"><strong>35年でいくら差が出るか：</strong>「光熱費で年間約20万円の差、保険料で年間約4.6万円の差。合わせると年間約24.6万円。35年では約860万円の差になります。これは建築費の差額を大きく上回ることがあります。」</div></div>
+    </div>
+  </div>
+  <div class="sub-heading">② 光熱費：実際のデータ</div>
+  <p class="body-text">LIFEXのお客様の実際の電気代データをお見せします。UA値0.46・床面積約105㎡・太陽光9.3kWの家で、年間の買電費用から売電収入を引くと実質約1万8000円。オール電化平均と比べると年間約20万円のメリットです。</p>
+  <p class="body-text">電気代は今後も上がっていきます。今のうちにエネルギーを自給できる家を選ぶことが、将来の安心につながります。</p>
+  <div class="sub-heading">③ 火災保険：知っているだけで160万円変わる</div>
+  <p class="body-text">5年分の火災・地震保険料を見てください。一般的な工務店は42万円以上かかるところ、LIFEXは20万円。その差は35年で約160万円です。保険内容は全部一緒です。違いはLIFEXの性能（省令準耐火構造・耐震等級3）だけ。知っているか知らないかで、これだけの差が出ます。</p>
+  <p class="body-text">そして、ここで一番大切なことをお伝えします。建築費は住宅ローンに組み込めるので、月々の返済の中に含まれます。でも、光熱費・保険料・修繕費といったランニングコストは<strong style="color:#C62828;">ローンに入れられません。毎月、現金が財布から出ていき続けます。</strong>家を建てたあとに「なんか毎月きつい……」と感じる方の多くは、このランニングコストを見落としていたケースです。ローンの返済額だけで家を選ぶのが、いかに危険かをぜひ知っておいてください。</p>
+  <p class="body-text">そう考えると、一番大切なのはこのことです。</p>
+  <div class="must-say">
+    <div class="must-say-label">🔴&nbsp;&nbsp;ここはこのまま伝える</div>
+    <div class="must-say-body">「3つのコスト——初期費用・光熱費・メンテナンス費——を全部合わせてトータルで考えると、LIFEXは圧倒的に経済合理性が高い選択です。浮いたお金を旅行や趣味、子供の教育に使えます。それがLIFEXの考え方です。」</div>
+  </div>
+  <div class="talk-wrap">
+    <button class="talk-toggle" onclick="toggleTalk(this)">
+      <span class="arrow">▼</span>
+      <span class="talk-toggle-label">💬 さらに深く伝えたい時のトーク例（クリックで開く）</span>
+    </button>
+    <div class="talk-body">
+      <div class="talk-item"><div class="talk-bullet">1</div><div class="talk-item-text"><strong>保険料の違いを強調：</strong>「保険の内容は全く同じです。補償額も同じ。でも保険料が半分以下になる。これはLIFEXが省令準耐火構造と耐震等級3を満たしているから、保険会社がリスクを低く評価するんです。性能が高いとこういうところでも得をします。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">2</div><div class="talk-item-text"><strong>「浮いたお金」を具体化：</strong>「年間約24.6万円浮いたとしたら、35年で約860万円。その分を子供の教育費に回せる。旅行に行ける。老後の資金にできる。家の性能が、暮らしの豊かさに直結するんです。」</div></div>
+    </div>
+  </div>
+  <div class="competitor-box">
+    <div class="competitor-line"></div>
+    <div class="competitor-inner">
+      <div class="competitor-label">🔺 競合対策</div>
+      <div class="competitor-text">「LIFEXは他社より初期費用が高い」と言われた場合：「初期費用だけで比べると確かに違いが出る場合があります。でも同じ設備・同じ性能・同じ光熱費・同じ保険料で35年間過ごした場合のトータルで比較すると、LIFEXの方が圧倒的に低コストです。数字で一緒に確認しましょう。」</div>
+    </div>
+  </div>
+</div>
+<div class="part-divider"></div><div class="part-gap"></div>
+
+<!-- ══ PART CLOSE ══ -->
+<div class="chapter-band">
+  <div class="chapter-num"><span class="part-label">PART<br>CLOSE</span></div>
+  <div style="flex:1; padding: 14px 24px 14px 16px;">
+    <div class="chapter-tag">CLOSING<span class="time-badge">⏱ 推定5分</span></div>
+    <div class="chapter-title-ja">クロージング：行動を促す最後の言葉</div>
+    <div class="chapter-title-en">Closing — The Final Call to Action</div>
+  </div>
+</div>
+<div class="content">
+  <div class="slide-ref"><span>📊</span>スライド75〜77：「住宅選びの新しいスタンダード ／ ご清聴ありがとうございました」</div>
+  <div class="purpose-box">
+    <div class="purpose-line"></div>
+    <div class="purpose-inner">
+      <div class="purpose-label">▶ このパートの目的</div>
+      <div class="purpose-text">セミナーの内容を凝縮してまとめ、「次のステップ（個別相談・見学）」への行動を自然に促す。押し売り感を出さず、「また話を聞きたい」と思ってもらうことが目標。</div>
+    </div>
+  </div>
+  <div class="sub-heading">まとめのメッセージ</div>
+  <p class="body-text">今日お話しした内容をまとめます。デザイン・性能・設備・価格。この4つが全部揃う。それがLIFEXです。</p>
+  <p class="body-text">家づくりで「何かを諦める」必要はありません。30年のトータルコストで考えると、実はLIFEXが一番経済合理性が高い。そして何より、お子様の感性を育む空間、家族の健康を守る家——その思いがLIFEXのすべての仕様に込められています。</p>
+  <div class="star-box"><span class="star-icon">★</span>セミナー全体の締めの言葉。ゆっくり、一語一語を届けるように話す。「LIFEXはその暮らしのために設計されています」は笑顔で、自信を持って言い切る。</div>
+  <p class="body-text">最後に、一番大切なことをお伝えします。</p>
+  <div class="must-say">
+    <div class="must-say-label">🔴&nbsp;&nbsp;ここはこのまま伝える</div>
+    <div class="must-say-body">「家を建てることがゴールではありません。その家でどんな暮らしをするか、どんな人生を歩むか——それがゴールです。LIFEXはその暮らしのために設計されています。」</div>
+  </div>
+  <div class="talk-wrap">
+    <button class="talk-toggle" onclick="toggleTalk(this)">
+      <span class="arrow">▼</span>
+      <span class="talk-toggle-label">💬 さらに深く伝えたい時のトーク例（クリックで開く）</span>
+    </button>
+    <div class="talk-body">
+      <div class="talk-item"><div class="talk-bullet">1</div><div class="talk-item-text"><strong>今日の内容を一言でまとめる：</strong>「今日のセミナーで一つだけ覚えて帰ってください。『家を選ぶことは、暮らしを選ぶことだ』ということです。どんな家に住むかで、家族の健康・子供の成長・家計の未来が変わります。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">2</div><div class="talk-item-text"><strong>次のステップに自然につなげる：</strong>「今日お話しした内容で、もう少し詳しく聞きたいことや、ご自身の土地や予算に当てはめたらどうなるか気になる方は、ぜひ個別でお話しする機会をください。今日の内容をベースに、具体的な数字でご説明できます。」</div></div>
+      <div class="talk-item"><div class="talk-bullet">3</div><div class="talk-item-text"><strong>押し売りにならないしめ方：</strong>「今日決める必要は全くありません。まずは今日の話を持ち帰って、ご家族で話してみてください。何かあればいつでも声をかけてください。」</div></div>
+    </div>
+  </div>
+  <p class="body-text">本日はご清聴いただきありがとうございました。もし気になることや、もっと詳しく聞きたいことがあれば、個別にお話しする時間をぜひ設けさせてください。</p>
+  <div class="closing-note">📋&nbsp;&nbsp;アンケートに個別相談の希望をご記入いただいた方には、本日中にご連絡します。</div>
+  <div class="sub-heading">セミナー終了後の動き（営業担当へ）</div>
+  <table class="action-table">
+    <thead><tr><th>アクション</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td class="action-label">アンケート回収</td><td>個別相談希望者を確認し、優先的に声掛けする</td></tr>
+      <tr><td class="action-label">当日 or 翌日連絡</td><td>個別相談の日程調整の連絡を本日または明日中に行う</td></tr>
+      <tr><td class="action-label">限定会員登録</td><td>個別相談後に限定会員登録が完了する流れを説明</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="part-divider"></div><div class="part-gap"></div>
+
+<!-- ══ APPENDIX ══ -->
+<div class="chapter-band">
+  <div class="chapter-num"><span class="part-label">付録</span></div>
+  <div style="flex:1; padding: 14px 24px 14px 16px;">
+    <div class="chapter-tag">APPENDIX</div>
+    <div class="chapter-title-ja">よくある比較・質問への対応集</div>
+    <div class="chapter-title-en">FAQ &amp; Competitive Response Guide</div>
+  </div>
+</div>
+<div class="content">
+  <div class="section-heading">一条工務店 ハグミーとの比較質問への対応</div>
+  <table class="qa-table">
+    <thead><tr><th class="q-col">お客様の発言・疑問</th><th>推奨回答・アプローチ</th></tr></thead>
+    <tbody>
+      <tr><td class="q-col">一条は高気密高断熱で有名ですよね？</td><td>一条さんの断熱性能は確かに高いです。ただLIFEXと比べると、デザインの自由度・設備グレード・制振ダンパーの標準搭載の点で差があります。同じ性能でも、LIFEXは暮らしの豊かさにまで踏み込んでいます。</td></tr>
+      <tr><td class="q-col">一条の方が安いと聞きました</td><td>一条さんも規格住宅なので価格は抑えられますが、設備グレードをLIFEXと同じにすると実は大きく変わります。同じ設備・同じ性能で30年のトータルコストを比べてみてください。</td></tr>
+      <tr><td class="q-col">ハグミーもデザインの選択肢がありますよね？</td><td>ハグミーも選択肢はありますが、LIFEXは一流設計士が描き切った間取りプランの中から選ぶ形なので、暮らしやすさの深さが違います。実際に間取りを見比べていただくとよく分かります。</td></tr>
+      <tr><td class="q-col">一条は全館床暖房があるけど？</td><td>全館床暖房は確かに魅力的な設備です。ただ、坪単価に床暖房の費用がしっかり乗っており、固定資産税にも影響します。また、床暖房はあくまで「暖める」設備であり、換気・気密との組み合わせなしでは本当の快適さは実現できません。LIFEXは超高気密高断熱と第1種全熱換気の組み合わせで、ワンフロアー1台のエアコンで、フロア全体を均一な温度に保てる環境を実現しています。</td></tr>
+    </tbody>
+  </table>
+  <div class="section-heading mt24">注文住宅（フルオーダー）と迷っているお客様への対応</div>
+  <table class="qa-table">
+    <thead><tr><th class="q-col">お客様の発言・疑問</th><th>推奨回答・アプローチ</th></tr></thead>
+    <tbody>
+      <tr><td class="q-col">やっぱり自分で全部決めたい</td><td>LIFEXは「ゼロから全部決める」ではなく、「プロが考え抜いたプランの中から選ぶ」形です。実はこの方が、後悔のない家づくりができます。無数の選択肢から選ぶ決断疲れがなく、打ち合わせも半減します。</td></tr>
+      <tr><td class="q-col">注文住宅の方が個性が出せる？</td><td>LIFEXの間取りは一流設計士が描いた唯一無二のプランです。プランの中からお客様のライフスタイルに最も合うものを選んでいただく形です。「何でも自由に決める」ではなく「プロが考え抜いた中から選ぶ」——その方が後悔のない家づくりになります。</td></tr>
+      <tr><td class="q-col">工期が短いのは品質が不安</td><td>工期が短い理由は手を抜いているからではありません。設計図・仕様・発注の事前準備が整っているから工程がスムーズなんです。むしろ突貫工事になりやすい注文住宅より品質は安定しています。</td></tr>
+    </tbody>
+  </table>
+  <div class="section-heading mt24">LIFEXスペック早見表</div>
+  <table class="spec-table">
+    <thead><tr><th>項目</th><th>LIFEX 仕様</th></tr></thead>
+    <tbody>
+      <tr><td class="spec-label">耐震性能</td><td class="spec-val">耐震等級3（許容応力度計算）</td></tr>
+      <tr><td class="spec-label">制振装置</td><td class="spec-val">evoltz（速度依存型・全商品標準）</td></tr>
+      <tr><td class="spec-label">断熱等級</td><td class="spec-val">断熱等級6 ／ UA値 0.46 W/㎡K</td></tr>
+      <tr><td class="spec-label">気密性能</td><td class="spec-val">C値 0.5以下を推奨（実測値）</td></tr>
+      <tr><td class="spec-label">省エネ認証</td><td class="spec-val">BELS ★6（最高評価）</td></tr>
+      <tr><td class="spec-label">長期優良住宅</td><td class="spec-val">取得</td></tr>
+      <tr><td class="spec-label">換気システム</td><td class="spec-val">第1種全熱交換型換気システム</td></tr>
+      <tr><td class="spec-label">防湿対策</td><td class="spec-val">防湿気密シート標準施工</td></tr>
+      <tr><td class="spec-label">防蟻・防腐</td><td class="spec-val">エコボロン（半永久・鉱物系）</td></tr>
+      <tr><td class="spec-label">太陽光</td><td class="spec-val">最大 11.16 kW（プランにより異なる）</td></tr>
+      <tr><td class="spec-label">本体価格（税別）</td><td class="spec-val">LITE：1,890万円〜 ／ 標準：2,110万円〜</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<div class="doc-footer">
+  <div class="doc-footer-brand">LIFEX</div>
+  <div class="doc-footer-copy">© G House Co., Ltd. &nbsp;／&nbsp; BtoB Division &nbsp;／&nbsp; Sales Script Manual</div>
+</div>
+
+</div>
+
+<script>
+function setMode(mode) {
+  document.body.className = 'mode-' + mode;
+  document.getElementById('btn-practice').classList.toggle('active', mode === 'practice');
+  document.getElementById('btn-seminar').classList.toggle('active', mode === 'seminar');
+  document.getElementById('btn-individual').classList.toggle('active', mode === 'individual');
+  const notes = {
+    practice: '📖 全項目を表示中。練習でこの内容を身につけてから「本番」モードへ。',
+    seminar: '🎤 セミナー本番用。目的・スライド参照・トーク展開・競合対策を非表示にしています。',
+    individual: '🤝 個別相談本番用。目的・スライド参照・トーク展開を非表示にし、競合対策は表示しています。'
+  };
+  document.getElementById('mode-note').textContent = notes[mode];
+}
+function toggleTalk(btn) {
+  btn.classList.toggle('open');
+  const body = btn.nextElementSibling;
+  body.classList.toggle('open');
+}
+</script>
+</body>
+</html>
