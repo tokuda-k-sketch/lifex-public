@@ -168,123 +168,82 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 <div class="sl">
   <div class="top"><span class="chip cLeak">恐怖②</span><span class="pg">4 / 23</span></div>
   <div class="tt">見た目も数値も完璧な家の、壁の中。</div>
-  <div class="body" style="flex-direction:column; gap:6px">
-    <svg viewBox="0 0 900 350" style="width:100%; flex:1; min-height:0" role="img" aria-label="外観・数値ともに問題のない家と、その壁の中で結露と腐朽が起きている断面図の比較">
+  <div class="body" style="gap:14px">
+    <figure style="width:40%; flex-shrink:0; margin:0; position:relative; border-radius:10px; overflow:hidden; box-shadow:0 4px 14px rgba(20,40,60,.18)">
+      <img src="assets/photo-minoh-model.jpg" alt="LIFEX箕面モデルの外観パース（夕景）" style="width:100%; height:100%; object-fit:cover; display:block">
+      <figcaption style="position:absolute; left:12px; right:12px; bottom:12px; background:rgba(255,255,255,.94); border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px">
+        <span style="width:34px; height:34px; border-radius:50%; background:#1f7a5c; color:#fff; font-weight:800; font-size:20px; display:flex; align-items:center; justify-content:center; flex-shrink:0">✓</span>
+        <span><b style="font-size:16px; color:#1f7a5c">UA値0.46・C値0.5</b><br><span style="font-size:12px; color:var(--sub)">外から見ても、数字を見ても問題なし</span></span>
+      </figcaption>
+    </figure>
+    <div style="font-size:30px; font-weight:800; color:var(--leak); align-self:center; flex-shrink:0">▶</div>
+    <div style="flex:1; min-width:0; display:flex; flex-direction:column">
+      <div style="font-size:15px; font-weight:800; color:var(--leak); text-align:center">壁を切ってみると、こうなっていることがある</div>
+      <div style="flex:1; min-height:0"><svg viewBox="0 0 600 440" style="width:100%; height:100%" role="img" aria-label="LIFEXの外壁の断面。屋外側からサイディング、通気層、透湿防水シート、耐力面材、吹付ウレタン断熱と柱、防湿気密シート、石膏ボード。湿気が入ると断熱材の屋外寄りで結露し、柱が傷む">
       <defs>
-        <linearGradient id="roofGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#eef2f5"/><stop offset="100%" stop-color="#c7d1d8"/>
-        </linearGradient>
-        <linearGradient id="wallGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f2f4f6"/>
-        </linearGradient>
-        <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#e2f1fc"/><stop offset="100%" stop-color="#a9d3ec"/>
-        </linearGradient>
-        <linearGradient id="doorGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#eef2f5"/><stop offset="100%" stop-color="#d5dce1"/>
-        </linearGradient>
-        <radialGradient id="checkGrad" cx="35%" cy="30%" r="75%">
-          <stop offset="0%" stop-color="#4fae8f"/><stop offset="100%" stop-color="#1f7a5c"/>
-        </radialGradient>
-        <linearGradient id="sidingGrad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#dbe1e6"/><stop offset="100%" stop-color="#b7c1c9"/>
-        </linearGradient>
-        <linearGradient id="insulGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#fff8e4"/><stop offset="100%" stop-color="#fbe7b3"/>
-        </linearGradient>
-        <radialGradient id="rotGrad" cx="50%" cy="45%" r="62%">
-          <stop offset="0%" stop-color="#4f351f"/><stop offset="65%" stop-color="#7a5738" stop-opacity=".92"/><stop offset="100%" stop-color="#7a5738" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="dropGrad" cx="32%" cy="24%" r="78%">
-          <stop offset="0%" stop-color="#cdeafc"/><stop offset="50%" stop-color="#4fa8de"/><stop offset="100%" stop-color="#2b6ea0"/>
-        </radialGradient>
-        <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1b2530" flood-opacity="0.16"/>
-        </filter>
-        <filter id="blurSoft" x="-70%" y="-70%" width="240%" height="240%">
-          <feGaussianBlur stdDeviation="3.5"/>
-        </filter>
-        <linearGradient id="studGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d8b978"/><stop offset="50%" stop-color="#e8d3a8"/><stop offset="100%" stop-color="#c49a5c"/></linearGradient>
-        <clipPath id="wallClip"><rect x="0" y="0" width="200" height="220" rx="8"/></clipPath>
+        <linearGradient id="p4out" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#cfe2f1"/><stop offset="100%" stop-color="#eaf3fa"/></linearGradient>
+        <linearGradient id="p4room" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#fdf3ea"/><stop offset="100%" stop-color="#f9e3cf"/></linearGradient>
+        <linearGradient id="p4siding" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#8d969e"/><stop offset="55%" stop-color="#b8c1c8"/><stop offset="100%" stop-color="#a3adb5"/></linearGradient>
+        <linearGradient id="p4board" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c9a96d"/><stop offset="100%" stop-color="#dcc08a"/></linearGradient>
+        <linearGradient id="p4foam" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f6e7b8"/><stop offset="100%" stop-color="#fff7de"/></linearGradient>
+        <linearGradient id="p4stud" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3c690"/><stop offset="50%" stop-color="#efd9ad"/><stop offset="100%" stop-color="#d2ad6c"/></linearGradient>
+        <linearGradient id="p4pb" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ecebe7"/><stop offset="100%" stop-color="#fbfaf8"/></linearGradient>
+        <radialGradient id="p4rot" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#4a3019"/><stop offset="60%" stop-color="#77542f" stop-opacity=".9"/><stop offset="100%" stop-color="#77542f" stop-opacity="0"/></radialGradient>
+        <radialGradient id="p4drop" cx="32%" cy="24%" r="78%"><stop offset="0%" stop-color="#d6eefc"/><stop offset="50%" stop-color="#4fa8de"/><stop offset="100%" stop-color="#2b6ea0"/></radialGradient>
+        <filter id="p4sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#1b2530" flood-opacity=".18"/></filter>
+        <filter id="p4blur" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5"/></filter>
+        <clipPath id="p4clip"><rect x="40" y="70" width="520" height="300" rx="10"/></clipPath>
+        <marker id="p4ar" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#6aa9d6"/></marker>
       </defs>
-
-      <!-- 完璧な家 -->
-      <g filter="url(#softShadow)">
-        <ellipse cx="190" cy="266" rx="105" ry="10" fill="#1b2530" opacity=".08"/>
-        <polygon points="190,58 292,132 88,132" fill="url(#roofGrad)" stroke="#94a1ad" stroke-width="1.5" stroke-linejoin="round"/>
-        <line x1="88" y1="132" x2="292" y2="132" stroke="#8f9aa3" stroke-width="1.5"/>
-        <rect x="110" y="132" width="160" height="100" fill="url(#wallGrad)" stroke="#94a1ad" stroke-width="1.5"/>
-        <g stroke="#e7ebee" stroke-width="1">
-          <line x1="115" y1="146" x2="265" y2="146"/><line x1="115" y1="160" x2="265" y2="160"/>
-          <line x1="115" y1="174" x2="265" y2="174"/><line x1="115" y1="188" x2="265" y2="188"/>
-          <line x1="115" y1="202" x2="265" y2="202"/><line x1="115" y1="216" x2="265" y2="216"/>
+      <g filter="url(#p4sh)"><rect x="40" y="70" width="520" height="300" rx="10" fill="#fff"/></g>
+      <g clip-path="url(#p4clip)">
+        <rect x="40" y="70" width="60" height="300" fill="url(#p4out)"/>
+        <rect x="100" y="70" width="34" height="300" fill="url(#p4siding)"/>
+        <g stroke="#7d868d" stroke-width="1.2" opacity=".6"><line x1="100" y1="90" x2="134" y2="90"/><line x1="100" y1="114" x2="134" y2="114"/><line x1="100" y1="138" x2="134" y2="138"/><line x1="100" y1="162" x2="134" y2="162"/><line x1="100" y1="186" x2="134" y2="186"/><line x1="100" y1="210" x2="134" y2="210"/><line x1="100" y1="234" x2="134" y2="234"/><line x1="100" y1="258" x2="134" y2="258"/><line x1="100" y1="282" x2="134" y2="282"/><line x1="100" y1="306" x2="134" y2="306"/><line x1="100" y1="330" x2="134" y2="330"/><line x1="100" y1="354" x2="134" y2="354"/></g>
+        <rect x="134" y="70" width="24" height="300" fill="#f4f9fd"/>
+        <g stroke="#6aa9d6" stroke-width="2.4" fill="none" marker-end="url(#p4ar)"><line x1="146" y1="140" x2="146" y2="100"/><line x1="146" y1="230" x2="146" y2="190"/><line x1="146" y1="320" x2="146" y2="280"/></g>
+        <rect x="158" y="70" width="6" height="300" fill="#e2d6b8"/>
+        <rect x="164" y="70" width="16" height="300" fill="url(#p4board)"/>
+        <rect x="180" y="70" width="210" height="300" fill="url(#p4foam)"/>
+        <g fill="#fffdf4" stroke="#ead290" stroke-width="1"><circle cx="200" cy="92" r="4"/><circle cx="236" cy="110" r="3"/><circle cx="280" cy="88" r="5"/><circle cx="330" cy="104" r="3.5"/><circle cx="366" cy="90" r="4"/><circle cx="214" cy="140" r="3"/><circle cx="300" cy="132" r="4"/><circle cx="352" cy="146" r="3"/><circle cx="204" cy="300" r="4"/><circle cx="250" cy="322" r="5"/><circle cx="300" cy="296" r="3.5"/><circle cx="344" cy="330" r="4.5"/><circle cx="372" cy="306" r="3"/><circle cx="226" cy="352" r="3.5"/><circle cx="318" cy="356" r="4"/></g>
+        <rect x="180" y="170" width="210" height="104" fill="url(#p4stud)"/>
+        <g stroke="#b18a4f" stroke-width="1.2" opacity=".5"><line x1="180" y1="192" x2="390" y2="192"/><line x1="180" y1="214" x2="390" y2="214"/><line x1="180" y1="238" x2="390" y2="238"/><line x1="180" y1="258" x2="390" y2="258"/></g>
+        <path d="M178 222 C170 186,214 162,246 178 C272 166,296 192,284 222 C296 254,260 278,232 268 C204 282,172 258,178 222 Z" fill="url(#p4rot)" filter="url(#p4blur)"/>
+        <ellipse cx="220" cy="214" rx="14" ry="6" fill="#3a2513" opacity=".35"/>
+        <rect x="390" y="70" width="10" height="300" fill="#b5493c"/>
+        <rect x="400" y="70" width="26" height="300" fill="url(#p4pb)"/>
+        <rect x="426" y="70" width="134" height="300" fill="url(#p4room)"/>
+        <g>
+          <path d="M200 112 C200 112,190 127,190 135 C190 141,194.5 146,200 146 C205.5 146,210 141,210 135 C210 127,200 112,200 112 Z" fill="url(#p4drop)"/>
+          <ellipse cx="196.5" cy="130" rx="2.2" ry="3.4" fill="#fff" opacity=".7"/>
+          <path d="M196 300 C196 300,187 313,187 320 C187 325.5,191 330,196 330 C201 330,205 325.5,205 320 C205 313,196 300,196 300 Z" fill="url(#p4drop)"/>
+          <ellipse cx="193" cy="316" rx="2" ry="3" fill="#fff" opacity=".7"/>
+          <path d="M226 334 C226 334,219 344,219 350 C219 354.4,222.1 358,226 358 C229.9 358,233 354.4,233 350 C233 344,226 334,226 334 Z" fill="url(#p4drop)"/>
         </g>
-        <rect x="126" y="146" width="42" height="36" fill="#fff" stroke="#8fa4b5" stroke-width="1"/>
-        <rect x="128" y="148" width="38" height="32" fill="url(#glassGrad)"/>
-        <line x1="147" y1="148" x2="147" y2="180" stroke="#fff" stroke-width="2"/>
-        <line x1="128" y1="164" x2="166" y2="164" stroke="#fff" stroke-width="2"/>
-        <rect x="200" y="167" width="32" height="65" rx="2" fill="url(#doorGrad)" stroke="#94a1ad" stroke-width="1.5"/>
-        <circle cx="226" cy="201" r="2" fill="#6b7680"/>
-        <circle cx="190" cy="253" r="20" fill="url(#checkGrad)"/>
-        <path d="M180 253 L187 260 L201 245" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
       </g>
-      <text x="190" y="290" text-anchor="middle" font-size="14.5" font-weight="800" fill="#1f7a5c">UA値0.46・C値0.5</text>
-      <text x="190" y="308" text-anchor="middle" font-size="12" fill="#5c6c7d">外から見ても、数字を見ても問題なし</text>
-
-      <line x1="440" y1="30" x2="440" y2="330" stroke="#dbe3ea" stroke-width="1.5" stroke-dasharray="5 4"/>
-      <text x="700" y="18" text-anchor="middle" font-size="14.5" font-weight="800" fill="#b3372b">壁の中では、これが起きている場合がある</text>
-
-      <!-- 壁体断面（矩計図準拠・平面で切った断面：屋外←→室内） -->
-      <g transform="translate(560,92)">
-        <g font-size="10" font-weight="800" fill="#5c6c7d">
-          <line x1="12" y1="-6" x2="-14" y2="-30" stroke="#c3ccd3" stroke-width="1"/><text x="-14" y="-34" text-anchor="middle">サイディング</text>
-          <line x1="32" y1="-6" x2="30" y2="-54" stroke="#c3ccd3" stroke-width="1"/><text x="30" y="-58" text-anchor="middle">通気層15mm</text>
-          <line x1="42" y1="-6" x2="70" y2="-30" stroke="#c3ccd3" stroke-width="1"/><text x="74" y="-34" text-anchor="middle">透湿防水シート</text>
-          <line x1="49" y1="-6" x2="112" y2="-54" stroke="#c3ccd3" stroke-width="1"/><text x="116" y="-58" text-anchor="middle">耐力面材9mm</text>
-          <line x1="172" y1="-6" x2="168" y2="-30" stroke="#c3ccd3" stroke-width="1"/><text x="168" y="-34" text-anchor="middle">防湿気密シート</text>
-          <line x1="190" y1="-6" x2="224" y2="-54" stroke="#c3ccd3" stroke-width="1"/><text x="224" y="-58" text-anchor="middle">石膏ボード</text>
-        </g>
-        <rect x="-3" y="-3" width="206" height="226" rx="10" fill="#fff" filter="url(#softShadow)"/>
-        <g clip-path="url(#wallClip)">
-          <rect x="0" y="0" width="24" height="220" fill="url(#sidingGrad)"/>
-          <g stroke="#9aa5ac" stroke-width="1" opacity=".55">
-            <line x1="0" y1="22" x2="24" y2="22"/><line x1="0" y1="44" x2="24" y2="44"/><line x1="0" y1="66" x2="24" y2="66"/><line x1="0" y1="88" x2="24" y2="88"/>
-            <line x1="0" y1="110" x2="24" y2="110"/><line x1="0" y1="132" x2="24" y2="132"/><line x1="0" y1="154" x2="24" y2="154"/><line x1="0" y1="176" x2="24" y2="176"/><line x1="0" y1="198" x2="24" y2="198"/>
-          </g>
-          <rect x="24" y="0" width="16" height="220" fill="#f1f6fa"/>
-          <g stroke="#7fb3d9" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".8">
-            <path d="M32 200 V176 M28 181 L32 176 L36 181"/><path d="M32 130 V106 M28 111 L32 106 L36 111"/><path d="M32 60 V36 M28 41 L32 36 L36 41"/>
-          </g>
-          <rect x="40" y="0" width="4" height="220" fill="#e6dcc4"/>
-          <rect x="44" y="0" width="10" height="220" fill="#cdb58a"/>
-          <g stroke="#a88f62" stroke-width="1" opacity=".5"><line x1="44" y1="40" x2="54" y2="52"/><line x1="44" y1="100" x2="54" y2="112"/><line x1="44" y1="160" x2="54" y2="172"/></g>
-          <rect x="54" y="0" width="114" height="220" fill="url(#insulGrad)"/>
-          <g fill="#ffffff" stroke="#ecd49a" stroke-width="1" opacity=".85"><circle cx="64" cy="16" r="3"/><circle cx="82" cy="30" r="2.4"/><circle cx="104" cy="12" r="2.8"/><circle cx="126" cy="26" r="3.2"/><circle cx="148" cy="14" r="2.2"/><circle cx="160" cy="34" r="2.6"/><circle cx="70" cy="48" r="2.2"/><circle cx="116" cy="52" r="2.6"/><circle cx="140" cy="60" r="3"/><circle cx="92" cy="64" r="2.4"/><circle cx="64" cy="170" r="2.8"/><circle cx="88" cy="186" r="3"/><circle cx="112" cy="168" r="2.2"/><circle cx="136" cy="192" r="2.8"/><circle cx="156" cy="172" r="2.4"/><circle cx="74" cy="206" r="2.4"/><circle cx="124" cy="210" r="3"/><circle cx="150" cy="206" r="2.2"/></g>
-          <rect x="54" y="78" width="114" height="70" fill="url(#studGrad)"/>
-          <g stroke="#a9793f" stroke-width="1" opacity=".45"><line x1="54" y1="92" x2="168" y2="92"/><line x1="54" y1="108" x2="168" y2="108"/><line x1="54" y1="124" x2="168" y2="124"/><line x1="54" y1="138" x2="168" y2="138"/></g>
-          <path d="M52 120 C46 96,76 74,100 86 C120 78,134 98,126 118 C134 142,106 160,86 152 C66 162,48 146,52 120 Z" fill="url(#rotGrad)" filter="url(#blurSoft)"/>
-          <ellipse cx="80" cy="112" rx="10" ry="5" fill="#3d2917" opacity=".35"/>
-          <rect x="168" y="0" width="8" height="220" fill="#b5493c" opacity=".8"/>
-          <rect x="176" y="0" width="24" height="220" fill="#f8f6f3"/>
-          <g>
-            <path d="M68 30 C68 30,61 41,61 47 C61 51.5,64.1 55,68 55 C71.9 55,75 51.5,75 47 C75 41,68 30,68 30 Z" fill="url(#dropGrad)"/>
-            <ellipse cx="65.8" cy="43" rx="1.5" ry="2.3" fill="#fff" opacity=".65"/>
-            <path d="M72 168 C72 168,65 179,65 185 C65 189.5,68.1 193,72 193 C75.9 193,79 189.5,79 185 C79 179,72 168,72 168 Z" fill="url(#dropGrad)"/>
-            <ellipse cx="69.8" cy="181" rx="1.5" ry="2.3" fill="#fff" opacity=".65"/>
-          </g>
-        </g>
-        <rect x="-3" y="-3" width="206" height="226" rx="10" fill="none" stroke="#dbe3ea" stroke-width="1.5"/>
-        <g font-size="10.5" font-weight="800" fill="#5c6c7d">
-          <line x1="111" y1="150" x2="250" y2="190" stroke="#c3ccd3" stroke-width="1"/><text x="254" y="194">柱（構造材）</text>
-          <line x1="140" y1="200" x2="250" y2="214" stroke="#c3ccd3" stroke-width="1"/><text x="254" y="218">吹付ウレタン断熱</text>
-        </g>
-        <text x="14" y="242" text-anchor="middle" font-size="11" fill="#5c6c7d">屋外側</text>
-        <text x="190" y="242" text-anchor="middle" font-size="11" fill="#5c6c7d">室内側</text>
-        <rect x="-62" y="96" width="56" height="24" rx="12" fill="#fff" stroke="#b3372b" stroke-width="1.5"/>
-        <text x="-34" y="112" text-anchor="middle" font-size="11" font-weight="800" fill="#b3372b">柱が傷む</text>
+      <rect x="40" y="70" width="520" height="300" rx="10" fill="none" stroke="#dbe3ea" stroke-width="1.5"/>
+      <g font-size="13" font-weight="800" fill="#1b2530">
+        <line x1="117" y1="66" x2="117" y2="44" stroke="#9aa6b0"/><text x="117" y="38" text-anchor="middle">サイディング</text>
+        <line x1="146" y1="66" x2="186" y2="20" stroke="#9aa6b0"/><text x="186" y="14" text-anchor="middle">通気層 15mm</text>
+        <line x1="172" y1="66" x2="268" y2="44" stroke="#9aa6b0"/><text x="268" y="38" text-anchor="middle">耐力面材 9mm</text>
+        <line x1="395" y1="66" x2="372" y2="20" stroke="#b5493c"/><text x="372" y="14" text-anchor="middle" fill="#b5493c">防湿気密シート 0.2mm</text>
+        <line x1="413" y1="66" x2="470" y2="44" stroke="#9aa6b0"/><text x="476" y="38" text-anchor="middle">石膏ボード</text>
       </g>
-    </svg>
-    <div style="display:flex; align-items:center; gap:14px; flex:none; border:1px solid var(--line); border-radius:8px; padding:4px 12px; background:#fff"><span class="cap" style="font-weight:800; color:var(--ink); white-space:nowrap">実際の矩計図<br>（外壁部分）<br><span style="font-weight:400">LIFEX標準矩計図</span></span><img src="assets/kanabakari-gaiheki.png" alt="LIFEX矩計図の外壁部分。サイディング、通気金具t=15、透湿防水シート、耐力面材ハイベストウッドt=9、吹付硬質ウレタンフォームt=95、ジェイベック（防湿気密シート）、PB t=12.5" style="height:118px; width:auto"></div>
+      <g font-size="13" font-weight="800">
+        <text x="285" y="400" text-anchor="middle" fill="#8a6a1e">吹付ウレタン断熱 95mm</text>
+        <text x="70" y="400" text-anchor="middle" fill="#5c6c7d">屋外</text>
+        <text x="493" y="400" text-anchor="middle" fill="#5c6c7d">室内</text>
+      </g>
+      <g filter="url(#p4sh)">
+        <rect x="248" y="282" width="128" height="30" rx="15" fill="#b3372b"/>
+        <text x="312" y="302" text-anchor="middle" font-size="13.5" font-weight="800" fill="#fff">結露 → 柱が傷む</text>
+        <rect x="262" y="116" width="114" height="30" rx="15" fill="#fff" stroke="#2b6ea0" stroke-width="2"/>
+        <text x="319" y="136" text-anchor="middle" font-size="13" font-weight="800" fill="#2b6ea0">断熱材が湿る</text>
+      </g>
+      <text x="320" y="225" text-anchor="middle" font-size="12" font-weight="800" fill="#7a5a2a">柱（構造材）</text>
+      <text x="300" y="430" text-anchor="middle" font-size="11.5" fill="#5c6c7d">LIFEX標準矩計図の外壁構成をもとに作図</text>
+    </svg></div>
+    </div>
   </div>
   <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「見た目も数字も完璧なお家でも、壁の中で結露が起きると、柱も断熱材も少しずつ傷んでいくんです。」</div></div>
 </div>
@@ -799,6 +758,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
       <p><b>壁の構成（恐怖②・恐怖⑥）</b>：LIFEX標準矩計図1/30（更新日2025.12.22、2026-10-05徳田さん提示）の外壁表記「サイディング／通気金具t=15／透湿防水シート／耐力面材ハイベストウッドt=9／吹付硬質ウレタンフォーム（A種3）t=95／ジェイベック（防湿気密シート）／PB t=12.5」に準拠</p>
       <p><b>恐怖⑦のコップ、恐怖②・恐怖⑥・執念①-2・執念①-3の図</b>：LIFEXのデザインで作成した説明用の図</p>
       <p><b>施工写真（執念①-2・執念②-1・執念③）</b>：LIFEX現場の施工写真（徳田さん提供、2026-10-05）</p>
+      <p><b>外観パース（恐怖②）</b>：LIFEX箕面モデル 外観パース（夕景）</p>
       <p><b>断熱等級6・UA値0.46・C値0.5という基本仕様</b>：前回10/2研修「断熱×気密×換気」教科書・参考書に準拠（社内資料LIFEX公式初回セミナースライド20260521・LIFEX_話法マニュアル）</p>
       <p><b>想定QA「シロアリ対策」の注釈（加圧注入の防蟻処理）</b>：LIFEX本部の営業知見（2026-10-02共有）。メーカー資料等での裏付けは未確認</p>
     </div>
