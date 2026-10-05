@@ -364,18 +364,22 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
   <div class="body" style="flex-direction:column">
     <div style="display:flex; flex-direction:column; gap:12px; flex:1; justify-content:center">
       <div class="pillars" style="flex:none">
-        <div class="pl"><span class="no">1</span><b>温度</b><span class="desc">暖かい方から<br>冷たい方へ動く</span></div>
-        <div class="pl"><span class="no">2</span><b>気圧</b><span class="desc">気圧の高い方から<br>低い方へ動く</span></div>
-        <div class="pl" style="border-color:var(--leak); background:var(--leakbg)"><span class="no" style="background:var(--leak)">3</span><b style="color:var(--leak)">水蒸気の量</b><span class="desc">多い方から<br>少ない方へ動く</span></div>
+        <div class="pl" style="padding:8px 12px; gap:3px; flex-direction:row; justify-content:center"><span class="no">1</span><b>温度</b><span class="desc">暖かい方から冷たい方へ</span></div>
+        <div class="pl" style="padding:8px 12px; gap:3px; flex-direction:row; justify-content:center"><span class="no">2</span><b>気圧</b><span class="desc">高い方から低い方へ</span></div>
+        <div class="pl" style="padding:8px 12px; gap:3px; flex-direction:row; justify-content:center; border-color:var(--leak); background:var(--leakbg)"><span class="no" style="background:var(--leak)">3</span><b style="color:var(--leak)">水蒸気の量</b><span class="desc">多い方から少ない方へ</span></div>
       </div>
-      <div class="twocol" style="flex:none; grid-template-columns:1fr auto 1fr; align-items:center">
-        <div class="card warn" style="padding:16px"><h5>冬の室内（23℃・湿度50%）</h5><div class="big">約8.7g</div><p>空気1kgあたりの水蒸気量</p></div>
-        <div style="font-size:15px; font-weight:800; color:var(--leak); text-align:center; line-height:1.5">水蒸気が<br>━━━▶<br>移動</div>
-        <div class="card" style="padding:16px"><h5>冬の屋外（0℃・湿度70%）</h5><div class="big">約2.6g</div><p>空気1kgあたりの水蒸気量</p></div>
+      <div style="display:grid; grid-template-columns:1fr auto 2.2fr; gap:12px; align-items:stretch">
+        <div class="card warn" style="padding:12px"><h5>冬の室内（23℃・湿度50%）</h5><div class="big" style="font-size:30px">約8.7g</div><p>空気1kgあたりの水蒸気量</p></div>
+        <div style="font-size:14px; font-weight:800; color:var(--leak); text-align:center; line-height:1.5; align-self:center">水蒸気が<br>━━━▶<br>外へ移動</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:8px">
+          <div class="card" style="padding:8px 10px; gap:2px"><h5>大阪</h5><p style="color:var(--ink); font-size:12px">6.2℃・湿度61%</p><div class="big" style="font-size:21px">約3.6g</div></div><div class="card" style="padding:8px 10px; gap:2px"><h5>米子</h5><p style="color:var(--ink); font-size:12px">4.7℃・湿度74%</p><div class="big" style="font-size:21px">約3.9g</div></div><div class="card" style="padding:8px 10px; gap:2px"><h5>福岡</h5><p style="color:var(--ink); font-size:12px">6.9℃・湿度63%</p><div class="big" style="font-size:21px">約4.0g</div></div><div class="card" style="padding:8px 10px; gap:2px"><h5>岩手（盛岡）</h5><p style="color:var(--ink); font-size:12px">−1.6℃・湿度73%</p><div class="big" style="font-size:21px">約2.5g</div></div>
+        </div>
       </div>
+      <div class="cap" style="text-align:right; margin-top:-6px">屋外は気象庁の1月の平年値。空気1kgあたりの水蒸気量</div>
+      <div class="card hero" style="padding:10px; flex:none"><div class="big" style="font-size:17px">どの地域でも、冬の外の空気は室内の半分以下。だから水蒸気は必ず室内から外へ動く</div></div>
     </div>
   </div>
-  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「空気には、多い方から少ない方へ均等になろうとする性質があります。冬は室内の方が水蒸気が多いので、水蒸気は必ず壁の中を通って外へ出ていこうとするんです。」</div><span class="cap">室内・屋外の条件は説明用の仮定値。水蒸気量はMagnus-Tetens近似式による計算値（出典一覧参照）</span></div>
+  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「空気には、多い方から少ない方へ均等になろうとする性質があります。冬の外の空気は、湿度が高い米子でも、寒い岩手でも、水蒸気は4g前後しかありません。お部屋の空気は9g近く持っている。だから地域に関係なく、冬は水蒸気が壁の中を通って外へ出ていこうとするんです。」</div><span class="cap">屋外は気象庁の平年値（1991〜2020年、1月）。水蒸気量は平年値の蒸気圧から計算。室内条件は説明用の仮定値（出典一覧参照）</span></div>
 </div>
 
 <!-- 8 -->
@@ -783,7 +787,8 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
   <div class="body" style="overflow:visible">
     <div class="src" style="overflow-y:visible">
       <p><b>湿り空気線図（恐怖③・④）</b>：史幸工務店「ハイブリッド・エコ・ハートQ 住宅の科学③ 水分・湿度・空気線図・環境編」掲載の湿り空気線図（圧力101.325kPa）。①〜④の矢印と吹き出しは本資料で追記。点の位置はMagnus-Tetens近似式の計算値（約8.7g/kg・約12.0℃）に合わせて図上に配置</p>
-      <p><b>露点温度・水蒸気量の計算値（23℃・湿度50%→水蒸気約8.7g/kg・露点約12.0℃／0℃・湿度70%→約2.6g/kg）</b>：Magnus-Tetens近似式で飽和水蒸気圧を求め、大気圧101.325kPaとして算出した計算値。室内・屋外の温湿度は説明用の仮定条件で、実測値ではない</p>
+      <p><b>冬の屋外の気温・湿度（恐怖⑤）</b>：気象庁「平年値（1991〜2020年）」1月の値（https://www.data.jma.go.jp/stats/etrn/、2026-10-05取得）。大阪 平均気温6.2℃・相対湿度61%・蒸気圧5.8hPa／米子 4.7℃・74%・6.3hPa／福岡 6.9℃・63%・6.4hPa／盛岡 −1.6℃・73%・4.0hPa。水蒸気量は蒸気圧から x=622e/(1013.25−e) で計算（大阪約3.6g/kg、米子約3.9g/kg、福岡約4.0g/kg、盛岡約2.5g/kg）</p>
+      <p><b>露点温度・水蒸気量の計算値（23℃・湿度50%→水蒸気約8.7g/kg・露点約12.0℃）</b>：Magnus-Tetens近似式で飽和水蒸気圧を求め、大気圧101.325kPaとして算出した計算値。室内の温湿度は説明用の仮定条件で、実測値ではない</p>
       <p><b>空気・水蒸気が動く3つの性質（温度差・気圧差・水蒸気量の差）</b>：前回10/2研修「断熱×気密×換気」で説明した内容に準拠</p>
       <p><b>壁の中の温度分布（恐怖⑥）</b>：屋外0℃・室内23℃を仮定した考え方の模式図。実測・計算に基づくグラフではない</p>
       <p><b>結露による耐震性能・断熱性能の低下と光熱費の増加（実害①）</b>：佐古顧問の指導内容（2026-10-05定例）に基づく一般的な説明。具体的な低下率・金額の数字は使用していない</p>
