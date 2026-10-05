@@ -1,0 +1,426 @@
+<title>壁体内結露編　参考書</title>
+<style>
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+  --p3:#b05c1f; --p3bg:#f9efe4; --p4:#2b6ea0; --p4bg:#e5f0f8;
+  --leak:#b3372b; --leakbg:#fbe9e7;
+  --win:#2e7d6e; --winbg:#e7f2ef;
+  --rot:#6b4a2f; --rotbg:#efe6dc;
+  --surface:#ffffff;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.9; font-feature-settings:"palt"}
+.num{font-variant-numeric:tabular-nums}
+
+.header{background:#12181f; color:#fff; padding:48px 24px 40px; text-align:center}
+.header .eyebrow{font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:#8b98a5; margin-bottom:14px}
+.header h1{margin:0; font-size:26px; font-weight:800; letter-spacing:.01em; text-wrap:balance; overflow-wrap:break-word}
+.header .sub{font-size:14px; color:#a8b4bf; margin-top:12px; line-height:1.8; max-width:52ch; margin-left:auto; margin-right:auto}
+.header .meta{margin-top:20px; font-size:12px; color:#7c8a96}
+@media (max-width:480px){
+  .header{padding:36px 18px 28px}
+  .header h1{font-size:20px}
+  .header .sub{max-width:none; font-size:13px}
+}
+
+.shell{display:flex; max-width:1180px; margin:0 auto; align-items:flex-start}
+.toc{width:264px; flex-shrink:0; position:sticky; top:0; height:100vh; overflow-y:auto; padding:36px 20px 60px 28px; border-right:1px solid var(--line)}
+.toc .toc-label{font-size:11px; font-weight:800; letter-spacing:.1em; color:var(--sub); text-transform:uppercase; margin-bottom:14px}
+.toc a{display:block; font-size:13px; color:var(--ink); text-decoration:none; padding:6px 10px; border-radius:6px; line-height:1.5}
+.toc a:hover{background:var(--navy-soft); color:var(--navy)}
+.toc a.chapter{font-weight:800; margin-top:14px; color:var(--navy)}
+.toc a.chapter:first-child{margin-top:0}
+.toc a.section{padding-left:20px; color:var(--sub); font-size:12.5px}
+.main{flex:1; min-width:0; padding:40px 48px 120px; max-width:840px}
+
+@media (max-width:900px){
+  .shell{flex-direction:column}
+  .toc{position:static; width:auto; height:auto; border-right:none; border-bottom:1px solid var(--line); padding:24px 20px}
+  .main{padding:32px 20px 80px; max-width:none}
+}
+
+.chapter{padding-top:56px; margin-top:56px; border-top:4px solid var(--navy)}
+.chapter:first-of-type{margin-top:0}
+.chapter .no{font-size:12px; font-weight:800; letter-spacing:.12em; color:var(--navy); text-transform:uppercase}
+.chapter h2{font-size:26px; font-weight:800; margin:8px 0 6px; letter-spacing:.005em; text-wrap:balance}
+.chapter .lead{font-size:14.5px; color:var(--sub); line-height:1.9; margin:0 0 8px}
+.section{margin-top:40px}
+.section h3{font-size:19px; font-weight:800; margin:0 0 14px; padding-bottom:10px; border-bottom:2px solid var(--line); color:var(--ink)}
+.section h4{font-size:15.5px; font-weight:800; margin:26px 0 10px; color:var(--navy)}
+p{margin:0 0 14px; font-size:14.5px; color:var(--ink)}
+.section p:last-child{margin-bottom:0}
+
+.fact{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:16px 20px; margin:16px 0}
+.fact .k{font-size:11.5px; font-weight:800; color:var(--sub); letter-spacing:.05em}
+.fact .v{font-size:22px; font-weight:800; color:var(--navy); margin:4px 0}
+.fact .d{font-size:13px; color:var(--sub); line-height:1.7}
+.fact .d p{margin:0 0 10px; font-size:13px; color:var(--sub)}
+.fact .d p:last-child{margin-bottom:0}
+.fact .d ul{margin:6px 0 0; padding-left:20px; font-size:13px; color:var(--sub)}
+.fact .d li{margin-bottom:4px}
+.fact .src{font-size:11.5px; color:#94a1ad; margin-top:8px; padding-top:8px; border-top:1px dashed var(--line)}
+
+.cite{border-left:3px solid var(--navy); background:var(--navy-soft); border-radius:0 8px 8px 0; padding:14px 20px; margin:16px 0; font-size:14px; line-height:1.85; color:var(--ink)}
+.cite .who{font-size:12px; font-weight:800; color:var(--navy); margin-bottom:6px; display:block}
+.cite.warn{border-left-color:var(--leak); background:var(--leakbg)}
+.cite.warn .who{color:var(--leak)}
+
+.law{background:#fafbfc; border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:14px 0; font-size:13px; color:var(--sub); line-height:1.8}
+.law b{color:var(--ink)}
+
+.unverified{font-size:12.5px; color:var(--p3); background:var(--p3bg); border-radius:6px; padding:8px 14px; margin:10px 0; line-height:1.7}
+.unverified b{font-weight:800}
+
+.nb{display:inline-flex; align-items:center; justify-content:center; width:16px; height:16px; border-radius:50%; background:var(--navy); color:#fff; font-size:10px; font-weight:800; margin-right:6px; flex-shrink:0; vertical-align:-1px; font-feature-settings:"tnum"}
+.nb.warn{background:var(--leak)}
+
+.diagram-box{display:flex; gap:22px; flex-wrap:wrap; margin:16px 0; background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:18px 20px 14px}
+.diagram-box figure{flex:1 1 300px; min-width:260px; margin:0}
+.diagram-box figcaption{font-size:12.5px; font-weight:800; color:var(--navy); margin-top:6px; text-align:center}
+.diagram-box svg{width:100%; height:auto; display:block; overflow:visible}
+
+table.dtbl{width:100%; border-collapse:collapse; margin:16px 0; font-size:13px}
+table.dtbl th{background:var(--navy); color:#fff; font-weight:800; text-align:left; padding:9px 12px; font-size:12px}
+table.dtbl td{padding:9px 12px; border-bottom:1px solid var(--line)}
+table.dtbl tr:nth-child(even) td{background:var(--panel)}
+table.dtbl td.hi{color:var(--navy); font-weight:800}
+.tblwrap{overflow-x:auto}
+
+.section ul, .section ol{margin:0 0 14px; padding-left:22px; font-size:14.5px; color:var(--ink)}
+.section li{margin-bottom:6px}
+
+.qa{border:1px solid var(--line); border-radius:10px; padding:18px 22px; margin:16px 0; background:var(--surface)}
+.qa .q{font-size:14.5px; font-weight:800; color:var(--ink); display:flex; gap:10px}
+.qa .q .tag{flex-shrink:0; font-size:11px; font-weight:800; color:#fff; background:var(--sub); border-radius:99px; padding:2px 10px; height:fit-content}
+.qa .a{font-size:14px; color:var(--sub); margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); line-height:1.85}
+.qa .a b{color:var(--ink)}
+
+.column{background:linear-gradient(135deg,#fff8ec,#fff3e2); border:1px solid #ecd9a8; border-radius:10px; padding:18px 22px; margin:20px 0}
+.column .label{font-size:11px; font-weight:800; color:var(--p3); letter-spacing:.08em; margin-bottom:6px}
+.column p{font-size:13.5px}
+
+footer{max-width:840px; margin:0 auto; padding:40px 48px 80px; border-top:1px solid var(--line); font-size:12px; color:var(--sub)}
+@media (max-width:900px){footer{padding:32px 20px 60px}}
+</style>
+
+<div class="header">
+  <div class="eyebrow">LIFEX 月2棟目標達成MTG・参考資料</div>
+  <h1>壁体内結露編　参考書</h1>
+  <p class="sub">10/9投影資料（教科書）の<br>「なぜそう言えるのか」をまとめた裏付け資料です。</p>
+  <div class="meta">2026年10月9日　Gハウス LIFEX FC事業部</div>
+</div>
+
+<div class="shell">
+  <nav class="toc">
+    <div class="toc-label">目次</div>
+    <a href="#intro" class="section">この参考書の使い方</a>
+    <a href="#ch1" class="chapter">第1章　なぜ冬に壁の中で結露するのか</a>
+    <a href="#ch1-1" class="section">1-1　湿り空気線図の読み方</a>
+    <a href="#ch1-2" class="section">1-2　露点温度を計算する</a>
+    <a href="#ch1-3" class="section">1-3　冬、水蒸気は室内から屋外へ動く</a>
+    <a href="#ch1-4" class="section">1-4　壁の中には必ず露点がある</a>
+    <a href="#ch1-5" class="section">1-5　コップの例えは「続き」まで話す</a>
+    <a href="#ch2" class="chapter">第2章　結露を放っておくと何が起きるか</a>
+    <a href="#ch2-1" class="section">2-1　耐震性能と断熱性能が落ちる</a>
+    <a href="#ch2-2" class="section">2-2　性能の数字は「建てた日」の数字</a>
+    <a href="#ch2-3" class="section">2-3　シロアリの話で勝負しない理由</a>
+    <a href="#ch3" class="chapter">第3章　執念①　寒冷地向けの0.2mmシートを全国で</a>
+    <a href="#ch3-1" class="section">3-1　防湿気密シートのA種とB種</a>
+    <a href="#ch3-2" class="section">3-2　外気に接するところはすべて張る</a>
+    <a href="#ch3-3" class="section">3-3　プラスα：うっかりにも破れにくい</a>
+    <a href="#ch4" class="chapter">第4章　執念②　仮張り床の剥がし・乾燥工程</a>
+    <a href="#ch5" class="chapter">第5章　執念③　夏型結露と通気層</a>
+    <a href="#ch6" class="chapter">第6章　想定QA集</a>
+    <a href="#ch7" class="chapter">第7章　出典・参考資料一覧</a>
+  </nav>
+
+  <main class="main">
+
+    <section id="intro" class="section" style="margin-top:0">
+      <h3>この参考書の使い方</h3>
+      <p>投影資料（教科書）の裏付けをまとめたものです。教科書の流れはそのままに、「なぜそう言えるのか」を詳しく書いています。お客様に全部話す必要はありません。営業が自分で理解して腹に落ちていれば、短い言葉でも重みが出ます。</p>
+      <p>数字には出典を付けています。計算値は使った式を、未確認のことは未確認と書いています。</p>
+    </section>
+
+    <div id="ch1" class="chapter">
+      <div class="no">Chapter 1</div>
+      <h2>なぜ冬に壁の中で結露するのか</h2>
+      <p class="lead">教科書の恐怖③〜⑦に対応。ここが一番大事な章です。</p>
+
+      <div id="ch1-1" class="section">
+        <h3>1-1　湿り空気線図の読み方</h3>
+        <p>湿り空気線図は、空気の温度と、その空気が含んでいる水蒸気の量の関係を1枚にした図です。</p>
+        <ul>
+          <li><b>横軸</b>：空気の温度（℃）。右へ行くほど暖かい</li>
+          <li><b>縦軸</b>：空気1kgに含まれる水蒸気の量。図の単位はkg（0.007＝7g）。上へ行くほど水分が多い</li>
+          <li><b>右上がりの曲線</b>：湿度（相対湿度、%）。一番外側の曲線が湿度100%で、その温度の空気が持てる水蒸気の限界</li>
+        </ul>
+        <div class="diagram-box">
+          <figure>
+            <img src="assets/shitsuri-senzu-full.png" alt="日本語の湿り空気線図（圧力101.325kPa）" style="width:100%; height:auto; display:block; background:#fff; border:1px solid var(--line); border-radius:6px">
+            <figcaption>図1-1　湿り空気線図（史幸工務店「ハイブリッド・エコ・ハートQ 住宅の科学③」より）</figcaption>
+          </figure>
+        </div>
+        <div class="diagram-box">
+          <figure>
+            <svg viewBox="0 0 2300 1520" style="width:100%; height:auto; border:1px solid var(--line); border-radius:8px; background:#fff" role="img" aria-label="湿り空気線図の拡大。室温23℃・湿度50%の点から左へたどり、湿度100%の線にぶつかった約12℃が露点温度">
+      <defs><marker id="c6a" markerUnits="userSpaceOnUse" markerWidth="80" markerHeight="80" refX="56" refY="40" orient="auto"><path d="M0 0 L80 40 L0 80 Z" fill="#b3372b"/></marker>
+      <marker id="c6b" markerUnits="userSpaceOnUse" markerWidth="80" markerHeight="80" refX="56" refY="40" orient="auto"><path d="M0 0 L80 40 L0 80 Z" fill="#1e4e79"/></marker>
+      <filter id="c6s" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#1b2530" flood-opacity=".3"/></filter></defs>
+      <image href="assets/shitsuri-senzu-zoom.png" width="2300" height="1520"/>
+      <rect x="0" y="0" width="2300" height="1520" fill="#fff" opacity=".35"/>
+      <polyline points="8,1265 24,1262 39,1258 55,1255 70,1251 86,1247 101,1243 117,1239 132,1236 148,1232 163,1227 179,1223 194,1219 210,1215 225,1211 241,1206 256,1202 272,1197 287,1192 303,1188 318,1183 334,1178 349,1173 365,1168 380,1163 396,1158 411,1152 427,1147 442,1142 457,1136 473,1130 488,1125 504,1119 519,1113 534,1107 550,1101 565,1095 581,1088 596,1082 611,1075 627,1069 642,1062 657,1055 673,1048 688,1041 703,1034 719,1027 734,1020 749,1012 765,1005 780,997 795,989 810,981 826,973 841,965 856,956 871,948 887,939 902,931 917,922 932,913 948,904 963,894 978,885 993,875 1008,866 1023,856 1039,846 1054,836 1069,825 1084,815 1099,804 1114,794 1129,783 1144,772 1159,760 1174,749 1189,737 1205,726 1220,714 1235,702 1250,689 1265,677 1280,664 1294,651 1309,638 1324,625 1339,612 1354,598 1369,584 1384,570 1399,556 1414,542 1429,527 1443,512 1458,497 1473,482 1488,466 1503,451 1517,435 1532,418 1547,402 1562,385 1576,368 1591,351 1606,334 1620,316 1635,298 1650,280 1664,262 1679,243 1694,224 1708,205 1723,186 1737,166 1752,146 1766,126 1781,105 1795,84 1810,63 1824,42 1838,20" fill="none" stroke="#b3372b" stroke-width="22" stroke-linejoin="round" opacity=".9"/>
+      <polyline points="14,1356 29,1355 45,1353 61,1351 76,1349 92,1347 108,1345 123,1343 139,1342 155,1340 170,1338 186,1335 202,1333 217,1331 233,1329 249,1327 264,1325 280,1322 295,1320 311,1318 327,1315 342,1313 358,1310 374,1308 389,1305 405,1303 420,1300 436,1298 452,1295 467,1292 483,1289 498,1286 514,1284 530,1281 545,1278 561,1275 576,1272 592,1268 607,1265 623,1262 639,1259 654,1255 670,1252 685,1249 701,1245 716,1242 732,1238 748,1234 763,1231 779,1227 794,1223 810,1219 825,1215 841,1211 856,1207 872,1203 887,1199 903,1195 918,1190 934,1186 949,1182 965,1177 980,1172 996,1168 1011,1163 1027,1158 1042,1153 1058,1149 1073,1144 1089,1138 1104,1133 1119,1128 1135,1123 1150,1117 1166,1112 1181,1106 1197,1101 1212,1095 1227,1089 1243,1083 1258,1077 1274,1071 1289,1065 1304,1059 1320,1053 1335,1046 1351,1040 1366,1033 1381,1027 1397,1020 1412,1013 1427,1006 1443,999 1458,992 1473,984 1489,977 1504,970 1519,962 1534,954 1550,947 1565,939 1580,931 1596,923 1611,914 1626,906 1641,897 1656,889 1672,880 1687,871 1702,862 1717,853 1733,844 1748,835 1763,825 1778,816 1793,806 1808,796 1824,786 1839,776 1854,766 1869,756 1884,745 1899,734 1914,723 1929,713 1944,701 1959,690 1975,679 1990,667 2005,655 2020,644 2035,632 2050,619 2065,607 2080,594 2095,582 2110,569 2125,556 2139,543 2154,529 2169,516" fill="none" stroke="#e8890c" stroke-width="18" stroke-linejoin="round" opacity=".9"/>
+      <line x1="1808" y1="835" x2="2275" y2="835" stroke="#1e4e79" stroke-width="16" marker-end="url(#c6b)"/>
+      <line x1="1688" y1="835" x2="1125" y2="835" stroke="#b3372b" stroke-width="18" stroke-dasharray="54 28" marker-end="url(#c6a)"/>
+      <line x1="1058" y1="895" x2="1091" y2="1417" stroke="#b3372b" stroke-width="18" stroke-dasharray="54 28" marker-end="url(#c6a)"/>
+      <circle cx="1748" cy="835" r="52" fill="#e8890c" stroke="#fff" stroke-width="14" filter="url(#c6s)"/>
+      <circle cx="1055" cy="835" r="56" fill="#b3372b" stroke="#fff" stroke-width="14" filter="url(#c6s)"/>
+      <g font-weight="800" filter="url(#c6s)">
+        <rect x="1010" y="220" width="560" height="110" rx="55" fill="#b3372b"/><text x="1290" y="298" font-size="66" text-anchor="middle" fill="#fff">湿度100%の線</text>
+        <rect x="1550" y="444" width="470" height="110" rx="55" fill="#e8890c"/><text x="1785" y="522" font-size="66" text-anchor="middle" fill="#fff">湿度50%の線</text>
+        <rect x="1368" y="915" width="760" height="120" rx="60" fill="#fff" stroke="#e8890c" stroke-width="12"/><text x="1748" y="997" font-size="70" text-anchor="middle" fill="#b5650a">室内 23℃・湿度50%</text>
+        <rect x="1960" y="685" width="320" height="110" rx="55" fill="#fff" stroke="#1e4e79" stroke-width="12"/><text x="2120" y="763" font-size="66" text-anchor="middle" fill="#1e4e79">約8.7g</text>
+        <rect x="435" y="625" width="640" height="120" rx="60" fill="#fff" stroke="#b3372b" stroke-width="12"/><text x="755" y="707" font-size="70" text-anchor="middle" fill="#b3372b">ここで100%に到達</text>
+        <rect x="393" y="1247" width="640" height="140" rx="70" fill="#b3372b"/><text x="713" y="1341" font-size="84" text-anchor="middle" fill="#fff">約12℃＝露点</text>
+      </g>
+    </svg>
+            <figcaption>図1-2　室内23℃・湿度50%の読み方（図1-1の拡大に追記）</figcaption>
+          </figure>
+        </div>
+        <p>読み方の手順（室内23℃・湿度50%の場合、図1-2）：</p>
+        <ol>
+          <li>横軸の23℃と、湿度50%の曲線が交わる点を打つ</li>
+          <li>その点から右へたどると、縦軸で約0.0087kg。空気1kgに水蒸気が約8.7g入っている</li>
+          <li>水蒸気の量はそのまま、温度だけが下がると考えて、同じ高さのまま左へたどる</li>
+          <li>一番外側の100%の曲線にぶつかった温度が約12℃。これが<b>露点温度</b>で、この空気は12℃より冷たいところに触れると水滴に変わる。温度の線はわずかに傾いているので、ぶつかった点から線に沿って下へ読む</li>
+        </ol>
+      </div>
+
+      <div id="ch1-2" class="section">
+        <h3>1-2　露点温度を計算する</h3>
+        <p>図から読む値は、気象分野で広く使われるMagnus-Tetens近似式でも確かめられます。</p>
+        <div class="law">
+          <b>Magnus-Tetens近似式</b><br>
+          γ = ln(RH/100) + 17.27×T ÷ (237.3+T)<br>
+          露点温度Td = 237.3×γ ÷ (17.27−γ)<br>
+          （T：気温[℃]、RH：相対湿度[%]）<br>
+          水蒸気量x[g/kg] = 622×e ÷ (1013.25−e)　（e：水蒸気圧[hPa]＝飽和水蒸気圧×RH/100、大気圧1013.25hPa）
+        </div>
+        <div class="fact">
+          <div class="k">計算例（説明用の仮定条件）</div>
+          <div class="v">室内23℃・湿度50%　→　水蒸気 約8.7g／露点 約12.0℃</div>
+          <div class="d"><p>参考：室内20℃・湿度50%なら水蒸気約7.3g・露点約9.3℃。</p></div>
+          <div class="src">Magnus-Tetens近似式による計算値。温湿度は説明用の仮定で、LIFEXの住宅で測った値ではない</div>
+        </div>
+      </div>
+
+      <div id="ch1-3" class="section">
+        <h3>1-3　冬、水蒸気は室内から屋外へ動く</h3>
+        <p>空気と水蒸気の動きには、3つの性質があります（前回10/2研修の内容）。</p>
+        <ol>
+          <li><b>温度</b>：暖かい方から冷たい方へ</li>
+          <li><b>気圧</b>：気圧の高い方から低い方へ</li>
+          <li><b>水蒸気の量</b>：多い方から少ない方へ、均等になろうとする</li>
+        </ol>
+        <p>冬は、室内（23℃・湿度50%で約8.7g）の方が、外の空気よりずっと水蒸気が多い。全国の加盟店様のエリアで、気象庁の1月の平年値と比べてみます。</p>
+        <div class="tblwrap">
+          <table class="dtbl">
+            <tr><th>エリア</th><th>加盟店</th><th>観測所</th><th>1月平均気温</th><th>湿度</th><th>水蒸気量</th></tr>
+            <tr><td>秋田市</td><td>株式会社むつみワールド 様</td><td>秋田</td><td>0.4℃</td><td>74%</td><td>約2.9g</td></tr>
+            <tr><td>盛岡市</td><td>株式会社シリウス 様</td><td>盛岡</td><td>-1.6℃</td><td>73%</td><td>約2.5g</td></tr>
+            <tr><td>仙台市</td><td>株式会社永大ハウスビルド 様</td><td>仙台</td><td>2.0℃</td><td>66%</td><td>約2.9g</td></tr>
+            <tr><td>郡山市</td><td>スピークス株式会社 様</td><td>福島（代用）</td><td>1.9℃</td><td>68%</td><td>約3.0g</td></tr>
+            <tr><td>新潟市</td><td>ダイケンアーキテクツ（株式会社大建建設） 様</td><td>新潟</td><td>2.5℃</td><td>72%</td><td>約3.5g</td></tr>
+            <tr><td>宇都宮市</td><td>トーモク株式会社 様</td><td>宇都宮</td><td>2.8℃</td><td>61%</td><td>約2.8g</td></tr>
+            <tr><td>さいたま市</td><td>株式会社YUNO HOME 様</td><td>熊谷（代用）</td><td>4.3℃</td><td>53%</td><td>約2.7g</td></tr>
+            <tr><td>神奈川県</td><td>いえプロ不動産 様</td><td>横浜</td><td>6.1℃</td><td>53%</td><td>約3.1g</td></tr>
+            <tr><td>西尾市</td><td>株式会社アイコン 様</td><td>名古屋（代用）</td><td>4.8℃</td><td>64%</td><td>約3.4g</td></tr>
+            <tr><td>奈良市</td><td>株式会社キノシタ 様</td><td>奈良</td><td>4.5℃</td><td>69%</td><td>約3.5g</td></tr>
+            <tr><td>磯城郡</td><td>株式会社竹村工務店 様</td><td>奈良（代用）</td><td>4.5℃</td><td>69%</td><td>約3.5g</td></tr>
+            <tr><td>大阪府</td><td>いえプロ不動産 様</td><td>大阪</td><td>6.2℃</td><td>61%</td><td>約3.6g</td></tr>
+            <tr><td>伊丹市</td><td>株式会社 河原工務店 様</td><td>大阪（代用）</td><td>6.2℃</td><td>61%</td><td>約3.6g</td></tr>
+            <tr><td>鳥取市</td><td>中央建設株式会社 鳥取店 様</td><td>鳥取</td><td>4.2℃</td><td>76%</td><td>約3.9g</td></tr>
+            <tr><td>米子市</td><td>中央建設株式会社 米子店 様</td><td>米子</td><td>4.7℃</td><td>74%</td><td>約3.9g</td></tr>
+            <tr><td>松江市</td><td>中央建設株式会社 松江店 様</td><td>松江</td><td>4.6℃</td><td>76%</td><td>約4.0g</td></tr>
+            <tr><td>出雲市</td><td>中央建設株式会社 出雲店 様</td><td>松江（代用）</td><td>4.6℃</td><td>76%</td><td>約4.0g</td></tr>
+            <tr><td>岡山市</td><td>フラワーホーム株式会社 様</td><td>岡山</td><td>4.6℃</td><td>69%</td><td>約3.6g</td></tr>
+            <tr><td>福山市</td><td>坂本建設工業株式会社 様</td><td>福山</td><td>4.6℃</td><td>69%</td><td>約3.6g</td></tr>
+            <tr><td>東広島市</td><td>フラワーホーム株式会社 様</td><td>広島（代用）</td><td>5.4℃</td><td>66%</td><td>約3.7g</td></tr>
+            <tr><td>高知市</td><td>株式会社 建匠 様</td><td>高知</td><td>6.7℃</td><td>61%</td><td>約3.7g</td></tr>
+            <tr><td>福岡市</td><td>WITHDOM Group株式会社 様</td><td>福岡</td><td>6.9℃</td><td>63%</td><td>約4.0g</td></tr>
+            <tr><td>福岡市</td><td>健康住宅株式会社 様</td><td>福岡</td><td>6.9℃</td><td>63%</td><td>約4.0g</td></tr>
+            <tr><td>糟屋郡</td><td>株式会社アパックスホーム 様</td><td>福岡（代用）</td><td>6.9℃</td><td>63%</td><td>約4.0g</td></tr>
+            <tr><td>久留米市</td><td>久留米建設株式会社 様</td><td>佐賀（代用）</td><td>5.8℃</td><td>69%</td><td>約4.0g</td></tr>
+            <tr><td>鹿児島市</td><td>南日本ハウス株式会社 様</td><td>鹿児島</td><td>8.7℃</td><td>66%</td><td>約4.7g</td></tr>
+            <tr><td class="hi">室内</td><td class="hi">（説明用の条件）</td><td class="hi">—</td><td class="hi">23℃</td><td class="hi">50%</td><td class="hi">約8.7g</td></tr>
+          </table>
+        </div>
+        <p style="font-size:12.5px; color:var(--sub)">北から南の順。水蒸気量は空気1kgあたり。湿度の平年値がない観測所しかないエリアは、近くの気象台の値で代用しています（観測所欄に「代用」と表示）。一番暖かく湿った鹿児島でも約4.7gで、室内の半分ほどです。</p>
+        <p>湿度が高い米子でも、寒い岩手でも、冷たい空気は水蒸気をあまり持てません。だから水蒸気は、壁を通って室内から屋外へ出ていこうとします。日本の一般的な冬なら、この向きは変わりません。<b>だから防湿気密シートは室内側に張ります。</b></p>
+      </div>
+
+      <div id="ch1-4" class="section">
+        <h3>1-4　壁の中には必ず露点がある</h3>
+        <p>屋外0℃・室内23℃のとき、壁の中の温度は室内側の23℃から屋外側の0℃へ下がっていきます（断熱材の中で大きく下がる）。0℃と23℃の間には必ず12℃があります。つまり、断熱材をどれだけ入れても、室内を暖かくしても、<b>壁の中のどこかに「結露する温度」の場所が必ずできる</b>ということです。</p>
+        <p>室内の水蒸気がその場所まで届けば、そこで水になります。防湿気密シートの役割は、水蒸気をその手前、室内側で止めることです。</p>
+        <div class="diagram-box">
+          <figure>
+            <img src="assets/kanabakari-gaiheki.png" alt="LIFEX標準矩計図の外壁部分" style="width:100%; height:auto; display:block; background:#fff; border:1px solid var(--line); border-radius:6px">
+            <figcaption>図1-3　LIFEX標準矩計図（外壁部分）。屋外側からサイディング／通気金具t=15／透湿防水シート／耐力面材t=9／吹付硬質ウレタンフォームt=95／防湿気密シート（ジェイベック）／石膏ボードt=12.5</figcaption>
+          </figure>
+        </div>
+        <div class="unverified"><b>留意点：</b>実際の壁内温度は断熱材の種類・厚み、地域、季節で変わります。教科書の温度の線は考え方を示す模式図で、計算や実測に基づくグラフではありません。</div>
+      </div>
+
+      <div id="ch1-5" class="section">
+        <h3>1-5　コップの例えは「続き」まで話す</h3>
+        <p>冷たいコップの外側に水滴がつくのは、コップの周りの空気が冷やされて露点を下回るから。ここまではお客様もイメージできます。大事なのはその続きです。</p>
+        <p>氷が溶けて飲み物がぬるくなると、水滴はつかなくなります。冷たさの元がなくなるからです。でも家は、外の気温を変えられません。冬の間ずっと壁の外側は冷やされ続け、壁の中は結露しやすい状態が続きます。<b>だから最初から対策しておく</b>、という話につながります。</p>
+      </div>
+    </div>
+
+    <div id="ch2" class="chapter">
+      <div class="no">Chapter 2</div>
+      <h2>結露を放っておくと何が起きるか</h2>
+      <p class="lead">教科書の実害①②・真実①に対応。</p>
+
+      <div id="ch2-1" class="section">
+        <h3>2-1　耐震性能と断熱性能が落ちる</h3>
+        <p><b>構造：</b>壁の中で結露が続くと、柱・間柱が湿った状態が続き、木材が腐ります。構造材が傷めば、構造計算をしていても、制震ダンパーを入れていても、本来の強さは出せません。</p>
+        <p><b>断熱：</b>断熱材が水を含むと、熱を止める力が落ちます。光熱費が上がる、なぜか急に暑い・寒いと感じ始める、といった形で表に出てきます。</p>
+        <p>どちらも壁の中で進むので、住んでいて気づけません。壁を壊さないと分からず、気づいたときにはリフォームでは直せない規模になっていることもあります。</p>
+      </div>
+
+      <div id="ch2-2" class="section">
+        <h3>2-2　性能の数字は「建てた日」の数字</h3>
+        <p>断熱等級・UA値・C値・耐震等級・制震ダンパー。これらは建てた日の性能を示す数字です。15年後、20年後もその性能が続くかどうかは、壁の中に湿気を入れない手当てをしているかで決まります。</p>
+        <p>断熱も耐震も良い数字をそろえても、最後の1点、壁の中の湿気対策で妥協すれば、年数が経ったときにその数字は意味をなさなくなる。そこに妥協しないのがLIFEXです。</p>
+      </div>
+
+      <div id="ch2-3" class="section">
+        <h3>2-3　シロアリの話で勝負しない理由</h3>
+        <p>「結露→木が腐る→シロアリが集まる」とシロアリを話の終点にすると、防蟻処理を手厚くしている会社と比べられたときに、その一言で話が終わってしまいます（10/5佐古顧問の指摘）。LIFEXが伝えるべきなのはシロアリではなく、<b>構造と断熱の性能が持続すること</b>です。シロアリの話は聞かれたら答える補足にとどめます。</p>
+      </div>
+    </div>
+
+    <div id="ch3" class="chapter">
+      <div class="no">Chapter 3</div>
+      <h2>執念①　寒冷地向けの0.2mmシートを全国で</h2>
+      <p class="lead">教科書の執念①-1〜①-3に対応。0.2mmにしている本当の理由はここです。</p>
+
+      <div id="ch3-1" class="section">
+        <h3>3-1　防湿気密シートのA種とB種</h3>
+        <p>住宅用の防湿フィルムはJIS A 6930で区分されています。透湿抵抗は「水蒸気の通しにくさ」で、数字が大きいほど水蒸気を通しません。</p>
+        <div class="tblwrap">
+          <table class="dtbl">
+            <tr><th>区分</th><th>厚み</th><th>透湿抵抗（m²·s·Pa/ng）</th><th>推奨される地域</th></tr>
+            <tr><td>A種</td><td>0.1mm</td><td>0.082以上</td><td>一般地域</td></tr>
+            <tr><td>B種</td><td>0.2mm</td><td>0.144以上（A種の約1.8倍）</td><td>寒冷地</td></tr>
+            <tr><td class="hi">LIFEX</td><td class="hi">0.2mm</td><td class="hi">B種適合品（ジェイベック「ボーダー」）</td><td class="hi">全国共通</td></tr>
+          </table>
+        </div>
+        <p>本来は寒冷地向けのB種を、寒冷地ではない地域でも使っている。水蒸気を通しにくい分、壁の中に水蒸気がより入りにくい。これが0.2mmにしている本質です。</p>
+        <p style="font-size:13px; color:var(--sub)">※矩計図の注記「防湿抵抗0.082以上」は最低基準（A種相当）の書き方で、実際に使っている「ボーダー」はB種適合品です。<br>※矩計図の「吹付硬質ウレタンフォーム（A種3）」のA種は断熱材の規格（JIS A 9526）の区分で、シートのA種・B種とは別物です。</p>
+      </div>
+
+      <div id="ch3-2" class="section">
+        <h3>3-2　外気に接するところはすべて張る</h3>
+        <p>LIFEX標準仕様書の断熱欄では、<b>1階床・外壁・屋根・外気に接する天井</b>の4か所すべてに「防湿気密シート t=0.2」と書かれています。壁だけでなく、外の空気に触れるところは全部張り、全国どの地域でも同じ仕様です。</p>
+        <p>2階の張り出し部分（外気に接する床）にも張っています（LIFEX本部確認、2026-10-05）。</p>
+      </div>
+
+      <div id="ch3-3" class="section">
+        <h3>3-3　プラスα：うっかりにも破れにくい</h3>
+        <p>大工が長い木材を運ぶとき、施工済みのシートに当たってしまうことは現場で実際にあります。小さな穴でも、そこから水蒸気が入ります。厚みのあるシートはこうした「うっかり」にも破れにくい。ただしこれはおまけの効果で、主役は3-1の「水蒸気を通しにくい」点です。</p>
+      </div>
+    </div>
+
+    <div id="ch4" class="chapter">
+      <div class="no">Chapter 4</div>
+      <h2>執念②　仮張り床の剥がし・乾燥工程</h2>
+      <p class="lead">教科書の執念②-1・②-2に対応。</p>
+      <div class="section">
+        <p>上棟直後の基礎コンクリートや木材は、まだ水分を含んでいます。そのまま床を張って閉じると、その水分が中にこもり、断熱材を傷めます。</p>
+        <p>LIFEXでは次の順番で施工します。</p>
+        <ol>
+          <li>建て方のとき、1階の床合板を<b>仮張り</b>する</li>
+          <li>屋根（野地板）と外壁の面材を張った後、<b>約1週間乾かす</b></li>
+          <li>仮張りを<b>剥がし</b>、床下断熱材（押出法ポリスチレンフォーム3種 t=100）と防湿気密シート（ジェイベック「ボーダー」）を施工する</li>
+          <li>合板を<b>本張り</b>する</li>
+        </ol>
+        <p>工期を優先する現場では飛ばしがちな工程に、あえて時間を使っています。</p>
+        <div class="fact">
+          <div class="k">教科書で使用した内容</div>
+          <div class="v">上棟後、仮張りの床を一度剥がして乾燥期間を確保</div>
+          <div class="src">LIFEX標準施工マニュアル統合版 第1版（2026/08/11）p6「1階床合板仮張りとする（野地板・外壁面材施工後本締め）」、p12「1階床合板施工」。乾燥期間「約1週間」と目的（湿気で断熱材を傷めない）は2026-08-24中央建設様ショートMTGでの本部説明</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="ch5" class="chapter">
+      <div class="no">Chapter 5</div>
+      <h2>執念③　夏型結露と通気層</h2>
+      <p class="lead">教科書の執念③に対応。</p>
+      <div class="section">
+        <p>夏は水蒸気の向きが冬と逆になり、外の湿気が壁の中に入ろうとします。冷房で室内側が冷えていると、壁の中で結露することもゼロではありません。</p>
+        <p>LIFEXの外壁の裏には通気層があり、空気が流れ続けています。湿気をため込まず、濡れたまま閉じ込めないための層です。</p>
+        <p>お客様への例えはお風呂のカビが分かりやすい。濡れた瞬間にカビが生えることはありませんし、お風呂上がりに拭いて換気すれば生えません。生えるのは、濡れたまま閉め切った状態が長く続いたときです。</p>
+        <div class="unverified"><b>説明の注意：</b>夏型結露は主に防湿シートの屋外側（断熱材の室内寄り）で起きます。通気層は「湿気をため込まない」役割として説明し、「通気層ですぐ乾く」とは言い切らないでください。</div>
+      </div>
+    </div>
+
+    <div id="ch6" class="chapter">
+      <div class="no">Chapter 6</div>
+      <h2>想定QA集</h2>
+
+      <div class="qa">
+        <div class="q"><span class="tag">Q1</span>「結露しません」と言い切っていいですか？</div>
+        <div class="a"><b>言い切らない。</b>壁の中には必ず結露する温度の場所がある（1-4）。だから室内側のシートで水蒸気をそこまで届かせない、と仕組みで説明する方が信頼されます。</div>
+      </div>
+      <div class="qa">
+        <div class="q"><span class="tag">Q2</span>湿り空気線図の話は、お客様にどこまで話していいですか？</div>
+        <div class="a">お客様の前ではコップの例え（1-5）で十分です。営業自身は、①冬は水蒸気が室内から外へ動く、②壁の中に必ず露点がある、③だから室内側で止める、の3点を線図で説明できるようにしておいてください。</div>
+      </div>
+      <div class="qa">
+        <div class="q"><span class="tag">Q3</span>なぜ0.2mmなんですか？　破れにくいからですか？</div>
+        <div class="a"><b>主な理由は水蒸気の通しにくさです。</b>LIFEXのシートは寒冷地向けのB種適合品で、一般地域向けのA種より透湿抵抗の基準が約1.8倍高い（3-1）。破れにくさはおまけの効果です。</div>
+      </div>
+      <div class="qa">
+        <div class="q"><span class="tag">Q4</span>夏の結露は大丈夫ですか？</div>
+        <div class="a">夏は湿気の向きが逆になります。外壁の裏の通気層で空気が流れ続けるので、湿気をため込みません（第5章）。</div>
+      </div>
+      <div class="qa">
+        <div class="q"><span class="tag">Q5</span>工期が延びることをどう説明しますか？</div>
+        <div class="a">床を一度剥がして乾かす分、少し時間がかかります。それは湿気を閉じ込めないための時間だと伝えてください。</div>
+      </div>
+      <div class="qa">
+        <div class="q"><span class="tag">Q6</span>シロアリ対策は？</div>
+        <div class="a">防蟻処理は各社それぞれ工夫しています。LIFEXが重視しているのは、そもそも壁の中を結露させず、構造と断熱の性能を持続させること（2-3）。シロアリの話だけで勝負しないでください。</div>
+        <div class="a" style="font-size:13px;color:var(--sub)">※営業の予備知識：他社で多い加圧注入の防蟻処理は、薬剤を染み込ませた木材をシロアリが一度かじることで効く仕組みで、寄せ付けない対策ではありません。</div>
+      </div>
+    </div>
+
+    <div id="ch7" class="chapter">
+      <div class="no">Chapter 7</div>
+      <h2>出典・参考資料一覧</h2>
+      <p><b>湿り空気線図（図1-1・1-2）</b>：史幸工務店「ハイブリッド・エコ・ハートQ 住宅の科学③ 水分・湿度・空気線図・環境編」掲載の湿り空気線図（圧力101.325kPa）。図1-2の曲線の強調・点・矢印は本資料で追記（Magnus-Tetens近似式の計算値に合わせて配置）</p>
+      <p><b>露点温度・水蒸気量の計算値（23℃・50%→約8.7g/kg・露点約12.0℃、20℃・50%→約7.3g/kg・露点約9.3℃）</b>：Magnus-Tetens近似式（係数17.27・237.3）と大気圧1013.25hPaによる計算値。温湿度は説明用の仮定条件で、実測値ではない</p>
+      <p><b>冬の屋外の気温・湿度（1-3の表）</b>：気象庁「平年値（1991〜2020年）」1月の平均気温・相対湿度・蒸気圧（https://www.data.jma.go.jp/stats/etrn/、2026-10-05取得）。観測所：秋田・盛岡・仙台・福島・新潟・宇都宮・熊谷・横浜・名古屋・奈良・大阪・鳥取・米子・松江・岡山・福山・広島・高知・福岡・佐賀・鹿児島。郡山・さいたま・出雲・東広島・久留米はアメダスで湿度の平年値がないため、伊丹・西尾・磯城郡・糟屋郡は観測所の都合で、近くの気象台の値で代用。水蒸気量は蒸気圧から x=622e/(1013.25−e) で計算。加盟店様とエリアの対応はLIFEX加盟店リスト（2026-10-05時点）による</p>
+      <p><b>空気・水蒸気が動く3つの性質</b>：前回10/2研修「断熱×気密×換気」の内容に準拠</p>
+      <p><b>結露による耐震性能・断熱性能の低下と光熱費の増加、シロアリで勝負しない理由、夏型結露と通気層の説明</b>：佐古顧問の指導内容（2026-10-05定例）。具体的な低下率・金額の数字は使用していない</p>
+      <p><b>JIS A 6930のA種・B種（厚み・透湿抵抗の規格値）</b>：市村「防湿気密シート モイストバリア」製品案内（2024-10-07、https://www.ichimura.co.jp/information/pdf/20241007.pdf）。A種＝一般地域推奨・B種＝寒冷地推奨はフクビ化学工業「バリアエース」製品ページ（https://www.fukuvi.co.jp/product/3/02/31）。JIS原本は未確認</p>
+      <p><b>LIFEXの防湿気密シート t=0.2mm、施工箇所、壁の構成</b>：LIFEX標準仕様書「断熱」欄（1階床・外壁・屋根・外気に接する天井の4か所で「防湿気密シート t=0.2」、2026-09-21確認）。LIFEX標準矩計図1/30（更新日2025.12.22、2026-10-05提示）：外壁＝サイディング／通気金具t=15／透湿防水シート／耐力面材t=9／吹付硬質ウレタンフォームt=95／ジェイベック（防湿気密シート）／PB t=12.5、注記「防湿層（JIS A6930）防湿抵抗0.082以上」「外壁・屋根に通気層」「GL+1mまでの軸組等に防腐防蟻処理」。0.2mmの全国共通採用と、外気に接する床（2階の張り出し部分）への施工はLIFEX本部確認済み（2026-10-05）。製品はジェイベック「ボーダー」で、製品ページに「寒冷地向けB種適合品」と記載（http://www.jbeck.co.jp/products/kimitsu/border/index.html、2026-10-05確認）</p>
+      <p><b>床の仮張り→乾燥→剥がして断熱・防湿気密シート→本張りの工程</b>：LIFEX標準施工マニュアル統合版 第1版（2026/08/11）p6・p12。乾燥期間「約1週間」と目的は2026-08-24中央建設様ショートMTGでの本部説明</p>
+      <p><b>断熱等級6・UA値0.46・C値0.5という基本仕様</b>：前回10/2研修「断熱×気密×換気」教科書・参考書に準拠（社内資料LIFEX公式初回セミナースライド20260521・LIFEX_話法マニュアル）</p>
+      <p><b>想定QA「シロアリ対策」の注釈（加圧注入の防蟻処理）</b>：LIFEX本部の営業知見（2026-10-02共有）。メーカー資料等での裏付けは未確認</p>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  この参考書はLIFEX加盟店様向けの内部研修資料です。数値・出典の詳細な確認経緯は本部担当（徳田）までお問い合わせください。
+</footer>
