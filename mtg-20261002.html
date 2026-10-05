@@ -169,17 +169,53 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
   <div class="top"><span class="chip cLeak">恐怖②</span><span class="pg">4 / 23</span></div>
   <div class="tt">見た目も数値も完璧な家の、壁の中。</div>
   <div class="body" style="gap:14px">
-    <figure style="width:40%; flex-shrink:0; margin:0; position:relative; border-radius:10px; overflow:hidden; box-shadow:0 4px 14px rgba(20,40,60,.18)">
-      <img src="assets/photo-minoh-model.jpg" alt="LIFEX箕面モデルの外観パース（夕景）" style="width:100%; height:100%; object-fit:cover; display:block">
-      <figcaption style="position:absolute; left:12px; right:12px; bottom:12px; background:rgba(255,255,255,.94); border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px">
+    <figure style="width:36%; flex-shrink:0; margin:0; position:relative; border-radius:10px; overflow:hidden; box-shadow:0 4px 14px rgba(20,40,60,.18); background:#f4f8fb">
+      <svg viewBox="0 0 400 400" style="width:100%; height:100%" role="img" aria-label="一般的な高断熱住宅の外観イラスト。見た目も数値も問題がない家">
+      <defs>
+        <linearGradient id="h4sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#cfe3f3"/><stop offset="100%" stop-color="#f4f8fb"/></linearGradient>
+        <linearGradient id="h4wall" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f7f5f1"/><stop offset="100%" stop-color="#e4e0d8"/></linearGradient>
+        <linearGradient id="h4wall2" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#5b6168"/><stop offset="100%" stop-color="#3f454b"/></linearGradient>
+        <linearGradient id="h4roof" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4a5057"/><stop offset="100%" stop-color="#2f343a"/></linearGradient>
+        <linearGradient id="h4win" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffe7b0"/><stop offset="100%" stop-color="#f3b860"/></linearGradient>
+        <linearGradient id="h4wood" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#b8875a"/><stop offset="100%" stop-color="#94643b"/></linearGradient>
+        <linearGradient id="h4lawn" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9cc78a"/><stop offset="100%" stop-color="#6fa35c"/></linearGradient>
+        <radialGradient id="h4tree" cx="40%" cy="35%" r="70%"><stop offset="0%" stop-color="#8fc47a"/><stop offset="100%" stop-color="#4c8a3f"/></radialGradient>
+        <filter id="h4sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#1b2530" flood-opacity=".22"/></filter>
+      </defs>
+      <rect x="0" y="0" width="400" height="400" fill="url(#h4sky)"/>
+      <rect x="0" y="318" width="400" height="82" fill="url(#h4lawn)"/>
+      <ellipse cx="200" cy="322" rx="170" ry="10" fill="#1b2530" opacity=".12"/>
+      <g filter="url(#h4sh)">
+        <rect x="70" y="150" width="170" height="170" fill="url(#h4wall)"/>
+        <polygon points="58,152 155,92 252,152" fill="url(#h4roof)"/>
+        <rect x="240" y="196" width="100" height="124" fill="url(#h4wall2)"/>
+        <rect x="234" y="188" width="112" height="10" fill="#2f343a"/>
+        <g stroke="#4c5258" stroke-width="1" opacity=".35"><line x1="240" y1="210" x2="340" y2="210"/><line x1="240" y1="222" x2="340" y2="222"/><line x1="240" y1="234" x2="340" y2="234"/><line x1="240" y1="246" x2="340" y2="246"/><line x1="240" y1="258" x2="340" y2="258"/><line x1="240" y1="270" x2="340" y2="270"/><line x1="240" y1="282" x2="340" y2="282"/><line x1="240" y1="294" x2="340" y2="294"/><line x1="240" y1="306" x2="340" y2="306"/><line x1="240" y1="318" x2="340" y2="318"/></g>
+        <rect x="88" y="170" width="54" height="44" rx="2" fill="url(#h4win)" stroke="#3a3f45" stroke-width="3"/>
+        <line x1="115" y1="170" x2="115" y2="214" stroke="#3a3f45" stroke-width="2"/>
+        <rect x="160" y="170" width="62" height="44" rx="2" fill="url(#h4win)" stroke="#3a3f45" stroke-width="3"/>
+        <rect x="88" y="240" width="90" height="62" rx="2" fill="url(#h4win)" stroke="#3a3f45" stroke-width="3"/>
+        <line x1="133" y1="240" x2="133" y2="302" stroke="#3a3f45" stroke-width="2"/>
+        <rect x="192" y="238" width="34" height="82" rx="2" fill="url(#h4wood)"/>
+        <circle cx="219" cy="282" r="2.2" fill="#e6d3a5"/>
+        <rect x="258" y="222" width="64" height="40" rx="2" fill="url(#h4win)" stroke="#2a2e33" stroke-width="3"/>
+        <rect x="186" y="318" width="46" height="6" fill="#c9c4b9"/>
+      </g>
+      <g opacity=".5" fill="#fff"><rect x="92" y="174" width="10" height="36"/><rect x="164" y="174" width="10" height="36"/><rect x="92" y="244" width="12" height="54"/></g>
+      <rect x="352" y="250" width="7" height="70" fill="#7a5a3a"/>
+      <circle cx="355" cy="236" r="30" fill="url(#h4tree)" filter="url(#h4sh)"/>
+      <rect x="38" y="262" width="6" height="58" fill="#7a5a3a"/>
+      <circle cx="41" cy="252" r="22" fill="url(#h4tree)"/>
+    </svg>
+      <figcaption style="position:absolute; left:12px; right:12px; bottom:12px; background:rgba(255,255,255,.95); border-radius:10px; padding:10px 14px; display:flex; align-items:center; gap:10px">
         <span style="width:34px; height:34px; border-radius:50%; background:#1f7a5c; color:#fff; font-weight:800; font-size:20px; display:flex; align-items:center; justify-content:center; flex-shrink:0">✓</span>
-        <span><b style="font-size:16px; color:#1f7a5c">UA値0.46・C値0.5</b><br><span style="font-size:12px; color:var(--sub)">外から見ても、数字を見ても問題なし</span></span>
+        <span><b style="font-size:15px; color:#1f7a5c">断熱等級6・C値0.5</b><br><span style="font-size:12px; color:var(--sub)">外から見ても、数字を見ても問題なし</span></span>
       </figcaption>
     </figure>
     <div style="font-size:30px; font-weight:800; color:var(--leak); align-self:center; flex-shrink:0">▶</div>
     <div style="flex:1; min-width:0; display:flex; flex-direction:column">
       <div style="font-size:15px; font-weight:800; color:var(--leak); text-align:center">壁を切ってみると、こうなっていることがある</div>
-      <div style="flex:1; min-height:0"><svg viewBox="0 0 600 440" style="width:100%; height:100%" role="img" aria-label="LIFEXの外壁の断面。屋外側からサイディング、通気層、透湿防水シート、耐力面材、吹付ウレタン断熱と柱、防湿気密シート、石膏ボード。湿気が入ると断熱材の屋外寄りで結露し、柱が傷む">
+      <div style="flex:1; min-height:0"><svg viewBox="0 0 600 440" style="width:100%; height:100%" role="img" aria-label="一般的な高断熱住宅の壁の断面イメージ。防湿シートの小さな破れから湿気が入り、断熱材の屋外寄りで結露して柱が傷む">
       <defs>
         <linearGradient id="p4out" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#cfe2f1"/><stop offset="100%" stop-color="#eaf3fa"/></linearGradient>
         <linearGradient id="p4room" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#fdf3ea"/><stop offset="100%" stop-color="#f9e3cf"/></linearGradient>
@@ -190,10 +226,12 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
         <linearGradient id="p4pb" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ecebe7"/><stop offset="100%" stop-color="#fbfaf8"/></linearGradient>
         <radialGradient id="p4rot" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#4a3019"/><stop offset="60%" stop-color="#77542f" stop-opacity=".9"/><stop offset="100%" stop-color="#77542f" stop-opacity="0"/></radialGradient>
         <radialGradient id="p4drop" cx="32%" cy="24%" r="78%"><stop offset="0%" stop-color="#d6eefc"/><stop offset="50%" stop-color="#4fa8de"/><stop offset="100%" stop-color="#2b6ea0"/></radialGradient>
+        <radialGradient id="p4leak" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff6d8"/><stop offset="100%" stop-color="#fff6d8" stop-opacity="0"/></radialGradient>
         <filter id="p4sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#1b2530" flood-opacity=".18"/></filter>
         <filter id="p4blur" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5"/></filter>
         <clipPath id="p4clip"><rect x="40" y="70" width="520" height="300" rx="10"/></clipPath>
         <marker id="p4ar" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#6aa9d6"/></marker>
+        <marker id="p4av" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="8" refY="7" orient="auto"><path d="M0 0 L14 7 L0 14 Z" fill="#3b82c4"/></marker>
       </defs>
       <g filter="url(#p4sh)"><rect x="40" y="70" width="520" height="300" rx="10" fill="#fff"/></g>
       <g clip-path="url(#p4clip)">
@@ -210,9 +248,12 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
         <g stroke="#b18a4f" stroke-width="1.2" opacity=".5"><line x1="180" y1="192" x2="390" y2="192"/><line x1="180" y1="214" x2="390" y2="214"/><line x1="180" y1="238" x2="390" y2="238"/><line x1="180" y1="258" x2="390" y2="258"/></g>
         <path d="M178 222 C170 186,214 162,246 178 C272 166,296 192,284 222 C296 254,260 278,232 268 C204 282,172 258,178 222 Z" fill="url(#p4rot)" filter="url(#p4blur)"/>
         <ellipse cx="220" cy="214" rx="14" ry="6" fill="#3a2513" opacity=".35"/>
-        <rect x="390" y="70" width="10" height="300" fill="#b5493c"/>
-        <rect x="400" y="70" width="26" height="300" fill="url(#p4pb)"/>
+        <rect x="390" y="70" width="6" height="134" fill="#c9ced3"/>
+        <rect x="390" y="214" width="6" height="156" fill="#c9ced3"/>
+        <circle cx="393" cy="209" r="16" fill="url(#p4leak)"/>
+        <rect x="396" y="70" width="30" height="300" fill="url(#p4pb)"/>
         <rect x="426" y="70" width="134" height="300" fill="url(#p4room)"/>
+        <path d="M520 209 C 470 209, 430 209, 300 212" stroke="#3b82c4" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round" fill="none" marker-end="url(#p4av)"/>
         <g>
           <path d="M200 112 C200 112,190 127,190 135 C190 141,194.5 146,200 146 C205.5 146,210 141,210 135 C210 127,200 112,200 112 Z" fill="url(#p4drop)"/>
           <ellipse cx="196.5" cy="130" rx="2.2" ry="3.4" fill="#fff" opacity=".7"/>
@@ -223,29 +264,32 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
       </g>
       <rect x="40" y="70" width="520" height="300" rx="10" fill="none" stroke="#dbe3ea" stroke-width="1.5"/>
       <g font-size="13" font-weight="800" fill="#1b2530">
-        <line x1="117" y1="66" x2="117" y2="44" stroke="#9aa6b0"/><text x="117" y="38" text-anchor="middle">サイディング</text>
-        <line x1="146" y1="66" x2="186" y2="20" stroke="#9aa6b0"/><text x="186" y="14" text-anchor="middle">通気層 15mm</text>
-        <line x1="172" y1="66" x2="268" y2="44" stroke="#9aa6b0"/><text x="268" y="38" text-anchor="middle">耐力面材 9mm</text>
-        <line x1="395" y1="66" x2="372" y2="20" stroke="#b5493c"/><text x="372" y="14" text-anchor="middle" fill="#b5493c">防湿気密シート 0.2mm</text>
-        <line x1="413" y1="66" x2="470" y2="44" stroke="#9aa6b0"/><text x="476" y="38" text-anchor="middle">石膏ボード</text>
+        <line x1="117" y1="66" x2="117" y2="44" stroke="#9aa6b0"/><text x="117" y="38" text-anchor="middle">外壁材</text>
+        <line x1="146" y1="66" x2="180" y2="20" stroke="#9aa6b0"/><text x="180" y="14" text-anchor="middle">通気層</text>
+        <line x1="172" y1="66" x2="262" y2="44" stroke="#9aa6b0"/><text x="262" y="38" text-anchor="middle">構造用の面材</text>
+        <line x1="393" y1="66" x2="380" y2="20" stroke="#9aa6b0"/><text x="380" y="14" text-anchor="middle">防湿シート</text>
+        <line x1="411" y1="66" x2="470" y2="44" stroke="#9aa6b0"/><text x="476" y="38" text-anchor="middle">石膏ボード</text>
       </g>
       <g font-size="13" font-weight="800">
-        <text x="285" y="400" text-anchor="middle" fill="#8a6a1e">吹付ウレタン断熱 95mm</text>
+        <text x="285" y="400" text-anchor="middle" fill="#8a6a1e">断熱材</text>
         <text x="70" y="400" text-anchor="middle" fill="#5c6c7d">屋外</text>
         <text x="493" y="400" text-anchor="middle" fill="#5c6c7d">室内</text>
       </g>
       <g filter="url(#p4sh)">
+        <rect x="420" y="232" width="132" height="44" rx="10" fill="#fff" stroke="#3b82c4" stroke-width="2"/>
+        <text x="486" y="250" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2b6ea0">シートの小さな破れ</text>
+        <text x="486" y="267" text-anchor="middle" font-size="12" fill="#5c6c7d">から湿気が入る</text>
         <rect x="248" y="282" width="128" height="30" rx="15" fill="#b3372b"/>
         <text x="312" y="302" text-anchor="middle" font-size="13.5" font-weight="800" fill="#fff">結露 → 柱が傷む</text>
         <rect x="262" y="116" width="114" height="30" rx="15" fill="#fff" stroke="#2b6ea0" stroke-width="2"/>
         <text x="319" y="136" text-anchor="middle" font-size="13" font-weight="800" fill="#2b6ea0">断熱材が湿る</text>
       </g>
-      <text x="320" y="225" text-anchor="middle" font-size="12" font-weight="800" fill="#7a5a2a">柱（構造材）</text>
-      <text x="300" y="430" text-anchor="middle" font-size="11.5" fill="#5c6c7d">LIFEX標準矩計図の外壁構成をもとに作図</text>
+      <text x="330" y="250" text-anchor="middle" font-size="12" font-weight="800" fill="#7a5a2a">柱（構造材）</text>
+      <text x="300" y="430" text-anchor="middle" font-size="11.5" fill="#5c6c7d">一般的な高断熱住宅の壁（イメージ）</text>
     </svg></div>
     </div>
   </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「見た目も数字も完璧なお家でも、壁の中で結露が起きると、柱も断熱材も少しずつ傷んでいくんです。」</div></div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「見た目も数字も完璧なお家でも、防湿シートに小さな破れがあると、そこから湿気が入って壁の中で結露します。柱も断熱材も、少しずつ傷んでいくんです。」</div></div>
 </div>
 
 <!-- 5 -->
@@ -755,10 +799,10 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
       <p><b>LIFEXの防湿気密シート t=0.2mm、施工箇所</b>：LIFEX標準仕様書「断熱」欄（1階床・外壁・屋根・外気に接する天井の4か所で「防湿気密シート t=0.2」、2026-09-21確認）。製品はジェイベック「ボーダー」（LIFEX標準施工マニュアル第1版p26「防湿気密シート（ジェイベック：ボーダー）t=0.2を使用」）で、ジェイベック製品ページに「JIS A-6930住宅用プラスチック系防湿フィルム、寒冷地向けB種適合品」「0.2mm厚はJIS規格B種」と記載（http://www.jbeck.co.jp/products/kimitsu/border/index.html、2026-10-05確認）。矩計図の注記「防湿抵抗0.082m²·s·Pa/ng以上」は最低基準（A種相当）の表記。0.2mmを全国共通で使っていること、外気に接する床（2階の張り出し部分）にも張っていることはLIFEX本部に確認済み（2026-10-05）。矩計図の「外気に接する床」詳細には表記がない</p>
       <p><b>夏型結露と通気層の役割</b>：佐古顧問の指導内容（2026-10-05定例）。通気層だけで夏型結露が乾くと言い切れるかは未確認</p>
       <p><b>床の仮張り→乾燥→剥がして断熱・防湿気密シート→本張りの工程</b>：LIFEX標準施工マニュアル統合版 第1版（2026/08/11）p6「1階床合板仮張りとする（野地板・外壁面材施工後本締め）」、p12「1階床合板施工」（床下断熱材 押出法ポリスチレンフォーム3種t=100、気密フィルム ジェイベックボーダー10）。乾燥期間「約1週間」と目的（湿気で断熱材を傷めない）は2026-08-24中央建設様ショートMTGでの本部説明</p>
-      <p><b>壁の構成（恐怖②・恐怖⑥）</b>：LIFEX標準矩計図1/30（更新日2025.12.22、2026-10-05徳田さん提示）の外壁表記「サイディング／通気金具t=15／透湿防水シート／耐力面材ハイベストウッドt=9／吹付硬質ウレタンフォーム（A種3）t=95／ジェイベック（防湿気密シート）／PB t=12.5」に準拠</p>
+      <p><b>壁の構成（恐怖⑥）</b>：LIFEX標準矩計図1/30（更新日2025.12.22、2026-10-05徳田さん提示）の外壁表記「サイディング／通気金具t=15／透湿防水シート／耐力面材ハイベストウッドt=9／吹付硬質ウレタンフォーム（A種3）t=95／ジェイベック（防湿気密シート）／PB t=12.5」に準拠</p>
       <p><b>恐怖⑦のコップ、恐怖②・恐怖⑥・執念①-2・執念①-3の図</b>：LIFEXのデザインで作成した説明用の図</p>
       <p><b>施工写真（執念①-2・執念②-1・執念③）</b>：LIFEX現場の施工写真（徳田さん提供、2026-10-05）</p>
-      <p><b>外観パース（恐怖②）</b>：LIFEX箕面モデル 外観パース（夕景）</p>
+      <p><b>恐怖②の家と壁の図</b>：一般的な高断熱住宅のイメージとして作成した説明図。LIFEXの仕様を表すものではない</p>
       <p><b>断熱等級6・UA値0.46・C値0.5という基本仕様</b>：前回10/2研修「断熱×気密×換気」教科書・参考書に準拠（社内資料LIFEX公式初回セミナースライド20260521・LIFEX_話法マニュアル）</p>
       <p><b>想定QA「シロアリ対策」の注釈（加圧注入の防蟻処理）</b>：LIFEX本部の営業知見（2026-10-02共有）。メーカー資料等での裏付けは未確認</p>
     </div>
