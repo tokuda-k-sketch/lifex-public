@@ -102,38 +102,58 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 .src b{color:var(--ink)}
 .unverified{font-size:11px; color:var(--p3); background:var(--p3bg); border-radius:6px; padding:2px 8px; margin-left:6px; font-weight:800}
 
+.photo{border:2px dashed #b6c0ca; border-radius:10px; background:#f7f9fb; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; color:var(--sub); font-size:13px; font-weight:700; text-align:center; padding:14px; line-height:1.6}
+.photo .ic{font-size:26px}
+.photo small{font-weight:400; font-size:11.5px}
+.stepcard{border:1px solid var(--line); border-radius:10px; padding:14px 18px; background:#fff; display:flex; gap:12px; align-items:flex-start}
+.stepcard .n{width:26px; height:26px; border-radius:50%; background:var(--navy); color:#fff; font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px}
+.stepcard b{display:block; font-size:15px; margin-bottom:2px}
+.stepcard span{font-size:12.5px; color:var(--sub); line-height:1.6}
+.jis{width:100%; border-collapse:collapse; font-size:14px}
+.jis th,.jis td{border:1px solid var(--line); padding:10px 12px; text-align:center}
+.jis th{background:var(--panel); font-size:12.5px; color:var(--sub)}
+.jis td.lx{background:var(--navy-soft); color:var(--navy); font-weight:800}
+.flowV{display:flex; flex-direction:column; gap:12px; flex:1; justify-content:center}
+.flowV .row{display:flex; align-items:center; gap:10px}
+.flowV .row .fb{flex:1; border:1px solid var(--line); border-radius:10px; padding:14px 12px; background:#fff; text-align:center; display:flex; flex-direction:column; gap:4px; min-width:0}
+.flowV .row .fb.warn{border-color:var(--leak); background:var(--leakbg)}
+.flowV .row .fb.rot{border-color:var(--rot); background:var(--rotbg)}
+.flowV .row .fb b{font-size:15px}
+.flowV .row .fb span{font-size:11.5px; color:var(--sub)}
+.flowV .row .arrow{font-size:20px; font-weight:800; color:var(--sub)}
+.flowV .row .lab{width:92px; font-size:12px; font-weight:800; color:var(--sub); flex-shrink:0; text-align:center}
 @media print{body{background:#fff}.draft{display:none}.sl{box-shadow:none; border:1px solid var(--line); page-break-after:always}}
 </style>
 
 <div class="wrap">
-<div class="draft">DRAFT｜佐古顧問チェック前の叩き台です。数字・出典は末尾の出典一覧を参照。</div>
+<div class="draft">DRAFT｜10/5佐古顧問FB反映の叩き台。📷枠・線図は差し込み待ち、トークは徳田さんの言葉に直す前提です。</div>
 
-<!-- 1 表紙 -->
+<!-- 1 -->
 <div class="sl" style="justify-content:center; text-align:center">
   <div style="font-size:13px; letter-spacing:.22em; color:var(--sub); font-weight:700">2026.10.9（金）16:00〜　LIFEX 月2棟目標達成MTG</div>
-  <div style="font-size:36px; font-weight:800; margin:22px 0 12px; letter-spacing:.02em">冬の寒さより怖いのは、<br>見えない壁の中の腐朽である。</div>
-  <div style="font-size:16px; color:var(--navy); font-weight:700; line-height:1.8">壁体内結露から、お客様の家を守る<br>LIFEXの現場の執念。</div>
+  <div style="font-size:36px; font-weight:800; margin:22px 0 12px; letter-spacing:.02em">冬の壁の中には、<br>必ず「結露する温度」がある。</div>
+  <div style="font-size:16px; color:var(--navy); font-weight:700; line-height:1.8">建てた日の性能を、20年後も持続させる。<br>LIFEXが防湿気密シートで妥協しない理由。</div>
   <div style="margin-top:30px; font-size:14px; color:var(--sub)">進行：Gハウス LIFEX FC事業部　徳田</div>
-  <div class="pg" style="position:absolute; right:28px; bottom:20px">1 / 24</div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px">1 / 23</div>
 </div>
 
-<!-- 2 アジェンダ -->
+<!-- 2 -->
 <div class="sl">
-  <div class="top"><span class="chip c0">本日の流れ</span><span class="pg">2 / 24</span></div>
-  <div class="tt">見えないところを、あえて見にいく。</div>
-  <div class="body" style="flex-direction:column; justify-content:center; gap:12px">
-    <div class="ag"><span class="no" style="color:var(--leak)">恐怖</span><b>壁の中で、本当は何が起きているか（湿り空気線図で理解する）</b></div>
-    <div class="ag"><span class="no" style="color:var(--p3)">真実</span><b>業界が見て見ぬふりをしていること</b></div>
-    <div class="ag"><span class="no" style="color:var(--p2)">執念①</span><b>破れない、分厚い気密シート</b></div>
-    <div class="ag"><span class="no" style="color:var(--p4)">執念②</span><b>あえて床を剥がし、乾かす工程</b></div>
-    <div class="ag"><span class="no" style="color:var(--navy)">行動</span><b>そのまま使えるキラーフレーズ</b></div>
+  <div class="top"><span class="chip c0">本日の流れ</span><span class="pg">2 / 23</span></div>
+  <div class="tt">「なぜ結露するのか」を、自分の言葉で説明できるようになる。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:10px">
+    <div class="ag"><span class="no" style="color:var(--leak)">仕組み</span><b>湿り空気線図と空気の性質で、冬に壁の中で結露する理由を理解する</b></div>
+    <div class="ag"><span class="no" style="color:var(--rot)">実害</span><b>結露を放っておくと、耐震・断熱の性能が持続しない</b></div>
+    <div class="ag"><span class="no" style="color:var(--p3)">真実</span><b>性能の数字は「建てた日」の数字である</b></div>
+    <div class="ag"><span class="no" style="color:var(--p2)">執念</span><b>寒冷地向けの0.2mmシートを全国で／床を剥がして乾かす／通気層で乾かす</b></div>
+    <div class="ag"><span class="no" style="color:var(--navy)">行動</span><b>妥協しないのがLIFEX、と言い切る</b></div>
   </div>
-  <div class="foot"><span class="cap">今回は「なぜ結露するのか」を湿り空気線図でしっかり掘り下げます。LIFEXの2つの執念が、なぜ効くのかがここでつながります。</span></div>
+  <div class="foot"><span class="cap">目標：この流れを、お客様の前で5〜10分で説明できること。最初は長くなって構いません。反復で縮めていきます。</span></div>
 </div>
 
-<!-- 3 恐怖① -->
+<!-- 3 -->
 <div class="sl">
-  <div class="top"><span class="chip cLeak">恐怖①</span><span class="pg">3 / 24</span></div>
+  <div class="top"><span class="chip cLeak">恐怖①</span><span class="pg">3 / 23</span></div>
   <div class="tt">数字が完璧でも、壁の中は別の話。</div>
   <div class="body" style="flex-direction:column; justify-content:center">
     <div class="twocol">
@@ -144,12 +164,12 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
   <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「◯◯様、断熱と気密の数字がどれだけ良くても、壁の中は別の話なんです。」</div></div>
 </div>
 
-<!-- 4 恐怖② -->
+<!-- 4 -->
 <div class="sl">
-  <div class="top"><span class="chip cLeak">恐怖②</span><span class="pg">4 / 24</span></div>
+  <div class="top"><span class="chip cLeak">恐怖②</span><span class="pg">4 / 23</span></div>
   <div class="tt">見た目も数値も完璧な家の、壁の中。</div>
-  <div class="body">
-    <svg viewBox="0 0 900 350" style="width:100%; height:100%" role="img" aria-label="外観・数値ともに問題のない家と、その壁の中で結露と腐朽が起きている断面図の比較">
+  <div class="body" style="flex-direction:column; gap:6px">
+    <svg viewBox="0 0 900 350" style="width:100%; flex:1; min-height:0" role="img" aria-label="外観・数値ともに問題のない家と、その壁の中で結露と腐朽が起きている断面図の比較">
       <defs>
         <linearGradient id="roofGrad" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#eef2f5"/><stop offset="100%" stop-color="#c7d1d8"/>
@@ -184,6 +204,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
         <filter id="blurSoft" x="-70%" y="-70%" width="240%" height="240%">
           <feGaussianBlur stdDeviation="3.5"/>
         </filter>
+        <linearGradient id="studGrad" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#d8b978"/><stop offset="50%" stop-color="#e8d3a8"/><stop offset="100%" stop-color="#c49a5c"/></linearGradient>
         <clipPath id="wallClip"><rect x="0" y="0" width="200" height="220" rx="8"/></clipPath>
       </defs>
 
@@ -213,112 +234,213 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
       <line x1="440" y1="30" x2="440" y2="330" stroke="#dbe3ea" stroke-width="1.5" stroke-dasharray="5 4"/>
       <text x="700" y="18" text-anchor="middle" font-size="14.5" font-weight="800" fill="#b3372b">壁の中では、これが起きている場合がある</text>
 
-      <!-- 壁体断面 -->
-      <g transform="translate(555,90)">
-        <g font-size="10.5" font-weight="800" fill="#5c6c7d">
-          <line x1="17" y1="-6" x2="-6" y2="-30" stroke="#c3ccd3" stroke-width="1"/>
-          <text x="-6" y="-34">外壁材</text>
-          <line x1="42" y1="-6" x2="40" y2="-46" stroke="#c3ccd3" stroke-width="1"/>
-          <text x="40" y="-50" text-anchor="middle">防水シート</text>
-          <line x1="106" y1="-6" x2="106" y2="-30" stroke="#c3ccd3" stroke-width="1"/>
-          <text x="106" y="-34" text-anchor="middle">断熱材</text>
-          <line x1="168" y1="-6" x2="176" y2="-46" stroke="#c3ccd3" stroke-width="1"/>
-          <text x="176" y="-50" text-anchor="middle">気密シート</text>
-          <line x1="188" y1="-6" x2="222" y2="-30" stroke="#c3ccd3" stroke-width="1"/>
-          <text x="222" y="-34">内壁</text>
+      <!-- 壁体断面（矩計図準拠・平面で切った断面：屋外←→室内） -->
+      <g transform="translate(560,92)">
+        <g font-size="10" font-weight="800" fill="#5c6c7d">
+          <line x1="12" y1="-6" x2="-14" y2="-30" stroke="#c3ccd3" stroke-width="1"/><text x="-14" y="-34" text-anchor="middle">サイディング</text>
+          <line x1="32" y1="-6" x2="30" y2="-54" stroke="#c3ccd3" stroke-width="1"/><text x="30" y="-58" text-anchor="middle">通気層15mm</text>
+          <line x1="42" y1="-6" x2="70" y2="-30" stroke="#c3ccd3" stroke-width="1"/><text x="74" y="-34" text-anchor="middle">透湿防水シート</text>
+          <line x1="49" y1="-6" x2="112" y2="-54" stroke="#c3ccd3" stroke-width="1"/><text x="116" y="-58" text-anchor="middle">耐力面材9mm</text>
+          <line x1="172" y1="-6" x2="168" y2="-30" stroke="#c3ccd3" stroke-width="1"/><text x="168" y="-34" text-anchor="middle">防湿気密シート</text>
+          <line x1="190" y1="-6" x2="224" y2="-54" stroke="#c3ccd3" stroke-width="1"/><text x="224" y="-58" text-anchor="middle">石膏ボード</text>
         </g>
         <rect x="-3" y="-3" width="206" height="226" rx="10" fill="#fff" filter="url(#softShadow)"/>
         <g clip-path="url(#wallClip)">
-          <rect x="0" y="0" width="34" height="220" fill="url(#sidingGrad)"/>
+          <rect x="0" y="0" width="24" height="220" fill="url(#sidingGrad)"/>
           <g stroke="#9aa5ac" stroke-width="1" opacity=".55">
-            <line x1="0" y1="18" x2="34" y2="18"/><line x1="0" y1="36" x2="34" y2="36"/><line x1="0" y1="54" x2="34" y2="54"/>
-            <line x1="0" y1="72" x2="34" y2="72"/><line x1="0" y1="90" x2="34" y2="90"/><line x1="0" y1="108" x2="34" y2="108"/>
-            <line x1="0" y1="126" x2="34" y2="126"/><line x1="0" y1="144" x2="34" y2="144"/><line x1="0" y1="162" x2="34" y2="162"/>
-            <line x1="0" y1="180" x2="34" y2="180"/><line x1="0" y1="198" x2="34" y2="198"/>
+            <line x1="0" y1="22" x2="24" y2="22"/><line x1="0" y1="44" x2="24" y2="44"/><line x1="0" y1="66" x2="24" y2="66"/><line x1="0" y1="88" x2="24" y2="88"/>
+            <line x1="0" y1="110" x2="24" y2="110"/><line x1="0" y1="132" x2="24" y2="132"/><line x1="0" y1="154" x2="24" y2="154"/><line x1="0" y1="176" x2="24" y2="176"/><line x1="0" y1="198" x2="24" y2="198"/>
           </g>
-          <rect x="34" y="0" width="16" height="220" fill="#e6dcc4"/>
-          <g stroke="#cdbb8f" stroke-width="1" opacity=".7">
-            <line x1="34" y1="0" x2="50" y2="16"/><line x1="34" y1="20" x2="50" y2="36"/><line x1="34" y1="40" x2="50" y2="56"/>
-            <line x1="34" y1="60" x2="50" y2="76"/><line x1="34" y1="80" x2="50" y2="96"/><line x1="34" y1="100" x2="50" y2="116"/>
-            <line x1="34" y1="120" x2="50" y2="136"/><line x1="34" y1="140" x2="50" y2="156"/><line x1="34" y1="160" x2="50" y2="176"/>
-            <line x1="34" y1="180" x2="50" y2="196"/><line x1="34" y1="200" x2="50" y2="216"/>
+          <rect x="24" y="0" width="16" height="220" fill="#f1f6fa"/>
+          <g stroke="#7fb3d9" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".8">
+            <path d="M32 200 V176 M28 181 L32 176 L36 181"/><path d="M32 130 V106 M28 111 L32 106 L36 111"/><path d="M32 60 V36 M28 41 L32 36 L36 41"/>
           </g>
-          <rect x="50" y="0" width="112" height="220" fill="url(#insulGrad)"/>
-          <g stroke="#f0d28a" stroke-width="1.3" fill="none" opacity=".65">
-            <path d="M50 20 q7 -7 14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0"/>
-            <path d="M50 45 q7 -7 14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0"/>
-            <path d="M50 70 q7 -7 14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0"/>
-            <path d="M50 95 q7 -7 14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0"/>
-            <path d="M50 168 q7 -7 14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0"/>
-            <path d="M50 193 q7 -7 14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0 t14 0"/>
-          </g>
-          <path d="M62 148 C50 128,84 106,108 116 C130 104,154 120,150 146 C160 170,132 190,108 184 C82 196,54 178,62 148 Z"
-            fill="url(#rotGrad)" filter="url(#blurSoft)"/>
-          <ellipse cx="95" cy="140" rx="10" ry="5" fill="#3d2917" opacity=".35"/>
-          <ellipse cx="122" cy="162" rx="7" ry="4" fill="#3d2917" opacity=".3"/>
-          <rect x="162" y="0" width="13" height="220" fill="#b5493c" opacity=".8"/>
-          <rect x="175" y="0" width="25" height="220" fill="#f8f6f3"/>
-          <g stroke="#e7e3dc" stroke-width="1" opacity=".7">
-            <line x1="175" y1="30" x2="200" y2="30"/><line x1="175" y1="80" x2="200" y2="80"/>
-            <line x1="175" y1="130" x2="200" y2="130"/><line x1="175" y1="180" x2="200" y2="180"/>
-          </g>
+          <rect x="40" y="0" width="4" height="220" fill="#e6dcc4"/>
+          <rect x="44" y="0" width="10" height="220" fill="#cdb58a"/>
+          <g stroke="#a88f62" stroke-width="1" opacity=".5"><line x1="44" y1="40" x2="54" y2="52"/><line x1="44" y1="100" x2="54" y2="112"/><line x1="44" y1="160" x2="54" y2="172"/></g>
+          <rect x="54" y="0" width="114" height="220" fill="url(#insulGrad)"/>
+          <g fill="#ffffff" stroke="#ecd49a" stroke-width="1" opacity=".85"><circle cx="64" cy="16" r="3"/><circle cx="82" cy="30" r="2.4"/><circle cx="104" cy="12" r="2.8"/><circle cx="126" cy="26" r="3.2"/><circle cx="148" cy="14" r="2.2"/><circle cx="160" cy="34" r="2.6"/><circle cx="70" cy="48" r="2.2"/><circle cx="116" cy="52" r="2.6"/><circle cx="140" cy="60" r="3"/><circle cx="92" cy="64" r="2.4"/><circle cx="64" cy="170" r="2.8"/><circle cx="88" cy="186" r="3"/><circle cx="112" cy="168" r="2.2"/><circle cx="136" cy="192" r="2.8"/><circle cx="156" cy="172" r="2.4"/><circle cx="74" cy="206" r="2.4"/><circle cx="124" cy="210" r="3"/><circle cx="150" cy="206" r="2.2"/></g>
+          <rect x="54" y="78" width="114" height="70" fill="url(#studGrad)"/>
+          <g stroke="#a9793f" stroke-width="1" opacity=".45"><line x1="54" y1="92" x2="168" y2="92"/><line x1="54" y1="108" x2="168" y2="108"/><line x1="54" y1="124" x2="168" y2="124"/><line x1="54" y1="138" x2="168" y2="138"/></g>
+          <path d="M52 120 C46 96,76 74,100 86 C120 78,134 98,126 118 C134 142,106 160,86 152 C66 162,48 146,52 120 Z" fill="url(#rotGrad)" filter="url(#blurSoft)"/>
+          <ellipse cx="80" cy="112" rx="10" ry="5" fill="#3d2917" opacity=".35"/>
+          <rect x="168" y="0" width="8" height="220" fill="#b5493c" opacity=".8"/>
+          <rect x="176" y="0" width="24" height="220" fill="#f8f6f3"/>
           <g>
-            <path d="M78 46 C78 46,70 58,70 65 C70 70.5,73.6 74,78 74 C82.4 74,86 70.5,86 65 C86 58,78 46,78 46 Z" fill="url(#dropGrad)"/>
-            <ellipse cx="75.5" cy="60" rx="1.6" ry="2.4" fill="#fff" opacity=".65"/>
-            <path d="M116 33 C116 33,106 47,106 55 C106 61.6,110.5 66,116 66 C121.5 66,126 61.6,126 55 C126 47,116 33,116 33 Z" fill="url(#dropGrad)"/>
-            <ellipse cx="113" cy="52" rx="1.8" ry="2.7" fill="#fff" opacity=".65"/>
-            <path d="M140 70 C140 70,133 80,133 86 C133 90.4,136.1 93,140 93 C143.9 93,147 90.4,147 86 C147 80,140 70,140 70 Z" fill="url(#dropGrad)"/>
-            <ellipse cx="138" cy="82" rx="1.4" ry="2.1" fill="#fff" opacity=".65"/>
+            <path d="M68 30 C68 30,61 41,61 47 C61 51.5,64.1 55,68 55 C71.9 55,75 51.5,75 47 C75 41,68 30,68 30 Z" fill="url(#dropGrad)"/>
+            <ellipse cx="65.8" cy="43" rx="1.5" ry="2.3" fill="#fff" opacity=".65"/>
+            <path d="M72 168 C72 168,65 179,65 185 C65 189.5,68.1 193,72 193 C75.9 193,79 189.5,79 185 C79 179,72 168,72 168 Z" fill="url(#dropGrad)"/>
+            <ellipse cx="69.8" cy="181" rx="1.5" ry="2.3" fill="#fff" opacity=".65"/>
           </g>
         </g>
         <rect x="-3" y="-3" width="206" height="226" rx="10" fill="none" stroke="#dbe3ea" stroke-width="1.5"/>
-        <text x="100" y="242" text-anchor="middle" font-size="12" fill="#5c6c7d">断熱材の内部</text>
+        <g font-size="10.5" font-weight="800" fill="#5c6c7d">
+          <line x1="111" y1="150" x2="250" y2="190" stroke="#c3ccd3" stroke-width="1"/><text x="254" y="194">柱（構造材）</text>
+          <line x1="140" y1="200" x2="250" y2="214" stroke="#c3ccd3" stroke-width="1"/><text x="254" y="218">吹付ウレタン断熱</text>
+        </g>
+        <text x="14" y="242" text-anchor="middle" font-size="11" fill="#5c6c7d">屋外側</text>
+        <text x="190" y="242" text-anchor="middle" font-size="11" fill="#5c6c7d">室内側</text>
+        <rect x="-62" y="96" width="56" height="24" rx="12" fill="#fff" stroke="#b3372b" stroke-width="1.5"/>
+        <text x="-34" y="112" text-anchor="middle" font-size="11" font-weight="800" fill="#b3372b">柱が傷む</text>
       </g>
     </svg>
+    <div style="display:flex; align-items:center; gap:14px; flex:none; border:1px solid var(--line); border-radius:8px; padding:4px 12px; background:#fff"><span class="cap" style="font-weight:800; color:var(--ink); white-space:nowrap">実際の矩計図<br>（外壁部分）<br><span style="font-weight:400">LIFEX標準矩計図</span></span><img src="assets/kanabakari-gaiheki.png" alt="LIFEX矩計図の外壁部分。サイディング、通気金具t=15、透湿防水シート、耐力面材ハイベストウッドt=9、吹付硬質ウレタンフォームt=95、ジェイベック（防湿気密シート）、PB t=12.5" style="height:118px; width:auto"></div>
   </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「見た目も数字も完璧なお家でも、壁の中では結露が起きていることがあるんです。」</div></div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「見た目も数字も完璧なお家でも、壁の中で結露が起きると、柱も断熱材も少しずつ傷んでいくんです。」</div></div>
 </div>
 
-<!-- 5 恐怖③：湿り空気線図①（基本構造） -->
+<!-- 5 -->
 <div class="sl">
-  <div class="top"><span class="chip cLeak">恐怖③</span><span class="pg">5 / 24</span></div>
-  <div class="tt">結露を説明する図＝「湿り空気線図」。</div>
-  <div class="body" style="align-items:center; justify-content:center">
-    <img src="assets/psychrometric-chart-wikimedia.svg" alt="湿り空気線図（Psychrometric Chart）。横軸に乾球温度、縦軸に湿度比をとり、相対湿度ごとの曲線を示す標準的な図"
-      style="max-width:100%; max-height:100%; object-fit:contain; border:1px solid var(--line); border-radius:8px; background:#fff">
-  </div>
-  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px">
-    <div class="talk">🗣<b>そのまま言えるトーク</b>「この図は"湿り空気線図"というもので、空気がどこまで水分を持てるかを表しています。右上の斜めの線（相対湿度）を、温度が下がりながらたどっていって、一番外側の線（100%）にぶつかった瞬間、水分は水滴になる。それが結露です。」</div>
-    <span class="cap">出典：Wikimedia Commons「Psychrometric Chart」（作成者ArthurOgawa、CC BY-SA 3.0）を使用</span>
-  </div>
-</div>
-
-<!-- 6 恐怖④：湿り空気線図②（具体的な数値） -->
-<div class="sl">
-  <div class="top"><span class="chip cLeak">恐怖④</span><span class="pg">6 / 24</span></div>
-  <div class="tt">冬の室内空気は、約9℃で結露が始まる。</div>
-  <div class="body">
-    <img src="assets/psychrometric-chart-wikimedia.svg" alt="湿り空気線図。20℃・相対湿度50%の状態から、温度が下がるにつれて約9℃で100%線（飽和線）に達し結露が始まる"
-      style="width:56%; height:100%; object-fit:contain; border:1px solid var(--line); border-radius:8px; background:#fff; flex-shrink:0">
-    <div class="card hero" style="flex:1; align-self:center">
-      <h5>左のグラフの読み方</h5>
-      <div class="big">20℃・湿度50%の線を、<br>左（低温側）へたどる</div>
-      <p>「Dry Bulb Temperature 20」の目盛りから、「50% Relative Humidity」の曲線をたどって、一番外側の「100%」線にぶつかる温度を見る</p>
-      <div class="big" style="color:var(--leak); margin-top:6px">→ 約9℃で結露開始</div>
+  <div class="top"><span class="chip cLeak">恐怖③</span><span class="pg">5 / 23</span></div>
+  <div class="tt">結露を説明する図＝「湿り空気線図」の見方。</div>
+  <div class="body" style="align-items:stretch">
+    <div style="width:56%; flex-shrink:0; display:flex"><svg viewBox="0 0 4500 3070" style="width:100%; height:100%; border:1px solid var(--line); border-radius:8px; background:#fff" role="img" aria-label="日本語の湿り空気線図の全体。横軸が温度、縦軸が水蒸気量、曲線が相対湿度">
+      <defs><marker id="c5a" markerUnits="userSpaceOnUse" markerWidth="90" markerHeight="90" refX="60" refY="45" orient="auto"><path d="M0 0 L90 45 L0 90 Z" fill="#b3372b"/></marker></defs>
+      <image href="assets/shitsuri-senzu-full.png" width="4500" height="3070"/>
+      <polyline points="146,2614 162,2611 177,2609 193,2606 209,2604 224,2601 240,2598 256,2596 271,2593 287,2590 302,2587 318,2584 333,2581 349,2578 365,2575 380,2572 396,2569 411,2565 427,2562 442,2559 458,2555 474,2552 489,2548 505,2545 520,2541 536,2537 551,2533 567,2529 582,2526 598,2522 613,2517 629,2513 644,2509 660,2505 675,2501 691,2496 706,2492 722,2487 737,2482 753,2478 768,2473 784,2468 799,2463 815,2458 830,2453 846,2448 861,2442 877,2437 892,2432 907,2426 923,2420 938,2415 954,2409 969,2403 984,2397 1000,2391 1015,2385 1031,2378 1046,2372 1061,2365 1077,2359 1092,2352 1107,2345 1123,2338 1138,2331 1153,2324 1169,2317 1184,2310 1199,2302 1215,2295 1230,2287 1245,2279 1260,2271 1276,2263 1291,2255 1306,2246 1321,2238 1337,2229 1352,2221 1367,2212 1382,2203 1398,2194 1413,2184 1428,2175 1443,2165 1458,2156 1473,2146 1489,2136 1504,2126 1519,2115 1534,2105 1549,2094 1564,2084 1579,2073 1594,2062 1609,2050 1624,2039 1639,2027 1655,2016 1670,2004 1685,1992 1700,1979 1715,1967 1730,1954 1744,1941 1759,1928 1774,1915 1789,1902 1804,1888 1819,1874 1834,1860 1849,1846 1864,1832 1879,1817 1893,1802 1908,1787 1923,1772 1938,1756 1953,1741 1967,1725 1982,1708 1997,1692 2012,1675 2026,1658 2041,1641 2056,1624 2070,1606 2085,1588 2100,1570 2114,1552 2129,1533 2144,1514 2158,1495 2173,1476 2187,1456 2202,1436 2216,1416 2231,1395 2245,1374 2260,1353 2274,1332 2288,1310 2303,1288 2317,1266 2331,1243 2346,1220 2360,1197 2374,1173 2389,1149 2403,1125 2417,1100 2431,1075 2445,1050 2460,1024 2474,998 2488,971 2502,945 2516,918 2530,890 2544,862 2558,834 2572,805 2586,776 2600,747 2614,717 2628,686 2642,656 2655,625 2669,593 2683,561 2697,529 2710,496 2724,462 2738,429 2751,394 2765,360 2778,324 2792,289 2805,253 2819,216 2832,179" fill="none" stroke="#b3372b" stroke-width="30" opacity=".85"/>
+      <polyline points="150,2676 166,2674 182,2673 197,2672 213,2670 229,2669 244,2668 260,2666 276,2665 291,2664 307,2662 323,2661 338,2659 354,2658 370,2656 385,2655 401,2653 417,2651 432,2650 448,2648 464,2646 479,2645 495,2643 511,2641 526,2639 542,2637 558,2635 573,2633 589,2632 605,2630 620,2628 636,2625 652,2623 667,2621 683,2619 699,2617 714,2615 730,2612 745,2610 761,2608 777,2605 792,2603 808,2600 824,2598 839,2595 855,2593 870,2590 886,2588 902,2585 917,2582 933,2579 948,2576 964,2574 980,2571 995,2568 1011,2565 1026,2562 1042,2558 1057,2555 1073,2552 1089,2549 1104,2545 1120,2542 1135,2539 1151,2535 1166,2532 1182,2528 1198,2524 1213,2521 1229,2517 1244,2513 1260,2509 1275,2505 1291,2501 1306,2497 1322,2493 1337,2489 1353,2485 1368,2480 1384,2476 1399,2472 1415,2467 1430,2462 1446,2458 1461,2453 1477,2448 1492,2443 1508,2439 1523,2434 1539,2428 1554,2423 1569,2418 1585,2413 1600,2407 1616,2402 1631,2396 1647,2391 1662,2385 1677,2379 1693,2373 1708,2367 1724,2361 1739,2355 1754,2349 1770,2343 1785,2336 1801,2330 1816,2323 1831,2317 1847,2310 1862,2303 1877,2296 1893,2289 1908,2282 1923,2274 1939,2267 1954,2260 1969,2252 1984,2244 2000,2237 2015,2229 2030,2221 2046,2213 2061,2204 2076,2196 2091,2187 2106,2179 2122,2170 2137,2161 2152,2152 2167,2143 2183,2134 2198,2125 2213,2115 2228,2106 2243,2096 2258,2086 2274,2076 2289,2066 2304,2056 2319,2046 2334,2035 2349,2024 2364,2013 2379,2003 2394,1991 2409,1980 2425,1969 2440,1957 2455,1945 2470,1934 2485,1922 2500,1909 2515,1897 2530,1884 2545,1872 2560,1859 2575,1846 2589,1833 2604,1819 2619,1806 2634,1792 2649,1778 2664,1764 2679,1750 2694,1735 2709,1721 2723,1706 2738,1691 2753,1676 2768,1660 2783,1644 2797,1629 2812,1613 2827,1596 2842,1580 2856,1563 2871,1546 2886,1529 2901,1512 2915,1494 2930,1477 2945,1459 2959,1440 2974,1422 2988,1403 3003,1384 3017,1365 3032,1346 3047,1326 3061,1306 3076,1286 3090,1265 3105,1245 3119,1224 3133,1203 3148,1181 3162,1159 3177,1137 3191,1115 3205,1092 3220,1069 3234,1046 3248,1023 3263,999 3277,975 3291,951 3305,926 3320,901 3334,876 3348,850 3362,824 3376,798 3390,771 3404,744 3418,717 3432,690 3446,662 3460,633 3474,605 3488,576 3502,546 3516,517 3530,487 3544,456 3558,425 3572,394 3585,363 3599,331 3613,298 3627,265 3640,232 3654,199 3668,165" fill="none" stroke="#e8890c" stroke-width="26" opacity=".85"/>
+      <circle cx="2198" cy="2125" r="55" fill="#e8890c" stroke="#fff" stroke-width="14"/>
+      <circle cx="1505" cy="2125" r="55" fill="#b3372b" stroke="#fff" stroke-width="14"/>
+      <g font-size="120" font-weight="800">
+        <line x1="1500" y1="2530" x2="1500" y2="2700" stroke="#b3372b" stroke-width="18" marker-end="url(#c5a)"/>
+        <rect x="1080" y="2330" width="840" height="190" rx="95" fill="#fff" stroke="#b3372b" stroke-width="16"/><text x="1500" y="2465" text-anchor="middle" fill="#b3372b">横軸＝温度</text>
+        <line x1="3500" y1="900" x2="3830" y2="900" stroke="#b3372b" stroke-width="18" marker-end="url(#c5a)"/>
+        <rect x="2650" y="800" width="850" height="190" rx="95" fill="#fff" stroke="#b3372b" stroke-width="16"/><text x="3075" y="935" text-anchor="middle" fill="#b3372b">縦軸＝水蒸気量</text>
+        <rect x="2900" y="1700" width="940" height="190" rx="95" fill="#fff" stroke="#e8890c" stroke-width="16"/><text x="3370" y="1835" text-anchor="middle" fill="#b5650a">曲線＝湿度（%）</text>
+        <line x1="1300" y1="1530" x2="1640" y2="1950" stroke="#b3372b" stroke-width="18" marker-end="url(#c5a)"/>
+        <rect x="200" y="1330" width="1160" height="190" rx="95" fill="#fff" stroke="#b3372b" stroke-width="16"/><text x="780" y="1465" text-anchor="middle" fill="#b3372b">一番外側＝湿度100%</text>
+      </g>
+    </svg></div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:10px; justify-content:center">
+      <div class="stepcard"><span class="n">横</span><div><b>横軸＝空気の温度（℃）</b><span>右へ行くほど暖かい空気</span></div></div>
+      <div class="stepcard"><span class="n">縦</span><div><b>縦軸＝空気1kgに含まれる水蒸気の量</b><span>図の単位はkg。0.007＝7g。上へ行くほど水分が多い</span></div></div>
+      <div class="stepcard"><span class="n">線</span><div><b>右上がりの曲線＝湿度（%）</b><span>一番外側の曲線が湿度100%。空気が水蒸気を持てる限界で、ここにぶつかると水蒸気が水に変わる＝結露</span></div></div>
     </div>
   </div>
-  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px">
-    <div class="talk">🗣<b>そのまま言えるトーク</b>「冬の室内、20℃・湿度50%の空気は、壁の中で9℃を下回ると結露が始まります。これは感覚の話ではなく、計算で出てくる温度なんです。」</div>
-    <span class="cap">計算例・室内条件は仮定値（Magnus-Tetens近似式による計算値、詳細は参考書1-3）。図の出典：Wikimedia Commons「Psychrometric Chart」（ArthurOgawa、CC BY-SA 3.0）</span>
-  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「この図は、空気がどれだけ水蒸気を持てるかを表したものです。暖かい空気ほどたくさん持てて、冷えると持てる量が減る。限界の線にぶつかったところで、水滴になります。」</div></div>
 </div>
 
-<!-- 7 恐怖⑤：商談用の例え（コップの結露） -->
+<!-- 6 -->
 <div class="sl">
-  <div class="top"><span class="chip cLeak">恐怖⑤</span><span class="pg">7 / 24</span></div>
-  <div class="tt">お客様には、この一言で十分。</div>
+  <div class="top"><span class="chip cLeak">恐怖④</span><span class="pg">6 / 23</span></div>
+  <div class="tt">冬の室内の空気（23℃・湿度50%）は、約12℃まで冷えると結露する。</div>
+  <div class="body" style="align-items:stretch">
+    <div style="width:56%; flex-shrink:0; display:flex"><svg viewBox="0 0 2300 1520" style="width:100%; height:100%; border:1px solid var(--line); border-radius:8px; background:#fff" role="img" aria-label="湿り空気線図の拡大。室温23℃・湿度50%の点から左へたどり、湿度100%の線にぶつかった約12℃が露点温度">
+      <defs><marker id="c6a" markerUnits="userSpaceOnUse" markerWidth="80" markerHeight="80" refX="56" refY="40" orient="auto"><path d="M0 0 L80 40 L0 80 Z" fill="#b3372b"/></marker>
+      <marker id="c6b" markerUnits="userSpaceOnUse" markerWidth="80" markerHeight="80" refX="56" refY="40" orient="auto"><path d="M0 0 L80 40 L0 80 Z" fill="#1e4e79"/></marker>
+      <filter id="c6s" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#1b2530" flood-opacity=".3"/></filter></defs>
+      <image href="assets/shitsuri-senzu-zoom.png" width="2300" height="1520"/>
+      <rect x="0" y="0" width="2300" height="1520" fill="#fff" opacity=".35"/>
+      <polyline points="8,1265 24,1262 39,1258 55,1255 70,1251 86,1247 101,1243 117,1239 132,1236 148,1232 163,1227 179,1223 194,1219 210,1215 225,1211 241,1206 256,1202 272,1197 287,1192 303,1188 318,1183 334,1178 349,1173 365,1168 380,1163 396,1158 411,1152 427,1147 442,1142 457,1136 473,1130 488,1125 504,1119 519,1113 534,1107 550,1101 565,1095 581,1088 596,1082 611,1075 627,1069 642,1062 657,1055 673,1048 688,1041 703,1034 719,1027 734,1020 749,1012 765,1005 780,997 795,989 810,981 826,973 841,965 856,956 871,948 887,939 902,931 917,922 932,913 948,904 963,894 978,885 993,875 1008,866 1023,856 1039,846 1054,836 1069,825 1084,815 1099,804 1114,794 1129,783 1144,772 1159,760 1174,749 1189,737 1205,726 1220,714 1235,702 1250,689 1265,677 1280,664 1294,651 1309,638 1324,625 1339,612 1354,598 1369,584 1384,570 1399,556 1414,542 1429,527 1443,512 1458,497 1473,482 1488,466 1503,451 1517,435 1532,418 1547,402 1562,385 1576,368 1591,351 1606,334 1620,316 1635,298 1650,280 1664,262 1679,243 1694,224 1708,205 1723,186 1737,166 1752,146 1766,126 1781,105 1795,84 1810,63 1824,42 1838,20" fill="none" stroke="#b3372b" stroke-width="22" stroke-linejoin="round" opacity=".9"/>
+      <polyline points="14,1356 29,1355 45,1353 61,1351 76,1349 92,1347 108,1345 123,1343 139,1342 155,1340 170,1338 186,1335 202,1333 217,1331 233,1329 249,1327 264,1325 280,1322 295,1320 311,1318 327,1315 342,1313 358,1310 374,1308 389,1305 405,1303 420,1300 436,1298 452,1295 467,1292 483,1289 498,1286 514,1284 530,1281 545,1278 561,1275 576,1272 592,1268 607,1265 623,1262 639,1259 654,1255 670,1252 685,1249 701,1245 716,1242 732,1238 748,1234 763,1231 779,1227 794,1223 810,1219 825,1215 841,1211 856,1207 872,1203 887,1199 903,1195 918,1190 934,1186 949,1182 965,1177 980,1172 996,1168 1011,1163 1027,1158 1042,1153 1058,1149 1073,1144 1089,1138 1104,1133 1119,1128 1135,1123 1150,1117 1166,1112 1181,1106 1197,1101 1212,1095 1227,1089 1243,1083 1258,1077 1274,1071 1289,1065 1304,1059 1320,1053 1335,1046 1351,1040 1366,1033 1381,1027 1397,1020 1412,1013 1427,1006 1443,999 1458,992 1473,984 1489,977 1504,970 1519,962 1534,954 1550,947 1565,939 1580,931 1596,923 1611,914 1626,906 1641,897 1656,889 1672,880 1687,871 1702,862 1717,853 1733,844 1748,835 1763,825 1778,816 1793,806 1808,796 1824,786 1839,776 1854,766 1869,756 1884,745 1899,734 1914,723 1929,713 1944,701 1959,690 1975,679 1990,667 2005,655 2020,644 2035,632 2050,619 2065,607 2080,594 2095,582 2110,569 2125,556 2139,543 2154,529 2169,516" fill="none" stroke="#e8890c" stroke-width="18" stroke-linejoin="round" opacity=".9"/>
+      <line x1="1808" y1="835" x2="2275" y2="835" stroke="#1e4e79" stroke-width="16" marker-end="url(#c6b)"/>
+      <line x1="1688" y1="835" x2="1125" y2="835" stroke="#b3372b" stroke-width="18" stroke-dasharray="54 28" marker-end="url(#c6a)"/>
+      <line x1="1058" y1="895" x2="1091" y2="1417" stroke="#b3372b" stroke-width="18" stroke-dasharray="54 28" marker-end="url(#c6a)"/>
+      <circle cx="1748" cy="835" r="52" fill="#e8890c" stroke="#fff" stroke-width="14" filter="url(#c6s)"/>
+      <circle cx="1055" cy="835" r="56" fill="#b3372b" stroke="#fff" stroke-width="14" filter="url(#c6s)"/>
+      <g font-weight="800" filter="url(#c6s)">
+        <rect x="1010" y="220" width="560" height="110" rx="55" fill="#b3372b"/><text x="1290" y="298" font-size="66" text-anchor="middle" fill="#fff">湿度100%の線</text>
+        <rect x="1550" y="444" width="470" height="110" rx="55" fill="#e8890c"/><text x="1785" y="522" font-size="66" text-anchor="middle" fill="#fff">湿度50%の線</text>
+        <rect x="1368" y="915" width="760" height="120" rx="60" fill="#fff" stroke="#e8890c" stroke-width="12"/><text x="1748" y="997" font-size="70" text-anchor="middle" fill="#b5650a">室内 23℃・湿度50%</text>
+        <rect x="1960" y="685" width="320" height="110" rx="55" fill="#fff" stroke="#1e4e79" stroke-width="12"/><text x="2120" y="763" font-size="66" text-anchor="middle" fill="#1e4e79">約8.7g</text>
+        <rect x="435" y="625" width="640" height="120" rx="60" fill="#fff" stroke="#b3372b" stroke-width="12"/><text x="755" y="707" font-size="70" text-anchor="middle" fill="#b3372b">ここで100%に到達</text>
+        <rect x="393" y="1247" width="640" height="140" rx="70" fill="#b3372b"/><text x="713" y="1341" font-size="84" text-anchor="middle" fill="#fff">約12℃＝露点</text>
+      </g>
+    </svg></div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:10px; justify-content:center">
+      <div class="stepcard"><span class="n">1</span><div><b>横軸23℃と、湿度50%の曲線が交わる点を打つ</b><span>これが冬の室内の空気</span></div></div>
+      <div class="stepcard"><span class="n">2</span><div><b>その点から右へ → 約0.0087kg（約8.7g）</b><span>空気1kgの中に、水蒸気が約8.7g入っている</span></div></div>
+      <div class="stepcard"><span class="n">3</span><div><b>同じ高さのまま左へ → 一番外側の線にぶつかる</b><span>水蒸気の量は変わらず、温度だけ下がっていく動き。ぶつかった点から温度の線に沿って下へ読む</span></div></div>
+      <div class="stepcard" style="border-color:var(--leak); background:var(--leakbg)"><span class="n" style="background:var(--leak)">4</span><div><b style="color:var(--leak)">ぶつかった所の温度＝約12℃（露点温度）</b><span>この空気は、12℃より冷たい所に触れると結露する</span></div></div>
+    </div>
+  </div>
+  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「冬のお部屋の空気、23℃で湿度50%だと、12℃くらいまで冷えたところで水滴に変わります。これは感覚ではなく、この図から読み取れる温度なんです。」</div><span class="cap">室内23℃・湿度50%は説明用の条件。水蒸気量約8.7g/kg・露点約12.0℃はMagnus-Tetens近似式による計算値（出典一覧参照）</span></div>
+</div>
+
+<!-- 7 -->
+<div class="sl">
+  <div class="top"><span class="chip cLeak">恐怖⑤</span><span class="pg">7 / 23</span></div>
+  <div class="tt">冬、水蒸気は必ず「室内から屋外へ」動こうとする。</div>
+  <div class="body" style="flex-direction:column">
+    <div style="display:flex; flex-direction:column; gap:12px; flex:1; justify-content:center">
+      <div class="pillars" style="flex:none">
+        <div class="pl"><span class="no">1</span><b>温度</b><span class="desc">暖かい方から<br>冷たい方へ動く</span></div>
+        <div class="pl"><span class="no">2</span><b>気圧</b><span class="desc">気圧の高い方から<br>低い方へ動く</span></div>
+        <div class="pl" style="border-color:var(--leak); background:var(--leakbg)"><span class="no" style="background:var(--leak)">3</span><b style="color:var(--leak)">水蒸気の量</b><span class="desc">多い方から<br>少ない方へ動く</span></div>
+      </div>
+      <div class="twocol" style="flex:none; grid-template-columns:1fr auto 1fr; align-items:center">
+        <div class="card warn" style="padding:16px"><h5>冬の室内（23℃・湿度50%）</h5><div class="big">約8.7g</div><p>空気1kgあたりの水蒸気量</p></div>
+        <div style="font-size:15px; font-weight:800; color:var(--leak); text-align:center; line-height:1.5">水蒸気が<br>━━━▶<br>移動</div>
+        <div class="card" style="padding:16px"><h5>冬の屋外（0℃・湿度70%）</h5><div class="big">約2.6g</div><p>空気1kgあたりの水蒸気量</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「空気には、多い方から少ない方へ均等になろうとする性質があります。冬は室内の方が水蒸気が多いので、水蒸気は必ず壁の中を通って外へ出ていこうとするんです。」</div><span class="cap">室内・屋外の条件は説明用の仮定値。水蒸気量はMagnus-Tetens近似式による計算値（出典一覧参照）</span></div>
+</div>
+
+<!-- 8 -->
+<div class="sl">
+  <div class="top"><span class="chip cLeak">恐怖⑥</span><span class="pg">8 / 23</span></div>
+  <div class="tt">壁の中のどこかに、必ず「結露する温度」がある。</div>
   <div class="body">
-    <svg viewBox="0 0 900 320" style="width:100%; height:100%" role="img" aria-label="冷たい飲み物の入ったコップの外側に水滴がつく様子。空気が冷やされて水分を保持できなくなり結露することを日常の例えで示す">
+    <svg viewBox="0 0 900 330" style="width:100%; height:100%" role="img" aria-label="屋外0℃・室内23℃のとき壁の中の温度は外に向かって下がり、断熱材の中に約12℃（露点）になる位置が必ずできる。室内側の防湿気密シートで水蒸気をその手前で止める">
+      <defs>
+        <linearGradient id="t8insul" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fff8e4"/><stop offset="100%" stop-color="#fbe7b3"/></linearGradient>
+        <linearGradient id="t8room" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#fdf0e6"/><stop offset="100%" stop-color="#fbe2cf"/></linearGradient>
+        <linearGradient id="t8out" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#dcebf6"/><stop offset="100%" stop-color="#eef5fa"/></linearGradient>
+        <radialGradient id="t8drop" cx="32%" cy="24%" r="78%"><stop offset="0%" stop-color="#cdeafc"/><stop offset="50%" stop-color="#4fa8de"/><stop offset="100%" stop-color="#2b6ea0"/></radialGradient>
+        <filter id="t8shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1b2530" flood-opacity="0.15"/></filter>
+        <marker id="t8arr" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="8" refY="7" orient="auto"><path d="M0 0 L14 7 L0 14 Z" fill="#3b82c4"/></marker>
+      </defs>
+      <rect x="40" y="40" width="210" height="240" fill="url(#t8out)"/>
+      <rect x="540" y="40" width="300" height="240" fill="url(#t8room)"/>
+      <rect x="250" y="40" width="30" height="240" fill="#c7d0d8"/>
+      <rect x="280" y="40" width="16" height="240" fill="#f1f6fa"/>
+      <rect x="296" y="40" width="4" height="240" fill="#e6dcc4"/>
+      <rect x="300" y="40" width="10" height="240" fill="#cdb58a"/>
+      <rect x="310" y="40" width="196" height="240" fill="url(#t8insul)"/>
+      <g fill="#ffffff" stroke="#ecd49a" stroke-width="1" opacity=".85"><circle cx="330" cy="60" r="3"/><circle cx="370" cy="82" r="2.5"/><circle cx="420" cy="58" r="3.2"/><circle cx="462" cy="76" r="2.4"/><circle cx="490" cy="100" r="2.8"/><circle cx="340" cy="120" r="2.4"/><circle cx="470" cy="140" r="3"/><circle cx="330" cy="230" r="2.8"/><circle cx="380" cy="262" r="3"/><circle cx="430" cy="240" r="2.4"/><circle cx="470" cy="226" r="3"/><circle cx="492" cy="262" r="2.4"/><circle cx="352" cy="200" r="2.2"/><circle cx="450" cy="196" r="2.6"/></g>
+      <rect x="506" y="40" width="8" height="240" fill="#b5493c"/>
+      <rect x="514" y="40" width="26" height="240" fill="#f8f6f3"/>
+      <g font-size="12" font-weight="800" fill="#5c6c7d" text-anchor="middle">
+        <text x="145" y="30">屋外　0℃</text><text x="690" y="30">室内　23℃・湿度50%</text>
+        <text x="408" y="30">吹付ウレタン断熱</text>
+      </g>
+      <rect x="452" y="292" width="118" height="24" rx="12" fill="#b5493c"/>
+      <text x="511" y="308" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff">防湿気密シート</text>
+      <line x1="510" y1="282" x2="510" y2="292" stroke="#b5493c" stroke-width="1.5"/>
+      <!-- 温度の線：20℃=y60、0℃=y260（10px/℃） -->
+      <polyline points="840,76 540,76 514,84 506,86 310,250 280,256 250,260 40,260" fill="none" stroke="#b3372b" stroke-width="3.5" stroke-linejoin="round"/>
+      <text x="830" y="54" text-anchor="end" font-size="11.5" font-weight="800" fill="#b3372b">壁の中の温度</text>
+      <line x1="60" y1="164" x2="840" y2="164" stroke="#1e4e79" stroke-width="1.5" stroke-dasharray="6 5"/>
+      <rect x="62" y="147" width="160" height="24" rx="12" fill="#fff" stroke="#1e4e79" stroke-width="1.3"/>
+      <text x="142" y="163" text-anchor="middle" font-size="11.5" font-weight="800" fill="#1e4e79">露点温度　約12℃の高さ</text>
+      <circle cx="413" cy="164" r="13" fill="#b3372b" opacity=".25"/><circle cx="413" cy="164" r="7" fill="#b3372b"/>
+      <g filter="url(#t8shadow)"><rect x="332" y="176" width="164" height="44" rx="10" fill="#fff" stroke="#b3372b" stroke-width="1.8"/></g>
+      <text x="414" y="194" text-anchor="middle" font-size="12" font-weight="800" fill="#b3372b">ここで約12℃を通過</text>
+      <text x="414" y="211" text-anchor="middle" font-size="11" fill="#5c6c7d">水蒸気が届けば、ここで水になる</text>
+      <path d="M406 118 C406 118,399 129,399 135 C399 139.5,402.1 143,406 143 C409.9 143,413 139.5,413 135 C413 129,406 118,406 118 Z" fill="url(#t8drop)" opacity=".55"/>
+      <!-- 水蒸気の移動 -->
+      <path d="M790 110 L 528 110" stroke="#3b82c4" stroke-width="3" stroke-dasharray="1 7" stroke-linecap="round" fill="none" marker-end="url(#t8arr)"/>
+      <path d="M790 140 L 528 140" stroke="#3b82c4" stroke-width="3" stroke-dasharray="1 7" stroke-linecap="round" fill="none" marker-end="url(#t8arr)"/>
+      <rect x="600" y="78" width="160" height="24" rx="12" fill="#e5f0f8" stroke="#2b6ea0" stroke-width="1.2"/>
+      <text x="680" y="94" text-anchor="middle" font-size="11.5" font-weight="800" fill="#2b6ea0">水蒸気は外へ出ようとする</text>
+      <g filter="url(#t8shadow)"><circle cx="510" cy="125" r="17" fill="#fff" stroke="#2e7d6e" stroke-width="2.5"/></g>
+      <path d="M502 117 L518 133 M518 117 L502 133" stroke="#2e7d6e" stroke-width="3" stroke-linecap="round"/>
+      <rect x="560" y="220" width="250" height="44" rx="10" fill="#fff" stroke="#2e7d6e" stroke-width="1.8"/>
+      <text x="685" y="238" text-anchor="middle" font-size="12" font-weight="800" fill="#2e7d6e">だから、室内側でシートを張って止める</text>
+      <text x="685" y="255" text-anchor="middle" font-size="11" fill="#5c6c7d">結露する場所まで水蒸気を届かせない</text>
+    </svg>
+  </div>
+  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「外が0℃、お部屋が23℃だとすると、壁の中の温度は外に向かってだんだん下がっていきます。断熱材があっても、どこかで必ず12℃を通る。だから、水蒸気をそこまで行かせないように、お部屋側でシートを張って止めているんです。」</div><span class="cap">温度の線は考え方を示す模式図（実測値ではない）。断熱材の中で温度が大きく下がる様子を簡略化して表示</span></div>
+</div>
+
+<!-- 9 -->
+<div class="sl">
+  <div class="top"><span class="chip cLeak">恐怖⑦</span><span class="pg">9 / 23</span></div>
+  <div class="tt">コップの結露は、氷が溶ければ止まる。家は、止まらない。</div>
+  <div class="body">
+    <svg viewBox="0 0 900 320" style="width:62%; height:100%; flex-shrink:0" role="img" aria-label="冷たい飲み物の入ったコップの外側に水滴がつく様子。空気が冷やされて水分を保持できなくなり結露することを日常の例えで示す">
       <defs>
         <linearGradient id="w2glass" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#f2fafd" stop-opacity=".9"/><stop offset="100%" stop-color="#cfe6f2" stop-opacity=".55"/>
@@ -395,32 +517,36 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
       <rect x="725" y="95" width="150" height="130" rx="8" fill="none" stroke="#dbe3ea" stroke-width="1.5"/>
       <text x="800" y="240" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1b2530">壁の中</text>
     </svg>
-  </div>
-  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px">
-    <div class="talk">🗣<b>そのまま言えるトーク</b>「夏、冷たいコップの周りに水滴がつきますよね。あれと同じことが、壁の中でも起きるんです。空気が冷やされて、水分を抱えきれなくなる。それが結露です。」</div>
-    <span class="cap">前2枚の湿り空気線図は研修用の技術的な裏付け。お客様の前では計算式や本物のグラフでなく、この例えだけで十分。紙に丸（コップ）と水滴を描くだけで再現できる</span>
-  </div>
-</div>
-
-<!-- 8 恐怖⑥：結露→腐朽→シロアリ -->
-<div class="sl">
-  <div class="top"><span class="chip cLeak">恐怖⑥</span><span class="pg">8 / 24</span></div>
-  <div class="tt">結露は、そこで終わらない。</div>
-  <div class="body">
-    <div class="flowH">
-      <div class="fb warn"><b>結露が発生</b><span>壁の中の水蒸気が水に変わる</span></div>
-      <div class="arrow">→</div>
-      <div class="fb rot"><b>木材が腐る（腐朽）</b><span>湿った状態が続き、構造材が傷む</span></div>
-      <div class="arrow">→</div>
-      <div class="fb rot"><b>シロアリが集まる</b><span>湿った木材は、シロアリの好む環境になる</span></div>
+    <div style="flex:1; display:flex; flex-direction:column; gap:12px; justify-content:center">
+      <div class="card" style="padding:16px"><h5>コップ</h5><div class="big" style="font-size:18px">氷が溶けてぬるくなると、結露は止まる</div><p>冷たさの元がなくなるから</p></div>
+      <div class="card warn" style="padding:16px"><h5>家</h5><div class="big" style="font-size:18px">外の気温は変えられない</div><p>冬の間ずっと、壁の外側は冷やされ続ける</p></div>
     </div>
   </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「結露が起きると木が腐って、腐った木にシロアリが集まってくる。この順番、意外と知られていないんです。」</div></div>
+  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「冷たいコップの周りに水滴がつきますよね。でも氷が溶けてぬるくなると、水滴はつかなくなる。ところが家は、外の気温を変えることができません。冬の間ずっと、壁の中は結露しやすい状態が続くんです。だから最初から対策しておく必要があるんです。」</div><span class="cap">前の線図は営業の理解用。お客様の前ではこの例えで十分。紙にコップと水滴を描くだけで再現できる</span></div>
 </div>
 
-<!-- 8 恐怖⑥：発覚の遅さ -->
+<!-- 10 -->
 <div class="sl">
-  <div class="top"><span class="chip cLeak">恐怖⑦</span><span class="pg">9 / 24</span></div>
+  <div class="top"><span class="chip cLeak">実害①</span><span class="pg">10 / 23</span></div>
+  <div class="tt">結露を放っておくと、家の性能そのものが落ちていく。</div>
+  <div class="body">
+    <div class="flowV">
+      <div class="row"><span class="lab">構造</span>
+        <div class="fb warn"><b>壁の中で結露</b><span>柱・間柱が湿った状態が続く</span></div><span class="arrow">→</span>
+        <div class="fb rot"><b>木材が腐る</b><span>構造材が傷む</span></div><span class="arrow">→</span>
+        <div class="fb rot"><b>耐震性能が落ちる</b><span>構造計算も制震ダンパーも、本来の力を出せない</span></div></div>
+      <div class="row"><span class="lab">断熱</span>
+        <div class="fb warn"><b>断熱材が湿る</b><span>水を含んだ断熱材</span></div><span class="arrow">→</span>
+        <div class="fb rot"><b>断熱性能が落ちる</b><span>熱を止める力が弱くなる</span></div><span class="arrow">→</span>
+        <div class="fb rot"><b>光熱費が上がる</b><span>急に暑い・寒いを感じ始める</span></div></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「結露で柱が腐れば、耐震の計算をしていても、制震ダンパーを入れていても、本来の強さは出せません。断熱材が湿れば断熱の力が落ちて、光熱費が上がったり、急に暑い寒いを感じるようになるんです。」</div></div>
+</div>
+
+<!-- 11 -->
+<div class="sl">
+  <div class="top"><span class="chip cLeak">実害②</span><span class="pg">11 / 23</span></div>
   <div class="tt">壁を壊さないと、気づけない。</div>
   <div class="body" style="flex-direction:column; justify-content:center; gap:14px">
     <div class="techrow">
@@ -428,25 +554,25 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
       <div class="tc" style="border-color:var(--leak); background:var(--leakbg)"><h5 style="color:var(--leak)">発覚した時</h5><div class="v" style="color:var(--leak)">壁を壊す規模の工事</div><p>クロス替えでは直せない構造の問題になっている</p></div>
     </div>
   </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「壁を壊さないと気づけません。気づいた頃には、リフォームでは直せないところまで進んでいることもあるんです。」</div></div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「しかも、壁を壊さないと気づけません。気づいた頃には、リフォームでは直せないところまで進んでいることもある。だから最初からやっておくんです。」</div></div>
 </div>
 
-<!-- 9 真実① -->
+<!-- 12 -->
 <div class="sl">
-  <div class="top"><span class="chip c3">真実①</span><span class="pg">10 / 24</span></div>
-  <div class="tt">カタログのUA値は、壁の中を映さない。</div>
+  <div class="top"><span class="chip c3">真実①</span><span class="pg">12 / 23</span></div>
+  <div class="tt">UA値も耐震等級も、「建てた日」の数字。</div>
   <div class="body" style="flex-direction:column; justify-content:center">
-    <div class="twocol">
-      <div class="card"><h5>UA値・C値が示すもの</h5><div class="big">断熱・気密の設計性能</div></div>
-      <div class="card warn"><h5>UA値・C値が示さないもの</h5><div class="big">壁の中の湿気の行き先</div></div>
+    <div class="twocol" style="flex:none; height:auto">
+      <div class="card"><h5>カタログ・設計の数字が示すもの</h5><div class="big">建てた日の性能</div><p>断熱等級・UA値・C値・耐震等級・制震ダンパー</p></div>
+      <div class="card warn"><h5>数字が示さないもの</h5><div class="big">15年後・20年後も<br>その性能が続くか</div><p>壁の中に湿気を入れない手当てをしているかで決まる</p></div>
     </div>
   </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「UA値やC値は、壁の外側の話。壁の中で何が起きているかは、カタログには書いていないんです。」</div></div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「断熱等級も耐震等級も、建てた日の数字です。最後の1点、壁の中の湿気対策をしていなければ、15年20年経ったときにその数字は意味をなさなくなる。そこにお金を払いたいですか、という話なんです。」</div></div>
 </div>
 
-<!-- 10 真実② -->
+<!-- 13 -->
 <div class="sl">
-  <div class="top"><span class="chip c3">真実②</span><span class="pg">11 / 24</span></div>
+  <div class="top"><span class="chip c3">真実②</span><span class="pg">13 / 23</span></div>
   <div class="tt">工期とコストの前で、見て見ぬふりにされる現場。</div>
   <div class="body">
     <div class="twocol">
@@ -454,166 +580,68 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
       <div class="card warn"><h5>現場でのシート破れ</h5><div class="big">小さな破れは、見過ごされがち</div><p>気密シートの小さな穴は、工程上そのまま塞がれることがある</p></div>
     </div>
   </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「工期を優先すると、施工中にこもった湿気やシートの小さな破れは、見て見ぬふりにされがちなんです。」</div></div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「工期やコストを優先すると、施工中にこもった湿気や、シートの小さな破れは見過ごされがちなんです。」</div></div>
 </div>
 
-<!-- 11 執念①-1 -->
+<!-- 14 -->
 <div class="sl">
-  <div class="top"><span class="chip c2">執念①-1</span><span class="pg">12 / 24</span></div>
-  <div class="tt">大工が長い木材を運ぶとき、うっかり当ててしまう。</div>
-  <div class="body">
-    <svg viewBox="0 0 900 330" style="width:100%; height:100%" role="img" aria-label="大工が長い木材を運搬中に壁の気密シートにうっかり当ててしまう現場のイラスト">
-      <defs>
-        <linearGradient id="w1jacket" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#3a7fae"/><stop offset="100%" stop-color="#1e4e79"/>
-        </linearGradient>
-        <linearGradient id="w1pants" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#4a5a6b"/><stop offset="100%" stop-color="#333f4c"/>
-        </linearGradient>
-        <radialGradient id="w1skin" cx="35%" cy="30%" r="75%">
-          <stop offset="0%" stop-color="#f6d3ab"/><stop offset="100%" stop-color="#e0ad78"/>
-        </radialGradient>
-        <linearGradient id="w1wood" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#e8d3a8"/><stop offset="50%" stop-color="#d8b978"/><stop offset="100%" stop-color="#b0894f"/>
-        </linearGradient>
-        <radialGradient id="w1woodend" cx="45%" cy="40%" r="65%">
-          <stop offset="0%" stop-color="#e6c88f"/><stop offset="100%" stop-color="#a9793f"/>
-        </radialGradient>
-        <linearGradient id="w1sheet" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#eef2f5"/><stop offset="100%" stop-color="#d6dde2"/>
-        </linearGradient>
-        <filter id="w1shadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1b2530" flood-opacity="0.16"/>
-        </filter>
-        <filter id="w1blur" x="-80%" y="-80%" width="260%" height="260%">
-          <feGaussianBlur stdDeviation="5"/>
-        </filter>
-      </defs>
-
-      <!-- 大工 -->
-      <g filter="url(#w1shadow)">
-        <ellipse cx="232" cy="300" rx="82" ry="10" fill="#1b2530" opacity=".08"/>
-        <line x1="218" y1="236" x2="196" y2="292" stroke="url(#w1pants)" stroke-width="16" stroke-linecap="round"/>
-        <line x1="244" y1="236" x2="270" y2="292" stroke="url(#w1pants)" stroke-width="16" stroke-linecap="round"/>
-        <ellipse cx="193" cy="295" rx="12" ry="6.5" fill="#2b3542"/>
-        <ellipse cx="273" cy="295" rx="12" ry="6.5" fill="#2b3542"/>
-        <line x1="213" y1="192" x2="292" y2="180" stroke="url(#w1jacket)" stroke-width="13" stroke-linecap="round"/>
-        <line x1="215" y1="212" x2="286" y2="204" stroke="url(#w1jacket)" stroke-width="13" stroke-linecap="round"/>
-        <ellipse cx="230" cy="202" rx="28" ry="36" fill="url(#w1jacket)"/>
-        <circle cx="230" cy="148" r="21" fill="url(#w1skin)"/>
-        <path d="M209 141 Q230 120 251 141" stroke="#c0392b" stroke-width="6" fill="none" stroke-linecap="round"/>
-        <circle cx="209" cy="144" r="3.5" fill="#c0392b"/>
-      </g>
-
-      <!-- 長い木材 -->
-      <g>
-        <path d="M700 197 Q716 187 732 197" stroke="#c3ccd3" stroke-width="2" fill="none" opacity=".55"/>
-        <path d="M704 229 Q720 239 736 229" stroke="#c3ccd3" stroke-width="2" fill="none" opacity=".55"/>
-        <polygon points="291.2,165.1 761.2,209.1 758.8,234.9 288.8,190.9" fill="url(#w1wood)" stroke="#96723f" stroke-width="1.2" filter="url(#w1shadow)"/>
-        <line x1="290.7" y1="170.0" x2="760.7" y2="214.0" stroke="#96723f" stroke-width="1.1" opacity=".45"/>
-        <line x1="290.3" y1="175.0" x2="760.3" y2="219.0" stroke="#96723f" stroke-width="1.1" opacity=".45"/>
-        <line x1="289.7" y1="181.0" x2="759.7" y2="225.0" stroke="#f3e0b8" stroke-width="1.1" opacity=".6"/>
-        <line x1="289.3" y1="186.0" x2="759.3" y2="230.0" stroke="#96723f" stroke-width="1.1" opacity=".45"/>
-        <ellipse cx="760" cy="222" rx="13" ry="15" transform="rotate(5.4 760 222)" fill="url(#w1woodend)" stroke="#8a6636" stroke-width="1.3"/>
-        <ellipse cx="760" cy="222" rx="7" ry="8.5" transform="rotate(5.4 760 222)" fill="none" stroke="#8a6636" stroke-width="1" opacity=".6"/>
-      </g>
-      <rect x="455" y="153" width="152" height="28" rx="14" fill="#fdf6e3" stroke="#d8b978" stroke-width="1.3"/>
-      <text x="531" y="172" text-anchor="middle" font-size="13" font-weight="800" fill="#b05c1f">長い木材を運搬中</text>
-
-      <!-- 気密シート -->
-      <rect x="758" y="108" width="27" height="205" rx="3" fill="url(#w1sheet)" stroke="#94a1ad" stroke-width="1.5" filter="url(#w1shadow)"/>
-      <line x1="771" y1="102" x2="777" y2="76" stroke="#8fa0ac" stroke-width="1"/>
-      <rect x="722" y="52" width="92" height="26" rx="13" fill="#1e4e79"/>
-      <text x="768" y="70" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">気密シート</text>
-
-      <!-- 衝撃 -->
-      <circle cx="758" cy="222" r="24" fill="#e04b3d" opacity=".22" filter="url(#w1blur)"/>
-      <path d="M758 205 L764 218 L778 216 L767 227 L772 241 L758 233 L744 241 L749 227 L738 216 L752 218 Z" fill="#c0392b"/>
-      <line x1="758" y1="222" x2="719" y2="205" stroke="#b3372b" stroke-width="1" stroke-dasharray="2 3" opacity=".7"/>
-      <rect x="700" y="120" width="118" height="30" rx="15" fill="#fff" stroke="#c0392b" stroke-width="2" filter="url(#w1shadow)"/>
-      <text x="759" y="140" text-anchor="middle" font-size="13.5" font-weight="800" fill="#b3372b">うっかり、当たる</text>
-
-      <text x="232" y="322" text-anchor="middle" font-size="13" fill="#5c6c7d">現場では、普通に起きること</text>
-    </svg>
+  <div class="top"><span class="chip c2">執念①-1</span><span class="pg">14 / 23</span></div>
+  <div class="tt">寒冷地向けの0.2mmシートを、全国すべての地域で使う。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:14px">
+    <table class="jis">
+      <tr><th>JIS A 6930の区分</th><th>厚み</th><th>透湿抵抗（水蒸気の通しにくさ）</th><th>推奨される地域</th></tr>
+      <tr><td>A種</td><td>0.1mm</td><td>0.082 以上</td><td>一般地域</td></tr>
+      <tr><td>B種</td><td>0.2mm</td><td>0.144 以上（A種の約1.8倍）</td><td>寒冷地</td></tr>
+      <tr><td class="lx">LIFEX</td><td class="lx">0.2mm</td><td class="lx">B種適合品（ジェイベック「ボーダー」）</td><td class="lx">全国共通で採用</td></tr>
+    </table>
+    <div class="card hero" style="padding:14px; flex:none"><div class="big" style="font-size:19px">水蒸気の多い寒い地域向けの仕様を、寒冷地以外でも使う ＝ 壁の中に水蒸気をより入れない</div></div>
   </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「大工さんが長い木材を運ぶとき、うっかり壁に当ててしまうことがあるんです。現場では普通に起きることなんです。」</div></div>
+  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「防湿気密シートには、0.1mmの一般地域向けと、0.2mmの寒冷地向けがあります。LIFEXは寒冷地向けの0.2mmを、寒冷地じゃない地域でも全棟で使っています。水蒸気を通しにくい分、壁の中に湿気が入りにくいんです。」</div><span class="cap">透湿抵抗の単位はm²·s·Pa/ng。規格値はJIS A 6930、製品のB種適合はジェイベック製品ページで確認（出典一覧参照）</span></div>
 </div>
 
-<!-- 12 執念①-2 -->
+<!-- 15 -->
 <div class="sl">
-  <div class="top"><span class="chip c2">執念①-2</span><span class="pg">13 / 24</span></div>
-  <div class="tt">見えない小さな穴が、壁の中を一生腐らせる。</div>
-  <div class="body">
-    <svg viewBox="0 0 900 290" style="width:100%; height:100%" role="img" aria-label="気密シートに開いた小さな穴から水蒸気が壁内に侵入し結露が発生する拡大図">
-      <defs>
-        <linearGradient id="w3sheet" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#ffffff"/><stop offset="60%" stop-color="#eef2f5"/><stop offset="100%" stop-color="#d6dde2"/>
-        </linearGradient>
-        <linearGradient id="w3insul" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#fff8e4"/><stop offset="100%" stop-color="#fbe7b3"/>
-        </linearGradient>
-        <radialGradient id="w3rot" cx="50%" cy="45%" r="60%">
-          <stop offset="0%" stop-color="#4f351f"/><stop offset="65%" stop-color="#7a5738" stop-opacity=".92"/><stop offset="100%" stop-color="#7a5738" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="w3drop" cx="32%" cy="24%" r="78%">
-          <stop offset="0%" stop-color="#cdeafc"/><stop offset="50%" stop-color="#4fa8de"/><stop offset="100%" stop-color="#2b6ea0"/>
-        </radialGradient>
-        <radialGradient id="w3glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#fff3d6" stop-opacity=".95"/><stop offset="100%" stop-color="#fff3d6" stop-opacity="0"/>
-        </radialGradient>
-        <filter id="w3shadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1b2530" flood-opacity="0.16"/>
-        </filter>
-        <filter id="w3blur" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3.5"/></filter>
-        <clipPath id="w3insulclip"><rect x="280" y="25" width="560" height="220" rx="10"/></clipPath>
-      </defs>
-
-      <rect x="62" y="42" width="58" height="176" rx="3" fill="url(#w3sheet)" stroke="#8b98a3" stroke-width="2" filter="url(#w3shadow)"/>
-      <circle cx="91" cy="130" r="16" fill="url(#w3glow)"/>
-      <circle cx="91" cy="130" r="3.5" fill="#fff" stroke="#b3372b" stroke-width="2"/>
-      <rect x="45" y="10" width="92" height="26" rx="13" fill="#1e4e79"/>
-      <text x="91" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">気密シート</text>
-      <text x="91" y="252" text-anchor="middle" font-size="11.5" fill="#b3372b" font-weight="800">針で開けた程度の穴</text>
-
-      <path d="M140 130 Q 195 118 258 130" stroke="#3b82c4" stroke-width="3" fill="none" stroke-dasharray="1 7" stroke-linecap="round" marker-end="url(#w3arrow)"/>
-      <defs><marker id="w3arrow" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#3b82c4"/></marker></defs>
-      <rect x="155" y="90" width="94" height="26" rx="13" fill="#e5f0f8" stroke="#2b6ea0" stroke-width="1.3"/>
-      <text x="202" y="108" text-anchor="middle" font-size="12" font-weight="800" fill="#2b6ea0">水蒸気が侵入</text>
-
-      <rect x="280" y="25" width="560" height="220" rx="10" fill="#fff" filter="url(#w3shadow)"/>
-      <g clip-path="url(#w3insulclip)">
-        <rect x="280" y="25" width="560" height="220" fill="url(#w3insul)"/>
-        <g stroke="#f0d28a" stroke-width="1.4" fill="none" opacity=".6">
-          <path d="M280 60 q14 -12 28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0"/>
-          <path d="M280 105 q14 -12 28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0"/>
-          <path d="M280 200 q14 -12 28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0"/>
-        </g>
-        <path d="M420 118 C400 95,450 68,490 82 C525 62,570 88,558 122 C575 152,530 182,495 172 C455 192,400 158,420 118 Z" fill="url(#w3rot)" filter="url(#w3blur)"/>
-        <ellipse cx="470" cy="105" rx="16" ry="8" fill="#3d2917" opacity=".3"/>
-        <ellipse cx="510" cy="145" rx="12" ry="6" fill="#3d2917" opacity=".28"/>
+  <div class="top"><span class="chip c2">執念①-2</span><span class="pg">15 / 23</span></div>
+  <div class="tt">外の空気に接するところは、すべて張る。</div>
+  <div class="body" style="align-items:stretch">
+    <svg viewBox="0 0 520 330" style="width:55%; height:100%; flex-shrink:0" role="img" aria-label="家の断面図。1階床・外壁・屋根・外気に接する天井に防湿気密シートを張っていることを示す">
+      <defs><filter id="h15s" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1b2530" flood-opacity="0.14"/></filter>
+      <linearGradient id="h15w" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f1f4f7"/></linearGradient></defs>
+      <g filter="url(#h15s)">
+        <polygon points="260,30 470,140 50,140" fill="#e3e9ee" stroke="#94a1ad" stroke-width="1.5" stroke-linejoin="round"/>
+        <rect x="90" y="140" width="340" height="150" fill="url(#h15w)" stroke="#94a1ad" stroke-width="1.5"/>
+        <rect x="80" y="290" width="360" height="18" fill="#cfd6dc" stroke="#94a1ad" stroke-width="1.2"/>
       </g>
-      <rect x="280" y="25" width="560" height="220" rx="10" fill="none" stroke="#e3d9c2" stroke-width="1.5"/>
-      <rect x="440" y="0" width="180" height="26" rx="13" fill="#1e4e79"/>
-      <text x="530" y="18" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">壁の中（断熱材）</text>
-      <rect x="440" y="252" width="118" height="30" rx="15" fill="#fff" stroke="#b3372b" stroke-width="2" filter="url(#w3shadow)"/>
-      <text x="499" y="272" text-anchor="middle" font-size="13.5" font-weight="800" fill="#b3372b">結露→腐朽</text>
-
-      <path d="M355 62 C355 62,347 73,347 79.5 C347 84.1,350.6 88,355 88 C359.4 88,363 84.1,363 79.5 C363 73,355 62,355 62 Z" fill="url(#w3drop)"/>
-      <ellipse cx="352.5" cy="76" rx="1.8" ry="2.6" fill="#fff" opacity=".65"/>
-      <path d="M400 175 C400 175,392 186,392 192.5 C392 197.1,395.6 201,400 201 C404.4 201,408 197.1,408 192.5 C408 186,400 175,400 175 Z" fill="url(#w3drop)"/>
-      <ellipse cx="397.5" cy="189" rx="1.8" ry="2.6" fill="#fff" opacity=".65"/>
+      <line x1="90" y1="214" x2="430" y2="214" stroke="#c3ccd3" stroke-width="2"/>
+      <g stroke="#b5493c" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="80,146 260,52 440,146"/>
+        <line x1="98" y1="146" x2="98" y2="282"/><line x1="422" y1="146" x2="422" y2="282"/>
+        <line x1="98" y1="284" x2="422" y2="284"/>
+      </g>
+      <g font-size="12" font-weight="800">
+        <rect x="200" y="78" width="120" height="24" rx="12" fill="#fff" stroke="#b5493c" stroke-width="1.5"/><text x="260" y="94" text-anchor="middle" fill="#b5493c">屋根</text>
+        <rect x="20" y="196" width="66" height="24" rx="12" fill="#fff" stroke="#b5493c" stroke-width="1.5"/><text x="53" y="212" text-anchor="middle" fill="#b5493c">外壁</text>
+        <rect x="434" y="196" width="66" height="24" rx="12" fill="#fff" stroke="#b5493c" stroke-width="1.5"/><text x="467" y="212" text-anchor="middle" fill="#b5493c">外壁</text>
+        <rect x="200" y="256" width="120" height="24" rx="12" fill="#fff" stroke="#b5493c" stroke-width="1.5"/><text x="260" y="272" text-anchor="middle" fill="#b5493c">1階の床</text>
+      </g>
+      <text x="260" y="326" text-anchor="middle" font-size="11.5" fill="#5c6c7d">赤線＝防湿気密シート t=0.2mm（イメージ）</text>
     </svg>
+    <div style="flex:1; display:flex; flex-direction:column; gap:10px">
+      <div class="card" style="padding:12px; flex:none"><p style="font-size:13px; color:var(--ink)">LIFEX標準仕様書：<b>1階床・外壁・屋根・外気に接する天井</b>の4か所すべてで「防湿気密シート t=0.2」。2階の張り出し床にも施工</p></div>
+      <figure style="flex:1; margin:0; display:flex; flex-direction:column; gap:4px; min-height:0"><img src="assets/photo-harridashi-yuka.jpg" alt="2階の張り出し床を下から見上げた施工写真。合板の下に透明の防湿気密シートが張られている" style="flex:1; min-height:0; width:100%; object-fit:cover; border-radius:8px; border:1px solid var(--line)"><figcaption class="cap">2階の張り出し床（下から見上げ）。合板の下に透明の防湿気密シート</figcaption></figure>
+    </div>
   </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「その時に開く穴は、針で開けたくらい小さい。でもそこから水蒸気が入って、壁の中で結露が始まるんです。」</div></div>
+  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「このシートは、壁だけじゃありません。1階の床も、屋根も、2階の張り出した床も、外気に触れるところは全部張っています。全国どの地域でも同じ仕様です。」</div><span class="cap">外気に接する床（2階の張り出し部分）にも張っている（LIFEX本部確認、2026-10-05）</span></div>
 </div>
 
-<!-- 13 執念①-3 -->
+<!-- 16 -->
 <div class="sl">
-  <div class="top"><span class="chip c2">執念①-3</span><span class="pg">14 / 24</span></div>
-  <div class="tt">その「うっかり」でも破れない分厚さを、全棟に。</div>
-  <div class="body" style="align-items:center">
+  <div class="top"><span class="chip c2">執念①-3</span><span class="pg">16 / 23</span></div>
+  <div class="tt">プラスα：現場の「うっかり」にも破れにくい。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:10px">
+    <div class="cap" style="font-size:13.5px; color:var(--ink)">大工さんが長い木材を運ぶとき、壁に当たってしまうことは現場で実際にあります。小さな穴でも、そこから水蒸気が入ります。</div>
     <div class="twocol" style="align-items:center">
-      <div class="card"><h5>一般的な防湿気密シート</h5>
+      <div class="card"><h5>A種（一般地域向け）</h5>
         <svg viewBox="0 0 200 100" style="width:100%; height:90px">
           <defs>
             <linearGradient id="thinTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#eef2f5"/><stop offset="100%" stop-color="#d3dbe0"/></linearGradient>
@@ -627,7 +655,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
           <polygon points="85,60 100,52 130,52 115,60" fill="url(#thinTop)" stroke="#94a1ad" stroke-width="1"/>
           <rect x="85" y="60" width="30" height="6" fill="url(#thinFront)" stroke="#94a1ad" stroke-width="1"/>
         </svg>
-        <div class="big">厚み 目安 t=0.1mm</div>
+        <div class="big">厚み t=0.1mm</div>
         <p>薄いシートは、うっかり当たると穴が開きやすい<br>（サランラップくらいの薄さ）</p></div>
       <div class="card hero"><h5>LIFEXの防湿気密シート</h5>
         <svg viewBox="0 0 200 100" style="width:100%; height:90px">
@@ -645,27 +673,15 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
         <p>当たっても、簡単には破れない<br>（クリアファイルくらいの厚み）</p></div>
     </div>
   </div>
-  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px">
-    <div class="talk">🗣<b>そのまま言えるトーク</b>「一般的なシートはサランラップくらい。LIFEXはクリアファイルくらいの厚みがあるので、うっかり当たっても破れにくいんです。」</div>
-    <span class="cap">サランラップ・クリアファイルはイメージをつかむための例え。一般的なシートの厚みは製品により幅があり、目安として記載</span>
-  </div>
+  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「それに厚みがある分、工事中にうっかり物が当たっても破れにくい。これはおまけの効果です。本当の理由は、さっきの水蒸気を通しにくいところにあります。」</div><span class="cap">サランラップ・クリアファイルはイメージをつかむための例え</span></div>
 </div>
 
-<!-- 14 執念①-4 -->
+<!-- 17 -->
 <div class="sl">
-  <div class="top"><span class="chip c2">執念①-4</span><span class="pg">15 / 24</span></div>
-  <div class="bigline">
-    <div class="l1">気密シートを分厚くしている、本当の理由</div>
-    <div class="l2">職人を守る仕組みが、<br><span class="hi">結果的にお客様の家を守る。</span></div>
-  </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「職人さんを守るための厚みが、結果としてお客様の家を一生守ることになるんです。」</div></div>
-</div>
-
-<!-- 15 執念②-1 -->
-<div class="sl">
-  <div class="top"><span class="chip c4">執念②-1</span><span class="pg">16 / 24</span></div>
+  <div class="top"><span class="chip c4">執念②-1</span><span class="pg">17 / 23</span></div>
   <div class="tt">上棟した床を、あえてもう一度剥がす。</div>
-  <div class="body" style="flex-direction:column; justify-content:center; gap:16px">
+  <div class="body" style="gap:16px">
+   <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:16px">
     <div class="card" style="border-color:var(--p4); background:var(--p4bg)">
       <h5 style="color:var(--p4)">工期を急ぐ他社の考え方</h5>
       <div class="big">床を張ったら、そのまま次の工程</div>
@@ -674,147 +690,112 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
       <h5>LIFEXの考え方</h5>
       <div class="big">一度剥がして、乾かす期間をつくる</div>
     </div>
+   </div>
+   <div style="width:40%; flex-shrink:0; display:flex"><figure style="flex:1; margin:0; display:flex; flex-direction:column; gap:4px; min-height:0"><img src="assets/photo-yukashita-dannetsu.jpg" alt="仮張りを剥がした後の1階床。断熱材の上に透明の防湿気密シートが張られている" style="flex:1; min-height:0; width:100%; object-fit:cover; border-radius:8px; border:1px solid var(--line)"><figcaption class="cap">仮張りを剥がし、乾かした後。断熱材と防湿気密シートを施工し、この上に合板を本張りする</figcaption></figure></div>
   </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「上棟が終わった後、LIFEXはあえて一度、床を剥がすんです。」</div></div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「上棟が終わった後、LIFEXはあえて一度、床を剥がして乾かすんです。」</div></div>
 </div>
 
-<!-- 16 執念②-2 -->
+<!-- 18 -->
 <div class="sl">
-  <div class="top"><span class="chip c4">執念②-2</span><span class="pg">17 / 24</span></div>
-  <div class="tt">仮張り→剥がして乾燥→本張り。この3工程。</div>
-  <div class="body">
-    <div class="flowH">
-      <div class="fb"><b>上棟直後</b><span>仮張りの床を張る</span></div>
+  <div class="top"><span class="chip c4">執念②-2</span><span class="pg">18 / 23</span></div>
+  <div class="tt">工期優先なら飛ばす工程に、あえて時間を使う。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:16px">
+    <div class="flowH" style="flex:none">
+      <div class="fb"><b>建て方のとき</b><span>1階の床合板を仮張り</span></div>
       <div class="arrow">→</div>
-      <div class="fb hero"><b>床を剥がし、乾燥期間</b><span>基礎・木材の水分を飛ばす</span></div>
+      <div class="fb hero"><b>約1週間、乾かす</b><span>屋根・外壁の面材を張った後</span></div>
       <div class="arrow">→</div>
-      <div class="fb win"><b>乾いてから、本張り</b><span>湿気を封じ込めない状態で仕上げる</span></div>
+      <div class="fb hero"><b>仮張りを剥がす</b><span>断熱材・防湿気密シートを施工</span></div>
+      <div class="arrow">→</div>
+      <div class="fb win"><b>本張り</b><span>湿気を閉じ込めずに仕上げる</span></div>
     </div>
+    <div class="cap" style="text-align:center; font-size:13.5px">工期を優先すると、床を張ったらそのまま次へ進んでしまう。湿気が残ったまま閉じると、断熱材を傷めてしまう</div>
   </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「仮張りの床を剥がして、乾かす期間をつくって、それから本当の床を張るんです。」</div></div>
+  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「建て方のときは床を仮に張っておいて、屋根と外壁ができてから1週間ほど乾かします。それから一度剥がして、断熱材と防湿気密シートを入れてから本張りする。面倒な工程ですが、湿気を閉じ込めないためにあえてやっているんです。」</div><span class="cap">仮張り→本締めはLIFEX標準施工マニュアル第1版p6・p12に記載。乾燥期間（約1週間）は2026-08-24中央建設様MTGでの本部説明</span></div>
 </div>
 
-<!-- 17 執念②-3 -->
+<!-- 19 -->
 <div class="sl">
-  <div class="top"><span class="chip c4">執念②-3</span><span class="pg">18 / 24</span></div>
-  <div class="tt">上棟直後の基礎・木材は、まだ水を含んでいる。</div>
-  <div class="body">
-    <div class="twocol">
-      <div class="card warn"><h5>そのまま閉じると</h5><div class="big">湿気を壁の中に封じ込める</div><p>基礎コンクリート・木材の水分（水蒸気）が逃げ場を失う</p></div>
-      <div class="card win"><h5>乾燥期間をとると</h5><div class="big">水分を先に外へ飛ばす</div><p>壁を閉じる前に、こもる湿気の元を減らせる</p></div>
+  <div class="top"><span class="chip c4">執念③</span><span class="pg">19 / 23</span></div>
+  <div class="tt">夏は逆向き。だから通気層で、ためずに乾かす。</div>
+  <div class="body" style="align-items:stretch">
+    <div style="flex:1; display:flex; flex-direction:column; gap:8px; justify-content:center">
+      <div class="twocol" style="flex:none; gap:10px">
+        <div class="card" style="padding:10px"><h5>冬</h5><div class="big" style="font-size:18px">室内 → 屋外へ</div><p>室内側のシートで止める</p></div>
+        <div class="card warn" style="padding:10px"><h5>夏（冷房時）</h5><div class="big" style="font-size:18px">屋外 → 室内へ</div><p>湿気が外から壁に入ろうとする</p></div>
+      </div>
+      <div class="card hero" style="padding:10px; flex:none"><h5>通気層の役割</h5><div class="big" style="font-size:18px">外壁の裏を空気が流れ続け、湿気をためない</div><p>結露が起きても、濡れたまま閉じ込めない</p></div>
+      <div class="card" style="padding:10px 14px; flex:none; text-align:left; gap:4px"><h5>お客様への例え：お風呂のカビ</h5><p style="font-size:13px; color:var(--ink)">濡れた瞬間にカビが生えることはない。拭いて換気すれば生えない。生えるのは、濡れたまま閉め切った状態が長く続いたとき。</p></div>
     </div>
+    <div style="width:30%; flex-shrink:0; display:flex"><figure style="flex:1; margin:0; display:flex; flex-direction:column; gap:4px; min-height:0"><img src="assets/photo-tsuuki.jpg" alt="外壁の施工写真。透湿防水シートの上に通気金具でサイディングを留めている" style="flex:1; min-height:0; width:100%; object-fit:cover; border-radius:8px; border:1px solid var(--line)"><figcaption class="cap">通気金具でサイディングを浮かせて留め、裏側に空気の通り道（通気層）をつくる</figcaption></figure></div>
   </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「上棟した直後の基礎や木材は、まだ水分を含んでいます。それを飛ばさずに閉じてしまうと、湿気を壁の中に封じ込めてしまうんです。」</div></div>
+  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「夏は逆に、外の湿気が中に入ろうとします。結露することもゼロではありません。でもLIFEXは外壁の裏に通気層があって、空気がずっと流れているので、湿気をため込まないんです。お風呂も、濡れたまま閉め切るからカビが生えますよね。」</div><span class="cap">佐古顧問10/5の説明に基づく。夏型結露は主に防湿シートの屋外側で起きるため、通気層だけで乾くと言い切れるかは要確認（確認後に表現を確定）</span></div>
 </div>
 
-<!-- 18 執念②-4：湿り空気線図③（乾燥工程で線を越えない） -->
+<!-- 20 -->
 <div class="sl">
-  <div class="top"><span class="chip c4">執念②-4</span><span class="pg">19 / 24</span></div>
-  <div class="tt">乾かしておくから、線を越えない。</div>
-  <div class="body">
-    <svg viewBox="0 0 900 320" style="width:100%; height:100%" role="img" aria-label="湿り空気線図上で、乾燥工程により水分量を減らすことで温度が下がっても飽和線を越えないことを示す図">
-      <line x1="60" y1="30" x2="60" y2="260" stroke="#94a1ad" stroke-width="1.5"/>
-      <line x1="60" y1="260" x2="820" y2="260" stroke="#94a1ad" stroke-width="1.5"/>
-      <text x="52" y="264" text-anchor="end" font-size="11.5" fill="#5c6c7d">0</text>
-      <text x="52" y="192" text-anchor="end" font-size="11.5" fill="#5c6c7d">10</text>
-      <text x="52" y="120" text-anchor="end" font-size="11.5" fill="#5c6c7d">20</text>
-      <text x="30" y="150" font-size="12" fill="#5c6c7d" transform="rotate(-90 30 150)">水分量（g/kg）</text>
-      <text x="60" y="278" font-size="11.5" fill="#5c6c7d">0℃</text>
-      <text x="277" y="278" text-anchor="middle" font-size="11.5" fill="#5c6c7d">10℃</text>
-      <text x="494" y="278" text-anchor="middle" font-size="11.5" fill="#5c6c7d">20℃</text>
-      <text x="711" y="278" text-anchor="middle" font-size="11.5" fill="#5c6c7d">30℃</text>
-
-      <path d="M60,233 L169,221 L277,204 L386,182 L494,154 L603,116 L711,65 L820,30 L820,30 L60,30 Z" fill="#fbe9e7" opacity=".4"/>
-      <path d="M60,233 L169,221 L277,204 L386,182 L494,154 L603,116 L711,65 L820,30" fill="none" stroke="#1e4e79" stroke-width="3"/>
-      <text x="700" y="52" text-anchor="middle" font-size="12" font-weight="800" fill="#1e4e79">飽和線</text>
-      <text x="150" y="218" font-size="12.5" font-weight="800" fill="#b3372b">結露ゾーン</text>
-
-      <line x1="258" y1="207" x2="494" y2="207" stroke="#b3372b" stroke-width="2" stroke-dasharray="5 4"/>
-      <text x="600" y="200" font-size="12" font-weight="800" fill="#b3372b">乾燥工程なし：水分量そのまま→線を越える</text>
-
-      <path d="M494,207 Q 380,207 320,225 Q 290,235 258,240" fill="none" stroke="#2e7d6e" stroke-width="3"/>
-      <text x="330" y="255" font-size="12" font-weight="800" fill="#2e7d6e">LIFEXの乾燥工程あり：先に水分を減らす→線を越えない</text>
-
-      <circle cx="494" cy="207" r="7" fill="#1b2530"/>
-      <text x="500" y="192" font-size="12" font-weight="800" fill="#1b2530">上棟直後：水分を多く含む状態</text>
-    </svg>
-  </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「乾燥工程で壁の中の水分量を減らしておけば、露点温度そのものが下がる。だから、同じ寒さでも結露しにくくなるんです。」</div></div>
-</div>
-
-<!-- 19 執念②-5：工期比較 -->
-<div class="sl">
-  <div class="top"><span class="chip c4">執念②-5</span><span class="pg">20 / 24</span></div>
-  <div class="tt">工期を急ぐ現場と、あえて時間を使う現場。</div>
-  <div class="body">
-    <div class="stance">
-      <div class="rigid"><h5>工期優先の現場</h5><div class="catch">乾燥工程を、飛ばす</div></div>
-      <div class="vsbadge">VS</div>
-      <div class="hybrid"><h5>LIFEXの現場</h5><div class="catch">あえて、そこに時間を使う</div></div>
-    </div>
-  </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「工期を急ぐ現場は、そこを飛ばします。LIFEXは、そこにあえて時間を使うんです。」</div></div>
-</div>
-
-<!-- 20 行動：キラーフレーズ -->
-<div class="sl">
-  <div class="top"><span class="chip c1">行動</span><span class="pg">21 / 24</span></div>
+  <div class="top"><span class="chip c1">行動</span><span class="pg">20 / 23</span></div>
   <div class="bigline">
-    <div class="l1">お客様に、堂々と言い切るために</div>
-    <div class="l2">スペックはカタログで見えます。<br>家を何十年も守るのは、<br><span class="hi">現場の見えない手間です。</span></div>
+    <div class="l1">建てた日の性能を、持続させるために</div>
+    <div class="l2">快適な暮らしが、20年後も続く。<br><span class="hi">そのために妥協しないのが、LIFEXです。</span></div>
   </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「スペックはカタログで見えます。でも、家を何十年も守るのは、現場の見えない手間なんです。」</div></div>
+  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px"><div class="talk">🗣<b>そのまま言えるトーク（叩き台・自分の言葉に直してください）</b>「断熱も耐震も、建てた日の性能を持続させるには、壁の中に湿気を入れないことが欠かせません。だからLIFEXは、寒冷地向けのシートを全国で使い、外気に接するところは全部張っています。快適な暮らしがずっと続く。そのために妥協しない、それがLIFEXなんです。」</div><span class="cap">ここで「だからこの仕様にしましょう」とは言わない。どんな暮らしを選ぶかはお客様が決める。クロージングは資料でなく、人の言葉で</span></div>
 </div>
 
-<!-- 21 まとめ -->
+<!-- 21 -->
 <div class="sl">
-  <div class="top"><span class="chip c0">まとめ</span><span class="pg">22 / 24</span></div>
-  <div class="tt">見えないところに手間をかけるから、言い切れる。</div>
+  <div class="top"><span class="chip c0">まとめ</span><span class="pg">21 / 23</span></div>
+  <div class="tt">仕組みが分かっているから、言葉に重みが出る。</div>
   <div class="body">
     <div class="pillars">
-      <div class="pl"><span class="no">1</span><b>恐怖</b><span class="desc">壁の中の結露→腐朽</span></div>
+      <div class="pl"><span class="no">1</span><b>仕組み</b><span class="desc">冬は水蒸気が室内→屋外へ<br>壁の中に必ず露点がある</span></div>
       <div class="plus">→</div>
-      <div class="pl"><span class="no">2</span><b>真実</b><span class="desc">見て見ぬふりの現場</span></div>
+      <div class="pl"><span class="no">2</span><b>実害</b><span class="desc">耐震・断熱が落ちる<br>性能が持続しない</span></div>
       <div class="plus">→</div>
-      <div class="pl"><span class="no">3</span><b>執念</b><span class="desc">分厚いシート＋乾燥工程</span></div>
+      <div class="pl"><span class="no">3</span><b>執念</b><span class="desc">寒冷地向け0.2mmを全国で<br>通気層・乾燥工程</span></div>
       <div class="plus">→</div>
-      <div class="pl"><span class="no">4</span><b>行動</b><span class="desc">キラーフレーズ</span></div>
+      <div class="pl"><span class="no">4</span><b>行動</b><span class="desc">妥協しないのがLIFEX</span></div>
     </div>
   </div>
-  <div class="foot"><span class="cap">4つの流れを、この順番のまま商談で使ってください。湿り空気線図の詳しい計算・想定QAは参考書を参照。</span></div>
+  <div class="foot"><span class="cap">この順番で、5〜10分で説明できるまで繰り返し練習してください。詳しい根拠は参考書を参照。</span></div>
 </div>
 
-<!-- 22 会話の型 -->
+<!-- 22 -->
 <div class="sl">
-  <div class="top"><span class="chip c1">会話の型</span><span class="pg">23 / 24</span></div>
+  <div class="top"><span class="chip c1">会話の型</span><span class="pg">22 / 23</span></div>
   <div class="tt">よくある質問に、この一言で返す。</div>
   <div class="body">
     <div class="qaGrid">
-      <div class="qa"><div class="q">結露しない家なんですか？</div><div class="a">「結露しません」ではなく、なぜ結露しにくいのかを説明する。分厚いシートと乾燥工程、2つの理由がある</div></div>
-      <div class="qa"><div class="q">湿り空気線図って、営業が言っていいの？</div><div class="a">「温度が下がると空気が水分を保ちきれなくなる」という原理だけ伝えれば十分。細かい数値根拠は参考書を見返せばよい</div></div>
-      <div class="qa"><div class="q">工期、長くなりませんか？</div><div class="a">床を一度剥がして乾かす分、他社より少し時間がかかる。それが結露を防ぐための時間だと伝える</div></div>
-      <div class="qa"><div class="q">シロアリ対策は別にやってるのでは？</div><div class="a">薬剤処理だけでなく、そもそも木材を湿らせない・腐らせない設計をしている点が違う</div><div class="a" style="font-size:10.5px;color:var(--sub)">※営業の予備知識：他社で多い加圧注入の防蟻処理は、シロアリに一度かじらせて効かせる仕組み（寄せ付けない対策ではない）</div></div>
+      <div class="qa"><div class="q">結露しない家なんですか？</div><div class="a">「結露しません」とは言わない。壁の中には必ず結露する温度がある。だから室内側のシートで水蒸気をそこまで届かせない、と仕組みで答える</div></div>
+      <div class="qa"><div class="q">夏の結露は大丈夫？</div><div class="a">夏は湿気の向きが逆。通気層で外壁の裏に空気が流れ続けるので、湿気をため込まない（表現は要確認）</div></div>
+      <div class="qa"><div class="q">工期、長くなりませんか？</div><div class="a">床を一度剥がして乾かす分、少し時間がかかる。それが湿気を閉じ込めないための時間だと伝える</div></div>
+      <div class="qa"><div class="q">シロアリ対策は？</div><div class="a">防蟻処理は各社それぞれ工夫している。LIFEXが重視しているのは、そもそも壁の中を結露させず、構造と断熱の性能を持続させること。シロアリの話だけで勝負しない</div><div class="a" style="font-size:10.5px;color:var(--sub)">※営業の予備知識：他社で多い加圧注入の防蟻処理は、シロアリに一度かじらせて効かせる仕組み（寄せ付けない対策ではない）</div></div>
     </div>
   </div>
   <div class="foot"><span class="cap">より詳しい切り返し・技術的根拠は参考書の想定QA集を参照。</span></div>
 </div>
 
-<!-- 23 出典一覧 -->
+<!-- 23 -->
 <div class="sl" style="height:auto; overflow:visible">
   <div class="top"><span class="chip c0">出典・注記一覧</span></div>
   <div class="tt" style="font-size:20px">本資料で使用した情報の出典と、未確認事項</div>
   <div class="body" style="overflow:visible">
     <div class="src" style="overflow-y:visible">
-      <p><b>湿り空気線図（恐怖③・④スライドで使用）</b>：Wikimedia Commons「File:PsychrometricChart.SeaLevel.SI.svg」（作成者ArthurOgawa、Creative Commons Attribution-ShareAlike 3.0ライセンス、要出典表示）。データ出典はCarrier Corporation Cat. No. 794-001（1975年）。LIFEX独自の作図ではなく、公開されている標準的な湿り空気線図をそのまま使用している</p>
-      <p><b>露点温度の計算例（20℃・湿度50%→約9.3℃）</b>：露点温度の近似計算式（Magnus-Tetens近似式）による計算値。「室内20℃・湿度50%」は説明用の仮定条件で、実際の住宅の室内環境を測定した値ではない</p>
-      <p><b>執念②-4スライドの乾燥工程イメージ図（飽和線・結露ゾーンの簡略図）</b>：上記とは別に、LIFEXの乾燥工程の効果を説明するためLIFEXのデザインで作成したオリジナルの概念図。実データに基づくグラフではなく、考え方を示す模式図</p>
-      <p><b>恐怖⑤スライドの「冷たいコップ」イラスト</b>：LIFEXのデザインで作成したオリジナルのイラスト。商談の場で営業マンが手書きで再現できる簡易な例えとして追加（外部の湿り空気線図とは別物）</p>
-      <p><b>結露→腐朽→シロアリ被害の連鎖という一般的なメカニズム</b>：建築分野で広く知られる壁体内結露の一般原理（Gハウス見学会説明資料等の一般解説部分と同種の内容）。具体的な発生率・被害件数の数字は本資料では使用していない</p>
-      <p><b>キラーフック①：気密シートの厚みt=0.2mm</b>：LIFEX標準仕様書「断熱」欄に記載（1階床・外壁・屋根・外気に接する天井の4箇所すべてで「防湿気密シート t=0.2」と表記、2026-09-21確認）。大工が長い木材を運搬中にうっかり当ててしまう事故を想定した設計思想の部分は、徳田さんの現場知見に基づく（2026-09-19〜20確認、前回10/2研修「断熱×気密×換気」参照）</p>
-      <p><b>執念①-3スライドの「一般的な防湿気密シート　目安t=0.1mm」「サランラップ／クリアファイル」の例え</b>：特定メーカー・競合製品の実測値ではなく、厚みの違いをイメージしてもらうための説明用の目安・例え。一般的な防湿気密シートの厚みは製品により幅があり、本資料では他社の実測データとして提示していない</p>
-      <p><b>キラーフック②：上棟後、仮張りの床を一度剥がして乾燥させる工程</b>：徳田さんの現場知見に基づく、LIFEX全体の実務（2026-09-19〜20確認）。標準施工マニュアル第1版には仮張り→本締めの記載はあるが、乾燥目的で意図的に剥がす工程の具体的な記載はなく、<b>マニュアル外の実務知識</b>という位置づけ</p>
+      <p><b>湿り空気線図（恐怖③・④）</b>：史幸工務店「ハイブリッド・エコ・ハートQ 住宅の科学③ 水分・湿度・空気線図・環境編」掲載の湿り空気線図（圧力101.325kPa）。①〜④の矢印と吹き出しは本資料で追記。点の位置はMagnus-Tetens近似式の計算値（約8.7g/kg・約12.0℃）に合わせて図上に配置</p>
+      <p><b>露点温度・水蒸気量の計算値（23℃・湿度50%→水蒸気約8.7g/kg・露点約12.0℃／0℃・湿度70%→約2.6g/kg）</b>：Magnus-Tetens近似式で飽和水蒸気圧を求め、大気圧101.325kPaとして算出した計算値。室内・屋外の温湿度は説明用の仮定条件で、実測値ではない</p>
+      <p><b>空気・水蒸気が動く3つの性質（温度差・気圧差・水蒸気量の差）</b>：前回10/2研修「断熱×気密×換気」で説明した内容に準拠</p>
+      <p><b>壁の中の温度分布（恐怖⑥）</b>：屋外0℃・室内23℃を仮定した考え方の模式図。実測・計算に基づくグラフではない</p>
+      <p><b>結露による耐震性能・断熱性能の低下と光熱費の増加（実害①）</b>：佐古顧問の指導内容（2026-10-05定例）に基づく一般的な説明。具体的な低下率・金額の数字は使用していない</p>
+      <p><b>JIS A 6930（住宅用プラスチック系防湿フィルム）のA種・B種</b>：A種＝厚み0.1mm・透湿抵抗0.082m²·s·Pa/ng以上、B種＝厚み0.2mm・透湿抵抗0.144m²·s·Pa/ng以上。市村「防湿気密シート モイストバリア」製品案内（2024-10-07、https://www.ichimura.co.jp/information/pdf/20241007.pdf）。A種＝一般地域推奨・B種＝寒冷地推奨はフクビ化学工業「バリアエース」製品ページ（https://www.fukuvi.co.jp/product/3/02/31）の記載。JIS原本は未確認</p>
+      <p><b>LIFEXの防湿気密シート t=0.2mm、施工箇所</b>：LIFEX標準仕様書「断熱」欄（1階床・外壁・屋根・外気に接する天井の4か所で「防湿気密シート t=0.2」、2026-09-21確認）。製品はジェイベック「ボーダー」（LIFEX標準施工マニュアル第1版p26「防湿気密シート（ジェイベック：ボーダー）t=0.2を使用」）で、ジェイベック製品ページに「JIS A-6930住宅用プラスチック系防湿フィルム、寒冷地向けB種適合品」「0.2mm厚はJIS規格B種」と記載（http://www.jbeck.co.jp/products/kimitsu/border/index.html、2026-10-05確認）。矩計図の注記「防湿抵抗0.082m²·s·Pa/ng以上」は最低基準（A種相当）の表記。0.2mmを全国共通で使っていること、外気に接する床（2階の張り出し部分）にも張っていることはLIFEX本部に確認済み（2026-10-05）。矩計図の「外気に接する床」詳細には表記がない</p>
+      <p><b>夏型結露と通気層の役割</b>：佐古顧問の指導内容（2026-10-05定例）。通気層だけで夏型結露が乾くと言い切れるかは未確認</p>
+      <p><b>床の仮張り→乾燥→剥がして断熱・防湿気密シート→本張りの工程</b>：LIFEX標準施工マニュアル統合版 第1版（2026/08/11）p6「1階床合板仮張りとする（野地板・外壁面材施工後本締め）」、p12「1階床合板施工」（床下断熱材 押出法ポリスチレンフォーム3種t=100、気密フィルム ジェイベックボーダー10）。乾燥期間「約1週間」と目的（湿気で断熱材を傷めない）は2026-08-24中央建設様ショートMTGでの本部説明</p>
+      <p><b>壁の構成（恐怖②・恐怖⑥）</b>：LIFEX標準矩計図1/30（更新日2025.12.22、2026-10-05徳田さん提示）の外壁表記「サイディング／通気金具t=15／透湿防水シート／耐力面材ハイベストウッドt=9／吹付硬質ウレタンフォーム（A種3）t=95／ジェイベック（防湿気密シート）／PB t=12.5」に準拠</p>
+      <p><b>恐怖⑦のコップ、恐怖②・恐怖⑥・執念①-2・執念①-3の図</b>：LIFEXのデザインで作成した説明用の図</p>
+      <p><b>施工写真（執念①-2・執念②-1・執念③）</b>：LIFEX現場の施工写真（徳田さん提供、2026-10-05）</p>
       <p><b>断熱等級6・UA値0.46・C値0.5という基本仕様</b>：前回10/2研修「断熱×気密×換気」教科書・参考書に準拠（社内資料LIFEX公式初回セミナースライド20260521・LIFEX_話法マニュアル）</p>
-      <p><b>想定QA「シロアリ対策」の注釈（加圧注入の防蟻処理はシロアリに一度かじらせて効かせる仕組み）</b>：LIFEX本部の営業知見（2026-10-02共有）。メーカー資料等での裏付けは未確認。営業が他社仕様を理解するための予備知識で、特定の会社・製品の性能を評価したものではない</p>
+      <p><b>想定QA「シロアリ対策」の注釈（加圧注入の防蟻処理）</b>：LIFEX本部の営業知見（2026-10-02共有）。メーカー資料等での裏付けは未確認</p>
     </div>
   </div>
 </div>
