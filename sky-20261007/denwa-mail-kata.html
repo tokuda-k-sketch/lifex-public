@@ -1,0 +1,214 @@
+<title>LIFEX研修 電話・メールの型〈佐古社長実践資料〉</title>
+<style>
+  :root{
+    --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+    --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+    --green:#2e7d6e; --green-bg:#e7f2ef;
+    --orange:#b05c1f; --orange-bg:#f9efe4;
+  }
+  *{box-sizing:border-box}
+  body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif; color:var(--ink);
+    background:#e9edf1; margin:0; line-height:1.75; font-feature-settings:"palt"}
+  .sheet{width:min(880px,94vw); margin:28px auto 60px; background:#fff; border-radius:8px;
+    box-shadow:0 2px 16px rgba(20,40,60,.09); padding:52px 58px 46px}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ヘッダー */
+  .eyebrow{font-size:12.5px; letter-spacing:.22em; color:var(--sub); font-weight:700}
+  h1{font-size:33px; font-weight:800; line-height:1.4; margin:10px 0 6px; text-wrap:balance}
+  .lead{font-size:14.5px; color:var(--sub); margin:0}
+  .src{display:inline-block; font-size:11px; color:var(--green); background:var(--green-bg);
+    border:1px solid #bfdcd5; border-radius:3px; padding:2px 10px; font-weight:700; margin-top:14px}
+
+  /* セクション */
+  section{margin-top:46px}
+  .chip{display:inline-block; font-size:11.5px; font-weight:700; letter-spacing:.1em;
+    padding:3px 12px; border-radius:99px; background:var(--navy-soft); color:var(--navy)}
+  h2{font-size:22px; font-weight:800; line-height:1.45; margin:10px 0 4px; text-wrap:balance}
+  .ms{font-size:14px; color:var(--sub); margin:0 0 18px}
+
+  /* 目的カード */
+  .aim{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+  .aim>div{border:1px solid var(--line); border-top:3px solid var(--navy); border-radius:6px;
+    padding:16px 20px; background:#fff}
+  .aim b{display:block; font-size:16px; color:var(--navy); margin-bottom:4px}
+  .aim p{margin:0; font-size:13.5px; color:var(--sub)}
+  .payoff{margin-top:12px; background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:10px;
+    padding:16px 22px; font-size:14.5px}
+  .payoff b{color:var(--navy)}
+
+  /* 原則 */
+  .rule{border:1px solid var(--line); border-left:4px solid var(--navy); border-radius:4px;
+    background:#fbfcfd; padding:14px 20px; margin-bottom:10px}
+  .rule b{font-size:15.5px}
+  .rule p{margin:2px 0 0; font-size:13.5px; color:var(--sub)}
+
+  /* 7項目 */
+  .q{border:1px solid var(--line); border-radius:6px; margin-bottom:12px; overflow:hidden}
+  .q .qh{display:flex; align-items:center; gap:14px; padding:12px 20px; background:var(--panel)}
+  .q .qh i{font-style:normal; flex-shrink:0; width:30px; height:30px; border-radius:50%;
+    background:var(--navy); color:#fff; font-weight:800; font-size:14px;
+    display:flex; align-items:center; justify-content:center}
+  .q .qh b{font-size:16px}
+  .q .qb{padding:12px 20px 14px; font-size:13.5px}
+  .lbl{display:inline-block; font-size:10.5px; letter-spacing:.12em; font-weight:700;
+    color:var(--navy); background:var(--navy-soft); border-radius:3px; padding:1px 8px;
+    margin-right:8px; vertical-align:1px}
+  .qb p{margin:0 0 6px}
+  .qb p:last-child{margin-bottom:0}
+  .fork{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px}
+  .fork>div{border:1px solid var(--line); border-radius:4px; padding:10px 14px; background:#fff}
+  .fork b{display:block; font-size:12.5px; color:var(--navy); margin-bottom:2px}
+  .fork p{margin:0; font-size:13px; color:var(--sub)}
+
+  /* メール実物 */
+  .mail{border:1px solid var(--line); border-radius:6px; overflow:hidden; margin-top:6px}
+  .mail .mh{background:var(--panel); border-bottom:1px solid var(--line); padding:10px 22px;
+    font-size:12px; color:var(--sub)}
+  .mail .mh b{color:var(--ink)}
+  .mail .mb{padding:20px 24px; font-size:13.5px; line-height:2.0}
+  .mail .mb p{margin:0 0 14px}
+  .mail .mb p:last-child{margin-bottom:0}
+  .slots{background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:6px;
+    padding:10px 18px; margin:0 0 14px; font-weight:700; color:var(--navy)}
+  .slots span{display:block}
+  .ngok{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px}
+  .ngok>div{border-radius:6px; padding:14px 18px; font-size:13.5px}
+  .ng{background:var(--orange-bg); border:1px solid #e3c9a8}
+  .ng b{color:var(--orange)}
+  .ok{background:var(--green-bg); border:1px solid #bfdcd5}
+  .ok b{color:var(--green)}
+  .ngok p{margin:4px 0 0; color:var(--sub); font-size:13px}
+
+  /* まとめ */
+  .close{margin-top:46px; text-align:center; font-size:17px; font-weight:800; color:var(--navy)}
+  .foot{margin-top:30px; padding-top:16px; border-top:1px solid var(--line);
+    font-size:11.5px; color:var(--sub); display:flex; gap:14px; flex-wrap:wrap}
+
+  @media (max-width:640px){
+    .sheet{padding:32px 22px}
+    .aim,.fork,.ngok{grid-template-columns:1fr}
+    h1{font-size:26px}
+  }
+  @media print{
+    body{background:#fff}
+    .sheet{box-shadow:none; width:100%; margin:0; padding:24px 8mm}
+    section{break-inside:avoid-page}
+  }
+</style>
+
+<div class="sheet">
+
+  <div class="eyebrow">2026.7.17　LIFEX 加盟店研修</div>
+  <h1>商談は、電話から始まっている。</h1>
+  <p class="lead">着電後の電話ヒアリング7項目と、電話に出ない方への追いメール。YUNO HOME 佐古社長が実際に使っている型を、そのまま公開します。</p>
+  <span class="src">佐古社長の実際の電話トーク・メール文面より</span>
+
+  <!-- ============ 電話の目的 ============ -->
+  <section>
+    <span class="chip">電話の型</span>
+    <h2>電話する目的は、アポ取りだけではない。</h2>
+    <p class="ms">この電話が何のための時間かを、先に決めておく。</p>
+    <div class="aim">
+      <div><b>① アポ取得のため</b><p>まずは会う約束を取り付ける。ここは当然の目的。</p></div>
+      <div><b>② 初回面談の質を上げるため</b><p>電話で聞き切った情報が、初回商談の準備になる。契約までのスピードが変わる。</p></div>
+    </div>
+    <div class="payoff">初回でここまで調べてくる営業は、他にいない。だから他の営業マンより信頼度が格段に上がり、<b>「この人に聞けば解決してくれそう」</b>と思ってもらえる。アポ率90%の正体は、トークのうまさではなくこの準備量。</div>
+  </section>
+
+  <!-- ============ 3原則 ============ -->
+  <section>
+    <span class="chip">電話の型</span>
+    <h2>話し方の3原則</h2>
+    <p class="ms">7項目を聞く前に、電話全体を貫くルールが3つある。</p>
+    <div class="rule"><b>① 建物のこと、性能のことは一切聞かない・話さない</b><p>お客様が電話ですべてを把握することは不可能。答えは面談に取っておく。</p></div>
+    <div class="rule"><b>② 言われた内容は、すぐその場で話す</b><p>持ち帰らず即答するから、お客様の本音が聞ける。</p></div>
+    <div class="rule"><b>③ 単体ではなく、ストーリーで話す</b><p>質問を7つ並べて尋問しない。会話の流れの中で自然に聞いていく。</p></div>
+  </section>
+
+  <!-- ============ 聞く内容7項目 ============ -->
+  <section>
+    <span class="chip">電話の型</span>
+    <h2>聞く内容は7項目。すべてに狙いがある。</h2>
+    <p class="ms">「何を聞くか」より「なぜ聞くか」をセットで覚える。狙いが分かれば、自分の言葉で聞ける。</p>
+
+    <div class="q">
+      <div class="qh"><i>1</i><b>なぜ今回、規格住宅で問い合わせたのか</b></div>
+      <div class="qb"><p><span class="lbl">狙い</span>お客様が重視している部分の把握。建売も見ているのか、注文しか見ていないのか。価格重視なのか、デザイン・間取り重視なのか。ここが初回提案の軸になる。</p></div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><i>2</i><b>家づくりを始めたタイミング</b></div>
+      <div class="qb"><p><span class="lbl">狙い</span>お客様の知識レベルの把握。性能などの数値で、あえて専門用語を使ってジャブを打つ。反応で「どこまで勉強しているか」が見える。</p></div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><i>3</i><b>土地を持っているか、持っていないか</b></div>
+      <div class="qb">
+        <p><span class="lbl">狙い</span>契約時期の把握。土地の有無で、その後の動き方が分かれる。</p>
+        <div class="fork">
+          <div><b>土地ありの場合</b><p>土地資料を事前に全部もらう。初回商談までに調べ切っておく。</p></div>
+          <div><b>土地なしの場合</b><p>探している媒体を確認。良い土地はあったか、相場が分かっているかを把握し、「その土地は高い」ということをこちらから言ってあげる。</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><i>4</i><b>引越ししたい時期</b></div>
+      <div class="qb"><p><span class="lbl">狙い</span>親御様がお子様のこと（入学・進級など）を重視しているかどうかの把握。ここが分かれば初回商談の準備ができる。ただし電話では答えを出し切らず、あえて余白を残す。</p></div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><i>5</i><b>ローンを通しているか。事前審査中なのか</b></div>
+      <div class="qb"><p><span class="lbl">狙い</span>予算感の把握。すでに通していれば他社で言われている内容があるはずなので、それを踏まえて対策できる。</p></div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><i>6</i><b>希望エリア</b></div>
+      <div class="qb"><p><span class="lbl">狙い</span>提案の幅を広げるため。予算・契約時期・お客様の属性と掛け合わせて、出せる提案が変わる。</p></div>
+    </div>
+
+    <div class="q">
+      <div class="qh"><i>7</i><b>他社とどこまで進んでいるか。どこの会社を見ているか</b></div>
+      <div class="qb"><p><span class="lbl">狙い</span>競合他社の強みを把握し、初回商談のアプローチを修正するため。相手が分かっていれば、初回から刺さる話ができる。</p></div>
+    </div>
+  </section>
+
+  <!-- ============ メールの型 ============ -->
+  <section>
+    <span class="chip">メールの型</span>
+    <h2>電話に出ない人を、あきらめない。</h2>
+    <p class="ms">メールの目的は2つ。①電話に応対いただけない方へのアポ促進、②来店スケジュールを相手に委ねないこと。以下、実際に送っている文面。</p>
+
+    <div class="mail">
+      <div class="mh">追いメール実物　<b>件名：LIFEXお打ち合わせ日程のご案内</b></div>
+      <div class="mb">
+        <p>〇〇さま<br>お世話になっております。</p>
+        <p>この度はGハウス規格住宅のLIFE Xのサイトにて会員登録のほどありがとうございました。</p>
+        <p>埼玉県の施工店（埼玉エリア）の株式会社YUNO HOME　佐古祐太と申します。<br>LIFEX総額の資金計画や内装について、是非一度お打ち合わせにてご案内させていただければ幸いでございます。</p>
+        <p>もし、ご興味がある場合は以下の日時にてご検討のほどよろしくお願いいたします。</p>
+        <div class="slots num">
+          <span>6/20　10時〜</span>
+          <span>6/27　13時以降</span>
+          <span>6/28　13時以降</span>
+        </div>
+        <p>上記日時でご都合いかがでしょうか？</p>
+        <p>土地探しからトータルの費用まで初回からご提案可能でございます。<br>ぜひご検討のほどよろしくお願いいたします。</p>
+      </div>
+    </div>
+
+    <div class="ngok">
+      <div class="ng"><b>✕ 相手に委ねる</b>　「一度お打ち合わせはいかがでしょうか？」<p>スケジュールを相手に委ねると、返事を考えるのが面倒になり、返信率が落ちる。</p></div>
+      <div class="ok"><b>〇 3つ提示する</b>　日時候補を必ず3つ、こちらから出す<p>相手は選ぶだけでいい。「土地探しから総額まで初回から提案できる」と明記し、来店する理由も一緒に渡す。</p></div>
+    </div>
+  </section>
+
+  <div class="close">電話で7項目、メールで3候補。次の1件から、このまま使えます。</div>
+
+  <div class="foot">
+    <span>2026.7.17 LIFEX加盟店研修</span>
+    <span>出典：株式会社YUNO HOME 佐古社長の実践資料</span>
+    <span>日時・担当者名は文面例です。自社の候補日・担当者に置き換えて使用してください。</span>
+  </div>
+
+</div>

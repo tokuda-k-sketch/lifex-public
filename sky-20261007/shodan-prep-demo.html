@@ -1,0 +1,449 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LIFEX 商談準備ブリーフィング</title>
+<style>
+  :root{
+    --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9; --bg:#eef2f6;
+    --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+    --good:#2e7d6e; --goodbg:#e7f2ef;
+    --warn:#b05c1f; --warnbg:#fdf3dd; --warnln:#ecd9a8;
+    --wait:#8b949e; --waitbg:#eef1f3;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif; color:var(--ink);
+    background:var(--bg); line-height:1.65; font-feature-settings:"palt"}
+  .bar{position:sticky; top:0; z-index:10; background:#1a1f24; color:#fff; padding:13px 22px; display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+  .bar h1{font-size:15px; font-weight:800; letter-spacing:.01em}
+  .bar .tag{font-size:10.5px; font-weight:700; color:#c9d3dc; background:#2a3037; border-radius:99px; padding:3px 10px}
+  .bar .sp{margin-left:auto; font-size:12px; color:#8b949e}
+  .wrap{width:min(880px,94vw); margin:26px auto 60px}
+
+  /* ===== 一覧ビュー ===== */
+  .list-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:14px}
+  .list-head h2{font-size:19px; font-weight:800; color:var(--navy)}
+  .list-head .cnt{font-size:12.5px; color:var(--sub)}
+  .lead-row{background:#fff; border-radius:10px; box-shadow:0 2px 14px rgba(20,40,60,.08); padding:16px 20px;
+    margin-bottom:11px; display:flex; align-items:center; gap:16px; text-decoration:none; color:inherit}
+  .lead-row:hover{box-shadow:0 4px 18px rgba(20,40,60,.14)}
+  .lead-main{flex:1; min-width:0}
+  .lead-name{font-size:15px; font-weight:800; color:var(--ink)}
+  .lead-meta{font-size:12px; color:var(--sub); margin-top:3px; display:flex; gap:10px; flex-wrap:wrap}
+  .badge{font-size:11px; font-weight:800; border-radius:99px; padding:4px 12px; flex-shrink:0; white-space:nowrap}
+  .badge.done{color:var(--good); background:var(--goodbg)}
+  .badge.processing{color:var(--warn); background:var(--warnbg); border:1px solid var(--warnln)}
+  .badge.pending{color:var(--wait); background:var(--waitbg)}
+  .badge.error{color:#b3372b; background:#fbe9e7}
+
+  /* ===== 個別ビュー ===== */
+  .kh{background:#fff; border-radius:12px; box-shadow:0 2px 14px rgba(20,40,60,.09); padding:22px 26px; margin-bottom:18px}
+  .kh .row1{display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:8px}
+  .kh .nm{font-size:22px; font-weight:800; color:var(--navy)}
+  .kh .nm small{font-size:13px; color:var(--sub); font-weight:600; margin-left:6px}
+  .kh .meta{font-size:12px; color:var(--sub); text-align:right}
+  .chips{display:flex; gap:7px; flex-wrap:wrap; margin-top:12px}
+  .chip{font-size:11.5px; font-weight:700; background:var(--panel); border:1px solid var(--line); border-radius:99px; padding:4px 12px; color:var(--sub)}
+
+  .sec{background:#fff; border-radius:12px; box-shadow:0 2px 14px rgba(20,40,60,.09); padding:20px 26px; margin-bottom:16px}
+  .sec-h{display:flex; align-items:center; gap:9px; margin-bottom:14px}
+  .sec-h .ico{width:26px; height:26px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:14px; color:#fff; flex-shrink:0}
+  .sec-h h3{font-size:14.5px; font-weight:800; color:var(--ink)}
+  .sec-h .note{margin-left:auto; font-size:10.5px; font-weight:700; color:var(--warn); background:var(--warnbg); border:1px solid var(--warnln); border-radius:4px; padding:2px 9px}
+
+  .ico.land{background:#2e7d6e} .ico.plan{background:var(--navy)} .ico.money{background:#3b82c4} .ico.talk{background:#8a5a00}
+  .ico.guess{background:#8b6bb0}
+
+  .sec.guess{border:2px dashed #c9b8dd; background:#faf8fc}
+  .guess-banner{font-size:11.5px; font-weight:700; color:#6b4f96; background:#f1eaf8; border:1px solid #ddc9ee; border-radius:7px; padding:8px 12px; margin-bottom:12px}
+  .guess-item{font-size:13px; line-height:1.75; color:var(--ink); padding:9px 0; border-bottom:1px dashed var(--line)}
+  .guess-item:last-child{border-bottom:none}
+  .guess-item b{color:#6b4f96}
+  .guess-item.na{color:var(--sub); font-style:italic}
+
+  .range{display:flex; align-items:baseline; gap:8px; margin-bottom:12px}
+  .range .v{font-size:26px; font-weight:800; color:var(--navy); font-variant-numeric:tabular-nums}
+  .range .u{font-size:13px; color:var(--sub); font-weight:700}
+  .breakdown{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:6px}
+  .bd-item{border:1px solid var(--line); border-radius:9px; padding:10px 12px}
+  .bd-item .bl{font-size:11px; color:var(--sub); font-weight:700}
+  .bd-item .bv{font-size:15.5px; font-weight:800; color:var(--ink); font-variant-numeric:tabular-nums; margin-top:2px}
+  .finance-note{font-size:11.5px; color:var(--sub); background:var(--panel); border-radius:7px; padding:9px 12px; margin-top:12px}
+
+  .task-list{display:flex; flex-direction:column; gap:8px}
+  .task{display:flex; align-items:center; gap:10px; border:1px solid var(--line); border-radius:9px; padding:10px 14px; text-decoration:none; color:var(--ink); font-size:13.5px; font-weight:700}
+  .task:hover{border-color:var(--blue); background:var(--navy-soft)}
+  .task .arrow{margin-left:auto; color:var(--blue); font-weight:800}
+  .task-note{font-size:11.5px; color:var(--sub); margin-top:10px}
+
+  .plan-text{font-size:13.5px; line-height:1.85; color:var(--ink); white-space:pre-line}
+
+  .plan-card{border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-bottom:12px}
+  .plan-card:last-child{margin-bottom:0}
+  .plan-card .ph{display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:8px}
+  .plan-card .no{font-size:11px; font-weight:700; color:var(--sub); font-variant-numeric:tabular-nums}
+  .plan-card .spec{font-size:14.5px; font-weight:800; color:var(--ink)}
+  .plan-card .price{font-size:13px; font-weight:800; color:var(--navy); text-align:right}
+  .plan-card .price small{font-size:11px; color:var(--sub); font-weight:600}
+  .plan-card .tags{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px}
+  .plan-card .tag{font-size:11px; font-weight:700; background:var(--panel); border:1px solid var(--line); border-radius:99px; padding:2px 10px; color:var(--sub)}
+  .plan-card .reason{font-size:12.5px; color:var(--sub); line-height:1.7}
+  .plan-card .reason b{color:var(--ink)}
+  .plan-card .thumbs{display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap}
+  .plan-card .thumb{position:relative; width:110px; height:82px; border-radius:7px; overflow:hidden; border:1px solid var(--line); cursor:zoom-in; background:var(--panel)}
+  .plan-card .thumb img{width:100%; height:100%; object-fit:cover; display:block}
+  .plan-card .thumb .lbl{position:absolute; left:4px; bottom:3px; font-size:9.5px; font-weight:800; color:#fff; background:rgba(27,37,48,.72); border-radius:4px; padding:1px 6px}
+  .plan-card .thumb.missing{display:flex; align-items:center; justify-content:center; font-size:10.5px; color:var(--sub); cursor:default; text-align:center; padding:6px}
+
+  .lightbox{position:fixed; inset:0; background:rgba(20,25,32,.82); display:none; align-items:center; justify-content:center; z-index:100; padding:30px; cursor:zoom-out}
+  .lightbox.on{display:flex}
+  .lightbox img{max-width:100%; max-height:100%; border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,.4)}
+
+  .talk-card{border:1px solid var(--line); border-radius:10px; overflow:hidden; margin-bottom:16px}
+  .talk-card:last-child{margin-bottom:0}
+  .talk-trig{padding:10px 16px; background:var(--navy-soft); font-size:12.5px; font-weight:800; color:var(--navy)}
+  .talk-body{padding:14px 16px 16px}
+  .talk-line{display:flex; gap:12px; padding:5px 0}
+  .talk-line .who{flex:0 0 56px; font-size:11px; font-weight:800; padding-top:2px; text-align:right}
+  .talk-line.agent .who{color:var(--navy)}
+  .talk-line.customer .who{color:#a06a1f}
+  .talk-line .txt{flex:1; font-size:13.5px; line-height:1.75; color:var(--ink)}
+  .talk-line.customer .txt{color:#5c4a2e}
+  .talk-line.direction{padding:1px 0 6px}
+  .talk-line.direction .who{visibility:hidden}
+  .talk-line.direction .txt{font-size:11.5px; color:var(--sub); font-style:italic}
+  .talk-line.note{margin-top:8px}
+  .talk-line.note .who{visibility:hidden}
+  .talk-line.note .txt{background:var(--warnbg); border:1px solid var(--warnln); border-radius:8px; padding:9px 12px; color:var(--warn); font-weight:700; font-size:12px; line-height:1.6}
+
+  .pending-box{border:2px dashed var(--warnln); background:var(--warnbg); border-radius:10px; padding:18px 20px; text-align:center; color:var(--warn); font-size:13px; font-weight:700}
+
+  .err{width:min(880px,94vw); margin:40px auto; background:#fff; border-radius:10px; padding:24px; text-align:center; color:var(--sub)}
+</style></head>
+<body>
+<div class="bar">
+  <h1>LIFEX 商談準備ブリーフィング</h1>
+  <span class="tag" id="modeTag">読み込み中…</span>
+  <span class="sp" id="statusLine"></span>
+</div>
+<div class="wrap" id="app"></div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" src="" alt=""></div>
+
+<script>
+// ⚠️ セットアップ後、実際のGASウェブアプリURLに差し替えること
+const GAS_URL = 'ここに新規GASプロジェクトのウェブアプリURLを入れる';
+
+const params = new URLSearchParams(location.search);
+const leadId = params.get('id');
+const storeToken = params.get('s');
+
+// ---- デモ用サンプルデータ（徳田さんの実テスト回答をもとに、ストーリー・トークポイントはクロが手動で作成。
+//      Gemini API連携前でも中身のイメージが湧くように、実際の鉄板トーク集の内容を使って作成した実例です） ----
+const DEMO_LEAD = {
+  receivedAt: '2026-09-09 01:23', storeName: 'テスト回答', customerName: '徳田様（テスト回答）',
+  familySize: '4名', floorType: '2階建て', roomType: '4LDK',
+  wishes: '2階リビング, 庭やバルコニー, 書斎・ワーキングスペースなど趣味や仕事に使う部屋',
+  landStatus: '土地あり（建替または購入済）', landArea: '宝塚市',
+  competitors: '一条工務店, アイ工務店, ヤマト住建',
+  questionToAsk: '資金計画について', worry: '収納が少ない、暑い、寒い',
+  status: '完了',
+  finance: { available: true, sizeCategory: '2F建て(33～35坪)',
+    buildBodyRange: [2130,2250], buildTotalInTaxRange: [2805,2937], miscTotalRange: [431,431],
+    buildPlusMiscRange: [3236,3368], totalBudgetManYen: 5200,
+    landBudgetRange: null,
+    landNote: '土地は取得済みのため新たな土地費用は発生しません（建て替えの場合は解体工事費が別途かかります）。',
+    extraWorkAManYen: 420, extraWorkAIsPlaceholder: true,
+    extraWorkBNote: '土地の条件（狭小地・高低差・防火地域等）による付帯工事費用は含まれていません（発生する場合あり）',
+    unit: '万円' },
+  landTasks: { tasks: [
+    { label: 'Googleマップで周辺環境を見る', url: 'https://www.google.com/maps/search/?api=1&query=%E5%AE%9D%E5%A1%9A%E5%B8%82' },
+    { label: 'SUUMOで周辺の売地・相場を調べる', url: 'https://www.google.com/search?q=SUUMO+%E5%AE%9D%E5%A1%9A%E5%B8%82+%E5%9C%9F%E5%9C%B0+%E5%A3%B2%E5%9C%B0' },
+    { label: 'athomeで周辺の売地・相場を調べる', url: 'https://www.google.com/search?q=athome+%E5%AE%9D%E5%A1%9A%E5%B8%82+%E5%9C%9F%E5%9C%B0+%E5%A3%B2%E5%9C%B0' },
+    { label: '学区・小中学校を確認する', url: 'https://www.google.com/maps/search/?api=1&query=%E5%AE%9D%E5%A1%9A%E5%B8%82+%E5%B0%8F%E5%AD%A6%E6%A0%A1' }
+  ], note: '土地は取得済みですが、建て替え前提のため周辺環境の再確認用に生成しています。' },
+  recommendedPlans: [
+    { planNo: '30-63-S-22-017', floorType: '2階建て', tsubo: 30.04, ldk: '3LDK', priceLifex: 2110, priceLite: 1990, solar: '9.77kW', access: '南入り',
+      features: ['書斎', 'バルコニー', 'パントリー', 'ウォークインクローゼット'],
+      reason: 'LDKが2階にあり「2階リビング」の希望に合致。書斎・バルコニーの希望も両方満たす、3つの希望条件が最も揃うプラン。' },
+    { planNo: '35-72-E-11-043', floorType: '2階建て', tsubo: 35.57, ldk: '4LDK', priceLifex: 2300, priceLite: 2180, solar: null, access: '東入り',
+      features: ['ウォークインクローゼット', 'パントリー', 'シューズクローク', 'ファミリークローク'],
+      reason: '希望部屋数「4LDK」に完全一致する唯一の2階建てプラン。収納系（WIC・パントリー・ファミリークローク）が充実しており「収納が少ない」というお悩みに直接応える。' },
+    { planNo: '35-56-E-22-045', floorType: '2階建て', tsubo: 32.06, ldk: '3LDK', priceLifex: 2300, priceLite: 2180, solar: '8.37kW', access: '東入り',
+      features: ['書斎', 'パントリー', 'ウォークインクローゼット', 'ファミリークローク'],
+      reason: 'LDKが2階、書斎ありで希望に合致。太陽光8.37kW搭載で「防災」のきっかけにも訴求できる。' }
+  ],
+  recommendedPlansNote: 'LIFEXは規格住宅のため、実在する全87プランの中から選定（Gプランカタログより）。図面画像は未取得のため、来店時にタブレット等で実物を見せながらご案内ください。',
+  advice: { talks: [
+    { trigger: 'ℹ️ このデモについて', lines: [
+      { speaker: 'note', text: '実際の商談準備では、このお客様が選んだ回答（悩み・検討他社・きっかけ等）に該当するシーンだけが表示されます。今回はプレイブックの動作確認のため、徳田様のテスト回答に無い「きっかけ」パターン（⑦〜⑩）も参考として全部並べています。' }
+    ] },
+    { trigger: '① お客様の悩み（収納が少ない・暑い・寒い）を受け止める', lines: [
+      { speaker: 'agent', text: '今のお住まい、収納のことと、夏の暑さ・冬の寒さで、結構気になってらっしゃるんですね。' },
+      { speaker: 'direction', text: '（うなづきながら、少し間を置く）' },
+      { speaker: 'customer', text: 'そうなんです、収納は増やしたいし、光熱費も気になって…' },
+      { speaker: 'agent', text: '収納も温度も、毎日のことだから積み重なりますもんね。' },
+      { speaker: 'direction', text: '（1呼吸置いて）' },
+      { speaker: 'agent', text: 'ちなみに"暖かい家"って会社によって言うことが結構違うんですが、何を基準に比べたらいいか、聞かれたことはありますか？' },
+      { speaker: 'customer', text: 'いえ、あまり…' },
+      { speaker: 'agent', text: '実は、カタログに書いてある数値よりも、実際に測った気密性（すき間の少なさ）で体感がだいぶ変わるんです。LIFEXはZEH仕様・防湿気密シート・オール樹脂ペアガラスを標準にしていて、そこを数字でお見せできます。収納については、今日お持ちしたおすすめプランで、土間収納やファミリークローゼットの配置を実際に見ていただきながらお話しした方がイメージが湧きやすいと思います。' },
+      { speaker: 'note', text: '出典：鉄板トーク集「性能・暖かさ」／LIFEX標準仕様一覧' }
+    ] },
+    { trigger: '② 一条工務店を検討されている', lines: [
+      { speaker: 'agent', text: '一条さんも見てらっしゃるんですね。良い会社ですよね。' },
+      { speaker: 'direction', text: '（相手の言葉を待つ）' },
+      { speaker: 'customer', text: '性能がいいって聞いて。' },
+      { speaker: 'agent', text: '性能、大事なポイントですよね。' },
+      { speaker: 'direction', text: '（1呼吸置いて）' },
+      { speaker: 'agent', text: '一条さんは性能の評判が本当に高いので、そこは安心材料だと思います。逆に伺いたいんですが、総額の見えやすさや、標準で入ってる設備の充実度は、比べてみてどうでしたか？' },
+      { speaker: 'direction', text: '（お客様の答えを待つ。急いで自分から答えを言わない）' },
+      { speaker: 'agent', text: '（お客様がそこは気になる、と答えたら）そこなんです。LIFEXは性能面でも引けを取らない基準を満たした上で、トータルコスト・デザイン・標準装備まで含めて比べていただける会社です。今日、その4つの軸で比較できる資料もお持ちしたので、後ほど一緒に見ていきましょうか。' },
+      { speaker: 'note', text: '出典：鉄板トーク集「競合：一条工務店」／LIFEXの勝ち筋4軸。営業側から競合の弱点を断定しない。' }
+    ] },
+    { trigger: '③ アイ工務店を検討されている', lines: [
+      { speaker: 'agent', text: 'アイさんも、コストパフォーマンスの評判をよく聞きますよね。' },
+      { speaker: 'customer', text: 'そうなんです、本体価格が安くて。' },
+      { speaker: 'agent', text: '本体価格、大事な比較ポイントです。' },
+      { speaker: 'direction', text: '（1呼吸置いて）' },
+      { speaker: 'agent', text: '一つだけ、今日この場で確認しておいていただきたいのが、標準仕様にどこまで含まれているかなんです。後からオプションを積み重ねていくと、最終的な総額が変わってくることが多いので。LIFEXは標準仕様の充実を大事にしていて、そこは今日の資料で比べていただけます。' },
+      { speaker: 'note', text: '出典：鉄板トーク集「競合：アイ工務店」' }
+    ] },
+    { trigger: '④ ヤマト住建を検討されている（要準備）', lines: [
+      { speaker: 'note', text: '⚠️ 鉄板トーク集にヤマト住建専用の切り返しカードがまだありません。ここでお客様に何かを断定して話す前に、店舗内で切り返しを準備しておいてください（他社の弱み・強みを推測で語らない）。' },
+      { speaker: 'agent', text: 'まずは「ヤマト住建さんの、どのあたりに惹かれていますか？」と聞くところから始めて、お客様の言葉で理由を引き出してください。' }
+    ] },
+    { trigger: '⑤ 「資金計画について」聞きたいと事前に来ている', lines: [
+      { speaker: 'agent', text: '今日は資金計画のところ、しっかりお話ししたいと仰っていましたね。' },
+      { speaker: 'direction', text: '（資料を示しながら）' },
+      { speaker: 'agent', text: 'まず建物本体の価格からお伝えしますね。今回のプラン（2F建て33〜35坪）だと、建物本体は2,130万円〜2,250万円です。これは全国どの店舗で建てていただいても同じ価格なので、まず安心して見ていただける数字です。' },
+      { speaker: 'direction', text: '（1呼吸置いて）' },
+      { speaker: 'agent', text: 'そこに確認申請や構造計算などの工事費用、諸費用、外構工事が加わりますが、この部分は土地の条件などによって変わってくるので、正確な金額は改めて店舗の方でお出ししますね。目安としては、建物本体に諸費用まで含めて3,200万円台〜3,400万円弱くらいのイメージです。土地はすでにお持ちなので、追加の土地費用はかかりません。' },
+      { speaker: 'direction', text: '（一度間を置いて、数字を確認する時間を作る）' },
+      { speaker: 'agent', text: 'ここまでで、イメージと近いですか？　それとも少し印象が違いましたか？' },
+      { speaker: 'note', text: '出典：7/17研修「総額を商談前半で先に出す」型／テストクロージング（温度感の確認）。建物本体価格は全国共通で確実な数字なのでここを軸にする。付帯工事費用A以降の金額は店舗設定額（未登録の場合は全国目安値420万円）に基づく参考値であり、正式な金額は店舗で確認してから提示する。' }
+    ] },
+    { trigger: '⑥ 「防災」がきっかけ', lines: [
+      { speaker: 'agent', text: '防災のことを気にされてマイホームを考え始められたんですね。' },
+      { speaker: 'direction', text: '（気遣いを込めて）' },
+      { speaker: 'agent', text: '実は「制振装置」って世の中にいろいろあるんですが、大きく分けると「速度依存型」と「変位依存型」という、揺れの抑え方が違う2つのタイプがあるのをご存知ですか？' },
+      { speaker: 'customer', text: 'いえ、知らなかったです。' },
+      { speaker: 'agent', text: 'ゴムや金属を使ったタイプは、ある程度大きく揺れてから効き始めるものが多いんです。LIFEXが標準採用している「evoltz」は、自動車のショックアブソーバー技術を応用したオイル式で、震度1くらいの小さな揺れ（3mmの変位）から効き始めて、揺れ幅を15mm以内に抑える設計になっています。' },
+      { speaker: 'direction', text: '（1呼吸置いて）' },
+      { speaker: 'agent', text: '大きな本震だけでなく、そのあと何度も続く余震にも同じように効き続けるように、100万回の耐久試験もクリアしています。地震は1回で終わらないので、そこが安心材料になると思います。' },
+      { speaker: 'note', text: '出典：営業トークスクリプト_制振装置（evoltz）／知識確認テスト（Downloadsフォルダ）' }
+    ] },
+    { trigger: '⑦【参考】きっかけ：現在の家賃が高く、もったいないと思った', lines: [
+      { speaker: 'agent', text: '家賃、ずっとお支払いになるのはもったいないなと感じられたんですね。' },
+      { speaker: 'direction', text: '（共感を込めて）' },
+      { speaker: 'customer', text: 'そうなんです、掛け捨てだなと思って。' },
+      { speaker: 'agent', text: '太陽光を活かした試算だと、一般的な電気料金16,533円が、自家消費の分で10,000円くらいまで下がって、さらに余った分の売電収入も入ってくるケースがあるんです。' },
+      { speaker: 'direction', text: '（間を置いて）' },
+      { speaker: 'agent', text: '借入条件や太陽光の容量によって変わるので、これは一例なんですが、家賃と同じように毎月出ていくお金の中身が変わってくる、というイメージは持っていただけると思います。' },
+      { speaker: 'note', text: '出典：資金計画書xlsx「住居費シミュレーション」（蓄電池なし・太陽光のみの標準構成）。蓄電池はオプションのため標準の話には含めない。' }
+    ] },
+    { trigger: '⑧【参考】きっかけ：家族が増えた・子供が大きくなって手狭になった', lines: [
+      { speaker: 'agent', text: 'お子様が大きくなって、今のお住まいだと手狭に感じられているんですね。' },
+      { speaker: 'customer', text: 'そうなんです、部屋が足りなくて。' },
+      { speaker: 'agent', text: '今、お子様は何人で、それぞれどのくらいの年齢ですか？' },
+      { speaker: 'direction', text: '（お客様の答えを待つ）' },
+      { speaker: 'agent', text: '実はLIFEXは規格住宅なので、入居されてから後で壁を足して部屋を仕切る、というような間取りの変更はできないんです。その代わり、今のご家族の人数に合わせて、最初からちょうどいい部屋数のプランを選んでいただく形になります。後から変えられないからこそ、今日は今の暮らしに本当に合うプランを一緒に見ていきましょう。' },
+      { speaker: 'note', text: '⚠️2026-09-09訂正：LIFEXは規格住宅のため「将来的に間仕切りできる子供部屋」は実現できない。この点を曖昧にしたまま期待を持たせない。' }
+    ] },
+    { trigger: '⑨【参考】きっかけ：転勤・転職で引越しの必要性ができた', lines: [
+      { speaker: 'agent', text: 'お引越しの時期は、もう目安がついていらっしゃいますか？' },
+      { speaker: 'direction', text: '（お客様の答えを待つ）' },
+      { speaker: 'agent', text: '注文住宅だと打合せが何十回にもなって、疲れて妥協されてしまう方も多いんです。LIFEXは工程も期間も読めるので、迷わず早く、きれいに進められます。' },
+      { speaker: 'note', text: '出典：鉄板トーク集「早さ・分かりやすさ」' }
+    ] },
+    { trigger: '⑩【参考】きっかけ：結婚を機に', lines: [
+      { speaker: 'agent', text: 'ご結婚を機にお家のことを考え始められたんですね。' },
+      { speaker: 'direction', text: '（気持ちに寄り添って）' },
+      { speaker: 'agent', text: 'これから先の暮らしについて、お二人でどのくらいすり合わせできていますか？　どちらのご意見も大事にしたいので、聞かせてください。' },
+      { speaker: 'note', text: '出典：「人物金時敵」の"人"（決裁者・キーマン）を確認する型。断定的な訴求材料はまだ無いため、ここから重視点を深掘りする。' }
+    ] }
+  ] },
+  icebreaker: { items: [
+    { label: '年齢（34歳）', text: '初めての住宅購入の可能性がある年代です。専門用語をかみ砕きながら、一つずつ確認して進めると安心感に繋がるかもしれません。' },
+    { label: '家族人数（4名）', text: 'お子様がいらっしゃる可能性が高いです。面談が長くなりそうな場合は、待ち時間対策（キッズスペース等）を先に一声かけておくと親切かもしれません。' },
+    { na: true, text: '⚠️ ご職業・勤務先について：今回はテスト回答（徳田様ご自身の情報）のため、勤務先を話題にしたアイスブレイクの例示は割愛します。実際のお客様データでは、通勤時間や勤務先の場所を軽い話題にできます。' },
+    { na: true, text: '⚠️ 年収について：回答が「000万円」となっており実質未回答（テスト値）のため、年収に基づく訴求軸の仮説は推測できません。' },
+    { na: true, text: '⚠️ 自己資金・ローン希望総額と年収の関係：年収が不明なため、金額の妥当性についての仮説も出せません。' }
+  ] },
+  token: 'demo'
+};
+const DEMO_LIST = [
+  { ...DEMO_LEAD },
+  { ...DEMO_LEAD, customerName: '佐藤 花子（例）', status: '処理中', receivedAt: '2026-09-09 09:05', competitors: '一条工務店' },
+  { ...DEMO_LEAD, customerName: '鈴木 一郎（例）', status: '未処理', receivedAt: '2026-09-09 11:40', competitors: 'ローコスト系ビルダー' }
+];
+
+// 画像は本番運用時、gplan-images/<プランNo>/ 配下に 1F.png・2F.png(2階建てのみ)・exterior.png を
+// このHTMLと同じ場所に配置する想定（GitHub Pagesデプロイ時にフォルダごとコピー）。
+// 読み込めない場合（デモ環境・未整備プラン）は自動でプレースホルダーに切り替わる。
+function planThumbs_(p){
+  const base = 'gplan-images/' + p.planNo + '/';
+  const items = p.floorType === '2階建て'
+    ? [['1F.png','1F'], ['2F.png','2F'], ['exterior.png','外観']]
+    : [['1F.png','間取り'], ['exterior.png','外観']];
+  return items.map(([file, label]) => {
+    const src = base + file;
+    return `<div class="thumb" onclick="openLightbox('${src}')">
+      <img src="${src}" alt="${label}" onerror="this.closest('.thumb').classList.add('missing'); this.closest('.thumb').innerHTML='画像準備中'; this.closest('.thumb').onclick=null;">
+      <span class="lbl">${label}</span>
+    </div>`;
+  }).join('');
+}
+function openLightbox(src){
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('on');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('on');
+}
+
+function statusBadge(status){
+  const map = { '完了':['done','準備完了'], '処理中':['processing','処理中'], '未処理':['pending','未処理'] };
+  const [cls,label] = map[status] || ['error', status];
+  return `<span class="badge ${cls}">${label}</span>`;
+}
+
+function renderList(leads, demo){
+  document.getElementById('modeTag').textContent = demo ? 'デモ表示' : '店舗一覧';
+  const app = document.getElementById('app');
+  const rows = leads.map(l => `
+    <a class="lead-row" href="?id=${l.token}">
+      <div class="lead-main">
+        <div class="lead-name">${l.customerName}</div>
+        <div class="lead-meta"><span>${l.receivedAt}</span><span>${l.roomType || ''} ${l.floorType || ''}</span><span>検討他社：${l.competitors || '—'}</span></div>
+      </div>
+      ${statusBadge(l.status)}
+    </a>`).join('');
+  app.innerHTML = `
+    <div class="list-head"><h2>${demo ? '（デモ）' : ''}来場予定のお客様</h2><span class="cnt">${leads.length}件</span></div>
+    ${rows}
+    ${demo ? '<div class="task-note" style="margin-top:14px">※これはサンプルデータです。GAS_URLの設定後、実際の来場予約データに切り替わります。</div>' : ''}
+  `;
+}
+
+function renderDetail(lead, demo){
+  document.getElementById('modeTag').textContent = demo ? 'デモ表示' : '個別ブリーフィング';
+  const app = document.getElementById('app');
+  const f = lead.finance;
+  const financeHtml = (f && f.available) ? `
+    <div class="range"><span class="v">${f.buildBodyRange[0].toLocaleString()}〜${f.buildBodyRange[1].toLocaleString()}</span><span class="u">${f.unit}（建物本体価格・全国共通・税抜）</span></div>
+    <div class="finance-note">📌 建物本体（${f.sizeCategory}）はマスタ価格表の全国共通価格。ここが確実な数字なので、商談ではまずここを軸に伝える。</div>
+    <div class="breakdown" style="margin-top:12px">
+      <div class="bd-item"><div class="bl">建物工事費用（税込・付帯工事A込み）</div><div class="bv">${f.buildTotalInTaxRange[0]}〜${f.buildTotalInTaxRange[1]}万円</div></div>
+      <div class="bd-item"><div class="bl">諸費用（ローン諸費用・外構等）</div><div class="bv">${f.miscTotalRange[0]}〜${f.miscTotalRange[1]}万円</div></div>
+      <div class="bd-item"><div class="bl">建物＋諸費用 合計（目安）</div><div class="bv">${f.buildPlusMiscRange[0]}〜${f.buildPlusMiscRange[1]}万円</div></div>
+      <div class="bd-item"><div class="bl">総予算（自己資金＋ローン希望）</div><div class="bv">${f.totalBudgetManYen.toLocaleString()}万円</div></div>
+    </div>
+    ${f.landBudgetRange ? `
+      <div class="range" style="margin-top:16px"><span class="v">${f.landBudgetRange[0].toLocaleString()}〜${f.landBudgetRange[1].toLocaleString()}</span><span class="u">万円（土地に使える予算の目安）</span></div>
+    ` : ''}
+    ${f.landNote ? `<div class="finance-note">📍 ${f.landNote}</div>` : ''}
+    ${f.extraWorkAIsPlaceholder ? `<div class="finance-note">⚠️ 「建物工事費用」「合計」に含まれる付帯工事費用A（確認申請・構造計算等）は加盟店ごとに設定額が異なりますが、この店舗の設定値が未登録のため、全国目安値（${f.extraWorkAManYen}万円）で仮計算しています。建物本体価格は影響を受けませんが、それ以外の金額は店舗設定シートに実際の金額を登録すると変わります。</div>` : `<div class="finance-note">「建物工事費用」「合計」は付帯工事費用Aのこの店舗の設定値（${f.extraWorkAManYen}万円）で計算しています。</div>`}
+    <div class="finance-note">左：LIFEX Lite／右：LIFEXのレンジです。「希望部屋数→坪数帯」の対応は仮の割り当てのため、実際の坪数が確定したら店舗の実績値と照合してください。${f.extraWorkBNote}</div>
+  ` : `<div class="pending-box">${(f && f.note) || 'まだ計算されていません'}</div>`;
+
+  const landHtml = lead.landTasks && lead.landTasks.tasks.length ? `
+    <div class="task-list">
+      ${lead.landTasks.tasks.map(t => `<a class="task" href="${t.url}" target="_blank" rel="noopener"><span>${t.label}</span><span class="arrow">→</span></a>`).join('')}
+    </div>
+    <div class="task-note">${lead.landTasks.note}</div>
+  ` : '<div class="pending-box">住所・希望エリアの回答がないため、来店時に直接ヒアリングしてください</div>';
+
+  const planHtml = (lead.recommendedPlans && lead.recommendedPlans.length) ? `
+    ${lead.recommendedPlans.map(p => `
+      <div class="plan-card">
+        <div class="ph">
+          <div><div class="no">プランNo. ${p.planNo}</div><div class="spec">${p.floorType} ${p.tsubo}坪 ${p.ldk}・${p.access}</div></div>
+          <div class="price">LIFEX ${p.priceLifex.toLocaleString()}万円<br><small>LIFEX Lite ${p.priceLite.toLocaleString()}万円（税別・本体工事費のみ）</small></div>
+        </div>
+        <div class="thumbs">${planThumbs_(p)}</div>
+        <div class="tags">${p.features.map(f => `<span class="tag">${f}</span>`).join('')}${p.solar ? `<span class="tag">太陽光${p.solar}</span>` : ''}</div>
+        <div class="reason"><b>選定理由：</b>${p.reason}</div>
+      </div>
+    `).join('')}
+    ${lead.recommendedPlansNote ? `<div class="finance-note">${lead.recommendedPlansNote}</div>` : ''}
+  ` : '<div class="pending-box">🔧 クロに直接依頼するか、Gemini連携（Phase2）で自動生成します</div>';
+
+  const adviceHtml = (lead.advice && lead.advice.status === 'pending')
+    ? `<div class="pending-box">🔧 ${lead.advice.message}</div>`
+    : (lead.advice && lead.advice.talks
+        ? lead.advice.talks.map(t => `<div class="talk-card"><div class="talk-trig">${t.trigger}</div><div class="talk-body">${t.lines.map(l => `
+            <div class="talk-line ${l.speaker}"><div class="who">${l.speaker==='agent'?'営業':l.speaker==='customer'?'お客様':''}</div><div class="txt">${l.text}</div></div>
+          `).join('')}</div></div>`).join('')
+        : '<div class="pending-box">🔧 クロに直接依頼するか、Gemini連携（Phase2）で自動生成します</div>');
+
+  const icebreakerHtml = (lead.icebreaker && lead.icebreaker.items && lead.icebreaker.items.length) ? `
+    <div class="guess-banner">⚠️ ここから下は年齢・職業・家族人数などから機械的に推測した仮説です。断定せず、面談の中で実際の反応を見ながら確認してください。</div>
+    ${lead.icebreaker.items.map(it => `<div class="guess-item ${it.na ? 'na' : ''}">${it.na ? '' : '<b>' + it.label + '：</b>'}${it.text}</div>`).join('')}
+  ` : '<div class="pending-box">🔧 クロに直接依頼するか、Gemini連携（Phase2）で自動生成します</div>';
+
+  app.innerHTML = `
+    <div class="kh">
+      <div class="row1">
+        <div class="nm">${lead.customerName}<small>${lead.storeName}</small></div>
+        <div class="meta">受付：${lead.receivedAt}<br>${statusBadge(lead.status)}</div>
+      </div>
+      <div class="chips">
+        <span class="chip">👪 家族 ${lead.familySize}</span>
+        <span class="chip">🏠 ${lead.floorType} / ${lead.roomType}</span>
+        <span class="chip">📍 ${lead.landArea || lead.landStatus}</span>
+        <span class="chip">🏁 検討他社：${lead.competitors || '—'}</span>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><div class="ico money">💰</div><h3>資金レンジ</h3></div>
+      ${financeHtml}
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><div class="ico land">🗺️</div><h3>土地タスクリスト</h3></div>
+      ${landHtml}
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><div class="ico plan">📐</div><h3>おすすめプラン3選</h3>${(lead.recommendedPlans && lead.recommendedPlans.length) ? '' : '<span class="note">未作成</span>'}</div>
+      ${planHtml}
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><div class="ico talk">🗣️</div><h3>商談ストーリー・トークポイント</h3>${(lead.advice && lead.advice.talks) ? '' : '<span class="note">未作成</span>'}</div>
+      ${adviceHtml}
+    </div>
+
+    <div class="sec guess">
+      <div class="sec-h"><div class="ico guess">🧊</div><h3>アイスブレイク＆推測ポイント</h3></div>
+      ${icebreakerHtml}
+    </div>
+
+    ${lead.questionToAsk ? `<div class="sec"><div class="sec-h"><div class="ico" style="background:var(--sub)">❓</div><h3>お客様が個別相談で聞きたいこと</h3></div><div class="plan-text">${lead.questionToAsk}</div></div>` : ''}
+    ${lead.worry ? `<div class="sec"><div class="sec-h"><div class="ico" style="background:var(--sub)">💭</div><h3>お客様の悩み・不安</h3></div><div class="plan-text">${lead.worry}</div></div>` : ''}
+  `;
+}
+
+async function load(){
+  const statusLine = document.getElementById('statusLine');
+  const isConfigured = GAS_URL.startsWith('http');
+
+  if (!isConfigured) {
+    statusLine.textContent = 'デモモード（GAS未接続）';
+    if (leadId) renderDetail(DEMO_LEAD, true);
+    else renderList(DEMO_LIST, true);
+    return;
+  }
+
+  try {
+    const url = leadId ? `${GAS_URL}?id=${encodeURIComponent(leadId)}` : `${GAS_URL}?s=${encodeURIComponent(storeToken || '')}`;
+    const res = await fetch(url, { redirect: 'follow' });
+    const data = await res.json();
+    if (data.error) throw new Error(data.error);
+    statusLine.textContent = '';
+    if (leadId) renderDetail(data.lead, false);
+    else renderList(data.leads, false);
+  } catch (e) {
+    document.getElementById('app').innerHTML = `<div class="err">データを読み込めませんでした（${String(e.message || e)}）</div>`;
+  }
+}
+load();
+</script>
+</body></html>
