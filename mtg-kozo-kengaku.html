@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LIFEX MTG｜構造見学会 答え合わせ編 投影資料</title>
+<style>
+:root{color-scheme:light}
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6;
+  --leak:#b3372b; --leakbg:#fbe9e7;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;color:var(--ink);background:#e9edf1;margin:0;line-height:1.6;font-feature-settings:"palt"}
+.wrap{width:min(1100px,96vw);margin:26px auto}
+.draft{width:1100px;margin:0 auto 14px;font-size:12px;color:#8a5a00;background:#fdf3dd;border:1px solid #ecd9a8;border-radius:4px;padding:6px 14px;font-weight:700}
+.sl{width:1100px;height:619px;background:#fff;border-radius:8px;box-shadow:0 2px 16px rgba(20,40,60,.09);padding:32px 50px 24px;display:flex;flex-direction:column;position:relative;overflow:hidden;margin:0 auto 22px}
+.top{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.chip{font-size:11.5px;font-weight:700;letter-spacing:.08em;padding:3px 12px;border-radius:99px;background:var(--navy-soft);color:var(--navy)}
+.chip.g{background:#eceff2;color:var(--sub)}
+.chip.r{background:var(--leakbg);color:var(--leak)}
+.pg{margin-left:auto;font-size:12px;color:#b6c0ca;font-variant-numeric:tabular-nums}
+.tt{font-size:26px;font-weight:800;line-height:1.35;margin:2px 0 4px;text-wrap:balance}
+.ms{font-size:14.5px;color:var(--sub);margin:0 0 12px;line-height:1.75}
+.body{flex:1;display:flex;gap:26px;min-height:0}
+.foot{margin-top:10px;border-top:1px dashed var(--line);padding-top:9px;font-size:13.5px;display:flex;gap:10px;align-items:baseline}
+.foot .lb{flex-shrink:0;font-size:11.5px;font-weight:800;color:var(--navy);background:var(--navy-soft);padding:2px 9px;border-radius:4px}
+.ph{flex:0 0 250px;border-radius:8px;overflow:hidden;position:relative;background:#ddd}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph .cr{position:absolute;left:0;bottom:0;right:0;font-size:10.5px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.6));padding:18px 10px 6px}
+.col{flex:1;display:flex;flex-direction:column;gap:12px;min-width:0;justify-content:center}
+.steps{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:10px}
+.st{border:1px solid var(--line);border-radius:8px;padding:12px 12px 14px;background:#fff;position:relative}
+.st .n{width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.st b{display:block;font-size:14.5px;line-height:1.45;margin-bottom:4px}
+.st p{margin:0;font-size:12.5px;color:var(--sub);line-height:1.6}
+.st.key{border-color:var(--navy);background:var(--navy-soft)}
+.quote{border-left:4px solid var(--navy);background:var(--panel);padding:12px 18px;border-radius:0 8px 8px 0;font-size:15px;line-height:1.75}
+.quote small{display:block;font-size:11.5px;color:var(--sub);margin-top:4px}
+.quote.ng{border-color:var(--leak);background:var(--leakbg)}
+.big{font-size:40px;font-weight:800;color:var(--navy);line-height:1.2}
+.cover{padding:0;flex-direction:row}
+.cover .l{flex:0 0 500px;padding:60px 50px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.cover .r{flex:1;background:url(assets/kozo-kengaku/cover.jpg) center/cover}
+.cover h1{font-size:36px;line-height:1.35;margin:0;font-weight:800}
+.cover .k{font-size:13px;font-weight:800;color:var(--navy);letter-spacing:.1em}
+.cover .d{font-size:14px;color:var(--sub)}
+.ag{display:flex;flex-direction:column;gap:10px;flex:1;justify-content:center}
+.ag .a{display:flex;align-items:center;gap:18px;border:1px solid var(--line);border-radius:8px;padding:14px 22px}
+.ag .a .no{font-size:12px;font-weight:800;color:var(--sub);width:84px;flex-shrink:0}
+.ag .a b{font-size:17px}
+.ag .a span{margin-left:auto;font-size:13px;color:var(--sub)}
+.recall{display:flex;gap:26px;align-items:stretch;flex:1}
+.recall .old{flex:1;border:1px solid var(--line);border-radius:10px;padding:26px;background:#fafbfc;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.recall .old .tag{font-size:12px;font-weight:800;color:var(--sub)}
+.recall .old .q{font-size:24px;font-weight:800;line-height:1.45}
+.recall .arrow{display:flex;align-items:center;font-size:30px;color:var(--navy);font-weight:800}
+.recall .new{flex:1;border:2px solid var(--navy);border-radius:10px;padding:26px;background:var(--navy-soft);display:flex;flex-direction:column;justify-content:center;gap:10px}
+.recall .new .q{font-size:24px;font-weight:800;line-height:1.45;color:var(--navy)}
+table.t{width:100%;border-collapse:collapse;font-size:14px}
+table.t th{background:var(--navy);color:#fff;font-weight:700;padding:9px 12px;text-align:left;font-size:13px}
+table.t td{border-bottom:1px solid var(--line);padding:11px 12px;vertical-align:top;line-height:1.6}
+table.t td:first-child{font-weight:800;color:var(--navy);white-space:nowrap}
+table.t td.ng{color:var(--leak)}
+.chk{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1;align-content:center}
+.chk .c{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.chk .c .bx{width:22px;height:22px;border:2px solid var(--navy);border-radius:4px;flex-shrink:0;margin-top:2px}
+.chk .c b{display:block;font-size:15px}
+.chk .c p{margin:2px 0 0;font-size:12.5px;color:var(--sub);line-height:1.6}
+.convo{display:flex;flex-direction:column;gap:12px;flex:1;justify-content:center}
+.convo .ln{display:flex;gap:14px;align-items:flex-start}
+.convo .who{width:64px;flex-shrink:0;font-size:12.5px;font-weight:800;color:var(--sub);text-align:right;padding-top:12px}
+.convo .ln.you .who{color:var(--navy)}
+.convo .bub{background:var(--panel);border-radius:10px;padding:11px 18px;font-size:14.5px;line-height:1.7;flex:1}
+.convo .ln.you .bub{background:var(--navy-soft)}
+.pillar2{display:flex;gap:14px;flex:1}
+.pillar2 .p{flex:1;border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.pillar2 .p h5{margin:0;font-size:13px;color:var(--sub)}
+.pillar2 .p .v{font-size:24px;font-weight:800;color:var(--navy);line-height:1.3}
+.pillar2 .p p{margin:0;font-size:13px;color:var(--sub);line-height:1.65}
+.pillar2 .p.hi{border-color:var(--navy);background:var(--navy-soft)}
+.cost{display:flex;gap:12px;flex:1;align-items:stretch}
+.cost .c{flex:1;border:1px solid var(--line);border-radius:10px;padding:20px 18px;display:flex;flex-direction:column;gap:8px;justify-content:center}
+.cost .c .i{font-size:12px;font-weight:800;color:var(--sub)}
+.cost .c b{font-size:19px;line-height:1.4}
+.cost .c p{margin:0;font-size:13px;color:var(--sub);line-height:1.65}
+.linkBtn{display:inline-flex;align-items:center;gap:8px;font-size:16px;font-weight:800;padding:14px 30px;border-radius:99px;text-decoration:none;background:var(--navy);color:#fff}
+.src{font-size:12px;color:var(--sub);line-height:2}
+.src b{color:var(--ink)}
+.cmp3{flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;min-height:0}
+.cc{display:flex;flex-direction:column;gap:6px;min-height:0}
+.cc .hd{font-size:12.5px;font-weight:800;padding:3px 10px;border-radius:4px;align-self:flex-start}
+.cc.ng .hd{background:var(--leakbg);color:var(--leak)}
+.cc.ok .hd{background:var(--navy);color:#fff}
+.cc.ph2 .hd{background:#eceff2;color:var(--sub)}
+.cc svg{width:100%;flex:1;min-height:0}
+.cc p{margin:0;font-size:12px;color:var(--sub);line-height:1.55}
+.cc.ok p{color:var(--ink)}
+.pw{flex:1;position:relative;border-radius:8px;overflow:hidden;min-height:0;background:#ddd}
+.pw img{width:100%;height:100%;object-fit:cover;display:block}
+.pw img.zoom{position:absolute;right:8px;bottom:8px;width:46%;height:46%;border:3px solid #fff;border-radius:6px;box-shadow:0 3px 10px rgba(0,0,0,.35)}
+.pin{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;border:3px solid #ffd23f;border-radius:50%;box-shadow:0 0 0 2px rgba(0,0,0,.25)}
+svg text{font-family:"Hiragino Sans",sans-serif}
+@media print{body{background:#fff}.draft{display:none}.sl{box-shadow:none;break-after:page;margin:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<svg width="0" height="0" style="position:absolute"><defs id="defs">
+  <linearGradient id="plyF" x1="0" x2="1"><stop offset="0" stop-color="#b98a55"/><stop offset="1" stop-color="#d4a872"/></linearGradient>
+  <pattern id="plyTex" width="60" height="30" patternUnits="userSpaceOnUse"><path d="M0 8 Q15 4 30 9 T60 7 M0 20 Q20 24 40 19 T60 22" stroke="#9c6f3d" stroke-width="1" fill="none" opacity=".5"/></pattern>
+  <linearGradient id="studF" x1="0" x2="1"><stop offset="0" stop-color="#e9cd9f"/><stop offset=".5" stop-color="#f7e3c1"/><stop offset="1" stop-color="#dcb987"/></linearGradient>
+  <pattern id="grain" width="30" height="90" patternUnits="userSpaceOnUse"><path d="M6 0 Q11 25 7 45 T8 90 M18 0 Q14 30 19 60 T17 90 M26 0 Q29 40 25 90" stroke="#c39a62" stroke-width="1" fill="none" opacity=".5"/></pattern>
+  <radialGradient id="cell" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fffbe6"/><stop offset=".7" stop-color="#f3e2a2"/><stop offset="1" stop-color="#dcc274"/></radialGradient>
+  <pattern id="foam" width="18" height="18" patternUnits="userSpaceOnUse"><rect width="18" height="18" fill="#f1df9c"/><circle cx="5" cy="5" r="4.2" fill="url(#cell)"/><circle cx="13" cy="12" r="5" fill="url(#cell)"/><circle cx="14" cy="3" r="2.6" fill="url(#cell)"/><circle cx="4" cy="15" r="3" fill="url(#cell)"/></pattern>
+  <linearGradient id="foamShade" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".12"/><stop offset=".3" stop-color="#000" stop-opacity="0"/><stop offset=".85" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".1"/></linearGradient>
+  <linearGradient id="sheetF" x1="0" x2="1"><stop offset="0" stop-color="#e9e1f0"/><stop offset=".5" stop-color="#ffffff"/><stop offset="1" stop-color="#dcd2e6"/></linearGradient>
+  <linearGradient id="gbF" x1="0" x2="1"><stop offset="0" stop-color="#e7e9ec"/><stop offset=".5" stop-color="#f7f8f9"/><stop offset="1" stop-color="#d5d9de"/></linearGradient>
+  <linearGradient id="tapeF" x1="0" x2="1"><stop offset="0" stop-color="#15181c"/><stop offset=".45" stop-color="#3a3f47"/><stop offset="1" stop-color="#0d0f12"/></linearGradient>
+  <linearGradient id="eboxF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9aa3ad"/><stop offset="1" stop-color="#5d6670"/></linearGradient>
+  <linearGradient id="kboxF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5059"/><stop offset="1" stop-color="#16191d"/></linearGradient>
+  <linearGradient id="topFace" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".0"/><stop offset="1" stop-color="#fff" stop-opacity=".55"/></linearGradient>
+  <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#58b0ec" stop-opacity=".75"/><stop offset="1" stop-color="#58b0ec" stop-opacity="0"/></radialGradient>
+  <marker id="ar" markerWidth="9" markerHeight="9" refX="4.5" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#1f86cf"/></marker>
+  <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="3" dy="5" stdDeviation="5" flood-color="#1b2530" flood-opacity=".22"/></filter>
+  <filter id="shs" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-color="#000" flood-opacity=".35"/></filter>
+</defs></svg>
+
+<!-- 1 表紙 -->
+<section class="sl cover">
+  <div class="l">
+    <div class="k">LIFEX 月2棟目標達成MTG</div>
+    <h1>構造見学会<br>答え合わせ編</h1>
+    <div style="font-size:18px;font-weight:700;line-height:1.6">「丁寧な施工」の中身を、<br>現場で見てきました。</div>
+    <div class="d">2026年8月30日 構造見学会より<br>話し手：Gハウス 現場監督</div>
+  </div>
+  <div class="r"></div>
+</section>
+
+<!-- 2 流れ -->
+<section class="sl">
+  <div class="top"><span class="chip g">本日の流れ</span><span class="pg">02</span></div>
+  <div class="tt">10/2の「理屈」を、実物の現場で確かめる。</div>
+  <div class="ag">
+    <div class="a"><span class="no">おさらい</span><b>「C値0.5以下は、丁寧な施工の結果」</b><span>10/2 断熱×気密×換気</span></div>
+    <div class="a"><span class="no">現場 ①〜⑤</span><b>気密シートが切れる5か所を、どう塞いでいるか</b><span>コンセント・梁・床際・窓・配管</span></div>
+    <div class="a"><span class="no">断熱</span><b>吹付断熱は、厚めに吹いて削る</b><span>95ミリと空気層の話</span></div>
+    <div class="a"><span class="no">失敗</span><b>「実際にあった」から生まれたルール</b><span>手を当てたら風が来た現場</span></div>
+    <div class="a"><span class="no">構造</span><b>耐震と制震は、別の考え方</b><span>エボルツの役割</span></div>
+    <div class="a"><span class="no">会話の型</span><b>お客様にどう話すか</b><span>動画で振り返り</span></div>
+  </div>
+</section>
+
+<!-- 3 おさらい -->
+<section class="sl">
+  <div class="top"><span class="chip g">おさらい</span><span class="pg">03</span></div>
+  <div class="tt">前回、こう話しました。<br>では「丁寧」とは、具体的に何をすることか。</div>
+  <div class="recall" style="margin-top:14px">
+    <div class="old"><div class="tag">10/2 気密⑤</div><div class="q">C値0.5以下は、<br>丁寧な施工の結果。</div><p class="ms" style="margin:0">C値は図面では決まらない。<br>現場の手でしか作れない数字。</p></div>
+    <div class="arrow">→</div>
+    <div class="new"><div class="tag" style="font-size:12px;font-weight:800;color:var(--navy)">今日の答え合わせ</div><div class="q">気密シートが<br>「切れるところ」を、<br>一か所ずつ塞ぐこと。</div></div>
+  </div>
+  <div class="foot"><span class="lb">🗣 そのまま言える</span>「気密の数字は、図面ではなく現場の手間で決まります。」</div>
+</section>
+
+<!-- 4 漏れる場所 -->
+<section class="sl">
+  <div class="top"><span class="chip r">全体像</span><span class="pg">04</span></div>
+  <div class="tt">気密シートは、貼ったところではなく<br>「切れたところ」から漏れる。</div>
+  <div class="body">
+    <svg viewBox="0 0 620 420" style="flex:0 0 600px;height:100%">
+      <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef4fa"/><stop offset="1" stop-color="#fbfcfd"/></linearGradient>
+      <linearGradient id="roofG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a6470"/><stop offset="1" stop-color="#2f3740"/></linearGradient>
+      <linearGradient id="earth" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cdb79a"/><stop offset="1" stop-color="#a88d6c"/></linearGradient></defs>
+      <rect width="620" height="420" rx="14" fill="url(#sky)"/>
+      <rect x="0" y="388" width="620" height="32" fill="url(#earth)"/>
+      <!-- 基礎 -->
+      <rect x="92" y="362" width="436" height="34" fill="#c9ccd0" stroke="#9aa1a9"/>
+      <!-- 外壁・屋根の躯体 -->
+      <g filter="url(#sh)">
+        <polygon points="40,176 310,36 580,176 566,184 310,52 54,184" fill="url(#roofG)"/>
+        <rect x="90" y="170" width="14" height="194" fill="url(#plyF)"/><rect x="516" y="170" width="14" height="194" fill="url(#plyF)"/>
+      </g>
+      <!-- 断熱（屋根に沿う・壁・床下） -->
+      <polygon points="104,178 310,64 516,178 516,192 310,79 104,192" fill="url(#foam)"/>
+      <rect x="104" y="178" width="13" height="172" fill="url(#foam)"/><rect x="503" y="178" width="13" height="172" fill="url(#foam)"/>
+      <rect x="104" y="350" width="412" height="12" fill="url(#foam)"/>
+      <!-- 床・2階床 -->
+      <rect x="117" y="340" width="386" height="10" fill="url(#plyF)"/>
+      <rect x="117" y="258" width="386" height="10" fill="url(#plyF)"/>
+      <!-- 梁（桁） -->
+      <rect x="100" y="182" width="40" height="22" fill="url(#studF)" stroke="#b58d58"/><rect x="480" y="182" width="40" height="22" fill="url(#studF)" stroke="#b58d58"/>
+      <!-- 窓 -->
+      <rect x="88" y="208" width="30" height="38" fill="#cfe6f6" stroke="#4d6b85" stroke-width="2"/>
+      <!-- 配管 -->
+      <rect x="420" y="318" width="8" height="70" fill="#8b98a5"/>
+      <!-- コンセント -->
+      <rect x="117" y="300" width="9" height="16" rx="1.5" fill="#fff" stroke="#1e4e79" stroke-width="1.5"/>
+      <!-- 気密ライン -->
+      <path d="M119 338 L119 194 L310 82 L501 194 L501 338 Z" fill="none" stroke="#c0392b" stroke-width="3" stroke-dasharray="8 6"/>
+      <text x="310" y="150" font-size="13" font-weight="700" fill="#1e4e79" text-anchor="middle">小屋裏も、家の中</text>
+      <text x="310" y="168" font-size="11.5" fill="#5c6c7d" text-anchor="middle">（屋根断熱）</text>
+      <g font-size="15" font-weight="800">
+        <circle cx="142" cy="306" r="14" fill="#b3372b"/><text x="142" y="311" fill="#fff" text-anchor="middle">1</text>
+        <circle cx="462" cy="216" r="14" fill="#b3372b"/><text x="462" y="221" fill="#fff" text-anchor="middle">2</text>
+        <circle cx="200" cy="326" r="14" fill="#b3372b"/><text x="200" y="331" fill="#fff" text-anchor="middle">3</text>
+        <circle cx="146" cy="226" r="14" fill="#b3372b"/><text x="146" y="231" fill="#fff" text-anchor="middle">4</text>
+        <circle cx="448" cy="314" r="14" fill="#b3372b"/><text x="448" y="319" fill="#fff" text-anchor="middle">5</text>
+      </g>
+      <g font-size="11.5" fill="#5c6c7d"><line x1="560" y1="120" x2="590" y2="120" stroke="#c0392b" stroke-width="3" stroke-dasharray="8 6"/><text x="586" y="140" text-anchor="end">気密シート</text></g>
+    </svg>
+    <div class="col">
+      <table class="t">
+        <tr><td>① コンセント</td><td>壁に何十か所も開く穴</td></tr>
+        <tr><td>② 梁</td><td>シートを貫く構造材</td></tr>
+        <tr><td>③ 床際</td><td>壁と床の取り合い</td></tr>
+        <tr><td>④ 窓まわり</td><td>サッシの四隅・FIX窓</td></tr>
+        <tr><td>⑤ 配管</td><td>水道・電気の貫通部</td></tr>
+      </table>
+      <p class="ms" style="margin:0">屋根断熱なので、気密シートは屋根の勾配に沿って貼る。小屋裏まで含めて一つの「家の中」。<br>シートは一枚では貼れず、必ずどこかで切れる。切れた所の処理がC値を決める。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 コンセント -->
+<section class="sl">
+  <div class="top"><span class="chip">現場 ①</span><span class="pg">05</span></div>
+  <div class="tt">コンセントは、吹付の前に「気密ボックス」を付けておく。</div>
+  <div class="ms">コンセントの数だけ、シートに穴が開く。よくあるのは「シートを四角く切ってボックスを出すだけ」。その切り口から、室内の湿った空気が壁の中へ入る。</div>
+  <div class="cmp3">
+    <div class="cc ng"><div class="hd">よくあるNG施工</div>
+      <svg viewBox="0 0 320 290">
+        <rect width="320" height="290" rx="10" fill="#f6f7f9"/>
+        <g filter="url(#sh)"><rect x="30" y="20" width="18" height="230" fill="url(#plyF)"/><rect x="48" y="20" width="132" height="230" fill="url(#foam)"/><rect x="48" y="20" width="132" height="230" fill="url(#foamShade)"/><rect x="180" y="20" width="6" height="230" fill="url(#sheetF)" stroke="#c9bed6" stroke-width=".8"/><rect x="186" y="20" width="20" height="230" fill="url(#gbF)" stroke="#c4c9cf" stroke-width=".8"/></g>
+        <rect x="176" y="100" width="31" height="70" fill="#f6f7f9"/>
+        <g filter="url(#shs)"><rect x="140" y="104" width="68" height="62" fill="url(#eboxF)"/><rect x="204" y="98" width="7" height="74" rx="2" fill="#6d7680"/></g>
+        <ellipse cx="183" cy="104" rx="18" ry="13" fill="url(#glow)"/><ellipse cx="183" cy="166" rx="18" ry="13" fill="url(#glow)"/>
+        <path d="M290 70 C240 70 205 85 186 102 C160 90 130 70 95 64" stroke="#1f86cf" stroke-width="3.5" fill="none" marker-end="url(#ar)" stroke-linecap="round"/>
+        <path d="M290 200 C240 200 205 186 186 168 C160 185 130 205 95 212" stroke="#1f86cf" stroke-width="3.5" fill="none" marker-end="url(#ar)" stroke-linecap="round"/>
+        <text x="296" y="60" font-size="11" fill="#1f6fae" font-weight="700" text-anchor="end">室内の湿った空気</text>
+        <g font-size="10.5" fill="#5c6c7d"><text x="39" y="268" text-anchor="middle">合板</text><text x="114" y="268" text-anchor="middle">吹付断熱</text><text x="183" y="282" text-anchor="middle">シート</text><text x="200" y="268" text-anchor="start">ボード</text></g>
+      </svg>
+      <p>シートを切ってボックスを出すだけ。切り口のすき間から空気が壁の中へ（出典A・B）</p></div>
+    <div class="cc ok"><div class="hd">本部の現場</div>
+      <svg viewBox="0 0 320 290">
+        <rect width="320" height="290" rx="10" fill="#f6f7f9"/>
+        <g filter="url(#sh)"><rect x="30" y="20" width="18" height="230" fill="url(#plyF)"/><rect x="48" y="20" width="132" height="230" fill="url(#foam)"/><rect x="48" y="20" width="132" height="230" fill="url(#foamShade)"/><rect x="180" y="20" width="6" height="230" fill="url(#sheetF)" stroke="#c9bed6" stroke-width=".8"/><rect x="186" y="20" width="20" height="230" fill="url(#gbF)" stroke="#c4c9cf" stroke-width=".8"/></g>
+        <rect x="186" y="92" width="21" height="86" fill="#f6f7f9"/>
+        <g filter="url(#shs)"><path d="M128 96 L180 96 L180 76 L187 76 L187 194 L180 194 L180 174 L128 174 Z" fill="url(#kboxF)"/></g>
+        <g filter="url(#shs)"><rect x="140" y="104" width="68" height="62" fill="url(#eboxF)"/><rect x="204" y="98" width="7" height="74" rx="2" fill="#6d7680"/></g>
+        <rect x="186" y="66" width="7" height="34" rx="1.5" fill="url(#tapeF)"/><rect x="186" y="170" width="7" height="34" rx="1.5" fill="url(#tapeF)"/>
+        <g font-size="11.5" font-weight="700" fill="#1e4e79">
+          <path d="M193 70 L238 46" stroke="#1e4e79"/><text x="240" y="44">気密テープ</text>
+          <path d="M160 96 L238 24" stroke="#1e4e79"/><text x="240" y="22">気密ボックス</text>
+        </g>
+        <g transform="translate(222 200)"><circle r="10" fill="#fff" stroke="#b3372b" stroke-width="2.5"/><path d="M-5 -5 L5 5 M5 -5 L-5 5" stroke="#b3372b" stroke-width="2.5"/></g>
+        <text x="238" y="205" font-size="11" fill="#1f6fae" font-weight="700">空気が入らない</text>
+        <g font-size="10.5" fill="#5c6c7d"><text x="39" y="268" text-anchor="middle">合板</text><text x="114" y="268" text-anchor="middle">吹付断熱</text><text x="183" y="282" text-anchor="middle">シート</text><text x="200" y="268" text-anchor="start">ボード</text></g>
+      </svg>
+      <p>①気密ボックスを先付け → ②吹付 → ③柱の面で削る → ④シートを差し込みテープで一周</p></div>
+    <div class="cc ph2"><div class="hd">実際の現場</div>
+      <div class="pw"><img src="assets/kozo-kengaku/consent_wide.jpg" alt="気密ボックスを説明する現場監督" style="object-position:50% 62%"><img class="zoom" src="assets/kozo-kengaku/consent_zoom.jpg" alt="気密ボックスのアップ" style="object-position:70% 50%"></div>
+      <p>黒い枠＝気密ボックスとテープ。「必ず監督がチェックしています」</p></div>
+  </div>
+  <div class="foot"><span class="lb">🗣 そのまま言える</span>「コンセントの穴、一軒で何十か所あると思いますか。その一つずつを箱で囲ってから断熱しています。」</div>
+</section>
+
+<!-- 6 梁 -->
+<section class="sl">
+  <div class="top"><span class="chip">現場 ②</span><span class="pg">06</span></div>
+  <div class="tt">梁はシートを貫く。だから、まわりをテープで「ぐるっと」。</div>
+  <div class="ms">梁の所はシートを切り欠くしかない。切り欠いた所にすき間が残りやすく、テープを一部だけ貼っても、そこから空気が回る。</div>
+  <div class="cmp3">
+    <div class="cc ng"><div class="hd">よくあるNG施工</div>
+      <svg viewBox="0 0 320 290">
+        <rect width="320" height="290" rx="10" fill="#f6f7f9"/>
+        <rect x="20" y="20" width="280" height="250" fill="url(#sheetF)" opacity=".9"/>
+        <path d="M20 70 Q160 60 300 80 M20 200 Q160 190 300 210" stroke="#fff" stroke-width="8" opacity=".7" fill="none"/>
+        <!-- 梁の断面（正面から見て貫通） -->
+        <g filter="url(#sh)"><rect x="110" y="95" width="100" height="90" fill="url(#studF)"/><rect x="110" y="95" width="100" height="90" fill="url(#grain)"/><rect x="110" y="95" width="100" height="10" fill="url(#topFace)"/></g>
+        <path d="M100 85 L220 85 L220 195 L100 195 Z" fill="none" stroke="#b9b1bf" stroke-width="1.5" stroke-dasharray="3 3"/>
+        <rect x="104" y="89" width="112" height="6" fill="#e9eef3"/><rect x="104" y="185" width="112" height="6" fill="#e9eef3"/><rect x="104" y="89" width="6" height="102" fill="#e9eef3"/><rect x="210" y="89" width="6" height="102" fill="#e9eef3"/>
+        <rect x="120" y="183" width="40" height="10" fill="url(#tapeF)"/>
+        <ellipse cx="216" cy="95" rx="20" ry="14" fill="url(#glow)"/><ellipse cx="104" cy="140" rx="16" ry="20" fill="url(#glow)"/>
+        <path d="M216 95 C240 70 262 52 286 40" stroke="#1f86cf" stroke-width="3.5" fill="none" marker-end="url(#ar)" stroke-linecap="round"/>
+        <path d="M104 140 C80 120 60 100 40 92" stroke="#1f86cf" stroke-width="3.5" fill="none" marker-end="url(#ar)" stroke-linecap="round"/>
+        <text x="160" y="240" font-size="11.5" fill="#1f6fae" font-weight="700" text-anchor="middle">すき間から小屋裏・壁の中へ</text>
+      </svg>
+      <p>切り欠いた所にすき間が残る。テープだけでは将来はがれるおそれも（出典H・I）</p></div>
+    <div class="cc ok"><div class="hd">本部の現場</div>
+      <svg viewBox="0 0 320 290">
+        <rect width="320" height="290" rx="10" fill="#f6f7f9"/>
+        <rect x="20" y="20" width="280" height="250" fill="url(#sheetF)" opacity=".9"/>
+        <path d="M20 70 Q160 60 300 80 M20 200 Q160 190 300 210" stroke="#fff" stroke-width="8" opacity=".7" fill="none"/>
+        <g filter="url(#sh)"><rect x="110" y="95" width="100" height="90" fill="url(#studF)"/><rect x="110" y="95" width="100" height="90" fill="url(#grain)"/><rect x="110" y="95" width="100" height="10" fill="url(#topFace)"/></g>
+        <g filter="url(#shs)"><rect x="96" y="81" width="128" height="16" fill="url(#tapeF)"/><rect x="96" y="183" width="128" height="16" fill="url(#tapeF)"/><rect x="96" y="81" width="16" height="118" fill="url(#tapeF)"/><rect x="208" y="81" width="16" height="118" fill="url(#tapeF)"/></g>
+        <path d="M100 85 L220 85" stroke="#fff" stroke-width="1.5" opacity=".3"/>
+        <g font-size="11.5" font-weight="700" fill="#1e4e79"><path d="M224 90 L250 56" stroke="#1e4e79"/><text x="236" y="50">テープで一周</text></g>
+        <text x="160" y="240" font-size="11.5" fill="#1e4e79" font-weight="700" text-anchor="middle">梁の4面すべて、例外なく</text>
+      </svg>
+      <p>切った所は、梁のまわりにテープをぐるっと。すべての梁で例外なく</p></div>
+    <div class="cc ph2"><div class="hd">実際の現場</div>
+      <div class="pw"><img src="assets/kozo-kengaku/hari_a.jpg" alt="梁と壁の取り合いの気密テープ" style="object-position:50% 35%"><img class="zoom" src="assets/kozo-kengaku/hari_b.jpg" alt="天井の梁に沿った黒い気密テープ" style="object-position:50% 8%"></div>
+      <p>黒い線が気密テープ。「忘れると小屋裏で風が回る。実際にありました」</p></div>
+  </div>
+  <div class="foot"><span class="lb">🗣 そのまま言える</span>「天井裏で風が回る家は、冬に足元が冷えます。梁一本ずつ、テープで塞いでいます。」</div>
+</section>
+
+<!-- 7 床際 -->
+<section class="sl">
+  <div class="top"><span class="chip">現場 ③</span><span class="pg">07</span></div>
+  <div class="tt">床際は、角材を当ててシートを切り、気密テープで留める。</div>
+  <div class="ms">壁と床の境目は、家の外周すべてにある。シートを床まで下ろしただけでは、床合板と柱のわずかなすき間から床下の空気が壁の中に入る。</div>
+  <div class="cmp3">
+    <div class="cc ng"><div class="hd">よくあるNG施工</div>
+      <svg viewBox="0 0 320 290">
+        <rect width="320" height="290" rx="10" fill="#f6f7f9"/>
+        <rect x="20" y="230" width="280" height="40" fill="#e3e6ea"/><text x="160" y="256" font-size="11" fill="#5c6c7d" text-anchor="middle">床下</text>
+        <g filter="url(#sh)"><rect x="40" y="20" width="16" height="190" fill="url(#plyF)"/><rect x="56" y="20" width="96" height="190" fill="url(#foam)"/><rect x="152" y="20" width="6" height="182" fill="url(#sheetF)" stroke="#c9bed6" stroke-width=".8"/>
+        <rect x="40" y="210" width="270" height="20" fill="url(#plyF)"/><rect x="40" y="210" width="270" height="20" fill="url(#plyTex)"/></g>
+        <ellipse cx="155" cy="208" rx="18" ry="10" fill="url(#glow)"/>
+        <path d="M200 262 C190 240 166 220 150 196 C140 160 120 130 100 110" stroke="#1f86cf" stroke-width="3.5" fill="none" marker-end="url(#ar)" stroke-linecap="round"/>
+        <text x="232" y="190" font-size="11.5" fill="#1f6fae" font-weight="700" text-anchor="middle">床下の空気が</text><text x="232" y="206" font-size="11.5" fill="#1f6fae" font-weight="700" text-anchor="middle">壁の中へ</text>
+        <text x="200" y="120" font-size="11" fill="#5c6c7d" text-anchor="middle">室内</text>
+      </svg>
+      <p>床と壁の取り合いに処理がない。床合板と柱のすき間から空気が入る（出典I・J）</p></div>
+    <div class="cc ok"><div class="hd">本部の現場</div>
+      <svg viewBox="0 0 320 290">
+        <rect width="320" height="290" rx="10" fill="#f6f7f9"/>
+        <rect x="20" y="230" width="280" height="40" fill="#e3e6ea"/><text x="160" y="256" font-size="11" fill="#5c6c7d" text-anchor="middle">床下</text>
+        <g filter="url(#sh)"><rect x="40" y="20" width="16" height="190" fill="url(#plyF)"/><rect x="56" y="20" width="96" height="190" fill="url(#foam)"/><rect x="152" y="20" width="6" height="190" fill="url(#sheetF)" stroke="#c9bed6" stroke-width=".8"/>
+        <rect x="40" y="210" width="270" height="20" fill="url(#plyF)"/><rect x="40" y="210" width="270" height="20" fill="url(#plyTex)"/></g>
+        <!-- 35角（ガイド） -->
+        <g opacity=".55"><rect x="158" y="175" width="35" height="35" fill="url(#studF)" stroke="#b58d58" stroke-dasharray="4 3"/></g>
+        <!-- テープ L字 -->
+        <path d="M150 184 L150 212 L196 212" stroke="url(#tapeF)" stroke-width="10" fill="none"/>
+        <path d="M150 184 L150 212 L196 212" stroke="#1b1e22" stroke-width="10" fill="none" opacity=".85"/>
+        <g font-size="11.5" font-weight="700" fill="#1e4e79">
+          <path d="M193 182 L232 140" stroke="#1e4e79"/><text x="214" y="132">35角の材を当てて</text><text x="214" y="148">シートを切る</text>
+          <path d="M190 212 L240 176" stroke="#1e4e79"/><text x="244" y="180">気密テープ</text>
+        </g>
+        <g transform="translate(110 250)"><circle r="10" fill="#fff" stroke="#b3372b" stroke-width="2.5"/><path d="M-5 -5 L5 5 M5 -5 L-5 5" stroke="#b3372b" stroke-width="2.5"/></g>
+      </svg>
+      <p>35角を壁に当ててシートを切り、気密テープで床とつなぐ。1階・2階とも同じ</p></div>
+    <div class="cc ph2"><div class="hd">実際の現場</div>
+      <div class="pw"><img src="assets/kozo-kengaku/yuka.jpg" alt="床際を指す現場監督" style="object-position:50% 60%"><img class="zoom" src="assets/kozo-kengaku/yuka_zoom.jpg" alt="床際の気密テープのアップ"></div>
+      <p>床際に沿った黒い線が気密テープ。外周ぐるっと一本につながる</p></div>
+  </div>
+  <div class="foot"><span class="lb">🗣 そのまま言える</span>「壁と床の境目は、家の外周ぐるっと一周分あります。ここを一本の線でつないでいます。」</div>
+</section>
+
+<!-- 8 窓 -->
+<section class="sl">
+  <div class="top"><span class="chip r">現場 ④</span><span class="pg">08</span></div>
+  <div class="tt">窓まわり。手を当てたら、風が「シューッ」と来た。</div>
+  <div class="ms">窓の角は凹凸が多く、後からシートを切ってテープで留めるのが難しい所。吹付業者さんの標準範囲からサッシまわりが外れていることもある（出典F）。</div>
+  <div class="cmp3">
+    <div class="cc ng"><div class="hd">よくあるNG施工</div>
+      <svg viewBox="0 0 320 290">
+        <rect width="320" height="290" rx="10" fill="#f6f7f9"/>
+        <rect x="20" y="20" width="280" height="250" fill="url(#sheetF)" opacity=".9"/>
+        <g filter="url(#sh)"><rect x="90" y="80" width="170" height="190" fill="#2d3640"/><rect x="102" y="92" width="146" height="178" fill="#cfe6f6"/><path d="M110 100 L170 100 L120 200 Z" fill="#fff" opacity=".35"/></g>
+        <path d="M90 80 L60 50 M260 80 L290 50" stroke="#b9b1bf" stroke-width="1.5"/>
+        <path d="M78 70 L90 80 L78 92" fill="#e9eef3"/><path d="M272 70 L260 80 L272 92" fill="#e9eef3"/>
+        <ellipse cx="88" cy="80" rx="18" ry="16" fill="url(#glow)"/><ellipse cx="262" cy="80" rx="18" ry="16" fill="url(#glow)"/>
+        <path d="M86 78 C66 70 50 64 36 62" stroke="#1f86cf" stroke-width="3.5" fill="none" marker-end="url(#ar)" stroke-linecap="round"/>
+        <path d="M264 78 C284 70 296 64 306 62" stroke="#1f86cf" stroke-width="3.5" fill="none" marker-end="url(#ar)" stroke-linecap="round"/>
+        <text x="175" y="45" font-size="11.5" fill="#1f6fae" font-weight="700" text-anchor="middle">四隅・窓の際から風</text>
+      </svg>
+      <p>窓の四隅でシートが切れたまま。後からテープで留めるのが難しい所（出典L）</p></div>
+    <div class="cc ok"><div class="hd">本部の現場</div>
+      <svg viewBox="0 0 320 290">
+        <rect width="320" height="290" rx="10" fill="#f6f7f9"/>
+        <rect x="20" y="20" width="280" height="250" fill="url(#sheetF)" opacity=".9"/>
+        <g filter="url(#sh)"><rect x="90" y="80" width="170" height="190" fill="#2d3640"/><rect x="102" y="92" width="146" height="178" fill="#cfe6f6"/><path d="M110 100 L170 100 L120 200 Z" fill="#fff" opacity=".35"/></g>
+        <g filter="url(#shs)"><rect x="78" y="68" width="194" height="14" fill="url(#tapeF)"/><rect x="78" y="68" width="14" height="202" fill="url(#tapeF)"/><rect x="258" y="68" width="14" height="202" fill="url(#tapeF)"/>
+        <rect x="68" y="58" width="34" height="34" rx="3" fill="#1b1e22"/><rect x="248" y="58" width="34" height="34" rx="3" fill="#1b1e22"/></g>
+        <g font-size="11.5" font-weight="700" fill="#1e4e79"><path d="M68 64 L48 40" stroke="#1e4e79"/><text x="26" y="34">四隅に部材を貼って押さえる</text></g>
+        <text x="175" y="252" font-size="11.5" fill="#fff" font-weight="700" text-anchor="middle">FIX窓も必ず</text>
+      </svg>
+      <p>四隅の切れ目に部材を貼り、窓の際はテープで一周。FIX窓も必ず処理する</p></div>
+    <div class="cc ph2"><div class="hd">実際の現場</div>
+      <div class="pw"><img src="assets/kozo-kengaku/mado_a.jpg" alt="窓まわりを指す現場監督" style="object-position:50% 25%"><img class="zoom" src="assets/kozo-kengaku/mado.jpg" alt="窓の前で説明する現場監督" style="object-position:50% 30%"></div>
+      <p>「最初はやっていなかった。手を当てると風がシューッと来た現場があった」</p></div>
+  </div>
+  <div class="foot"><span class="lb">🗣 そのまま言える</span>「窓の際は、手を当てれば分かります。完成見学会で、ぜひ手のひらで確かめてください。」</div>
+</section>
+
+<!-- 9 配管 -->
+<section class="sl">
+  <div class="top"><span class="chip">現場 ⑤</span><span class="pg">09</span></div>
+  <div class="tt">配管まわりは、丸く切ったシートを部材で押さえ込む。</div>
+  <div class="ms">配管を通す穴は、管より一回り大きく開ける。何もしなければ、管のまわりにドーナツ状のすき間が残る。</div>
+  <div class="cmp3">
+    <div class="cc ng"><div class="hd">よくあるNG施工</div>
+      <svg viewBox="0 0 320 290">
+        <rect width="320" height="290" rx="10" fill="#f6f7f9"/>
+        <rect x="20" y="20" width="280" height="250" fill="url(#sheetF)" opacity=".9"/>
+        <path d="M20 70 Q160 60 300 80 M20 210 Q160 200 300 220" stroke="#fff" stroke-width="8" opacity=".7" fill="none"/>
+        <circle cx="160" cy="140" r="62" fill="#2a2f36" opacity=".85"/>
+        <circle cx="160" cy="140" r="62" fill="none" stroke="#b9b1bf" stroke-width="2" stroke-dasharray="5 4"/>
+        <g filter="url(#sh)"><circle cx="160" cy="140" r="44" fill="url(#eboxF)"/><circle cx="160" cy="140" r="34" fill="#5d6670"/><circle cx="150" cy="128" r="12" fill="#fff" opacity=".18"/></g>
+        <ellipse cx="160" cy="140" rx="70" ry="70" fill="url(#glow)" opacity=".7"/>
+        <path d="M222 112 C250 92 268 80 290 70" stroke="#1f86cf" stroke-width="3.5" fill="none" marker-end="url(#ar)" stroke-linecap="round"/>
+        <path d="M98 170 C70 190 52 200 32 210" stroke="#1f86cf" stroke-width="3.5" fill="none" marker-end="url(#ar)" stroke-linecap="round"/>
+        <text x="160" y="245" font-size="11.5" fill="#1f6fae" font-weight="700" text-anchor="middle">管のまわりのすき間から</text>
+      </svg>
+      <p>穴が管より大きく、すき間が残る。テープのヨレ、ウレタンの吹き残しも（出典O）</p></div>
+    <div class="cc ok"><div class="hd">本部の現場</div>
+      <svg viewBox="0 0 320 290">
+        <rect width="320" height="290" rx="10" fill="#f6f7f9"/>
+        <rect x="20" y="20" width="280" height="250" fill="url(#sheetF)" opacity=".9"/>
+        <path d="M20 70 Q160 60 300 80 M20 210 Q160 200 300 220" stroke="#fff" stroke-width="8" opacity=".7" fill="none"/>
+        <g filter="url(#sh)"><circle cx="160" cy="140" r="78" fill="url(#kboxF)"/><circle cx="160" cy="140" r="66" fill="none" stroke="#5a616b" stroke-width="2"/><circle cx="160" cy="140" r="56" fill="none" stroke="#5a616b" stroke-width="2"/></g>
+        <g filter="url(#shs)"><circle cx="160" cy="140" r="44" fill="url(#eboxF)"/><circle cx="160" cy="140" r="34" fill="#5d6670"/><circle cx="150" cy="128" r="12" fill="#fff" opacity=".18"/></g>
+        <g font-size="11.5" font-weight="700" fill="#1e4e79"><path d="M226 92 L256 56" stroke="#1e4e79"/><text x="196" y="48">部材でぐっと押さえる</text></g>
+        <text x="160" y="250" font-size="11.5" fill="#1e4e79" font-weight="700" text-anchor="middle">切りっぱなしにしない</text>
+      </svg>
+      <p>シートを丸く切り、切りっぱなしにせず専用の部材をかぶせて押さえる</p></div>
+    <div class="cc ph2"><div class="hd">現場の言葉</div>
+      <div class="quote" style="margin-top:4px">「配管まわりは、シートを丸く切ります。切りっぱなしの所を、ぐっと押さえて気密をとっています」<small>クリップ21</small></div>
+      <div class="quote" style="margin-top:10px">「配管まわりも漏れやすい所なので」<small>クリップ17</small></div></div>
+  </div>
+  <div class="foot"><span class="lb">🗣 そのまま言える</span>「水道管が壁を通る所にも、一つずつ専用の部材をかぶせています。」</div>
+</section>
+
+<!-- 10 吹付 -->
+<section class="sl">
+  <div class="top"><span class="chip">断熱</span><span class="pg">10</span></div>
+  <div class="tt">吹付断熱は、ギリギリではなく「いっぱいまで吹いて削る」。</div>
+  <div class="body">
+    <div class="ph"><img src="assets/kozo-kengaku/fukitsuke.jpg" alt="壁の断熱材を説明する現場監督"><div class="cr">窓下の壁を説明する現場監督</div></div>
+    <svg viewBox="0 0 330 340" style="flex:0 0 330px">
+      <text x="82" y="18" font-size="13" font-weight="800" fill="#b3372b" text-anchor="middle">ギリギリで吹く</text>
+      <g filter="url(#sh)"><rect x="22" y="30" width="20" height="270" fill="url(#plyF)"/><rect x="22" y="30" width="20" height="270" fill="url(#plyTex)"/>
+      <path d="M42 30 L112 30 Q96 70 108 105 Q90 150 104 190 Q92 235 108 270 Q100 290 112 300 L42 300 Z" fill="url(#foam)"/></g>
+      <rect x="122" y="30" width="6" height="270" fill="url(#sheetF)" stroke="#c9bed6" stroke-width=".8"/>
+      <path d="M108 105 Q116 110 122 108 L122 190 Q112 192 104 190 Z" fill="#58b0ec" opacity=".35"/>
+      <text x="115" y="152" font-size="10.5" font-weight="700" fill="#1f6fae" text-anchor="middle" transform="rotate(-90 115 152)">空気層</text>
+      <text x="250" y="18" font-size="13" font-weight="800" fill="#1e4e79" text-anchor="middle">いっぱい吹いて削る</text>
+      <g filter="url(#sh)"><rect x="190" y="30" width="20" height="270" fill="url(#plyF)"/><rect x="190" y="30" width="20" height="270" fill="url(#plyTex)"/>
+      <rect x="210" y="30" width="86" height="270" fill="url(#foam)"/><rect x="210" y="30" width="86" height="270" fill="url(#foamShade)"/></g>
+      <rect x="296" y="30" width="6" height="270" fill="url(#sheetF)" stroke="#c9bed6" stroke-width=".8"/>
+      <path d="M296 40 L318 40" stroke="#1e4e79"/><text x="318" y="320" font-size="11" fill="#1e4e79" font-weight="700" text-anchor="end">密着</text>
+      <g font-size="10.5" fill="#5c6c7d"><text x="32" y="316" text-anchor="middle">合板</text><text x="74" y="316" text-anchor="middle">断熱</text><text x="126" y="316" text-anchor="middle">シート</text></g>
+    </svg>
+    <div class="col">
+      <div><span class="big">95</span><span style="font-size:18px;font-weight:800;color:var(--navy)">ミリ設定</span><p class="ms" style="margin:4px 0 0">1センチはへこんでもいい計算で95ミリ</p></div>
+      <div class="quote">「気密シートと断熱材は、できるだけ密着させないとダメ。ここに空気層ができてしまうので」<small>クリップ05より</small></div>
+      <p class="ms" style="margin:0">へこんだ所は補修して、また削る。吹く量が増える分、材料費はかかる。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11 見えない手間とコスト -->
+<section class="sl">
+  <div class="top"><span class="chip">手間とコスト</span><span class="pg">11</span></div>
+  <div class="tt">丁寧さは、タダではない。<br>どこにコストをかけているかを、言えるようにする。</div>
+  <div class="cost">
+    <div class="c"><div class="i">断熱材</div><b>いっぱいまで吹く</b><p>削る分まで吹くので、材料費がかかる（クリップ05）</p></div>
+    <div class="c"><div class="i">ボード</div><b>シートを押さえるボード</b><p>切った所を10センチほどのボードで押さえる。ボードの枚数が倍かかる（クリップ09・14）</p></div>
+    <div class="c"><div class="i">業者</div><b>吹付のやり直し</b><p>「何回もやり替えさせました」。当たり外れがあるからこそ、現場で見る（クリップ05）</p></div>
+    <div class="c" style="border-color:var(--navy);background:var(--navy-soft)"><div class="i" style="color:var(--navy)">人</div><b>監督のチェック</b><p>気密ボックスまわりは必ず監督が確認（クリップ22）</p></div>
+  </div>
+  <div class="foot"><span class="lb">🗣 そのまま言える</span>「見えなくなる所にかけたお金は、住んでからの光熱費と快適さで返ってきます。」</div>
+</section>
+
+<!-- 12 失敗からルール -->
+<section class="sl">
+  <div class="top"><span class="chip r">失敗</span><span class="pg">12</span></div>
+  <div class="tt">今のやり方は、「実際にあった」失敗から生まれている。</div>
+  <div class="body">
+    <div class="col">
+      <table class="t">
+        <tr><th style="width:120px">場所</th><th>実際にあったこと</th><th>今のルール</th></tr>
+        <tr><td>窓まわり</td><td class="ng">手を当てると、風がシューッと来た</td><td>FIX窓まわりも必ず貼る</td></tr>
+        <tr><td>梁まわり</td><td class="ng">小屋裏で風が回った</td><td>梁のまわりは、すべてテープでぐるっと</td></tr>
+        <tr><td>シートの切れ目</td><td class="ng">最初は押さえていなかった</td><td>10センチほどのボードで押さえる</td></tr>
+        <tr><td>吹付断熱</td><td class="ng">仕上がりに当たり外れがあった</td><td>やり替えさせる。いっぱい吹いて削る</td></tr>
+      </table>
+      <p class="ms" style="margin:0">失敗をなかったことにせず、次の現場のルールに変える。<br>自社の現場で同じことが起きていないか、監督さんと一度話してみてください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 13 耐震と制震 -->
+<section class="sl">
+  <div class="top"><span class="chip">構造</span><span class="pg">13</span></div>
+  <div class="tt">エボルツを入れるから、耐震等級を下げていい。<br>ではない。</div>
+  <div class="body">
+    <div class="ph" style="flex-basis:220px"><img src="assets/kozo-kengaku/evoltz.jpg" alt="制震ダンパー エボルツ"><div class="cr">斜めの銀色の部材がエボルツ</div></div>
+    <div class="col">
+      <div class="pillar2">
+        <div class="p"><h5>耐震</h5><div class="v">揺れに耐える力</div><p>耐力壁・筋交いで取る。<br>エボルツ自体に耐力はない。</p></div>
+        <div class="p hi"><h5>制震（エボルツ）</h5><div class="v">耐える力を<br>長持ちさせる</div><p>N50の釘穴が緩まないように守る。<br>すき間が開かないので、C値の劣化も防ぐ。</p></div>
+      </div>
+      <div class="quote">「あくまで耐震と制震は別の考え方。その耐力を長持ちさせるためにエボルツが入っている」<small>クリップ02より</small></div>
+    </div>
+  </div>
+  <div class="foot"><span class="lb">🗣 そのまま言える</span>「地震に1回耐えるだけでなく、2回目・3回目にも、建てた日の強さと気密を保つための部材です。」</div>
+</section>
+
+<!-- 14 自社チェック -->
+<section class="sl">
+  <div class="top"><span class="chip">行動</span><span class="pg">14</span></div>
+  <div class="tt">来週、自社の現場で5か所だけ見てください。</div>
+  <div class="chk">
+    <div class="c"><div class="bx"></div><div><b>① コンセント</b><p>気密ボックスは吹付前に付いているか。シートは差し込んでテープ処理されているか</p></div></div>
+    <div class="c"><div class="bx"></div><div><b>② 梁まわり</b><p>シートが切れた所に、テープがぐるっと一周しているか</p></div></div>
+    <div class="c"><div class="bx"></div><div><b>③ 床際</b><p>壁と床の取り合いが、気密テープで一本につながっているか</p></div></div>
+    <div class="c"><div class="bx"></div><div><b>④ 窓まわり</b><p>FIX窓も含め、窓の際と四隅が処理されているか。手を当てて風を感じないか</p></div></div>
+    <div class="c"><div class="bx"></div><div><b>⑤ 配管まわり</b><p>丸く切ったシートが、部材で押さえられているか</p></div></div>
+    <div class="c" style="border-color:var(--navy);background:var(--navy-soft)"><div class="bx" style="background:var(--navy)"></div><div><b>＋ 吹付断熱</b><p>へこみすぎていないか。シートとの間に空気層ができていないか</p></div></div>
+  </div>
+  <div class="foot"><span class="lb">お願い</span>お客様に話すのは、自社の現場で実際にやっていることだけ。できていない所は、まず現場をそろえるところから。</div>
+</section>
+
+<!-- 15 会話の型 -->
+<section class="sl">
+  <div class="top"><span class="chip g">会話の型</span><span class="pg">15</span></div>
+  <div class="tt">お客様の「本当にちゃんと建ててくれるの？」に、現場の言葉で返す。</div>
+  <div class="convo">
+    <div class="ln"><div class="who">お客様</div><div class="bub">気密が高いって、どこの会社も言いますよね。</div></div>
+    <div class="ln you"><div class="who">あなた</div><div class="bub">そうなんです。数字は図面では決まらないので、私たちは「シートが切れる所」を一か所ずつ塞いでいます。コンセントの穴、梁のまわり、床と壁の境目、窓の際、水道管の通り道。この5か所です。</div></div>
+    <div class="ln"><div class="who">お客様</div><div class="bub">そこまでやるんですね。</div></div>
+    <div class="ln you"><div class="who">あなた</div><div class="bub">正直に言うと、昔は窓の際から風が入った現場もありました。そこから全部ルールに変えています。工事中の現場も見ていただけますよ。</div></div>
+  </div>
+</section>
+
+<!-- 16 動画 -->
+<section class="sl">
+  <div class="top"><span class="chip g">動画</span><span class="pg">16</span></div>
+  <div class="tt">現場監督の説明を、4分のダイジェストで。</div>
+  <div class="body" style="align-items:center">
+    <div class="ph" style="flex-basis:220px;height:390px"><img src="assets/kozo-kengaku/kantoku.jpg" alt="説明する現場監督"></div>
+    <div class="col">
+      <table class="t">
+        <tr><td>1</td><td>コンセントは気密ボックスを先付け</td></tr>
+        <tr><td>2</td><td>吹付断熱は厚めに吹いて削る</td></tr>
+        <tr><td>3</td><td>梁まわりはテープでぐるっと</td></tr>
+        <tr><td>4</td><td>床際は角材を当ててシートを切る</td></tr>
+        <tr><td>5</td><td>窓まわり、手を当てたら風が来た</td></tr>
+        <tr><td>6</td><td>耐震と制震は別の考え方</td></tr>
+      </table>
+      <div><a class="linkBtn" href="https://youtu.be/w42reORq32s" target="_blank" rel="noopener">▶ ダイジェストを見る（4分15秒）</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- 17 出典 -->
+<section class="sl">
+  <div class="top"><span class="chip g">出典</span><span class="pg">17</span></div>
+  <div class="tt">出典</div>
+  <div class="src">
+    <b>動画・写真</b>：2026年8月30日 LIFEX構造見学会の撮影素材（動画23本・写真6枚）。発言はすべて現場監督の説明を文字起こしし、話し言葉を整えたもの。<br>
+    <b>95ミリ設定・1センチへこんでもいい計算</b>：クリップ05（1:01〜1:05）<br>
+    <b>35角の材</b>：クリップ21（0:05〜0:13）<br>
+    <b>10センチほどのボード</b>：クリップ14（0:16〜0:25）／<b>ボード枚数が倍</b>：クリップ09（0:00〜0:10）<br>
+    <b>N50の釘・耐震等級2の話・C値の劣化</b>：クリップ02（0:00〜0:39）<br>
+    <b>C値0.5以下は、丁寧な施工の結果</b>：10/2 LIFEX MTG 投影資料「気密⑤」（mtg-20260925.html）
+  <br>
+    <b>よくあるNG施工（出典A〜O）</b>：メーカー・検査会社・業界団体がNG例・注意点として挙げているもの。業界全体の割合を示す統計ではない<br>
+    A ヨシダクラフト「気密コンセントボックスって何?」 yoshidacraft.net/blog/16274/／B 匠の一冊「コンセント部分、本当に気密処理出来ていますか？」 takumi-probook.jp／F 日本アクア 施工マニュアル（2023年版サンプル）p.2 n-aqua.jp<br>
+    H 北海道住宅新聞 2010/6/5「在来の気密と先張り簡略化３」 iesu.co.jp／I 匠の一冊「取り合い部の気密対策」 takumi-probook.jp／J 断熱建材協議会 講演資料（東京都住宅政策本部掲載）p.14〜19<br>
+    L ハウプロ「窓の取付け前に、先張り気密シート」 houseproject.co.jp／O 日本住環境「配管貫通部の施工で絶対NGな施工例」 njkk.co.jp</div>
+</section>
+
+</div>
+</body>
+</html>
