@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ゴルフコンペ組み合わせ</title>
+<title>ゴルフコンペ幹事ツール</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.min.js"></script>
@@ -90,12 +90,63 @@ button.danger{border-color:var(--warn);color:var(--warn)}
 .add label{font-size:12px;color:var(--sub);display:flex;align-items:center;gap:4px}
 .empty{color:var(--sub);font-size:12px;padding:8px}
 .print-only{display:none}
+
+.maintabs{display:flex;gap:4px;padding:0 16px;background:var(--navy);flex-wrap:wrap;align-items:flex-end}
+.maintabs button{border:none;border-radius:8px 8px 0 0;background:rgba(255,255,255,.14);color:#fff;padding:8px 18px;font-weight:500}
+.maintabs button.on{background:#fff;color:var(--navy);font-weight:700}
+.maintabs .sp{flex:1}
+.maintabs .share{background:none;border:1px solid rgba(255,255,255,.6);border-radius:6px;padding:5px 12px;margin-bottom:6px;color:#fff}
+.tabpage{display:none}
+.tabpage.on{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.chip{border-radius:999px;padding:3px 12px;font-size:13px;background:var(--surface);color:var(--sub)}
+.chip.ng{background:var(--warn-soft);color:var(--warn)}
+.chip.cau{background:var(--caution-soft);color:var(--caution)}
+.chip.ok{background:var(--navy-soft);color:var(--navy)}
+.tasks{border-top:1px solid var(--line)}
+.task{display:grid;grid-template-columns:28px 112px 1fr 110px auto;gap:10px;align-items:start;padding:9px 4px;border-bottom:1px solid var(--line)}
+.task input[type=checkbox]{width:18px;height:18px;margin-top:2px;accent-color:var(--navy)}
+.task .due{font-weight:700;font-size:13px;white-space:nowrap}
+.task .left{display:block;font-weight:400;font-size:12px;color:var(--sub)}
+.task.overdue .due,.task.overdue .left{color:var(--warn)}
+.task.soon .left{color:var(--caution)}
+.task .ttl{font-weight:500}
+.task .memo{font-size:12px;color:var(--sub);margin-top:2px;white-space:pre-wrap}
+.task .owner{font-size:13px;color:var(--sub)}
+.task .owner.none{color:#b0b7c2}
+.task.done{opacity:.5}
+.task.done .ttl{text-decoration:line-through}
+.task .acts{display:flex;gap:4px}
+.task .act{border:1px solid var(--line);background:#fff;color:var(--sub);padding:2px 6px;border-radius:5px;font-size:11px}
+.flag{display:inline-block;font-size:11px;border:1px solid var(--warn);color:var(--warn);border-radius:4px;padding:0 5px;margin-right:6px;vertical-align:1px}
+.sched{position:relative;margin-left:8px;border-left:2px solid var(--line);padding-left:18px}
+.sday{position:relative;margin-bottom:16px}
+.sday::before{content:"";position:absolute;left:-25px;top:6px;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--navy)}
+.sday.past::before{border-color:var(--line);background:var(--line)}
+.sday.event::before{background:var(--navy)}
+.sday h3{margin:0 0 4px;font-size:15px;color:var(--navy)}
+.sday h3 small{font-weight:400;color:var(--sub);margin-left:8px;font-size:12px}
+.sday.event h3{font-size:17px}
+.sday.past h3{color:var(--sub)}
+.sitem{display:flex;gap:10px;padding:4px 0;font-size:13px;align-items:baseline}
+.sitem .tm{width:44px;flex:none;color:var(--sub);font-variant-numeric:tabular-nums}
+.sitem .ow{color:var(--sub);font-size:12px}
+.sitem.done{color:var(--sub);text-decoration:line-through}
+.sitem.overdue{color:var(--warn)}
+.today{position:relative;margin:4px 0 16px;color:var(--warn);font-size:12px;font-weight:700}
+.today::before{content:"";position:absolute;left:-24px;right:0;top:9px;border-top:2px dashed var(--warn);z-index:0}
+.today span{position:relative;background:#fff;padding-right:8px}
+@media (max-width:760px){
+  .task{grid-template-columns:28px 1fr;}
+  .task .due{grid-column:2}
+  .task .body,.task .owner,.task .acts{grid-column:2}
+}
 @media (max-width:760px){
   .main{grid-template-columns:1fr}
   .pool{position:static;max-height:none}
 }
 @media print{
-  header,.bar,.alerts,.pool,.trash,.panel,.summary,.gnote,.card .acts,.screen-only{display:none!important}
+  .maintabs,header,.bar,.alerts,.pool,.trash,.panel,.summary,.gnote,.card .acts,.screen-only{display:none!important}
   .print-only{display:block;font-size:18px;font-weight:700;margin:0 0 10px}
   .main{display:block}
   .wrap{padding:0}
@@ -111,17 +162,45 @@ button.danger{border-color:var(--warn);color:var(--warn)}
 </head>
 <body>
 <header>
-  <h1>11/18 ゴルフコンペ 組み合わせ</h1>
-  <p>PGM池田カントリークラブ　五月平コース・綾羽コースから同時スタート（予約10組。組数を減らすと両コースに半分ずつ振り分け）。名前をドラッグして組へ入れる。1組4名まで。作業内容はこのブラウザに自動保存されます。</p>
+  <h1>11/18 ゴルフコンペ 幹事ツール</h1>
+  <p>PGM池田カントリークラブ　五月平コース・綾羽コースから同時スタート（予約10組。組数を減らすと両コースに半分ずつ振り分け）。作業内容はこのブラウザに自動保存されます。ほかの人に渡すときは「共有リンクを作る」から。</p>
 </header>
+<nav class="maintabs" id="mainTabs">
+  <button data-tab="kumi">組み合わせ</button>
+  <button data-tab="task">やること</button>
+  <button data-tab="sched">スケジュール</button>
+  <span class="sp"></span>
+  <button class="share" id="btnShare">共有リンクを作る</button>
+</nav>
 <div class="wrap">
+  <div class="panel" id="sharePanel">
+    <p>このリンクを開くと、今の組み合わせ・やること・完了チェックがそのまま相手の画面に出ます（コピー済み）。相手が直したら、相手に新しいリンクを作ってもらい送り返してもらってください。同時に別々の人が直すと、後から開いたリンクの内容で上書きされます。<br>
+    リンクには参加者の名前が含まれるので、社内のチャットだけで送ってください。</p>
+    <textarea id="shareUrl" readonly style="height:70px"></textarea>
+    <div class="bar" style="margin:8px 0 0"><button id="btnCloseShare">閉じる</button></div>
+  </div>
+
+  <div class="tabpage" id="tab-task">
+    <div class="bar">
+      <button class="primary" id="btnAddTask">＋やることを追加</button>
+      <span class="tabs" id="taskFilter" style="margin:0"><button data-f="open">未完了だけ</button><button data-f="all">すべて</button></span>
+    </div>
+    <div class="chips" id="taskChips"></div>
+    <div class="tasks" id="taskList"></div>
+  </div>
+
+  <div class="tabpage" id="tab-sched">
+    <div class="chips" id="schedChips"></div>
+    <div class="sched" id="schedList"></div>
+  </div>
+
+  <div class="tabpage" id="tab-kumi">
   <div class="bar">
     <button class="primary" id="btnImport">参加者を読み込む</button>
     <label class="num">組数 <input type="number" id="groupCount" min="1" max="10"></label>
     <button id="btnAuto">未配置の人を自動で振り分け</button>
     <button id="btnReset">全員を未配置に戻す</button>
     <button id="btnCopy">シート用にコピー</button>
-    <button id="btnShare">共有リンクを作る</button>
     <button id="btnPrint">印刷</button>
     <button class="danger" id="btnClear">参加者を全員消去</button>
   </div>
@@ -136,13 +215,6 @@ button.danger{border-color:var(--warn);color:var(--warn)}
       <button id="btnClosePanel">閉じる</button>
       <span id="importMsg" style="font-size:13px;color:var(--sub)"></span>
     </div>
-  </div>
-
-  <div class="panel" id="sharePanel">
-    <p>このリンクを開くと、今の組み合わせがそのまま相手の画面に出ます（コピー済み）。相手が直したら、相手に新しいリンクを作ってもらい送り返してもらってください。同時に別々の人が直すと、後から開いたリンクの内容で上書きされます。<br>
-    リンクには参加者の名前が含まれるので、社内のチャットだけで送ってください。</p>
-    <textarea id="shareUrl" readonly style="height:70px"></textarea>
-    <div class="bar" style="margin:8px 0 0"><button id="btnCloseShare">閉じる</button></div>
   </div>
 
   <div class="summary" id="summary"></div>
@@ -166,7 +238,26 @@ button.danger{border-color:var(--warn);color:var(--warn)}
       <div class="grid" id="grid"></div>
     </section>
   </div>
+  </div>
 </div>
+
+<dialog id="taskDlg">
+  <form id="tkForm">
+    <h3 id="tkTitle">やることの編集</h3>
+    <label>やること<input type="text" id="tkTtl" required></label>
+    <div style="display:flex;gap:8px">
+      <label style="flex:1">期限<input type="date" id="tkDue" required style="display:block;width:100%;font:inherit;padding:5px;border:1px solid var(--line);border-radius:6px;margin-top:3px"></label>
+      <label style="width:110px">時刻（任意）<input type="time" id="tkTime" style="display:block;width:100%;font:inherit;padding:5px;border:1px solid var(--line);border-radius:6px;margin-top:3px"></label>
+    </div>
+    <label>担当<input type="text" id="tkOwner"></label>
+    <label>メモ<textarea id="tkMemo" style="display:block;width:100%;height:64px;font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;margin-top:3px"></textarea></label>
+    <label class="chk"><input type="checkbox" id="tkFlag">要確認（決めること・確かめること）</label>
+    <div class="btns">
+      <button type="button" class="danger" id="tkDelete">削除</button>
+      <span style="display:flex;gap:8px"><button type="button" id="tkCancel">やめる</button><button type="submit" class="primary">保存</button></span>
+    </div>
+  </form>
+</dialog>
 
 <dialog id="editDlg">
   <form id="edForm">
@@ -196,7 +287,7 @@ function slotsFor(n){
 const OLD_SLOTS = [...TIMES.map(t=>COURSES[0]+' '+t), ...TIMES.map(t=>COURSES[1]+' '+t)];
 function isOldDefault(starts){ return starts.length>0 && starts.every((s,i)=>s===OLD_SLOTS[i]); }
 const KEY = 'golf-kumiawase-20261118';
-let state = { people: {}, pool: [], groups: [], starts: [] };
+let state = { people: {}, pool: [], groups: [], starts: [], tasks: [] };
 let seq = 1;
 
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify({state, seq})); }catch(e){} }
@@ -491,7 +582,7 @@ function doImport(replace){
   const text = document.getElementById('pasteArea').value;
   if(replace){
     if(Object.keys(state.people).length && !confirm('今の参加者と配置を消して読み込み直します。よろしいですか？')) return;
-    state = { people:{}, pool:[], groups:[], starts:[] };
+    state = { people:{}, pool:[], groups:[], starts:[], tasks: state.tasks || [] };
   }
   const r = importText(text);
   if(!state.groups.length) setGroupCount(defaultGroupCount());
@@ -565,6 +656,138 @@ document.getElementById('btnCopy').onclick = async ()=>{
   }
 };
 document.getElementById('btnPrint').onclick = ()=>window.print();
+
+// ===== タブ（組み合わせ／やること／スケジュール） =====
+let currentTab = 'kumi';
+try{ currentTab = localStorage.getItem(KEY+'-tab') || 'kumi'; }catch(e){}
+function showTab(t){
+  currentTab = t;
+  try{ localStorage.setItem(KEY+'-tab', t); }catch(e){}
+  document.querySelectorAll('#mainTabs [data-tab]').forEach(b=>b.classList.toggle('on', b.dataset.tab===t));
+  document.querySelectorAll('.tabpage').forEach(el=>el.classList.toggle('on', el.id==='tab-'+t));
+  if(t==='kumi') render(); else if(t==='task') renderTasks(); else renderSched();
+}
+document.getElementById('mainTabs').onclick = e=>{ const t = e.target.dataset && e.target.dataset.tab; if(t) showTab(t); };
+
+// ===== やること =====
+function newTaskId(){ return 't' + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+const WD = ['日','月','火','水','木','金','土'];
+function todayStr(){ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function daysLeft(due){ const [y,m,d]=due.split('-').map(Number); const t=new Date(); return Math.round((new Date(y,m-1,d) - new Date(t.getFullYear(),t.getMonth(),t.getDate()))/86400000); }
+function fmtDate(due){ const [y,m,d]=due.split('-').map(Number); return `${m}/${d}（${WD[new Date(y,m-1,d).getDay()]}）`; }
+function leftText(n){ return n<0 ? `${-n}日過ぎています` : n===0 ? '今日まで' : `あと${n}日`; }
+function sortedTasks(){ return (state.tasks||[]).slice().sort((a,b)=> a.due.localeCompare(b.due) || (a.time||'99').localeCompare(b.time||'99') || (b.flag?1:0)-(a.flag?1:0)); }
+function taskStatus(t){ if(t.done) return 'done'; const n=daysLeft(t.due); return n<0 ? 'overdue' : n<=3 ? 'soon' : ''; }
+function taskChipsHTML(){
+  const ts = state.tasks||[];
+  const open = ts.filter(t=>!t.done);
+  const over = open.filter(t=>daysLeft(t.due)<0).length;
+  const soon = open.filter(t=>{ const n=daysLeft(t.due); return n>=0 && n<=3; }).length;
+  const flag = open.filter(t=>t.flag).length;
+  return `<span class="chip ok">完了 ${ts.length-open.length} / ${ts.length}件</span>`
+    + (over?`<span class="chip ng">期限切れ ${over}件</span>`:'')
+    + (soon?`<span class="chip cau">3日以内 ${soon}件</span>`:'')
+    + (flag?`<span class="chip cau">要確認 ${flag}件</span>`:'')
+    + `<span class="chip">担当未定 ${open.filter(t=>!t.owner).length}件</span>`;
+}
+let taskFilter = 'open';
+try{ taskFilter = localStorage.getItem(KEY+'-tf') || 'open'; }catch(e){}
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function renderTasks(){
+  document.querySelectorAll('#taskFilter button').forEach(b=>b.classList.toggle('on', b.dataset.f===taskFilter));
+  document.getElementById('taskChips').innerHTML = taskChipsHTML();
+  const list = sortedTasks().filter(t=> taskFilter==='all' || !t.done);
+  document.getElementById('taskList').innerHTML = list.length ? list.map(t=>{
+    const st = taskStatus(t), n = daysLeft(t.due);
+    return `<div class="task ${st}">
+      <input type="checkbox" data-done="${t.id}" ${t.done?'checked':''} title="完了にする">
+      <div class="due">${fmtDate(t.due)}${t.time?' '+esc(t.time):''}<span class="left">${t.done?'完了':leftText(n)}</span></div>
+      <div class="body"><div class="ttl">${t.flag?'<span class="flag">要確認</span>':''}${esc(t.title)}</div>${t.memo?`<div class="memo">${esc(t.memo)}</div>`:''}</div>
+      <div class="owner ${t.owner?'':'none'}">${t.owner?esc(t.owner):'担当未定'}</div>
+      <div class="acts"><button class="act" data-tedit="${t.id}">編集</button></div>
+    </div>`;
+  }).join('') : '<div class="empty">表示するやることはありません。</div>';
+  save();
+}
+document.getElementById('taskFilter').onclick = e=>{
+  const f = e.target.dataset && e.target.dataset.f; if(!f) return;
+  taskFilter = f; try{ localStorage.setItem(KEY+'-tf', f); }catch(err){}
+  renderTasks();
+};
+document.addEventListener('change', e=>{
+  const id = e.target.dataset && e.target.dataset.done; if(!id) return;
+  const t = state.tasks.find(x=>x.id===id); if(!t) return;
+  t.done = e.target.checked;
+  currentTab==='task' ? renderTasks() : renderSched();
+});
+const tdlg = document.getElementById('taskDlg');
+let tediting = null;
+function openTask(id){
+  const t = id ? state.tasks.find(x=>x.id===id) : null;
+  tediting = id || null;
+  document.getElementById('tkTitle').textContent = t ? 'やることの編集' : 'やることを追加';
+  document.getElementById('tkTtl').value = t ? t.title : '';
+  document.getElementById('tkDue').value = t ? t.due : todayStr();
+  document.getElementById('tkTime').value = t ? (t.time||'') : '';
+  document.getElementById('tkOwner').value = t ? (t.owner||'') : '';
+  document.getElementById('tkMemo').value = t ? (t.memo||'') : '';
+  document.getElementById('tkFlag').checked = t ? !!t.flag : false;
+  document.getElementById('tkDelete').style.visibility = t ? 'visible' : 'hidden';
+  tdlg.showModal();
+  document.getElementById('tkTtl').focus();
+}
+document.getElementById('btnAddTask').onclick = ()=>openTask(null);
+document.addEventListener('click', e=>{
+  const b = e.target.closest && e.target.closest('[data-tedit]');
+  if(b) openTask(b.dataset.tedit);
+});
+document.getElementById('tkForm').onsubmit = e=>{
+  e.preventDefault();
+  const v = { title: document.getElementById('tkTtl').value.trim(), due: document.getElementById('tkDue').value,
+    time: document.getElementById('tkTime').value, owner: document.getElementById('tkOwner').value.trim(),
+    memo: document.getElementById('tkMemo').value.trim(), flag: document.getElementById('tkFlag').checked };
+  if(!v.title || !v.due) return;
+  if(tediting){ Object.assign(state.tasks.find(x=>x.id===tediting), v); }
+  else state.tasks.push({ id:newTaskId(), done:false, ...v });
+  tdlg.close();
+  currentTab==='task' ? renderTasks() : renderSched();
+};
+document.getElementById('tkCancel').onclick = ()=>tdlg.close();
+document.getElementById('tkDelete').onclick = ()=>{
+  const t = state.tasks.find(x=>x.id===tediting);
+  if(!t || !confirm(`「${t.title}」を削除します。よろしいですか？`)) return;
+  state.tasks = state.tasks.filter(x=>x.id!==tediting);
+  tdlg.close();
+  currentTab==='task' ? renderTasks() : renderSched();
+};
+
+// ===== スケジュール（やることを日付ごとの流れで見る） =====
+const EVENT_DAY = '2026-11-18';
+function renderSched(){
+  document.getElementById('schedChips').innerHTML = taskChipsHTML();
+  const ts = sortedTasks();
+  const days = [];
+  ts.forEach(t=>{ let d = days.find(x=>x.due===t.due); if(!d){ d={ due:t.due, items:[] }; days.push(d); } d.items.push(t); });
+  const today = todayStr();
+  let html = '', todayShown = false;
+  const todayLine = `<div class="today"><span>今日 ${fmtDate(today)}</span></div>`;
+  days.forEach(d=>{
+    if(!todayShown && d.due > today){ html += todayLine; todayShown = true; }
+    const n = daysLeft(d.due);
+    const cls = (d.due===EVENT_DAY ? 'event ' : '') + (n<0 ? 'past' : '');
+    html += `<div class="sday ${cls}"><h3>${fmtDate(d.due)}${d.due===EVENT_DAY?'　コンペ当日':''}<small>${n<0?`${-n}日前`:n===0?'今日':`あと${n}日`}</small></h3>`
+      + d.items.map(t=>`<div class="sitem ${t.done?'done':(n<0?'overdue':'')}">
+          <input type="checkbox" data-done="${t.id}" ${t.done?'checked':''} style="accent-color:var(--navy)">
+          ${t.time?`<span class="tm">${esc(t.time)}</span>`:''}
+          <span>${t.flag?'<span class="flag">要確認</span>':''}<a href="#" data-tedit="${t.id}" style="color:inherit;text-decoration:none">${esc(t.title)}</a> <span class="ow">${t.owner?'（'+esc(t.owner)+'）':''}</span></span>
+        </div>`).join('')
+      + `</div>`;
+  });
+  if(!todayShown) html += todayLine;
+  document.getElementById('schedList').innerHTML = days.length ? html : '<div class="empty">まだやることがありません。「やること」タブから追加してください。</div>';
+  save();
+}
+document.addEventListener('click', e=>{ if(e.target.closest && e.target.closest('a[data-tedit]')) e.preventDefault(); });
 document.getElementById('tabs').onclick = e=>{
   const v = e.target.dataset && e.target.dataset.view;
   if(!v || v===view) return;
@@ -620,7 +843,8 @@ async function encodeState(){
   const ids = Object.keys(state.people);
   const idx = Object.fromEntries(ids.map((id,i)=>[id,i]));
   const data = { v:1, p: ids.map(id=>{ const p=state.people[id]; return [p.name, p.company||'', p.isG?1:0]; }),
-    g: state.groups.map(g=>g.map(id=>idx[id])), o: state.pool.map(id=>idx[id]), s: state.starts };
+    g: state.groups.map(g=>g.map(id=>idx[id])), o: state.pool.map(id=>idx[id]), s: state.starts,
+    t: (state.tasks||[]).map(t=>[t.due, t.time||'', t.title, t.owner||'', t.memo||'', t.done?1:0, t.flag?1:0]) };
   const raw = new TextEncoder().encode(JSON.stringify(data));
   if(window.CompressionStream) return 'z' + b64url(await pipe(raw, new CompressionStream('deflate-raw')));
   return 'j' + b64url(raw);
@@ -631,7 +855,8 @@ async function decodeState(str){
   const d = JSON.parse(new TextDecoder().decode(raw));
   const people = {}; const ids = [];
   d.p.forEach(([name, company, g])=>{ const id='p'+(seq++); ids.push(id); people[id]={ id, name, company, isG:!!g }; });
-  return { people, groups: d.g.map(g=>g.map(i=>ids[i])), pool: d.o.map(i=>ids[i]), starts: d.s || [] };
+  const tasks = d.t ? d.t.map(([due,time,title,owner,memo,done,flag])=>({ id:newTaskId(), due, time, title, owner, memo, done:!!done, flag:!!flag })) : null;
+  return { people, groups: d.g.map(g=>g.map(i=>ids[i])), pool: d.o.map(i=>ids[i]), starts: d.s || [], tasks };
 }
 document.getElementById('btnShare').onclick = async ()=>{
   // ローカルのファイルで開いている場合も、相手が開ける公開URLでリンクを作る
@@ -644,13 +869,15 @@ document.getElementById('btnShare').onclick = async ()=>{
 document.getElementById('btnCloseShare').onclick = ()=>document.getElementById('sharePanel').classList.remove('open');
 
 async function boot(){
-if(!load()){ state = { people:{}, pool:[], groups:[], starts:[] }; }
+if(!load()){ state = { people:{}, pool:[], groups:[], starts:[], tasks:[] }; }
+if(!state.tasks) state.tasks = [];
 const m = location.hash.match(/^#s=(.+)$/);
 if(m){
   try{
     const incoming = await decodeState(m[1]);
     const hasLocal = Object.keys(state.people).length > 0;
     if(!hasLocal || confirm('共有リンクの組み合わせを開きます。この画面に保存されている組み合わせは上書きされます。よろしいですか？')){
+      if(!incoming.tasks) incoming.tasks = state.tasks || [];
       state = incoming;
     }
   }catch(e){ alert('共有リンクを読み込めませんでした。リンクが途中で切れていないか確認してください。'); }
@@ -666,7 +893,7 @@ if(isOldDefault(state.starts)){
 }
 const def = slotsFor(state.groups.length);
 state.starts = state.groups.map((g,i)=> state.starts[i] || def[i] || '');
-render();
+showTab(currentTab);
 }
 boot();
 </script>
