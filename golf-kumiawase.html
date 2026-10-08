@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ゴルフコンペ組み合わせ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.2/Sortable.min.js"></script>
+<style>
+:root{
+  --bg:#ffffff; --surface:#f5f7fa; --line:#d9dee6; --text:#1c2430; --sub:#5d6878;
+  --navy:#1f3a5f; --navy-soft:#e8eef6; --warn:#a4462f; --warn-soft:#fbeee9; --caution:#8a6a12; --caution-soft:#fbf5e3;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans JP",sans-serif;font-size:14px;line-height:1.5}
+header{background:var(--navy);color:#fff;padding:14px 16px}
+header h1{margin:0;font-size:18px;font-weight:700}
+header p{margin:2px 0 0;font-size:12px;opacity:.85}
+.wrap{max-width:1280px;margin:0 auto;padding:16px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+button{font:inherit;border:1px solid var(--navy);background:#fff;color:var(--navy);border-radius:6px;padding:7px 12px;cursor:pointer}
+button.primary{background:var(--navy);color:#fff}
+button:hover{opacity:.85}
+label.num{display:flex;align-items:center;gap:6px;color:var(--sub)}
+label.num input{width:56px;font:inherit;padding:5px;border:1px solid var(--line);border-radius:6px}
+.summary{display:flex;flex-wrap:wrap;gap:16px;color:var(--sub);font-size:13px;margin-bottom:10px}
+.summary b{color:var(--text);font-size:15px}
+.alerts{margin-bottom:14px}
+.alerts div{padding:6px 10px;border-radius:6px;margin-bottom:4px;font-size:13px}
+.alerts .ng{background:var(--warn-soft);color:var(--warn)}
+.alerts .cau{background:var(--caution-soft);color:var(--caution)}
+.alerts .ok{background:var(--navy-soft);color:var(--navy)}
+.main{display:grid;grid-template-columns:260px 1fr;gap:16px;align-items:start}
+.pool{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px;position:sticky;top:10px;max-height:calc(100vh - 20px);overflow:auto}
+.pool h2,.groups h2{font-size:14px;margin:0 0 8px;color:var(--navy)}
+.pool .list{min-height:120px}
+.groups .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.group{border:1px solid var(--line);border-radius:10px;background:#fff;padding:8px}
+.group.ng{border-color:var(--warn);box-shadow:0 0 0 1px var(--warn) inset}
+.group.cau{border-color:#d9b75a}
+.ghead{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.ghead .no{font-weight:700;color:var(--navy);font-size:15px;white-space:nowrap}
+.ghead input{flex:1;min-width:0;font:inherit;font-size:12px;padding:3px 6px;border:1px solid var(--line);border-radius:5px;color:var(--sub)}
+.ghead .cnt{font-size:12px;color:var(--sub);white-space:nowrap}
+.group .list{min-height:184px;border-radius:6px;background:var(--surface);padding:4px}
+.gnote{font-size:12px;margin-top:4px;min-height:18px}
+.gnote .ng{color:var(--warn)}
+.gnote .cau{color:var(--caution)}
+.card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:6px 8px;margin:4px 0;cursor:grab;display:flex;justify-content:space-between;align-items:center;gap:6px;touch-action:none;user-select:none}
+.card .nm{font-weight:700}
+.card .co{font-size:12px;color:var(--sub)}
+.card.g{border-left:4px solid var(--navy);background:var(--navy-soft)}
+.card .tag{font-size:11px;color:#fff;background:var(--navy);border-radius:4px;padding:1px 5px;white-space:nowrap}
+.card .acts{display:flex;align-items:center;gap:4px;flex:none}
+.card .act{border:1px solid var(--line);background:#fff;color:var(--sub);padding:2px 6px;border-radius:5px;font-size:11px;line-height:1.3}
+.card .act:hover{border-color:var(--navy);color:var(--navy);opacity:1}
+.card .act.del:hover{border-color:var(--warn);color:var(--warn)}
+dialog{border:1px solid var(--line);border-radius:10px;padding:16px;width:min(360px,calc(100vw - 32px));color:var(--text)}
+dialog::backdrop{background:rgba(20,30,45,.35)}
+dialog h3{margin:0 0 10px;font-size:15px;color:var(--navy)}
+dialog label{display:block;font-size:12px;color:var(--sub);margin-bottom:8px}
+dialog input[type=text]{display:block;width:100%;font:inherit;font-size:14px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;margin-top:3px;color:var(--text)}
+dialog .chk{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text)}
+dialog .btns{display:flex;justify-content:space-between;gap:8px;margin-top:14px}
+.trash{margin-top:10px;border:2px dashed var(--line);border-radius:8px;color:var(--sub);font-size:12px;text-align:center;padding:10px 6px;min-height:44px}
+.trash.over{border-color:var(--warn);color:var(--warn);background:var(--warn-soft)}
+.trash .card{display:none}
+button.danger{border-color:var(--warn);color:var(--warn)}
+.card.dup{border-color:var(--warn);background:var(--warn-soft)}
+.sortable-ghost{opacity:.35}
+.sortable-chosen{box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.panel{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:14px;background:var(--surface);display:none}
+.panel.open{display:block}
+.panel textarea{width:100%;height:160px;font:12px/1.4 monospace;padding:8px;border:1px solid var(--line);border-radius:6px}
+.panel p{margin:0 0 8px;font-size:13px;color:var(--sub)}
+.add{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.add input[type=text]{font:inherit;padding:5px 8px;border:1px solid var(--line);border-radius:6px;width:100%}
+.add label{font-size:12px;color:var(--sub);display:flex;align-items:center;gap:4px}
+.empty{color:var(--sub);font-size:12px;padding:8px}
+.print-only{display:none}
+@media (max-width:760px){
+  .main{grid-template-columns:1fr}
+  .pool{position:static;max-height:none}
+}
+@media print{
+  header,.bar,.alerts,.pool,.trash,.panel,.summary,.gnote,.card .acts,.screen-only{display:none!important}
+  .print-only{display:block;font-size:18px;font-weight:700;margin:0 0 10px}
+  .main{display:block}
+  .wrap{padding:0}
+  .groups .grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .group{break-inside:avoid;border-color:#999;box-shadow:none}
+  .group .list{min-height:0;background:#fff}
+  .card{border:none;border-bottom:1px solid #ddd;border-radius:0;background:#fff!important;margin:0}
+  .card .tag{background:none;color:var(--navy);border:1px solid var(--navy)}
+  .ghead input{border:none;color:#000}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>11/18 ゴルフコンペ 組み合わせ</h1>
+  <p>PGM池田カントリークラブ　五月平コース・綾羽コースから同時スタート（予約10組）。名前をドラッグして組へ入れる。1組4名まで。作業内容はこのブラウザに自動保存されます。</p>
+</header>
+<div class="wrap">
+  <div class="bar">
+    <button class="primary" id="btnImport">参加者を読み込む</button>
+    <label class="num">組数 <input type="number" id="groupCount" min="1" max="10"></label>
+    <button id="btnAuto">未配置の人を自動で振り分け</button>
+    <button id="btnReset">全員を未配置に戻す</button>
+    <button id="btnCopy">シート用にコピー</button>
+    <button id="btnShare">共有リンクを作る</button>
+    <button id="btnPrint">印刷</button>
+    <button class="danger" id="btnClear">参加者を全員消去</button>
+  </div>
+
+  <div class="panel" id="importPanel">
+    <p>参加者リスト（研究会員名簿タブ）から、見出しの行ごと範囲を選んでコピーし、下に貼り付けてください。「11月18日」が〇の人だけを読み込みます。<br>
+    見出しの行がなくても、参加者リストの列の順番のままなら読み込めます。「会社名［Tab］氏名」の2列でも読み込めます。Gハウス社員は区分か会社名に「Gハウス」が入っていれば自動で判別します。</p>
+    <textarea id="pasteArea" placeholder="ここに貼り付け"></textarea>
+    <div class="bar" style="margin:8px 0 0">
+      <button class="primary" id="btnDoImport">読み込む（今の配置は消えます）</button>
+      <button id="btnAppend">追加で読み込む</button>
+      <button id="btnClosePanel">閉じる</button>
+      <span id="importMsg" style="font-size:13px;color:var(--sub)"></span>
+    </div>
+  </div>
+
+  <div class="panel" id="sharePanel">
+    <p>このリンクを開くと、今の組み合わせがそのまま相手の画面に出ます（コピー済み）。相手が直したら、相手に新しいリンクを作ってもらい送り返してもらってください。同時に別々の人が直すと、後から開いたリンクの内容で上書きされます。<br>
+    リンクには参加者の名前が含まれるので、社内のチャットだけで送ってください。</p>
+    <textarea id="shareUrl" readonly style="height:70px"></textarea>
+    <div class="bar" style="margin:8px 0 0"><button id="btnCloseShare">閉じる</button></div>
+  </div>
+
+  <div class="summary" id="summary"></div>
+  <div class="alerts" id="alerts"></div>
+
+  <div class="main">
+    <section class="pool">
+      <h2>未配置 <span id="poolCnt"></span></h2>
+      <div class="list" id="pool" data-g="-1"></div>
+      <div class="trash" id="trash">ここへドラッグすると削除</div>
+      <div class="add">
+        <input type="text" id="addCo" placeholder="会社名（Gハウスは部署）">
+        <input type="text" id="addNm" placeholder="氏名">
+        <label><input type="checkbox" id="addG">Gハウス社員</label>
+        <button id="btnAdd">1名追加</button>
+      </div>
+    </section>
+    <section class="groups">
+      <div class="print-only">11月18日（水）ビジネスマッチング ゴルフコンペ　組み合わせ表　PGM池田カントリークラブ</div>
+      <h2 class="screen-only">組</h2>
+      <div class="grid" id="grid"></div>
+    </section>
+  </div>
+</div>
+
+<dialog id="editDlg">
+  <form id="edForm">
+    <h3>参加者の編集</h3>
+    <label>氏名<input type="text" id="edNm" required></label>
+    <label>会社名（Gハウス社員は部署）<input type="text" id="edCo"></label>
+    <label class="chk"><input type="checkbox" id="edG">Gハウス社員</label>
+    <div class="btns">
+      <button type="button" class="danger" id="edDelete">この人を削除</button>
+      <span style="display:flex;gap:8px"><button type="button" id="edCancel">やめる</button><button type="submit" class="primary">保存</button></span>
+    </div>
+  </form>
+</dialog>
+
+<script>
+const CAP = 4;
+// 楽天GORAの予約枠（10組）。組数を減らした場合は上から使う
+const SLOTS = ['五月平 07:22','五月平 07:30','五月平 07:37','五月平 07:45','五月平 07:52','綾羽 07:22','綾羽 07:30','綾羽 07:37','綾羽 07:45','綾羽 07:52'];
+const KEY = 'golf-kumiawase-20261118';
+let state = { people: {}, pool: [], groups: [], starts: [] };
+let seq = 1;
+
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify({state, seq})); }catch(e){} }
+function load(){
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(raw){ const d = JSON.parse(raw); state = d.state; seq = d.seq || 1; return true; }
+  }catch(e){}
+  return false;
+}
+
+// 会社名の比較用キー（株式会社などの表記ゆれと空白を除く）
+function coKey(p){
+  if(p.isG) return 'Gハウス';
+  return (p.company||'').replace(/株式会社|有限会社|合同会社|\(株\)|（株）|㈱|㈲|[\s　]/g,'').toLowerCase();
+}
+function isGRow(kubun, company){
+  const s = (kubun||'') + ' ' + (company||'');
+  return /[GＧ]ハウス/.test(s);
+}
+
+// TSV解析（Sheetsからのコピーで備考に改行がある場合の引用符に対応）
+function parseTSV(text){
+  const rows=[]; let row=[], cell='', q=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){
+      if(c==='"'){ if(text[i+1]==='"'){cell+='"';i++;} else q=false; }
+      else cell+=c;
+    }else{
+      if(c==='"' && cell==='') q=true;
+      else if(c==='\t'){ row.push(cell); cell=''; }
+      else if(c==='\n'){ row.push(cell); rows.push(row); row=[]; cell=''; }
+      else if(c!=='\r') cell+=c;
+    }
+  }
+  if(cell!=='' || row.length){ row.push(cell); rows.push(row); }
+  return rows.filter(r=>r.some(x=>x.trim()!==''));
+}
+
+const KUBUN_RE = /^(研|賛助|顧問|お試し|[GＧ]ハウス|LIFEX)/;
+function importText(text){
+  // タブがなく空白4つで区切られている場合（チャット等からの貼り付け）はタブとして扱う
+  if(!text.includes('\t')) text = text.replace(/ {4}/g, '\t');
+  const rows = parseTSV(text);
+  if(!rows.length) return { added:0, skipped:0, msg:'貼り付けが空です' };
+  let hi = rows.findIndex(r=>r.some(x=>x.trim()==='氏名'));
+  let col = {};
+  let body;
+  if(hi>=0){
+    const h = rows[hi].map(x=>x.trim());
+    col.kubun = h.indexOf('区分');
+    col.co = h.indexOf('企業名');
+    col.nm = h.indexOf('氏名');
+    col.d18 = h.findIndex(x=>/18日|11\/18/.test(x));
+    body = rows.slice(hi+1);
+  }else if(rows[0].length>=4 && KUBUN_RE.test(rows[0][0].trim())){
+    // 見出しなしで参加者リストの列順（区分・企業名・登録区分・氏名…）のまま貼られた場合
+    col = { kubun:0, co:1, nm:3, d18: rows[0].length>=11 ? 10 : -1 };
+    body = rows;
+  }else if(rows[0].length>=2){
+    col = { kubun:-1, co:0, nm:1, d18:-1 };
+    body = rows;
+  }else{
+    col = { kubun:-1, co:-1, nm:0, d18:-1 };
+    body = rows;
+  }
+  const existing = new Set(Object.values(state.people).map(p=>p.name.replace(/[\s　]/g,'')+'|'+p.company));
+  let added=0, skipped=0, dup=0;
+  for(const r of body){
+    const get = i => (i>=0 && r[i]!=null) ? r[i].trim() : '';
+    const name = get(col.nm);
+    if(!name){ continue; }
+    if(col.d18>=0 && !/^[〇○◯]$/.test(get(col.d18))){ skipped++; continue; }
+    const company = get(col.co);
+    const isG = isGRow(get(col.kubun), company);
+    const k = name.replace(/[\s　]/g,'')+'|'+company;
+    if(existing.has(k)){ dup++; continue; }
+    existing.add(k);
+    const id = 'p'+(seq++);
+    state.people[id] = { id, name, company, isG };
+    state.pool.push(id);
+    added++;
+  }
+  let msg = `${added}名を読み込みました`;
+  if(col.d18>=0) msg += `（11/18が〇以外の${skipped}行は除外）`;
+  if(dup) msg += `。同じ人${dup}名は重複のため除外`;
+  return { added, msg };
+}
+
+function defaultGroupCount(){
+  return Math.max(1, Math.ceil(Object.keys(state.people).length / CAP));
+}
+function setGroupCount(n){
+  n = Math.max(1, Math.min(SLOTS.length, n|0));
+  while(state.groups.length < n){ state.groups.push([]); state.starts.push(SLOTS[state.starts.length]||''); }
+  while(state.groups.length > n){
+    const g = state.groups.pop(); state.starts.pop();
+    state.pool.push(...g);
+  }
+}
+
+// 未配置の人だけを、ルールに沿って空いている組へ入れる
+function autoAssign(){
+  const P = state.people;
+  const gs = state.groups;
+  const hasG = g => g.some(id=>P[id].isG);
+  const hasCo = (g,p) => !p.isG && g.some(id=>coKey(P[id])===coKey(p));
+  const poolG = state.pool.filter(id=>P[id].isG);
+  const poolX = state.pool.filter(id=>!P[id].isG);
+  const rest = [];
+  // 1. Gハウス社員：まだいない組へ1名ずつ
+  for(const id of poolG){
+    const cand = gs.map((g,i)=>i).filter(i=>!hasG(gs[i]) && gs[i].length<CAP);
+    if(cand.length){ gs[cand[0]].push(id); } else rest.push(id);
+  }
+  // 2. 社外：人数の多い会社から、同じ会社がいない組のうち人数の少ない組へ
+  const size = {};
+  poolX.forEach(id=>{ const k=coKey(P[id]); size[k]=(size[k]||0)+1; });
+  poolX.sort((a,b)=> (size[coKey(P[b])]-size[coKey(P[a])]) || coKey(P[a]).localeCompare(coKey(P[b])));
+  const left = [];
+  for(const id of poolX){
+    const p = P[id];
+    const cand = gs.map((g,i)=>i).filter(i=>gs[i].length<CAP && !hasCo(gs[i],p));
+    if(!cand.length){ left.push(id); continue; }
+    cand.sort((a,b)=> gs[a].length-gs[b].length || a-b);
+    gs[cand[0]].push(id);
+  }
+  // 3. 残ったGハウス社員・入れられなかった人：空きの多い組へ
+  for(const id of [...rest, ...left]){
+    const cand = gs.map((g,i)=>i).filter(i=>gs[i].length<CAP);
+    if(!cand.length){ continue; }
+    cand.sort((a,b)=> gs[a].length-gs[b].length || a-b);
+    gs[cand[0]].push(id);
+  }
+  const placed = new Set(gs.flat());
+  state.pool = state.pool.filter(id=>!placed.has(id));
+}
+
+function check(){
+  const P = state.people;
+  const out = { ng:[], cau:[], per:[] };
+  state.groups.forEach((g,i)=>{
+    const notes = [];
+    const cnt = {};
+    g.forEach(id=>{ const p=P[id]; if(!p.isG){ const k=coKey(p); cnt[k]=(cnt[k]||0)+1; } });
+    const dupKeys = Object.keys(cnt).filter(k=>cnt[k]>1);
+    const gN = g.filter(id=>P[id].isG).length;
+    let level = '';
+    if(dupKeys.length){
+      const names = dupKeys.map(k=>P[g.find(id=>coKey(P[id])===k)].company);
+      notes.push(['ng', `同じ会社：${names.join('、')}`]);
+      out.ng.push(`第${i+1}組に同じ会社の人がいます（${names.join('、')}）`);
+      level='ng';
+    }
+    if(g.length && gN===0){
+      notes.push(['cau','Gハウス社員がいません']);
+      out.cau.push(`第${i+1}組にGハウス社員がいません`);
+      level = level || 'cau';
+    }
+    if(g.length>0 && g.length<=2){
+      notes.push(['cau',`${g.length}名だけです`]);
+      out.cau.push(`第${i+1}組が${g.length}名です`);
+      level = level || 'cau';
+    }
+    out.per[i] = { notes, level, dupKeys };
+  });
+  return out;
+}
+
+function cardHTML(p, dup){
+  const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  return `<div class="card${p.isG?' g':''}${dup?' dup':''}" data-id="${p.id}">
+    <div><div class="nm">${esc(p.name)}</div><div class="co">${esc(p.company||'')}</div></div>
+    <div class="acts">${p.isG?'<span class="tag">Gハウス</span>':''}<button class="act" title="名前・会社名を直す" data-edit="${p.id}">編集</button><button class="act del" title="この人を削除" data-del="${p.id}">削除</button></div>
+  </div>`;
+}
+
+let sortables = [];
+function render(){
+  const P = state.people;
+  const res = check();
+  document.getElementById('groupCount').value = state.groups.length;
+
+  const pool = document.getElementById('pool');
+  pool.innerHTML = state.pool.length ? state.pool.map(id=>cardHTML(P[id])).join('') : '';
+  document.getElementById('poolCnt').textContent = `${state.pool.length}名`;
+
+  const grid = document.getElementById('grid');
+  grid.innerHTML = state.groups.map((g,i)=>{
+    const r = res.per[i];
+    return `<div class="group ${r.level}">
+      <div class="ghead"><span class="no">第${i+1}組</span>
+        <input data-start="${i}" placeholder="コース・時刻" value="${(state.starts[i]||'').replace(/"/g,'&quot;')}">
+        <span class="cnt">${g.length}/${CAP}</span></div>
+      <div class="list" data-g="${i}">${g.map(id=>cardHTML(P[id], !P[id].isG && r.dupKeys.includes(coKey(P[id])))).join('')}</div>
+      <div class="gnote">${r.notes.map(n=>`<div class="${n[0]}">${n[1]}</div>`).join('')}</div>
+    </div>`;
+  }).join('');
+
+  const total = Object.keys(P).length;
+  const gTotal = Object.values(P).filter(p=>p.isG).length;
+  document.getElementById('summary').innerHTML =
+    `<span>参加者 <b>${total}</b>名（社外 ${total-gTotal}名・Gハウス ${gTotal}名）</span>
+     <span>組数 <b>${state.groups.length}</b>（最大 ${state.groups.length*CAP}名）</span>
+     <span>未配置 <b>${state.pool.length}</b>名</span>`;
+
+  const al = [];
+  if(!total) al.push(['cau','まだ参加者がいません。「参加者を読み込む」から貼り付けてください。']);
+  if(total > state.groups.length*CAP) al.push(['ng',`組数が足りません。${Math.ceil(total/CAP)}組以上にしてください。`]);
+  res.ng.forEach(t=>al.push(['ng',t]));
+  res.cau.forEach(t=>al.push(['cau',t]));
+  if(total && !state.pool.length && !res.ng.length && !res.cau.length) al.push(['ok','全員配置済み。ルール上の問題はありません。']);
+  document.getElementById('alerts').innerHTML = al.map(a=>`<div class="${a[0]}">${a[1]}</div>`).join('');
+
+  bindSortable();
+  save();
+}
+
+function syncFromDOM(){
+  state.pool = [...document.querySelectorAll('#pool .card')].map(e=>e.dataset.id);
+  document.querySelectorAll('#grid .list').forEach(el=>{
+    state.groups[+el.dataset.g] = [...el.querySelectorAll('.card')].map(e=>e.dataset.id);
+  });
+}
+
+function bindSortable(){
+  sortables.forEach(s=>s.destroy()); sortables = [];
+  const trash = document.getElementById('trash');
+  sortables.push(Sortable.create(trash,{
+    group:{ name:'golf', pull:false, put:true },
+    onAdd:(ev)=>{
+      const id = ev.item.dataset.id;
+      const fromEl = ev.from, oldIndex = ev.oldIndex;
+      ev.item.remove();
+      trash.classList.remove('over');
+      syncFromDOM();
+      // ドラッグ処理が終わってから確認を出す。削除をやめた場合は元の場所に戻す
+      setTimeout(()=>{
+        if(!removePerson(id)){
+          const from = fromEl.id==='pool' ? state.pool : state.groups[+fromEl.dataset.g];
+          from.splice(oldIndex, 0, id);
+        }
+        render();
+      }, 0);
+    }
+  }));
+  document.querySelectorAll('.list').forEach(el=>{
+    sortables.push(Sortable.create(el,{
+      group:{ name:'golf', put:(to)=> to.el.id==='pool' || to.el.querySelectorAll('.card').length < CAP },
+      animation:150,
+      filter:'.act',
+      preventOnFilter:false,
+      onMove:(ev)=>{ trash.classList.toggle('over', ev.to===trash); },
+      onEnd:(ev)=>{ trash.classList.remove('over'); if(ev.to===trash) return; syncFromDOM(); render(); }
+    }));
+  });
+}
+
+// イベント
+document.getElementById('btnImport').onclick = ()=>document.getElementById('importPanel').classList.toggle('open');
+document.getElementById('btnClosePanel').onclick = ()=>document.getElementById('importPanel').classList.remove('open');
+function doImport(replace){
+  const text = document.getElementById('pasteArea').value;
+  if(replace){
+    if(Object.keys(state.people).length && !confirm('今の参加者と配置を消して読み込み直します。よろしいですか？')) return;
+    state = { people:{}, pool:[], groups:[], starts:[] };
+  }
+  const r = importText(text);
+  if(!state.groups.length) setGroupCount(defaultGroupCount());
+  document.getElementById('importMsg').textContent = r.msg;
+  render();
+}
+document.getElementById('btnDoImport').onclick = ()=>doImport(true);
+document.getElementById('btnAppend').onclick = ()=>doImport(false);
+document.getElementById('groupCount').onchange = e=>{ setGroupCount(+e.target.value); render(); };
+document.getElementById('btnAuto').onclick = ()=>{ autoAssign(); render(); };
+document.getElementById('btnReset').onclick = ()=>{
+  if(!confirm('全員を未配置に戻します。よろしいですか？')) return;
+  state.groups.forEach(g=>state.pool.push(...g));
+  state.groups = state.groups.map(()=>[]);
+  render();
+};
+document.getElementById('btnAdd').onclick = ()=>{
+  const nm = document.getElementById('addNm').value.trim();
+  if(!nm) return;
+  const id = 'p'+(seq++);
+  state.people[id] = { id, name:nm, company:document.getElementById('addCo').value.trim(), isG:document.getElementById('addG').checked };
+  state.pool.push(id);
+  if(!state.groups.length) setGroupCount(1);
+  document.getElementById('addNm').value=''; document.getElementById('addCo').value='';
+  render();
+};
+function removePerson(id){
+  const p = state.people[id];
+  if(!p) return false;
+  if(!confirm(`${p.name}さんを削除します。よろしいですか？`)) return false;
+  delete state.people[id];
+  state.pool = state.pool.filter(x=>x!==id);
+  state.groups = state.groups.map(g=>g.filter(x=>x!==id));
+  return true;
+}
+document.addEventListener('click', e=>{
+  const btn = e.target.closest && e.target.closest('[data-del]');
+  if(!btn) return;
+  removePerson(btn.dataset.del);
+  render();
+});
+document.getElementById('btnClear').onclick = ()=>{
+  const n = Object.keys(state.people).length;
+  if(!n) return;
+  if(!confirm(`参加者${n}名と組の配置をすべて消去します。元に戻せません。よろしいですか？`)) return;
+  state.people = {}; state.pool = [];
+  state.groups = state.groups.map(()=>[]);
+  render();
+};
+document.addEventListener('input', e=>{
+  if(e.target.dataset && e.target.dataset.start!==undefined){
+    state.starts[+e.target.dataset.start] = e.target.value; save();
+  }
+});
+document.getElementById('btnCopy').onclick = async ()=>{
+  const P = state.people;
+  const lines = [['組','スタート','1','2','3','4'].join('\t')];
+  state.groups.forEach((g,i)=>{
+    const cells = g.map(id=>{ const p=P[id]; return p.isG ? `${p.name}（Gハウス）` : `${p.name}（${p.company}）`; });
+    while(cells.length<CAP) cells.push('');
+    lines.push([`第${i+1}組`, state.starts[i]||'', ...cells].join('\t'));
+  });
+  if(state.pool.length) lines.push(['未配置','', ...state.pool.map(id=>P[id].name)].join('\t'));
+  const text = lines.join('\n');
+  try{ await navigator.clipboard.writeText(text); alert('コピーしました。スプレッドシートのA1セルに貼り付けてください。'); }
+  catch(err){
+    const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); alert('コピーしました。スプレッドシートのA1セルに貼り付けてください。'); }catch(e2){ alert('コピーできませんでした'); }
+    ta.remove();
+  }
+};
+document.getElementById('btnPrint').onclick = ()=>window.print();
+
+// 名前・会社名の編集（編集ボタンかカードのダブルクリック）
+const dlg = document.getElementById('editDlg');
+let editing = null;
+function openEdit(id){
+  const p = state.people[id]; if(!p) return;
+  editing = id;
+  document.getElementById('edNm').value = p.name;
+  document.getElementById('edCo').value = p.company || '';
+  document.getElementById('edG').checked = !!p.isG;
+  dlg.showModal();
+  document.getElementById('edNm').focus();
+}
+document.addEventListener('click', e=>{
+  const btn = e.target.closest && e.target.closest('[data-edit]');
+  if(btn) openEdit(btn.dataset.edit);
+});
+document.addEventListener('dblclick', e=>{
+  const card = e.target.closest && e.target.closest('.card');
+  if(card && !e.target.closest('.act')) openEdit(card.dataset.id);
+});
+document.getElementById('edForm').onsubmit = e=>{
+  e.preventDefault();
+  const p = state.people[editing];
+  const nm = document.getElementById('edNm').value.trim();
+  if(!p || !nm){ document.getElementById('edNm').focus(); return; }
+  p.name = nm;
+  p.company = document.getElementById('edCo').value.trim();
+  p.isG = document.getElementById('edG').checked;
+  dlg.close(); render();
+};
+document.getElementById('edCancel').onclick = ()=>dlg.close();
+document.getElementById('edDelete').onclick = ()=>{
+  if(removePerson(editing)){ dlg.close(); render(); }
+};
+
+// 共有リンク：配置をURLの#以降に圧縮して入れる（#以降はサーバーに送られない）
+function b64url(bytes){ let s=''; bytes.forEach(b=>s+=String.fromCharCode(b)); return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); }
+function unb64url(str){ const s=atob(str.replace(/-/g,'+').replace(/_/g,'/')); return Uint8Array.from(s,c=>c.charCodeAt(0)); }
+async function pipe(bytes, stream){ return new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(stream)).arrayBuffer()); }
+async function encodeState(){
+  const ids = Object.keys(state.people);
+  const idx = Object.fromEntries(ids.map((id,i)=>[id,i]));
+  const data = { v:1, p: ids.map(id=>{ const p=state.people[id]; return [p.name, p.company||'', p.isG?1:0]; }),
+    g: state.groups.map(g=>g.map(id=>idx[id])), o: state.pool.map(id=>idx[id]), s: state.starts };
+  const raw = new TextEncoder().encode(JSON.stringify(data));
+  if(window.CompressionStream) return 'z' + b64url(await pipe(raw, new CompressionStream('deflate-raw')));
+  return 'j' + b64url(raw);
+}
+async function decodeState(str){
+  const bytes = unb64url(str.slice(1));
+  const raw = str[0]==='z' ? await pipe(bytes, new DecompressionStream('deflate-raw')) : bytes;
+  const d = JSON.parse(new TextDecoder().decode(raw));
+  const people = {}; const ids = [];
+  d.p.forEach(([name, company, g])=>{ const id='p'+(seq++); ids.push(id); people[id]={ id, name, company, isG:!!g }; });
+  return { people, groups: d.g.map(g=>g.map(i=>ids[i])), pool: d.o.map(i=>ids[i]), starts: d.s || [] };
+}
+document.getElementById('btnShare').onclick = async ()=>{
+  const url = location.href.split('#')[0] + '#s=' + await encodeState();
+  document.getElementById('shareUrl').value = url;
+  document.getElementById('sharePanel').classList.add('open');
+  try{ await navigator.clipboard.writeText(url); }catch(e){ const t=document.getElementById('shareUrl'); t.select(); try{ document.execCommand('copy'); }catch(e2){} }
+};
+document.getElementById('btnCloseShare').onclick = ()=>document.getElementById('sharePanel').classList.remove('open');
+
+async function boot(){
+if(!load()){ state = { people:{}, pool:[], groups:[], starts:[] }; }
+const m = location.hash.match(/^#s=(.+)$/);
+if(m){
+  try{
+    const incoming = await decodeState(m[1]);
+    const hasLocal = Object.keys(state.people).length > 0;
+    if(!hasLocal || confirm('共有リンクの組み合わせを開きます。この画面に保存されている組み合わせは上書きされます。よろしいですか？')){
+      state = incoming;
+    }
+  }catch(e){ alert('共有リンクを読み込めませんでした。リンクが途中で切れていないか確認してください。'); }
+  history.replaceState(null, '', location.pathname + location.search);
+}
+state.starts = state.groups.map((g,i)=> state.starts[i] || SLOTS[i] || '');
+render();
+}
+boot();
+</script>
+</body>
+</html>
