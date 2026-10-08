@@ -116,7 +116,10 @@ button.danger{border-color:var(--warn);color:var(--warn)}
 .task .owner.none{color:#b0b7c2}
 .task.done{opacity:.5}
 .task.done .ttl{text-decoration:line-through}
-.task .acts{display:flex;gap:4px}
+.task .acts{display:flex;gap:4px;align-items:center}
+.donebtn{border:1px solid var(--navy);background:var(--navy);color:#fff;border-radius:5px;padding:3px 12px;font-size:12px;font-weight:700;white-space:nowrap}
+.donebtn.undo{background:#fff;color:var(--sub);border-color:var(--line);font-weight:400}
+.donebtn.sm{padding:1px 8px;font-size:11px;margin-left:auto;flex:none}
 .task .act{border:1px solid var(--line);background:#fff;color:var(--sub);padding:2px 6px;border-radius:5px;font-size:11px}
 .cat{display:inline-block;font-size:11px;background:var(--navy-soft);color:var(--navy);border-radius:4px;padding:0 6px;margin-right:6px;vertical-align:1px}
 .sday.nodate::before{border-style:dashed;border-color:var(--caution)}
@@ -709,7 +712,7 @@ function renderTasks(){
       <div class="due">${fmtDate(t.due)}${t.time?' '+esc(t.time):''}<span class="left">${t.done?'完了':leftText(n)}</span></div>
       <div class="body"><div class="ttl">${t.flag?'<span class="flag">要確認</span>':''}${t.cat?`<span class="cat">${esc(t.cat)}</span>`:''}${esc(t.title)}</div>${t.memo?`<div class="memo">${esc(t.memo)}</div>`:''}</div>
       <div class="owner ${t.owner?'':'none'}">${t.owner?esc(t.owner):'担当未定'}</div>
-      <div class="acts"><button class="act" data-tedit="${t.id}">編集</button></div>
+      <div class="acts"><button class="donebtn ${t.done?'undo':''}" data-toggle="${t.id}">${t.done?'未完了に戻す':'完了'}</button><button class="act" data-tedit="${t.id}">編集</button></div>
     </div>`;
   }).join('') : '<div class="empty">表示するやることはありません。</div>';
   save();
@@ -743,6 +746,13 @@ function openTask(id){
   document.getElementById('tkTtl').focus();
 }
 document.getElementById('btnAddTask').onclick = ()=>openTask(null);
+document.addEventListener('click', e=>{
+  const b = e.target.closest && e.target.closest('[data-toggle]');
+  if(!b) return;
+  const t = state.tasks.find(x=>x.id===b.dataset.toggle); if(!t) return;
+  t.done = !t.done;
+  currentTab==='task' ? renderTasks() : renderSched();
+});
 document.addEventListener('click', e=>{
   const b = e.target.closest && e.target.closest('[data-tedit]');
   if(b) openTask(b.dataset.tedit);
@@ -787,6 +797,7 @@ function renderSched(){
           <input type="checkbox" data-done="${t.id}" ${t.done?'checked':''} style="accent-color:var(--navy)">
           ${t.time?`<span class="tm">${esc(t.time)}</span>`:''}
           <span>${t.flag?'<span class="flag">要確認</span>':''}<a href="#" data-tedit="${t.id}" style="color:inherit;text-decoration:none">${t.cat?`<span class="cat">${esc(t.cat)}</span>`:''}${esc(t.title)}</a> <span class="ow">${t.owner?'（'+esc(t.owner)+'）':''}</span></span>
+          <button class="donebtn sm ${t.done?'undo':''}" data-toggle="${t.id}">${t.done?'戻す':'完了'}</button>
         </div>`).join('')
       + `</div>`;
   });
