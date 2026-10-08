@@ -35,7 +35,18 @@ label.num input{width:56px;font:inherit;padding:5px;border:1px solid var(--line)
 .pool{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px;position:sticky;top:10px;max-height:calc(100vh - 20px);overflow:auto}
 .pool h2,.groups h2{font-size:14px;margin:0 0 8px;color:var(--navy)}
 .pool .list{min-height:120px}
-.groups .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.tabs{display:flex;gap:0;margin-bottom:10px}
+.tabs button{border-radius:0;padding:6px 14px}
+.tabs button:first-child{border-radius:6px 0 0 6px}
+.tabs button:last-child{border-radius:0 6px 6px 0;border-left:none}
+.tabs button.on{background:var(--navy);color:#fff}
+.sech{margin:0 0 8px;font-size:14px;color:var(--navy);border-bottom:2px solid var(--navy);padding-bottom:4px}
+.grid.v-course{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;align-items:start}
+.grid.v-course .secgrid{display:grid;gap:10px}
+.grid.v-time .sec{display:grid;grid-template-columns:64px 1fr;gap:10px;margin-bottom:12px;align-items:start}
+.grid.v-time .sech{border:none;font-size:17px;padding-top:6px}
+.grid.v-time .secgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
+@media (max-width:760px){ .grid.v-time .sec{grid-template-columns:1fr} .grid.v-time .sech{padding:0;margin:0} }
 .group{border:1px solid var(--line);border-radius:10px;background:#fff;padding:8px}
 .group.ng{border-color:var(--warn);box-shadow:0 0 0 1px var(--warn) inset}
 .group.cau{border-color:#d9b75a}
@@ -88,7 +99,8 @@ button.danger{border-color:var(--warn);color:var(--warn)}
   .print-only{display:block;font-size:18px;font-weight:700;margin:0 0 10px}
   .main{display:block}
   .wrap{padding:0}
-  .groups .grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .grid.v-time .secgrid{grid-template-columns:repeat(2,1fr)}
+  .sec{break-inside:avoid}
   .group{break-inside:avoid;border-color:#999;box-shadow:none}
   .group .list{min-height:0;background:#fff}
   .card{border:none;border-bottom:1px solid #ddd;border-radius:0;background:#fff!important;margin:0}
@@ -150,7 +162,7 @@ button.danger{border-color:var(--warn);color:var(--warn)}
     </section>
     <section class="groups">
       <div class="print-only">11月18日（水）ビジネスマッチング ゴルフコンペ　組み合わせ表　PGM池田カントリークラブ</div>
-      <h2 class="screen-only">組</h2>
+      <div class="tabs screen-only" id="tabs"><button data-view="course">コース別</button><button data-view="time">スタート時間順</button></div>
       <div class="grid" id="grid"></div>
     </section>
   </div>
@@ -353,6 +365,29 @@ function cardHTML(p, dup){
   </div>`;
 }
 
+// 表示の切り替え（コース別／スタート時間順）。どちらも並べ方が変わるだけで組の中身は同じ
+let view = 'course';
+try{ view = localStorage.getItem(KEY+'-view') || 'course'; }catch(e){}
+function parseStart(s){
+  s = s || '';
+  const t = s.match(/(\d{1,2}):(\d{2})/);
+  const time = t ? t[1].padStart(2,'0')+':'+t[2] : '';
+  const course = s.replace(/\d{1,2}:\d{2}/,'').replace(/コース/,'').trim();
+  return { course, time };
+}
+function viewSections(){
+  const items = state.groups.map((g,i)=>({ i, ...parseStart(state.starts[i]) }));
+  const courses = [];
+  items.forEach(x=>{ if(!courses.includes(x.course)) courses.push(x.course); });
+  const byTime = (a,b)=> (a.time||'99').localeCompare(b.time||'99') || courses.indexOf(a.course)-courses.indexOf(b.course) || a.i-b.i;
+  if(view==='course'){
+    return courses.map(c=>({ title: c ? c+'コース' : 'コース未入力', idx: items.filter(x=>x.course===c).sort(byTime).map(x=>x.i) }));
+  }
+  const times = [];
+  items.slice().sort(byTime).forEach(x=>{ if(!times.includes(x.time)) times.push(x.time); });
+  return times.map(t=>({ title: t || '時刻未入力', idx: items.filter(x=>x.time===t).sort(byTime).map(x=>x.i) }));
+}
+
 let sortables = [];
 function render(){
   const P = state.people;
@@ -364,7 +399,10 @@ function render(){
   document.getElementById('poolCnt').textContent = `${state.pool.length}名`;
 
   const grid = document.getElementById('grid');
-  grid.innerHTML = state.groups.map((g,i)=>{
+  grid.className = 'grid v-' + view;
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on', b.dataset.view===view));
+  const groupHTML = i=>{
+    const g = state.groups[i];
     const r = res.per[i];
     return `<div class="group ${r.level}">
       <div class="ghead"><span class="no">第${i+1}組</span>
@@ -373,7 +411,10 @@ function render(){
       <div class="list" data-g="${i}">${g.map(id=>cardHTML(P[id], !P[id].isG && r.dupKeys.includes(coKey(P[id])))).join('')}</div>
       <div class="gnote">${r.notes.map(n=>`<div class="${n[0]}">${n[1]}</div>`).join('')}</div>
     </div>`;
-  }).join('');
+  };
+  grid.innerHTML = viewSections().map(sec=>
+    `<div class="sec"><h3 class="sech">${sec.title}</h3><div class="secgrid">${sec.idx.map(groupHTML).join('')}</div></div>`
+  ).join('');
 
   const total = Object.keys(P).length;
   const gTotal = Object.values(P).filter(p=>p.isG).length;
@@ -499,7 +540,8 @@ document.addEventListener('input', e=>{
 document.getElementById('btnCopy').onclick = async ()=>{
   const P = state.people;
   const lines = [['組','スタート','1','2','3','4'].join('\t')];
-  state.groups.forEach((g,i)=>{
+  viewSections().flatMap(sec=>sec.idx).forEach(i=>{
+    const g = state.groups[i];
     const cells = g.map(id=>{ const p=P[id]; return p.isG ? `${p.name}（Gハウス）` : `${p.name}（${p.company}）`; });
     while(cells.length<CAP) cells.push('');
     lines.push([`第${i+1}組`, state.starts[i]||'', ...cells].join('\t'));
@@ -514,6 +556,17 @@ document.getElementById('btnCopy').onclick = async ()=>{
   }
 };
 document.getElementById('btnPrint').onclick = ()=>window.print();
+document.getElementById('tabs').onclick = e=>{
+  const v = e.target.dataset && e.target.dataset.view;
+  if(!v || v===view) return;
+  view = v;
+  try{ localStorage.setItem(KEY+'-view', view); }catch(err){}
+  render();
+};
+// スタート欄を書き換えたら、入力が終わった時点で並べ直す
+document.addEventListener('change', e=>{
+  if(e.target.dataset && e.target.dataset.start!==undefined) render();
+});
 
 // 名前・会社名の編集（編集ボタンかカードのダブルクリック）
 const dlg = document.getElementById('editDlg');
