@@ -118,6 +118,9 @@ button.danger{border-color:var(--warn);color:var(--warn)}
 .task.done .ttl{text-decoration:line-through}
 .task .acts{display:flex;gap:4px}
 .task .act{border:1px solid var(--line);background:#fff;color:var(--sub);padding:2px 6px;border-radius:5px;font-size:11px}
+.cat{display:inline-block;font-size:11px;background:var(--navy-soft);color:var(--navy);border-radius:4px;padding:0 6px;margin-right:6px;vertical-align:1px}
+.sday.nodate::before{border-style:dashed;border-color:var(--caution)}
+.sday.nodate h3{color:var(--caution)}
 .flag{display:inline-block;font-size:11px;border:1px solid var(--warn);color:var(--warn);border-radius:4px;padding:0 5px;margin-right:6px;vertical-align:1px}
 .sched{position:relative;margin-left:8px;border-left:2px solid var(--line);padding-left:18px}
 .sday{position:relative;margin-bottom:16px}
@@ -246,9 +249,10 @@ button.danger{border-color:var(--warn);color:var(--warn)}
     <h3 id="tkTitle">やることの編集</h3>
     <label>やること<input type="text" id="tkTtl" required></label>
     <div style="display:flex;gap:8px">
-      <label style="flex:1">期限<input type="date" id="tkDue" required style="display:block;width:100%;font:inherit;padding:5px;border:1px solid var(--line);border-radius:6px;margin-top:3px"></label>
+      <label style="flex:1">期限（未定なら空欄）<input type="date" id="tkDue" style="display:block;width:100%;font:inherit;padding:5px;border:1px solid var(--line);border-radius:6px;margin-top:3px"></label>
       <label style="width:110px">時刻（任意）<input type="time" id="tkTime" style="display:block;width:100%;font:inherit;padding:5px;border:1px solid var(--line);border-radius:6px;margin-top:3px"></label>
     </div>
+    <label>区分（例：ゴルフ場へ確認）<input type="text" id="tkCat"></label>
     <label>担当<input type="text" id="tkOwner"></label>
     <label>メモ<textarea id="tkMemo" style="display:block;width:100%;height:64px;font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;margin-top:3px"></textarea></label>
     <label class="chk"><input type="checkbox" id="tkFlag">要確認（決めること・確かめること）</label>
@@ -673,10 +677,10 @@ document.getElementById('mainTabs').onclick = e=>{ const t = e.target.dataset &&
 function newTaskId(){ return 't' + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
 const WD = ['日','月','火','水','木','金','土'];
 function todayStr(){ const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
-function daysLeft(due){ const [y,m,d]=due.split('-').map(Number); const t=new Date(); return Math.round((new Date(y,m-1,d) - new Date(t.getFullYear(),t.getMonth(),t.getDate()))/86400000); }
-function fmtDate(due){ const [y,m,d]=due.split('-').map(Number); return `${m}/${d}（${WD[new Date(y,m-1,d).getDay()]}）`; }
-function leftText(n){ return n<0 ? `${-n}日過ぎています` : n===0 ? '今日まで' : `あと${n}日`; }
-function sortedTasks(){ return (state.tasks||[]).slice().sort((a,b)=> a.due.localeCompare(b.due) || (a.time||'99').localeCompare(b.time||'99') || (b.flag?1:0)-(a.flag?1:0)); }
+function daysLeft(due){ if(!due) return Infinity; const [y,m,d]=due.split('-').map(Number); const t=new Date(); return Math.round((new Date(y,m-1,d) - new Date(t.getFullYear(),t.getMonth(),t.getDate()))/86400000); }
+function fmtDate(due){ if(!due) return '期限未定'; const [y,m,d]=due.split('-').map(Number); return `${m}/${d}（${WD[new Date(y,m-1,d).getDay()]}）`; }
+function leftText(n){ if(n===Infinity) return '日付を決める'; return n<0 ? `${-n}日過ぎています` : n===0 ? '今日まで' : `あと${n}日`; }
+function sortedTasks(){ return (state.tasks||[]).slice().sort((a,b)=> (a.due?1:0)-(b.due?1:0) || (a.due||'').localeCompare(b.due||'') || (a.time||'99').localeCompare(b.time||'99') || (b.flag?1:0)-(a.flag?1:0)); }
 function taskStatus(t){ if(t.done) return 'done'; const n=daysLeft(t.due); return n<0 ? 'overdue' : n<=3 ? 'soon' : ''; }
 function taskChipsHTML(){
   const ts = state.tasks||[];
@@ -688,6 +692,7 @@ function taskChipsHTML(){
     + (over?`<span class="chip ng">期限切れ ${over}件</span>`:'')
     + (soon?`<span class="chip cau">3日以内 ${soon}件</span>`:'')
     + (flag?`<span class="chip cau">要確認 ${flag}件</span>`:'')
+    + (open.some(t=>!t.due)?`<span class="chip cau">期限未定 ${open.filter(t=>!t.due).length}件</span>`:'')
     + `<span class="chip">担当未定 ${open.filter(t=>!t.owner).length}件</span>`;
 }
 let taskFilter = 'open';
@@ -702,7 +707,7 @@ function renderTasks(){
     return `<div class="task ${st}">
       <input type="checkbox" data-done="${t.id}" ${t.done?'checked':''} title="完了にする">
       <div class="due">${fmtDate(t.due)}${t.time?' '+esc(t.time):''}<span class="left">${t.done?'完了':leftText(n)}</span></div>
-      <div class="body"><div class="ttl">${t.flag?'<span class="flag">要確認</span>':''}${esc(t.title)}</div>${t.memo?`<div class="memo">${esc(t.memo)}</div>`:''}</div>
+      <div class="body"><div class="ttl">${t.flag?'<span class="flag">要確認</span>':''}${t.cat?`<span class="cat">${esc(t.cat)}</span>`:''}${esc(t.title)}</div>${t.memo?`<div class="memo">${esc(t.memo)}</div>`:''}</div>
       <div class="owner ${t.owner?'':'none'}">${t.owner?esc(t.owner):'担当未定'}</div>
       <div class="acts"><button class="act" data-tedit="${t.id}">編集</button></div>
     </div>`;
@@ -727,7 +732,8 @@ function openTask(id){
   tediting = id || null;
   document.getElementById('tkTitle').textContent = t ? 'やることの編集' : 'やることを追加';
   document.getElementById('tkTtl').value = t ? t.title : '';
-  document.getElementById('tkDue').value = t ? t.due : todayStr();
+  document.getElementById('tkDue').value = t ? (t.due||'') : '';
+  document.getElementById('tkCat').value = t ? (t.cat||'') : '';
   document.getElementById('tkTime').value = t ? (t.time||'') : '';
   document.getElementById('tkOwner').value = t ? (t.owner||'') : '';
   document.getElementById('tkMemo').value = t ? (t.memo||'') : '';
@@ -745,8 +751,8 @@ document.getElementById('tkForm').onsubmit = e=>{
   e.preventDefault();
   const v = { title: document.getElementById('tkTtl').value.trim(), due: document.getElementById('tkDue').value,
     time: document.getElementById('tkTime').value, owner: document.getElementById('tkOwner').value.trim(),
-    memo: document.getElementById('tkMemo').value.trim(), flag: document.getElementById('tkFlag').checked };
-  if(!v.title || !v.due) return;
+    memo: document.getElementById('tkMemo').value.trim(), cat: document.getElementById('tkCat').value.trim(), flag: document.getElementById('tkFlag').checked };
+  if(!v.title) return;
   if(tediting){ Object.assign(state.tasks.find(x=>x.id===tediting), v); }
   else state.tasks.push({ id:newTaskId(), done:false, ...v });
   tdlg.close();
@@ -772,14 +778,15 @@ function renderSched(){
   let html = '', todayShown = false;
   const todayLine = `<div class="today"><span>今日 ${fmtDate(today)}</span></div>`;
   days.forEach(d=>{
-    if(!todayShown && d.due > today){ html += todayLine; todayShown = true; }
+    if(!todayShown && d.due && d.due > today){ html += todayLine; todayShown = true; }
     const n = daysLeft(d.due);
-    const cls = (d.due===EVENT_DAY ? 'event ' : '') + (n<0 ? 'past' : '');
-    html += `<div class="sday ${cls}"><h3>${fmtDate(d.due)}${d.due===EVENT_DAY?'　コンペ当日':''}<small>${n<0?`${-n}日前`:n===0?'今日':`あと${n}日`}</small></h3>`
+    const cls = (d.due===EVENT_DAY ? 'event ' : '') + (n<0 ? 'past' : '') + (d.due ? '' : ' nodate');
+    const sub = !d.due ? '日付を決めると、ここから日付の位置へ移ります' : n<0?`${-n}日前`:n===0?'今日':`あと${n}日`;
+    html += `<div class="sday ${cls}"><h3>${fmtDate(d.due)}${d.due===EVENT_DAY?'　コンペ当日':''}<small>${sub}</small></h3>`
       + d.items.map(t=>`<div class="sitem ${t.done?'done':(n<0?'overdue':'')}">
           <input type="checkbox" data-done="${t.id}" ${t.done?'checked':''} style="accent-color:var(--navy)">
           ${t.time?`<span class="tm">${esc(t.time)}</span>`:''}
-          <span>${t.flag?'<span class="flag">要確認</span>':''}<a href="#" data-tedit="${t.id}" style="color:inherit;text-decoration:none">${esc(t.title)}</a> <span class="ow">${t.owner?'（'+esc(t.owner)+'）':''}</span></span>
+          <span>${t.flag?'<span class="flag">要確認</span>':''}<a href="#" data-tedit="${t.id}" style="color:inherit;text-decoration:none">${t.cat?`<span class="cat">${esc(t.cat)}</span>`:''}${esc(t.title)}</a> <span class="ow">${t.owner?'（'+esc(t.owner)+'）':''}</span></span>
         </div>`).join('')
       + `</div>`;
   });
@@ -844,7 +851,7 @@ async function encodeState(){
   const idx = Object.fromEntries(ids.map((id,i)=>[id,i]));
   const data = { v:1, p: ids.map(id=>{ const p=state.people[id]; return [p.name, p.company||'', p.isG?1:0]; }),
     g: state.groups.map(g=>g.map(id=>idx[id])), o: state.pool.map(id=>idx[id]), s: state.starts,
-    t: (state.tasks||[]).map(t=>[t.due, t.time||'', t.title, t.owner||'', t.memo||'', t.done?1:0, t.flag?1:0]) };
+    t: (state.tasks||[]).map(t=>[t.due||'', t.time||'', t.title, t.owner||'', t.memo||'', t.done?1:0, t.flag?1:0, t.cat||'']) };
   const raw = new TextEncoder().encode(JSON.stringify(data));
   if(window.CompressionStream) return 'z' + b64url(await pipe(raw, new CompressionStream('deflate-raw')));
   return 'j' + b64url(raw);
@@ -855,7 +862,7 @@ async function decodeState(str){
   const d = JSON.parse(new TextDecoder().decode(raw));
   const people = {}; const ids = [];
   d.p.forEach(([name, company, g])=>{ const id='p'+(seq++); ids.push(id); people[id]={ id, name, company, isG:!!g }; });
-  const tasks = d.t ? d.t.map(([due,time,title,owner,memo,done,flag])=>({ id:newTaskId(), due, time, title, owner, memo, done:!!done, flag:!!flag })) : null;
+  const tasks = d.t ? d.t.map(([due,time,title,owner,memo,done,flag,cat])=>({ id:newTaskId(), due, time, title, owner, memo, done:!!done, flag:!!flag, cat:cat||'' })) : null;
   return { people, groups: d.g.map(g=>g.map(i=>ids[i])), pool: d.o.map(i=>ids[i]), starts: d.s || [], tasks };
 }
 document.getElementById('btnShare').onclick = async ()=>{
