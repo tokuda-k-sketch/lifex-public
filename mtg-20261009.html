@@ -194,74 +194,72 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
     <div style="font-size:30px; font-weight:800; color:var(--leak); align-self:center; flex-shrink:0">▶</div>
     <div style="flex:1; min-width:0; display:flex; flex-direction:column">
       <div style="font-size:15px; font-weight:800; color:var(--leak); text-align:center">でも、壁を切ってみると、こうなっていることがある</div>
-      <div style="flex:1; min-height:0"><svg viewBox="0 0 600 440" style="width:100%; height:100%" role="img" aria-label="防湿シートがない壁の断面イメージ。室内の湿気がそのまま断熱材に入り、屋外寄りで結露して柱が傷む">
+      <div style="flex:1; min-height:0"><svg viewBox="0 0 600 440" style="width:100%; height:100%" role="img" aria-label="上から見た壁の断面イメージ。防湿シートがないため、室内の湿気がグラスウールの中に入り、屋外寄りで結露して柱が傷む">
       <defs>
         <linearGradient id="p4out" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#cfe2f1"/><stop offset="100%" stop-color="#eaf3fa"/></linearGradient>
         <linearGradient id="p4room" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#fdf3ea"/><stop offset="100%" stop-color="#f9e3cf"/></linearGradient>
         <linearGradient id="p4siding" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#8d969e"/><stop offset="55%" stop-color="#b8c1c8"/><stop offset="100%" stop-color="#a3adb5"/></linearGradient>
         <linearGradient id="p4board" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#c9a96d"/><stop offset="100%" stop-color="#dcc08a"/></linearGradient>
-        <linearGradient id="p4foam" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f6e7b8"/><stop offset="100%" stop-color="#fff7de"/></linearGradient>
-        <linearGradient id="p4stud" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e3c690"/><stop offset="50%" stop-color="#efd9ad"/><stop offset="100%" stop-color="#d2ad6c"/></linearGradient>
+        <linearGradient id="p4gw" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f3d77c"/><stop offset="100%" stop-color="#fbe9a6"/></linearGradient>
+        <radialGradient id="p4end" cx="50%" cy="50%" r="70%"><stop offset="0%" stop-color="#e9c98f"/><stop offset="70%" stop-color="#dcb371"/><stop offset="100%" stop-color="#c39556"/></radialGradient>
         <linearGradient id="p4pb" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#ecebe7"/><stop offset="100%" stop-color="#fbfaf8"/></linearGradient>
         <radialGradient id="p4rot" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#4a3019"/><stop offset="60%" stop-color="#77542f" stop-opacity=".9"/><stop offset="100%" stop-color="#77542f" stop-opacity="0"/></radialGradient>
         <radialGradient id="p4drop" cx="32%" cy="24%" r="78%"><stop offset="0%" stop-color="#d6eefc"/><stop offset="50%" stop-color="#4fa8de"/><stop offset="100%" stop-color="#2b6ea0"/></radialGradient>
-        <radialGradient id="p4leak" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff6d8"/><stop offset="100%" stop-color="#fff6d8" stop-opacity="0"/></radialGradient>
         <filter id="p4sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#1b2530" flood-opacity=".18"/></filter>
         <filter id="p4blur" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5"/></filter>
         <clipPath id="p4clip"><rect x="40" y="70" width="520" height="300" rx="10"/></clipPath>
-        <marker id="p4ar" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="6" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" fill="#6aa9d6"/></marker>
+        <clipPath id="p4colclip"><rect x="164" y="160" width="120" height="120"/></clipPath>
         <marker id="p4av" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" refX="8" refY="7" orient="auto"><path d="M0 0 L14 7 L0 14 Z" fill="#3b82c4"/></marker>
       </defs>
       <g filter="url(#p4sh)"><rect x="40" y="70" width="520" height="300" rx="10" fill="#fff"/></g>
       <g clip-path="url(#p4clip)">
         <rect x="40" y="70" width="60" height="300" fill="url(#p4out)"/>
-        <rect x="100" y="70" width="34" height="300" fill="url(#p4siding)"/>
-        <g stroke="#7d868d" stroke-width="1.2" opacity=".6"><line x1="100" y1="90" x2="134" y2="90"/><line x1="100" y1="114" x2="134" y2="114"/><line x1="100" y1="138" x2="134" y2="138"/><line x1="100" y1="162" x2="134" y2="162"/><line x1="100" y1="186" x2="134" y2="186"/><line x1="100" y1="210" x2="134" y2="210"/><line x1="100" y1="234" x2="134" y2="234"/><line x1="100" y1="258" x2="134" y2="258"/><line x1="100" y1="282" x2="134" y2="282"/><line x1="100" y1="306" x2="134" y2="306"/><line x1="100" y1="330" x2="134" y2="330"/><line x1="100" y1="354" x2="134" y2="354"/></g>
-        <rect x="134" y="70" width="24" height="300" fill="#f4f9fd"/>
-        <g stroke="#6aa9d6" stroke-width="2.4" fill="none" marker-end="url(#p4ar)"><line x1="146" y1="140" x2="146" y2="100"/><line x1="146" y1="230" x2="146" y2="190"/><line x1="146" y1="320" x2="146" y2="280"/></g>
-        <rect x="158" y="70" width="6" height="300" fill="#e2d6b8"/>
-        <rect x="164" y="70" width="16" height="300" fill="url(#p4board)"/>
-        <rect x="180" y="70" width="210" height="300" fill="url(#p4foam)"/>
-        <g fill="#fffdf4" stroke="#ead290" stroke-width="1"><circle cx="200" cy="92" r="4"/><circle cx="236" cy="110" r="3"/><circle cx="280" cy="88" r="5"/><circle cx="330" cy="104" r="3.5"/><circle cx="366" cy="90" r="4"/><circle cx="214" cy="140" r="3"/><circle cx="300" cy="132" r="4"/><circle cx="352" cy="146" r="3"/><circle cx="204" cy="300" r="4"/><circle cx="250" cy="322" r="5"/><circle cx="300" cy="296" r="3.5"/><circle cx="344" cy="330" r="4.5"/><circle cx="372" cy="306" r="3"/><circle cx="226" cy="352" r="3.5"/><circle cx="318" cy="356" r="4"/></g>
-        <rect x="180" y="170" width="210" height="104" fill="url(#p4stud)"/>
-        <g stroke="#b18a4f" stroke-width="1.2" opacity=".5"><line x1="180" y1="192" x2="390" y2="192"/><line x1="180" y1="214" x2="390" y2="214"/><line x1="180" y1="238" x2="390" y2="238"/><line x1="180" y1="258" x2="390" y2="258"/></g>
-        <path d="M178 222 C170 186,214 162,246 178 C272 166,296 192,284 222 C296 254,260 278,232 268 C204 282,172 258,178 222 Z" fill="url(#p4rot)" filter="url(#p4blur)"/>
-        <ellipse cx="220" cy="214" rx="14" ry="6" fill="#3a2513" opacity=".35"/>
-        <rect x="390" y="70" width="36" height="300" fill="url(#p4pb)"/>
-        <rect x="426" y="70" width="134" height="300" fill="url(#p4room)"/>
-        <path d="M530 110 L 300 110" stroke="#3b82c4" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round" fill="none" marker-end="url(#p4av)"/><path d="M530 160 L 300 160" stroke="#3b82c4" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round" fill="none" marker-end="url(#p4av)"/><path d="M530 330 L 300 330" stroke="#3b82c4" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round" fill="none" marker-end="url(#p4av)"/>
+        <rect x="100" y="70" width="30" height="300" fill="url(#p4siding)"/>
+        <g stroke="#7d868d" stroke-width="1.2" opacity=".5"><line x1="108" y1="70" x2="108" y2="370"/><line x1="116" y1="70" x2="116" y2="370"/><line x1="124" y1="70" x2="124" y2="370"/></g>
+        <rect x="130" y="70" width="18" height="300" fill="#f4f9fd"/>
+        <rect x="148" y="70" width="4" height="300" fill="#e2d6b8"/>
+        <rect x="152" y="70" width="12" height="300" fill="url(#p4board)"/>
+        <rect x="164" y="70" width="120" height="300" fill="url(#p4gw)"/>
+        <g stroke="#d9b54f" stroke-width="1.2" fill="none" opacity=".75"><path d="M164 84 q10 -7 20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/><path d="M164 98 q10 -7 20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/><path d="M164 112 q10 -7 20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/><path d="M164 126 q10 -7 20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/><path d="M164 140 q10 -7 20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/><path d="M164 154 q10 -7 20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/><path d="M164 292 q10 -7 20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/><path d="M164 306 q10 -7 20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/><path d="M164 320 q10 -7 20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/><path d="M164 334 q10 -7 20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/><path d="M164 348 q10 -7 20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/><path d="M164 362 q10 -7 20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/></g>
+        <g filter="url(#p4sh)"><rect x="164" y="160" width="120" height="120" fill="url(#p4end)"/></g>
+        <g clip-path="url(#p4colclip)" fill="none" stroke="#b08446" stroke-width="1.4" opacity=".55"><circle cx="236" cy="226" r="10"/><circle cx="236" cy="226" r="22"/><circle cx="236" cy="226" r="34"/><circle cx="236" cy="226" r="46"/><circle cx="236" cy="226" r="58"/><circle cx="236" cy="226" r="70"/><circle cx="236" cy="226" r="82"/><circle cx="236" cy="226" r="94"/><circle cx="236" cy="226" r="106"/><circle cx="236" cy="226" r="118"/></g>
+        <rect x="164" y="160" width="120" height="120" fill="none" stroke="#9c7440" stroke-width="1.5"/>
+        <path d="M156 220 C150 184,186 168,206 184 C224 176,234 204,224 226 C234 252,206 270,186 262 C166 272,150 248,156 220 Z" fill="url(#p4rot)" filter="url(#p4blur)"/>
+        <rect x="284" y="70" width="26" height="300" fill="url(#p4pb)"/>
+        <rect x="310" y="70" width="250" height="300" fill="url(#p4room)"/>
+        <path d="M540 112 L 196 112" stroke="#3b82c4" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round" fill="none" marker-end="url(#p4av)"/>
+        <path d="M540 330 L 196 330" stroke="#3b82c4" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round" fill="none" marker-end="url(#p4av)"/>
         <g>
-          <path d="M200 112 C200 112,190 127,190 135 C190 141,194.5 146,200 146 C205.5 146,210 141,210 135 C210 127,200 112,200 112 Z" fill="url(#p4drop)"/>
-          <ellipse cx="196.5" cy="130" rx="2.2" ry="3.4" fill="#fff" opacity=".7"/>
-          <path d="M196 300 C196 300,187 313,187 320 C187 325.5,191 330,196 330 C201 330,205 325.5,205 320 C205 313,196 300,196 300 Z" fill="url(#p4drop)"/>
-          <ellipse cx="193" cy="316" rx="2" ry="3" fill="#fff" opacity=".7"/>
-          <path d="M226 334 C226 334,219 344,219 350 C219 354.4,222.1 358,226 358 C229.9 358,233 354.4,233 350 C233 344,226 334,226 334 Z" fill="url(#p4drop)"/>
+          <path d="M178 120 C178 120,169 133,169 140 C169 145,173 149,178 149 C183 149,187 145,187 140 C187 133,178 120,178 120 Z" fill="url(#p4drop)"/>
+          <ellipse cx="175" cy="135" rx="2" ry="3" fill="#fff" opacity=".7"/>
+          <path d="M176 296 C176 296,168 308,168 314 C168 319,171.6 322,176 322 C180.4 322,184 319,184 314 C184 308,176 296,176 296 Z" fill="url(#p4drop)"/>
+          <ellipse cx="173.5" cy="310" rx="1.8" ry="2.7" fill="#fff" opacity=".7"/>
         </g>
       </g>
       <rect x="40" y="70" width="520" height="300" rx="10" fill="none" stroke="#dbe3ea" stroke-width="1.5"/>
       <g font-size="13" font-weight="800" fill="#1b2530">
-        <line x1="117" y1="66" x2="117" y2="44" stroke="#9aa6b0"/><text x="117" y="38" text-anchor="middle">外壁材</text>
-        <line x1="146" y1="66" x2="180" y2="20" stroke="#9aa6b0"/><text x="180" y="14" text-anchor="middle">通気層</text>
-        <line x1="172" y1="66" x2="262" y2="44" stroke="#9aa6b0"/><text x="262" y="38" text-anchor="middle">構造用の面材</text>
-        <line x1="390" y1="66" x2="380" y2="20" stroke="#b3372b"/><text x="380" y="14" text-anchor="middle" fill="#b3372b">防湿シートなし ✕</text>
-        <line x1="411" y1="66" x2="470" y2="44" stroke="#9aa6b0"/><text x="476" y="38" text-anchor="middle">石膏ボード</text>
+        <line x1="115" y1="66" x2="92" y2="44" stroke="#9aa6b0"/><text x="80" y="38" text-anchor="middle">外壁材</text>
+        <line x1="139" y1="66" x2="150" y2="20" stroke="#9aa6b0"/><text x="150" y="14" text-anchor="middle">通気層</text>
+        <line x1="158" y1="66" x2="214" y2="44" stroke="#9aa6b0"/><text x="214" y="38" text-anchor="middle">構造用の面材</text>
+        <line x1="284" y1="66" x2="306" y2="20" stroke="#b3372b"/><text x="306" y="14" text-anchor="middle" fill="#b3372b">防湿シートなし ✕</text>
+        <line x1="297" y1="66" x2="370" y2="44" stroke="#9aa6b0"/><text x="380" y="38" text-anchor="middle">石膏ボード</text>
       </g>
       <g font-size="13" font-weight="800">
-        <text x="285" y="400" text-anchor="middle" fill="#8a6a1e">断熱材</text>
+        <text x="224" y="400" text-anchor="middle" fill="#8a6a1e">断熱材（グラスウール）</text>
         <text x="70" y="400" text-anchor="middle" fill="#5c6c7d">屋外</text>
-        <text x="493" y="400" text-anchor="middle" fill="#5c6c7d">室内</text>
+        <text x="435" y="400" text-anchor="middle" fill="#5c6c7d">室内</text>
       </g>
+      <text x="246" y="232" text-anchor="middle" font-size="14" font-weight="800" fill="#6b4a22">柱</text>
       <g filter="url(#p4sh)">
-        <rect x="420" y="232" width="132" height="44" rx="10" fill="#fff" stroke="#3b82c4" stroke-width="2"/>
-        <text x="486" y="250" text-anchor="middle" font-size="12.5" font-weight="800" fill="#2b6ea0">お部屋の湿気が</text>
-        <text x="486" y="267" text-anchor="middle" font-size="12" fill="#5c6c7d">そのまま壁の中へ</text>
-        <rect x="248" y="282" width="128" height="30" rx="15" fill="#b3372b"/>
-        <text x="312" y="302" text-anchor="middle" font-size="13.5" font-weight="800" fill="#fff">結露 → 柱が傷む</text>
-        <rect x="262" y="116" width="114" height="30" rx="15" fill="#fff" stroke="#2b6ea0" stroke-width="2"/>
-        <text x="319" y="136" text-anchor="middle" font-size="13" font-weight="800" fill="#2b6ea0">断熱材が湿る</text>
+        <rect x="326" y="196" width="196" height="48" rx="10" fill="#fff" stroke="#3b82c4" stroke-width="2"/>
+        <text x="424" y="216" text-anchor="middle" font-size="13" font-weight="800" fill="#2b6ea0" textLength="150" lengthAdjust="spacingAndGlyphs">お部屋の湿気が</text>
+        <text x="424" y="235" text-anchor="middle" font-size="12" fill="#5c6c7d" textLength="132" lengthAdjust="spacingAndGlyphs">そのまま壁の中へ</text>
+        <rect x="196" y="138" width="150" height="30" rx="15" fill="#fff" stroke="#2b6ea0" stroke-width="2"/>
+        <text x="271" y="158" text-anchor="middle" font-size="13" font-weight="800" fill="#2b6ea0" textLength="120" lengthAdjust="spacingAndGlyphs">断熱材が湿る</text>
+        <rect x="190" y="284" width="168" height="30" rx="15" fill="#b3372b"/>
+        <text x="274" y="304" text-anchor="middle" font-size="13.5" font-weight="800" fill="#fff" textLength="138" lengthAdjust="spacingAndGlyphs">結露 → 柱が傷む</text>
       </g>
-      <text x="330" y="250" text-anchor="middle" font-size="12" font-weight="800" fill="#7a5a2a">柱（構造材）</text>
-      <text x="300" y="430" text-anchor="middle" font-size="11.5" fill="#5c6c7d">防湿シートがない壁（イメージ）</text>
+      <text x="300" y="430" text-anchor="middle" font-size="11.5" fill="#5c6c7d">上から見た壁の断面（防湿シートがない壁のイメージ）</text>
     </svg></div>
     </div>
   </div>
@@ -519,12 +517,12 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
         <div class="fb rot"><b>木材が腐る</b><span>構造材が傷む</span></div><span class="arrow">→</span>
         <div class="fb rot"><b>耐震性能が落ちる</b><span>構造計算も制震ダンパーも、本来の力を出せない</span></div></div>
       <div class="row"><span class="lab">断熱</span>
-        <div class="fb warn"><b>断熱材が湿る</b><span>水を含んだ断熱材</span></div><span class="arrow">→</span>
-        <div class="fb rot"><b>断熱性能が落ちる</b><span>熱を止める力が弱くなる</span></div><span class="arrow">→</span>
+        <div class="fb warn"><b>断熱材が湿る</b><span>グラスウールなど繊維系の断熱材</span></div><span class="arrow">→</span>
+        <div class="fb rot"><b>断熱性能が落ちる</b><span>水を含むと、熱を止める力が弱くなる</span></div><span class="arrow">→</span>
         <div class="fb rot"><b>光熱費が上がる</b><span>急に暑い・寒いを感じ始める</span></div></div>
     </div>
   </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「結露で柱が腐れば、耐震の計算をしていても、制震ダンパーを入れていても、本来の強さは出せません。断熱材が湿れば断熱の力が落ちて、光熱費が上がったり、急に暑い寒いを感じるようになるんです。」</div></div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「結露で柱が腐れば、耐震の計算をしていても、制震ダンパーを入れていても、本来の強さは出せません。グラスウールのような繊維系の断熱材は、湿ると断熱の力が落ちて、光熱費が上がったり、急に暑い寒いを感じるようになるんです。」</div></div>
 </div>
 
 <!-- 11 -->
@@ -559,11 +557,11 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
   <div class="tt">工期とコストの前で、見て見ぬふりにされる現場。</div>
   <div class="body">
     <div class="twocol">
-      <div class="card warn"><h5>施工中にこもる湿気</h5><div class="big">乾く前に、次の工程へ</div><p>木材・コンクリートの水分を飛ばす時間が惜しまれがち</p></div>
+      <div class="card warn"><h5>雨や基礎の水分</h5><div class="big">乾く前に、閉じ込める</div><p>上棟中に木材が浴びた雨や、基礎コンクリートから出る水分を、乾かす前に床や壁でふさいでしまう</p></div>
       <div class="card warn"><h5>現場でのシート破れ</h5><div class="big">小さな破れは、見過ごされがち</div><p>気密シートの小さな穴は、工程上そのまま塞がれることがある</p></div>
     </div>
   </div>
-  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「工期やコストを優先すると、施工中にこもった湿気や、シートの小さな破れは見過ごされがちなんです。」</div></div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「工期やコストを優先すると、上棟中に浴びた雨や基礎の水分が乾く前に床や壁を閉じてしまったり、シートの小さな破れが見過ごされたりするんです。」</div></div>
 </div>
 
 <!-- 14 -->
@@ -687,7 +685,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
     <div class="flowH" style="flex:none">
       <div class="fb"><b>建て方のとき</b><span>1階の床合板を仮張り</span></div>
       <div class="arrow">→</div>
-      <div class="fb hero"><b>約1週間、乾かす</b><span>屋根・外壁の面材を張った後</span></div>
+      <div class="fb hero"><b>乾かす（約1週間〜）</b><span>季節に合わせて期間を調整</span></div>
       <div class="arrow">→</div>
       <div class="fb hero"><b>仮張りを剥がす</b><span>断熱材・防湿気密シートを施工</span></div>
       <div class="arrow">→</div>
@@ -695,7 +693,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
     </div>
     <div class="cap" style="text-align:center; font-size:13.5px">工期を優先すると、床を張ったらそのまま次へ進んでしまう。湿気が残ったまま閉じると、断熱材を傷めてしまう</div>
   </div>
-  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px"><div class="talk">🗣<b>そのまま言えるトーク</b>「建て方のときは床を仮に張っておいて、屋根と外壁ができてから1週間ほど乾かします。それから一度剥がして、断熱材と防湿気密シートを入れてから本張りする。面倒な工程ですが、湿気を閉じ込めないためにあえてやっているんです。」</div><span class="cap">仮張り→本締めはLIFEX標準施工マニュアル第1版p6・p12に記載。乾燥期間（約1週間）は2026-08-24中央建設様MTGでの本部説明</span></div>
+  <div class="foot" style="flex-direction:column; align-items:flex-start; gap:4px"><div class="talk">🗣<b>そのまま言えるトーク</b>「建て方のときは床を仮に張っておいて、屋根と外壁ができてから、季節に合わせて1週間ほど乾かします。それから一度剥がして、断熱材と防湿気密シートを入れてから本張りする。面倒な工程ですが、湿気を閉じ込めないためにあえてやっているんです。」</div><span class="cap">仮張り→本締めはLIFEX標準施工マニュアル第1版p6・p12に記載。乾燥期間（約1週間、季節により変動）は本部説明</span></div>
 </div>
 
 <!-- 19 -->
@@ -753,6 +751,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
       <div class="qa"><div class="q">結露しない家なんですか？</div><div class="a">「結露しません」とは言わない。壁の中には必ず結露する温度がある。だから室内側のシートで水蒸気をそこまで届かせない、と仕組みで答える</div></div>
       <div class="qa"><div class="q">夏の結露は大丈夫？</div><div class="a">夏は湿気の向きが逆。通気層で外壁の裏に空気が流れ続けるので、湿気をため込まない（「すぐ乾く」とは言い切らない）</div></div>
       <div class="qa"><div class="q">工期、長くなりませんか？</div><div class="a">床を一度剥がして乾かす分、少し時間がかかる。それが湿気を閉じ込めないための時間だと伝える</div></div>
+      <div class="qa"><div class="q">梅雨や雨の多い時期は？</div><div class="a">乾燥期間は季節に合わせて変えている。雨の多い時期でも、乾かさないまま閉じることはしない</div></div>
       <div class="qa"><div class="q">シロアリ対策は？</div><div class="a">防蟻処理は各社それぞれ工夫している。LIFEXが重視しているのは、そもそも壁の中を結露させず、構造と断熱の性能を持続させること。シロアリの話だけで勝負しない</div><div class="a" style="font-size:10.5px;color:var(--sub)">※営業の予備知識：他社で多い加圧注入の防蟻処理は、シロアリに一度かじらせて効かせる仕組み（寄せ付けない対策ではない）</div></div>
     </div>
   </div>
@@ -774,7 +773,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
       <p><b>JIS A 6930（住宅用プラスチック系防湿フィルム）のA種・B種</b>：A種＝厚み0.1mm・透湿抵抗0.082m²·s·Pa/ng以上、B種＝厚み0.2mm・透湿抵抗0.144m²·s·Pa/ng以上。市村「防湿気密シート モイストバリア」製品案内（2024-10-07、https://www.ichimura.co.jp/information/pdf/20241007.pdf）。A種＝一般地域推奨・B種＝寒冷地推奨はフクビ化学工業「バリアエース」製品ページ（https://www.fukuvi.co.jp/product/3/02/31）の記載。JIS原本は未確認</p>
       <p><b>LIFEXの防湿気密シート t=0.2mm、施工箇所</b>：LIFEX標準仕様書「断熱」欄（1階床・外壁・屋根・外気に接する天井の4か所で「防湿気密シート t=0.2」、2026-09-21確認）。製品はジェイベック「ボーダー」（LIFEX標準施工マニュアル第1版p26「防湿気密シート（ジェイベック：ボーダー）t=0.2を使用」）で、ジェイベック製品ページに「JIS A-6930住宅用プラスチック系防湿フィルム、寒冷地向けB種適合品」「0.2mm厚はJIS規格B種」と記載（http://www.jbeck.co.jp/products/kimitsu/border/index.html、2026-10-05確認）。矩計図の注記「防湿抵抗0.082m²·s·Pa/ng以上」は最低基準（A種相当）の表記。0.2mmを全国共通で使っていること、外気に接する床（2階の張り出し部分）にも張っていることはLIFEX本部に確認済み（2026-10-05）。矩計図の「外気に接する床」詳細には表記がない</p>
       <p><b>夏型結露と通気層の役割</b>：佐古顧問の指導内容（2026-10-05定例）。通気層だけで夏型結露が乾くと言い切れるかは未確認</p>
-      <p><b>床の仮張り→乾燥→剥がして断熱・防湿気密シート→本張りの工程</b>：LIFEX標準施工マニュアル統合版 第1版（2026/08/11）p6「1階床合板仮張りとする（野地板・外壁面材施工後本締め）」、p12「1階床合板施工」（床下断熱材 押出法ポリスチレンフォーム3種t=100、気密フィルム ジェイベックボーダー10）。乾燥期間「約1週間」と目的（湿気で断熱材を傷めない）は2026-08-24中央建設様ショートMTGでの本部説明</p>
+      <p><b>床の仮張り→乾燥→剥がして断熱・防湿気密シート→本張りの工程</b>：LIFEX標準施工マニュアル統合版 第1版（2026/08/11）p6「1階床合板仮張りとする（野地板・外壁面材施工後本締め）」、p12「1階床合板施工」（床下断熱材 押出法ポリスチレンフォーム3種t=100、気密フィルム ジェイベックボーダー10）。乾燥期間「約1週間」と目的（湿気で断熱材を傷めない）は2026-08-24中央建設様ショートMTGでの本部説明。乾燥期間を季節によって変えていることは本部確認（2026-10-08）</p>
       <p><b>壁の構成（恐怖⑥）</b>：LIFEX標準矩計図1/30（更新日2025.12.22）の外壁表記「サイディング／通気金具t=15／透湿防水シート／耐力面材ハイベストウッドt=9／吹付硬質ウレタンフォーム（A種3）t=95／ジェイベック（防湿気密シート）／PB t=12.5」に準拠</p>
       <p><b>恐怖⑦のコップ、恐怖②・恐怖⑥・執念①-2・執念①-3の図</b>：LIFEXのデザインで作成した説明用の図</p>
       <p><b>施工写真（執念①-2・執念②-1・執念③）</b>：LIFEX現場の施工写真（本部提供）</p>
