@@ -572,7 +572,9 @@ async function decodeState(str){
   return { people, groups: d.g.map(g=>g.map(i=>ids[i])), pool: d.o.map(i=>ids[i]), starts: d.s || [] };
 }
 document.getElementById('btnShare').onclick = async ()=>{
-  const url = location.href.split('#')[0] + '#s=' + await encodeState();
+  // ローカルのファイルで開いている場合も、相手が開ける公開URLでリンクを作る
+  const base = location.protocol==='file:' ? 'https://tokuda-k-sketch.github.io/lifex-public/golf-kumiawase.html' : location.href.split('#')[0];
+  const url = base + '#s=' + await encodeState();
   document.getElementById('shareUrl').value = url;
   document.getElementById('sharePanel').classList.add('open');
   try{ await navigator.clipboard.writeText(url); }catch(e){ const t=document.getElementById('shareUrl'); t.select(); try{ document.execCommand('copy'); }catch(e2){} }
