@@ -112,7 +112,7 @@ button.danger{border-color:var(--warn);color:var(--warn)}
 <body>
 <header>
   <h1>11/18 ゴルフコンペ 組み合わせ</h1>
-  <p>PGM池田カントリークラブ　五月平コース・綾羽コースから同時スタート（予約10組）。名前をドラッグして組へ入れる。1組4名まで。作業内容はこのブラウザに自動保存されます。</p>
+  <p>PGM池田カントリークラブ　五月平コース・綾羽コースから同時スタート（予約10組。組数を減らすと両コースに半分ずつ振り分け）。名前をドラッグして組へ入れる。1組4名まで。作業内容はこのブラウザに自動保存されます。</p>
 </header>
 <div class="wrap">
   <div class="bar">
@@ -183,8 +183,18 @@ button.danger{border-color:var(--warn);color:var(--warn)}
 
 <script>
 const CAP = 4;
-// 楽天GORAの予約枠（10組）。組数を減らした場合は上から使う
-const SLOTS = ['五月平 07:22','五月平 07:30','五月平 07:37','五月平 07:45','五月平 07:52','綾羽 07:22','綾羽 07:30','綾羽 07:37','綾羽 07:45','綾羽 07:52'];
+// 楽天GORAの予約枠（10組＝各コース5組）。組数が減ったら両コースに半分ずつ、早い時刻から使う
+// 例：8組→五月平4組・綾羽4組（どちらも07:22〜07:45）。奇数のときは五月平を1組多くする
+const TIMES = ['07:22','07:30','07:37','07:45','07:52'];
+const COURSES = ['五月平','綾羽'];
+const MAX_GROUPS = TIMES.length * COURSES.length;
+function slotsFor(n){
+  const a = Math.ceil(n/2), b = n - a;
+  return [...TIMES.slice(0,a).map(t=>COURSES[0]+' '+t), ...TIMES.slice(0,b).map(t=>COURSES[1]+' '+t)];
+}
+// 以前の割り当て（五月平5組を先に埋める方式）のままのデータか
+const OLD_SLOTS = [...TIMES.map(t=>COURSES[0]+' '+t), ...TIMES.map(t=>COURSES[1]+' '+t)];
+function isOldDefault(starts){ return starts.length>0 && starts.every((s,i)=>s===OLD_SLOTS[i]); }
 const KEY = 'golf-kumiawase-20261118';
 let state = { people: {}, pool: [], groups: [], starts: [] };
 let seq = 1;
@@ -281,12 +291,11 @@ function defaultGroupCount(){
   return Math.max(1, Math.ceil(Object.keys(state.people).length / CAP));
 }
 function setGroupCount(n){
-  n = Math.max(1, Math.min(SLOTS.length, n|0));
-  while(state.groups.length < n){ state.groups.push([]); state.starts.push(SLOTS[state.starts.length]||''); }
-  while(state.groups.length > n){
-    const g = state.groups.pop(); state.starts.pop();
-    state.pool.push(...g);
-  }
+  n = Math.max(1, Math.min(MAX_GROUPS, n|0));
+  while(state.groups.length < n){ state.groups.push([]); }
+  while(state.groups.length > n){ state.pool.push(...state.groups.pop()); }
+  // 組数が変わるとコースの振り分けが変わるので、スタートを割り当て直す
+  state.starts = slotsFor(n);
 }
 
 // 未配置の人だけを、ルールに沿って空いている組へ入れる
@@ -647,7 +656,16 @@ if(m){
   }catch(e){ alert('共有リンクを読み込めませんでした。リンクが途中で切れていないか確認してください。'); }
   history.replaceState(null, '', location.pathname + location.search);
 }
-state.starts = state.groups.map((g,i)=> state.starts[i] || SLOTS[i] || '');
+// 以前の割り当てのデータは、同じコース・時刻の組はそのまま残し、入りきらない組だけ空いた枠へ移す
+if(isOldDefault(state.starts)){
+  const newS = slotsFor(state.groups.length);
+  const placed = newS.map(()=>null), left = [];
+  state.groups.forEach((g,i)=>{ const j = newS.indexOf(state.starts[i]); if(j>=0 && !placed[j]) placed[j]=g; else left.push(g); });
+  state.groups = placed.map(g=> g || left.shift() || []);
+  state.starts = newS;
+}
+const def = slotsFor(state.groups.length);
+state.starts = state.groups.map((g,i)=> state.starts[i] || def[i] || '');
 render();
 }
 boot();
