@@ -331,18 +331,19 @@ svg text{font-family:"Hiragino Sans",sans-serif}
         <rect x="20" y="230" width="280" height="40" fill="#e3e6ea"/><text x="160" y="256" font-size="11" fill="#5c6c7d" text-anchor="middle">床下</text>
         <g filter="url(#sh)"><rect x="40" y="20" width="16" height="190" fill="url(#plyF)"/><rect x="56" y="20" width="96" height="190" fill="url(#foam)"/><rect x="152" y="20" width="6" height="190" fill="url(#sheetF)" stroke="#c9bed6" stroke-width=".8"/>
         <rect x="40" y="210" width="270" height="20" fill="url(#plyF)"/><rect x="40" y="210" width="270" height="20" fill="url(#plyTex)"/></g>
+        <!-- シートを床へ35mm折り返す -->
+        <rect x="152" y="204" width="41" height="6" fill="url(#sheetF)" stroke="#c9bed6" stroke-width=".8"/>
         <!-- 35角（ガイド） -->
-        <g opacity=".55"><rect x="158" y="175" width="35" height="35" fill="url(#studF)" stroke="#b58d58" stroke-dasharray="4 3"/></g>
-        <!-- テープ L字 -->
-        <path d="M150 184 L150 212 L196 212" stroke="url(#tapeF)" stroke-width="10" fill="none"/>
-        <path d="M150 184 L150 212 L196 212" stroke="#1b1e22" stroke-width="10" fill="none" opacity=".85"/>
+        <g opacity=".55"><rect x="158" y="169" width="35" height="35" fill="url(#studF)" stroke="#b58d58" stroke-dasharray="4 3"/></g>
+        <!-- テープ 床面のみ（シートの端に被せる） -->
+        <rect x="180" y="204.5" width="44" height="5.5" rx="1" fill="url(#tapeF)"/>
         <g font-size="11.5" font-weight="700" fill="#1e4e79">
-          <path d="M193 182 L232 140" stroke="#1e4e79"/><text x="214" y="132">35角の材を当てて</text><text x="214" y="148">シートを切る</text>
-          <path d="M190 212 L240 176" stroke="#1e4e79"/><text x="244" y="180">気密テープ</text>
+          <path d="M193 176 L232 140" stroke="#1e4e79"/><text x="214" y="132">35角の材を当てて</text><text x="214" y="148">シートを切る</text>
+          <path d="M216 205 L248 192" stroke="#1e4e79"/><text x="236" y="172">気密テープ</text><text x="230" y="188" font-size="10.5">（床面だけに貼る）</text>
         </g>
         <g transform="translate(110 250)"><circle r="10" fill="#fff" stroke="#b3372b" stroke-width="2.5"/><path d="M-5 -5 L5 5 M5 -5 L-5 5" stroke="#b3372b" stroke-width="2.5"/></g>
       </svg>
-      <p>35角を壁に当ててシートを切り、気密テープで床とつなぐ。1階・2階とも同じ</p></div>
+      <p>35角を壁に当ててシートを切り、床面に気密テープを貼って留める。1階・2階とも同じ</p></div>
     <div class="cc ph2"><div class="hd">実際の現場</div>
       <div class="pw"><img src="assets/kozo-kengaku/yuka.jpg" alt="床際を指す現場監督" style="object-position:50% 60%"><img class="zoom" src="assets/kozo-kengaku/yuka_zoom.jpg" alt="床際の気密テープのアップ"></div>
       <p>床際に沿った黒い線が気密テープ。外周ぐるっと一本につながる</p></div>
