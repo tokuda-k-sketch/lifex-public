@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>10月第2週 KPI観察</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#2b3a67; --navy-l:#eaedf5; --navy-m:#8d98bd; --greige:#f3f1ec;
+  --ink:#1b1f24; --ink2:#4a525c; --mute:#8a929c; --line:#e3e6ea; --warn:#a1462a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font-family:"Noto Sans JP",sans-serif;line-height:1.7;font-size:15px}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 16px 64px}
+header{border-bottom:2px solid var(--navy);padding-bottom:12px;margin-bottom:8px}
+h1{font-size:24px;margin:0;line-height:1.4;color:var(--navy)}
+.sub{color:var(--ink2);font-size:13px;margin-top:4px}
+h2{font-size:18px;margin:40px 0 14px;color:var(--navy);display:flex;align-items:center;gap:10px}
+h2 .no{background:var(--navy);color:#fff;font-size:13px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:#fff}
+.card h3{font-size:14px;margin:0 0 12px;color:var(--ink2);font-weight:500}
+/* 横棒 */
+.bars{display:grid;grid-template-columns:auto 1fr auto;gap:8px 10px;align-items:center}
+.bars .lb{font-size:13px;color:var(--ink2);white-space:nowrap}
+.bars .tr{height:22px;background:var(--greige);border-radius:4px;overflow:hidden}
+.bars .tr i{display:block;height:100%;background:var(--navy);border-radius:0 4px 4px 0}
+.bars .tr i.tent{background:var(--navy-m)}
+.bars .v{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.bars .v small{font-weight:400;color:var(--mute);font-size:12px;margin-left:4px}
+.bars .row{display:contents}
+.bars .row:hover .lb,.bars .row:hover .v{color:var(--navy)}
+.note{font-size:12.5px;color:var(--ink2);margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+.note b{color:var(--warn);font-weight:700}
+.st td,.st th{white-space:nowrap}.st thead th:first-child{text-align:left}.st tr.z th,.st tr.z td{color:var(--mute)}
+table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right}
+thead th{color:var(--ink2);font-weight:500;font-size:12.5px}
+tbody th{text-align:left;font-weight:500}
+td.now{font-weight:700;color:var(--navy)}
+/* 観察 */
+.obs{display:grid;gap:10px}
+.obs .it{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.obs .k{font-size:26px;font-weight:900;color:var(--navy);line-height:1.2}
+.obs .k small{font-size:13px;font-weight:500;color:var(--ink2);display:block;margin-top:2px}
+.obs .t b{display:block;font-size:15px;margin-bottom:2px}
+.obs .t span{font-size:13.5px;color:var(--ink2)}
+/* 個別MTG */
+.mtg{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.mtg div{background:var(--navy-l);border-radius:10px;padding:14px 16px}
+.mtg b{display:block;font-size:14.5px;color:var(--navy);margin-bottom:4px}
+.mtg span{font-size:13px;color:var(--ink2);display:block}
+.mtg em{font-style:normal;font-size:11.5px;color:var(--mute);display:block;margin-top:6px}
+/* 取り組み */
+.act td,.act th{text-align:left}
+.act td:first-child{width:40px;text-align:center;font-weight:700;color:var(--navy)}
+.act td:last-child{white-space:nowrap;color:var(--ink2)}
+/* 提案 */
+.prop{display:grid;gap:14px}
+.prop .p{border:1.5px solid var(--navy);border-radius:12px;padding:18px 20px}
+.prop .h{display:flex;gap:12px;align-items:baseline;margin-bottom:6px}
+.prop .h .n{font-size:13px;font-weight:700;color:#fff;background:var(--navy);border-radius:4px;padding:1px 8px;flex:none}
+.prop .h b{font-size:16.5px;color:var(--navy)}
+.prop p{margin:4px 0;font-size:14px}
+.prop .why{color:var(--ink2);font-size:13.5px}
+.prop .risk{font-size:13px;color:var(--ink2);background:var(--greige);border-radius:6px;padding:8px 12px;margin-top:8px}
+.prop .risk b{color:var(--ink)}
+details{margin-top:40px;font-size:12.5px;color:var(--ink2)}
+summary{cursor:pointer}
+details ul{padding-left:18px}
+@media (max-width:760px){.grid2,.mtg{grid-template-columns:1fr}.obs .it{grid-template-columns:1fr;gap:4px}}
+@media print{h2{break-after:avoid}.card,.it,.p{break-inside:avoid}}
+</style>
+
+<style>
+.diff td.up{color:var(--navy);font-weight:700}
+.skip{font-size:13px;color:var(--ink2);background:var(--greige);border-radius:10px;padding:12px 16px;margin-top:14px}
+.skip b{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p style="margin:0 0 12px;font-size:13px"><a href="index.html" style="color:var(--navy)">← 議題資料の一覧へ</a></p>
+
+<header>
+  <h1>10月第2週 KPI観察・分析・判断</h1>
+  <div class="sub">2026/10/12 LIFEX MTG｜対象期間 10/1〜10/11（管理画面 10/11 15:15出力）＋10/9以降の会議</div>
+</header>
+
+<h2><span class="no">1</span>数値の動き（前回資料から3日間）</h2>
+<div class="grid2">
+  <div class="card">
+    <h3>ファネル　10/1〜8 → 10/1〜11</h3>
+    <table class="diff">
+      <thead><tr><th style="text-align:left">指標</th><th>10/1〜8</th><th>10/1〜11</th><th>増分</th></tr></thead>
+      <tbody>
+        <tr><th>新規登録</th><td>63人</td><td class="now">75人</td><td class="up">+12</td></tr>
+        <tr><th>母数</th><td>40人</td><td class="now">51人</td><td class="up">+11</td></tr>
+        <tr><th>通話接続</th><td>16人</td><td class="now">20人</td><td class="up">+4</td></tr>
+        <tr><th>アポ</th><td>13人</td><td class="now">17人</td><td class="up">+4</td></tr>
+        <tr><th>面談</th><td>6人</td><td class="now">8人</td><td class="up">+2</td></tr>
+        <tr><th>契約（内定）</th><td>1人</td><td class="now">1人</td><td>0</td></tr>
+        <tr><th>来場予約</th><td>7件</td><td class="now">8件</td><td class="up">+1</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h3>通話接続率（通話接続÷母数）</h3>
+    <div class="bars">
+      <div class="row"><span class="lb">研修前 1/1〜7/23</span><span class="tr"><i style="width:23.9%"></i></span><span class="v">23.9%<small>83/348</small></span></div>
+      <div class="row"><span class="lb">研修後 7/24〜10/5</span><span class="tr"><i style="width:34.7%"></i></span><span class="v">34.7%<small>118/340</small></span></div>
+      <div class="row"><span class="lb">10月 1〜8日</span><span class="tr"><i class="tent" style="width:40%"></i></span><span class="v">40.0%<small>16/40</small></span></div>
+      <div class="row"><span class="lb">10月 1〜11日</span><span class="tr"><i class="tent" style="width:39.2%"></i></span><span class="v">39.2%<small>20/51</small></span></div>
+    </div>
+    <div class="note">3日間で母数が11人増え、つながったのは4人。登録から日が浅いお客様が多いので<b>横ばい</b>と見ます。アポ取得率は85%（17/20）、アポから面談は8/17。</div>
+  </div>
+</div>
+
+<h2><span class="no">2</span>観察</h2>
+<div class="card" style="overflow-x:auto">
+  <h3>加盟店様別 10月1〜11日（稼働開始が早い順・カッコ内は10/8からの増分）</h3>
+  <table class="st">
+    <thead><tr><th>加盟店様</th><th>稼働開始</th><th>母数</th><th>通話</th><th>アポ</th><th>面談</th><th>契約</th></tr></thead>
+    <tbody>
+      <tr><th>A社</th><td>2月</td><td>19 (+3)</td><td>9 (+1)</td><td>7 (+2)</td><td class="now">3 (+2)</td><td>0</td></tr>
+      <tr><th>B社</th><td>4月</td><td>4 (+2)</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+      <tr class="z"><th>C社</th><td>4月</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><th>D社</th><td>5月</td><td>3 (+1)</td><td class="now">1 (+1)</td><td class="now">1 (+1)</td><td>0</td><td>0</td></tr>
+      <tr><th>E社</th><td>5月</td><td>6 (+3)</td><td>2</td><td>2</td><td>2</td><td>内定1</td></tr>
+      <tr class="z"><th>F社</th><td>5月</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><th>G社</th><td>5月</td><td>4</td><td class="now">1 (+1)</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><th>H社</th><td>5月</td><td>2 (+1)</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+      <tr><th>I社</th><td>7月</td><td>4</td><td>2</td><td>2</td><td>2</td><td>0</td></tr>
+      <tr><th>J社</th><td>8月</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+      <tr class="z"><th>K社</th><td>9月</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><th>L社</th><td>9月</td><td>3</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+      <tr class="z"><th>M社</th><td>9月</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><th>N社</th><td>未確認</td><td>1 (+1)</td><td>1 (+1)</td><td>1 (+1)</td><td>0</td><td>0</td></tr>
+    </tbody>
+  </table>
+  <div class="note">稼働開始月は2026年。灰色の行は通話接続が0人。母数に入っていない未登録の会員が別に11人います。</div>
+</div>
+
+<div class="obs" style="margin-top:14px">
+  <div class="it"><div class="k">7→3<small>アポ→面談</small></div><div class="t"><b>A社のアポが面談に進み始めた</b><span>前回「5→1」で気にしていた箇所。3日で面談が2人増えたので、面談日が先だっただけと見てよさそうです。10/9に山口さんが報告した10・11・13日のアポと時期は合いますが、同じお客様かは未確認。</span></div></div>
+  <div class="it"><div class="k">0→1<small>通話接続</small></div><div class="t"><b>G社・D社で初めてつながった</b><span>前回の取り組み1で確認先にした2社。D社はアポまで進んでいます。確認の連絡が効いたのか、自然に進んだのかは未確認。まだ0人なのはC社・F社・K社・M社（各1人）。</span></div></div>
+  <div class="it"><div class="k">契約 0<small>10月登録分</small></div><div class="t"><b>契約ステータスはまだ誰も「契約」になっていない</b><span>画面上は契約（内定）1/8（E社）ですが、契約の内訳は「契約済みの会員がいません」。10/9に藤本さんから更新の徹底を頼まれた件です。別の加盟店様から報告のあった初契約は登録日が9月以前なら10月の画面には出ないので、期間を広げて確認する必要があります。</span></div></div>
+  <div class="it"><div class="k">↑1 ↓4<small>先週の動き</small></div><div class="t"><b>ステータスが下がった動きが4件</b><span>A社↓2、B社↓1、H社↓1。↓が失注・キャンセルなのか、ステータスの付け直しなのか、画面の定義をまだ確認していません。B社・H社は1人ずつなので、聞けばすぐ分かります。</span></div></div>
+</div>
+
+<h2><span class="no">3</span>議題（2件）</h2>
+<div class="prop">
+  <div class="p">
+    <div class="h"><span class="n">議題1</span><b>トルネオプラス：キャンペーン終了の10/15までに片付ける2点</b></div>
+    <p>① 9/16〜10/15に契約したお客様が「トルネオが付く」前提でいるか、各店に確認する。終わってから「付いていません」となるのは避けたい（10/9 森山さん）。</p>
+    <p>② 13mm地域の扱い。代理店は「部品を足せば問題ない」との回答でしたが、10/9に水圧低下と水道局指導の懸念が出て、メーカーに出荷実績と注意喚起を正式に確認することになりました。メーカーの回答が来るまで「13mmでも使える」の再発信は止めておきます。</p>
+    <p class="why">決めたいこと：①の担当と期限（10/14中）。②のメーカー回答の期限と、回答が10/15に間に合わない場合の各店への伝え方。</p>
+    <div class="risk"><b>懸念：</b>キャンペーン期間中の契約件数そのものを本部で把握できていません（10月画面は契約0）。①は各店への聞き取り頼みになります。</div>
+  </div>
+  <div class="p">
+    <div class="h"><span class="n">議題2</span><b>加盟店LPに広告費をかけ続けるか、本部集客に寄せるか（10/15判断）</b></div>
+    <p>10/9のMTGで「15日までに判断」と確認済み。材料は、時位さんが出すイベント掲載あり／なし別のLP離脱率・資料請求の差（共有待ち）と、本部への資料請求が10/1以降21件中20件Instagram経由という藤本さんの報告です。</p>
+    <p>イベント掲載は、10/9時点で未掲載だった12社のうち<b>8社が10/11までに掲載</b>しました（電話フォロー後）。まだ0件なのは4社で、G社（10/11までに掲載のお約束）と、ほか3社（電話がつながらない／モデルハウスを使わないイベントを提案予定／マーケティング会議が先）。</p>
+    <p>掲載したまま期限が切れる店も出始めています。J社は10/12で終了して10/13から0件、N社は10/10の1日だけ。D社・B社4店舗・ほか2社は10/31に一斉に切れます。</p>
+    <p class="why">決めたいこと：判断の基準（例：LP経由の資料請求が月◯件未満のエリアは本部に寄せる）と、誰がいつ最終判断するか。あわせて、11月分のイベント更新を10/25ごろに各店へ依頼するかどうか。</p>
+    <div class="risk"><b>懸念：</b>新LPは運用1ヶ月で、8社は掲載してまだ数日です。全店一律で決めると「イベントを入れたら効くのか」が見えないまま決まります。エリアごとに分けて判断し、今回掲載した店は11月まで様子を見る案もあります。</div>
+  </div>
+</div>
+<div class="skip"><b>今回は議題にしないもの：</b>A社の面談（進み始めたため）／動画視聴率（10/9にプラン欄からの削除が決まったため。最終値はポータルサイトにある動画（会員登録のお客様）7/62人＝11.3%）／登録3日以内のお客様の未接続。</div>
+
+<h2><span class="no">4</span>取り組みの進み具合</h2>
+<div class="card">
+  <table class="act">
+    <thead><tr><th>#</th><th>やること</th><th>今回の状況</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>未接触のお客様の確認（G社・D社から）</td><td>両社とも0→1人つながった。全店向けには10/16研修の最後に確認事項として入れる</td></tr>
+      <tr><td>2</td><td>契約報告とポータルの照合・契約ステータス更新のアナウンス</td><td>10月登録分は契約0のまま。10/16研修の最後に確認事項として入れる</td></tr>
+      <tr><td>3</td><td>単品オプション不可の周知／モデル建設中の案内トーク</td><td>単品オプションは10/16研修の最後に確認事項として入れる。トークは10/9に本部で対応案を作ることに決定</td></tr>
+      <tr><td>4</td><td>I社のLP改善の結果を検証（時位さん）</td><td>11月に検証</td></tr>
+      <tr><td>5</td><td>イベント未掲載の店舗への個別連絡（10/9追加）</td><td>12社に電話でフォロー。8社が掲載、4社はまだ0件</td></tr>
+      <tr><td>6</td><td>加盟店様インスタのフォロワー集計（10/9追加）</td><td>10/9に集計済み。本部1,742人、加盟店様12アカウント計985人。毎週金曜に自動取得（初回10/16）</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<details open>
+  <summary>数字の出典</summary>
+  <ul>
+    <li>10月の数値：LIFEX管理画面（10/11 15:15出力）</li>
+    <li>10/1〜8の数値：前回の議題資料（管理画面 10/8出力）</li>
+    <li>研修前・研修後の通話接続率：研修効果の検証資料</li>
+    <li>稼働開始月：加盟店リスト（N社は未確認）</li>
+    <li>トルネオ・LP判断・動画・契約ステータスの件：10/9 LIFEX MTGの議事メモ</li>
+    <li>インスタのフォロワー数：10/9の本部集計</li>
+  </ul>
+</details>
+</div>
+</body>
+</html>
