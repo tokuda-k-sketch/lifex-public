@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>12月末までのKPI設定シート</title>
+<style>
+  :root{
+    --navy:#1f3a5f; --navy-soft:#e8eef6; --line:#d5dce6; --text:#1d2633; --muted:#5f6b7a;
+    --alert:#a5432a; --bg:#ffffff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;
+    font-size:15px;line-height:1.6}
+  .wrap{max-width:1180px;margin:0 auto;padding:20px 16px 48px}
+  header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;
+    border-bottom:3px solid var(--navy);padding-bottom:12px;margin-bottom:20px}
+  h1{font-size:24px;margin:0;color:var(--navy)}
+  .tabs{display:flex;gap:4px}
+  .tabs a{padding:8px 20px;border:1px solid var(--navy);border-radius:6px;color:var(--navy);text-decoration:none;font-weight:600}
+  .tabs a.on{background:var(--navy);color:#fff}
+  .meta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+  .meta label{font-size:13px;color:var(--muted);display:flex;flex-direction:column}
+  .meta input{width:220px}
+  .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+  @media (max-width:860px){.grid{grid-template-columns:1fr}}
+  section{border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:24px}
+  h2{font-size:16px;margin:0 0 12px;color:var(--navy);display:flex;align-items:center;gap:8px}
+  h2 .no{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;
+    border-radius:50%;background:var(--navy);color:#fff;font-size:13px}
+  table{width:100%;border-collapse:collapse}
+  th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}
+  th{font-size:13px;color:var(--muted);font-weight:600}
+  td.formula{font-size:12px;color:var(--muted)}
+  input{font:inherit;padding:6px 8px;border:1px solid #b8c3d1;border-radius:6px;background:#fff;color:var(--text)}
+  input:focus{outline:2px solid var(--navy);outline-offset:0;border-color:var(--navy)}
+  input.num{width:84px;text-align:right}
+  .unit{color:var(--muted);font-size:13px;margin-left:4px}
+  .row{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+  .row > span.lbl{min-width:220px}
+  .note{font-size:12px;color:var(--muted);margin:6px 0 0}
+
+  .funnel{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .step{display:grid;grid-template-columns:56px 1fr 92px;align-items:center;gap:8px}
+  .step .name{font-size:13px;font-weight:600}
+  .bar{height:26px;background:var(--navy-soft);border-radius:4px;position:relative;overflow:hidden}
+  .bar i{position:absolute;inset:0 auto 0 0;background:var(--navy);border-radius:4px;transition:width .25s}
+  .step .val{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+  .rate{font-size:11px;color:var(--muted);padding-left:64px;margin:-2px 0}
+
+  .kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .kpi{border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+  .kpi .k{font-size:12px;color:var(--muted)}
+  .kpi .v{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--navy)}
+  .kpi .v small{font-size:13px;font-weight:600;margin-left:2px}
+  .kpi.alert{border-color:var(--alert)}
+  .kpi.alert .v{color:var(--alert)}
+  .verdict{margin-top:12px;font-weight:600}
+  .verdict.ng{color:var(--alert)}
+
+  #plan td input.name, #plan td input.who{width:100%}
+  .sum{display:flex;justify-content:flex-end;gap:18px;margin-top:10px;font-weight:600;flex-wrap:wrap}
+  .ng{color:var(--alert)}
+  .actions{display:flex;gap:10px;justify-content:flex-end;align-items:center;flex-wrap:wrap}
+  .status{font-size:13px;color:var(--muted)}
+  button{font:inherit;padding:8px 16px;border-radius:6px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer}
+  button.primary{background:var(--navy);color:#fff}
+  button:disabled{opacity:.5;cursor:default}
+
+  /* 一覧 */
+  .totals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+  @media (max-width:860px){.totals{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  .list-scroll{overflow-x:auto}
+  #listTable{min-width:980px;font-size:13px}
+  #listTable td.n{text-align:right;font-variant-numeric:tabular-nums}
+  #listTable th.n{text-align:right}
+  #listTable td small{display:block;color:var(--muted);font-size:11px}
+  #listTable tbody tr{cursor:pointer}
+  #listTable tbody tr:hover{background:var(--navy-soft)}
+  #listTable tfoot td{font-weight:700;border-top:2px solid var(--navy)}
+  .plans{font-size:12px;color:var(--text);white-space:pre-line}
+
+  @media print{
+    @page{size:A4 landscape;margin:10mm}
+    body{font-size:12px}
+    .wrap{padding:0;max-width:none}
+    .actions,.tabs{display:none}
+    section{break-inside:avoid;margin-bottom:10px;padding:10px 12px}
+    .grid{grid-template-columns:1fr 1fr;gap:12px}
+    input{border-color:transparent;padding:2px 4px}
+    #listTable{min-width:0}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>12月末までのKPI設定シート</h1>
+    <nav class="tabs">
+      <a href="#input" id="tabInput">入力</a>
+      <a href="#list" id="tabList">一覧</a>
+    </nav>
+  </header>
+
+  <!-- ========== 入力 ========== -->
+  <div id="viewInput">
+    <div class="meta">
+      <label>店舗名<input id="store" list="storeNames" placeholder="例）〇〇工務店様"></label>
+      <label>実施日<input id="date" type="date"></label>
+      <datalist id="storeNames"></datalist>
+    </div>
+
+    <div class="grid">
+      <div>
+        <section>
+          <h2><span class="no">1</span>4つの率を決める</h2>
+          <table>
+            <thead><tr><th>指標</th><th>直近の実績</th><th>12月までの目標</th><th>計算式</th></tr></thead>
+            <tbody>
+              <tr><td>通電率</td>
+                <td><input class="num" id="a1" inputmode="decimal"><span class="unit">%</span></td>
+                <td><input class="num" id="r1" inputmode="decimal"><span class="unit">%</span></td>
+                <td class="formula">通話 ÷ 登録</td></tr>
+              <tr><td>アポ率</td>
+                <td><input class="num" id="a2" inputmode="decimal"><span class="unit">%</span></td>
+                <td><input class="num" id="r2" inputmode="decimal"><span class="unit">%</span></td>
+                <td class="formula">アポ ÷ 通話</td></tr>
+              <tr><td>面談率</td>
+                <td><input class="num" id="a3" inputmode="decimal"><span class="unit">%</span></td>
+                <td><input class="num" id="r3" inputmode="decimal"><span class="unit">%</span></td>
+                <td class="formula">面談 ÷ アポ</td></tr>
+              <tr><td>契約率</td>
+                <td><input class="num" id="a4" inputmode="decimal"><span class="unit">%</span></td>
+                <td><input class="num" id="r4" inputmode="decimal"><span class="unit">%</span></td>
+                <td class="formula">契約 ÷ 面談</td></tr>
+            </tbody>
+          </table>
+          <p class="note">計算には「12月までの目標」を使います。「直近の実績」は比較用です。</p>
+        </section>
+
+        <section>
+          <h2><span class="no">2</span>集客の見込みと目標契約数</h2>
+          <div class="row"><span class="lbl">月あたりの見込み集客数（登録）</span>
+            <input class="num" id="leadPerMonth" inputmode="decimal"><span class="unit">件／月</span></div>
+          <div class="row"><span class="lbl">集客期間（実施日〜11月30日）</span>
+            <strong id="monthsView">—</strong></div>
+          <div class="row"><span class="lbl">12月末までの目標契約数</span>
+            <input class="num" id="target" inputmode="decimal"><span class="unit">棟</span></div>
+          <p class="note">12月末の契約に間に合う集客は11月末までとして、実施日から自動で計算します。</p>
+        </section>
+      </div>
+
+      <div>
+        <section>
+          <h2><span class="no">3</span>この数字で積み上げると</h2>
+          <div class="funnel" id="funnel"></div>
+          <div class="kpis">
+            <div class="kpi"><div class="k">見込み契約数</div><div class="v" id="expContract">—</div></div>
+            <div class="kpi" id="gapBox"><div class="k">目標との差</div><div class="v" id="gap">—</div></div>
+            <div class="kpi" id="needBox"><div class="k">目標に必要な集客数</div><div class="v" id="needLead">—</div></div>
+          </div>
+          <p class="verdict" id="verdict"></p>
+        </section>
+      </div>
+    </div>
+
+    <section>
+      <h2><span class="no">4</span>足りない集客をどう埋めるか</h2>
+      <table id="plan">
+        <thead><tr><th style="width:46%">打ち手</th><th style="width:18%">見込み件数</th><th>担当</th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <div class="sum"><span>打ち手の合計 <span id="planSum">0</span> 件</span><span id="planGap"></span></div>
+    </section>
+
+    <div class="actions">
+      <span class="status" id="saveStatus"></span>
+      <button id="clear">入力をクリア</button>
+      <button onclick="window.print()">印刷・PDF保存</button>
+      <button class="primary" id="save">この店舗を保存</button>
+    </div>
+  </div>
+
+  <!-- ========== 一覧 ========== -->
+  <div id="viewList" hidden>
+    <div class="totals">
+      <div class="kpi"><div class="k">保存済みの店舗</div><div class="v" id="tStores">—</div></div>
+      <div class="kpi" id="tTargetBox"><div class="k">目標契約の合計<br>（全体目標 <span id="tGoal"></span>件）</div><div class="v" id="tTarget">—</div></div>
+      <div class="kpi"><div class="k">見込み契約の合計</div><div class="v" id="tExp">—</div></div>
+      <div class="kpi" id="tShortBox"><div class="k">不足集客の合計</div><div class="v" id="tShort">—</div></div>
+    </div>
+
+    <section>
+      <div class="list-scroll">
+        <table id="listTable">
+          <thead><tr>
+            <th>店舗名</th><th>実施日</th>
+            <th class="n">通電率</th><th class="n">アポ率</th><th class="n">面談率</th><th class="n">契約率</th>
+            <th class="n">見込み集客</th><th class="n">目標契約</th><th class="n">見込み契約</th>
+            <th class="n">不足集客</th><th class="n">打ち手合計</th><th>打ち手</th>
+          </tr></thead>
+          <tbody></tbody>
+          <tfoot></tfoot>
+        </table>
+      </div>
+      <p class="note">率は上が12月までの目標、下が直近の実績です。行をクリックすると入力タブで開き、直して保存し直せます。</p>
+    </section>
+
+    <div class="actions">
+      <span class="status" id="listStatus"></span>
+      <button id="reload">最新に更新</button>
+      <button onclick="window.print()">印刷・PDF保存</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // 保存先（GASウェブアプリのURL）。デプロイ後に貼り付ける
+  const API_URL = 'https://script.google.com/macros/s/AKfycbxjR2XnDhTxcsqflE-8_N4cYEg6l5-GKKvS7543x2iPQw9GKQDyTiZTKqpq6PJWvw7m/exec';
+  // 12月末の全体目標（佐古顧問と決定・2026-10-12共有）
+  const GOAL_TOTAL = 32;
+  const CUTOFF = new Date(2026, 10, 30); // 集客の締め：11月30日
+
+  const $ = id => document.getElementById(id);
+  const num = id => { const v = parseFloat(String($(id).value).replace(/[％%,，]/g,'')); return isNaN(v) ? null : v; };
+  const fmt = (v, d=1) => (v === null || v === undefined || v === '') ? '—' : (Math.round(v * 10**d) / 10**d).toLocaleString('ja-JP');
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  // ---------- パスコード ----------
+  function getKey(force){
+    let k = null;
+    try { k = localStorage.getItem('kpiSetteiKey'); } catch(e) {}
+    if (!k || force) {
+      k = prompt('パスコードを入力してください');
+      if (!k) return null;
+      try { localStorage.setItem('kpiSetteiKey', k); } catch(e) {}
+    }
+    return k;
+  }
+
+  // ---------- 入力 ----------
+  const planBody = document.querySelector('#plan tbody');
+  for (let i = 0; i < 5; i++) {
+    planBody.insertAdjacentHTML('beforeend',
+      `<tr><td><input class="name" placeholder="${i===0?'例）見学会の開催、広告の追加、過去客への再架電':''}"></td>
+       <td><input class="num plan-n" inputmode="decimal"><span class="unit">件</span></td>
+       <td><input class="who"></td></tr>`);
+  }
+
+  const steps = ['集客','通話','アポ','面談','契約'];
+  const rateNames = ['通電率','アポ率','面談率','契約率'];
+
+  function todayStr(){
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  }
+  $('date').value = todayStr();
+
+  // 実施日から11月30日までの日数・月数
+  function calcMonths(){
+    const v = $('date').value;
+    if (!v) { $('monthsView').textContent = '実施日を入れてください'; return null; }
+    const [y,m,d] = v.split('-').map(Number);
+    const days = Math.round((CUTOFF - new Date(y, m-1, d)) / 86400000) + 1;
+    if (days <= 0) { $('monthsView').textContent = '11月30日を過ぎています'; return null; }
+    const months = Math.round(days / (365/12) * 10) / 10;
+    $('monthsView').textContent = `${days}日（約${months}ヶ月）`;
+    return months;
+  }
+
+  function readPlans(){
+    return [...planBody.rows].map(tr => ({
+      name: tr.querySelector('.name').value.trim(),
+      n: parseFloat(tr.querySelector('.plan-n').value),
+      who: tr.querySelector('.who').value.trim()
+    })).filter(p => p.name || !isNaN(p.n));
+  }
+
+  let last = {};
+  function calc(){
+    const rates = ['r1','r2','r3','r4'].map(id => { const v = num(id); return v == null ? null : v/100; });
+    const actual = ['a1','a2','a3','a4'].map(num);
+    const perMonth = num('leadPerMonth'), target = num('target');
+    const months = calcMonths();
+    const leads = (perMonth != null && months != null) ? perMonth * months : null;
+
+    const counts = [leads];
+    rates.forEach((r,i) => counts.push(counts[i] != null && r != null ? counts[i] * r : null));
+    const max = leads || 1;
+    $('funnel').innerHTML = steps.map((s,i) => {
+      const c = counts[i];
+      const w = c == null ? 0 : Math.max(2, c / max * 100);
+      let rateLine = '';
+      if (i > 0) {
+        const r = rates[i-1], a = actual[i-1];
+        rateLine = `<div class="rate">${rateNames[i-1]} ${r==null?'—':fmt(r*100)+'%'}${a!=null?`（直近 ${fmt(a)}%）`:''}</div>`;
+      }
+      return rateLine + `<div class="step"><span class="name">${s}</span><div class="bar"><i style="width:${w}%"></i></div><span class="val">${fmt(c)}${c==null?'':' 件'}</span></div>`;
+    }).join('');
+
+    const exp = counts[4];
+    const allRates = rates.every(r => r != null && r > 0);
+    const product = allRates ? rates.reduce((a,b) => a*b, 1) : null;
+    const need = (product && target != null) ? Math.ceil(target / product) : null;
+    const gap = (exp != null && target != null) ? exp - target : null;
+    const short = (need != null && leads != null) ? Math.max(0, Math.ceil(need - leads)) : null;
+
+    $('expContract').innerHTML = exp == null ? '—' : `${fmt(exp)}<small>棟</small>`;
+    $('gap').innerHTML = gap == null ? '—' : `${gap >= 0 ? '+' : ''}${fmt(gap)}<small>棟</small>`;
+    $('needLead').innerHTML = need == null ? '—' : `${need.toLocaleString('ja-JP')}<small>件</small>`;
+    $('gapBox').classList.toggle('alert', gap != null && gap < 0);
+    $('needBox').classList.toggle('alert', short != null && short > 0);
+
+    const v = $('verdict');
+    v.className = 'verdict';
+    if (short == null) v.textContent = '';
+    else if (short > 0) {
+      v.classList.add('ng');
+      v.textContent = `今の見込みでは集客が ${short} 件足りません（月あたり ${fmt(short / months)} 件の上乗せ）。`;
+    } else v.textContent = '今の見込み集客で目標に届く計算です。';
+
+    const plans = readPlans();
+    const planSum = plans.reduce((s,p) => s + (isNaN(p.n) ? 0 : p.n), 0);
+    $('planSum').textContent = fmt(planSum);
+    const pg = $('planGap');
+    if (short == null || short === 0) { pg.textContent = ''; pg.className = ''; }
+    else if (planSum >= short) { pg.textContent = `不足 ${short} 件を埋められます`; pg.className = ''; }
+    else { pg.textContent = `あと ${fmt(short - planSum)} 件の打ち手が必要`; pg.className = 'ng'; }
+
+    last = { rates, actual, perMonth, months, leads, target, exp, gap, need, short, plans, planSum };
+  }
+
+  const r1d = v => v == null ? '' : Math.round(v * 10) / 10;
+
+  async function save(){
+    calc();
+    const store = $('store').value.trim();
+    if (!store) { alert('店舗名を入れてください'); return; }
+    if (!API_URL) { alert('保存先がまだ設定されていません（GASのデプロイ待ち）'); return; }
+    const key = getKey(false); if (!key) return;
+    const L = last;
+    const data = {
+      '店舗名': store, '実施日': $('date').value,
+      '通電率_実績': L.actual[0], 'アポ率_実績': L.actual[1], '面談率_実績': L.actual[2], '契約率_実績': L.actual[3],
+      '通電率_目標': num('r1'), 'アポ率_目標': num('r2'), '面談率_目標': num('r3'), '契約率_目標': num('r4'),
+      '月あたり集客': L.perMonth, '集客期間_月': L.months, '見込み集客': r1d(L.leads), '目標契約': L.target,
+      '見込み契約': r1d(L.exp), '目標との差': r1d(L.gap), '必要集客': L.need, '不足集客': L.short,
+      '打ち手合計': L.planSum,
+      '打ち手': L.plans.map(p => `${p.name}${isNaN(p.n)?'':`：${p.n}件`}${p.who?`（${p.who}）`:''}`).join('\n'),
+      '打ち手JSON': JSON.stringify(L.plans)
+    };
+    $('save').disabled = true; $('saveStatus').textContent = '保存中…';
+    try {
+      const res = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'save', key, data }) });
+      const j = await res.json();
+      if (j.error === 'auth') { getKey(true); throw new Error('パスコードが違います。もう一度保存を押してください'); }
+      if (!j.ok) throw new Error(j.error || '保存できませんでした');
+      $('saveStatus').textContent = `保存しました（${new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})}）`;
+      listCache = null;
+    } catch (e) {
+      $('saveStatus').textContent = '';
+      alert(e.message);
+    } finally { $('save').disabled = false; }
+  }
+
+  function clearInput(){
+    document.querySelectorAll('#viewInput input').forEach(el => { el.value = el.id === 'date' ? todayStr() : ''; });
+    $('saveStatus').textContent = '';
+    calc();
+  }
+
+  // ---------- 一覧 ----------
+  let listCache = null;
+
+  async function loadList(){
+    if (!API_URL) { $('listStatus').textContent = '保存先がまだ設定されていません（GASのデプロイ待ち）'; return; }
+    const key = getKey(false); if (!key) { $('listStatus').textContent = 'パスコードが必要です'; return; }
+    $('listStatus').textContent = '読み込み中…';
+    try {
+      const res = await fetch(`${API_URL}?action=list&key=${encodeURIComponent(key)}&t=${Date.now()}`);
+      const j = await res.json();
+      if (j.error === 'auth') { getKey(true); return loadList(); }
+      if (!j.ok) throw new Error(j.error);
+      listCache = j.rows;
+      renderList();
+      $('listStatus').textContent = `${new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})} 時点`;
+    } catch (e) { $('listStatus').textContent = '読み込めませんでした：' + e.message; }
+  }
+
+  const val = v => (v === '' || v === null || v === undefined) ? null : Number(v);
+  const pct = (t, a) => `${t==null?'—':fmt(t)+'%'}<small>${a==null?'':'直近 '+fmt(a)+'%'}</small>`;
+
+  function renderList(){
+    const rows = listCache || [];
+    $('storeNames').innerHTML = rows.map(r => `<option value="${esc(r['店舗名'])}">`).join('');
+    const tb = document.querySelector('#listTable tbody');
+    tb.innerHTML = rows.map((r,i) => `
+      <tr data-i="${i}">
+        <td><strong>${esc(r['店舗名'])}</strong><small>${esc(r['更新日時'])} 更新</small></td>
+        <td>${esc(r['実施日'])}</td>
+        ${['通電率','アポ率','面談率','契約率'].map(n => `<td class="n">${pct(val(r[n+'_目標']), val(r[n+'_実績']))}</td>`).join('')}
+        <td class="n">${fmt(val(r['見込み集客']))}</td>
+        <td class="n">${fmt(val(r['目標契約']))}</td>
+        <td class="n">${fmt(val(r['見込み契約']))}</td>
+        <td class="n ${val(r['不足集客'])>0?'ng':''}">${fmt(val(r['不足集客']),0)}</td>
+        <td class="n">${fmt(val(r['打ち手合計']))}</td>
+        <td class="plans">${esc(r['打ち手'])}</td>
+      </tr>`).join('') || '<tr><td colspan="12">まだ保存された店舗はありません</td></tr>';
+
+    const sum = k => rows.reduce((s,r) => s + (val(r[k]) || 0), 0);
+    const tTarget = sum('目標契約'), tExp = sum('見込み契約'), tShort = sum('不足集客');
+    document.querySelector('#listTable tfoot').innerHTML = rows.length ? `
+      <tr><td>合計</td><td></td><td></td><td></td><td></td><td></td>
+      <td class="n">${fmt(sum('見込み集客'))}</td><td class="n">${fmt(tTarget)}</td><td class="n">${fmt(tExp)}</td>
+      <td class="n">${fmt(tShort,0)}</td><td class="n">${fmt(sum('打ち手合計'))}</td><td></td></tr>` : '';
+
+    $('tGoal').textContent = GOAL_TOTAL;
+    $('tStores').innerHTML = `${rows.length}<small>店</small>`;
+    $('tTarget').innerHTML = `${fmt(tTarget)}<small>件</small>`;
+    $('tExp').innerHTML = `${fmt(tExp)}<small>件</small>`;
+    $('tShort').innerHTML = `${fmt(tShort,0)}<small>件</small>`;
+    $('tTargetBox').classList.toggle('alert', rows.length > 0 && tTarget < GOAL_TOTAL);
+    $('tShortBox').classList.toggle('alert', tShort > 0);
+  }
+
+  // 一覧の行 → 入力タブで開く
+  document.querySelector('#listTable tbody').addEventListener('click', e => {
+    const tr = e.target.closest('tr[data-i]'); if (!tr) return;
+    const r = listCache[tr.dataset.i];
+    clearInput();
+    $('store').value = r['店舗名'];
+    $('date').value = r['実施日'] || todayStr();
+    ['通電率','アポ率','面談率','契約率'].forEach((n,i) => {
+      $('a'+(i+1)).value = r[n+'_実績'] ?? '';
+      $('r'+(i+1)).value = r[n+'_目標'] ?? '';
+    });
+    $('leadPerMonth').value = r['月あたり集客'] ?? '';
+    $('target').value = r['目標契約'] ?? '';
+    let plans = [];
+    try { plans = JSON.parse(r['打ち手JSON'] || '[]'); } catch(err) {}
+    plans.slice(0,5).forEach((p,i) => {
+      const tr2 = planBody.rows[i];
+      tr2.querySelector('.name').value = p.name || '';
+      tr2.querySelector('.plan-n').value = isNaN(p.n) || p.n == null ? '' : p.n;
+      tr2.querySelector('.who').value = p.who || '';
+    });
+    location.hash = '#input';
+    calc();
+  });
+
+  // ---------- タブ ----------
+  function route(){
+    const isList = location.hash === '#list';
+    $('viewInput').hidden = isList;
+    $('viewList').hidden = !isList;
+    $('tabInput').classList.toggle('on', !isList);
+    $('tabList').classList.toggle('on', isList);
+    if (isList && !listCache) loadList();
+  }
+  window.addEventListener('hashchange', route);
+
+  $('viewInput').addEventListener('input', calc);
+  $('save').addEventListener('click', save);
+  $('reload').addEventListener('click', loadList);
+  $('clear').addEventListener('click', () => { if (confirm('入力をすべて消します。よろしいですか？')) clearInput(); });
+  calc();
+  route();
+</script>
+</body>
+</html>
