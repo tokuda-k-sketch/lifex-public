@@ -40,6 +40,11 @@
   .row{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
   .row > span.lbl{min-width:220px}
   .note{font-size:12px;color:var(--muted);margin:6px 0 0}
+  select{font:inherit;padding:6px 8px;border:1px solid #b8c3d1;border-radius:6px;background:#fff;color:var(--text);width:300px}
+  .period{display:flex;gap:14px;align-items:center;font-size:13px;margin-bottom:8px;flex-wrap:wrap}
+  .period label{display:flex;align-items:center;gap:4px;cursor:pointer}
+  .src{font-size:12px;color:var(--text);background:var(--navy-soft);border-radius:6px;padding:8px 10px;margin-top:8px}
+  .src:empty{display:none}
 
   .funnel{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
   .step{display:grid;grid-template-columns:56px 1fr 92px;align-items:center;gap:8px}
@@ -107,19 +112,22 @@
   <!-- ========== 入力 ========== -->
   <div id="viewInput">
     <div class="meta">
-      <label>店舗名<input id="store" list="storeNames" placeholder="例）〇〇工務店様"></label>
+      <label>店舗・支店<select id="store"><option value="">読み込み中…</option></select></label>
       <label>実施日<input id="date" type="date"></label>
-      <datalist id="storeNames"></datalist>
     </div>
 
     <div class="grid">
       <div>
         <section>
           <h2><span class="no">1</span>4つの率を決める</h2>
+          <div class="period">直近の実績：
+            <label><input type="radio" name="period" value="recent" checked>直近3ヶ月</label>
+            <label><input type="radio" name="period" value="all">累計</label>
+          </div>
           <table>
             <thead><tr><th>指標</th><th>直近の実績</th><th>12月までの目標</th><th>計算式</th></tr></thead>
             <tbody>
-              <tr><td>通電率</td>
+              <tr><td>通話接続率</td>
                 <td><input class="num" id="a1" inputmode="decimal"><span class="unit">%</span></td>
                 <td><input class="num" id="r1" inputmode="decimal"><span class="unit">%</span></td>
                 <td class="formula">通話 ÷ 登録</td></tr>
@@ -137,7 +145,8 @@
                 <td class="formula">契約 ÷ 面談</td></tr>
             </tbody>
           </table>
-          <p class="note">計算には「12月までの目標」を使います。「直近の実績」は比較用です。</p>
+          <div class="src" id="src"></div>
+          <p class="note">計算には「12月までの目標」を使います。「直近の実績」は比較用で、店舗を選ぶとLIFEXポータルの数字が自動で入ります（毎朝7時に更新）。支店がある会社は、支店の合計と全社が一致しないことがあります（支店未割当のお客様がいるため）。</p>
         </section>
 
         <section>
@@ -197,7 +206,7 @@
         <table id="listTable">
           <thead><tr>
             <th>店舗名</th><th>実施日</th>
-            <th class="n">通電率</th><th class="n">アポ率</th><th class="n">面談率</th><th class="n">契約率</th>
+            <th class="n">通話接続率</th><th class="n">アポ率</th><th class="n">面談率</th><th class="n">契約率</th>
             <th class="n">見込み集客</th><th class="n">目標契約</th><th class="n">見込み契約</th>
             <th class="n">不足集客</th><th class="n">打ち手合計</th><th>打ち手</th>
           </tr></thead>
@@ -250,7 +259,47 @@
   }
 
   const steps = ['集客','通話','アポ','面談','契約'];
-  const rateNames = ['通電率','アポ率','面談率','契約率'];
+  const rateNames = ['通話接続率','アポ率','面談率','契約率'];
+  const COUNT_KEYS = ['registered','contacted','appointment','consulted','contracted'];
+  const COUNT_NAMES = ['登録','通話','アポ','面談','契約'];
+  let actuals = null;
+
+  const periodKey = () => document.querySelector('input[name=period]:checked').value;
+  const md = d => d ? d.slice(5).split('-').map(Number).join('/') : '';
+  function periodLabel(){
+    if (!actuals) return '';
+    const pk = periodKey(), p = actuals.periods[pk] || {};
+    return pk === 'recent' ? `直近3ヶ月（${md(p.from)}〜${md(p.to)}）` : `累計（〜${md(p.to)}）`;
+  }
+
+  // 店舗・支店の選択肢（ポータルの一覧＋保存済みで一覧にない名前）
+  function populateStores(){
+    const sel = $('store'), cur = sel.value;
+    const names = actuals ? actuals.units.map(u => u.name) : [];
+    const extra = (listCache || []).map(r => r['店舗名']).filter(n => n && !names.includes(n));
+    sel.innerHTML = '<option value="">選択してください</option>'
+      + names.map(n => `<option>${esc(n)}</option>`).join('')
+      + (extra.length ? `<optgroup label="ポータルの一覧にない名前">${extra.map(n => `<option>${esc(n)}</option>`).join('')}</optgroup>` : '');
+    sel.value = cur;
+  }
+  function ensureOption(name){
+    const sel = $('store');
+    if (name && ![...sel.options].some(o => o.value === name)) sel.add(new Option(name, name));
+    sel.value = name;
+  }
+
+  // 選んだ店舗の実績を入れる
+  function fillActuals(){
+    const u = actuals && actuals.units.find(x => x.name === $('store').value);
+    if (!u) { $('src').textContent = ''; return; }
+    const c = u[periodKey()] || {};
+    const n = COUNT_KEYS.map(k => c[k] || 0);
+    const rate = (a, b) => b > 0 ? Math.round(a / b * 1000) / 10 : '';
+    ['a1','a2','a3','a4'].forEach((id, i) => { $(id).value = rate(n[i+1], n[i]); });
+    $('src').textContent = `${periodLabel()}：` + COUNT_NAMES.map((k,i) => `${k} ${n[i]}`).join(' → ')
+      + `　（LIFEXポータル ${actuals.updatedAt} 取得）`;
+    calc();
+  }
 
   function todayStr(){
     const d = new Date();
@@ -337,7 +386,7 @@
   async function save(){
     calc();
     const store = $('store').value.trim();
-    if (!store) { alert('店舗名を入れてください'); return; }
+    if (!store) { alert('店舗・支店を選んでください'); return; }
     if (!API_URL) { alert('保存先がまだ設定されていません（GASのデプロイ待ち）'); return; }
     const key = getKey(false); if (!key) return;
     const L = last;
@@ -349,7 +398,8 @@
       '見込み契約': r1d(L.exp), '目標との差': r1d(L.gap), '必要集客': L.need, '不足集客': L.short,
       '打ち手合計': L.planSum,
       '打ち手': L.plans.map(p => `${p.name}${isNaN(p.n)?'':`：${p.n}件`}${p.who?`（${p.who}）`:''}`).join('\n'),
-      '打ち手JSON': JSON.stringify(L.plans)
+      '打ち手JSON': JSON.stringify(L.plans),
+      '実績の期間': $('src').textContent ? periodLabel() : ''
     };
     $('save').disabled = true; $('saveStatus').textContent = '保存中…';
     try {
@@ -366,7 +416,9 @@
   }
 
   function clearInput(){
-    document.querySelectorAll('#viewInput input').forEach(el => { el.value = el.id === 'date' ? todayStr() : ''; });
+    document.querySelectorAll('#viewInput input:not([type=radio])').forEach(el => { el.value = el.id === 'date' ? todayStr() : ''; });
+    $('store').value = '';
+    $('src').textContent = '';
     $('saveStatus').textContent = '';
     calc();
   }
@@ -384,6 +436,8 @@
       if (j.error === 'auth') { getKey(true); return loadList(); }
       if (!j.ok) throw new Error(j.error);
       listCache = j.rows;
+      actuals = j.actuals;
+      populateStores();
       renderList();
       $('listStatus').textContent = `${new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})} 時点`;
     } catch (e) { $('listStatus').textContent = '読み込めませんでした：' + e.message; }
@@ -394,7 +448,6 @@
 
   function renderList(){
     const rows = listCache || [];
-    $('storeNames').innerHTML = rows.map(r => `<option value="${esc(r['店舗名'])}">`).join('');
     const tb = document.querySelector('#listTable tbody');
     tb.innerHTML = rows.map((r,i) => `
       <tr data-i="${i}">
@@ -430,7 +483,8 @@
     const tr = e.target.closest('tr[data-i]'); if (!tr) return;
     const r = listCache[tr.dataset.i];
     clearInput();
-    $('store').value = r['店舗名'];
+    ensureOption(r['店舗名']);
+    $('src').textContent = r['実績の期間'] ? `保存時の実績：${r['実績の期間']}（期間を切り替えると最新の数字に入れ替わります）` : '';
     $('date').value = r['実施日'] || todayStr();
     ['通電率','アポ率','面談率','契約率'].forEach((n,i) => {
       $('a'+(i+1)).value = r[n+'_実績'] ?? '';
@@ -462,11 +516,14 @@
   window.addEventListener('hashchange', route);
 
   $('viewInput').addEventListener('input', calc);
+  $('store').addEventListener('change', fillActuals);
+  document.querySelectorAll('input[name=period]').forEach(el => el.addEventListener('change', fillActuals));
   $('save').addEventListener('click', save);
   $('reload').addEventListener('click', loadList);
   $('clear').addEventListener('click', () => { if (confirm('入力をすべて消します。よろしいですか？')) clearInput(); });
   calc();
   route();
+  if (location.hash !== '#list') loadList(); // 一覧タブはroute()で読み込む
 </script>
 </body>
 </html>
