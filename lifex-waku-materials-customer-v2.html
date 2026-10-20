@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>これ、全部標準仕様です。| LIFEX</title>
+<style>
+  :root {
+    --navy: #2b3a67;
+    --navy-soft: #eaedf5;
+    --greige: #f3f1ec;
+    --ink: #1c1f26;
+    --sub: #5c6270;
+    --line: #e2e0da;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: #fff;
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  .nw { display: inline-block; }
+  a { color: inherit; }
+
+  /* ---------- ヒーロー ---------- */
+  .hero {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 48px 20px 40px;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    padding: 5px 14px;
+    border-radius: 4px;
+    margin-bottom: 28px;
+  }
+  .hero-q {
+    font-size: 17px;
+    color: var(--sub);
+    line-height: 1.9;
+    margin-bottom: 14px;
+  }
+  .hero-q strong { color: var(--ink); font-weight: 700; }
+  .hero-title {
+    font-size: clamp(32px, 7vw, 56px);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 18px;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--navy);
+    background: linear-gradient(transparent 68%, var(--navy-soft) 68%);
+  }
+  .hero-lead {
+    font-size: 15px;
+    color: var(--sub);
+    margin-bottom: 32px;
+  }
+
+  .feature {
+    margin-bottom: 40px;
+  }
+  .feature-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .feature-title {
+    font-size: clamp(19px, 4vw, 24px);
+    font-weight: 800;
+    line-height: 1.45;
+    margin-bottom: 16px;
+  }
+  .feature .player { box-shadow: 0 14px 40px rgba(28, 31, 38, 0.18); }
+  .chapters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .chapters button {
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    background: var(--navy-soft);
+    border: 0;
+    border-radius: 20px;
+    padding: 7px 14px;
+    cursor: pointer;
+  }
+  .chapters button:hover { background: var(--navy); color: #fff; }
+  .chapters button span { font-weight: 400; opacity: 0.75; margin-left: 4px; }
+  .feature-note {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #8a8f99;
+  }
+  .mosaic-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--sub);
+    margin-bottom: 12px;
+  }
+
+  .mosaic {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .tile {
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: 0 6px 20px rgba(28, 31, 38, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .tile:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(28, 31, 38, 0.14); }
+  .tile img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+  .tile-text {
+    display: block;
+    padding: 10px 12px 12px;
+  }
+  .tile-cat { font-size: 12px; color: var(--sub); }
+  .tile-std {
+    display: inline-block;
+    margin-left: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--navy);
+    background: var(--navy-soft);
+    padding: 0 7px;
+    border-radius: 20px;
+    vertical-align: 1px;
+  }
+  .tile-name { display: block; font-size: 15px; font-weight: 800; color: var(--ink); line-height: 1.35; }
+
+  /* ---------- 目次（固定） ---------- */
+  .jump {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .jump-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .jump-inner::-webkit-scrollbar { display: none; }
+  .jump a {
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+    padding: 6px 14px;
+    border: 1.5px solid var(--navy);
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .jump a:hover { background: var(--navy); color: #fff; }
+
+  /* ---------- 各設備 ---------- */
+  .item {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 64px 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .item-head {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 4px 18px;
+    align-items: baseline;
+    margin-bottom: 24px;
+  }
+  .item-no {
+    grid-row: span 2;
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+    font-feature-settings: "tnum";
+  }
+  .item-scene {
+    font-size: clamp(22px, 4.6vw, 30px);
+    font-weight: 800;
+    line-height: 1.4;
+  }
+  .item-brand {
+    font-size: 14px;
+    color: var(--sub);
+  }
+  .item-brand b { color: var(--navy); font-weight: 700; }
+  .std {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    background: var(--navy-soft);
+    padding: 1px 8px;
+    border-radius: 20px;
+    vertical-align: 1px;
+  }
+
+  .item-body {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  .player {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #111;
+    box-shadow: 0 10px 30px rgba(28, 31, 38, 0.14);
+  }
+  .player button {
+    all: unset;
+    position: absolute; inset: 0;
+    cursor: pointer;
+  }
+  .player button img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .player button:hover img { transform: scale(1.03); }
+  .play {
+    position: absolute; left: 50%; top: 50%; z-index: 1;
+    width: 72px; height: 72px;
+    margin: -36px 0 0 -36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.2s;
+  }
+  .player button:hover .play { transform: scale(1.08); }
+  .play svg { width: 26px; height: 26px; margin-left: 4px; fill: var(--navy); }
+  .player iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: 0;
+  }
+  .yt-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--sub);
+  }
+
+  .point {
+    background: var(--navy-soft);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+  .point-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  .point p { font-size: 14.5px; line-height: 1.85; }
+
+  .more-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--sub);
+    margin: 4px 0 8px;
+  }
+  .more {
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .more:hover { border-color: var(--navy); background: #fafbfd; }
+  .more-thumb {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--greige);
+  }
+  .more-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .more-thumb .mini-play {
+    position: absolute; right: 5px; bottom: 5px;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .mini-play svg { width: 9px; height: 9px; margin-left: 2px; fill: var(--navy); }
+  .more-thumb.site {
+    display: flex; align-items: center; justify-content: center;
+    color: var(--navy);
+    background: var(--navy-soft);
+  }
+  .more-thumb.site svg { width: 28px; height: 28px; }
+  .more-kind { font-size: 11px; color: var(--sub); }
+  .more-title { font-size: 13px; font-weight: 600; line-height: 1.5; }
+
+  /* ---------- 締め ---------- */
+  .closing {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 56px 20px 40px;
+    text-align: center;
+  }
+  .closing h2 {
+    font-size: clamp(20px, 4.4vw, 26px);
+    font-weight: 800;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .closing p { font-size: 14.5px; color: var(--sub); }
+  .note {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 20px 28px;
+    font-size: 11px;
+    color: #8a8f99;
+    text-align: center;
+  }
+  .footer {
+    border-top: 1px solid var(--line);
+    padding: 22px 20px;
+    text-align: center;
+  }
+
+  /* ---------- スマホ ---------- */
+  @media (max-width: 760px) {
+    .hero { padding: 36px 16px 32px; }
+    .hero-q { font-size: 15px; }
+    .mosaic { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .tile-name { font-size: 14px; }
+    .jump-inner { padding: 10px 16px; }
+    .item { padding: 48px 16px; }
+    .item-no { font-size: 36px; }
+    .item-body { grid-template-columns: 1fr; gap: 20px; }
+    .closing, .note { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="badge">LIFEX</span>
+  <p class="hero-q">
+    いいキッチンも、地震への備えも、<br>
+    <strong>「それはオプションです」</strong>で諦めていませんか。
+  </p>
+  <h1 class="hero-title">LIFEXは、<br><em>ぜんぶ最初から</em><span class="nw">入っています。</span></h1>
+  <p class="hero-lead">
+    このページで紹介する設備は、すべて標準仕様です。<br>
+    動画はこのページのまま再生できます。
+  </p>
+
+  <div class="feature">
+    <div class="feature-label">まずは、この1本から</div>
+    <h2 class="feature-title"><span class="nw">実際に建ったLIFEXの家を、</span><span class="nw">ルームツアーで。</span></h2>
+    <div class="player" id="feature-player">
+      <button type="button" data-yt="3KhaBxdrcu4" aria-label="ルームツアー動画を再生">
+        <img src="https://i.ytimg.com/vi/3KhaBxdrcu4/maxresdefault.jpg" alt="LIFEXの家のルームツアー動画">
+        <span class="play"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span>
+      </button>
+    </div>
+    <div class="chapters">
+      <button type="button" data-jump="666">キッチンから見る<span>11:06</span></button>
+      <button type="button" data-jump="1225">水回りから見る<span>20:25</span></button>
+      <button type="button" data-jump="1304">空調・断熱から見る<span>21:44</span></button>
+    </div>
+    <a class="yt-link" href="https://youtu.be/3KhaBxdrcu4" target="_blank" rel="noopener">YouTubeで開く ↗</a>
+    <p class="feature-note">※ 動画内の価格・仕様は、撮影した物件のものです。エリアやプランによって異なります。</p>
+  </div>
+
+  <p class="mosaic-label">LIFEXの標準仕様から、4つの設備を動画で</p>
+  <nav class="mosaic" aria-label="4つの標準仕様">
+    <a class="tile" href="#graftekt">
+      <img src="https://i.ytimg.com/vi/_008XfxXIKU/maxresdefault.jpg" alt="">
+      <span class="tile-text"><span class="tile-cat">キッチン</span><span class="tile-std">標準仕様</span><span class="tile-name">GRAFTEKT</span></span>
+    </a>
+    <a class="tile" href="#richelle">
+      <img src="https://i.ytimg.com/vi/ipjCEtP8Wwo/maxresdefault.jpg" alt="">
+      <span class="tile-text"><span class="tile-cat">キッチン</span><span class="tile-std">標準仕様</span><span class="tile-name">LIXIL リシェル</span></span>
+    </a>
+    <a class="tile" href="#sanitary">
+      <img src="https://i.ytimg.com/vi/Maf7XiR8YbI/maxresdefault.jpg" alt="">
+      <span class="tile-text"><span class="tile-cat">洗面台</span><span class="tile-std">標準仕様</span><span class="tile-name">スマートサニタリー</span></span>
+    </a>
+    <a class="tile" href="#evoltz">
+      <img src="https://i.ytimg.com/vi/_-nWhV76LOo/hqdefault.jpg" alt="">
+      <span class="tile-text"><span class="tile-cat">制震ダンパー</span><span class="tile-std">標準仕様</span><span class="tile-name">evoltz</span></span>
+    </a>
+  </nav>
+</header>
+
+<nav class="jump" aria-label="目次">
+  <div class="jump-inner">
+    <a href="#graftekt">GRAFTEKT</a>
+    <a href="#richelle">リシェル</a>
+    <a href="#sanitary">洗面台</a>
+    <a href="#evoltz">制震ダンパー</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- 01 GRAFTEKT -->
+  <section class="item" id="graftekt">
+    <div class="item-head">
+      <div class="item-no">01</div>
+      <h2 class="item-scene"><span class="nw">キッチンを、</span><span class="nw">LDKの主役にしたい。</span></h2>
+      <p class="item-brand"><b class="nw">GRAFTEKT（グラフテクト）</b> キッチン<span class="std">標準仕様</span></p>
+    </div>
+    <div class="item-body">
+      <div>
+        <div class="player">
+          <button type="button" data-yt="_008XfxXIKU" aria-label="動画を再生">
+            <img src="https://i.ytimg.com/vi/_008XfxXIKU/maxresdefault.jpg" alt="GRAFTEKT大阪ショールームの動画">
+            <span class="play"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span>
+          </button>
+        </div>
+        <a class="yt-link" href="https://youtu.be/_008XfxXIKU" target="_blank" rel="noopener">YouTubeで開く ↗</a>
+      </div>
+      <div>
+        <div class="point">
+          <div class="point-label">この動画の見どころ</div>
+          <p>大阪のショールームを歩きながら、扉の色や細かな使い勝手まで映しています。新しい色や機能も紹介されています。</p>
+        </div>
+        <div class="more-label">もっと見たい方へ</div>
+        <a class="more" href="https://www.youtube.com/watch?v=7nwHXhbjdLU" target="_blank" rel="noopener">
+          <span class="more-thumb"><img src="https://i.ytimg.com/vi/7nwHXhbjdLU/hqdefault.jpg" alt="" loading="lazy"><span class="mini-play"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span></span>
+          <span><span class="more-kind">動画</span><br><span class="more-title"><span class="nw">2026年5月の</span><span class="nw">ショールームツアー</span></span></span>
+        </a>
+        <a class="more" href="https://graftekt.jp" target="_blank" rel="noopener">
+          <span class="more-thumb site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8"/><path d="M12 3c-2.4 4-2.4 14 0 18M12 3c2.4 4 2.4 14 0 18"/></svg></span>
+          <span><span class="more-kind">公式サイト</span><br><span class="more-title"><span class="nw">GRAFTEKT</span> <span class="nw">公式サイト</span></span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 リシェル -->
+  <section class="item" id="richelle">
+    <div class="item-head">
+      <div class="item-no">02</div>
+      <h2 class="item-scene"><span class="nw">熱いお鍋を置いても、</span><span class="nw">キズがつかない。</span></h2>
+      <p class="item-brand"><b>LIXIL リシェル</b> キッチン<span class="std">セラミックトップも標準</span></p>
+    </div>
+    <div class="item-body">
+      <div>
+        <div class="player">
+          <button type="button" data-yt="ipjCEtP8Wwo" aria-label="動画を再生">
+            <img src="https://i.ytimg.com/vi/ipjCEtP8Wwo/maxresdefault.jpg" alt="LIXILリシェルの紹介動画">
+            <span class="play"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span>
+          </button>
+        </div>
+        <a class="yt-link" href="https://youtu.be/ipjCEtP8Wwo" target="_blank" rel="noopener">YouTubeで開く ↗</a>
+      </div>
+      <div>
+        <div class="point">
+          <div class="point-label">この動画の見どころ</div>
+          <p>天板はセラミック。熱にもキズにも強く、汚れが染み込まないのでサッと拭くだけで済みます。動画では、キッチンリフォームの専門家がリシェルのこだわりを解説しています。</p>
+        </div>
+        <div class="more-label">もっと見たい方へ</div>
+        <a class="more" href="https://www.youtube.com/watch?v=RjKOme8FplA" target="_blank" rel="noopener">
+          <span class="more-thumb"><img src="https://i.ytimg.com/vi/RjKOme8FplA/hqdefault.jpg" alt="" loading="lazy"><span class="mini-play"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span></span>
+          <span><span class="more-kind">動画</span><br><span class="more-title"><span class="nw">セラミックトップと</span><span class="nw">収納のつくり</span></span></span>
+        </a>
+        <a class="more" href="https://www.lixil.co.jp/lineup/kitchen/richelle/" target="_blank" rel="noopener">
+          <span class="more-thumb site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8"/><path d="M12 3c-2.4 4-2.4 14 0 18M12 3c2.4 4 2.4 14 0 18"/></svg></span>
+          <span><span class="more-kind">公式サイト</span><br><span class="more-title">LIXIL リシェル 製品仕様・施工事例</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 スマートサニタリー -->
+  <section class="item" id="sanitary">
+    <div class="item-head">
+      <div class="item-no">03</div>
+      <h2 class="item-scene"><span class="nw">洗面所まで、</span><span class="nw">こだわりたかった。</span></h2>
+      <p class="item-brand"><b class="nw">アイカ工業 スマートサニタリー</b> 洗面台<span class="std">標準仕様</span></p>
+    </div>
+    <div class="item-body">
+      <div>
+        <div class="player">
+          <button type="button" data-yt="Maf7XiR8YbI" aria-label="動画を再生">
+            <img src="https://i.ytimg.com/vi/Maf7XiR8YbI/maxresdefault.jpg" alt="スマートサニタリーのある暮らしの動画">
+            <span class="play"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span>
+          </button>
+        </div>
+        <a class="yt-link" href="https://youtu.be/Maf7XiR8YbI" target="_blank" rel="noopener">YouTubeで開く ↗</a>
+      </div>
+      <div>
+        <div class="point">
+          <div class="point-label">この動画の見どころ</div>
+          <p>既製品に見えない、造作のような洗面台。横幅は1200mmからで、二人並んでも使えます。動画はアイカ工業の公式で、この洗面台のある暮らしを紹介しています。</p>
+        </div>
+        <div class="more-label">もっと見たい方へ</div>
+        <a class="more" href="https://www.youtube.com/watch?v=dYpfZfeMvfw" target="_blank" rel="noopener">
+          <span class="more-thumb"><img src="https://i.ytimg.com/vi/dYpfZfeMvfw/hqdefault.jpg" alt="" loading="lazy"><span class="mini-play"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span></span>
+          <span><span class="more-kind">動画</span><br><span class="more-title">東京ショールームツアー｜全ラインナップ</span></span>
+        </a>
+        <a class="more" href="https://www.aica.co.jp/products/joinery/melamine-housing/smart-sanitary/feature/" target="_blank" rel="noopener">
+          <span class="more-thumb site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8"/><path d="M12 3c-2.4 4-2.4 14 0 18M12 3c2.4 4 2.4 14 0 18"/></svg></span>
+          <span><span class="more-kind">公式サイト</span><br><span class="more-title">スマートサニタリー 公式ページ</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 evoltz -->
+  <section class="item" id="evoltz">
+    <div class="item-head">
+      <div class="item-no">04</div>
+      <h2 class="item-scene">大きな地震のあとも、<br>この家に住み続けたい。</h2>
+      <p class="item-brand"><b>evoltz（エヴォルツ）</b> 制震ダンパー<span class="std">標準仕様</span></p>
+    </div>
+    <div class="item-body">
+      <div>
+        <div class="player">
+          <button type="button" data-yt="_-nWhV76LOo" aria-label="動画を再生">
+            <img src="https://i.ytimg.com/vi/_-nWhV76LOo/hqdefault.jpg" alt="evoltzあり・なしで構造体の損傷を比べた実験動画">
+            <span class="play"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span>
+          </button>
+        </div>
+        <a class="yt-link" href="https://youtu.be/_-nWhV76LOo" target="_blank" rel="noopener">YouTubeで開く ↗</a>
+      </div>
+      <div>
+        <div class="point">
+          <div class="point-label">この動画の見どころ</div>
+          <p>大きな地震のあとは、余震が何度も続きます。evoltzがある場合とない場合で、揺らしたあとの柱や梁の傷み方を比べた実験です。1分ほどで違いが分かります。</p>
+        </div>
+        <div class="more-label">もっと見たい方へ</div>
+        <a class="more" href="https://www.youtube.com/watch?v=GhWbOmEcQkM" target="_blank" rel="noopener">
+          <span class="more-thumb"><img src="https://i.ytimg.com/vi/GhWbOmEcQkM/hqdefault.jpg" alt="" loading="lazy"><span class="mini-play"><svg viewBox="0 0 24 24"><path d="M6 4l15 8-15 8z"/></svg></span></span>
+          <span><span class="more-kind">動画</span><br><span class="more-title"><span class="nw">富山振動台実験2025</span><span class="nw">まとめ</span></span></span>
+        </a>
+        <a class="more" href="https://www.evoltz.com/" target="_blank" rel="noopener">
+          <span class="more-thumb site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8"/><path d="M12 3c-2.4 4-2.4 14 0 18M12 3c2.4 4 2.4 14 0 18"/></svg></span>
+          <span><span class="more-kind">公式サイト</span><br><span class="more-title">evoltz 制振ダンパーの技術詳細</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<section class="closing">
+  <h2>気になったものから、<br>ひとつずつ見てみてください。</h2>
+  <p>動画を見て気になったところは、担当者にそのままお聞きください。</p>
+</section>
+
+<p class="note">※ 動画は各メーカー・販売店などが公開しているものです。</p>
+
+<footer class="footer">
+  <span class="badge" style="margin:0">LIFEX</span>
+</footer>
+
+<script>
+  function play(box, id, title, start) {
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&playsinline=1&rel=0' + (start ? '&start=' + start : '');
+    f.title = title;
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    box.innerHTML = '';
+    box.appendChild(f);
+  }
+  document.querySelectorAll('.player button[data-yt]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      play(btn.parentNode, btn.getAttribute('data-yt'), btn.querySelector('img').alt, 0);
+    });
+  });
+  document.querySelectorAll('.chapters button[data-jump]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var box = document.getElementById('feature-player');
+      play(box, '3KhaBxdrcu4', 'LIFEXの家のルームツアー動画', b.getAttribute('data-jump'));
+      box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  });
+</script>
+
+</body>
+</html>
