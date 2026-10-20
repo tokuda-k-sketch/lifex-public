@@ -311,6 +311,15 @@
     sel.value = name;
   }
 
+  // 契約済みと既存のお客様の人数（ポータルの集計値）を入れる
+  function fillPipe(){
+    const u = actuals && actuals.units.find(x => x.name === $('store').value);
+    if (!u || !u.pipe) return;
+    $('signed').value = u.pipe.signed;
+    ['p1','p2','p3','p4'].forEach(k => { $(k).value = u.pipe[k]; });
+    calc();
+  }
+
   // 選んだ店舗の実績を入れる
   function fillActuals(){
     const u = actuals && actuals.units.find(x => x.name === $('store').value);
@@ -319,9 +328,7 @@
     const n = COUNT_KEYS.map(k => c[k] || 0);
     const rate = (a, b) => b > 0 ? Math.round(a / b * 1000) / 10 : '';
     ['a1','a2','a3','a4'].forEach((id, i) => { $(id).value = rate(n[i+1], n[i]); });
-    const pp = u.pipe || {};
-    $('signed').value = pp.signed ?? '';
-    ['p1','p2','p3','p4'].forEach(k => { $(k).value = pp[k] ?? ''; });
+    fillPipe();
     $('src').textContent = `${periodLabel()}：` + COUNT_NAMES.map((k,i) => `${k} ${n[i]}`).join(' → ')
       + `　（LIFEXポータル ${actuals.updatedAt} 取得）`;
     calc();
@@ -541,6 +548,8 @@
     $('leadPerMonth').value = r['月あたり集客'] ?? '';
     $('signed').value = r['10月以降契約'] ?? '';
     ['未接続','通話済','アポ済','面談済'].forEach((k, i) => { $('p' + (i+1)).value = r['既存_' + k] ?? ''; });
+    // 既存のお客様の欄がない行（この欄を足す前に保存した行）は、ポータルの集計値を入れる
+    if (['signed','p1','p2','p3','p4'].every(id => $(id).value === '')) fillPipe();
     $('target').value = r['目標契約'] ?? '';
     let plans = [];
     try { plans = JSON.parse(r['打ち手JSON'] || '[]'); } catch(err) {}
