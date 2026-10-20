@@ -366,7 +366,9 @@
     const actual = ['a1','a2','a3','a4'].map(num);
     const perMonth = num('leadPerMonth'), target = num('target');
     const months = calcMonths();
-    const leads = (perMonth != null && months != null) ? perMonth * months : null;
+    // 最終の数字は切り下げ（必要な集客・不足だけは確保する側なので切り上げ）
+    const down = v => Math.floor(v + 1e-9);
+    const leads = (perMonth != null && months != null) ? down(perMonth * months) : null;
 
     const counts = [leads];
     rates.forEach((r,i) => counts.push(counts[i] != null && r != null ? counts[i] * r : null));
@@ -379,7 +381,8 @@
         const r = rates[i-1], a = actual[i-1];
         rateLine = `<div class="rate">${rateNames[i-1]} ${r==null?'—':fmt(r*100)+'%'}${a!=null?`（直近 ${fmt(a)}%）`:''}</div>`;
       }
-      return rateLine + `<div class="step"><span class="name">${s}</span><div class="bar"><i style="width:${w}%"></i></div><span class="val">${fmt(c)}${c==null?'':' 件'}</span></div>`;
+      const shown = (i === 0 || i === 4) && c != null ? down(c) : c;
+      return rateLine + `<div class="step"><span class="name">${s}</span><div class="bar"><i style="width:${w}%"></i></div><span class="val">${fmt(shown)}${c==null?'':' 件'}</span></div>`;
     }).join('');
 
     // 既存のお客様：直近の実績の率（空欄は目標）を残りの段階分だけ掛ける
@@ -393,11 +396,12 @@
       const e = ok ? p * rs.reduce((a,b) => a*b, 1) : null;
       existExp += e || 0;
     });
+    existExp = down(existExp);
     const newTarget = target != null ? Math.max(0, target - signed - existExp) : null;
-    $('existExp').textContent = `${fmt(existExp, 2)} 棟`;
-    $('newTarget').textContent = newTarget == null ? '—' : `${fmt(newTarget, 2)} 棟`;
+    $('existExp').textContent = `${existExp} 棟`;
+    $('newTarget').textContent = newTarget == null ? '—' : `${newTarget} 棟`;
 
-    const newExp = counts[4];
+    const newExp = counts[4] == null ? null : down(counts[4]);
     const exp = signed + existExp + (newExp || 0);
     const allRates = rates.every(r => r != null && r > 0);
     const product = allRates ? rates.reduce((a,b) => a*b, 1) : null;
@@ -417,7 +421,7 @@
     if (short == null) v.textContent = '';
     else if (short > 0) {
       v.classList.add('ng');
-      v.textContent = `今の見込みでは集客が ${short} 件足りません（月あたり ${fmt(short / months)} 件の上乗せ）。`;
+      v.textContent = `今の見込みでは集客が ${short} 件足りません（月あたり ${Math.ceil(short / months - 1e-9)} 件の上乗せ）。`;
     } else v.textContent = '今の見込み集客で目標に届く計算です。';
 
     const plans = readPlans();
