@@ -45,6 +45,10 @@
   .period label{display:flex;align-items:center;gap:4px;cursor:pointer}
   .src{font-size:12px;color:var(--text);background:var(--navy-soft);border-radius:6px;padding:8px 10px;margin-top:8px}
   .src:empty{display:none}
+  #pipe td.n, #pipe th.n{text-align:right;font-variant-numeric:tabular-nums}
+  .subtotal{display:flex;justify-content:space-between;gap:12px;padding:8px 6px;font-weight:700;border-bottom:1px solid var(--line)}
+  .subtotal.final{color:var(--navy);border-bottom:2px solid var(--navy)}
+  .breakdown{font-size:12px;color:var(--muted);margin-top:8px}
 
   .funnel{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
   .step{display:grid;grid-template-columns:56px 1fr 92px;align-items:center;gap:8px}
@@ -150,33 +154,52 @@
         </section>
 
         <section>
-          <h2><span class="no">2</span>集客の見込みと目標契約数</h2>
-          <div class="row"><span class="lbl">月あたりの見込み集客数（登録）</span>
-            <input class="num" id="leadPerMonth" inputmode="decimal"><span class="unit">件／月</span></div>
-          <div class="row"><span class="lbl">集客期間（実施日〜11月30日）</span>
-            <strong id="monthsView">—</strong></div>
-          <div class="row"><span class="lbl">12月末までの目標契約数</span>
+          <h2><span class="no">2</span>目標契約数と既存のお客様</h2>
+          <div class="row"><span class="lbl">12月末までの目標契約数（10/1からの累計）</span>
             <input class="num" id="target" inputmode="decimal"><span class="unit">棟</span></div>
-          <p class="note">12月末の契約に間に合う集客は11月末までとして、実施日から自動で計算します。</p>
+          <div class="row"><span class="lbl">10/1以降の契約済み</span>
+            <input class="num" id="signed" inputmode="decimal"><span class="unit">棟</span></div>
+          <table id="pipe">
+            <thead><tr><th>今動いている既存のお客様</th><th class="n">人数</th><th>掛ける率</th><th class="n">見込み契約</th></tr></thead>
+            <tbody>
+              <tr><td>未接続（登録3ヶ月以内）</td><td class="n"><input class="num" id="p1" inputmode="decimal"><span class="unit">人</span></td><td class="formula">4つすべて</td><td class="n" id="pe1">—</td></tr>
+              <tr><td>通話済み・アポ前</td><td class="n"><input class="num" id="p2" inputmode="decimal"><span class="unit">人</span></td><td class="formula">アポ×面談×契約</td><td class="n" id="pe2">—</td></tr>
+              <tr><td>アポ済み・面談前</td><td class="n"><input class="num" id="p3" inputmode="decimal"><span class="unit">人</span></td><td class="formula">面談×契約</td><td class="n" id="pe3">—</td></tr>
+              <tr><td>面談済み（来場・土地探し・ローン審査・決定を含む）</td><td class="n"><input class="num" id="p4" inputmode="decimal"><span class="unit">人</span></td><td class="formula">契約</td><td class="n" id="pe4">—</td></tr>
+            </tbody>
+          </table>
+          <div class="subtotal"><span>既存のお客様から見込める契約</span><span id="existExp">—</span></div>
+          <div class="subtotal final"><span>新規の集客で取る契約</span><span id="newTarget">—</span></div>
+          <p class="note">店舗を選ぶと、契約済みと既存のお客様の人数がLIFEXポータルから自動で入ります（毎朝7時時点・直せます）。既存のお客様には「直近の実績」の率を掛けます（実績が空欄の率は目標で代用）。失注・対象外・長期検討の方は含めていません。契約済みは、ポータルで状態が「契約」に変わった日で数えています。</p>
         </section>
       </div>
 
       <div>
         <section>
-          <h2><span class="no">3</span>この数字で積み上げると</h2>
+          <h2><span class="no">3</span>新規の集客の見込み</h2>
+          <div class="row"><span class="lbl">月あたりの見込み集客数（登録）</span>
+            <input class="num" id="leadPerMonth" inputmode="decimal"><span class="unit">件／月</span></div>
+          <div class="row"><span class="lbl">集客期間（実施日〜11月30日）</span>
+            <strong id="monthsView">—</strong></div>
+          <p class="note">12月末の契約に間に合う集客は11月末までとして、実施日から自動で計算します。新規の集客には「12月までの目標」の率を掛けます。</p>
+        </section>
+
+        <section>
+          <h2><span class="no">4</span>この数字で積み上げると</h2>
           <div class="funnel" id="funnel"></div>
           <div class="kpis">
             <div class="kpi"><div class="k">見込み契約数</div><div class="v" id="expContract">—</div></div>
             <div class="kpi" id="gapBox"><div class="k">目標との差</div><div class="v" id="gap">—</div></div>
-            <div class="kpi" id="needBox"><div class="k">目標に必要な集客数</div><div class="v" id="needLead">—</div></div>
+            <div class="kpi" id="needBox"><div class="k">目標に必要な新規集客</div><div class="v" id="needLead">—</div></div>
           </div>
+          <p class="breakdown" id="breakdown"></p>
           <p class="verdict" id="verdict"></p>
         </section>
       </div>
     </div>
 
     <section>
-      <h2><span class="no">4</span>足りない集客をどう埋めるか</h2>
+      <h2><span class="no">5</span>足りない集客をどう埋めるか</h2>
       <table id="plan">
         <thead><tr><th style="width:46%">打ち手</th><th style="width:18%">見込み件数</th><th>担当</th></tr></thead>
         <tbody></tbody>
@@ -207,14 +230,14 @@
           <thead><tr>
             <th>店舗名</th><th>実施日</th>
             <th class="n">通話接続率</th><th class="n">アポ率</th><th class="n">面談率</th><th class="n">契約率</th>
-            <th class="n">見込み集客</th><th class="n">目標契約</th><th class="n">見込み契約</th>
+            <th class="n">目標契約</th><th class="n">契約済み</th><th class="n">既存見込み</th><th class="n">見込み集客</th><th class="n">見込み契約</th>
             <th class="n">不足集客</th><th class="n">打ち手合計</th><th>打ち手</th>
           </tr></thead>
           <tbody></tbody>
           <tfoot></tfoot>
         </table>
       </div>
-      <p class="note">率は上が12月までの目標、下が直近の実績です。行をクリックすると入力タブで開き、直して保存し直せます。</p>
+      <p class="note">率は上が12月までの目標、下が直近の実績です。見込み契約は「契約済み＋既存見込み＋新規の集客から」の合計です。行をクリックすると入力タブで開き、直して保存し直せます。</p>
     </section>
 
     <div class="actions">
@@ -296,6 +319,9 @@
     const n = COUNT_KEYS.map(k => c[k] || 0);
     const rate = (a, b) => b > 0 ? Math.round(a / b * 1000) / 10 : '';
     ['a1','a2','a3','a4'].forEach((id, i) => { $(id).value = rate(n[i+1], n[i]); });
+    const pp = u.pipe || {};
+    $('signed').value = pp.signed ?? '';
+    ['p1','p2','p3','p4'].forEach(k => { $(k).value = pp[k] ?? ''; });
     $('src').textContent = `${periodLabel()}：` + COUNT_NAMES.map((k,i) => `${k} ${n[i]}`).join(' → ')
       + `　（LIFEXポータル ${actuals.updatedAt} 取得）`;
     calc();
@@ -349,14 +375,32 @@
       return rateLine + `<div class="step"><span class="name">${s}</span><div class="bar"><i style="width:${w}%"></i></div><span class="val">${fmt(c)}${c==null?'':' 件'}</span></div>`;
     }).join('');
 
-    const exp = counts[4];
+    // 既存のお客様：直近の実績の率（空欄は目標）を残りの段階分だけ掛ける
+    const eff = actual.map((a, i) => a != null ? a / 100 : rates[i]);
+    const signed = num('signed') || 0;
+    const pipe = ['p1','p2','p3','p4'].map(num);
+    let existExp = 0;
+    pipe.forEach((p, i) => {
+      const rs = eff.slice(i);
+      const ok = p != null && rs.every(r => r != null);
+      const e = ok ? p * rs.reduce((a,b) => a*b, 1) : null;
+      $('pe' + (i+1)).textContent = e == null ? '—' : fmt(e, 2) + ' 棟';
+      existExp += e || 0;
+    });
+    const newTarget = target != null ? Math.max(0, target - signed - existExp) : null;
+    $('existExp').textContent = `${fmt(existExp, 2)} 棟`;
+    $('newTarget').textContent = newTarget == null ? '—' : `${fmt(newTarget, 2)} 棟`;
+
+    const newExp = counts[4];
+    const exp = signed + existExp + (newExp || 0);
     const allRates = rates.every(r => r != null && r > 0);
     const product = allRates ? rates.reduce((a,b) => a*b, 1) : null;
-    const need = (product && target != null) ? Math.ceil(target / product) : null;
-    const gap = (exp != null && target != null) ? exp - target : null;
+    const need = (product && newTarget != null) ? Math.ceil(newTarget / product) : null;
+    const gap = target != null ? exp - target : null;
     const short = (need != null && leads != null) ? Math.max(0, Math.ceil(need - leads)) : null;
 
-    $('expContract').innerHTML = exp == null ? '—' : `${fmt(exp)}<small>棟</small>`;
+    $('breakdown').textContent = `見込み契約の内訳：契約済み ${fmt(signed)} ＋ 既存のお客様から ${fmt(existExp)} ＋ 新規の集客から ${fmt(newExp ?? 0)}（棟）`;
+    $('expContract').innerHTML = `${fmt(exp)}<small>棟</small>`;
     $('gap').innerHTML = gap == null ? '—' : `${gap >= 0 ? '+' : ''}${fmt(gap)}<small>棟</small>`;
     $('needLead').innerHTML = need == null ? '—' : `${need.toLocaleString('ja-JP')}<small>件</small>`;
     $('gapBox').classList.toggle('alert', gap != null && gap < 0);
@@ -378,7 +422,7 @@
     else if (planSum >= short) { pg.textContent = `不足 ${short} 件を埋められます`; pg.className = ''; }
     else { pg.textContent = `あと ${fmt(short - planSum)} 件の打ち手が必要`; pg.className = 'ng'; }
 
-    last = { rates, actual, perMonth, months, leads, target, exp, gap, need, short, plans, planSum };
+    last = { rates, actual, perMonth, months, leads, target, exp, gap, need, short, plans, planSum, signed, pipe, existExp, newTarget };
   }
 
   const r1d = v => v == null ? '' : Math.round(v * 10) / 10;
@@ -399,7 +443,9 @@
       '打ち手合計': L.planSum,
       '打ち手': L.plans.map(p => `${p.name}${isNaN(p.n)?'':`：${p.n}件`}${p.who?`（${p.who}）`:''}`).join('\n'),
       '打ち手JSON': JSON.stringify(L.plans),
-      '実績の期間': $('src').textContent ? periodLabel() : ''
+      '実績の期間': $('src').textContent ? periodLabel() : '',
+      '10月以降契約': num('signed'), '既存_未接続': L.pipe[0], '既存_通話済': L.pipe[1], '既存_アポ済': L.pipe[2], '既存_面談済': L.pipe[3],
+      '既存からの見込み': r1d(L.existExp), '新規で取る契約': r1d(L.newTarget)
     };
     $('save').disabled = true; $('saveStatus').textContent = '保存中…';
     try {
@@ -454,19 +500,21 @@
         <td><strong>${esc(r['店舗名'])}</strong><small>${esc(r['更新日時'])} 更新</small></td>
         <td>${esc(r['実施日'])}</td>
         ${['通電率','アポ率','面談率','契約率'].map(n => `<td class="n">${pct(val(r[n+'_目標']), val(r[n+'_実績']))}</td>`).join('')}
-        <td class="n">${fmt(val(r['見込み集客']))}</td>
         <td class="n">${fmt(val(r['目標契約']))}</td>
+        <td class="n">${fmt(val(r['10月以降契約']))}</td>
+        <td class="n">${fmt(val(r['既存からの見込み']))}</td>
+        <td class="n">${fmt(val(r['見込み集客']))}</td>
         <td class="n">${fmt(val(r['見込み契約']))}</td>
         <td class="n ${val(r['不足集客'])>0?'ng':''}">${fmt(val(r['不足集客']),0)}</td>
         <td class="n">${fmt(val(r['打ち手合計']))}</td>
         <td class="plans">${esc(r['打ち手'])}</td>
-      </tr>`).join('') || '<tr><td colspan="12">まだ保存された店舗はありません</td></tr>';
+      </tr>`).join('') || '<tr><td colspan="14">まだ保存された店舗はありません</td></tr>';
 
     const sum = k => rows.reduce((s,r) => s + (val(r[k]) || 0), 0);
     const tTarget = sum('目標契約'), tExp = sum('見込み契約'), tShort = sum('不足集客');
     document.querySelector('#listTable tfoot').innerHTML = rows.length ? `
       <tr><td>合計</td><td></td><td></td><td></td><td></td><td></td>
-      <td class="n">${fmt(sum('見込み集客'))}</td><td class="n">${fmt(tTarget)}</td><td class="n">${fmt(tExp)}</td>
+      <td class="n">${fmt(tTarget)}</td><td class="n">${fmt(sum('10月以降契約'))}</td><td class="n">${fmt(sum('既存からの見込み'))}</td><td class="n">${fmt(sum('見込み集客'))}</td><td class="n">${fmt(tExp)}</td>
       <td class="n">${fmt(tShort,0)}</td><td class="n">${fmt(sum('打ち手合計'))}</td><td></td></tr>` : '';
 
     $('tGoal').textContent = GOAL_TOTAL;
@@ -491,6 +539,8 @@
       $('r'+(i+1)).value = r[n+'_目標'] ?? '';
     });
     $('leadPerMonth').value = r['月あたり集客'] ?? '';
+    $('signed').value = r['10月以降契約'] ?? '';
+    ['未接続','通話済','アポ済','面談済'].forEach((k, i) => { $('p' + (i+1)).value = r['既存_' + k] ?? ''; });
     $('target').value = r['目標契約'] ?? '';
     let plans = [];
     try { plans = JSON.parse(r['打ち手JSON'] || '[]'); } catch(err) {}
