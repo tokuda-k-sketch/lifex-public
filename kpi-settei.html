@@ -160,12 +160,12 @@
           <div class="row"><span class="lbl">10/1以降の契約済み</span>
             <input class="num" id="signed" inputmode="decimal"><span class="unit">棟</span></div>
           <table id="pipe">
-            <thead><tr><th>今動いている既存のお客様</th><th class="n">人数</th><th>掛ける率</th><th class="n">見込み契約</th></tr></thead>
+            <thead><tr><th>今動いている既存のお客様</th><th class="n">人数</th><th>掛ける率</th></tr></thead>
             <tbody>
-              <tr><td>未接続（登録3ヶ月以内）</td><td class="n"><input class="num" id="p1" inputmode="decimal"><span class="unit">人</span></td><td class="formula">4つすべて</td><td class="n" id="pe1">—</td></tr>
-              <tr><td>通話済み・アポ前</td><td class="n"><input class="num" id="p2" inputmode="decimal"><span class="unit">人</span></td><td class="formula">アポ×面談×契約</td><td class="n" id="pe2">—</td></tr>
-              <tr><td>アポ済み・面談前</td><td class="n"><input class="num" id="p3" inputmode="decimal"><span class="unit">人</span></td><td class="formula">面談×契約</td><td class="n" id="pe3">—</td></tr>
-              <tr><td>面談済み（来場・土地探し・ローン審査・決定を含む）</td><td class="n"><input class="num" id="p4" inputmode="decimal"><span class="unit">人</span></td><td class="formula">契約</td><td class="n" id="pe4">—</td></tr>
+              <tr><td>未接続（登録3ヶ月以内）</td><td class="n"><input class="num" id="p1" inputmode="decimal"><span class="unit">人</span></td><td class="formula">4つすべて</td></tr>
+              <tr><td>通話済み・アポ前</td><td class="n"><input class="num" id="p2" inputmode="decimal"><span class="unit">人</span></td><td class="formula">アポ×面談×契約</td></tr>
+              <tr><td>アポ済み・面談前</td><td class="n"><input class="num" id="p3" inputmode="decimal"><span class="unit">人</span></td><td class="formula">面談×契約</td></tr>
+              <tr><td>面談済み（来場・土地探し・ローン審査・決定を含む）</td><td class="n"><input class="num" id="p4" inputmode="decimal"><span class="unit">人</span></td><td class="formula">契約</td></tr>
             </tbody>
           </table>
           <div class="subtotal"><span>既存のお客様から見込める契約</span><span id="existExp">—</span></div>
@@ -391,7 +391,6 @@
       const rs = eff.slice(i);
       const ok = p != null && rs.every(r => r != null);
       const e = ok ? p * rs.reduce((a,b) => a*b, 1) : null;
-      $('pe' + (i+1)).textContent = e == null ? '—' : fmt(e, 2) + ' 棟';
       existExp += e || 0;
     });
     const newTarget = target != null ? Math.max(0, target - signed - existExp) : null;
