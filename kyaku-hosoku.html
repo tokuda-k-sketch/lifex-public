@@ -1,0 +1,407 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LIFE X 補足資料</title>
+<style>
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+  --p1:#1e4e79; --p2:#2e7d6e; --p3:#b05c1f;
+  --p1bg:#e8eff6; --p2bg:#e7f2ef; --p3bg:#f9efe4;
+  --leak:#b3372b; --leakbg:#fbe9e7;
+  --win:#2e7d6e; --winbg:#e7f2ef;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.6; font-feature-settings:"palt"}
+.wrap{width:1100px; margin:26px auto}
+.draft{width:1100px; margin:0 auto 14px; font-size:12px; color:#8a5a00; background:#fdf3dd;
+  border:1px solid #ecd9a8; border-radius:4px; padding:6px 14px; font-weight:700}
+.sl{width:1100px; height:619px; background:#fff; border-radius:8px;
+  box-shadow:0 2px 16px rgba(20,40,60,.09); padding:32px 50px 24px;
+  display:flex; flex-direction:column; position:relative; overflow:hidden; margin:0 auto 22px}
+.top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+.chip{font-size:11.5px; font-weight:700; letter-spacing:.08em; padding:3px 12px; border-radius:99px}
+.c0{background:#eceff2;color:var(--sub)}
+.c1{background:var(--p1bg);color:var(--p1)}
+.c2{background:var(--p2bg);color:var(--p2)}
+.c3{background:var(--p3bg);color:var(--p3)}
+.cLeak{background:var(--leakbg);color:var(--leak)}
+.pg{margin-left:auto; font-size:12px; color:#b6c0ca; font-variant-numeric:tabular-nums}
+.tt{font-size:27px; font-weight:800; line-height:1.35; margin:2px 0 4px; text-wrap:balance}
+.ms{font-size:14.5px; color:var(--sub); margin:0 0 11px; line-height:1.75}
+.body{flex:1; display:flex; gap:20px; min-height:0; overflow:hidden}
+.foot{display:flex; gap:12px; margin-top:9px; align-items:center}
+.cap{font-size:13px; color:var(--sub); line-height:1.5}
+.real{font-size:12px; color:var(--p2); background:var(--p2bg); border:1px solid #bfdcd5; border-radius:3px; padding:3px 10px; font-weight:700}
+.ag{border:1px solid var(--line); border-radius:8px; padding:16px 22px; display:flex; align-items:center; gap:16px; background:#fff}
+.ag .no{font-size:12.5px; font-weight:800; color:var(--sub); flex-shrink:0; width:70px; line-height:1.3}
+.ag b{font-size:16px}
+.ag .cap{margin-left:auto; text-align:right; flex-shrink:0; max-width:340px}
+.box{border:1px solid var(--line); border-radius:6px; padding:12px 16px; background:#fff; min-width:0}
+.box h4{margin:0 0 4px; font-size:15px; color:var(--navy)}
+.box p{margin:0; font-size:13.5px; color:var(--sub); line-height:1.65}
+.box.roomy{padding:22px 26px}
+.box.roomy h4{font-size:19px; margin-bottom:14px}
+.box.roomy>p{font-size:15px; line-height:1.85; color:var(--ink)}
+
+/* 番号バッジ付きリスト(余白解消・案2) */
+.numlist{display:flex; flex-direction:column; gap:16px}
+.numlist .nl{display:flex; align-items:center; gap:14px}
+.numlist .nl .no{width:38px; height:38px; border-radius:50%; background:var(--navy); color:#fff; font-size:16px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0}
+.numlist .nl .tx{font-size:15px; color:var(--ink); line-height:1.5}
+
+/* 震度別の進行スケール(余白解消・案2) */
+.quakeScale{display:flex; flex-direction:column; gap:10px; margin:14px 0}
+.quakeScale .qs{display:flex; align-items:center; gap:12px}
+.quakeScale .qs .qlv{width:52px; font-size:12.5px; font-weight:800; color:var(--leak); flex-shrink:0}
+.quakeScale .qs .qtrack{flex:1; height:11px; background:#f0d9d5; border-radius:6px; overflow:hidden; min-width:0}
+.quakeScale .qs .qbar{height:100%; background:var(--leak); border-radius:6px}
+.quakeScale .qs .qtx{font-size:12.5px; color:var(--ink); flex-shrink:0; width:165px}
+
+/* 強度指数ランキング(逆転現象を見せる) */
+.rankList{display:flex; flex-direction:column; gap:6px; flex:1; justify-content:center}
+.rankList .rk{display:grid; grid-template-columns:172px 1fr 84px; align-items:center; gap:14px}
+.rankList .rk .label{line-height:1.3}
+.rankList .rk .label b{font-size:13.5px; display:block}
+.rankList .rk .label span{font-size:10.5px; color:var(--sub)}
+.rankList .track{background:#eef1f4; border-radius:6px; height:30px; position:relative}
+.rankList .bar{height:100%; border-radius:6px; background:#f7dd8f; min-width:34px}
+.rankList .rk.r1 .bar{background:var(--leak)}
+.rankList .rk.r2 .bar{background:#e8a552}
+.rankList .rk.r3 .bar{background:var(--p3)}
+.rankList .val{font-size:15px; font-weight:800; text-align:right; color:var(--ink)}
+.rankList .rk.r1 .val{color:var(--leak)}
+.rankList .rk.r3 .val{color:var(--p3)}
+.rankList .flip{display:grid; grid-template-columns:172px 1fr 84px; align-items:center; gap:14px; margin:-2px 0}
+.rankList .flip .fl{grid-column:2; display:flex; align-items:center; gap:8px}
+.rankList .flip .fl .ln{flex:0 0 20px; border-top:2px dashed var(--p3)}
+.rankList .flip .fl .tx{font-size:11.5px; font-weight:800; color:var(--p3); background:var(--p3bg); padding:4px 12px; border-radius:99px; white-space:nowrap}
+
+/* 建物強度グリッド(行=耐震等級・列=計算方法、固定位置で重なりを防ぐ) */
+.sgrid{display:grid; grid-template-columns:110px repeat(3,1fr); grid-template-rows:auto repeat(3,1fr); gap:8px; flex:1}
+.sgrid .sgHead{display:flex; flex-direction:column; align-items:center; justify-content:flex-end; text-align:center; padding-bottom:6px}
+.sgrid .sgHead b{font-size:14.5px; color:var(--ink)}
+.sgrid .sgHead span{font-size:10.5px; color:var(--sub)}
+.sgrid .sgRow{display:flex; align-items:center; font-size:13px; font-weight:800; color:var(--sub); justify-content:flex-end; padding-right:10px; text-align:right}
+.sgrid .sgCell{border:1px solid var(--line); border-radius:10px; background:#fff; display:flex; align-items:center; gap:10px; padding:0 16px}
+.sgrid .sgCell .dot{width:16px; height:16px; border-radius:50%; flex-shrink:0}
+.sgrid .sgCell .v{font-size:16px; font-weight:800; color:var(--ink)}
+.sgrid .sgCell.none{color:#c3ccd4; background:#fafbfc; justify-content:center}
+.sgrid .sgCell.none .v{color:#c3ccd4; font-weight:700; font-size:14px}
+.sgrid .sgCell.lv-low .dot{background:#f7dd8f}
+.sgrid .sgCell.lv-mid .dot{background:#e8a552}
+.sgrid .sgCell.lv-mid .v{color:#8a5a1f}
+.sgrid .sgCell.lv-hero{border:2px solid var(--leak); background:var(--leakbg)}
+.sgrid .sgCell.lv-hero .dot{background:var(--leak); width:20px; height:20px}
+.sgrid .sgCell.lv-hero .v{color:var(--leak); font-size:19px}
+.sgrid .sgCell.lv-hero .tag{margin-left:auto; font-size:10.5px; font-weight:800; color:#fff; background:var(--leak); padding:3px 9px; border-radius:99px}
+
+/* 繰り返す地震の実例 */
+.quakeMain{border-radius:12px; background:var(--leakbg); border:2px solid var(--leak); padding:20px 30px; display:flex; align-items:center; gap:26px}
+.quakeMain .place{flex-shrink:0; text-align:center; width:150px}
+.quakeMain .place .pname{font-size:17px; font-weight:800; color:var(--ink)}
+.quakeMain .place .pref{font-size:11.5px; color:var(--sub); margin-top:2px}
+.quakeMain .timeline{flex:1; display:flex; align-items:center; justify-content:center; gap:18px}
+.quakeMain .tl-item{text-align:center; width:110px}
+.quakeMain .tl-item .date{font-size:11.5px; color:var(--sub); font-weight:700}
+.quakeMain .tl-item .sd{font-size:30px; font-weight:800; color:var(--leak); margin:3px 0}
+.quakeMain .tl-item .nm{font-size:11.5px; color:var(--ink)}
+.quakeMain .tl-arrow{font-size:12.5px; font-weight:800; color:var(--leak); background:#fff; border:1px solid var(--leak); border-radius:99px; padding:5px 14px; white-space:nowrap; flex-shrink:0}
+.quakeGrid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px}
+.quakeGrid .qc{border:1px solid var(--line); border-radius:8px; padding:13px 15px; background:#fff; display:flex; flex-direction:column; gap:3px; min-width:0}
+.quakeGrid .qc .pname{font-size:13px; font-weight:800}
+.quakeGrid .qc .pref{font-size:10.5px; color:var(--sub)}
+.quakeGrid .qc .hist{font-size:11.5px; color:var(--ink); line-height:1.65; margin-top:5px}
+.quakeGrid .qc .hist b{color:var(--leak)}
+
+/* 検討項目の○×マトリクス */
+.gradeTbl{display:flex; flex-direction:column; gap:6px; flex:1; justify-content:center}
+.gradeTbl .ghead{display:grid; grid-template-columns:168px repeat(7,1fr) 76px; gap:4px}
+.gradeTbl .ghead .hc{font-size:10.5px; color:var(--sub); text-align:center; line-height:1.3; padding:0 2px; align-self:end}
+.gradeTbl .gr{display:grid; grid-template-columns:168px repeat(7,1fr) 76px; gap:4px; align-items:stretch; border-radius:8px; overflow:hidden}
+.gradeTbl .gr .lbl{background:var(--panel); padding:10px 14px; display:flex; flex-direction:column; justify-content:center; gap:2px}
+.gradeTbl .gr .lbl b{font-size:13.5px}
+.gradeTbl .gr .lbl span{font-size:10.5px; color:var(--sub)}
+.gradeTbl .gr .cell{display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid var(--line); font-weight:800; font-size:15px}
+.gradeTbl .gr .cell.ok{color:var(--win); background:var(--winbg); border-color:#bfdcd5}
+.gradeTbl .gr .cell.ng{color:#c3ccd4; background:#fafbfc}
+.gradeTbl .gr .total{display:flex; flex-direction:column; align-items:center; justify-content:center; background:var(--panel); font-weight:800; font-size:14px; gap:1px}
+.gradeTbl .gr .total span{font-size:9.5px; font-weight:700; color:var(--sub)}
+.gradeTbl .gr.hero .lbl{background:var(--navy); color:#fff}
+.gradeTbl .gr.hero .lbl span{color:#cfe0ef}
+.gradeTbl .gr.hero .cell.ok{background:var(--navy); color:#fff; border-color:var(--navy)}
+.gradeTbl .gr.hero .total{background:var(--navy); color:#fff}
+.gradeTbl .gr.hero .total span{color:#cfe0ef}
+
+/* 動画リンクバー(コンパクト・グラフ等と併用) */
+.vidbar{display:flex; align-items:center; gap:14px; background:#12181f; color:#fff; border-radius:8px; padding:11px 20px; flex-shrink:0; text-decoration:none; cursor:pointer}
+.vidbar:hover{background:#1c242e}
+.vidbar .play{width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.15); border:2px solid rgba(255,255,255,.6); display:flex; align-items:center; justify-content:center; flex-shrink:0}
+.vidbar .play::after{content:""; border-style:solid; border-width:7px 0 7px 11px; border-color:transparent transparent transparent #fff; margin-left:2px}
+.vidbar .vtx b{font-size:13.5px; display:block}
+.vidbar .vtx span{font-size:11px; color:#9fb0c0}
+
+/* 実験グラフ(SVG的な棒表現) */
+.expwrap{display:flex; gap:18px; flex:1; align-items:stretch}
+.explegend{width:200px; flex-shrink:0; display:flex; flex-direction:column; gap:10px; justify-content:center}
+.explegend .lg{display:flex; align-items:center; gap:8px; font-size:13px}
+.explegend .sw{width:14px; height:14px; border-radius:3px; flex-shrink:0}
+.expchart{flex:1; display:flex; align-items:flex-end; gap:10px; padding:10px 6px 0; border-bottom:2px solid var(--ink); position:relative}
+.expchart .bargrp{flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end}
+.expchart .bar{width:100%; border-radius:3px 3px 0 0; position:relative}
+.expchart .bar .bv{position:absolute; top:-18px; left:0; right:0; text-align:center; font-size:10.5px; font-weight:800; color:var(--ink)}
+.expchart .xlbl{font-size:10px; color:var(--sub); text-align:center}
+
+/* 動画リンクカード */
+.vidcard{border-radius:12px; overflow:hidden; background:#12181f; position:relative; display:flex; flex-direction:column; color:#fff; flex:1; min-width:0; text-decoration:none; cursor:pointer}
+.vidcard .thumb{flex:1; display:flex; align-items:center; justify-content:center; position:relative; background:linear-gradient(135deg,#1b2530,#354a5f) center/cover}
+.vidcard .thumb::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,15,20,.15) 0%, rgba(10,15,20,.1) 55%, rgba(10,15,20,.45) 100%)}
+.vidcard .thumb .play{width:60px; height:60px; border-radius:50%; background:rgba(255,255,255,.16); border:2px solid rgba(255,255,255,.8); display:flex; align-items:center; justify-content:center; position:relative; z-index:1}
+.vidcard .thumb .play::after{content:""; border-style:solid; border-width:11px 0 11px 18px; border-color:transparent transparent transparent #fff; margin-left:4px}
+.vidcard .thumb .tag{position:absolute; top:14px; left:14px; font-size:11px; font-weight:800; background:rgba(255,255,255,.18); padding:4px 11px; border-radius:99px; letter-spacing:.05em; z-index:1; backdrop-filter:blur(2px)}
+.vidcard .meta{padding:13px 18px; background:#1b2530}
+.vidcard .meta .ti{font-size:14.5px; font-weight:800}
+.vidcard .meta .url{font-size:11.5px; color:#9fb0c0; margin-top:3px; word-break:break-all}
+
+/* 動画スチール比較(2枚並び) */
+.vidcompare{display:flex; gap:14px; flex:1}
+.vidcompare .vc{flex:1; border-radius:10px; overflow:hidden; display:flex; flex-direction:column; border:1px solid var(--line); text-decoration:none; color:inherit; cursor:pointer}
+.vidcompare .vc .head{padding:9px 14px; font-size:13px; font-weight:800; color:#fff}
+.vidcompare .vc.no .head{background:var(--leak)}
+.vidcompare .vc.yes .head{background:var(--win)}
+.vidcompare .vc .stage{flex:1; background:linear-gradient(160deg,#e7ecf1,#cfd8e0) center/cover; display:flex; align-items:flex-end; justify-content:center; position:relative}
+.vidcompare .vc .stage::before{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,15,20,.05) 40%, rgba(10,15,20,.68))}
+.vidcompare .vc .stage .info{position:relative; z-index:1; font-size:12px; color:#fff; text-align:center; padding:10px 14px 12px; line-height:1.5}
+.vidcompare .vc .stage .playmini{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:46px; height:46px; border-radius:50%; background:rgba(20,30,40,.35); border:2px solid rgba(255,255,255,.85); z-index:1; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(1px)}
+.vidcompare .vc .stage .playmini::after{content:""; border-style:solid; border-width:8px 0 8px 13px; border-color:transparent transparent transparent #fff; margin-left:3px}
+.vidcompare .vc .quote{padding:11px 14px; font-size:12.5px; background:#fff; line-height:1.6}
+.vidcompare .vc.no .quote{color:var(--leak); font-weight:700}
+.vidcompare .vc.yes .quote{color:var(--win); font-weight:700}
+
+/* 家具転倒の恐怖ボックス */
+.fear{display:flex; gap:16px; flex:1}
+.fear .fbox{flex:1; border-radius:10px; padding:18px 20px; display:flex; flex-direction:column; gap:8px; justify-content:center}
+.fear .fbox.stat{background:var(--leakbg); border:1px solid #f0c9c2; align-items:center; text-align:center}
+.fear .fbox.stat .big{font-size:46px; font-weight:800; color:var(--leak); line-height:1}
+.fear .fbox.stat .lbl{font-size:12.5px; color:var(--ink); margin-top:4px}
+.fear .fbox.list{border:1px solid var(--line); background:#fff; gap:16px; padding:24px 26px}
+.fear .fbox.list .it{display:flex; gap:14px; align-items:center; font-size:14.5px; line-height:1.7; color:var(--ink)}
+.fear .fbox.list .it .tag{flex-shrink:0; font-size:12px; font-weight:800; color:#fff; padding:5px 4px; border-radius:99px; width:44px; text-align:center}
+.fear .fbox.list .it.taish .tag{background:var(--navy)}
+.fear .fbox.list .it.seishin .tag{background:var(--p3)}
+.fear .fbox.list .concl{font-size:14.5px; font-weight:800; color:var(--ink); border-top:1px solid var(--line); padding-top:16px; line-height:1.7}
+
+/* 一条比較(2ボックス+推論マーク) */
+.stance{display:flex; gap:0; align-items:stretch; position:relative; flex:1}
+.stance>div{flex:1; border:1px solid var(--line); border-radius:8px; padding:28px 30px; display:flex; flex-direction:column; gap:14px; justify-content:center}
+.stance .rigid{background:#fafbfc}
+.stance .hybrid{background:var(--navy-soft); border-color:var(--navy)}
+.stance h5{margin:0; font-size:14.5px; font-weight:800; color:var(--sub); letter-spacing:.03em}
+.stance .hybrid h5{color:var(--navy)}
+.stance .catch{font-size:23px; font-weight:800; margin:2px 0}
+.stance .hybrid .catch{color:var(--navy)}
+.stance p{margin:0; font-size:15px; color:var(--ink); line-height:1.85}
+.stance .infer{font-size:12px; color:var(--p3); background:var(--p3bg); border-radius:4px; padding:5px 11px; font-weight:700; width:fit-content}
+.stance .plus{font-size:12px; color:var(--navy); background:#fff; border:1px solid var(--navy); border-radius:4px; padding:5px 11px; font-weight:700; width:fit-content}
+.stance .vsbadge{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:34px; height:34px; border-radius:50%;
+  background:#fff; border:2px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; color:var(--sub); z-index:2}
+
+/* 他社比較テーブル */
+.cmpTbl{display:flex; flex-direction:column; border:1px solid var(--line); border-radius:8px; overflow:hidden; flex:1}
+.cmpTbl .r{display:grid; grid-template-columns:110px repeat(3,1fr)}
+.cmpTbl .r+.r{border-top:1px solid var(--line)}
+.cmpTbl .r.head div{background:var(--navy); color:#fff; font-weight:800; font-size:12px}
+.cmpTbl .r div{padding:11px 13px; font-size:12px; color:var(--ink); line-height:1.55; border-right:1px solid var(--line); display:flex; flex-direction:column; justify-content:center; gap:2px}
+.cmpTbl .r div:last-child{border-right:none}
+.cmpTbl .r:not(.head) div:first-child{font-weight:800; color:var(--navy); background:var(--panel); font-size:11.5px}
+.cmpTbl .r .hi{background:var(--navy-soft)}
+.cmpTbl .r div b{font-size:12.5px}
+.cmpTbl .r div span{color:var(--sub); font-size:10.5px}
+
+/* 技術特徴+実績カード */
+.techrow{display:flex; gap:16px; flex:1}
+.techrow .tc{flex:1; border:1px solid var(--line); border-radius:10px; padding:26px 22px; background:#fff; display:flex; flex-direction:column; gap:10px; justify-content:center}
+.techrow .tc h5{margin:0; font-size:15px; color:var(--navy)}
+.techrow .tc .v{font-size:36px; font-weight:800; color:var(--navy)}
+.techrow .tc p{margin:0; font-size:13.5px; color:var(--sub); line-height:1.7}
+.achieve{border-radius:10px; padding:16px 22px; background:linear-gradient(135deg,#fff8ec,#ffedd0); border:1px solid #ecd9a8; text-align:center}
+.achieve .n{font-size:38px; font-weight:800; color:var(--p3)}
+.achieve .d{font-size:13px; color:var(--ink); margin-top:4px}
+
+/* 断熱伏線カード */
+.chain{display:flex; align-items:center; gap:8px; flex:1; flex-wrap:wrap; justify-content:center}
+.chain .cbox{flex:1; min-width:150px; border:1px solid var(--line); border-radius:8px; padding:14px 14px; background:#fff; text-align:center; font-size:12.5px; line-height:1.55}
+.chain .cbox.warn{border-color:#f0c9c2; background:var(--leakbg); color:var(--leak); font-weight:700}
+.chain .arrow{font-size:18px; color:var(--sub); flex-shrink:0}
+
+/* まとめ:全部そろう図 */
+.pillars{display:flex; align-items:center; gap:8px; flex:1}
+.pillars .pl{flex:1; border:1px solid var(--line); border-radius:10px; padding:26px 14px; background:#fff; text-align:center; display:flex; flex-direction:column; align-items:center; gap:10px; justify-content:center; min-width:0}
+.pillars .pl.crack{border-style:dashed; border-color:var(--leak); background:var(--leakbg)}
+.pillars .pl .no{width:34px; height:34px; border-radius:50%; background:var(--navy); color:#fff; font-size:15px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0}
+.pillars .pl b{font-size:16px; color:var(--ink)}
+.pillars .pl .desc{font-size:12.5px; color:var(--sub); line-height:1.55}
+.pillars .pl .sub{font-size:11px; color:var(--navy); background:var(--navy-soft); border-radius:99px; padding:4px 10px; line-height:1.4}
+.pillars .plus{font-size:20px; font-weight:800; color:var(--sub); flex-shrink:0}
+
+/* 会話フロー */
+.convo{display:flex; flex-direction:column; gap:16px}
+.convo .ln{display:flex; gap:14px; align-items:flex-start}
+.convo .who{width:56px; flex-shrink:0; font-size:13px; font-weight:800; color:var(--sub); text-align:right; padding-top:13px}
+.convo .ln.you .who{color:var(--navy)}
+.convo .bub{background:var(--panel); border-radius:10px; padding:14px 20px; font-size:15px; line-height:1.75; flex:1}
+.convo .ln.you .bub{background:var(--navy-soft)}
+.convo .ln.win .bub{background:var(--p3bg); border:1px solid #e8cfae}
+
+/* 他社の震度7訴求・引用カード */
+.quoteRow{display:flex; gap:14px}
+.quoteRow .qc{flex:1; border:1px solid var(--line); border-radius:10px; padding:16px 18px; background:#fff; display:flex; flex-direction:column; gap:8px}
+.quoteRow .qc h5{margin:0; font-size:13.5px; color:var(--sub); font-weight:800}
+.quoteRow .qc .say{margin:0; font-size:13.5px; color:var(--ink); line-height:1.6; font-style:normal}
+.quoteRow .qc .say::before{content:"“"; color:var(--line); font-size:20px; font-weight:800}
+
+/* 出典一覧 */
+.src{font-size:11.5px; color:var(--sub); line-height:2; overflow-y:auto; flex:1}
+.src b{color:var(--ink)}
+
+@media print{body{background:#fff}.draft{display:none}.sl{box-shadow:none; border:1px solid var(--line); page-break-after:always}}
+
+.hd{width:1100px; margin:0 auto 18px; display:flex; align-items:baseline; gap:14px}
+.hd b{font-size:20px} .hd span{font-size:13px; color:var(--sub)}
+.fit{transform-origin:top left}
+</style>
+</head><body>
+<div class="wrap">
+<div class="hd"><b>LIFE X 補足資料</b><span>アプローチブックの内容を、もう少し詳しく。</span></div>
+<div class="sl" id="taishin-keisan">
+  <div class="top"><span class="chip c1">耐震</span><span class="pg"></span></div>
+  <div class="tt">「耐震等級3だから安心」とは限らない。</div>
+  <p class="ms">強さの倍率（建築基準法ぎりぎりの耐震等級1＝1.0）を、強い順に並べました。<br>同じ「耐震等級3」でも、計算方法によっては「許容応力度計算の耐震等級2」より弱くなります。</p>
+  <div class="body">
+    <div class="rankList">
+      <div class="rk r1">
+        <div class="label"><b>耐震等級3</b><span>構造計算（許容応力度計算）・LIFE X</span></div>
+        <div class="track"><div class="bar" style="width:91%"></div></div>
+        <div class="val">2.4〜2.7</div>
+      </div>
+      <div class="rk r2">
+        <div class="label"><b>耐震等級2</b><span>構造計算（許容応力度計算）</span></div>
+        <div class="track"><div class="bar" style="width:65%"></div></div>
+        <div class="val">2.0〜2.2</div>
+      </div>
+      <div class="flip"><div class="fl"><span class="ln"></span><span class="tx">⚠ 同じ「耐震等級3」でも、計算方法次第でここより弱い</span></div></div>
+      <div class="rk r3">
+        <div class="label"><b>耐震等級3</b><span>性能表示計算（品確法）</span></div>
+        <div class="track"><div class="bar" style="width:56%"></div></div>
+        <div class="val">1.9〜2.0</div>
+      </div>
+      <div class="rk">
+        <div class="label"><b>耐震等級1</b><span>構造計算（許容応力度計算）</span></div>
+        <div class="track"><div class="bar" style="width:41%"></div></div>
+        <div class="val">1.6〜1.8</div>
+      </div>
+      <div class="rk">
+        <div class="label"><b>耐震等級2</b><span>性能表示計算（品確法）</span></div>
+        <div class="track"><div class="bar" style="width:38%"></div></div>
+        <div class="val">1.6〜1.7</div>
+      </div>
+      <div class="rk">
+        <div class="label"><b>耐震等級1</b><span>性能表示計算・仕様規定</span></div>
+        <div class="track"><div class="bar" style="width:0%"></div></div>
+        <div class="val">1.0</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">比べるときは、等級の数字だけでなく「何で計算したか」をご確認ください。（出典：LIFE X公式初回セミナー資料）</span></div>
+</div>
+
+<div class="sl" id="kurikaesu-jishin">
+  <div class="top"><span class="chip c2">制振</span><span class="pg"></span></div>
+  <div class="tt">「繰り返す地震」は、実際に起きている。</div>
+  <p class="ms">同じ地域が震度6弱以上の大地震に複数回襲われるケースは、過去の観測記録に実際にある。</p>
+  <div class="body" style="flex-direction:column; gap:16px; justify-content:center">
+    <div class="quakeMain">
+      <div class="place"><div class="pname">熊本県益城町</div><div class="pref">2016年 熊本地震</div></div>
+      <div class="timeline">
+        <div class="tl-item"><div class="date">4/14 21:26</div><div class="sd">震度7</div><div class="nm">前震（M6.5）</div></div>
+        <div class="tl-arrow">わずか28時間後</div>
+        <div class="tl-item"><div class="date">4/16 01:25</div><div class="sd">震度7</div><div class="nm">本震（M7.3）</div></div>
+      </div>
+    </div>
+    <div style="font-size:12px; color:var(--sub); text-align:center">気象庁観測史上初、同一地点で震度7を2回記録（出典：気象庁「熊本地震から10年」特設サイト・益城町公式サイト）</div>
+    <div class="quakeGrid">
+      <div class="qc"><div class="pname">石川県志賀町</div><div class="pref">能登半島</div><div class="hist">2007年<b>震度6強</b>→2024年<b>震度7</b>ほか<br>17年間で計4回</div></div>
+      <div class="qc"><div class="pname">宮城県蔵王町</div><div class="pref">東北</div><div class="hist">2011・2021・2022年<br>いずれも<b>震度6強</b>、11年で3回</div></div>
+      <div class="qc"><div class="pname">新潟県長岡市</div><div class="pref">中越</div><div class="hist">2004年・2007年<br>いずれも<b>震度6強</b>、3年間隔で2回</div></div>
+      <div class="qc"><div class="pname">北海道厚真町</div><div class="pref">胆振</div><div class="hist">2018年<b>震度7</b>→2019年<b>震度6弱</b><br>5ヶ月間隔で2回</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">益城町以外は、気象庁「震度6弱以上を観測した地震の一覧表」をもとに作成した例です。</span></div>
+</div>
+
+<div class="sl" id="shindoudai">
+  <div class="top"><span class="chip c2">制振</span><span class="pg"></span></div>
+  <div class="tt">耐震等級3だけでは大地震2回目で損傷。evoltzありは8回耐えた。</div>
+  <p class="ms">2023年、富山の振動台で行われた公開実験。<br>耐震等級2・耐震等級3のみ・耐震等級3+evoltzの3パターンに<br>中地震（震度5相当）→大地震（震度7相当）を交互に加振した結果。</p>
+  <div class="body" style="flex-direction:column; gap:12px">
+    <div class="expwrap">
+      <div class="explegend">
+        <div class="lg"><span class="sw" style="background:#9fb0c0"></span>耐震のみ（等級2）</div>
+        <div class="lg"><span class="sw" style="background:var(--leak)"></span>耐震のみ（等級3）</div>
+        <div class="lg"><span class="sw" style="background:var(--win)"></span>耐震等級3＋evoltz</div>
+        <div class="box" style="margin-top:10px; padding:10px 12px"><p style="font-size:11.5px">縦軸＝変位量(mm)。数値が小さいほど揺れを抑えられている</p></div>
+      </div>
+      <div class="expchart">
+        <div class="bargrp"><div class="bar" style="height:15%; background:#9fb0c0"><span class="bv">20.5</span></div><span class="xlbl">等級2<br>1波目(中)</span></div>
+        <div class="bargrp"><div class="bar" style="height:85%; background:#9fb0c0"><span class="bv">116.2<br>中止</span></div><span class="xlbl">等級2<br>2波目(大)</span></div>
+        <div class="bargrp"><div class="bar" style="height:14%; background:var(--leak)"><span class="bv">19.7</span></div><span class="xlbl">等級3<br>1波目(中)</span></div>
+        <div class="bargrp"><div class="bar" style="height:59%; background:var(--leak)"><span class="bv">80.7<br>損傷</span></div><span class="xlbl">等級3<br>2波目(大)</span></div>
+        <div class="bargrp"><div class="bar" style="height:9%; background:var(--win)"><span class="bv">12.9</span></div><span class="xlbl">3+evoltz<br>1波目(中)</span></div>
+        <div class="bargrp"><div class="bar" style="height:29%; background:var(--win)"><span class="bv">39.6</span></div><span class="xlbl">3+evoltz<br>2波目(大)</span></div>
+        <div class="bargrp"><div class="bar" style="height:56%; background:var(--win)"><span class="bv">76.4</span></div><span class="xlbl">3+evoltz<br>8波目(中)</span></div>
+      </div>
+    </div>
+    <a class="vidbar" href="https://www.youtube.com/watch?v=VVOlT4apUZ4" target="_blank" rel="noopener">
+      <div class="play"></div>
+      <div class="vtx"><b>この実験の様子を動画で見る（クリックでYouTubeへ）</b><span>evoltz公式YouTube「evoltz公開振動台実験 ダイジェスト」（youtube.com/watch?v=VVOlT4apUZ4）</span></div>
+    </a>
+  </div>
+  <div class="foot"><span class="cap"><b style="color:var(--win)">結果。</b>耐震等級3だけの家は大地震2回目で損傷が進み、実験を中止。evoltzありは大地震3回・中地震5回、計8回の揺れに耐えました。evoltz社の公開実験誌によるもので、公的機関の検証データではありません。（出典：evoltz社「evoltz Times」Vol.2）</span></div>
+</div>
+
+<div class="sl" id="evoltz">
+  <div class="top"><span class="chip c2">制振</span><span class="pg"></span></div>
+  <div class="tt">1mmの揺れから効き、能登半島地震で実証された。</div>
+  <div class="body" style="flex-direction:column; gap:16px; justify-content:center">
+    <div class="techrow">
+      <div class="tc"><h5>作動開始</h5><div class="v">1mm</div><p>交通振動や震度1の小さな揺れから効き始める速度依存型オイルダンパー</p></div>
+      <div class="tc"><h5>特許</h5><div class="v">3か国</div><p>「超バイリニア特性」で日本・アメリカ・ドイツで<br>特許取得</p></div>
+      <div class="tc"><h5>耐久性</h5><div class="v">100万回</div><p>耐久試験をクリアし性能劣化がほとんどない</p></div>
+    </div>
+    <div class="achieve">
+      <div class="n">573棟 中 0棟</div>
+      <div class="d">令和6年能登半島地震（石川・富山）での倒壊・全壊・半壊の実績（evoltz社調べ）</div>
+    </div>
+  </div>
+</div>
+
+<div class="sl" id="kekkan-hakken">
+  <div class="top"><span class="chip cLeak">壁の中の湿気</span><span class="pg"></span></div>
+  <div class="tt">壁を壊さないと、気づけない。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:14px">
+    <div class="techrow">
+      <div class="tc"><h5>進行中</h5><div class="v">自覚症状なし</div><p>壁の中の腐朽は、住んでいて気づけない</p></div>
+      <div class="tc" style="border-color:var(--leak); background:var(--leakbg)"><h5 style="color:var(--leak)">発覚した時</h5><div class="v" style="color:var(--leak)">壁を壊す規模の工事</div><p>クロス替えでは直せない構造の問題になっている</p></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">だからLIFE Xは、壁の中に湿気を入れない対策を、建てるときに済ませておきます。</span></div>
+</div>
+<div class="hd" style="margin-top:6px"><span>記載の内容は作成時点のものです。発行：LIFE X（開発元：株式会社Gハウス）</span></div>
+</div>
+<script>
+const s=document.querySelectorAll('.sl .pg');s.forEach((e,i)=>e.textContent=(i+1)+' / '+s.length);
+// スマホ・タブレットでは画面幅に合わせて縮小
+function fit(){const w=document.querySelector('.wrap'),r=Math.min(1,(innerWidth-16)/1100);
+ w.style.zoom=r<1?r:'';w.style.marginLeft=r<1?'8px':'';}
+addEventListener('resize',fit);fit();
+</script>
+</body></html>

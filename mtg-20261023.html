@@ -1,0 +1,1006 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LIFEX MTG｜アプローチブックの使い方 投影資料</title>
+<style>
+:root{color-scheme:light}
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
+  --p1:#1e4e79; --p2:#2e7d6e; --p3:#b05c1f; --p4:#2b6ea0;
+  --p1bg:#e8eff6; --p2bg:#e7f2ef; --p3bg:#f9efe4; --p4bg:#e5f0f8;
+  --leak:#b3372b; --leakbg:#fbe9e7;
+  --win:#2e7d6e; --winbg:#e7f2ef;
+  --rot:#6b4a2f; --rotbg:#efe6dc;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.6; font-feature-settings:"palt"}
+.wrap{width:min(1100px,96vw); margin:26px auto}
+.draft{width:1100px; margin:0 auto 14px; font-size:12px; color:#8a5a00; background:#fdf3dd;
+  border:1px solid #ecd9a8; border-radius:4px; padding:6px 14px; font-weight:700}
+.sl{width:1100px; height:619px; background:#fff; border-radius:8px;
+  box-shadow:0 2px 16px rgba(20,40,60,.09); padding:32px 50px 24px;
+  display:flex; flex-direction:column; position:relative; overflow:hidden; margin:0 auto 22px}
+.top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+.chip{font-size:11.5px; font-weight:700; letter-spacing:.08em; padding:3px 12px; border-radius:99px}
+.c0{background:#eceff2;color:var(--sub)}
+.c1{background:var(--p1bg);color:var(--p1)}
+.c2{background:var(--p2bg);color:var(--p2)}
+.c3{background:var(--p3bg);color:var(--p3)}
+.c4{background:var(--p4bg);color:var(--p4)}
+.cLeak{background:var(--leakbg);color:var(--leak)}
+.pg{margin-left:auto; font-size:12px; color:#b6c0ca; font-variant-numeric:tabular-nums}
+.tt{font-size:26px; font-weight:800; line-height:1.35; margin:2px 0 4px; text-wrap:balance}
+.ms{font-size:14.5px; color:var(--sub); margin:0 0 11px; line-height:1.75}
+.body{flex:1; display:flex; gap:20px; min-height:0; overflow:hidden}
+.foot{display:flex; gap:12px; margin-top:9px; align-items:center}
+.cap{font-size:12.5px; color:var(--sub); line-height:1.6}
+
+.talk{background:var(--navy-soft); border-left:3px solid var(--navy); border-radius:0 8px 8px 0;
+  padding:10px 18px; font-size:14px; color:var(--ink); line-height:1.75; width:100%}
+.talk b{color:var(--navy); font-weight:800; font-size:11.5px; letter-spacing:.03em; display:block; margin-bottom:3px}
+
+.ag{border:1px solid var(--line); border-radius:8px; padding:16px 22px; display:flex; align-items:center; gap:16px; background:#fff}
+.ag .no{font-size:12.5px; font-weight:800; color:var(--sub); flex-shrink:0; width:70px; line-height:1.3}
+.ag b{font-size:16px}
+
+.card{border:1px solid var(--line); border-radius:10px; padding:22px; background:#fff; display:flex; flex-direction:column; gap:8px; justify-content:center; text-align:center}
+.card.hero{border-color:var(--navy); background:var(--navy-soft)}
+.card.warn{border-color:var(--leak); background:var(--leakbg)}
+.card.win{border-color:var(--win); background:var(--winbg)}
+.card h5{margin:0; font-size:13px; color:var(--sub); font-weight:800}
+.card .big{font-size:24px; font-weight:800; color:var(--ink)}
+.card.hero .big{color:var(--navy)}
+.card.warn .big{color:var(--leak)}
+.card.win .big{color:var(--win)}
+.card p{margin:0; font-size:12.5px; color:var(--sub); line-height:1.6}
+.twocol{display:grid; grid-template-columns:1fr 1fr; gap:18px; flex:1}
+
+.techrow{display:flex; gap:16px; flex:1}
+.techrow .tc{flex:1; border:1px solid var(--line); border-radius:10px; padding:22px 18px; background:#fff; display:flex; flex-direction:column; gap:8px; justify-content:center; text-align:center}
+.techrow .tc h5{margin:0; font-size:14px; color:var(--navy)}
+.techrow .tc .v{font-size:24px; font-weight:800; color:var(--navy)}
+.techrow .tc p{margin:0; font-size:12.5px; color:var(--sub); line-height:1.6}
+
+.flowH{display:flex; align-items:center; gap:10px; flex:1}
+.flowH .fb{flex:1; border:1px solid var(--line); border-radius:10px; padding:20px 16px; background:#fff; text-align:center; display:flex; flex-direction:column; gap:6px; justify-content:center; min-width:0}
+.flowH .fb.warn{border-color:var(--leak); background:var(--leakbg)}
+.flowH .fb.rot{border-color:var(--rot); background:var(--rotbg)}
+.flowH .fb.win{border-color:var(--win); background:var(--winbg)}
+.flowH .fb.hero{border-color:var(--navy); background:var(--navy-soft)}
+.flowH .fb b{font-size:15px}
+.flowH .fb span{font-size:11.5px; color:var(--sub)}
+.flowH .arrow{font-size:22px; font-weight:800; color:var(--sub); flex-shrink:0}
+
+.pillars{display:flex; align-items:center; gap:8px; flex:1}
+.pillars .pl{flex:1; border:1px solid var(--line); border-radius:10px; padding:22px 12px; background:#fff; text-align:center; display:flex; flex-direction:column; align-items:center; gap:8px; justify-content:center; min-width:0}
+.pillars .pl .no{width:32px; height:32px; border-radius:50%; background:var(--navy); color:#fff; font-size:14px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0}
+.pillars .pl b{font-size:14.5px; color:var(--ink)}
+.pillars .pl .desc{font-size:11.5px; color:var(--sub); line-height:1.5}
+.pillars .plus{font-size:18px; font-weight:800; color:var(--sub); flex-shrink:0}
+
+.stance{display:flex; gap:0; align-items:stretch; position:relative; flex:1}
+.stance>div{flex:1; border:1px solid var(--line); border-radius:8px; padding:24px 26px; display:flex; flex-direction:column; gap:10px; justify-content:center; text-align:center}
+.stance .rigid{background:#fafbfc}
+.stance .hybrid{background:var(--navy-soft); border-color:var(--navy)}
+.stance h5{margin:0; font-size:13.5px; font-weight:800; color:var(--sub); letter-spacing:.03em}
+.stance .hybrid h5{color:var(--navy)}
+.stance .catch{font-size:19px; font-weight:800; margin:2px 0}
+.stance .hybrid .catch{color:var(--navy)}
+.stance .vsbadge{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:34px; height:34px; border-radius:50%;
+  background:#fff; border:2px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; color:var(--sub); z-index:2}
+
+.qaGrid{display:grid; grid-template-columns:1fr 1fr; gap:12px; flex:1}
+.qaGrid .qa{border:1px solid var(--line); border-radius:8px; padding:12px 16px; background:#fff; display:flex; flex-direction:column; gap:5px; justify-content:center}
+.qaGrid .qa .q{font-size:12.5px; font-weight:800; color:var(--navy)}
+.qaGrid .qa .a{font-size:12px; color:var(--ink); line-height:1.55}
+
+.bigline{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:16px}
+.bigline .l1{font-size:15px; font-weight:700; color:var(--sub)}
+.bigline .l2{font-size:30px; font-weight:800; color:var(--ink); line-height:1.5}
+.bigline .l2 .hi{color:var(--navy)}
+
+.src{font-size:11.5px; color:var(--sub); line-height:2; overflow-y:auto; flex:1}
+.src b{color:var(--ink)}
+.unverified{font-size:11px; color:var(--p3); background:var(--p3bg); border-radius:6px; padding:2px 8px; margin-left:6px; font-weight:800}
+
+.photo{border:2px dashed #b6c0ca; border-radius:10px; background:#f7f9fb; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; color:var(--sub); font-size:13px; font-weight:700; text-align:center; padding:14px; line-height:1.6}
+.photo .ic{font-size:26px}
+.photo small{font-weight:400; font-size:11.5px}
+.stepcard{border:1px solid var(--line); border-radius:10px; padding:14px 18px; background:#fff; display:flex; gap:12px; align-items:flex-start}
+.stepcard .n{width:26px; height:26px; border-radius:50%; background:var(--navy); color:#fff; font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px}
+.stepcard b{display:block; font-size:15px; margin-bottom:2px}
+.stepcard span{font-size:12.5px; color:var(--sub); line-height:1.6}
+.jis{width:100%; border-collapse:collapse; font-size:14px}
+.jis th,.jis td{border:1px solid var(--line); padding:10px 12px; text-align:center}
+.jis th{background:var(--panel); font-size:12.5px; color:var(--sub)}
+.jis td.lx{background:var(--navy-soft); color:var(--navy); font-weight:800}
+.flowV{display:flex; flex-direction:column; gap:12px; flex:1; justify-content:center}
+.flowV .row{display:flex; align-items:center; gap:10px}
+.flowV .row .fb{flex:1; border:1px solid var(--line); border-radius:10px; padding:14px 12px; background:#fff; text-align:center; display:flex; flex-direction:column; gap:4px; min-width:0}
+.flowV .row .fb.warn{border-color:var(--leak); background:var(--leakbg)}
+.flowV .row .fb.rot{border-color:var(--rot); background:var(--rotbg)}
+.flowV .row .fb b{font-size:15px}
+.flowV .row .fb span{font-size:11.5px; color:var(--sub)}
+.flowV .row .arrow{font-size:20px; font-weight:800; color:var(--sub)}
+.flowV .row .lab{width:92px; font-size:12px; font-weight:800; color:var(--sub); flex-shrink:0; text-align:center}
+@media print{body{background:#fff}.draft{display:none}.sl{box-shadow:none; border:1px solid var(--line); page-break-after:always}}
+</style>
+</head><body>
+<style>
+.thumb{display:block; width:100%; border-radius:6px; border:1px solid var(--line); box-shadow:0 6px 20px rgba(20,40,60,.16)}
+.key{display:grid; grid-template-columns:57% 1fr; gap:26px; flex:1; min-height:0; align-items:center}
+.key .side{display:flex; flex-direction:column; gap:12px; justify-content:center; height:100%}
+.pt{border:1px solid var(--line); border-radius:10px; padding:14px 16px; background:#fff}
+.pt h5{margin:0 0 4px; font-size:12px; color:var(--sub); font-weight:800; letter-spacing:.04em}
+.pt .v{font-size:17px; font-weight:800; line-height:1.5}
+.pt.hero{border-color:var(--navy); background:var(--navy-soft)}
+.pt.hero .v{color:var(--navy)}
+.rel{font-size:12px; color:var(--sub)}
+.rel span{display:inline-block; background:var(--panel); border-radius:99px; padding:2px 10px; margin:2px 4px 0 0; font-weight:700}
+.grid6{display:grid; grid-template-columns:repeat(3,1fr); gap:14px 18px; flex:1; align-content:center}
+.grid6 figure{margin:0}
+.grid6 figcaption{font-size:13px; font-weight:800; margin-top:6px; text-align:center}
+.grid6 figcaption small{display:block; font-size:11px; color:var(--sub); font-weight:700}
+.scene{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; flex:1}
+.scene .sc{border:1px solid var(--line); border-radius:10px; padding:16px 14px; background:#fff; display:flex; flex-direction:column; gap:10px}
+.scene .sc h5{margin:0; font-size:15px; color:var(--navy)}
+.scene .sc .q{font-size:12px; color:var(--sub); line-height:1.55; min-height:38px}
+.scene .sc .pages{display:flex; flex-wrap:wrap; gap:6px; margin-top:auto}
+.scene .sc .pages b{background:var(--navy); color:#fff; border-radius:6px; padding:3px 9px; font-size:13px}
+.chat{background:#f3f6f9; border-radius:14px; padding:18px 20px; display:flex; flex-direction:column; gap:10px; flex:1; justify-content:center}
+.bub{align-self:flex-end; max-width:78%; background:#8de055; color:#14290a; border-radius:16px 16px 4px 16px; padding:12px 16px; font-size:14px; line-height:1.75}
+.bub.file{background:#fff; color:var(--ink); border:1px solid var(--line); display:flex; gap:10px; align-items:center; font-size:13px}
+.bub.file i{font-style:normal; background:#d9433b; color:#fff; font-weight:800; font-size:11px; border-radius:4px; padding:4px 6px}
+.ng{display:grid; grid-template-columns:1fr 1fr; gap:14px; flex:1}
+.ng .n{border:1px solid var(--line); border-radius:10px; padding:16px 18px; background:#fff; display:flex; flex-direction:column; gap:6px; justify-content:center}
+.ng .n .x{font-size:14px; color:var(--leak); font-weight:800}
+.ng .n .o{font-size:16px; font-weight:800; line-height:1.5}
+.ng .n .w{font-size:12px; color:var(--sub)}
+.add{display:grid; grid-template-columns:1fr 1fr; gap:18px; flex:1}
+.add .col{border-radius:10px; padding:20px 22px; display:flex; flex-direction:column; gap:10px; justify-content:center}
+.add .ok{background:var(--winbg); border:1px solid var(--win)}
+.add .no{background:#fafbfc; border:1px solid var(--line)}
+.add h5{margin:0; font-size:14px}
+.add .ok h5{color:var(--win)} .add .no h5{color:var(--sub)}
+.add li{font-size:15px; font-weight:700; margin:4px 0}
+.add ul{margin:0; padding-left:1.2em}
+.chap{display:flex; align-items:stretch; gap:8px; flex:1}
+.chap .c{flex:1; border:1px solid var(--line); border-radius:10px; background:#fff; display:flex; flex-direction:column; min-width:0; overflow:hidden}
+.chap .c .q{background:var(--panel); padding:12px 10px; font-size:13px; font-weight:800; color:var(--sub); text-align:center; line-height:1.5; min-height:62px; display:flex; align-items:center; justify-content:center}
+.chap .c .n{font-size:30px; font-weight:800; color:var(--navy); text-align:center; margin-top:14px}
+.chap .c .t{font-size:15px; font-weight:800; text-align:center; padding:4px 10px 0; line-height:1.45}
+.chap .c .p{font-size:11.5px; color:var(--sub); text-align:center; margin:auto 0 12px}
+.chap .c.last{border-color:var(--navy); background:var(--navy-soft)}
+.chap .ar{align-self:center; font-weight:800; color:var(--sub)}
+.four{display:flex; flex-direction:column; gap:10px; justify-content:center; height:100%}
+.four .r{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:10px; padding:10px 14px; background:#fff}
+.four .r .no{font-size:18px; font-weight:800; color:var(--navy); width:30px}
+.four .r b{font-size:15px; width:150px; flex-shrink:0}
+.four .r span{font-size:12.5px; color:var(--sub)}
+.four .r.hi{border-color:var(--navy); background:var(--navy-soft)}
+.tl{display:flex; align-items:stretch; gap:10px; flex:1}
+.tl .s{flex:1; border:1px solid var(--line); border-radius:10px; background:#fff; padding:18px 16px; display:flex; flex-direction:column; gap:8px; text-align:center; justify-content:center}
+.tl .s .when{font-size:12px; font-weight:800; color:var(--sub); letter-spacing:.05em}
+.tl .s .ic{font-size:34px}
+.tl .s b{font-size:17px}
+.tl .s span{font-size:12.5px; color:var(--sub); line-height:1.6}
+.tl .s.hero{border-color:var(--navy); background:var(--navy-soft)}
+.tl .s.hero b{color:var(--navy)}
+.tl .ar{align-self:center; font-size:22px; font-weight:800; color:var(--sub)}
+
+/* 大きさ調整 */
+.key{height:auto; flex:1; min-height:0}
+.key>img.thumb{width:auto; max-width:100%; height:auto; max-height:385px; object-fit:contain; align-self:center; justify-self:center}
+.pt .v{font-size:21px} .pt h5{font-size:13px} .rel{font-size:13px}
+.four .r b{font-size:18px} .four .r span{font-size:14px} .four .r{padding:14px 16px}
+.grid6 img.thumb{height:168px; width:auto; margin:0 auto}
+.ag b{font-size:19px} .ag .no{font-size:14px}
+.ag{padding:18px 24px}
+.stance .catch{font-size:32px} .stance h5{font-size:16px} .stance p{font-size:16px!important}
+.card .big{font-size:30px; line-height:1.45} .card h5{font-size:15px} .card p{font-size:15px}
+.techrow .tc h5{font-size:22px; width:44px; height:44px; border-radius:50%; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; margin:0 auto}
+.techrow .tc .v{font-size:34px} .techrow .tc p{font-size:17px; line-height:1.7}
+.pillars{align-items:stretch} .pillars .pl{gap:18px}
+.pillars .pl .no{width:54px; height:54px; font-size:24px}
+.pillars .pl b{font-size:24px} .pillars .pl .desc{font-size:16px; line-height:1.8}
+.chap .c{justify-content:space-between}
+.chap .c .q{font-size:16px; min-height:80px}
+.chap .c .n{font-size:64px; margin:0}
+.chap .c .t{font-size:20px}
+.chap .c .p{font-size:14px; margin:0 0 16px}
+.tl .s .ic{font-size:56px} .tl .s b{font-size:26px} .tl .s span{font-size:16px; line-height:1.7} .tl .s .when{font-size:15px}
+.chat .bub{font-size:19px; line-height:1.8} .chat .bub.file{font-size:16px}
+.stepcard{padding:22px 26px; align-items:center} .stepcard .n{width:40px; height:40px; font-size:19px; margin:0}
+.stepcard b{font-size:22px} .stepcard span{font-size:15px}
+.ng .n .x{font-size:17px} .ng .n .o{font-size:21px} .ng .n .w{font-size:13px}
+.add h5{font-size:18px} .add li{font-size:21px; margin:8px 0}
+.scene .sc{justify-content:space-between; padding:22px 18px} .scene .sc h5{font-size:21px} .scene .sc .q{font-size:15px}
+.scene .sc .pages b{font-size:22px; padding:8px 14px}
+.flowV2{display:flex; flex-direction:column; gap:10px; justify-content:center; height:100%}
+.flowV2 .fb{border:1px solid var(--line); border-radius:10px; padding:12px 18px; background:#fff}
+.flowV2 .fb b{font-size:18px; display:block} .flowV2 .fb span{font-size:13px; color:var(--sub)}
+.flowV2 .fb.warn{border-color:var(--leak); background:var(--leakbg)} .flowV2 .fb.warn b{color:var(--leak)}
+.flowV2 .dn{text-align:center; color:var(--sub); font-weight:800; line-height:1}
+.bigline .l2{font-size:40px} .bigline .l1{font-size:19px}
+
+/* 指さし枠 */
+.shot{position:relative; display:inline-block; line-height:0; justify-self:center; align-self:center; max-width:100%}
+.shot img.thumb{max-height:385px; width:auto; max-width:100%}
+.hl.l i{left:-38px; top:6px}
+.dim{position:absolute; inset:0; width:100%; height:100%; border-radius:6px; pointer-events:none}
+.hl{position:absolute; outline:3px solid #ff7a00; outline-offset:3px; border-radius:6px; box-shadow:0 0 0 6px rgba(255,122,0,.25)}
+.hl i{position:absolute; left:-20px; top:-20px; width:30px; height:30px; border-radius:50%; background:#ff7a00; color:#fff; font-style:normal; font-weight:800; font-size:16px; line-height:30px; text-align:center; box-shadow:0 0 0 3px #fff, 0 3px 8px rgba(0,0,0,.3)}
+.pts{display:flex; flex-direction:column; gap:7px; margin-top:4px}
+.pts div{display:flex; gap:10px; align-items:center; font-size:17px; font-weight:800; line-height:1.4}
+.pts i{flex-shrink:0; width:26px; height:26px; border-radius:50%; background:#ff7a00; color:#fff; font-style:normal; font-size:14px; display:flex; align-items:center; justify-content:center}
+.lk{border:1px dashed var(--navy); border-radius:10px; padding:10px 14px; background:#fff}
+.lk h5{margin:0 0 4px; font-size:12px; color:var(--sub); font-weight:800}
+.lk a{display:block; font-size:14px; font-weight:800; color:var(--navy); text-decoration:none; line-height:1.6}
+.lk a span{font-weight:700; color:var(--sub); font-size:12.5px}
+.lk p{margin:2px 0 0; font-size:12px; color:var(--sub)}
+.key .side{gap:9px} .lk a{line-height:1.45} .pt{padding:11px 16px}
+.addg{flex:1; display:grid; grid-template-columns:repeat(3,1fr); gap:12px}
+.addg .t{border:1px solid var(--win); background:var(--winbg); border-radius:10px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; text-align:center; padding:12px}
+.addg .t span{font-size:34px; line-height:1}
+.addg .t b{font-size:18px; line-height:1.4}
+.addg .t small{font-size:13px; color:var(--sub)}
+
+/* 章ごと */
+.chs{display:grid; grid-template-columns:55% 1fr; gap:24px; flex:1; min-height:0; overflow:hidden}
+.thg{display:grid; gap:10px; align-content:center; min-height:0}
+.thg.n1{grid-template-columns:1fr}
+.thg.n2{grid-template-columns:1fr 1fr}
+.thg.n3{grid-template-columns:1fr 1fr 1fr}
+.thg.n4{grid-template-columns:1fr 1fr}
+.thg figure{margin:0; text-align:center}
+.thg img{display:block; width:100%; border-radius:5px; border:1px solid var(--line); box-shadow:0 4px 14px rgba(20,40,60,.14)}
+.thg.n1 img{max-height:370px; width:auto; max-width:100%; margin:0 auto}
+.thg figcaption{font-size:12px; font-weight:800; color:var(--sub); margin-top:4px}
+.thg.n4 img{max-height:168px; width:auto; margin:0 auto}
+.inf{display:flex; flex-direction:column; gap:10px; justify-content:center}
+.inf .r{border:1px solid var(--line); border-radius:10px; padding:11px 16px; background:#fff}
+.inf .r h5{margin:0 0 3px; font-size:12px; font-weight:800; color:var(--sub); letter-spacing:.04em}
+.inf .r .v{font-size:17px; font-weight:800; line-height:1.5}
+.inf .r.aim{border-color:var(--navy); background:var(--navy-soft)}
+.inf .r.aim .v{color:var(--navy); font-size:19px}
+.inf .r.wbx{border-color:var(--leak); background:var(--leakbg)}
+.inf .r.wbx h5{color:var(--leak)}
+.inf .r.wbx .v{font-size:15px}
+/* 言い返し */
+.rb{display:flex; flex-direction:column; gap:12px; flex:1; justify-content:center; min-height:0}
+.rb .say{align-self:flex-start; background:#f3f6f9; border:1px solid var(--line); border-radius:16px 16px 16px 4px; padding:8px 22px; font-size:24px; font-weight:800}
+.rb .st .sti{width:100%; height:122px; object-fit:contain; border-radius:5px; display:block}
+.agenda .ag{padding:10px 24px} .agenda .ag b{font-size:17px}
+.flow5 .f .sti{width:100%; height:150px; object-fit:contain; display:block; margin-top:auto}
+.rb .say small{display:block; font-size:12px; color:var(--sub); font-weight:700}
+.rb .steps{display:flex; gap:10px; align-items:stretch}
+.rb .st{flex:1; border:1px solid var(--line); border-radius:10px; background:#fff; padding:10px 14px; display:flex; flex-direction:column; gap:5px}
+.rb .st .n{font-size:12px; font-weight:800; color:var(--sub)}
+.rb .st b{font-size:16px; line-height:1.5}
+.rb .st .pg2{margin-top:auto; display:flex; gap:6px; flex-wrap:wrap}
+.rb .st .pg2 span{background:var(--navy); color:#fff; border-radius:6px; padding:2px 10px; font-size:14px; font-weight:800}
+.rb .st.last{border-color:var(--navy); background:var(--navy-soft)}
+.rb .ar{align-self:center; font-weight:800; color:var(--sub); font-size:20px}
+.rb .dont{font-size:13px; color:var(--leak); font-weight:800}
+/* 面談の流れ */
+.flow5{display:flex; gap:8px; align-items:stretch; flex:1}
+.flow5 .f{flex:1; border:1px solid var(--line); border-radius:10px; background:#fff; padding:14px 12px; display:flex; flex-direction:column; gap:8px; min-width:0}
+.flow5 .f .n{width:30px; height:30px; border-radius:50%; background:var(--navy); color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center}
+.flow5 .f b{font-size:16px; line-height:1.45}
+.flow5 .f span{font-size:12.5px; color:var(--sub); line-height:1.6}
+.flow5 .f .pg2{ display:flex; gap:5px; flex-wrap:wrap}
+.flow5 .f .pg2 i{font-style:normal; background:var(--navy); color:#fff; border-radius:6px; padding:2px 8px; font-size:13px; font-weight:800}
+.flow5 .f.hero{border-color:var(--navy); background:var(--navy-soft)}
+.mimg{width:78%; max-height:220px; object-fit:contain; margin:6px auto; border-radius:6px; box-shadow:0 6px 18px rgba(20,40,60,.18)}
+.flow5 .bigic{font-size:64px; text-align:center; margin:auto 0}
+.flow5 .ar{align-self:center; color:var(--sub); font-weight:800}
+.flow5.big .f b{font-size:20px} .flow5.big .f span{font-size:15px; line-height:1.75}
+.pick{display:grid; grid-template-columns:1fr 1fr; gap:12px 18px; flex:1; align-content:center}
+.pick .pk{display:flex; align-items:center; gap:12px; border:1px solid var(--line); border-radius:10px; background:#fff; padding:26px 20px}
+.pick .q{font-size:20px; font-weight:800; flex:1}
+.pick .ar2{color:var(--sub); font-weight:800}
+.pick .ps{display:flex; gap:6px}
+.pick .ps i{font-style:normal; background:var(--navy); color:#fff; border-radius:6px; padding:5px 11px; font-size:16px; font-weight:800}
+.mem{display:flex; flex-direction:column; gap:14px; flex:1; justify-content:center}
+.mem .row{display:flex; align-items:center; gap:18px; border:1px solid var(--line); border-radius:12px; padding:14px 22px; background:#fff}
+.mem .row.hero{border-color:var(--navy); background:var(--navy-soft)}
+.mem .lb{width:170px; font-size:18px; font-weight:800; flex-shrink:0}
+.mem .bars{display:flex; gap:22px; align-items:flex-end; flex:1; height:150px}
+.mem .bx{flex:1; height:100%; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:4px; position:relative}
+.mem .bx i{display:block; width:70%; background:var(--navy); border-radius:6px 6px 0 0; max-height:110px}
+.mem .bx i.fade{background:#b9c6d3}
+.mem .bx span{font-size:13px; font-weight:800; color:var(--sub)}
+.mem .bx b{position:absolute; top:-2px; font-size:12px; color:var(--navy); background:#fff; border:1px solid var(--navy); border-radius:99px; padding:1px 8px}
+.mem .res{width:170px; font-size:18px; font-weight:800; color:var(--navy); text-align:center; flex-shrink:0}
+.mem .res.warn{color:var(--leak)}
+.fgt{display:grid; grid-template-columns:66% 1fr; gap:18px; flex:1; min-height:0; align-items:center}
+.fgt svg{width:100%; height:100%; max-height:400px}
+.fside{display:flex; flex-direction:column; gap:12px}
+.fside .lg{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:10px; padding:10px 14px; background:#fff}
+.fside .lg b{display:block; font-size:16px} .fside .lg small{font-size:12px; color:var(--sub)}
+.fside .l1{width:34px; height:4px; background:#b3372b; flex-shrink:0}
+.fside .l2{width:34px; height:0; border-top:3.5px dashed #1e4e79; flex-shrink:0}
+.fside .msg{border:1px solid var(--navy); background:var(--navy-soft); border-radius:10px; padding:16px; font-size:17px; line-height:1.7; font-weight:700}
+.fside .msg b{color:var(--navy); font-size:21px}
+</style>
+
+<div class="wrap">
+
+<!-- 表紙 -->
+<div class="sl" style="justify-content:center; text-align:center">
+  <div style="font-size:13px; letter-spacing:.22em; color:var(--sub); font-weight:700">2026.10.23（金）16:00〜　LIFEX 月2棟目標達成MTG</div>
+  <div style="font-size:38px; font-weight:800; margin:22px 0 12px; letter-spacing:.02em">渡して終わり、にしない。</div>
+  <div style="font-size:17px; color:var(--navy); font-weight:700; line-height:1.8">LIFE X アプローチブックの<br>目的・使い方・お渡しのしかた</div>
+  <div style="margin-top:30px; font-size:14px; color:var(--sub)">進行：Gハウス LIFEX FC事業部　徳田</div>
+  <div class="pg" style="position:absolute; right:28px; bottom:20px"></div>
+</div>
+
+<!-- 流れ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">本日の流れ</span><span class="pg"></span></div>
+  <div class="tt">明日の打ち合わせから、このブックを使える状態にする。</div>
+  <div class="body agenda" style="flex-direction:column; justify-content:center; gap:7px">
+    <div class="ag"><span class="no" style="color:var(--p3)">目的</span><b>なぜ、このブックを作ったのか</b></div>
+    <div class="ag"><span class="no" style="color:var(--p2)">設計</span><b>なぜ、この順番・この書き方なのか</b></div>
+    <div class="ag"><span class="no" style="color:var(--navy)">勝負所</span><b>時間をかけて話す「勝負の6ページ」</b></div>
+    <div class="ag"><span class="no" style="color:var(--p2)">章ごと</span><b>全38ページの狙いと、刺さるお客様</b></div>
+    <div class="ag"><span class="no" style="color:var(--leak)">切り返し</span><b>言い返されたときの、ブックの開き方</b></div>
+    <div class="ag"><span class="no" style="color:var(--p4)">使い方</span><b>商談の流れ／面談中は紙で、後日データで</b></div>
+    <div class="ag"><span class="no" style="color:var(--leak)">注意</span><b>言い切らないこと／自社ページの足し方</b></div>
+  </div>
+</div>
+
+<!-- 目的1 -->
+<div class="sl">
+  <div class="top"><span class="chip c3">目的</span><span class="pg"></span></div>
+  <div class="tt">注文住宅の打ち合わせは、選ぶほど迷う。</div>
+  <div class="key">
+    <img class="thumb" src="assets/mtg-20261023/p04.jpg" alt="ブック4ページ">
+    <div class="flowV2">
+      <div class="fb"><b>「まず、ご要望を」</b><span>ほとんどの会社がここから始める</span></div><div class="dn">↓</div>
+      <div class="fb"><b>決めることが増える</b><span>間取り・設備・仕様…</span></div><div class="dn">↓</div>
+      <div class="fb warn"><b>予算も時間も膨らむ</b><span>選ぶたびに金額が上がる</span></div><div class="dn">↓</div>
+      <div class="fb warn"><b>最後は数字の比較</b><span>等級・価格の表で決まる</span></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">LIFE Xが最初にお聞きするのは「どんな暮らしがしたいか」。ここで違いを出します。</span></div>
+</div>
+
+<!-- 目的2 -->
+<div class="sl">
+  <div class="top"><span class="chip c3">目的</span><span class="pg"></span></div>
+  <div class="tt">数字だけで比べられると、LIFE Xの良さは伝わらない。</div>
+  <div class="body" style="flex-direction:column; justify-content:center">
+    <div class="stance">
+      <div class="rigid"><h5>他社と並べたカタログ</h5><div class="catch">耐震等級3 ＝ 耐震等級3</div><p style="margin:0; font-size:13px; color:var(--sub)">同じ数字なら、あとは値段の勝負</p></div>
+      <div class="hybrid"><h5>このブックで伝えること</h5><div class="catch">その性能が、長く続くか</div><p style="margin:0; font-size:13px; color:var(--sub)">数字の「中身」と「その後」で比べてもらう</p></div>
+      <div class="vsbadge">VS</div>
+    </div>
+  </div>
+</div>
+
+<!-- 目的3 -->
+<div class="sl">
+  <div class="top"><span class="chip c3">目的</span><span class="pg"></span></div>
+  <div class="tt">このブックの役割は、3つです。</div>
+  <div class="body" style="flex-direction:column; justify-content:center">
+    <div class="pillars">
+      <div class="pl"><span class="no">1</span><b>営業がいなくても伝わる</b><span class="desc">ご家族だけで読んでも<br>分かる言葉で書いた</span></div>
+      <div class="pl"><span class="no">2</span><b>なぜ標準かが分かる</b><span class="desc">仕様の紹介ではなく<br>採用した理由を書いた</span></div>
+      <div class="pl"><span class="no">3</span><b>売り込まない</b><span class="desc">決めるのはご家族。<br>その材料を渡す</span></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">だから本文に「アプローチブック」「商談」などの営業の言葉は出していません。</span></div>
+</div>
+
+<!-- 設計1 -->
+<div class="sl">
+  <div class="top"><span class="chip c2">設計</span><span class="pg"></span></div>
+  <div class="tt">5つの章は、お客様の頭に浮かぶ疑問の順番。</div>
+  <div class="body">
+    <div class="chap">
+      <div class="c"><div class="q">何が<br>違うの？</div><div class="n">1</div><div class="t">答えを<br>持っている家</div><div class="p">P4〜7</div></div>
+      <div class="ar">→</div>
+      <div class="c"><div class="q">本当に<br>良い家なの？</div><div class="n">2</div><div class="t">長く持続する<br>性能</div><div class="p">P8〜29</div></div>
+      <div class="ar">→</div>
+      <div class="c"><div class="q">住んでからは？</div><div class="n">3</div><div class="t">家事も光熱費も<br>減らす暮らし</div><div class="p">P30〜31</div></div>
+      <div class="ar">→</div>
+      <div class="c"><div class="q">それで、<br>この値段？</div><div class="n">4</div><div class="t">この価格で<br>実現できる理由</div><div class="p">P32〜36</div></div>
+      <div class="ar">→</div>
+      <div class="c last"><div class="q">結局、<br>どんな会社？</div><div class="n">5</div><div class="t">妥協しない。<br>それがLIFE X</div><div class="p">P37〜38</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 設計2 -->
+<div class="sl">
+  <div class="top"><span class="chip c2">設計</span><span class="pg"></span></div>
+  <div class="tt">各ページは「なぜ」から書いている。</div>
+  <div class="key">
+    <img class="thumb" src="assets/mtg-20261023/p09.jpg" alt="ブック9ページ">
+    <div class="four">
+      <div class="r"><span class="no">01</span><b>気づき</b><span>知らなかった事実</span></div>
+      <div class="r"><span class="no">02</span><b>LIFE Xの答え</b><span>どう解決したか</span></div>
+      <div class="r"><span class="no">03</span><b>これからの暮らし</b><span>住んでどうなるか</span></div>
+      <div class="r hi"><span class="no">04</span><b>だから標準にした</b><span>ここが一番伝えたい</span></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>話すときのコツ</b>仕様名から話さず、01の「知っていますか？」から入る。</div></div>
+</div>
+
+<!-- 設計3 -->
+<div class="sl">
+  <div class="top"><span class="chip c2">設計</span><span class="pg"></span></div>
+  <div class="tt">最後のページで、決めてもらおうとしない。</div>
+  <div class="key">
+    <img class="thumb" src="assets/mtg-20261023/p37.jpg" alt="ブック37ページ">
+    <div class="side">
+      <div class="pt"><h5>締めの言葉</h5><div class="v">決めるのは、ご家族です。</div></div>
+      <div class="pt hero"><h5>理由</h5><div class="v">押されると、人は引く。<br>比べるほど、中身の差が見える。</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 勝負所 一覧 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">勝負の6ページ</span><span class="pg"></span></div>
+  <div class="tt">全ページは説明しない。時間をかけて話す「勝負の6ページ」。</div>
+  <div class="grid6">
+    <figure><img class="thumb" src="assets/mtg-20261023/p08.jpg" alt=""><figcaption>P8 数字にとらわれない<small>全体の軸</small></figcaption></figure>
+    <figure><img class="thumb" src="assets/mtg-20261023/p10.jpg" alt=""><figcaption>P10 同じ等級3でも違う<small>耐震</small></figcaption></figure>
+    <figure><img class="thumb" src="assets/mtg-20261023/p13.jpg" alt=""><figcaption>P13 2回目の大地震<small>制振</small></figcaption></figure>
+    <figure><img class="thumb" src="assets/mtg-20261023/p21.jpg" alt=""><figcaption>P21 結露が性能を下げる<small>壁の中の湿気</small></figcaption></figure>
+    <figure><img class="thumb" src="assets/mtg-20261023/p29.jpg" alt=""><figcaption>P29 住んでからのお金<small>メンテナンス</small></figcaption></figure>
+    <figure><img class="thumb" src="assets/mtg-20261023/p34.jpg" alt=""><figcaption>P34 最初の金額が最後<small>価格</small></figcaption></figure>
+  </div>
+</div>
+
+<!-- P8 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">勝負の6ページ 1/6</span><span class="pg"></span></div>
+  <div class="tt">P8　ここで話の軸を決める。</div>
+  <div class="key">
+    <div class="shot"><img class="thumb" src="assets/mtg-20261023/p08.jpg" alt="ブック8ページ"><svg class="dim" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><mask id="m8"><rect width="100" height="100" fill="#fff"/><rect x="7" y="30.5" width="38" height="36.2" rx="1" fill="#000"/><rect x="54.5" y="30.5" width="38.3" height="36.2" rx="1" fill="#000"/></mask></defs><rect width="100" height="100" fill="rgba(14,24,36,.55)" mask="url(#m8)"/></svg><span class="hl" style="left:7%;top:30.5%;width:38%;height:36.2%"><i>1</i></span><span class="hl" style="left:54.5%;top:30.5%;width:38.3%;height:36.2%"><i>2</i></span></div>
+    <div class="side">
+      <div class="pt"><h5>指さす場所（<span style="color:#e86a00">オレンジの番号</span>）</h5><div class="pts"><div><i>1</i>カタログの数字＝建てた日の性能</div><div><i>2</i>その性能が、長く続くか</div></div></div>
+      <div class="pt hero"><h5>伝えること</h5><div class="v">カタログの数字は、<br>建てた日の数字。</div></div>
+      
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「耐震等級も断熱等級も、実は建てた日の数字なんです。大事なのは、それが何年続くかです。」</div></div>
+</div>
+
+<!-- P10 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">勝負の6ページ 2/6</span><span class="pg"></span></div>
+  <div class="tt">P10　「うちも等級3です」と言われたら。</div>
+  <div class="key">
+    <div class="shot"><img class="thumb" src="assets/mtg-20261023/p10.jpg" alt="ブック10ページ"><svg class="dim" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><mask id="m10"><rect width="100" height="100" fill="#fff"/><rect x="5" y="21" width="90" height="24.5" rx="1" fill="#000"/><rect x="5" y="50" width="90" height="24.5" rx="1" fill="#000"/></mask></defs><rect width="100" height="100" fill="rgba(14,24,36,.55)" mask="url(#m10)"/></svg><span class="hl" style="left:5%;top:21%;width:90%;height:24.5%"><i>1</i></span><span class="hl" style="left:5%;top:50%;width:90%;height:24.5%"><i>2</i></span></div>
+    <div class="side">
+      <div class="pt"><h5>指さす場所（<span style="color:#e86a00">オレンジの番号</span>）</h5><div class="pts"><div><i>1</i>簡易な計算：3〜5項目・1.0〜2.0倍</div><div><i>2</i>LIFE X：7項目すべて・2.4〜2.7倍</div></div></div>
+      <div class="pt hero"><h5>伝えること</h5><div class="v">同じ等級3でも、<br>計算方法で強さが違う。</div></div>
+      <div class="lk"><h5>お客様に見せられる「LIFE X 補足資料」</h5><a href="kyaku-hosoku.html#taishin-keisan" target="_blank" rel="noopener">1枚目 「耐震等級3だから安心とは限らない」</a></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「他社さんの等級3が、どの計算で取ったものか聞いてみてください。比べるならそこです。」</div></div>
+</div>
+
+<!-- P13 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">勝負の6ページ 3/6</span><span class="pg"></span></div>
+  <div class="tt">P13　地震は1回では終わらない。</div>
+  <div class="key">
+    <div class="shot"><img class="thumb" src="assets/mtg-20261023/p13.jpg" alt="ブック13ページ"><svg class="dim" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><mask id="m13"><rect width="100" height="100" fill="#fff"/><rect x="23.8" y="19.8" width="35.8" height="34.2" rx="1" fill="#000"/><rect x="61.3" y="19.8" width="35.900000000000006" height="34.2" rx="1" fill="#000"/><rect x="23.8" y="56.3" width="73.4" height="33.900000000000006" rx="1" fill="#000"/></mask></defs><rect width="100" height="100" fill="rgba(14,24,36,.55)" mask="url(#m13)"/></svg><span class="hl l" style="left:23.8%;top:19.8%;width:35.8%;height:34.2%"><i>1</i></span><span class="hl l" style="left:61.3%;top:19.8%;width:35.900000000000006%;height:34.2%"><i>2</i></span><span class="hl" style="left:23.8%;top:56.3%;width:73.4%;height:33.900000000000006%"><i>3</i></span></div>
+    <div class="side">
+      <div class="pt"><h5>指さす場所（<span style="color:#e86a00">オレンジの番号</span>）</h5><div class="pts"><div><i>1</i>等級3だけでは2回目で損傷</div><div><i>2</i>evoltzありは8回耐えた</div><div><i>3</i>能登で大きな被害0棟</div></div></div>
+      <div class="pt hero"><h5>伝えること</h5><div class="v">本震に耐え、<br>余震で傷ませない。</div></div>
+      <div class="lk"><h5>お客様に見せられる「LIFE X 補足資料」</h5><a href="kyaku-hosoku.html#kurikaesu-jishin" target="_blank" rel="noopener">2枚目 「繰り返す地震」</a><a href="kyaku-hosoku.html#shindoudai" target="_blank" rel="noopener">3枚目 「振動台実験」（動画つき）</a><a href="kyaku-hosoku.html#evoltz" target="_blank" rel="noopener">4枚目 「evoltzの性能・能登の実績」</a></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「熊本は震度7が2回でした。1回目に耐えても、2回目で傷むかどうかが分かれ目です。」</div></div>
+</div>
+
+<!-- P21 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">勝負の6ページ 4/6</span><span class="pg"></span></div>
+  <div class="tt">P21　「結露しません」で終わらせない。</div>
+  <div class="key">
+    <div class="shot"><img class="thumb" src="assets/mtg-20261023/p21.jpg" alt="ブック21ページ"><svg class="dim" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><mask id="m21"><rect width="100" height="100" fill="#fff"/><rect x="7.6" y="59.3" width="24.0" height="16.700000000000003" rx="1" fill="#000"/><rect x="38.3" y="59.3" width="23.5" height="16.700000000000003" rx="1" fill="#000"/><rect x="68.6" y="59.3" width="24.0" height="11.700000000000003" rx="1" fill="#000"/></mask></defs><rect width="100" height="100" fill="rgba(14,24,36,.55)" mask="url(#m21)"/></svg><span class="hl" style="left:7.6%;top:59.3%;width:24.0%;height:16.700000000000003%"><i>1</i></span><span class="hl" style="left:38.3%;top:59.3%;width:23.5%;height:16.700000000000003%"><i>2</i></span><span class="hl" style="left:68.6%;top:59.3%;width:24.0%;height:11.700000000000003%"><i>3</i></span></div>
+    <div class="side">
+      <div class="pt"><h5>指さす場所（<span style="color:#e86a00">オレンジの番号</span>）</h5><div class="pts"><div><i>1</i>構造：耐震・制振が力を出せない</div><div><i>2</i>断熱：光熱費が上がる</div><div><i>3</i>発見：気づいた時には手遅れ</div></div></div>
+      <div class="pt hero"><h5>伝えること</h5><div class="v">結露すると、耐震も断熱も<br>数字どおりに働かない。</div></div>
+      <div class="lk"><h5>お客様に見せられる「LIFE X 補足資料」</h5><a href="kyaku-hosoku.html#kekkan-hakken" target="_blank" rel="noopener">5枚目 「壁を壊さないと、気づけない」</a></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「壁の中は見えません。だから最初に、寒冷地向けのシートを全国で使うと決めています。」</div></div>
+</div>
+
+<!-- P29 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">勝負の6ページ 5/6</span><span class="pg"></span></div>
+  <div class="tt">P29　性能を「お金」に置き換える。</div>
+  <div class="key">
+    <div class="shot"><img class="thumb" src="assets/mtg-20261023/p29.jpg" alt="ブック29ページ"><svg class="dim" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><mask id="m29"><rect width="100" height="100" fill="#fff"/><rect x="20.7" y="23.3" width="73.5" height="25.7" rx="1" fill="#000"/><rect x="20.7" y="50.8" width="73.5" height="25.700000000000003" rx="1" fill="#000"/></mask></defs><rect width="100" height="100" fill="rgba(14,24,36,.55)" mask="url(#m29)"/></svg><span class="hl" style="left:20.7%;top:23.3%;width:73.5%;height:25.7%"><i>1</i></span><span class="hl" style="left:20.7%;top:50.8%;width:73.5%;height:25.700000000000003%"><i>2</i></span></div>
+    <div class="side">
+      <div class="pt"><h5>指さす場所（<span style="color:#e86a00">オレンジの番号</span>）</h5><div class="pts"><div><i>1</i>防蟻30年：60〜75万円 → 0円</div><div><i>2</i>保険料35年：約158万円安い</div></div></div>
+      <div class="pt hero"><h5>伝えること</h5><div class="v">性能が良いと、<br>住んでからのお金も減る。</div></div>
+      
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「建てるときの金額だけでなく、住んでから35年でいくら違うかも見てください。」</div></div>
+</div>
+
+<!-- P34 -->
+<div class="sl">
+  <div class="top"><span class="chip c1">勝負の6ページ 6/6</span><span class="pg"></span></div>
+  <div class="tt">P34　オプションで膨らまないことを見せる。</div>
+  <div class="key">
+    <div class="shot"><img class="thumb" src="assets/mtg-20261023/p34.jpg" alt="ブック34ページ"><svg class="dim" viewBox="0 0 100 100" preserveAspectRatio="none"><defs><mask id="m34"><rect width="100" height="100" fill="#fff"/><rect x="8" y="6.5" width="45" height="8.0" rx="1" fill="#000"/><rect x="6.2" y="23" width="91.1" height="69" rx="1" fill="#000"/></mask></defs><rect width="100" height="100" fill="rgba(14,24,36,.55)" mask="url(#m34)"/></svg><span class="hl" style="left:8%;top:6.5%;width:45%;height:8.0%"><i>1</i></span><span class="hl" style="left:6.2%;top:23%;width:91.1%;height:69%"><i>2</i></span></div>
+    <div class="side">
+      <div class="pt"><h5>指さす場所（<span style="color:#e86a00">オレンジの番号</span>）</h5><div class="pts"><div><i>1</i>最初に見た金額が「最後の金額」</div><div><i>2</i>12個すべてが標準仕様</div></div></div>
+      <div class="pt hero"><h5>伝えること</h5><div class="v">お伝えした仕様は、<br>すべて標準。</div></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「ここまでお話しした仕様は、全部この金額に入っています。後から足すものではありません。」</div></div>
+</div>
+
+
+<!-- ===== 章ごとの使い方 ===== -->
+<div class="sl">
+  <div class="top"><span class="chip c2">章ごとの使い方 1/13</span><span class="chip c0">1 答えを持っている家</span><span class="pg"></span></div>
+  <div class="tt">P4〜5　「選ぶ家づくり」に疲れた方の、入口にする。</div>
+  <div class="chs">
+    <div class="thg n2"><figure><img src="assets/mtg-20261023/p04.jpg" alt="ブック4ページ"><figcaption>P4</figcaption></figure><figure><img src="assets/mtg-20261023/p05.jpg" alt="ブック5ページ"><figcaption>P5</figcaption></figure></div>
+    <div class="inf">
+      <div class="r aim"><h5>このページの狙い</h5><div class="v">ご要望を聞く前に、<br>「どんな暮らしがしたいか」を聞く</div></div>
+      <div class="r"><h5>刺さるお客様</h5><div class="v">他社の打ち合わせで<br>決めることの多さに疲れている方</div></div>
+      
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「間取りを一から考えるのは、プロでも難しいんです。LIFE Xには、暮らしの困りごとに先回りした答えが詰まっています。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c2">章ごとの使い方 2/13</span><span class="chip c0">1 答えを持っている家</span><span class="pg"></span></div>
+  <div class="tt">P6〜7　「規格＝みんな同じ家」の思い込みを外す。</div>
+  <div class="chs">
+    <div class="thg n2"><figure><img src="assets/mtg-20261023/p06.jpg" alt="ブック6ページ"><figcaption>P6</figcaption></figure><figure><img src="assets/mtg-20261023/p07.jpg" alt="ブック7ページ"><figcaption>P7</figcaption></figure></div>
+    <div class="inf">
+      <div class="r aim"><h5>このページの狙い</h5><div class="v">5つのテイストと外観で、<br>自分の好みが選べると見せる</div></div>
+      <div class="r"><h5>刺さるお客様</h5><div class="v">見た目にこだわりたい方<br>規格住宅に抵抗がある方</div></div>
+      
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「規格住宅というと同じ家が並ぶイメージですよね。LIFE Xは5つのテイストと外観から、お好みを選べます。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c2">章ごとの使い方 3/13</span><span class="chip c0">2 耐震</span><span class="pg"></span></div>
+  <div class="tt">P9・P11　等級3の意味を、国のデータで裏づける。</div>
+  <div class="chs">
+    <div class="thg n2"><figure><img src="assets/mtg-20261023/p09.jpg" alt="ブック9ページ"><figcaption>P9</figcaption></figure><figure><img src="assets/mtg-20261023/p11.jpg" alt="ブック11ページ"><figcaption>P11</figcaption></figure></div>
+    <div class="inf">
+      <div class="r aim"><h5>このページの狙い</h5><div class="v">熊本地震で、耐震等級3の家は<br>倒壊・大破ゼロだったと見せる</div></div>
+      <div class="r"><h5>刺さるお客様</h5><div class="v">地震が心配な方<br>小さなお子さまがいるご家族</div></div>
+      <div class="r wbx"><h5>言い過ぎ注意</h5><div class="v">比べた相手は「建築基準法レベル」の家。<br>他社の家と比べたデータではない</div></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「熊本地震の調査では、耐震等級3の家に倒壊・大破はありませんでした。国土交通省の報告です。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c2">章ごとの使い方 4/13</span><span class="chip c0">2 制振</span><span class="pg"></span></div>
+  <div class="tt">P12　「1回耐える」から「何度も耐える」へ。</div>
+  <div class="chs">
+    <div class="thg n1"><figure><img src="assets/mtg-20261023/p12.jpg" alt="ブック12ページ"><figcaption>P12</figcaption></figure></div>
+    <div class="inf">
+      <div class="r aim"><h5>このページの狙い</h5><div class="v">本震だけでなく、余震で<br>家を傷ませないことが大事と伝える</div></div>
+      <div class="r"><h5>刺さるお客様</h5><div class="v">「耐震等級3なら十分」と<br>思っている方</div></div>
+      
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「熊本では、震度1以上の揺れが半年で4,000回を超えました。大きな地震は1回では終わらないんです。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c2">章ごとの使い方 5/13</span><span class="chip c0">2 断熱・窓</span><span class="pg"></span></div>
+  <div class="tt">P14〜15　数字より「冬の体感」と「大きな窓」で話す。</div>
+  <div class="chs">
+    <div class="thg n2"><figure><img src="assets/mtg-20261023/p14.jpg" alt="ブック14ページ"><figcaption>P14</figcaption></figure><figure><img src="assets/mtg-20261023/p15.jpg" alt="ブック15ページ"><figcaption>P15</figcaption></figure></div>
+    <div class="inf">
+      <div class="r aim"><h5>このページの狙い</h5><div class="v">大きな窓のまま、<br>冬も23℃以上が目安と伝える</div></div>
+      <div class="r"><h5>刺さるお客様</h5><div class="v">寒い家で育った方<br>明るく開放的な家にしたい方</div></div>
+      <div class="r wbx"><h5>言い過ぎ注意</h5><div class="v">C値0.24は施工実績の平均。<br>保証値ではない</div></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「断熱の数字だけを追うと、窓が小さくなるんです。LIFE Xは大きな窓のまま、冬も23℃以上が目安です。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c2">章ごとの使い方 6/13</span><span class="chip c0">2 断熱</span><span class="pg"></span></div>
+  <div class="tt">P16　「等級7の会社」と比べられたときの答え。</div>
+  <div class="chs">
+    <div class="thg n1"><figure><img src="assets/mtg-20261023/p16.jpg" alt="ブック16ページ"><figcaption>P16</figcaption></figure></div>
+    <div class="inf">
+      <div class="r aim"><h5>このページの狙い</h5><div class="v">数字を上げるより、<br>その性能を長く続けることを選んだ</div></div>
+      <div class="r"><h5>刺さるお客様</h5><div class="v">他社で断熱等級7を<br>勧められている方</div></div>
+      <div class="r wbx"><h5>言い過ぎ注意</h5><div class="v">グラフは考え方のイメージ図。<br>「何年で逆転する」とは言わない</div></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「等級7でも、壁の中で結露すれば性能は落ちていきます。LIFE Xは等級6の性能を守り続けることに力を入れました。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c2">章ごとの使い方 7/13</span><span class="chip c0">2 壁の中の湿気</span><span class="pg"></span></div>
+  <div class="tt">P17〜20　結露は、この順番で話す。</div>
+  <div class="chs">
+    <div class="thg n4"><figure><img src="assets/mtg-20261023/p17.jpg" alt="ブック17ページ"><figcaption>P17</figcaption></figure><figure><img src="assets/mtg-20261023/p18.jpg" alt="ブック18ページ"><figcaption>P18</figcaption></figure><figure><img src="assets/mtg-20261023/p19.jpg" alt="ブック19ページ"><figcaption>P19</figcaption></figure><figure><img src="assets/mtg-20261023/p20.jpg" alt="ブック20ページ"><figcaption>P20</figcaption></figure></div>
+    <div class="inf">
+      <div class="r aim"><h5>このページの狙い</h5><div class="v">シートの話（P17）→湿気の動き（P18）<br>→結露する温度（P19）→コップ（P20）</div></div>
+      <div class="r"><h5>刺さるお客様</h5><div class="v">性能を比べている理論派の方<br>ご主人が技術職の方</div></div>
+      <div class="r wbx"><h5>言い過ぎ注意</h5><div class="v">「結露しません」とは言わない。<br>結露する温度は必ずある</div></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「冷たいコップに水滴がつくのと同じことが、冬の壁の中で起きます。だから湿気を壁の中に入れないことが大事なんです。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c2">章ごとの使い方 8/13</span><span class="chip c0">2 壁の中の湿気</span><span class="pg"></span></div>
+  <div class="tt">P22〜24　LIFE Xの答えは、3つ。</div>
+  <div class="chs">
+    <div class="thg n3"><figure><img src="assets/mtg-20261023/p22.jpg" alt="ブック22ページ"><figcaption>P22</figcaption></figure><figure><img src="assets/mtg-20261023/p23.jpg" alt="ブック23ページ"><figcaption>P23</figcaption></figure><figure><img src="assets/mtg-20261023/p24.jpg" alt="ブック24ページ"><figcaption>P24</figcaption></figure></div>
+    <div class="inf">
+      <div class="r aim"><h5>このページの狙い</h5><div class="v">0.2mmシートを全国で／<br>外気に接するところすべて／夏は通気層</div></div>
+      <div class="r"><h5>刺さるお客様</h5><div class="v">「どう対策しているの？」と<br>聞いてくる方</div></div>
+      
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「寒い地域向けの0.2mmのシートを、どの地域でも使っています。床も屋根も、外気に接するところは全部です。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c2">章ごとの使い方 9/13</span><span class="chip c0">2 空気</span><span class="pg"></span></div>
+  <div class="tt">P25〜26　換気は「空気の質」で話す。</div>
+  <div class="chs">
+    <div class="thg n2"><figure><img src="assets/mtg-20261023/p25.jpg" alt="ブック25ページ"><figcaption>P25</figcaption></figure><figure><img src="assets/mtg-20261023/p26.jpg" alt="ブック26ページ"><figcaption>P26</figcaption></figure></div>
+    <div class="inf">
+      <div class="r aim"><h5>このページの狙い</h5><div class="v">室温を保ったまま、<br>空気だけを入れ替える</div></div>
+      <div class="r"><h5>刺さるお客様</h5><div class="v">お子さまのアレルギー・花粉・<br>カビが気になる方</div></div>
+      
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「暖めた空気を捨てずに、熱を渡してから入れ替えます。第一種換気の家は、カビの発生率が約30%低いという調査もあります。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c2">章ごとの使い方 10/13</span><span class="chip c0">2 メンテナンス</span><span class="pg"></span></div>
+  <div class="tt">P27〜28　「住んでから困ること」に先回りする。</div>
+  <div class="chs">
+    <div class="thg n2"><figure><img src="assets/mtg-20261023/p27.jpg" alt="ブック27ページ"><figcaption>P27</figcaption></figure><figure><img src="assets/mtg-20261023/p28.jpg" alt="ブック28ページ"><figcaption>P28</figcaption></figure></div>
+    <div class="inf">
+      <div class="r aim"><h5>このページの狙い</h5><div class="v">シロアリ・火事・電気代の不安に、<br>最初から答えを用意していると見せる</div></div>
+      <div class="r"><h5>刺さるお客様</h5><div class="v">将来の出費が心配な方<br>小さなお子さまがいる方</div></div>
+      <div class="r wbx"><h5>言い過ぎ注意</h5><div class="v">「絶対安全」「何があっても効く」<br>とは言わない</div></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「防蟻処理は、目薬にも使われるホウ酸が主成分です。効果が長く続くので、再施工の必要がありません。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c2">章ごとの使い方 11/13</span><span class="chip c0">3 暮らし</span><span class="pg"></span></div>
+  <div class="tt">P30〜31　毎日の暮らしに置き換える。</div>
+  <div class="chs">
+    <div class="thg n2"><figure><img src="assets/mtg-20261023/p30.jpg" alt="ブック30ページ"><figcaption>P30</figcaption></figure><figure><img src="assets/mtg-20261023/p31.jpg" alt="ブック31ページ"><figcaption>P31</figcaption></figure></div>
+    <div class="inf">
+      <div class="r aim"><h5>このページの狙い</h5><div class="v">光熱費と家事の手間が、<br>オプションなしで減ると伝える</div></div>
+      <div class="r"><h5>刺さるお客様</h5><div class="v">共働きのご夫婦<br>家事の負担を減らしたい方</div></div>
+      <div class="r wbx"><h5>言い過ぎ注意</h5><div class="v">月1,481円は施工事例の一つ。<br>どの家も同じになるとは言わない</div></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「大型の食洗機もカップボードも標準です。オプションを足さずに、この毎日が手に入ります。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c2">章ごとの使い方 12/13</span><span class="chip c0">4 価格</span><span class="pg"></span></div>
+  <div class="tt">P32〜33・P36　安さの理由を「手抜き」と思わせない。</div>
+  <div class="chs">
+    <div class="thg n3"><figure><img src="assets/mtg-20261023/p32.jpg" alt="ブック32ページ"><figcaption>P32</figcaption></figure><figure><img src="assets/mtg-20261023/p33.jpg" alt="ブック33ページ"><figcaption>P33</figcaption></figure><figure><img src="assets/mtg-20261023/p36.jpg" alt="ブック36ページ"><figcaption>P36</figcaption></figure></div>
+    <div class="inf">
+      <div class="r aim"><h5>このページの狙い</h5><div class="v">性能は削らず、<br>設計の手間を省いた分を標準仕様に回した</div></div>
+      <div class="r"><h5>刺さるお客様</h5><div class="v">「安いのには理由が<br>あるのでは」と疑う方</div></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「性能は削らず、一邸ごとに一から設計する手間を省いています。省いた分は、標準仕様に回しています。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c2">章ごとの使い方 13/13</span><span class="chip c0">5 締め</span><span class="pg"></span></div>
+  <div class="tt">P37〜38　最後に、出典一覧を見せる。</div>
+  <div class="chs">
+    <div class="thg n2"><figure><img src="assets/mtg-20261023/p37.jpg" alt="ブック37ページ"><figcaption>P37</figcaption></figure><figure><img src="assets/mtg-20261023/p38.jpg" alt="ブック38ページ"><figcaption>P38</figcaption></figure></div>
+    <div class="inf">
+      <div class="r aim"><h5>このページの狙い</h5><div class="v">数字にはすべて出典があると見せ、<br>「売り込まない会社」の信頼につなげる</div></div>
+      <div class="r"><h5>刺さるお客様</h5><div class="v">他社の営業トークに<br>疲れている方</div></div>
+      
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「この本の数字には、全部出典をつけています。どんな暮らしを選ぶかは、ご家族で決めてください。」</div></div>
+</div>
+
+<!-- ===== 言い返されたら ===== -->
+<div class="sl">
+  <div class="top"><span class="chip cLeak">言い返されたら 1/5</span><span class="pg"></span></div>
+  <div class="tt">ブックのどこを開いて、どう返すか。</div>
+  <div class="rb">
+    <div class="say"><small>お客様</small>「他社は、断熱等級7です」</div>
+    <div class="steps"><div class="st"><img class="sti" src="assets/mtg-20261023/p08.jpg" alt=""><span class="n">①</span><b>等級は「建てた日」の数字</b><div class="pg2"><span>P8</span></div></div><span class="ar">→</span><div class="st"><img class="sti" src="assets/mtg-20261023/p16.jpg" alt=""><span class="n">②</span><b>等級7でも、結露すれば性能は落ちる</b><div class="pg2"><span>P16</span><span>P21</span></div></div><span class="ar">→</span><div class="st last"><img class="sti" src="assets/mtg-20261023/p14.jpg" alt=""><span class="n">③</span><b>その分を、大きな窓と太陽光に</b><div class="pg2"><span>P14</span><span>P30</span></div></div></div>
+    <div class="dont">✕ 他社の家を「結露する」と決めつけない</div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「等級7もいい家だと思います。ただ、建てた日の数字です。その性能が何年続くかも、比べてみてください。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip cLeak">言い返されたら 2/5</span><span class="pg"></span></div>
+  <div class="tt">ブックのどこを開いて、どう返すか。</div>
+  <div class="rb">
+    <div class="say"><small>お客様</small>「規格住宅って、自由がないですよね」</div>
+    <div class="steps"><div class="st"><img class="sti" src="assets/mtg-20261023/p04.jpg" alt=""><span class="n">①</span><b>決めることが多いほど迷う</b><div class="pg2"><span>P4</span></div></div><span class="ar">→</span><div class="st"><img class="sti" src="assets/mtg-20261023/p05.jpg" alt=""><span class="n">②</span><b>困りごとに先回りした「正解」から選ぶ</b><div class="pg2"><span>P5</span></div></div><span class="ar">→</span><div class="st last"><img class="sti" src="assets/mtg-20261023/p32.jpg" alt=""><span class="n">③</span><b>空気の流れまで考えてから規格にした</b><div class="pg2"><span>P32</span><span>P6</span></div></div></div>
+    
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「自由に決められる分、決めることも増えます。LIFE Xは、プロが考え抜いた答えの中から暮らし方を選ぶ家です。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip cLeak">言い返されたら 3/5</span><span class="pg"></span></div>
+  <div class="tt">ブックのどこを開いて、どう返すか。</div>
+  <div class="rb">
+    <div class="say"><small>お客様</small>「他社の方が安いです」</div>
+    <div class="steps"><div class="st"><img class="sti" src="assets/mtg-20261023/p34.jpg" alt=""><span class="n">①</span><b>その金額に、何が入っているか</b><div class="pg2"><span>P34</span><span>P36</span></div></div><span class="ar">→</span><div class="st"><img class="sti" src="assets/mtg-20261023/p29.jpg" alt=""><span class="n">②</span><b>住んでからのお金も比べる</b><div class="pg2"><span>P29</span></div></div><span class="ar">→</span><div class="st last"><img class="sti" src="assets/mtg-20261023/p30.jpg" alt=""><span class="n">③</span><b>光熱費も、毎月の差になる</b><div class="pg2"><span>P30</span></div></div></div>
+    <div class="dont">✕ 他社の見積りを「高くなる」と決めつけない</div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「その金額に、キッチンや太陽光、制振ダンパーは入っていますか？最初に見た金額が最後の金額かどうか、比べてみてください。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip cLeak">言い返されたら 4/5</span><span class="pg"></span></div>
+  <div class="tt">ブックのどこを開いて、どう返すか。</div>
+  <div class="rb">
+    <div class="say"><small>お客様</small>「制振ダンパーなら、他社にもあります」</div>
+    <div class="steps"><div class="st"><img class="sti" src="assets/mtg-20261023/p13.jpg" alt=""><span class="n">①</span><b>何回の揺れに耐えた実験か</b><div class="pg2"><span>P13</span></div></div><span class="ar">→</span><div class="st"><img class="sti" src="assets/mtg-20261023/p10.jpg" alt=""><span class="n">②</span><b>土台の耐震等級3は、何で計算したか</b><div class="pg2"><span>P10</span></div></div><span class="ar">→</span><div class="st last"><img class="sti" src="assets/mtg-20261023/p12.jpg" alt=""><span class="n">③</span><b>耐震と制振、両方そろって守れる</b><div class="pg2"><span>P12</span></div></div></div>
+    <div class="dont">✕ 他社の製品名を出して比べない</div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「ダンパーがあるかどうかより、土台の等級3をどう計算したかと、何回の揺れに耐えたかを比べてみてください。」</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip cLeak">言い返されたら 5/5</span><span class="pg"></span></div>
+  <div class="tt">ブックのどこを開いて、どう返すか。</div>
+  <div class="rb">
+    <div class="say"><small>お客様</small>「結露しない家なんですか？」</div>
+    <div class="steps"><div class="st"><img class="sti" src="assets/mtg-20261023/p19.jpg" alt=""><span class="n">①</span><b>結露する温度は、壁の中に必ずある</b><div class="pg2"><span>P19</span></div></div><span class="ar">→</span><div class="st"><img class="sti" src="assets/mtg-20261023/p22.jpg" alt=""><span class="n">②</span><b>だから湿気を、そこまで届かせない</b><div class="pg2"><span>P22</span><span>P23</span></div></div><span class="ar">→</span><div class="st last"><img class="sti" src="assets/mtg-20261023/p24.jpg" alt=""><span class="n">③</span><b>夏は通気層で、湿気をためない</b><div class="pg2"><span>P24</span></div></div></div>
+    <div class="dont">✕ 「結露しません」「すぐ乾きます」とは言い切らない</div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「結露する温度は、どの家の壁の中にも必ずあります。LIFE Xは、そこに湿気を届かせない作り方をしています。」</div></div>
+</div>
+
+<!-- 使い方 場面 -->
+<div class="sl">
+  <div class="top"><span class="chip c4">使い方</span><span class="pg"></span></div>
+  <div class="tt">お客様の状況で、開くページを変える。</div>
+  <div class="body">
+    <div class="scene">
+      <div class="sc"><h5>初回の面談</h5><div class="q">まだ比較前。<br>LIFE Xを知ってもらう</div><div class="pages"><b>P4</b><b>P5</b><b>P8</b></div></div>
+      <div class="sc"><h5>他社と比べている</h5><div class="q">「うちも等級3」<br>「うちも高気密」と言われた</div><div class="pages"><b>P10</b><b>P13</b><b>P21</b></div></div>
+      <div class="sc"><h5>価格で迷っている</h5><div class="q">「他社の方が安い」<br>と言われた</div><div class="pages"><b>P29</b><b>P33</b><b>P34</b></div></div>
+      <div class="sc"><h5>暮らしを想像したい</h5><div class="q">性能より<br>毎日の生活が気になる</div><div class="pages"><b>P6</b><b>P30</b><b>P31</b></div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== 商談の流れ ===== -->
+<div class="sl">
+  <div class="top"><span class="chip c4">商談の流れ</span><span class="pg"></span></div>
+  <div class="tt">ブックの出番は、商談の締めくくりと、そのあと。</div>
+  <div class="body">
+    <div class="flow5 big">
+      <div class="f"><span class="n">1</span><b>来店・着座<br>初回セミナー</b><span>約1時間。<br>LIFE Xの全体像を伝える</span></div><span class="ar">→</span>
+      <div class="f"><span class="n">2</span><b>ヒアリング</b><span>今の住まいの不満と、<br>どんな暮らしをしたいか</span></div><span class="ar">→</span>
+      <div class="f hero"><span class="n">3</span><b>ブックで<br>締めくくる</b><span>今日一番興味が出たところ・<br>そのご家族に沿った内容を<br>ピックアップして説明</span><img class="sti" src="assets/mtg-20261023/p10.jpg" alt=""></div><span class="ar">→</span>
+      <div class="f hero"><span class="n">4</span><b>ブックを渡す</b><span>次回の打ち合わせで、<br>気になったところを<br>もう一度説明</span><img class="sti" src="assets/mtg-20261023/p01.jpg" alt=""></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">①②で聞いたことを、③で「そのご家族の話」に戻す。ブックは説明を始める道具ではなく、まとめる道具です。</span></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c4">商談の流れ</span><span class="pg"></span></div>
+  <div class="tt">「セミナーと同じ話では？」と思ったら。</div>
+  <div class="body" style="flex-direction:column; justify-content:center">
+    <div class="stance">
+      <div class="rigid"><h5>初回セミナー</h5><div class="catch">全員に、広く</div><p style="margin:0; font-size:16px; color:var(--sub)">1時間で、LIFE Xの全体を聞いてもらう</p></div>
+      <div class="hybrid"><h5>アプローチブック</h5><div class="catch">このご家族に、深く</div><p style="margin:0; font-size:16px; color:var(--sub)">響いたところだけを開き、持ち帰って読み返せる</p></div>
+      <div class="vsbadge">→</div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>考え方</b>内容が被るのは当然。セミナーで聞いた話を、ブックで「自分の家の話」に変え、1週間後・2週間後にも思い出してもらうのが役割です。</div></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c4">商談の流れ</span><span class="pg"></span></div>
+  <div class="tt">人は、聞いたことを1日で約3分の2忘れる。</div>
+  <div class="fgt">
+    <svg viewBox="0 0 600 370" role="img" aria-label="エビングハウスの忘却曲線。1時間後に約2分の1、1日後に約3分の1、6日後に約4分の1、1か月後に約5分の1まで下がる。ブックを読み返すと思い出せるイメージ線も重ねている">
+      <g stroke="#e3e9ef" stroke-width="1"><line x1="60" x2="580" y1="320.0" y2="320.0"/><line x1="60" x2="580" y1="250.0" y2="250.0"/><line x1="60" x2="580" y1="180.0" y2="180.0"/><line x1="60" x2="580" y1="110.0" y2="110.0"/><line x1="60" x2="580" y1="40.0" y2="40.0"/></g>
+      <g font-size="11" fill="#8a97a5" text-anchor="end"><text x="52" y="324.0">0%</text><text x="52" y="254.0">25%</text><text x="52" y="184.0">50%</text><text x="52" y="114.0">75%</text><text x="52" y="44.0">100%</text></g>
+      <g font-size="12" fill="#5c6c7d" font-weight="700" text-anchor="middle">
+        <text x="60" y="345">聞いた直後</text><text x="125" y="345">1時間後</text><text x="215" y="345">1日後</text><text x="330" y="345">6日後</text><text x="445" y="345">2週間後</text><text x="560" y="345">1か月後</text>
+      </g>
+      <path d="M60,40.0 C80,124.0 100,166.0 125,180.0 C160,196.79999999999998 185,219.2 215,227.6 C260,238.79999999999998 300,247.2 330,250.0 C420,255.6 500,261.2 560,264.0" fill="none" stroke="#b3372b" stroke-width="4"/>
+      <path d="M330,250.0 L330,82.0 C370,124.0 410,146.39999999999998 445,157.6 L445,73.6 C490,101.6 530,118.39999999999999 560,124.0" fill="none" stroke="#1e4e79" stroke-width="3.5" stroke-dasharray="8 6"/>
+      <g fill="#b3372b"><circle cx="60" cy="40.0" r="6"/><circle cx="125" cy="180.0" r="6"/><circle cx="215" cy="227.6" r="6"/><circle cx="330" cy="250.0" r="6"/><circle cx="560" cy="264.0" r="6"/></g>
+      <g font-size="15" font-weight="800" fill="#b3372b">
+        <text x="135" y="170.0">約1/2</text><text x="222" y="215.6">約1/3</text><text x="322" y="278.0">約1/4</text><text x="548" y="292.0">約1/5</text>
+      </g>
+      <g font-size="12" font-weight="800" fill="#1e4e79">
+        <rect x="292" y="56.0" width="76" height="20" rx="10" fill="#fff" stroke="#1e4e79"/><text x="330" y="70.0" text-anchor="middle">読み返す</text>
+        <rect x="407" y="47.599999999999994" width="76" height="20" rx="10" fill="#fff" stroke="#1e4e79"/><text x="445" y="61.599999999999994" text-anchor="middle">読み返す</text>
+      </g>
+    </svg>
+    <div class="fside">
+      <div class="lg"><span class="l1"></span><div><b>話を聞いただけ</b><small>エビングハウスの実験データ</small></div></div>
+      <div class="lg"><span class="l2"></span><div><b>ブックを読み返す</b><small>考え方を示すイメージ</small></div></div>
+      <div class="msg">1週間後・2週間後、<br>手元にブックがあれば<br><b>もう一度思い出せる。</b></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">出典：H.エビングハウス『記憶について』（1885年）。意味のない音節を覚え、覚え直すときに省けた手間の割合で測定。2015年の再現実験（Murre &amp; Dros, PLOS ONE）でもほぼ同じ曲線。間隔をあけた復習で記憶が定着しやすいことは、多くの研究のまとめで示されている（Cepeda ほか, 2006）。</span></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c4">商談の流れ ③</span><span class="pg"></span></div>
+  <div class="tt">ヒアリングで出た言葉から、開くページを選ぶ。</div>
+  <div class="body">
+    <div class="pick">
+      <div class="pk"><span class="q">「今の家が寒い」</span><span class="ar2">→</span><span class="ps"><i>P14</i><i>P15</i><i>P21</i></span></div>
+      <div class="pk"><span class="q">「地震が心配」</span><span class="ar2">→</span><span class="ps"><i>P10</i><i>P13</i></span></div>
+      <div class="pk"><span class="q">「結露・カビが気になる」</span><span class="ar2">→</span><span class="ps"><i>P20</i><i>P21</i><i>P26</i></span></div>
+      <div class="pk"><span class="q">「光熱費が高い」</span><span class="ar2">→</span><span class="ps"><i>P30</i><i>P29</i></span></div>
+      <div class="pk"><span class="q">「家事が大変」</span><span class="ar2">→</span><span class="ps"><i>P31</i><i>P5</i></span></div>
+      <div class="pk"><span class="q">「予算オーバーが怖い」</span><span class="ar2">→</span><span class="ps"><i>P34</i><i>P33</i></span></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">開くのは2〜3ページまで。そのページ番号を、渡すときの一言とLINEの文面にそのまま使います。</span></div>
+</div>
+
+<div class="sl">
+  <div class="top"><span class="chip c4">商談の流れ ④</span><span class="pg"></span></div>
+  <div class="tt">④ 次の打ち合わせは、気になったページから深掘りする。</div>
+  <div class="body">
+    <div class="flow5">
+      <div class="f"><span class="n">1</span><b>感想を聞く</b><span>どのページが<br>気になったか</span></div><span class="ar">→</span>
+      <div class="f"><span class="n">2</span><b>そのページを<br>もう一度開く</b><span>気になった理由を<br>聞く</span><img class="sti" src="assets/mtg-20261023/p21.jpg" alt="冊子21ページ"></div><span class="ar">→</span>
+      <div class="f"><span class="n">3</span><b>「LIFE X 補足資料」<br>を見せる</b><span>本部が用意した、お客様に見せてよいWebページ（5枚）。耐震の計算方法・繰り返す地震・振動台実験の動画・evoltz・壁の中の結露</span><a class="pg2" href="kyaku-hosoku.html" target="_blank" rel="noopener" style="text-decoration:none"><i>補足資料を開く ↗</i></a><img class="sti" src="assets/mtg-20261023/hosoku1.jpg" alt="補足資料1枚目"></div><span class="ar">→</span>
+      <div class="f hero"><span class="n">4</span><b>他社との比較に<br>答える</b><span>言い返しの<br>返し方を使う（29〜33枚目）</span><img class="sti" src="assets/mtg-20261023/rb1.jpg" alt="言い返しスライド"></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">お客様が反応したページが、そのご家族の「決め手」の候補です。補足資料の各ページは、勝負の6ページ（P10・P13・P21）のスライドからも開けます。</span></div>
+</div>
+<!-- 使い方 紙とデータ -->
+<div class="sl">
+  <div class="top"><span class="chip c4">使い方</span><span class="pg"></span></div>
+  <div class="tt">面談中は紙で。後日、データで。</div>
+  <div class="body">
+    <div class="tl">
+      <div class="s"><span class="when">面談中</span><span class="ic">📖</span><b>紙をめくる</b><span>A4横をファイルに綴じ、<br>指さしながら話す</span></div>
+      <div class="ar">→</div>
+      <div class="s hero"><span class="when">当日〜翌日</span><span class="ic">📱</span><b>PDFを送る</b><span>スマホで見返せるように<br>軽量版を送る</span></div>
+      <div class="ar">→</div>
+      <div class="s"><span class="when">次の打ち合わせ</span><span class="ic">💬</span><b>感想を聞く</b><span>どのページが<br>気になったか</span></div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">送付用の軽量版PDF（約5.5MB）は本部で用意します。</span></div>
+</div>
+
+<!-- 渡し方 一言 -->
+<div class="sl">
+  <div class="top"><span class="chip c4">渡し方</span><span class="pg"></span></div>
+  <div class="tt">「全部読んでください」とは言わない。</div>
+  <div class="body" style="flex-direction:column; justify-content:center">
+    <div class="twocol">
+      <div class="card warn"><h5>よくある渡し方</h5><div class="big">「資料です、<br>読んでおいてください」</div><p>38ページは、まず読まれない</p></div>
+      <div class="card hero"><h5>本部おすすめ</h5><div class="big">「今日お話しした<br>2ページだけ見てください」</div><p>ページを絞ると、家族で話題になる</p></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>そのまま言えるトーク</b>「全部読まなくて大丈夫です。今日気にされていた10ページと29ページだけ、ご家族で見てみてください。」</div></div>
+</div>
+
+<!-- 渡し方 送る文面 -->
+<div class="sl">
+  <div class="top"><span class="chip c4">渡し方</span><span class="pg"></span></div>
+  <div class="tt">データを送るときも、ページ番号を添える。</div>
+  <div class="body">
+    <div class="chat">
+      <div class="bub">本日はありがとうございました。<br>お話しした内容の資料をお送りします。<br>奥様が気にされていた冬の寒さは、14〜15ページにまとめています。<br>スマホは横向きにすると見やすいです。</div>
+      <div class="bub file"><i>PDF</i>LIFE Xアプローチブック.pdf（約5.5MB）</div>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">文面は例です。お客様が面談で口にした言葉を、そのまま入れてください。</span></div>
+</div>
+
+<!-- 次回聞くこと -->
+<div class="sl">
+  <div class="top"><span class="chip c4">渡し方</span><span class="pg"></span></div>
+  <div class="tt">次の打ち合わせは、ブックの感想から始める。</div>
+  <div class="body" style="flex-direction:column; justify-content:center; gap:12px">
+    <div class="stepcard"><span class="n">1</span><div><b>「どのページが気になりましたか？」</b><span>反応したページで、何を重視しているかが分かる</span></div></div>
+    <div class="stepcard"><span class="n">2</span><div><b>「ご家族で話題になったところは？」</b><span>決める人・迷っている人が見えてくる</span></div></div>
+    <div class="stepcard"><span class="n">3</span><div><b>「他社さんの資料と比べてどうでしたか？」</b><span>比べている相手と、比べている数字が分かる</span></div></div>
+  </div>
+</div>
+
+<!-- 注意 言わない -->
+<div class="sl">
+  <div class="top"><span class="chip cLeak">注意</span><span class="pg"></span></div>
+  <div class="tt">ブックに書いてある以上のことは、言い切らない。</div>
+  <div class="body">
+    <div class="ng">
+      <div class="n"><span class="x">✕「C値0.24を保証」</span><span class="o">施工実績の平均。保証値ではない。</span><span class="w">P15</span></div>
+      <div class="n"><span class="x">✕「国が証明済み」</span><span class="o">振動台実験・能登はevoltz社の調べ。</span><span class="w">P13</span></div>
+      <div class="n"><span class="x">✕「等級7は必ず逆転」</span><span class="o">P16の図は考え方のイメージ。</span><span class="w">P16</span></div>
+      <div class="n"><span class="x">✕「〇〇ホームは…」</span><span class="o">社名は出さず「一般的な工法」と言う。</span><span class="w">ブック全体</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 注意 ページを足す -->
+<div class="sl">
+  <div class="top"><span class="chip c4">使い方</span><span class="pg"></span></div>
+  <div class="tt">自社のページを足して、自社の1冊にする。</div>
+  <div class="body" style="gap:16px">
+    <div class="addg">
+      <div class="t"><span>📅</span><b>自社イベントの案内</b><small>見学会・相談会</small></div>
+      <div class="t"><span>📷</span><b>Instagramへの<br>QRコード</b><small>施工事例を見てもらう</small></div>
+      <div class="t"><span>💬</span><b>担当営業の<br>LINE QRコード</b><small>質問の窓口を作る</small></div>
+      <div class="t"><span>🏠</span><b>自社の施工事例</b><small>お客様の声も</small></div>
+      <div class="t"><span>👤</span><b>担当者・会社紹介</b><small>顔が見える安心感</small></div>
+      <div class="t"><span>🛠</span><b>保証・アフター</b><small>土地・補助金の情報も</small></div>
+    </div>
+    <div class="col no" style="width:24%; flex-shrink:0; border:1px solid var(--line); border-radius:10px; background:#fafbfc; padding:20px; display:flex; flex-direction:column; justify-content:center; gap:10px">
+      <h5 style="margin:0; font-size:16px; color:var(--sub)">本部版のまま</h5>
+      <ul style="margin:0; padding-left:1.2em"><li style="font-size:18px; font-weight:700; margin:6px 0">本文の言葉</li><li style="font-size:18px; font-weight:700; margin:6px 0">数字と注記</li><li style="font-size:18px; font-weight:700; margin:6px 0">出典一覧</li></ul>
+    </div>
+  </div>
+  <div class="foot"><span class="cap">数字や注記を変えると出典と合わなくなります。直したい箇所は本部へご連絡ください。</span></div>
+</div>
+
+<!-- 宿題 -->
+<div class="sl">
+  <div class="top"><span class="chip c0">次回まで</span><span class="pg"></span></div>
+  <div class="tt">1組のお客様に渡して、反応を教えてください。</div>
+  <div class="body" style="flex-direction:column; justify-content:center">
+    <div class="techrow">
+      <div class="tc"><h5>1</h5><div class="v">紙で開く</div><p>面談で勝負所の<br>ページを使う</p></div>
+      <div class="tc"><h5>2</h5><div class="v">データを送る</div><p>ページ番号を<br>添えて送る</p></div>
+      <div class="tc"><h5>3</h5><div class="v">反応を報告</div><p>どのページで<br>反応があったか</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- まとめ -->
+<div class="sl">
+  <div class="top"><span class="chip c0">まとめ</span><span class="pg"></span></div>
+  <div class="tt">アプローチブックは、2つの顔を持っている。</div>
+  <div class="body">
+    <div class="tl">
+      <div class="s hero"><span class="when">面談中</span><img class="mimg" src="assets/mtg-20261023/p10.jpg" alt="冊子10ページ"><b>強力な商談ツール</b><span>指さしながら、<br>LIFE Xの違いを見せる</span></div>
+      <div class="ar">→</div>
+      <div class="s hero"><span class="when">持ち帰ってから</span><img class="mimg" src="assets/mtg-20261023/p01.jpg" alt="冊子の表紙"><b>もう1人の営業マン</b><span>営業がいない場所で、ご家族に話し、<br>1週間後・2週間後も思い出させてくれる</span></div>
+    </div>
+  </div>
+  <div class="foot"><div class="talk">🗣<b>今日のまとめ</b>渡して終わりではなく、渡したあとも働いてくれる。だから、勝負のページを絞って渡してください。</div></div>
+</div>
+
+</div>
+<script>
+const s=document.querySelectorAll('.sl .pg');s.forEach((e,i)=>e.textContent=(i+1)+' / '+s.length);
+</script>
+</body></html>
