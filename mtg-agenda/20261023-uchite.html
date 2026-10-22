@@ -60,6 +60,35 @@ h2 .no{background:var(--navy);color:#fff;font-size:13px;min-width:26px;height:26
 .idea .chk{font-size:13px;color:var(--ink2);background:var(--greige);border-radius:6px;padding:8px 12px;margin-top:10px}
 .idea .chk b{color:var(--ink)}
 
+/* 3問 */
+.q3{border:2px dashed var(--navy-m);border-radius:12px;padding:18px 20px;margin:-4px 0 14px}
+.q3h{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+.q3h .n{font-size:13px;font-weight:700;color:var(--navy);border:1px solid var(--navy);border-radius:4px;padding:0 8px}
+.q3h b{font-size:17px;color:var(--navy)}
+.q3lead{font-size:14px;color:var(--ink2);margin:6px 0 14px}
+.q3g{display:grid;grid-template-columns:340px 1fr;gap:22px;align-items:start}
+.phone{border:8px solid #1b1f24;border-radius:28px;padding:18px 14px 16px;background:#fff;box-shadow:0 10px 24px rgba(27,31,36,.18)}
+.ph-top{font-size:12px;color:var(--mute);text-align:center}
+.ph-lead{font-size:14px;font-weight:700;color:var(--navy);text-align:center;margin:4px 0 12px;line-height:1.5}
+.qq{border-top:1px solid var(--line);padding:10px 0}
+.qn{font-size:13px;font-weight:700;margin-bottom:6px}
+.qs{font-size:11px;color:var(--mute);margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:12px;border:1px solid var(--navy-m);color:var(--navy);border-radius:999px;padding:3px 10px;background:#fff}
+.chips span:first-child{background:var(--navy-l)}
+.ph-btn{background:var(--navy);color:#fff;text-align:center;font-weight:700;font-size:14px;border-radius:10px;padding:10px;margin-top:8px}
+.ph-skip{text-align:center;font-size:11.5px;color:var(--mute);margin-top:8px}
+.q3why h4{margin:0 0 6px;font-size:12px;color:var(--navy);letter-spacing:.08em}
+.q3why h4:not(:first-child){margin-top:16px}
+.map{width:100%;border-collapse:collapse;font-size:13px}
+.map th{text-align:left;white-space:nowrap;color:var(--navy);padding:6px 10px 6px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.map td{color:var(--ink2);padding:6px 0;border-bottom:1px solid var(--line)}
+.sms{background:var(--greige);border-radius:12px 12px 12px 2px;padding:10px 14px;font-size:13px;color:var(--ink)}
+.q3why ul{margin:0;padding-left:1.2em;font-size:13px;color:var(--ink2)}
+.q3 .chk{font-size:13px;color:var(--ink2);background:var(--greige);border-radius:6px;padding:8px 12px;margin-top:16px}
+.q3 .chk b{color:var(--ink)}
+@media (max-width:760px){.q3g{grid-template-columns:1fr}.phone{max-width:340px;margin:0 auto}}
+
 /* 進め方 */
 .plan{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .plan div{background:var(--navy-l);border-radius:10px;padding:14px 16px;font-size:13.5px;color:var(--ink2)}
@@ -139,6 +168,43 @@ h2 .no{background:var(--navy);color:#fff;font-size:13px;min-width:26px;height:26
   <div class="chk"><b>先に確かめること：</b>資料請求・会員登録の時点でどこまで条件（家族構成・土地の有無・予算）を聞いているか。聞いている項目によって、作れる人数が決まります。</div>
 </div>
 
+<div class="q3">
+  <div class="q3h"><span class="n">打ち手2の仕組み</span><b>電話がつながらない方にもプランを送れるよう、3問だけ聞く</b></div>
+  <p class="q3lead">資料請求フォームは今のまま（個人情報だけ）。送信した直後の画面で「3問答えると、あなたに合うプランを3つお送りします」と出します。答えなくても資料は届きます。</p>
+  <div class="q3g">
+    <div class="phone">
+      <div class="ph-top">資料請求ありがとうございました</div>
+      <div class="ph-lead">3問だけ答えていただくと、<br>あなたに合うプランを3つお送りします</div>
+      <div class="qq"><div class="qn">Q1　何人で暮らす予定ですか？</div>
+        <div class="chips"><span>2人</span><span>3人</span><span>4人</span><span>5人以上</span></div></div>
+      <div class="qq"><div class="qn">Q2　月々のお支払い、どのくらいなら安心ですか？</div>
+        <div class="chips"><span>8万円まで</span><span>8〜10万円</span><span>10〜12万円</span><span>12万円以上</span><span>まだ分からない</span></div>
+        <div class="qs">土地探しからの方は、土地代も含めた金額で</div></div>
+      <div class="qq"><div class="qn">Q3　家づくりで一番大切にしたいことは？</div>
+        <div class="chips"><span>光熱費・暮らしのお金</span><span>家事のしやすさ</span><span>収納</span><span>デザイン・外観</span><span>地震への安心</span><span>子育てのしやすさ</span></div></div>
+      <div class="ph-btn">合うプランを受け取る</div>
+      <div class="ph-skip">今は答えない</div>
+    </div>
+    <div class="q3why">
+      <h4>答えから決まること</h4>
+      <table class="map">
+        <tr><th>Q1 人数</th><td>間取り（部屋数・広さ）でプランを絞る</td></tr>
+        <tr><th>Q2 月々</th><td>価格帯でプランを絞り、資金の目安を付ける</td></tr>
+        <tr><th>Q3 大切なこと</th><td>3つのプランの並べ方と、送る文面の一言を決める。最初の電話の話のきっかけにもなる</td></tr>
+      </table>
+      <h4>今止まっている方へも同じ3問を送る</h4>
+      <div class="sms">「◯◯様、以前LIFE Xの資料をご請求いただいた◯◯です。3問だけお答えいただければ、ご家族に合いそうなプランを3つお送りします（1分ほどです）。<br>https://…」</div>
+      <h4>この形にする理由</h4>
+      <ul>
+        <li>フォームの必須項目を増やすと、資料請求そのものが減る。答えるかどうかは任意にする</li>
+        <li>資料をもらった直後が一番気持ちが乗っているときで、答えてもらいやすい</li>
+        <li>不通の方にも「答えると自分にメリットがある」連絡になり、返事の理由ができる</li>
+      </ul>
+    </div>
+  </div>
+  <div class="chk"><b>進め方：</b>10/19に決まった「資料請求時にプランを選べる機能・選んだプランの自動送付」（古西さんと打ち合わせ）に、この3問を組み込む。開発を待つ間はGoogleフォームで仮に作り、止まっている方へのSMSで先に試す。土地の有無を資料請求フォームで聞いていない場合は、Q2の注記で代わりに確かめる。</div>
+</div>
+
 <div class="idea">
   <div class="h"><span class="n">打ち手3</span><b>返事をくれない人に、広告で見学説明会を見せる</b></div>
   <div class="g">
@@ -189,6 +255,7 @@ h2 .no{background:var(--navy);color:#fff;font-size:13px;min-width:26px;height:26
     <li>最優先47人の洗い出しを、今週の個別MTGから始めるか</li>
     <li>打ち手4の文面を本部で用意し、全店に配るか</li>
     <li>打ち手2・3を試す2〜3社をどこにするか</li>
+    <li>資料請求の後の3問を、資料請求時のプラン選択機能に組み込むか（それまではGoogleフォームで仮運用）</li>
   </ol>
 </div>
 
