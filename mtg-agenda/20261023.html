@@ -89,6 +89,89 @@ details ul{padding-left:18px}
 @media (max-width:760px){.ka .g{grid-template-columns:1fr}}
 @media (max-width:760px){.grid2,.mtg{grid-template-columns:1fr}.obs .it{grid-template-columns:1fr;gap:4px}}
 @media print{h2{break-after:avoid}.card,.it,.p{break-inside:avoid}}
+.ux .stack{display:flex;height:46px;border-radius:8px;overflow:hidden;margin:18px 0 8px}
+.ux .stack div{display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden}
+.ux .s1{background:var(--navy)}
+.ux .s2{background:#5a6894}
+.ux .s3{background:var(--navy-m)}
+.ux .s4{background:#c3c9de;color:var(--navy)!important}
+.ux .legend{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:13px;color:var(--ink2)}
+.ux .legend b{display:block;font-size:22px;color:var(--navy);line-height:1.2}
+.ux .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:1px}
+.ux .cap{font-size:12.5px;color:var(--mute);margin-top:10px}
+.ux .tier{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ux .tier .t{border:1px solid var(--line);border-radius:12px;padding:16px 18px;position:relative}
+.ux .tier .t.top{border:2px solid var(--navy)}
+.ux .tier .rank{font-size:12px;font-weight:700;color:var(--navy);letter-spacing:.08em}
+.ux .tier .who{font-size:15px;font-weight:700;margin:4px 0 2px}
+.ux .tier .num{font-size:28px;font-weight:900;color:var(--navy);line-height:1.2}
+.ux .tier .num small{font-size:13px;font-weight:500;color:var(--ink2);margin-left:4px}
+.ux .tier .how{font-size:13.5px;color:var(--ink2);margin-top:8px;border-top:1px dashed var(--line);padding-top:8px}
+.ux .tier .how b{color:var(--ink)}
+.ux .arrow{font-size:13px;color:var(--ink2);margin-top:10px}
+.ux .idea{border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+.ux .idea.rec{border:2px solid var(--navy)}
+.ux .idea .h{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;margin-bottom:10px}
+.ux .idea .h .n{font-size:13px;font-weight:700;color:#fff;background:var(--navy);border-radius:4px;padding:1px 8px}
+.ux .idea .h b{font-size:17px;color:var(--navy)}
+.ux .idea .h .tag{font-size:12px;color:var(--navy);border:1px solid var(--navy);border-radius:4px;padding:0 8px}
+.ux .idea .g{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
+.ux .idea .ex{background:var(--navy-l);border-radius:8px;padding:12px 14px;font-size:13.5px}
+.ux .idea .ex h4,.ux .idea .why h4{margin:0 0 4px;font-size:12px;color:var(--navy);letter-spacing:.08em}
+.ux .idea .why{font-size:13.5px;color:var(--ink2)}
+.ux .idea .meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--ink2);margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+.ux .idea .meta span b{color:var(--ink);font-weight:700;margin-right:4px}
+.ux .idea .chk{font-size:13px;color:var(--ink2);background:var(--greige);border-radius:6px;padding:8px 12px;margin-top:10px}
+.ux .idea .chk b{color:var(--ink)}
+.ux .q3{border:2px dashed var(--navy-m);border-radius:12px;padding:18px 20px;margin:-4px 0 14px}
+.ux .q3h{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+.ux .q3h .n{font-size:13px;font-weight:700;color:var(--navy);border:1px solid var(--navy);border-radius:4px;padding:0 8px}
+.ux .q3h b{font-size:17px;color:var(--navy)}
+.ux .q3lead{font-size:14px;color:var(--ink2);margin:6px 0 14px}
+.ux .q3g{display:grid;grid-template-columns:340px 1fr;gap:22px;align-items:start}
+.ux .phone{border:8px solid #1b1f24;border-radius:28px;padding:18px 14px 16px;background:#fff;box-shadow:0 10px 24px rgba(27,31,36,.18)}
+.ux .ph-top{font-size:12px;color:var(--mute);text-align:center}
+.ux .ph-lead{font-size:14px;font-weight:700;color:var(--navy);text-align:center;margin:4px 0 12px;line-height:1.5}
+.ux .qq{border-top:1px solid var(--line);padding:10px 0}
+.ux .qn{font-size:13px;font-weight:700;margin-bottom:6px}
+.ux .qs{font-size:11px;color:var(--mute);margin-top:4px}
+.ux .chips{display:flex;flex-wrap:wrap;gap:6px}
+.ux .chips span{font-size:12px;border:1px solid var(--navy-m);color:var(--navy);border-radius:999px;padding:3px 10px;background:#fff}
+.ux .chips span:first-child{background:var(--navy-l)}
+.ux .ph-btn{background:var(--navy);color:#fff;text-align:center;font-weight:700;font-size:14px;border-radius:10px;padding:10px;margin-top:8px}
+.ux .ph-skip{text-align:center;font-size:11.5px;color:var(--mute);margin-top:8px}
+.ux .q3why h4{margin:0 0 6px;font-size:12px;color:var(--navy);letter-spacing:.08em}
+.ux .q3why h4:not(:first-child){margin-top:16px}
+.ux .map{width:100%;border-collapse:collapse;font-size:13px}
+.ux .map th{text-align:left;white-space:nowrap;color:var(--navy);padding:6px 10px 6px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.ux .map td{color:var(--ink2);padding:6px 0;border-bottom:1px solid var(--line)}
+.ux .sms{background:var(--greige);border-radius:12px 12px 12px 2px;padding:10px 14px;font-size:13px;color:var(--ink)}
+.ux .q3why ul{margin:0;padding-left:1.2em;font-size:13px;color:var(--ink2)}
+.ux .q3 .chk{font-size:13px;color:var(--ink2);background:var(--greige);border-radius:6px;padding:8px 12px;margin-top:16px}
+.ux .q3 .chk b{color:var(--ink)}
+@media (max-width:760px){
+.ux .q3g{grid-template-columns:1fr}
+.ux .phone{max-width:340px;margin:0 auto}
+}
+.ux .plan{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ux .plan div{background:var(--navy-l);border-radius:10px;padding:14px 16px;font-size:13.5px;color:var(--ink2)}
+.ux .plan b{display:block;color:var(--navy);font-size:14.5px;margin-bottom:4px}
+.ux .decide{border:1.5px solid var(--navy);border-radius:12px;padding:16px 20px;margin-top:14px;font-size:14px}
+.ux .decide b{color:var(--navy)}
+.ux .decide ol{margin:6px 0 0;padding-left:1.4em}
+.ux .src{font-size:12px;color:var(--mute);margin-top:40px;border-top:1px solid var(--line);padding-top:12px}
+.ux .src ul{margin:4px 0 0;padding-left:1.2em}
+@media (max-width:760px){
+.ux .tier,.ux .plan,.ux .idea .g{grid-template-columns:1fr}
+.ux .legend{grid-template-columns:1fr 1fr}
+.ux .stack div{font-size:11px}
+}
+@media print{
+.ux .idea,.ux .tier .t{break-inside:avoid}
+}
+.ux .map th,.ux .map td{text-align:left}
+.ux .uh{font-size:16px;color:var(--navy);margin:28px 0 12px;display:flex;align-items:center;gap:8px}
+.ux .uh .no{background:var(--navy);color:#fff;font-size:12px;min-width:22px;height:22px;border-radius:50%;display:grid;place-items:center;padding:0 5px}
 </style>
 </head>
 <body>
@@ -277,7 +360,7 @@ details ul{padding-left:18px}
     <p>APIで、加盟店様ごとに「最後に手でステータスを変えてから何日か」が出せるようになりました。全体では追客中562人のうち316人が14日以上です。数字をそのまま加盟店様別に出すと、ステータスを細かく使っていない会社ほど悪く見えます。まず全体の傾向だけ研修で伝え、加盟店様別は個別MTGで画面を見ながら確認する形を提案します。</p>
     <p class="why">決めたいこと：加盟店様別の数字を全体の場で出すか、個別MTGだけにするか。何日を「止まっている」の目安にするか。</p>
     <div class="risk"><b>懸念：</b>自動で進むステータスがあり、9/16より前の変更も記録がありません。この状態で日数を基準にすると、電話している会社を「放置」と見てしまうおそれがあります。古西さんへのステータス用語の確認（返事待ち）とあわせて固めたいです。</div>
-    <a class="golink" href="20261023-uchite.html">止まっているお客様への打ち手（6つ）を開く →</a>
+    <a class="golink" href="#uchite">具体策（打ち手1〜6・資料請求後の3問）は下の6へ ↓</a>
     <details class="detail"><summary>加盟店様別の内訳（社内確認用）</summary>
     <table class="st">
       <thead><tr><th>加盟店様</th><th>追客中</th><th>14日以内に手動変更あり</th><th>最後の手動変更から14日以上</th><th>割り当て後に手動変更なし</th></tr></thead>
@@ -288,6 +371,162 @@ details ul{padding-left:18px}
     </details>
   </div>
 </div>
+<h2 id="uchite"><span class="no">6</span>提案3の具体策：追客が14日以上止まっているお客様への打ち手</h2>
+<div class="ux">
+<p class="lead">電話・メール・SMSはもう各社やっている。変えるのは「手段」ではなく「何を送るか」と「誰の名前で送るか」。</p>
+<p class="lead2">止まっているお客様は、営業の連絡だと分かった時点で開いてくれません。手段を増やすより、開く理由・返す理由を作ります。</p>
+
+<h3 class="uh">14日以上止まっている316人は、どこで止まっているか</h3>
+<div class="stack">
+  <div class="s1" style="width:64.9%">不通 205人</div>
+  <div class="s2" style="width:19.0%">通話済み 60人</div>
+  <div class="s3" style="width:9.2%">来場・面談 29</div>
+  <div class="s4" style="width:6.9%">18</div>
+</div>
+<div class="legend">
+  <div><i class="s1"></i>電話がつながらない<b>205人</b>65%</div>
+  <div><i class="s2"></i>通話済み・アポなし<b>60人</b>19%</div>
+  <div><i class="s3"></i>来場・面談まで来た<b>29人</b>9%</div>
+  <div><i class="s4"></i>土地探し・ローン審査・予約・決定<b>18人</b>6%</div>
+</div>
+<div class="cap">追客中562人のうち、加盟店様の手動のステータス変更から14日以上たっている316人。登録から30日以上の方が266人、LIFEX本部経由の反響が294人。</div>
+
+<h3 class="uh"><span class="no">1</span>打ち手1　人数の少ない順に攻める</h3>
+<div class="tier">
+  <div class="t top">
+    <div class="rank">最優先</div>
+    <div class="who">来場・面談・土地・ローンで止まった方</div>
+    <div class="num">47<small>人</small></div>
+    <div class="how"><b>一斉送信はしない。営業が個別に動く。</b>面談で一番反応が良かったテーマのアプローチブックのページを1枚付けて、「次はここを詳しく」と2回目の打ち合わせの中身を先に提案する。店舗ごとに洗い出し、個別MTGで1人ずつ次の一手を決める。必要なら徳田が同席。</div>
+  </div>
+  <div class="t">
+    <div class="rank">2番目</div>
+    <div class="who">通話済み・アポなしの方</div>
+    <div class="num">60<small>人</small></div>
+    <div class="how"><b>日付の決まったイベントに電話で誘う。</b>「その後いかがですか」は断られる。「11/15に開発元の担当が来てセミナーをやります、6組限定です」なら話になる。一度話せているので、電話する理由があれば出てもらえる。</div>
+  </div>
+  <div class="t">
+    <div class="rank">3番目</div>
+    <div class="who">電話がつながらない方</div>
+    <div class="num">205<small>人</small></div>
+    <div class="how"><b>電話をかけ直さない。送る中身を変える。</b>下の打ち手2〜6を使う。反応がなければ長期フォローに移し、追客数から外して営業の手を空ける。</div>
+  </div>
+</div>
+<div class="arrow">契約に近い人ほど、1件の動きが月2棟に直結します。人数の多い不通205人から手を付けると、時間だけかかって契約に届きません。</div>
+
+<h3 class="uh"><span class="no">2</span>打ち手2〜6　送る中身を変える</h3>
+
+<div class="idea rec">
+  <div class="h"><span class="n">打ち手2</span><b>その人専用のプランを作って送る</b><span class="tag">一番効く</span></div>
+  <div class="g">
+    <div class="ex"><h4>送る文面の例</h4>「ご家族4人・土地探しから・ご予算◯◯万円とのことでしたので、合いそうなプランを3つ選びました。月々の支払いの目安も付けています。気になるものがあれば番号だけご返信ください。」</div>
+    <div class="why"><h4>効く理由</h4>資料は他社からも届くが、自分のために選ばれたプランは他社から来ない。「番号だけ返信」で返す手間を最小にする。来店前アンケートから資金レンジとおすすめプラン3選を作る仕組みは本部にすでにある。</div>
+  </div>
+  <div class="meta"><span><b>対象</b>不通・通話済みの方</span><span><b>手間</b>1人あたり数分（本部で作成を支援）</span><span><b>費用</b>なし</span></div>
+  <div class="chk"><b>先に確かめること：</b>資料請求・会員登録の時点でどこまで条件（家族構成・土地の有無・予算）を聞いているか。聞いている項目によって、作れる人数が決まります。</div>
+</div>
+
+<div class="q3">
+  <div class="q3h"><span class="n">打ち手2の仕組み</span><b>電話がつながらない方にもプランを送れるよう、3問だけ聞く</b></div>
+  <p class="q3lead">資料請求フォームは今のまま（個人情報だけ）。送信した直後の画面で「3問答えると、あなたに合うプランを3つお送りします」と出します。答えなくても資料は届きます。</p>
+  <div class="q3g">
+    <div class="phone">
+      <div class="ph-top">資料請求ありがとうございました</div>
+      <div class="ph-lead">3問だけ答えていただくと、<br>あなたに合うプランを3つお送りします</div>
+      <div class="qq"><div class="qn">Q1　何人で暮らす予定ですか？</div>
+        <div class="chips"><span>2人</span><span>3人</span><span>4人</span><span>5人以上</span></div></div>
+      <div class="qq"><div class="qn">Q2　建てる土地はありますか？</div>
+        <div class="chips"><span>持っている</span><span>親や親族の土地がある</span><span>探している</span><span>これから考える</span></div></div>
+      <div class="qq"><div class="qn">Q3　家づくりで一番大切にしたいことは？</div>
+        <div class="chips"><span>光熱費・暮らしのお金</span><span>家事のしやすさ</span><span>収納</span><span>デザイン・外観</span><span>地震への安心</span><span>子育てのしやすさ</span></div></div>
+      <div class="ph-btn">合うプランを受け取る</div>
+      <div class="ph-skip">今は答えない</div>
+    </div>
+    <div class="q3why">
+      <h4>答えから決まること</h4>
+      <table class="map">
+        <tr><th>Q1 人数</th><td>間取り（部屋数・広さ）でプランを絞る</td></tr>
+        <tr><th>Q2 土地</th><td>土地ありなら敷地に合うプラン、土地探しからなら土地と建物の総額の考え方を添えて送る。土地探しの方は最初の電話で土地の話から入れる</td></tr>
+        <tr><th>Q3 大切なこと</th><td>3つのプランの並べ方と、送る文面の一言を決める。最初の電話の話のきっかけにもなる</td></tr>
+      </table>
+      <h4>今止まっている方へも同じ3問を送る</h4>
+      <div class="sms">「◯◯様、以前LIFE Xの資料をご請求いただいた◯◯です。3問だけお答えいただければ、ご家族に合いそうなプランを3つお送りします（1分ほどです）。<br>https://…」</div>
+      <h4>この形にする理由</h4>
+      <ul>
+        <li>フォームの必須項目を増やすと、資料請求そのものが減る。答えるかどうかは任意にする</li>
+        <li>資料をもらった直後が一番気持ちが乗っているときで、答えてもらいやすい</li>
+        <li>金額は地域で土地代が違い答えにくいので聞かない。誰でも迷わず答えられる3問にする</li>
+        <li>不通の方にも「答えると自分にメリットがある」連絡になり、返事の理由ができる</li>
+      </ul>
+    </div>
+  </div>
+  <div class="chk"><b>進め方：</b>10/19に決まった「資料請求時にプランを選べる機能・選んだプランの自動送付」（古西さんと打ち合わせ）に、この3問を組み込む。開発を待つ間はGoogleフォームで仮に作り、止まっている方へのSMSで先に試す。予算は地域で土地代が大きく違うため3問では聞かず、プランを送った後のやり取りや面談で確かめる。</div>
+</div>
+
+<div class="idea">
+  <div class="h"><span class="n">打ち手3</span><b>返事をくれない人に、広告で見学説明会を見せる</b></div>
+  <div class="g">
+    <div class="ex"><h4>やり方</h4>不通の方のメールアドレス・電話番号をMeta（Instagram・Facebook）に取り込み、その人たちにだけ見学説明会の広告を出す。こちらから連絡せず、本人がインスタを見ているときに目に入る。</div>
+    <div class="why"><h4>効く理由</h4>営業からの連絡ではないので、避けられない。加盟店様の手作業は増えず、本部の広告運用でまとめて回せる。対象が数百人なので広告費も少額で済む。</div>
+  </div>
+  <div class="meta"><span><b>対象</b>不通の方</span><span><b>手間</b>本部（広告運用）</span><span><b>費用</b>少額の広告費</span></div>
+  <div class="chk"><b>先に確かめること：</b>お預かりした個人情報を広告の配信に使うことが、各加盟店様のプライバシーポリシーに書かれているか。書かれていなければ、追記してからでないと使えません。</div>
+</div>
+
+<div class="idea">
+  <div class="h"><span class="n">打ち手4</span><b>「最後のご連絡」を送る</b><span class="tag">今日からできる</span></div>
+  <div class="g">
+    <div class="ex"><h4>送る文面の例</h4>「その後、ご検討の状況が変わられたかもしれません。ご連絡はこれで最後にいたします。引き続き家づくりの情報がほしい方だけ『はい』とご返信ください。」</div>
+    <div class="why"><h4>効く理由</h4>「もう来なくなる」と言われると返したくなる。普通の追客メールより返信が来やすい。返事がなければ長期フォローに移せるので、追客中の数字も実態に近づく。</div>
+  </div>
+  <div class="meta"><span><b>対象</b>不通の方（登録から30日以上）</span><span><b>手間</b>文面をコピーして送るだけ</span><span><b>費用</b>なし</span></div>
+</div>
+
+<div class="idea">
+  <div class="h"><span class="n">打ち手5</span><b>送り主を変える</b></div>
+  <div class="g">
+    <div class="ex"><h4>送る文面の例</h4>「LIFE X 開発元・Gハウスの徳田です。担当の◯◯から、家づくりで迷われていると伺いました。土地や資金のことで、第三者として聞きたいことがあればお気軽にどうぞ。」</div>
+    <div class="why"><h4>効く理由</h4>同じ担当から何度目かの連絡が来ても開かれない。名前が変わるだけで開かれ方が変わる。「担当変更のご挨拶」として別の営業から送る形もある。</div>
+  </div>
+  <div class="meta"><span><b>対象</b>不通・通話済みの方</span><span><b>手間</b>本部名義の文面を用意</span><span><b>費用</b>なし</span></div>
+  <div class="chk"><b>先に確かめること：</b>本部名義で送る場合、返信を受けたあと加盟店様の担当へどうつなぐか（つなぎ方を決めてから始める）。</div>
+</div>
+
+<div class="idea">
+  <div class="h"><span class="n">打ち手6</span><b>住所が分かる方には紙で送る</b></div>
+  <div class="g">
+    <div class="ex"><h4>送るもの</h4>手書きの一筆箋＋アプローチブックの印刷版、またはその人に合うプラン1枚だけ。封筒の表書きも手書き。</div>
+    <div class="why"><h4>効く理由</h4>メールとSMSは毎日たくさん届いて埋もれるが、手書きの封筒はほぼ開けられる。デジタルで反応しない人にこそ届く。</div>
+  </div>
+  <div class="meta"><span><b>対象</b>住所をお預かりしている方</span><span><b>手間</b>1通あたり数分</span><span><b>費用</b>印刷代・郵送代</span></div>
+  <div class="chk"><b>先に確かめること：</b>資料請求の段階で住所をお預かりしているか。</div>
+</div>
+
+<h3 class="uh">進め方</h3>
+<div class="plan">
+  <div><b>今日から全店</b>打ち手1の最優先47人を店舗ごとに洗い出して、個別MTGで次の一手を決める。不通の方には打ち手4「最後のご連絡」を送る。</div>
+  <div><b>確認が済んだら2〜3社で試す</b>打ち手2（専用プラン）と打ち手3（広告）。登録項目とプライバシーポリシーの確認が先。10/26〜11/8の連絡記録の試行（キノシタ様・WITHDOM Group様）と同じ時期に合わせる。</div>
+  <div><b>効き目の測り方</b>送った週のステータス変更数と返信数を、打ち手ごとに比べる。効いたものから全店に広げる。</div>
+</div>
+<div class="decide"><b>このMTGで決めたいこと</b>
+  <ol>
+    <li>最優先47人の洗い出しを、今週の個別MTGから始めるか</li>
+    <li>打ち手4の文面を本部で用意し、全店に配るか</li>
+    <li>打ち手2・3を試す2〜3社をどこにするか</li>
+    <li>資料請求の後の3問を、資料請求時のプラン選択機能に組み込むか（それまではGoogleフォームで仮運用）</li>
+  </ol>
+</div>
+
+<div class="src">この章の出典
+  <ul>
+    <li>316人の段階別の内訳・登録からの日数・反響の種類：本部用API（2026/10/22 21:51取得）のお客様一覧を、追客中（成約・失注・対象外・長期以外）かつ最後の手動ステータス変更から14日以上で集計</li>
+    <li>日付を決めたイベントの実績（大建建設様の自社HPでの予約2件）：大建建設様 LIFEX広告MTG（2026/10/22）</li>
+    <li>来店前アンケートからプラン3選を作る仕組み：LIFEX 商談準備ツール</li>
+  </ul>
+</div>
+
+</div>
+
 <div class="skip"><b>今回は議題にしないもの：</b>未割当28人・未登録20人／動画視聴率（本部用APIに項目がなく、今回は取得していません）。</div>
 
 <details open>
