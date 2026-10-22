@@ -155,8 +155,8 @@
 
         <section>
           <h2><span class="no">2</span>目標契約数と既存のお客様</h2>
-          <div class="row"><span class="lbl">12月末までの目標契約数（10/1からの累計）</span>
-            <input class="num" id="target" inputmode="decimal"><span class="unit">棟</span></div>
+          <div class="row"><span class="lbl">12月末までの目標契約数（10/1からの累計・全社共通 10月1＋11月2＋12月2）</span>
+            <input class="num" id="target" inputmode="decimal" value="5"><span class="unit">棟</span></div>
           <div class="row"><span class="lbl">10/1以降の契約済み</span>
             <input class="num" id="signed" inputmode="decimal"><span class="unit">棟</span></div>
           <table id="pipe">
@@ -259,6 +259,8 @@
   const num = id => { const v = parseFloat(String($(id).value).replace(/[％%,，]/g,'')); return isNaN(v) ? null : v; };
   const fmt = (v, d=1) => (v === null || v === undefined || v === '') ? '—' : (Math.round(v * 10**d) / 10**d).toLocaleString('ja-JP');
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  const DEFAULT_TARGET = 5;  // 12月末までの目標契約（10/1からの累計）。全社共通で10月1・11月2・12月2（2026-10-22 徳田さん）
 
   // ---------- パスコード ----------
   function getKey(force){
@@ -472,7 +474,7 @@
   }
 
   function clearInput(){
-    document.querySelectorAll('#viewInput input:not([type=radio])').forEach(el => { el.value = el.id === 'date' ? todayStr() : ''; });
+    document.querySelectorAll('#viewInput input:not([type=radio])').forEach(el => { el.value = el.id === 'date' ? todayStr() : el.id === 'target' ? DEFAULT_TARGET : ''; });
     $('store').value = '';
     $('src').textContent = '';
     $('saveStatus').textContent = '';
@@ -553,7 +555,7 @@
     ['未接続','通話済','アポ済','面談済'].forEach((k, i) => { $('p' + (i+1)).value = r['既存_' + k] ?? ''; });
     // 既存のお客様の欄がない行（この欄を足す前に保存した行）は、ポータルの集計値を入れる
     if (['signed','p1','p2','p3','p4'].every(id => $(id).value === '')) fillPipe();
-    $('target').value = r['目標契約'] ?? '';
+    $('target').value = r['目標契約'] ?? DEFAULT_TARGET;
     let plans = [];
     try { plans = JSON.parse(r['打ち手JSON'] || '[]'); } catch(err) {}
     plans.slice(0,5).forEach((p,i) => {
