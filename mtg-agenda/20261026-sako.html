@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>佐古顧問MTG 10/26</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#2b3a67; --navy-l:#eaedf5; --navy-m:#8d98bd; --greige:#f3f1ec;
+  --ink:#1b1f24; --ink2:#4a525c; --mute:#8a929c; --line:#e3e6ea; --warn:#a1462a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font-family:"Noto Sans JP",sans-serif;line-height:1.7;font-size:15px}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 16px 64px}
+header{border-bottom:2px solid var(--navy);padding-bottom:12px;margin-bottom:8px}
+h1{font-size:24px;margin:0;line-height:1.4;color:var(--navy)}
+.sub{color:var(--ink2);font-size:13px;margin-top:4px}
+h2{font-size:18px;margin:40px 0 14px;color:var(--navy);display:flex;align-items:center;gap:10px}
+h2 .no{background:var(--navy);color:#fff;font-size:13px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:#fff}
+.card h3{font-size:14px;margin:0 0 12px;color:var(--ink2);font-weight:500}
+.bars{display:grid;grid-template-columns:auto 1fr auto;gap:8px 10px;align-items:center}
+.bars .lb{font-size:13px;color:var(--ink2);white-space:nowrap}
+.bars .tr{height:22px;background:var(--greige);border-radius:4px;overflow:hidden;position:relative}
+.bars .tr i{display:block;height:100%;background:var(--navy);border-radius:0 4px 4px 0}
+.bars .tr i.tent{background:var(--navy-m)}
+.bars .tr .goal{position:absolute;top:-2px;bottom:-2px;left:40%;border-left:2px dashed var(--warn)}
+.bars .v{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.bars .v small{font-weight:400;color:var(--mute);font-size:12px;margin-left:4px}
+.bars .row{display:contents}
+.note{font-size:12.5px;color:var(--ink2);margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+.note b{color:var(--warn);font-weight:700}
+.st td,.st th{white-space:nowrap}.st thead th:first-child{text-align:left}.st tr.z th,.st tr.z td{color:var(--mute)}
+.st td.lo{color:var(--warn);font-weight:700}.st tr.z td.lo{color:var(--mute);font-weight:400}
+.st td small{color:var(--mute);font-size:11.5px;margin-left:3px;font-weight:400}
+.st thead th.sep,.st td.sep{border-left:1px solid var(--line)}
+.st tfoot th,.st tfoot td{font-weight:700;border-top:2px solid var(--navy);border-bottom:0}
+table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right}
+thead th{color:var(--ink2);font-weight:500;font-size:12.5px}
+tbody th{text-align:left;font-weight:500}
+td.now{font-weight:700;color:var(--navy)}
+.diff td.up{color:var(--navy);font-weight:700}
+.obs{display:grid;gap:10px}
+.obs .it{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.obs .k{font-size:26px;font-weight:900;color:var(--navy);line-height:1.2}
+.obs .k small{font-size:13px;font-weight:500;color:var(--ink2);display:block;margin-top:2px}
+.obs .t b{display:block;font-size:15px;margin-bottom:2px}
+.obs .t span{font-size:13.5px;color:var(--ink2)}
+.mtg{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.mtg div{background:var(--navy-l);border-radius:10px;padding:14px 16px}
+.mtg b{display:block;font-size:14.5px;color:var(--navy);margin-bottom:4px}
+.mtg span{font-size:13px;color:var(--ink2);display:block}
+.mtg em{font-style:normal;font-size:11.5px;color:var(--mute);display:block;margin-top:6px}
+.act td,.act th{text-align:left}
+.act td:first-child{width:40px;text-align:center;font-weight:700;color:var(--navy)}
+.act td:last-child{color:var(--ink2)}
+.prop{display:grid;gap:14px}
+.prop .p{border:1.5px solid var(--navy);border-radius:12px;padding:18px 20px}
+.prop .h{display:flex;gap:12px;align-items:baseline;margin-bottom:6px}
+.prop .h .n{font-size:13px;font-weight:700;color:#fff;background:var(--navy);border-radius:4px;padding:1px 8px;flex:none}
+.prop .h b{font-size:16.5px;color:var(--navy)}
+.prop p{margin:4px 0;font-size:14px}
+.prop .why{color:var(--ink2);font-size:13.5px}
+.prop .risk{font-size:13px;color:var(--ink2);background:var(--greige);border-radius:6px;padding:8px 12px;margin-top:8px}
+.prop .risk b{color:var(--ink)}
+.skip{font-size:13px;color:var(--ink2);background:var(--greige);border-radius:10px;padding:12px 16px;margin-top:14px}
+.skip b{color:var(--ink)}
+details{margin-top:40px;font-size:12.5px;color:var(--ink2)}
+summary{cursor:pointer}
+details ul{padding-left:18px}
+.detail{margin-top:14px}.detail summary{cursor:pointer;font-size:13.5px;font-weight:700;color:var(--navy)}.detail table{margin-top:10px}
+.golink{display:inline-block;margin-top:12px;background:var(--navy);color:#fff;text-decoration:none;font-size:14px;font-weight:700;border-radius:8px;padding:8px 16px}
+.ka{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px;break-inside:avoid}
+.ka .hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin-bottom:10px}
+.ka .hd b{font-size:16px;color:var(--navy)}
+.ka .hd .neck,.ka .hd .good{font-size:12px;font-weight:700;border-radius:4px;padding:1px 8px}
+.ka .hd .neck{color:var(--warn);border:1px solid var(--warn)}
+.ka .hd .good{color:var(--navy);border:1px solid var(--navy)}
+.ka .hd small{font-size:12.5px;color:var(--ink2)}
+.ka .g{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:14px;font-size:13px;color:var(--ink2);line-height:1.75}
+.ka h4{margin:0 0 4px;font-size:12px;color:var(--navy-m);letter-spacing:.08em}
+.ka .j{background:var(--navy-l);border-radius:8px;padding:10px 12px;color:var(--ink)}
+.ka .j h4{color:var(--navy)}
+.ka em{font-style:normal;font-size:11.5px;color:var(--mute);display:block;margin-top:8px}
+@media (max-width:760px){.ka .g{grid-template-columns:1fr}}
+@media (max-width:760px){.grid2,.mtg{grid-template-columns:1fr}.obs .it{grid-template-columns:1fr;gap:4px}}
+@media print{h2{break-after:avoid}.card,.it,.p{break-inside:avoid}}
+.ux .stack{display:flex;height:46px;border-radius:8px;overflow:hidden;margin:18px 0 8px}
+.ux .stack div{display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden}
+.ux .s1{background:var(--navy)}
+.ux .s2{background:#5a6894}
+.ux .s3{background:var(--navy-m)}
+.ux .s4{background:#c3c9de;color:var(--navy)!important}
+.ux .legend{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;font-size:13px;color:var(--ink2)}
+.ux .legend b{display:block;font-size:22px;color:var(--navy);line-height:1.2}
+.ux .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:1px}
+.ux .cap{font-size:12.5px;color:var(--mute);margin-top:10px}
+.ux .tier{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ux .tier .t{border:1px solid var(--line);border-radius:12px;padding:16px 18px;position:relative}
+.ux .tier .t.top{border:2px solid var(--navy)}
+.ux .tier .rank{font-size:12px;font-weight:700;color:var(--navy);letter-spacing:.08em}
+.ux .tier .who{font-size:15px;font-weight:700;margin:4px 0 2px}
+.ux .tier .num{font-size:28px;font-weight:900;color:var(--navy);line-height:1.2}
+.ux .tier .num small{font-size:13px;font-weight:500;color:var(--ink2);margin-left:4px}
+.ux .tier .how{font-size:13.5px;color:var(--ink2);margin-top:8px;border-top:1px dashed var(--line);padding-top:8px}
+.ux .tier .how b{color:var(--ink)}
+.ux .arrow{font-size:13px;color:var(--ink2);margin-top:10px}
+.ux .idea{border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+.ux .idea.rec{border:2px solid var(--navy)}
+.ux .idea .h{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;margin-bottom:10px}
+.ux .idea .h .n{font-size:13px;font-weight:700;color:#fff;background:var(--navy);border-radius:4px;padding:1px 8px}
+.ux .idea .h b{font-size:17px;color:var(--navy)}
+.ux .idea .h .tag{font-size:12px;color:var(--navy);border:1px solid var(--navy);border-radius:4px;padding:0 8px}
+.ux .idea .g{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
+.ux .idea .ex{background:var(--navy-l);border-radius:8px;padding:12px 14px;font-size:13.5px}
+.ux .idea .ex h4,.ux .idea .why h4{margin:0 0 4px;font-size:12px;color:var(--navy);letter-spacing:.08em}
+.ux .idea .why{font-size:13.5px;color:var(--ink2)}
+.ux .idea .meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--ink2);margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+.ux .idea .meta span b{color:var(--ink);font-weight:700;margin-right:4px}
+.ux .idea .chk{font-size:13px;color:var(--ink2);background:var(--greige);border-radius:6px;padding:8px 12px;margin-top:10px}
+.ux .idea .chk b{color:var(--ink)}
+.ux .q3{border:2px dashed var(--navy-m);border-radius:12px;padding:18px 20px;margin:-4px 0 14px}
+.ux .q3h{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+.ux .q3h .n{font-size:13px;font-weight:700;color:var(--navy);border:1px solid var(--navy);border-radius:4px;padding:0 8px}
+.ux .q3h b{font-size:17px;color:var(--navy)}
+.ux .q3lead{font-size:14px;color:var(--ink2);margin:6px 0 14px}
+.ux .q3g{display:grid;grid-template-columns:340px 1fr;gap:22px;align-items:start}
+.ux .phone{border:8px solid #1b1f24;border-radius:28px;padding:18px 14px 16px;background:#fff;box-shadow:0 10px 24px rgba(27,31,36,.18)}
+.ux .ph-top{font-size:12px;color:var(--mute);text-align:center}
+.ux .ph-lead{font-size:14px;font-weight:700;color:var(--navy);text-align:center;margin:4px 0 12px;line-height:1.5}
+.ux .qq{border-top:1px solid var(--line);padding:10px 0}
+.ux .qn{font-size:13px;font-weight:700;margin-bottom:6px}
+.ux .qs{font-size:11px;color:var(--mute);margin-top:4px}
+.ux .chips{display:flex;flex-wrap:wrap;gap:6px}
+.ux .chips span{font-size:12px;border:1px solid var(--navy-m);color:var(--navy);border-radius:999px;padding:3px 10px;background:#fff}
+.ux .chips span:first-child{background:var(--navy-l)}
+.ux .ph-btn{background:var(--navy);color:#fff;text-align:center;font-weight:700;font-size:14px;border-radius:10px;padding:10px;margin-top:8px}
+.ux .ph-skip{text-align:center;font-size:11.5px;color:var(--mute);margin-top:8px}
+.ux .q3why h4{margin:0 0 6px;font-size:12px;color:var(--navy);letter-spacing:.08em}
+.ux .q3why h4:not(:first-child){margin-top:16px}
+.ux .map{width:100%;border-collapse:collapse;font-size:13px}
+.ux .map th{text-align:left;white-space:nowrap;color:var(--navy);padding:6px 10px 6px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.ux .map td{color:var(--ink2);padding:6px 0;border-bottom:1px solid var(--line)}
+.ux .sms{background:var(--greige);border-radius:12px 12px 12px 2px;padding:10px 14px;font-size:13px;color:var(--ink)}
+.ux .q3why ul{margin:0;padding-left:1.2em;font-size:13px;color:var(--ink2)}
+.ux .q3 .chk{font-size:13px;color:var(--ink2);background:var(--greige);border-radius:6px;padding:8px 12px;margin-top:16px}
+.ux .q3 .chk b{color:var(--ink)}
+@media (max-width:760px){
+.ux .q3g{grid-template-columns:1fr}
+.ux .phone{max-width:340px;margin:0 auto}
+}
+.ux .plan{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ux .plan div{background:var(--navy-l);border-radius:10px;padding:14px 16px;font-size:13.5px;color:var(--ink2)}
+.ux .plan b{display:block;color:var(--navy);font-size:14.5px;margin-bottom:4px}
+.ux .decide{border:1.5px solid var(--navy);border-radius:12px;padding:16px 20px;margin-top:14px;font-size:14px}
+.ux .decide b{color:var(--navy)}
+.ux .decide ol{margin:6px 0 0;padding-left:1.4em}
+.ux .src{font-size:12px;color:var(--mute);margin-top:40px;border-top:1px solid var(--line);padding-top:12px}
+.ux .src ul{margin:4px 0 0;padding-left:1.2em}
+@media (max-width:760px){
+.ux .tier,.ux .plan,.ux .idea .g{grid-template-columns:1fr}
+.ux .legend{grid-template-columns:1fr 1fr}
+.ux .stack div{font-size:11px}
+}
+@media print{
+.ux .idea,.ux .tier .t{break-inside:avoid}
+}
+.ux .map th,.ux .map td{text-align:left}
+.ux .uh{font-size:16px;color:var(--navy);margin:28px 0 12px;display:flex;align-items:center;gap:8px}
+.ux .uh .no{background:var(--navy);color:#fff;font-size:12px;min-width:22px;height:22px;border-radius:50%;display:grid;place-items:center;padding:0 5px}
+.flow{display:grid;gap:0;font-variant-numeric:tabular-nums}
+.flow .fh,.flow .fr{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.flow .fh span{font-size:13px;font-weight:700;color:var(--navy)}
+.flow .fl{font-size:13px;color:var(--ink2)}
+.flow .fv{font-size:22px;font-weight:900;color:var(--navy);line-height:1.2}
+.flow .fv small{font-size:12px;font-weight:500;color:var(--ink2);margin-left:2px}
+.flow .fv em{display:block;font-style:normal;font-size:12px;font-weight:500;color:var(--ink2)}
+.flow .fv em.w{color:var(--warn);font-weight:700}
+@media (max-width:760px){.flow .fv{font-size:18px}}
+.ka .detail{margin-top:12px}
+.big{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}.big b{font-size:44px;font-weight:900;color:var(--navy);line-height:1}.big b small{font-size:16px;font-weight:500;margin-left:2px}.big span{font-size:13px;color:var(--ink2)}
+.kp td small{display:block;font-size:11px;color:var(--warn);margin:0}
+.decide{border:1.5px solid var(--navy);border-radius:12px;padding:16px 20px;margin-top:14px;font-size:14px}.decide b{color:var(--navy)}.decide ol{margin:6px 0 0;padding-left:1.4em}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p style="margin:0 0 12px;font-size:13px"><a href="index.html" style="color:var(--navy)">← 議題資料の一覧へ</a></p>
+<header>
+  <h1>佐古顧問MTG　12月末目標の観察・分析・判断</h1>
+  <div class="sub">2026/10/26｜対象期間 10/1〜25（本部用API 10/25 21:53取得）＋KPI設定シート（10/25時点）＋10/23以降の個別MTG</div>
+</header>
+<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 0;font-size:13.5px">
+  <span style="color:var(--ink2)">あわせて開く：</span>
+  <a href="20261026.html" target="_blank" rel="noopener" style="border:1.5px solid var(--navy);color:var(--navy);border-radius:999px;padding:4px 14px;text-decoration:none;font-weight:700">今朝のLIFEX MTG資料（流入元別の詳細）</a>
+  <a href="../kpi-settei.html#list" target="_blank" rel="noopener" style="border:1.5px solid var(--navy);color:var(--navy);border-radius:999px;padding:4px 14px;text-decoration:none;font-weight:700">12月末KPI 目標数値の一覧</a>
+</div>
+
+<h2><span class="no">1</span>12月末目標の進み具合</h2>
+<div class="grid2">
+  <div class="card">
+    <h3>契約　10月の実績（ステータスを契約に変えた日で数える）</h3>
+    <div class="big"><b>8<small>件</small></b><span>10月の目標8件（重点5社 各1件＋他の加盟店様3件）</span></div>
+    <table class="st" style="margin-top:12px">
+      <thead><tr><th></th><th>10月目標</th><th>10月実績</th><th>内訳</th></tr></thead>
+      <tbody>
+        <tr><th>重点5社</th><td>5</td><td class="now">4</td><td style="text-align:left;white-space:normal">WITHDOM Group様2・中央建設様米子店1・河原工務店様1</td></tr>
+        <tr><th>他の加盟店様</th><td>3</td><td class="now">4</td><td style="text-align:left;white-space:normal">YUNO HOME様3・久留米建設様1</td></tr>
+      </tbody>
+      <tfoot><tr><th>合計</th><td>8</td><td>8</td><td></td></tr></tfoot>
+    </table>
+    <div class="note">年内32件まで残り24件（11月13・12月13の目標）。重点5社で10月0件は竹村工務店様とキノシタ様。数え方は自社商品の契約も含み、契約日ではなくポータルに入力された日が基準です。</div>
+  </div>
+  <div class="card">
+    <h3>率の目標に対する現在地</h3>
+    <table class="st">
+      <thead><tr><th>指標</th><th>12月の目標</th><th>現在</th></tr></thead>
+      <tbody>
+        <tr><th>通話接続率（平均・直近3ヶ月）</th><td>40%</td><td class="now">41.7%</td></tr>
+        <tr><th>40%未満の会社（母数10人以上の13社）</th><td>0社</td><td class="lo">6社</td></tr>
+        <tr><th>契約率（面談比・10月登録）</th><td>30%</td><td class="lo">21.2%</td></tr>
+      </tbody>
+    </table>
+    <div class="note">40%未満の6社：河原工務店様21.4%・フラワーホーム様17.6%・久留米建設様26.1%・坂本建設工業様30.0%・いえプロ不動産様31.6%・キノシタ様33.3%。重点5社では河原工務店様とキノシタ様が入っています。</div>
+  </div>
+</div>
+
+<h2><span class="no">2</span>重点5社のKPI設定（観察）</h2>
+<div class="card" style="overflow-x:auto">
+  <h3>KPI設定シートの保存内容（実績は直近3ヶ月→12月末の目標）</h3>
+  <table class="st kp">
+    <thead><tr><th>店舗</th><th>通話接続</th><th>アポ</th><th>面談</th><th>契約</th><th class="sep">年内目標</th><th>10月以降契約</th><th>見込み</th><th class="sep">不足集客</th><th>打ち手で埋めた数</th></tr></thead>
+    <tbody>
+      <tr><th>竹村工務店様</th><td>76→75</td><td>94→90</td><td>93→100</td><td class="lo">14→20</td><td class="sep">3<small>→5へ</small></td><td>0</td><td>3</td><td class="sep">0</td><td>14</td></tr>
+      <tr><th>キノシタ様</th><td class="lo">35→75</td><td class="lo">50→90</td><td>100→100</td><td>20→20</td><td class="sep">4</td><td>0</td><td>2</td><td class="sep lo">12</td><td class="lo">2</td></tr>
+      <tr><th>河原工務店様</th><td class="lo">21→40</td><td>100→80</td><td>100→100</td><td>50→25</td><td class="sep">5</td><td>1</td><td>3</td><td class="sep">14</td><td>14</td></tr>
+      <tr><th>WITHDOM Group様</th><td>49→50</td><td>57→70</td><td>95→100</td><td class="lo">10→30</td><td class="sep">5</td><td>2</td><td>9</td><td class="sep">0</td><td>—</td></tr>
+      <tr><th>中央建設様 米子店</th><td>62→80</td><td>50→70</td><td>100→90</td><td>50→40</td><td class="sep">4<small>→5へ</small></td><td>1</td><td>1.5</td><td class="sep">13</td><td>13</td></tr>
+      <tr class="z"><th>（参考）中央建設様 出雲店</th><td>33→50</td><td>100→70</td><td>100→100</td><td>0→20</td><td class="sep">2</td><td>0</td><td>0.2</td><td class="sep lo">26</td><td class="lo">0</td></tr>
+    </tbody>
+  </table>
+  <div class="note">率は%。赤字は「目標が実績の1.5倍以上」か「不足集客に対して打ち手が足りない」ところ。見込みは、既存のお客様と新規の見込み集客に目標の率を掛けたシートの計算値です。竹村工務店様と米子店は、目標を全社共通の5件にする前の入力のままです（5件で入れ直すと不足集客が増えます）。</div>
+</div>
+<div class="obs" style="margin-top:14px">
+  <div class="it"><div class="k">4店<small>集客の不足が埋まっている</small></div><div class="t"><b>WITHDOM Group様は集客が足りていて、竹村工務店様・河原工務店様・米子店は不足を打ち手で埋めている</b><span>WITHDOM Group様は集客が月25件ほどあり見込み9件。竹村工務店様は打ち手14件分、河原工務店様は不足14件を打ち手14件で、米子店は不足13件を打ち手13件で埋めた形です（竹村様・米子店は目標を5件にすると不足が増える）。この4店は集客より、面談後の決め方（竹村様・WITHDOM様）と2回目以降の電話（河原様）が勝負です。</span></div></div>
+  <div class="it"><div class="k">36件<small>キノシタ様12＋出雲店26</small></div><div class="t"><b>打ち手が埋まっていないのは、キノシタ様と中央建設様出雲店</b><span>キノシタ様は不足12件に対して11/29のセミナー2件分、出雲店は不足26件に対して打ち手がまだない。どちらも店舗だけで埋まる大きさではありません。</span></div></div>
+  <div class="it"><div class="k">3倍<small>WITHDOM Group様の契約率</small></div><div class="t"><b>いちばん率の開きが大きいのはWITHDOM Group様の契約率（10%→30%）</b><span>既存の面談済み26人がいるので、契約率が20%でも年内8件の計算。目標の30%に届かなくても、面談済みの方を掘れば5件は射程に入ります。</span></div></div>
+</div>
+
+<h2><span class="no">3</span>流入元別の数字から見えたこと</h2>
+<div class="card">
+  <table class="st">
+    <thead><tr><th>10/1〜25に登録</th><th>登録</th><th>未着手</th><th>通話接続率（着手済み分母）</th><th>同（登録全員分母）</th><th>アポ→面談</th><th>契約（内定）</th></tr></thead>
+    <tbody>
+      <tr><th>本部の資料請求フォーム</th><td>52</td><td class="lo">14</td><td class="now">57.9%</td><td>42.3%</td><td class="lo">15→8</td><td>1</td></tr>
+      <tr><th>加盟店様LP</th><td>90</td><td>7</td><td>48.2%</td><td>44.4%</td><td>32→25</td><td>6</td></tr>
+    </tbody>
+  </table>
+  <div class="note">本部経由は電話がつながりやすいが、4人に1人が未着手で、アポから面談にも来られにくい。判定方法と加盟店様別は今朝の資料の2を参照。本部経由の未着手14人は8社に分かれ、フラワーホーム様4・アイコン様3・永大ハウスビルド様2が多い（重点5社では河原工務店様1）。</div>
+</div>
+
+<h2><span class="no">4</span>分析と判断（案）</h2>
+<div class="ka">
+  <div class="hd"><b>年内の24件をどこで取るか</b></div>
+  <div class="g">
+    <div><h4>観察</h4>10月は目標どおり8件。ただし重点5社は4件で、他の加盟店様（YUNO HOME様3件）に助けられた形。重点5社の年内目標25件（各5件）に対し、シートの見込みは10月の契約済みを含めて合計18.5件（竹村3・キノシタ2・河原3・WITHDOM9・米子1.5）。</div>
+    <div><h4>分析</h4>見込みの半分はWITHDOM Group様の9件で、契約率30%が前提。一方、キノシタ様と出雲店は集客の不足が埋まらないと見込みが動かない。徳田の11〜12月の週末はイベントで埋まりつつあり（11/8米子・11/29キノシタ様ほか）、全部の店舗の集客を徳田のセミナーで埋めるのは無理がある。</div>
+    <div class="j"><h4>判断（案）</h4>①WITHDOM Group様は11/5のロープレで契約率に集中し、面談済み26人を松尾様と棚卸し。②キノシタ様は週1の定例で通話接続の型（竹村様方式）を先に入れ、集客は11/29に全力。③出雲店は打ち手ゼロのまま12月を迎えないよう、次のショートMTGで店舗と本部の役割を決める。④本部送客の未着手をなくす約束（今朝の提案1）を、重点5社以外も含めた全社の底上げとして進める。</div>
+  </div>
+</div>
+<div class="decide"><b>佐古顧問に相談したいこと</b>
+  <ol>
+    <li>WITHDOM Group様の契約率30%を、見込み計算の前提のまま置いてよいか（20%で置き直すと見込みは9件→8件）</li>
+    <li>キノシタ様・出雲店の集客不足（計36件）を、徳田のセミナー以外で埋める手として何を優先するか</li>
+    <li>本部経由のお客様の「割り当てから2日以内に着手」を全社の約束にする案の是非と、期限切れの扱い</li>
+    <li>流入元別の数字を毎回の資料に載せるとき、率の分母を着手済みと登録全員のどちらで見るか</li>
+  </ol>
+</div>
+
+<details open>
+  <summary>数字の出典</summary>
+  <ul>
+    <li>10月の契約8件と内訳：本部用API members.json（2026/10/25 21:53取得）のステータスが契約で、最後の手動変更日が10/1以降の件数。米子店は支店情報（tenants.json）で確認</li>
+    <li>10月の目標8件（重点5社各1件＋他3件）・年内32件・11月13・12月13：BtoB事業部ダッシュボードへの入力内容（10/22 徳田決定）</li>
+    <li>直近3ヶ月の通話接続率41.7%・未達6社：members.json を登録日7/26〜10/25で集計（未登録を除く・到達段階4以上）</li>
+    <li>契約率21.2%：digest.md「今月（2026-10-01〜2026-10-25）」の全体（契約7÷面談33）</li>
+    <li>重点5社のKPI：KPI設定シート「LIFEX KPI設定（12月末）」の保存内容（竹村10/22・河原10/22・WITHDOM 10/23・キノシタ10/25・米子10/19・出雲10/19更新）</li>
+    <li>流入元別：今朝の資料 mtg-agenda/20261026.html の2と同じ集計</li>
+    <li>11/5ロープレ・面談済み26人：文字起こし「ウィズダム様個別 - 2026/10/23」とKPI設定シート</li>
+    <li>11/29セミナー・週1定例：文字起こし「キノシタ様社内会議出席 - 2026/10/24」。11/8米子セミナーも同じ文字起こしでの徳田の発言</li>
+    <li>12月の率の目標（全社40%以上・契約率30%）：2026/10/12 佐古顧問とのチャット</li>
+  </ul>
+</details>
+</div>
+</body>
+</html>
