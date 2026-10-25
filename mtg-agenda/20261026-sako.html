@@ -182,9 +182,19 @@ details ul{padding-left:18px}
 .flow .fv em.w{color:var(--warn);font-weight:700}
 @media (max-width:760px){.flow .fv{font-size:18px}}
 .ka .detail{margin-top:12px}
+.ex2{display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:center;margin:10px 0;background:var(--greige);border-radius:10px;padding:12px}
+.ex2 iframe{width:794px;height:1123px;border:0;transform:scale(.27);transform-origin:0 0;pointer-events:none;background:#fff}
+.ex2>a{display:block;width:214px;height:303px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.ex2 b{display:block;color:var(--navy);font-size:14.5px}
+.ex2 span{display:block;font-size:13px;color:var(--ink2);margin:4px 0 2px}
+@media (max-width:760px){.ex2{grid-template-columns:1fr}}
 .big{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}.big b{font-size:44px;font-weight:900;color:var(--navy);line-height:1}.big b small{font-size:16px;font-weight:500;margin-left:2px}.big span{font-size:13px;color:var(--ink2)}
 .kp td small{display:block;font-size:11px;color:var(--warn);margin:0}
+.sch td,.sch th{text-align:left;white-space:normal;vertical-align:top}.sch tbody th{white-space:nowrap;color:var(--navy);font-weight:700}
 .decide{border:1.5px solid var(--navy);border-radius:12px;padding:16px 20px;margin-top:14px;font-size:14px}.decide b{color:var(--navy)}.decide ol{margin:6px 0 0;padding-left:1.4em}
+.pp{font-size:14px;margin:0}
+.pur{background:var(--greige);border-radius:10px;padding:14px 16px;font-size:13.5px}.pur h4,.goal h4{margin:0 0 6px;font-size:13px;color:var(--navy);letter-spacing:.06em}.pur p{margin:0 0 8px}.pur ul{margin:0 0 8px;padding-left:1.2em}.pur b{color:var(--ink)}.pur .st th,.pur .st td{white-space:normal}
+.goal{border:1.5px solid var(--navy);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:14px}.goal ol{margin:0;padding-left:1.3em}.goal li{margin-bottom:4px}.goal b{color:var(--navy)}.goal .mid{font-size:12.5px;color:var(--ink2);margin:8px 0 0}
 </style>
 </head>
 <body>
@@ -240,18 +250,73 @@ details ul{padding-left:18px}
       <tr><th>河原工務店様</th><td class="lo">21→40</td><td>100→80</td><td>100→100</td><td>50→25</td><td class="sep">5</td><td>1</td><td>3</td><td class="sep">14</td><td>14</td></tr>
       <tr><th>WITHDOM Group様</th><td>49→50</td><td>57→70</td><td>95→100</td><td class="lo">10→30</td><td class="sep">5</td><td>2</td><td>9</td><td class="sep">0</td><td>—</td></tr>
       <tr><th>中央建設様 米子店</th><td>62→80</td><td>50→70</td><td>100→90</td><td>50→40</td><td class="sep">4<small>→5へ</small></td><td>1</td><td>1.5</td><td class="sep">13</td><td>13</td></tr>
-      <tr class="z"><th>（参考）中央建設様 出雲店</th><td>33→50</td><td>100→70</td><td>100→100</td><td>0→20</td><td class="sep">2</td><td>0</td><td>0.2</td><td class="sep lo">26</td><td class="lo">0</td></tr>
     </tbody>
   </table>
   <div class="note">率は%。赤字は「目標が実績の1.5倍以上」か「不足集客に対して打ち手が足りない」ところ。見込みは、既存のお客様と新規の見込み集客に目標の率を掛けたシートの計算値です。竹村工務店様と米子店は、目標を全社共通の5件にする前の入力のままです（5件で入れ直すと不足集客が増えます）。</div>
 </div>
 <div class="obs" style="margin-top:14px">
   <div class="it"><div class="k">4店<small>集客の不足が埋まっている</small></div><div class="t"><b>WITHDOM Group様は集客が足りていて、竹村工務店様・河原工務店様・米子店は不足を打ち手で埋めている</b><span>WITHDOM Group様は集客が月25件ほどあり見込み9件。竹村工務店様は打ち手14件分、河原工務店様は不足14件を打ち手14件で、米子店は不足13件を打ち手13件で埋めた形です（竹村様・米子店は目標を5件にすると不足が増える）。この4店は集客より、面談後の決め方（竹村様・WITHDOM様）と2回目以降の電話（河原様）が勝負です。</span></div></div>
-  <div class="it"><div class="k">36件<small>キノシタ様12＋出雲店26</small></div><div class="t"><b>打ち手が埋まっていないのは、キノシタ様と中央建設様出雲店</b><span>キノシタ様は不足12件に対して11/29のセミナー2件分、出雲店は不足26件に対して打ち手がまだない。どちらも店舗だけで埋まる大きさではありません。</span></div></div>
+  <div class="it"><div class="k">12件<small>キノシタ様の不足集客</small></div><div class="t"><b>打ち手が埋まっていないのはキノシタ様だけ</b><span>不足12件に対して、決まっている打ち手は11/29のセミナー（2件分）のみで、10件分が空いています。店舗だけで埋まる大きさではありません。</span></div></div>
   <div class="it"><div class="k">3倍<small>WITHDOM Group様の契約率</small></div><div class="t"><b>いちばん率の開きが大きいのはWITHDOM Group様の契約率（10%→30%）</b><span>既存の面談済み26人がいるので、契約率が20%でも年内8件の計算。目標の30%に届かなくても、面談済みの方を掘れば5件は射程に入ります。</span></div></div>
 </div>
 
-<h2><span class="no">3</span>流入元別の数字から見えたこと</h2>
+<h2><span class="no">3</span>重点5社の今後の支援予定</h2>
+<div class="card">
+  <table class="st sch">
+    <thead><tr><th>日程</th><th>加盟店様</th><th>内容</th><th>徳田の関わり</th></tr></thead>
+    <tbody>
+      <tr><th>11/5（木）</th><td>WITHDOM Group様</td><td>福岡で商談ロープレ（3〜4時間）。題材は10/18の初回商談。松尾様も同席</td><td>訪問（本部の確認後に確定）</td></tr>
+      <tr><th>11/7（土）・8（日）</th><td>竹村工務店様</td><td>毎年のイベントにLIFE Xブースを出し、新築の新規6組を狙う</td><td>ブースの作り方を相談中</td></tr>
+      <tr><th>11/8（日）</th><td>中央建設様 米子店</td><td>米子のモデルハウスでセミナー。イベントはMeta広告で告知</td><td>訪問・セミナー講師</td></tr>
+      <tr><th>11月3週目まで</th><td>竹村工務店様</td><td>FPセミナー（お知り合いのFPの方）と、竹村様モデルハウスでのセミナー</td><td>モデルハウスのセミナーは徳田が講師（日程調整中）</td></tr>
+      <tr><th>11/29（日）10:00</th><td>キノシタ様</td><td>リノベのモデルでセミナー。告知文は「1回で資金計画まで分かる」を軸に作る</td><td>訪問・セミナー講師</td></tr>
+      <tr><th>毎週</th><td>キノシタ様</td><td>30分のKPI定例（率の確認と打ち手の見直し）。初回で竹村様の架電手順を試す週を決める</td><td>オンライン（曜日は火〜木で調整中）</td></tr>
+      <tr><th>毎週</th><td>WITHDOM Group様</td><td>KPIに足りないものを一緒に観察・分析・判断する会議</td><td>オンライン</td></tr>
+      <tr><th>随時</th><td>河原工務店様</td><td>野立て看板（2件分）・ポスティング（12件分）・Instagramの外注を進める</td><td>進み具合を確認</td></tr>
+      <tr><th>随時</th><td>中央建設様 米子店／WITHDOM Group様</td><td>会社ロゴ入りバナーの配信（制作は本部）</td><td>制作・効果の報告（時位さんと）</td></tr>
+    </tbody>
+  </table>
+  <div class="note">11月は重点5社以外にも新潟への訪問が入っており、週末はイベントで埋まりつつあります。重点5社の追加のイベントは、この表の空いている週末から先に押さえます。</div>
+</div>
+
+<h2><span class="no">4</span>連絡記録の2週間試行（WITHDOM Group様・キノシタ様）</h2>
+<div class="card">
+  <h3>何をするか</h3>
+  <p class="pp">10/26（月）〜11/8（日）の2週間、担当の方がお客様に電話・SMS・メールをするたびに、スマホのフォームに1件ずつ記録していただきます（1件30秒ほど）。対象は、期間中に新しく割り当てられたお客様全員と、今つながっていないお客様です。2週間のあと、担当の方に「つながりにくいと感じる理由」を聞き取ります。2社とも了承済みです（キノシタ様 10/22、WITHDOM Group様 10/23）。</p>
+  <div class="grid2" style="margin-top:12px">
+    <div class="pur"><h4>なぜやるのか</h4>
+      <p>12月末の目標は「全社が通話接続率40%以上」ですが、<b>なぜつながらないのかが今のデータでは見えません。</b>ポータルに残るのはステータスだけで、いつ・何回・どの手段で連絡したかは記録されません。「電話不通」のお客様が1回かけて終わりなのか、5回かけても出ないのかが分からない状態です。</p>
+      <p>本部の見立ては「初回の電話が遅い、2回目以降が続かない」で、河原工務店様ご本人も同じことをおっしゃっています。ただ裏付けがありません。原因によって、本部がやるべきことが変わります。</p>
+      <ul>
+        <li><b>全体的に遅い</b> → 研修で初動を入れ直し、本部送客は着手期限を決める（今朝の提案1）</li>
+        <li><b>一部の店だけ遅い</b> → その店に個別に声をかける</li>
+        <li><b>早いのにつながらない</b> → 電話する時間帯、SMS・メールの使い方、反響の質を見直す</li>
+      </ul>
+      <p>あわせて、ポータルに「連絡記録ボタン」を作るかどうかの判断材料にします。ボタンを作る前にまず2週間、フォームとスプレッドシートで試すことは、古西さんとのやり取りで決めました。</p>
+    </div>
+    <div class="pur"><h4>なぜこの2社か</h4>
+      <p>連絡の速さが対照的な2社を並べると、「遅さ」が原因かどうかが見えやすいためです。</p>
+      <table class="st">
+        <thead><tr><th></th><th>キノシタ様</th><th>WITHDOM Group様</th></tr></thead>
+        <tbody>
+          <tr><th>追客中のうち未接続</th><td class="lo">15/22人（68%）</td><td>48/99人（48%）</td></tr>
+          <tr><th>割り当てから最初のステータス変更まで（中央値）</th><td class="lo">37.4時間</td><td>13.1時間</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:12.5px;color:var(--ink2)">10/25時点・本部用API。最初のステータス変更は加盟店様が手で変えた時刻で、電話をかけた時刻ではありません（それを測るのが今回の記録です）。対象は9/16以降に割り当てられたお客様（キノシタ様12人・WITHDOM Group様60人）。キノシタ様は新規の割り当てが月7〜8件で2週間では数が足りないため、今つながっていないお客様も対象に入れています。</p>
+    </div>
+  </div>
+  <div class="goal"><h4>ゴール</h4>
+    <ol>
+      <li><b>11/8まで：</b>2社とも、期間中に割り当てられたお客様の最初の連絡が漏れなく記録されている。そこから「割り当てから最初の連絡までの時間」「2回目までの間隔」「時間帯別・手段別のつながった割合」の3つが出せる状態にする。</li>
+      <li><b>11/13（金）のMTG：</b>「遅さが原因か」に結論を出し、次の打ち手を1つ決める。判断の目安は、最初の連絡までの中央値が24時間を超えていて、かつ当日中に連絡したお客様のほうがつながる割合が高ければ「遅さが原因」。</li>
+      <li><b>11月中：</b>ポータルの連絡記録ボタンを作るかを古西さんと決める。</li>
+    </ol>
+    <p class="mid">途中確認：10/30（金）ごろに回答を確認し、記録が止まっている店があれば早めに声をかけます。</p>
+  </div>
+</div>
+
+<h2><span class="no">5</span>流入元別の数字から見えたこと</h2>
 <div class="card">
   <table class="st">
     <thead><tr><th>10/1〜25に登録</th><th>登録</th><th>未着手</th><th>通話接続率（着手済み分母）</th><th>同（登録全員分母）</th><th>アポ→面談</th><th>契約（内定）</th></tr></thead>
@@ -263,20 +328,21 @@ details ul{padding-left:18px}
   <div class="note">本部経由は電話がつながりやすいが、4人に1人が未着手で、アポから面談にも来られにくい。判定方法と加盟店様別は今朝の資料の2を参照。本部経由の未着手14人は8社に分かれ、フラワーホーム様4・アイコン様3・永大ハウスビルド様2が多い（重点5社では河原工務店様1）。</div>
 </div>
 
-<h2><span class="no">4</span>分析と判断（案）</h2>
+<h2><span class="no">6</span>分析と判断（案）</h2>
 <div class="ka">
   <div class="hd"><b>年内の24件をどこで取るか</b></div>
   <div class="g">
     <div><h4>観察</h4>10月は目標どおり8件。ただし重点5社は4件で、他の加盟店様（YUNO HOME様3件）に助けられた形。重点5社の年内目標25件（各5件）に対し、シートの見込みは10月の契約済みを含めて合計18.5件（竹村3・キノシタ2・河原3・WITHDOM9・米子1.5）。</div>
-    <div><h4>分析</h4>見込みの半分はWITHDOM Group様の9件で、契約率30%が前提。一方、キノシタ様と出雲店は集客の不足が埋まらないと見込みが動かない。徳田の11〜12月の週末はイベントで埋まりつつあり（11/8米子・11/29キノシタ様ほか）、全部の店舗の集客を徳田のセミナーで埋めるのは無理がある。</div>
-    <div class="j"><h4>判断（案）</h4>①WITHDOM Group様は11/5のロープレで契約率に集中し、面談済み26人を松尾様と棚卸し。②キノシタ様は週1の定例で通話接続の型（竹村様方式）を先に入れ、集客は11/29に全力。③出雲店は打ち手ゼロのまま12月を迎えないよう、次のショートMTGで店舗と本部の役割を決める。④本部送客の未着手をなくす約束（今朝の提案1）を、重点5社以外も含めた全社の底上げとして進める。</div>
+    <div><h4>分析</h4>見込みの半分はWITHDOM Group様の9件で、契約率30%が前提。一方、キノシタ様は集客の不足が埋まらないと見込みが動かない。徳田の11〜12月の週末はイベントで埋まりつつあり（11/8米子・11/29キノシタ様ほか）、重点5社の集客を徳田のセミナーだけで埋めるのは無理がある。</div>
+    <div class="j"><h4>判断（案）</h4>①WITHDOM Group様は11/5のロープレで契約率に集中し、面談済み26人を松尾様と棚卸し。②キノシタ様は週1の定例で通話接続の型（竹村様方式）を先に入れ、集客は11/29に全力。③米子店は11/8のセミナーとロゴ入りバナーで集客の入口を立て直す。④本部送客の未着手をなくす約束（今朝の提案1）を、重点5社以外も含めた全社の底上げとして進める。</div>
   </div>
 </div>
 <div class="decide"><b>佐古顧問に相談したいこと</b>
   <ol>
     <li>WITHDOM Group様の契約率30%を、見込み計算の前提のまま置いてよいか（20%で置き直すと見込みは9件→8件）</li>
-    <li>キノシタ様・出雲店の集客不足（計36件）を、徳田のセミナー以外で埋める手として何を優先するか</li>
+    <li>キノシタ様の集客不足（12件のうち10件分が未定）を、徳田のセミナー以外で埋める手として何を優先するか</li>
     <li>本部経由のお客様の「割り当てから2日以内に着手」を全社の約束にする案の是非と、期限切れの扱い</li>
+    <li>連絡記録の試行の判断の目安（最初の連絡までの中央値24時間・当日連絡とのつながり方の差）をこれでよいか</li>
     <li>流入元別の数字を毎回の資料に載せるとき、率の分母を着手済みと登録全員のどちらで見るか</li>
   </ol>
 </div>
@@ -288,10 +354,11 @@ details ul{padding-left:18px}
     <li>10月の目標8件（重点5社各1件＋他3件）・年内32件・11月13・12月13：BtoB事業部ダッシュボードへの入力内容（10/22 徳田決定）</li>
     <li>直近3ヶ月の通話接続率41.7%・未達6社：members.json を登録日7/26〜10/25で集計（未登録を除く・到達段階4以上）</li>
     <li>契約率21.2%：digest.md「今月（2026-10-01〜2026-10-25）」の全体（契約7÷面談33）</li>
-    <li>重点5社のKPI：KPI設定シート「LIFEX KPI設定（12月末）」の保存内容（竹村10/22・河原10/22・WITHDOM 10/23・キノシタ10/25・米子10/19・出雲10/19更新）</li>
+    <li>重点5社のKPI：KPI設定シート「LIFEX KPI設定（12月末）」の保存内容（竹村10/22・河原10/22・WITHDOM 10/23・キノシタ10/25・米子10/19更新）</li>
     <li>流入元別：今朝の資料 mtg-agenda/20261026.html の2と同じ集計</li>
     <li>11/5ロープレ・面談済み26人：文字起こし「ウィズダム様個別 - 2026/10/23」とKPI設定シート</li>
-    <li>11/29セミナー・週1定例：文字起こし「キノシタ様社内会議出席 - 2026/10/24」。11/8米子セミナーも同じ文字起こしでの徳田の発言</li>
+    <li>11/29セミナー・週1定例・11/8米子セミナー・竹村様のイベントとセミナー・河原様の野立て看板とポスティング・新潟訪問：文字起こし「キノシタ様社内会議出席 - 2026/10/24」「ウィズダム様個別 - 2026/10/23」での徳田の発言とKPI設定シートの打ち手欄</li>
+    <li>連絡記録の試行（期間・対象・フォーム・2社の了承）：Chatwork「株式会社キノシタ様×Gハウス」10/22、「Gハウス様×WG」10/22〜23。ボタンを作る前に試す進め方は古西さんとのやり取り（10/20〜22）。未接続・最初のステータス変更までの時間：本部用API members.json・changes.json（10/25 21:53取得）から集計</li>
     <li>12月の率の目標（全社40%以上・契約率30%）：2026/10/12 佐古顧問とのチャット</li>
   </ul>
 </details>
