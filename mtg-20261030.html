@@ -1,0 +1,764 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LIFEX MTG｜キッチン 投影資料</title>
+<style>
+:root{color-scheme:light}
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6;
+  --pop:#f2a93b; --pop-soft:#fff4e2; --pop-ink:#9a5a00;
+  --ng:#a1462a; --ngbg:#fbeee9;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.6; font-feature-settings:"palt"}
+.wrap{width:min(1100px,96vw); margin:26px auto}
+.draft{width:1100px; margin:0 auto 14px; font-size:12px; color:#8a5a00; background:#fdf3dd;
+  border:1px solid #ecd9a8; border-radius:4px; padding:6px 14px; font-weight:700; line-height:1.8}
+.sl{width:1100px; height:619px; background:#fff; border-radius:8px;
+  box-shadow:0 2px 16px rgba(20,40,60,.09); padding:32px 50px 24px;
+  display:flex; flex-direction:column; position:relative; overflow:hidden; margin:0 auto 22px}
+.top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+.chip{font-size:11.5px; font-weight:700; letter-spacing:.08em; padding:3px 12px; border-radius:99px; background:var(--navy-soft); color:var(--navy)}
+.chip.pop{background:var(--pop-soft); color:var(--pop-ink)}
+.pg{margin-left:auto; font-size:12px; color:#b6c0ca; font-variant-numeric:tabular-nums}
+.tt{font-size:28px; font-weight:800; line-height:1.35; margin:2px 0 12px; text-wrap:balance}
+.tt .hi{color:var(--navy)}
+.body{flex:1; display:flex; gap:24px; min-height:0}
+.cap{font-size:11.5px; color:var(--sub); line-height:1.6; margin-top:8px}
+.mark{background:linear-gradient(transparent 62%, #ffe0a6 62%)}
+
+/* 写真 */
+.ph{border-radius:12px; overflow:hidden; position:relative; box-shadow:0 8px 24px rgba(20,40,60,.16)}
+.ph img{width:100%; height:100%; object-fit:cover; display:block}
+.ph .lb{position:absolute; left:12px; bottom:12px; background:rgba(255,255,255,.94); color:var(--ink); font-size:12px; font-weight:800; padding:4px 12px; border-radius:99px}
+.todo{border:2px dashed #c9b27a; border-radius:12px; background:#fffaf0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; color:#8a5a00; font-size:14px; font-weight:800; text-align:center; padding:16px}
+.todo small{font-weight:500; font-size:12px; color:#9a7a3a}
+
+/* 表紙 */
+.cover{padding:0}
+.cover img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.cover .veil{position:absolute; inset:0; background:linear-gradient(90deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.9) 44%, rgba(255,255,255,0) 66%)}
+.cover .in{position:relative; padding:70px 60px; display:flex; flex-direction:column; gap:18px; height:100%; justify-content:center; max-width:560px}
+.cover .k{font-size:14px; font-weight:800; color:var(--navy); letter-spacing:.1em}
+.cover h1{margin:0; font-size:44px; line-height:1.3; font-weight:800}
+.cover h1 span{color:var(--navy)}
+.cover .sub{font-size:17px; color:var(--sub); font-weight:700}
+.cover .date{font-size:13px; color:var(--sub)}
+.badge0{display:inline-flex; align-items:center; gap:8px; background:var(--pop); color:#fff; font-weight:800; font-size:16px; padding:8px 18px; border-radius:99px; width:max-content; box-shadow:0 4px 12px rgba(242,169,59,.35)}
+
+/* どっち派 */
+.vs{display:grid; grid-template-columns:1fr 1fr; gap:28px; flex:1; position:relative}
+.vs .side{display:flex; flex-direction:column; gap:12px; min-height:0}
+.vs .ph{flex:none; height:340px}
+.vs .who{display:flex; align-items:center; gap:12px}
+.vs .who .face{font-size:30px; width:52px; height:52px; border-radius:50%; background:var(--pop-soft); display:flex; align-items:center; justify-content:center; flex-shrink:0}
+.vs .who b{font-size:20px; display:block; line-height:1.3}
+.vs .who span{font-size:13px; color:var(--sub); font-weight:700}
+.vs .vsb{position:absolute; left:50%; top:42%; transform:translate(-50%,-50%); width:56px; height:56px; border-radius:50%; background:var(--pop); color:#fff; font-weight:900; font-size:18px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 14px rgba(0,0,0,.18); z-index:2}
+.both{text-align:center; font-size:17px; font-weight:800; color:var(--navy); margin-top:12px}
+
+/* 本音 */
+.honne{display:grid; grid-template-columns:1fr 1fr; gap:28px; flex:1}
+.hn{border-radius:16px; background:var(--panel); padding:28px 30px; display:flex; flex-direction:column; justify-content:space-between; position:relative}
+.hn .q{background:#fff; border-radius:18px; padding:16px 20px; font-size:19px; font-weight:800; position:relative; box-shadow:0 4px 14px rgba(20,40,60,.08); width:max-content; max-width:100%}
+.hn .q:after{content:""; position:absolute; left:34px; bottom:-12px; border:12px solid transparent; border-top-color:#fff; border-bottom:0}
+.hn .num{font-size:84px; font-weight:900; color:var(--navy); line-height:1; letter-spacing:-.02em}
+.hn .num small{font-size:28px; margin-left:4px}
+.hn .what{font-size:16px; font-weight:700; color:var(--sub)}
+.hn .plus{font-size:15px; font-weight:800; color:var(--ink); background:#fff; border-radius:10px; padding:10px 14px}
+.hn .plus em{font-style:normal; color:var(--pop-ink); font-size:20px}
+
+/* 値札 */
+.tags{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+.tag{position:relative; background:#fff; border:2px solid var(--line); border-radius:14px; padding:26px 22px 24px 34px; display:flex; flex-direction:column; gap:4px}
+.tag:before{content:""; position:absolute; left:11px; top:50%; width:10px; height:10px; border-radius:50%; background:#fff; border:2px solid var(--line); transform:translateY(-50%)}
+.tag b{font-size:17px}
+.tag .ex{font-size:13px; font-weight:800; color:var(--sub)}
+.tag .ex span{font-weight:600}
+.total .was .ex2{display:block; font-size:14px; font-weight:700; color:var(--sub); margin-top:4px}
+.tag .yen{font-size:31px; font-weight:900; color:var(--ink); text-decoration:line-through; text-decoration-color:var(--ng); text-decoration-thickness:3px}
+.tag .yen small{font-size:15px}
+.total{display:flex; align-items:center; justify-content:center; gap:26px; margin-top:22px}
+.total .was{font-size:18px; font-weight:800; color:var(--sub); text-align:center}
+.total .was b{display:block; font-size:44px; color:var(--ink); text-decoration:line-through; text-decoration-color:var(--ng); text-decoration-thickness:4px}
+.total .arr{font-size:40px; color:var(--pop); font-weight:900}
+.total .now{background:var(--pop); color:#fff; border-radius:22px; padding:16px 40px; text-align:center; box-shadow:0 8px 22px rgba(242,169,59,.4)}
+.total .now span{display:block; font-size:16px; font-weight:800}
+.total .now b{font-size:64px; font-weight:900; line-height:1.05}
+.extra{margin-top:18px; text-align:center; font-size:16px; font-weight:800; color:var(--navy); background:var(--navy-soft); border-radius:99px; padding:9px 18px; width:max-content; margin-left:auto; margin-right:auto}
+
+/* 設備ページ */
+.eq{display:grid; grid-template-columns:44% 1fr; gap:28px; flex:1; min-height:0}
+.eq .ph, .eq .todo{height:100%}
+.eq .r{display:flex; flex-direction:column; gap:12px; min-height:0; justify-content:center}
+.scenes{display:flex; flex-direction:column; gap:8px}
+.sc{display:flex; align-items:center; gap:12px; background:var(--panel); border-radius:12px; padding:9px 14px; font-size:15px; font-weight:700}
+.sc i{font-style:normal; font-size:22px; width:34px; text-align:center; flex-shrink:0}
+.lab{font-size:12px; font-weight:800; color:var(--sub); letter-spacing:.06em}
+.talk{position:relative; background:var(--navy-soft); border-radius:16px; padding:14px 18px 14px 50px; font-size:15.5px; font-weight:700; line-height:1.7; color:var(--ink)}
+.talk:before{content:"💬"; position:absolute; left:16px; top:13px; font-size:20px}
+.talk.alt{background:#fff; border:2px solid var(--navy-soft)}
+.num-chip{white-space:nowrap; display:inline-block; background:var(--pop); color:#fff; border-radius:8px; padding:0 8px; font-weight:900}
+
+/* 一言カード */
+.cards3{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; flex:1}
+.cd{border-radius:18px; background:var(--navy-soft); padding:26px 24px; display:flex; flex-direction:column; gap:14px}
+.cd .n{width:40px; height:40px; border-radius:50%; background:var(--navy); color:#fff; font-weight:900; font-size:18px; display:flex; align-items:center; justify-content:center}
+.cd .w{font-size:13px; font-weight:800; color:var(--sub)}
+.cd .s{font-size:22px; font-weight:800; line-height:1.6; flex:1; display:flex; align-items:center; word-break:keep-all}
+
+/* NG */
+.ngs{display:flex; flex-direction:column; gap:16px; flex:1; justify-content:center}
+.ngr{display:grid; grid-template-columns:1fr 50px 1fr; align-items:center}
+.ngr .x,.ngr .o{border-radius:14px; padding:18px 22px; font-size:18px; font-weight:800}
+.ngr .x{background:var(--ngbg); color:var(--ng)}
+.ngr .x:before{content:"✕ "; }
+.ngr .o{background:var(--navy-soft); color:var(--navy)}
+.ngr .o:before{content:"○ "; }
+.ngr .ar{text-align:center; font-size:24px; color:var(--sub); font-weight:900}
+.ngr .o small{display:block; font-size:12.5px; color:var(--sub); font-weight:600}
+
+/* 地図 */
+.mapw{display:grid; grid-template-columns:500px 1fr; gap:30px; flex:1; min-height:0}
+.jp{width:500px; height:470px; display:block}
+.jp .land path{fill:#e8eff6; stroke:#fff; stroke-width:.8}
+.jp .pl{fill:#2a9d8f; stroke:#fff; stroke-width:1}
+.jp .pg{fill:var(--pop); stroke:#fff; stroke-width:1.5}
+.jp .pk{fill:var(--navy); stroke:#fff; stroke-width:1.8}
+.lg{display:flex; flex-direction:column; gap:10px}
+.lg div{display:flex; align-items:center; gap:10px; font-size:15px; font-weight:700}
+.lg i{width:14px; height:14px; border-radius:50%; flex-shrink:0; border:2px solid #fff; box-shadow:0 0 0 1px var(--line)}
+.mr{display:flex; flex-direction:column; gap:16px; justify-content:center}
+.stat{background:var(--panel); border-radius:14px; padding:14px 18px}
+.stat b{font-size:34px; font-weight:900; color:var(--navy); line-height:1.1}
+.stat b small{font-size:16px; margin-left:2px}
+.stat span{display:block; font-size:14px; font-weight:700; color:var(--sub)}
+/* 一覧 */
+.lst{display:grid; grid-template-columns:1fr 1fr; gap:22px; flex:1; min-height:0}
+.lst table{border-collapse:collapse; width:100%; font-size:12px; line-height:1.3}
+.lst th{font-size:11px; color:var(--sub); font-weight:800; text-align:left; padding:0 6px 5px; border-bottom:2px solid var(--navy)}
+.lst td{padding:3px 6px; height:22px; border-bottom:1px solid var(--line); white-space:nowrap}
+.lst td.co{font-weight:800; max-width:230px; overflow:hidden; text-overflow:ellipsis}
+.lst td.co small{font-weight:500; color:var(--sub); font-size:10.5px; margin-left:6px}
+.lst td.km{text-align:right; font-variant-numeric:tabular-nums; font-weight:800; color:var(--navy)}
+.lst td.far{color:var(--sub); font-weight:600}
+.lst tr.first td{border-top:1px solid #c5d2de}
+/* 標準スタンプ */
+.std{position:absolute; right:12px; top:12px; background:#fff; border-radius:12px; padding:8px 14px; box-shadow:0 6px 18px rgba(20,40,60,.22); text-align:right; line-height:1.25}
+.std s{display:block; font-size:14px; letter-spacing:0; font-weight:700; color:var(--sub); text-decoration-color:var(--ng); text-decoration-thickness:2px}
+.std b{display:block; font-size:22px; font-weight:900; color:var(--pop-ink)}
+/* なぜ×3 */
+.why{display:grid; grid-template-columns:40% 1fr; gap:26px; flex:1; min-height:0}
+.why .ph{height:100%}
+.chain{display:flex; flex-direction:column; gap:0; justify-content:center}
+.st{display:grid; grid-template-columns:62px 1fr; align-items:center; gap:12px; background:var(--panel); border-radius:12px; padding:9px 14px; font-size:15px; font-weight:700; line-height:1.5}
+.st .k{font-size:11px; font-weight:900; color:#fff; background:var(--navy); border-radius:99px; text-align:center; padding:3px 0; letter-spacing:.04em}
+.st small{display:block; font-size:10.5px; font-weight:500; color:var(--sub)}
+.st.top{background:var(--navy-soft); font-size:18px; font-weight:800}
+.st.top .k{background:var(--pop)}
+.st.end{background:#fff; border:2px solid var(--navy)}
+.dn{font-size:11.5px; font-weight:900; color:var(--navy); padding:3px 0 3px 22px}
+.dn:before{content:"▼ "}
+.proof{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+.proof span{font-size:12.5px; font-weight:800; background:var(--pop-soft); color:var(--pop-ink); border-radius:99px; padding:4px 12px}
+/* ネタ10 */
+.neta{display:grid; grid-template-columns:repeat(6,1fr); gap:16px; flex:1; min-height:0}
+.nt{grid-column:span 2; background:var(--panel); border-radius:16px; padding:16px 18px; display:flex; flex-direction:column; gap:6px}
+.neta .nt:nth-child(4){grid-column:2 / span 2}
+.nt .i{font-size:12px; font-weight:800; color:var(--sub)}
+.nt .b{font-size:40px; font-weight:900; color:var(--navy); line-height:1.1; letter-spacing:-.01em}
+.nt .b small{font-size:17px; margin-left:2px}
+.nt .t{font-size:15px; font-weight:800; line-height:1.55; flex:1}
+.nt .s{font-size:10.5px; color:var(--sub); line-height:1.45}
+/* 作り手の思い */
+.omoi{display:grid; grid-template-columns:1fr 1fr; gap:24px; flex:1; min-height:0}
+.om{display:flex; flex-direction:column; border-radius:16px; overflow:hidden; background:var(--panel)}
+.om .ph{height:150px; border-radius:0; box-shadow:none; flex:none}
+.om .in{padding:16px 22px 18px; display:flex; flex-direction:column; gap:10px; flex:1}
+.om .br{font-size:12px; font-weight:800; color:var(--sub); letter-spacing:.06em}
+.om .q{font-size:23px; font-weight:900; line-height:1.45; color:var(--navy)}
+.om .p{font-size:14px; font-weight:700; line-height:1.7}
+.om .s{font-size:10.5px; color:var(--sub); margin-top:auto}
+.lx{margin-top:14px; text-align:center; font-size:17px; font-weight:800; color:var(--navy); background:var(--navy-soft); border-radius:99px; padding:9px 18px; width:max-content; margin-left:auto; margin-right:auto}
+/* 月々 */
+.loan{display:grid; grid-template-columns:1.15fr 70px 0.85fr; align-items:center; gap:10px; flex:1}
+.lb1{background:var(--panel); border-radius:18px; padding:26px 30px; display:flex; flex-direction:column; gap:10px}
+.lb1 .h{font-size:16px; font-weight:800; color:var(--sub)}
+.lb1 .m{font-size:68px; font-weight:900; line-height:1; text-decoration:line-through; text-decoration-color:var(--ng); text-decoration-thickness:5px}
+.lb1 .m small{font-size:24px}
+.lb1 .y{font-size:20px; font-weight:800}
+.lb1 table{border-collapse:collapse; font-size:14px; margin-top:6px}
+.lb1 td{padding:5px 14px 5px 0; border-top:1px solid var(--line)}
+.lb1 td.v{text-align:right; font-weight:800; font-variant-numeric:tabular-nums}
+.loan .arr{font-size:46px; color:var(--pop); font-weight:900; text-align:center}
+.loan .now{background:var(--pop); color:#fff; border-radius:22px; padding:26px 20px; text-align:center; box-shadow:0 8px 22px rgba(242,169,59,.4)}
+.loan .now span{display:block; font-size:18px; font-weight:800}
+.loan .now b{font-size:96px; font-weight:900; line-height:1.05}
+.loan .now em{display:block; font-style:normal; font-size:15px; font-weight:800}
+/* 1日 */
+.day{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; flex:1; min-height:0}
+.dc{background:var(--panel); border-radius:16px; padding:16px 16px 14px; display:flex; flex-direction:column; gap:8px; position:relative}
+.dc .tm{font-size:13px; font-weight:900; color:var(--navy)}
+.dc .ic{font-size:64px; line-height:1.1; margin:6px 0}
+.dc .sn{font-size:18px; font-weight:800; line-height:1.6}
+.dc .eqp{margin-top:auto; font-size:12.5px; font-weight:800; background:#fff; color:var(--navy); border-radius:99px; padding:4px 12px; width:max-content}
+.yr{display:grid; grid-template-columns:auto 1fr 1fr 1fr; gap:14px; align-items:center; margin-top:14px; background:var(--navy-soft); border-radius:16px; padding:12px 20px}
+.yr .l{font-size:15px; font-weight:900; color:var(--navy)}
+.yr div b{font-size:28px; font-weight:900; color:var(--navy)}
+.yr div span{display:block; font-size:11.5px; color:var(--sub); font-weight:700}
+/* 格上げ表 */
+.up{display:grid; grid-template-columns:1fr 1fr; gap:22px; flex:1; min-height:0}
+.up table{border-collapse:collapse; width:100%; font-size:13.5px}
+.up caption{text-align:left; font-size:18px; font-weight:900; padding-bottom:8px}
+.up th{font-size:11.5px; color:var(--sub); text-align:left; padding:0 8px 6px; border-bottom:2px solid var(--navy)}
+.up td{padding:7px 8px; border-bottom:1px solid var(--line); vertical-align:middle; line-height:1.4}
+.up td.k{font-weight:800; white-space:nowrap}
+.up td.mk{color:var(--sub)}
+.up td.lx{font-weight:800; color:var(--navy); background:var(--navy-soft)}
+.up td.lx small{display:block; font-size:11px; color:var(--pop-ink); font-weight:800}
+/* 切り返し */
+.qa{display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:1fr; gap:14px; flex:1; min-height:0}
+.qc{border-radius:14px; border:2px solid var(--line); padding:12px 14px; display:flex; flex-direction:column; gap:8px; background:#fff}
+.qc .q{font-size:15px; font-weight:800; background:var(--panel); border-radius:12px; padding:7px 12px; width:max-content; max-width:100%}
+.qc .q:before{content:"🙋 "}
+.qc .a{font-size:16.5px; font-weight:700; line-height:1.6; color:var(--ink)}
+.qc .a:before{content:"💬 "}
+.qc .s{margin-top:auto; font-size:10px; color:var(--sub)}
+/* 診断 */
+.dg{display:grid; grid-template-columns:1fr 1fr 1.05fr; gap:16px; flex:1; min-height:0}
+.dk{border-radius:16px; padding:22px 22px; display:flex; flex-direction:column; gap:20px}
+.dk.g{background:var(--pop-soft)} .dk.r{background:var(--navy-soft)}
+.dk h3{margin:0; font-size:21px; font-weight:900}
+.dk .c{font-size:17.5px; font-weight:700; display:flex; gap:8px; align-items:flex-start; line-height:1.5}
+.dk .c:before{content:"☐"; font-size:17px; line-height:1.3}
+.dk .to{margin-top:auto; font-size:14px; font-weight:900; text-align:center; background:#fff; border-radius:99px; padding:6px}
+.sr{border:2px solid var(--navy); border-radius:16px; padding:20px 20px; display:flex; flex-direction:column; gap:16px}
+.sr h3{margin:0 0 2px; font-size:19px; font-weight:900; color:var(--navy)}
+.sr .c{display:grid; grid-template-columns:26px 1fr; gap:8px; font-size:15.5px; font-weight:700; line-height:1.45; align-items:start}
+.sr .c i{font-style:normal; width:24px; height:24px; border-radius:50%; background:var(--navy); color:#fff; font-size:12px; font-weight:900; display:flex; align-items:center; justify-content:center}
+.sr .c small{display:block; font-size:12.5px; color:var(--sub); font-weight:600}
+/* 天板深掘り */
+.tb{display:grid; grid-template-columns:1fr 1.15fr; gap:22px; flex:1; min-height:0}
+.cmp{background:var(--panel); border-radius:16px; padding:16px 18px; display:flex; flex-direction:column; gap:10px}
+.cmp h3,.mer h3{margin:0; font-size:15px; font-weight:900; color:var(--navy)}
+.cmp table{border-collapse:collapse; width:100%; font-size:14px}
+.cmp th{font-size:12px; color:var(--sub); padding:4px 6px; text-align:center}
+.cmp td{padding:8px 6px; border-top:1px solid var(--line); text-align:center; font-weight:700}
+.cmp td.k{text-align:left; color:var(--sub); font-size:12.5px}
+.cmp td.same{color:var(--navy); font-weight:900}
+.cmp .pr{font-size:20px; font-weight:900}
+.cmp .pr.big{color:var(--sub)}
+.cmp .pr.lx{color:var(--navy)}
+.cmp .note{font-size:13px; font-weight:800; background:#fff; border-radius:10px; padding:8px 12px; line-height:1.55}
+.mer{display:flex; flex-direction:column; gap:9px}
+.mr2{display:grid; grid-template-columns:30px 1fr; gap:10px; align-items:start; background:#fff; border:2px solid var(--navy-soft); border-radius:12px; padding:9px 12px}
+.mr2 i{font-style:normal; width:28px; height:28px; border-radius:50%; background:var(--navy); color:#fff; font-weight:900; display:flex; align-items:center; justify-content:center; font-size:14px}
+.mr2 b{display:block; font-size:15.5px; font-weight:900; line-height:1.4}
+.mr2 span{display:block; font-size:12.5px; font-weight:600; color:var(--sub); line-height:1.5}
+.def{background:var(--navy); color:#fff; border-radius:12px; padding:10px 14px; font-size:13px; font-weight:700; line-height:1.6}
+.def b{font-size:15px; font-weight:900; margin-right:6px}
+.voice{background:var(--pop-soft); border-radius:12px; padding:9px 14px; font-size:13.5px; font-weight:800; line-height:1.6; color:var(--ink)}
+.voice small{display:block; font-size:10.5px; font-weight:600; color:var(--pop-ink)}
+.src{font-size:11.5px; color:var(--sub); line-height:1.95}
+.src b{color:var(--ink)}
+@media print{body{background:#fff}.draft{display:none}.sl{box-shadow:none; border:1px solid var(--line); page-break-after:always}}
+</style>
+</head><body><div class="wrap">
+
+<div class="draft">2026-10-26版（佐古顧問ご確認用）｜写真はGRAFTEKT・LIXILの公式サイト掲載写真です。ショールームまでの車の時間は目安です。</div>
+
+<!-- 1 表紙 -->
+<section class="sl cover">
+  <img src="assets/mtg-20261030/lifex-kitchen-cover.jpg" alt="" style="object-position:70% 50%">
+  <div class="veil"></div>
+  <div class="in">
+    <div class="k">LIFE X 月2棟目標達成MTG</div>
+    <h1>毎日がちょっと<br><span>楽しくなる</span>キッチン</h1>
+    <div class="sub">LIFE Xのキッチンが<br>「最初から全部入り」な理由</div>
+    <div class="badge0">オプション追加、ほぼ0円</div>
+    <div class="date">2026年10月30日（金）</div>
+  </div>
+</section>
+
+<!-- 2 どっち派 -->
+<section class="sl">
+  <div class="top"><span class="chip pop">つかみ</span><span class="pg">02</span></div>
+  <h2 class="tt">あなたは<span class="hi">どっち派？</span></h2>
+  <div class="vs">
+    <div class="side">
+      <div class="ph"><img src="assets/mtg-20261030/gt-plan01.jpg" alt="" style="object-position:50% 60%"><span class="lb">GRAFTEKT</span></div>
+      <div class="who"><div class="face">😍</div><div><b>見た目でときめく派</b><span>家具みたいなキッチン</span></div></div>
+    </div>
+    <div class="vsb">VS</div>
+    <div class="side">
+      <div class="ph"><img src="assets/mtg-20261030/ri-island.jpg" alt="" style="object-position:50% 55%"><span class="lb">LIXIL リシェル</span></div>
+      <div class="who"><div class="face">💪</div><div><b>ガシガシ使える派</b><span>熱・キズ・汚れに強い天板</span></div></div>
+    </div>
+  </div>
+  <div class="both">LIFE Xは、どちらも標準で選べます</div>
+</section>
+
+<!-- 3 本音 -->
+<section class="sl">
+  <div class="top"><span class="chip">お客様の本音</span><span class="pg">03</span></div>
+  <h2 class="tt">キッチンの「困った」は、この2つ</h2>
+  <div class="honne">
+    <div class="hn">
+      <div class="q">洗い物、正直めんどう…</div>
+      <div><div class="num">8<small>割</small></div><div class="what">の人がそう感じています</div></div>
+      <div class="cap">LIXIL「料理にまつわる家事に関する意識調査」2024年10月・LIXIL公式サイト閲覧者840人</div>
+    </div>
+    <div class="hn">
+      <div class="q">気づいたら予算オーバー…</div>
+      <div><div class="num">約半分<small></small></div><div class="what">の人が経験しています</div></div>
+      <div class="plus">原因の <em>3割近く</em> が「追加オプション」</div>
+      <div class="cap">NEXER×デックス調査 2026年3月・注文住宅を建てた159人</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 全部入り -->
+<section class="sl">
+  <div class="top"><span class="chip pop">ここが山場</span><span class="pg">04</span></div>
+  <h2 class="tt">ぜんぶ、<span class="hi">最初から付いています</span></h2>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:space-evenly">
+  <div class="tags">
+    <div class="tag"><b>リビング側収納</b><div class="yen">256,300<small>円</small></div><div class="ex">税込<span>（税抜 233,000円）</span></div></div>
+    <div class="tag"><b>BOSCH食洗機</b><div class="yen">217,800<small>円</small></div><div class="ex">税込<span>（税抜 198,000円）</span></div></div>
+    <div class="tag"><b>タッチレス水栓</b><div class="yen">84,700<small>円</small></div><div class="ex">税込<span>（税抜 77,000円）</span></div></div>
+    <div class="tag"><b>カップボード</b><div class="yen">220,000<small>円</small></div><div class="ex">税込<span>（税抜 200,000円）</span></div></div>
+  </div>
+  <div class="total">
+    <div class="was">ふつうに付けたら<b>778,800円</b><span class="ex2">税込（税抜 708,000円）</span></div>
+    <div class="arr">➜</div>
+    <div class="now"><span>LIFE Xなら</span><b>0円</b></div>
+  </div>
+  <div class="extra">背面のカップボード（バックセット）まで、ぜんぶ標準</div>
+  </div>
+  <div class="cap" style="text-align:center">GRAFTEKT公式価格表 2026年8月仕様のオプション価格。BOSCHはW450大容量・余熱乾燥、水栓はKVKタッチレス・クロム。カップボードはGRAFTEKT価格表の「カップボードなし」の差額（220,000円）を相当額としています</div>
+</section>
+
+<!-- 月々 -->
+<section class="sl">
+  <div class="top"><span class="chip pop">ここが山場②</span><span class="pg">05</span></div>
+  <h2 class="tt">約78万円を、<span class="hi">月々の返済</span>で考えると</h2>
+  <div class="loan">
+    <div class="lb1">
+      <div class="h">オプションでふつうに付けたら</div>
+      <div class="m">2,272<small>円</small></div>
+      <div class="y">毎月 × 35年</div>
+      <table>
+        <tr><td>オプション合計（税込）</td><td class="v">778,800円</td></tr>
+        <tr><td>35年の返済総額</td><td class="v">約95.4万円</td></tr>
+        <tr><td>うち利息</td><td class="v">約17.5万円</td></tr>
+      </table>
+    </div>
+    <div class="arr">➜</div>
+    <div class="now"><span>LIFE Xなら</span><b>0円</b><em>最初から標準</em></div>
+  </div>
+  <div class="talk" style="margin-top:14px">オプションで足すと、毎月約2,300円を35年。LIFE Xなら、その分はかかりません。</div>
+  <div class="cap">試算：借入778,800円・金利1.2%（全期間固定と仮定）・35年・元利均等・ボーナス返済なし。実際の返済額は金融機関・金利タイプで変わります。</div>
+</section>
+
+<!-- 5 タッチレス -->
+<section class="sl">
+  <div class="top"><span class="chip">便利① タッチレス水栓</span><span class="pg">06</span></div>
+  <h2 class="tt">手をかざすだけで、<span class="hi">水が出る</span></h2>
+  <div class="eq">
+    <div class="ph"><img src="assets/mtg-20261030/gt-faucet.jpg" alt="" style="object-position:62% 50%"><span class="lb">GRAFTEKT 公式写真</span><span class="std"><s>メーカー価格 +84,700円</s><b>LIFE Xは標準</b></span></div>
+    <div class="r">
+      <div class="lab">こんな場面で</div>
+      <div class="scenes">
+        <div class="sc"><i>🍖</i>ハンバーグをこねた手のまま</div>
+        <div class="sc"><i>🐟</i>生肉・魚をさわったあと</div>
+        <div class="sc"><i>🍲</i>両手で鍋を持ったまま</div>
+      </div>
+      <div class="lab">そのまま言える</div>
+      <div class="talk">こねた手で蛇口をさわると、レバーがベタベタになりますよね。手をかざすだけで水が出るので、汚しません。</div>
+      <div class="talk alt">お子さんの手洗いも、さわらずに出せるので清潔です。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 食洗機 -->
+<section class="sl">
+  <div class="top"><span class="chip">便利② 食洗機</span><span class="pg">07</span></div>
+  <h2 class="tt">洗い物の時間が、<span class="hi">家族の時間</span>に変わる</h2>
+  <div class="eq">
+    <div class="ph"><img src="assets/mtg-20261030/gt-bosch.jpg" alt="" style="object-position:50% 50%"><span class="lb">GRAFTEKT×BOSCH（リシェルはPanasonic）</span><span class="std"><s>メーカー価格 +217,800円</s><b>LIFE Xは標準</b></span></div>
+    <div class="r">
+      <div class="lab">こんな場面で</div>
+      <div class="scenes">
+        <div class="sc"><i>🌙</i>夕食後、家族とゆっくりしたい</div>
+        <div class="sc"><i>💼</i>共働きで平日の夜に余裕がない</div>
+        <div class="sc"><i>🎉</i>来客でお皿が山になる日</div>
+      </div>
+      <div class="lab">そのまま言える</div>
+      <div class="talk">食べ終わったら、入れてボタンを押すだけ。<br>洗い物の時間が<span class="num-chip">1日約27分</span>浮きます。<br>1年だと約165時間、まる1週間分です。</div>
+      <div class="cap">パナソニック「手洗いVS食洗機 節約シミュレーション」2〜3人分・1日2回（卓上型との比較）</div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 カップボード -->
+<section class="sl">
+  <div class="top"><span class="chip">便利③ カップボード（バックセット）</span><span class="pg">08</span></div>
+  <h2 class="tt">入居日から、<span class="hi">すっきり片付く</span></h2>
+  <div class="eq">
+    <div class="ph"><img src="assets/mtg-20261030/gt-cupboard.jpg" alt="" style="object-position:50% 50%"><span class="lb">GRAFTEKT 公式写真</span><span class="std"><s>メーカー価格 220,000円相当</s><b>LIFE Xは標準</b></span></div>
+    <div class="r">
+      <div class="lab">こんな場面で</div>
+      <div class="scenes">
+        <div class="sc"><i>🍚</i>炊飯器やレンジの置き場に困る</div>
+        <div class="sc"><i>🗑</i>ゴミ箱が出しっぱなしになる</div>
+        <div class="sc"><i>📏</i>食器棚のサイズが合わない</div>
+      </div>
+      <div class="lab">そのまま言える</div>
+      <div class="talk">後ろの収納も最初から付いています。家電もゴミ箱も、置き場が最初から決まっています。</div>
+      <div class="talk alt">食器棚探しが要りません。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 リビング側収納 -->
+<section class="sl">
+  <div class="top"><span class="chip">便利④ リビング側収納</span><span class="pg">09</span></div>
+  <h2 class="tt">ダイニングテーブルが、<span class="hi">いつも片付く</span></h2>
+  <div class="eq">
+    <div class="ph"><img src="assets/mtg-20261030/gt-dining.jpg" alt="" style="object-position:72% 50%"><span class="lb">リビング側から開く収納</span><span class="std"><s>メーカー価格 +256,300円</s><b>LIFE Xは標準</b></span></div>
+    <div class="r">
+      <div class="lab">こんな場面で</div>
+      <div class="scenes">
+        <div class="sc"><i>📝</i>学校のプリント・文房具</div>
+        <div class="sc"><i>🍳</i>ホットプレート・たこ焼き器</div>
+        <div class="sc"><i>💊</i>薬・爪切りなどの小物</div>
+      </div>
+      <div class="lab">そのまま言える</div>
+      <div class="talk">新築キッチンの後悔<span class="num-chip">1位</span>は「収納が足りない」。LIFE Xは背面とリビング側、収納が2か所あります。</div>
+      <div class="cap">あんしん解体業者認定協会「新築キッチンで後悔したこと」2024年8〜9月・323人</div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 セラミック -->
+<section class="sl">
+  <div class="top"><span class="chip">便利⑤ セラミックトップ（リシェル）</span><span class="pg">10</span></div>
+  <h2 class="tt">焼き物の天板だから、<span class="hi">熱・キズ・汚れに強い</span></h2>
+  <div class="eq">
+    <div class="ph"><img src="assets/mtg-20261030/ri-ceramic.jpg" alt="" style="object-position:40% 50%"><span class="lb">LIXIL公式写真</span></div>
+    <div class="r">
+      <div class="lab">こんな場面で</div>
+      <div class="scenes">
+        <div class="sc"><i>🔥</i>火からおろした鍋の置き場に</div>
+        <div class="sc"><i>🍛</i>カレーや醤油をこぼしても</div>
+        <div class="sc"><i>✨</i>何年たってもきれいに</div>
+      </div>
+      <div class="lab">そのまま言える</div>
+      <div class="talk">カレーや醤油をこぼしても、しみ込みにくい天板です。使っている方の満足度は約<span class="num-chip">96%</span>。</div>
+      <div class="cap">LIXIL調査 2021年5月・リシェル購入者（LIXIL販促資料より）</div>
+    </div>
+  </div>
+</section>
+
+<!-- キッチンの1日 -->
+<section class="sl">
+  <div class="top"><span class="chip">暮らしを想像</span><span class="pg">11</span></div>
+  <h2 class="tt">LIFE Xのキッチンで過ごす、<span class="hi">ある家族の1日</span></h2>
+  <div class="day">
+    <div class="dc"><div class="tm">朝 6:30</div><div class="ic">🍱</div><div class="sn">お弁当のハンバーグ。こねた手のまま、手をかざして水を出す</div><div class="eqp">タッチレス水栓</div></div>
+    <div class="dc"><div class="tm">夕方 17:00</div><div class="ic">📚</div><div class="sn">宿題のプリントと文房具は、ダイニング側の収納からさっと出す</div><div class="eqp">リビング側収納</div></div>
+    <div class="dc"><div class="tm">夜 19:30</div><div class="ic">🛋</div><div class="sn">晩ごはんの食器は入れてボタンを押すだけ。そのまま家族とソファへ</div><div class="eqp">食洗機</div></div>
+    <div class="dc"><div class="tm">休日 12:00</div><div class="ic">🥩</div><div class="sn">ホットプレートで焼肉。家電は背面にしまってあるから、天板は広いまま</div><div class="eqp">カップボード</div></div>
+  </div>
+  <div class="yr">
+    <div class="l">1年で<br>浮くもの</div>
+    <div><b>約165時間</b><span>洗い物の時間（食洗機）</span></div>
+    <div><b>約1/8</b><span>手洗いと比べた水の量（リシェルの食洗機）</span></div>
+    <div><b>年約3万円</b><span>手洗いと比べた光熱水費（リシェルの食洗機）</span></div>
+  </div>
+  <div class="cap">パナソニック「手洗いVS食洗機 節約シミュレーション」／Panasonic NP-45EF1W仕様書（58点・1日2回×365日・都市ガス等の条件つき）。BOSCHは同条件の公表値なし</div>
+</section>
+
+<!-- 作り手の思い -->
+<section class="sl">
+  <div class="top"><span class="chip">作り手の思い</span><span class="pg">12</span></div>
+  <h2 class="tt">2つのキッチンに込められた<span class="hi">思い</span></h2>
+  <div class="omoi">
+    <div class="om">
+      <div class="ph"><img src="assets/mtg-20261030/gt-hero1.jpg" alt="" style="object-position:50% 55%"><span class="lb">GRAFTEKT</span></div>
+      <div class="in">
+        <div class="br">GRAFTEKT（キッチンハウス）</div>
+        <div class="q">魅力あるキッチンを、<br>より多くのみなさんに届けたい</div>
+        <div class="p">合言葉は「ユーザーファースト」。<br>キッチンハウスらしさは100%そのまま、<br>変えたのは値段を下げる「仕組み」だけ。</div>
+        <div class="s">kitchenhouse公式note 2026年8月24日（生みの親・末吉哲雄氏インタビュー）</div>
+      </div>
+    </div>
+    <div class="om">
+      <div class="ph"><img src="assets/mtg-20261030/ri-island.jpg" alt="" style="object-position:50% 50%"><span class="lb">LIXIL リシェル</span></div>
+      <div class="in">
+        <div class="br">LIXIL リシェル</div>
+        <div class="q">触れるたびに心が躍り、<br>使うほどに想いが深まる</div>
+        <div class="p">目指すのは「心も満ちる、おいしい居場所」。<br>100年のやきもの技術でつくる<br>セラミックトップが主役です。</div>
+        <div class="s">LIXIL公式 リシェルページ／LIXILニュースリリース 2024年2月1日</div>
+      </div>
+    </div>
+  </div>
+  <div class="lx">どちらも、LIFE Xの「暮らしを豊かに」と同じ方向を向いたキッチンです</div>
+</section>
+
+<!-- 10 GRAFTEKT なぜ×3 -->
+<section class="sl">
+  <div class="top"><span class="chip">GRAFTEKTってどんなキッチン？</span><span class="pg">13</span></div>
+  <h2 class="tt">オーダーキッチンの品質が、<span class="hi">なぜこの価格で？</span></h2>
+  <div class="why">
+    <div class="ph"><img src="assets/mtg-20261030/gt-plan04.jpg" alt="" style="object-position:40% 50%"><span class="lb">GRAFTEKT 公式写真</span></div>
+    <div class="chain">
+      <div class="st top"><span class="k">特徴</span>家具みたいなキッチンが、標準に入る</div>
+      <div class="dn">なぜ？</div>
+      <div class="st"><span class="k">なぜ①</span>オーダーキッチン「kitchenhouse」の弟分だから</div>
+      <div class="dn">なぜ？</div>
+      <div class="st"><span class="k">なぜ②</span>同じ群馬・藤岡の自社工場で、人気の色・形にしぼって作るから</div>
+      <div class="dn">なぜ？</div>
+      <div class="st end"><span class="k">なぜ③</span><span>11レイアウト・30色、どれを選んでも同じ価格<small>取付・配送込み（条件により別途あり）</small></span></div>
+      <div class="proof"><span>グッドデザイン賞マンションの全69戸に標準採用</span><span>Instagram #グラフテクト 5.1万件</span></div>
+    </div>
+  </div>
+  <div class="cap">graftekt.jp（価格・FAQ）／kitchenhouse公式note 2026年8月24日／TJMデザイン PR TIMES 2026年10月15日（受賞はマンション「ジオ神戸三宮」）</div>
+</section>
+
+<!-- GRAFTEKT 天板 深掘り -->
+<section class="sl">
+  <div class="top"><span class="chip">GRAFTEKTをもっと深く</span><span class="pg">14</span></div>
+  <h2 class="tt">「キッチンハウスの弟分」だから、<span class="hi">何がいいの？</span></h2>
+  <div class="tb">
+    <div class="cmp">
+      <h3>オーダーキッチンと、ここが同じ</h3>
+      <table>
+        <tr><th></th><th>キッチンハウス<br>フルオーダー</th><th>GRAFTEKT</th></tr>
+        <tr><td class="k">価格</td><td><span class="pr big">450万円〜</span></td><td><span class="pr lx">194万円</span><br><small style="font-size:11px;color:var(--sub)">税抜・取付込み</small></td></tr>
+        <tr><td class="k">天板・扉の素材</td><td>エバルト</td><td class="same">同じエバルト</td></tr>
+        <tr><td class="k">つくる工場</td><td>群馬の自社工場</td><td class="same">同じ工場</td></tr>
+      </table>
+      <div class="note">変えたのは「仕組み」だけ。<br>見積・注文をWEBにして、プランをしぼったから、この価格。</div>
+    </div>
+    <div class="mer">
+      <div class="def"><b>エバルトとは？</b>キッチン用につくられた樹脂（メラミン）の素材。木目や石目を細かく印刷し、表面に凹凸をつけて本物のような手ざわりに。キッチンハウスのオリジナル素材で、扉にも天板にも使えます。</div>
+      <h3>天板（エバルト）の良さ</h3>
+      <div class="mr2"><i>1</i><div><b>扉と同じ素材だから、家具みたいにそろう</b><span>天板と扉を同じ柄にしても、あえて変えても、まとまりが出る</span></div></div>
+      <div class="mr2"><i>2</i><div><b>石目・木目・コンクリート調。本物みたいな手ざわり</b><span>印刷とエンボス加工で質感を再現。30色から選べる</span></div></div>
+      <div class="mr2"><i>3</i><div><b>ふだんのお手入れは、拭くだけ</b><span>熱い鍋は鍋敷き、包丁はまな板で。最初にこれだけお伝えする</span></div></div>
+    </div>
+  </div>
+  <div class="talk" style="margin-top:12px">キッチンハウスの450万円クラスのオーダーキッチンでも使われている素材を、同じ群馬の工場で作っています。</div>
+  <div class="cap">kitchenhouse.jp（FAQ：エバルトはキッチンに適した樹脂製素材で扉とワークトップの両方に使用／/semiorder/：オリジナル面材「エバルト」／フルオーダーは450万円〜ご提案／製造は群馬県の自社工場）、graftekt.jp/material（樹脂製素材・メラミンシート、印刷技術とエンボス加工）・/color、GRAFTEKT 194万円は税抜・キッチン＋カップボード＋取付費込み（graftekt.jp）</div>
+</section>
+
+<!-- 11 リシェル なぜ×3 -->
+<section class="sl">
+  <div class="top"><span class="chip">リシェルってどんなキッチン？</span><span class="pg">15</span></div>
+  <h2 class="tt">熱い鍋に強いのは、<span class="hi">なぜ？</span></h2>
+  <div class="why">
+    <div class="ph"><img src="assets/mtg-20261030/ri-island.jpg" alt="" style="object-position:50% 55%"><span class="lb">LIXIL公式写真</span></div>
+    <div class="chain">
+      <div class="st top"><span class="k">特徴</span>熱い鍋を置いても、変形・変色しにくい</div>
+      <div class="dn">なぜ？</div>
+      <div class="st"><span class="k">なぜ①</span>天板が「焼き物」のセラミックだから</div>
+      <div class="dn">なぜ？</div>
+      <div class="st"><span class="k">なぜ②</span>1200度近い高温で焼き固めて作るから</div>
+      <div class="dn">なぜ？</div>
+      <div class="st end"><span class="k">なぜ③</span><span>料理の熱は、焼いた温度よりずっと低いから<small>表面は熱くなるので鍋敷きはおすすめです</small></span></div>
+      <div class="proof"><span>購入者の満足度 約96%</span><span>リフォーム大賞 高級価格帯 6年連続1位</span><span>Instagram #リシェルsi 5.2万件</span><span>RoomClipに部屋写真4,000枚以上</span></div>
+    </div>
+  </div>
+  <div class="cap">LIXIL公式 リシェル「セラミックトップ」ページ／LIXIL販促資料 RI_A4_leaf_20240613（満足度：2021年5月LIXIL調査、受賞：リフォーム産業新聞社「リフォーム大賞」2019〜2024年）</div>
+</section>
+
+<!-- リシェル 天板 深掘り -->
+<section class="sl">
+  <div class="top"><span class="chip">リシェルをもっと深く</span><span class="pg">16</span></div>
+  <h2 class="tt">セラミックって、<span class="hi">暮らしの中で何がいいの？</span></h2>
+  <div class="tb" style="grid-template-columns:1.15fr 1fr">
+    <div class="mer">
+      <h3>メーカーの説明を、暮らしの言葉に</h3>
+      <div class="mr2"><i>熱</i><div><b>火からおろした鍋の置き場に迷わない</b><span>熱で変形・変色しにくい（表面は熱くなるので鍋敷き推奨）</span></div></div>
+      <div class="mr2"><i>汚</i><div><b>カレーも醤油も、サッと拭くだけ</b><span>調味料や薬品が染み込みにくい</span></div></div>
+      <div class="mr2"><i>傷</i><div><b>何年たっても、見た目が変わりにくい</b><span>表面が硬く、金属がこすれてもキズがつきにくい</span></div></div>
+      <div class="note" style="background:var(--navy-soft); border-radius:12px; padding:10px 14px; font-size:13px; font-weight:800; line-height:1.6">20年前、天板は人造大理石かステンレスの2択でした。<br>2015年、LIXILが「やきもの」の天板を世に出しました。</div>
+    </div>
+    <div class="mer">
+      <h3>7〜9年使っている方の声</h3>
+      <div class="voice">「お手入れは本当に晩ご飯を作った後に、アルコールでサッと拭くだけ」<small>愛知県 Tさま（2017年竣工）</small></div>
+      <div class="voice">「9年が経っても、ほぼ新品と変わらない」<small>神奈川県 Oさま（2016年竣工）</small></div>
+      <div class="voice">「カッコ良さが、自然と片付ける癖づけにもつながった気がしています」<small>東京都 Hさま（2019年竣工）</small></div>
+      <div class="voice">「このトップなら、上手にできていないお弁当すら上手に見える」<small>愛知県 Tさま</small></div>
+    </div>
+  </div>
+  <div class="talk" style="margin-top:12px">晩ごはんの後はサッと拭くだけ。9年使っても新品みたい、という方もいる天板です。</div>
+  <div class="cap">LIXIL公式 リシェル「セラミックトップ」ページ（熱・汚れ・キズの説明と注意書き）／LIXIL「セラミックトップ10周年」サイト（オーナーインタビュー、開発者トーク）</div>
+</section>
+
+<!-- メーカー標準 vs LIFE X -->
+<section class="sl">
+  <div class="top"><span class="chip">ここまでのまとめ</span><span class="pg">17</span></div>
+  <h2 class="tt">メーカーの標準から、<span class="hi">LIFE Xはここを格上げ</span></h2>
+  <div class="up">
+    <table>
+      <caption>GRAFTEKT</caption>
+      <tr><th></th><th>メーカーの標準</th><th>LIFE Xの標準</th></tr>
+      <tr><td class="k">食洗機</td><td class="mk">リンナイ（スライドオープン）</td><td class="lx">BOSCH 大容量<small>+217,800円相当</small></td></tr>
+      <tr><td class="k">水栓</td><td class="mk">KVK 混合水栓</td><td class="lx">KVK タッチレス<small>+84,700円相当</small></td></tr>
+      <tr><td class="k">リビング側収納</td><td class="mk">なし</td><td class="lx">ダイニング収納<small>+256,300円相当</small></td></tr>
+      <tr><td class="k">カップボード</td><td class="mk">W1850 込み</td><td class="lx">W1850 込み<small>220,000円相当</small></td></tr>
+    </table>
+    <table>
+      <caption>LIXIL リシェル</caption>
+      <tr><th></th><th>メーカーの基本プラン</th><th>LIFE Xの標準</th></tr>
+      <tr><td class="k">形</td><td class="mk">壁付I型</td><td class="lx">センターキッチン<small>ペニンシュラ・アイランド</small></td></tr>
+      <tr><td class="k">天板</td><td class="mk">人造大理石</td><td class="lx">セラミックトップ</td></tr>
+      <tr><td class="k">食洗機</td><td class="mk">なし</td><td class="lx">Panasonic 食洗機<small>前開き・58点・約9人分</small></td></tr>
+      <tr><td class="k">水栓</td><td class="mk">浄水器内蔵シングルレバー</td><td class="lx">タッチレス ナビッシュ</td></tr>
+      <tr><td class="k">コンロ</td><td class="mk">3口ガスコンロ</td><td class="lx">IH（日立）</td></tr>
+      <tr><td class="k">レンジフード</td><td class="mk">シロッコファン</td><td class="lx">よごれんフード等<small>内部汚れ 従来比 約1/10</small></td></tr>
+    </table>
+  </div>
+  <div class="extra" style="margin-top:10px">タッチレス水栓・IH・よごれんフードは、メーカーでは最上位「プレミアムプラン」（税抜241.3万円〜）の装備です</div>
+  <div class="cap">GRAFTEKT：graftekt.jp・価格表2026年8月仕様（税込）。リシェル：lixil.co.jp/lineup/kitchen/richelle/price/（基本プラン税抜102.8万円〜の仕様、2026年10月26日確認）、LIFE X仕様：水回りプレゼン（2026.03.31）・営業用カタログ（2026.04.13）、よごれんフード：LIXIL資料 a_ki24002</div>
+</section>
+
+<!-- 12 一言カード -->
+<section class="sl">
+  <div class="top"><span class="chip pop">今日から使える</span><span class="pg">18</span></div>
+  <h2 class="tt">迷ったら、<span class="hi">この3つ</span></h2>
+  <div class="cards3">
+    <div class="cd"><div class="n">1</div><div class="w">安心してもらう</div><div class="s">「このキッチン、<br>オプションを足さなくても、<br>これで完成です」</div></div>
+    <div class="cd"><div class="n">2</div><div class="w">お得を伝える</div><div class="s">「メーカーの価格で<br>約78万円分の設備が、<br>最初から付いています」</div></div>
+    <div class="cd"><div class="n">3</div><div class="w">暮らしを想像してもらう</div><div class="s">「洗い物の時間が、<br>1年で1週間分くらい<br>浮きますよ」</div></div>
+  </div>
+</section>
+
+<!-- 12-2 ネタ① -->
+<section class="sl">
+  <div class="top"><span class="chip pop">まだある！</span><span class="pg">19</span></div>
+  <h2 class="tt">思わず言いたくなる<span class="hi">ネタ10</span>　①食洗機・設備</h2>
+  <div class="neta"><div class="nt"><div class="i">食洗機</div><div class="b">3軒に<small>1軒</small></div><div class="t">「食洗機があるご家庭は、まだ3軒に1軒ほどです」</div><div class="s">内閣府「消費動向調査」2026年3月 普及率36.6%（二人以上の世帯）</div></div><div class="nt"><div class="i">BOSCH</div><div class="b">世界<small>No.1</small></div><div class="t">「BOSCHは、食洗機の販売台数で世界一のブランドです」</div><div class="s">Bosch公式（Euromonitor、小売販売台数2016〜2025年）</div></div><div class="nt"><div class="i">お金（リシェル）</div><div class="b">年約<small>3万円</small></div><div class="t">「食洗機を毎日2回使うと、手洗いより年約3万円浮く試算です」</div><div class="s">Panasonic NP-45EF1W仕様書（1日2回・都市ガス等の条件つき）</div></div><div class="nt"><div class="i">格上げ</div><div class="b">BOSCH<small>＋タッチレス</small></div><div class="t">「グラフテクトのメーカー標準から、LIFE Xは食洗機と水栓を格上げしています」</div><div class="s">graftekt.jp（メーカー標準はリンナイ食洗機・KVK混合水栓）</div></div><div class="nt"><div class="i">共働き</div><div class="b"><small>約</small>2.8<small>倍</small></div><div class="t">「今は共働きのご家庭が、専業主婦のご家庭の約2.8倍です」</div><div class="s">JILPT（総務省「労働力調査」）2025年 1,333万世帯／476万世帯</div></div></div>
+</section>
+
+<!-- 12-3 ネタ② -->
+<section class="sl">
+  <div class="top"><span class="chip pop">まだある！</span><span class="pg">20</span></div>
+  <h2 class="tt">思わず言いたくなる<span class="hi">ネタ10</span>　②暮らし・信頼</h2>
+  <div class="neta"><div class="nt"><div class="i">動線</div><div class="b">8<small>往復</small></div><div class="t">「食事の前後でキッチンとダイニングを平均8往復。近いと家族が手伝いやすくなります」</div><div class="s">パナソニック 2024年2月・対面キッチン利用の女性300人</div></div><div class="nt"><div class="i">人気</div><div class="b"><small>理想の</small>2<small>位</small></div><div class="t">「理想のキッチンを聞くと、2位がペニンシュラです」</div><div class="s">NEXER×リノメイド 2025年10月・持ち家500人（1位アイランド）</div></div><div class="nt"><div class="i">お掃除</div><div class="b">15<small>年連続1位</small></div><div class="t">「大掃除でいちばん苦戦する場所は、15年連続でレンジフードです」</div><div class="s">ダスキン 2024年10月・2,080人</div></div><div class="nt"><div class="i">信頼</div><div class="b">50<small>年</small></div><div class="t">「グラフテクトは、50年続くオーダーキッチン「キッチンハウス」の弟分です」</div><div class="s">kitchenhouse.jp/history（1976年設立）</div></div><div class="nt"><div class="i">SNS</div><div class="b">5<small>万件超</small></div><div class="t">「インスタの投稿は、#グラフテクトも#リシェルsiも5万件以上。住んだ方が見せたくなるキッチンです」</div><div class="s">Instagramタグ検索 2026年10月26日：#グラフテクト5.1万・#リシェルsi5.2万（参考：#ラクシーナ4.4万・#ステディア2万）。RoomClip #リシェル4,650枚</div></div></div>
+</section>
+
+<!-- 切り返し -->
+<section class="sl">
+  <div class="top"><span class="chip pop">打ち合わせで使える</span><span class="pg">21</span></div>
+  <h2 class="tt">お客様の「でも…」に、<span class="hi">こう返す</span></h2>
+  <div class="qa">
+    <div class="qc"><div class="q">グラフテクトの天板、キズつかない？</div><div class="a">樹脂の天板なので、包丁はまな板の上で、熱い鍋は鍋敷きに。そのかわり、色柄は30色から選べます。</div><div class="s">graftekt.jp/material（公式の注意書き）</div></div>
+    <div class="qc"><div class="q">セラミックって割れない？</div><div class="a">熱・キズ・汚れに強い焼き物の天板です。ただ、角に硬い物を強くぶつけると欠けることはあります。</div><div class="s">LIXIL公式 セラミックトップページ</div></div>
+    <div class="qc"><div class="q">外国製の食洗機、壊れたら大変？</div><div class="a">BOSCHは食洗機の販売台数で世界一のブランドです。保証もメーカー規定で引渡しから5年あります。</div><div class="s">Bosch公式（Euromonitor）／club-bs.jp（保証は条件あり）</div></div>
+    <div class="qc"><div class="q">コンロはガスがいいなあ</div><div class="a">IHは炎が出ないので、小さなお子さんがいても安心感があります。天板がフラットで、拭き掃除もさっと終わります。</div><div class="s">コンロ火災2,718件のうちガスこんろ2,346件（令和7年版消防白書）</div></div>
+    <div class="qc"><div class="q">レンジフードの掃除が心配</div><div class="a">リシェルのよごれんフードは、フード内部の汚れが従来の約1/10。ファン掃除の手間がぐっと減ります。</div><div class="s">LIXIL資料 a_ki24002（年1回掃除のブーツ型と比べた社内試験）</div></div>
+    <div class="qc"><div class="q">食洗機、結局使わなくなりそう</div><div class="a">入れてボタンを押すだけで、1日約27分浮きます。持っているご家庭はまだ3軒に1軒。最初から付いているのは大きいです。</div><div class="s">パナソニック試算（年165時間）／内閣府 消費動向調査2026年3月</div></div>
+  </div>
+</section>
+
+<!-- 診断 -->
+<section class="sl">
+  <div class="top"><span class="chip">迷ったら</span><span class="pg">22</span></div>
+  <h2 class="tt">どっちが合う？<span class="hi">チェックしてショールームへ</span></h2>
+  <div class="dg">
+    <div class="dk g">
+      <h3>GRAFTEKTが合うかも</h3>
+      <div class="c">キッチンを家具のように見せたい</div>
+      <div class="c">LDKの色をそろえたい（30色）</div>
+      <div class="c">BOSCHの食洗機にひかれる</div>
+      <div class="c">11のレイアウトから選びたい</div>
+      <div class="to">チェックが多ければ GRAFTEKT</div>
+    </div>
+    <div class="dk r">
+      <h3>リシェルが合うかも</h3>
+      <div class="c">熱い鍋や油料理をよく扱う</div>
+      <div class="c">天板の汚れ・キズが気になる</div>
+      <div class="c">フード掃除をラクにしたい</div>
+      <div class="c">石のような重厚感が好き</div>
+      <div class="to">チェックが多ければ リシェル</div>
+    </div>
+    <div class="sr">
+      <h3>ショールームで見る5か所</h3>
+      <div class="c"><i>1</i><span>天板をさわる<small>樹脂とセラミックの手ざわりの違い</small></span></div>
+      <div class="c"><i>2</i><span>引出しを開け閉めする<small>重さ・音・奥まで出るか</small></span></div>
+      <div class="c"><i>3</i><span>食洗機にわが家の食器を想像する<small>BOSCH 62点／Panasonic 58点</small></span></div>
+      <div class="c"><i>4</i><span>立って高さを確かめる<small>GRAFTEKT 86cm／リシェル 85cm</small></span></div>
+      <div class="c"><i>5</i><span>扉と床の色をスマホで撮る<small>家で間取りと並べて見られる</small></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 ショールーム地図 -->
+<section class="sl">
+  <div class="top"><span class="chip">見に行こう</span><span class="pg">23</span></div>
+  <h2 class="tt">お近くの<span class="hi">ショールーム</span>、ここにあります</h2>
+  <div class="body">
+    <div class="mapw">
+      <svg viewBox="0 0 500 470" class="jp" role="img" aria-label="加盟店様とショールームの位置"><g class="land"><path d="M340.4,114.8L342.2,116.9L344.4,118.6L347.3,119.6L348.6,121.2L346.6,122.0L344.0,124.2L342.0,123.5L338.5,122.4L336.3,123.4L336.9,122.3L335.8,120.8L334.3,121.3L332.6,124.0L330.2,124.8L329.4,127.7L328.9,130.6L325.0,131.7L323.7,134.1L322.5,133.6L320.4,133.5L319.2,131.9L318.0,127.9L318.7,125.0L320.3,121.5L321.6,120.7L321.8,116.6L320.3,113.2L319.1,111.4L316.5,110.8L313.4,107.8L313.0,106.3L312.9,103.8L314.3,102.1L314.6,98.3L314.5,95.1L316.6,93.1L319.2,93.1L320.2,92.0L322.2,90.4L323.7,89.2L324.7,90.5L326.3,88.5L327.6,87.0L329.0,85.0L331.8,83.2L331.5,82.1L330.3,80.3L329.2,78.5L326.7,76.1L327.5,73.5L329.2,72.6L330.7,71.1L333.2,73.2L334.9,74.7L338.2,76.0L339.2,76.9L341.7,76.4L343.3,75.5L344.4,77.2L348.0,78.5L350.5,77.3L351.2,76.8L353.9,73.6L354.8,70.7L353.8,67.9L353.0,66.0L353.6,63.8L352.7,61.8L352.4,59.5L353.5,57.5L356.4,56.4L357.5,55.9L359.3,54.3L360.4,51.3L360.7,48.7L360.5,44.5L360.3,41.2L361.2,40.0L362.8,37.3L363.3,33.4L363.9,30.6L363.2,25.3L361.6,20.1L358.8,14.5L358.3,12.8L359.3,10.5L360.2,8.5L360.0,6.7L360.3,4.8L361.8,6.5L365.1,5.7L366.2,3.4L367.6,2.5L368.5,3.8L370.5,6.3L376.4,12.0L379.5,15.3L382.0,17.3L382.7,18.3L383.9,20.4L385.3,22.8L386.3,24.4L389.3,28.2L391.9,30.3L397.1,35.2L400.5,37.7L403.2,39.3L405.0,41.3L412.1,44.5L417.7,46.3L422.5,47.1L425.1,47.9L426.5,48.4L427.3,50.6L429.2,52.6L434.0,53.7L438.9,53.6L441.0,52.8L443.1,50.9L445.5,48.6L448.3,46.2L450.2,44.9L453.1,41.2L453.9,40.3L454.6,42.7L454.1,44.0L452.0,46.7L451.5,49.0L450.5,50.2L448.6,52.8L447.8,55.6L446.9,57.4L449.3,62.6L451.5,63.5L451.4,66.1L452.4,70.3L455.2,73.7L458.8,73.1L460.5,71.8L461.8,70.6L464.5,70.4L465.6,71.6L463.5,72.4L461.5,72.9L460.4,74.1L459.1,76.3L458.1,77.6L456.1,77.1L452.9,77.6L450.4,78.8L448.4,78.9L448.3,80.4L447.5,81.7L445.9,83.1L444.6,83.7L442.3,83.6L441.6,81.6L439.7,81.5L438.3,83.8L437.1,85.1L433.4,84.7L431.4,84.9L429.4,83.6L425.8,83.2L422.2,84.7L420.1,85.7L416.6,88.2L410.6,93.7L405.9,99.4L402.9,105.1L402.4,107.3L403.1,108.7L402.7,111.5L402.5,113.4L400.8,116.2L398.7,115.7L396.3,113.1L393.7,111.3L391.1,110.7L388.5,109.5L385.7,108.4L383.0,107.1L380.3,105.3L377.7,104.1L374.9,101.6L373.3,100.4L369.9,99.6L368.4,98.2L364.4,95.6L363.1,95.3L359.7,94.9L354.5,96.7L351.0,99.0L348.6,100.6L345.8,102.9L344.2,104.8L342.4,104.9L341.5,103.0L340.8,100.7L338.1,98.5L336.9,96.8L334.7,96.4L332.1,96.3L328.6,98.1L326.8,101.0L325.5,104.8L326.0,107.3L328.3,108.0L330.1,109.4L333.2,111.6L335.9,111.1L337.8,111.5L338.8,112.6L340.4,114.8ZM301.8,130.3L302.8,130.8L301.8,130.3ZM343.0,4.3L344.2,5.3L345.5,5.7L345.3,9.0L344.0,8.8L343.7,5.7ZM467.8,68.4L469.4,69.6L467.8,68.4ZM474.1,65.6L475.2,67.1L473.8,68.4L472.8,66.1ZM478.6,62.3L479.7,63.4L478.6,62.3ZM530.1,9.9L531.6,8.7L533.7,5.7L535.5,4.5L536.8,3.5L537.9,2.0L540.8,1.5L543.1,1.9L544.0,3.6L542.4,5.5L543.6,6.8L541.7,8.5L540.2,8.4L536.0,9.1L534.1,10.8L531.6,11.8L528.9,12.4L527.5,13.3L523.9,15.6L520.9,19.1L519.3,20.1L517.6,20.3L514.9,20.3L513.4,19.0L511.7,20.4L512.3,21.9L511.2,23.9L509.1,25.2L507.8,26.2L505.2,28.1L502.8,30.8L501.3,32.8L498.8,33.0L496.7,34.6L495.6,36.9L493.7,37.4L492.5,36.6L493.4,34.5L494.9,33.4L494.4,31.8L496.7,32.0L497.6,30.3L499.3,30.3L501.1,27.4L499.6,26.6L498.6,25.5L499.4,24.6L500.9,25.7L503.0,23.3L505.8,22.0L509.2,19.3L509.5,16.5L511.0,16.5L513.5,16.2L514.3,13.6L515.5,12.9L517.0,12.2L518.4,11.2L518.2,9.7L517.6,7.5L519.5,5.2L520.6,6.9L523.2,10.9L528.8,10.4ZM307.3,107.1L306.2,109.5L305.7,112.4L303.9,112.8L303.9,110.7L304.2,108.2L307.3,107.1ZM350.1,16.0L348.1,14.8L347.2,12.4L348.6,11.0L352.1,13.3L351.1,15.5ZM491.8,54.8L493.4,56.1L491.8,57.4L490.5,58.9L488.0,59.7L486.7,60.1L486.2,56.9L489.0,56.4L491.5,55.4ZM467.9,48.1L467.0,50.2L465.9,50.7L465.3,52.8L461.5,54.3L459.8,58.2L458.9,61.7L457.8,59.7L455.9,59.1L455.6,56.2L457.3,54.4L458.8,53.4L460.4,52.2L462.5,50.3L464.3,49.1L465.3,46.4L467.0,44.7L469.3,42.2L470.8,39.0L472.8,36.0L474.7,34.8L476.8,36.6L479.3,37.8L481.8,37.8L484.2,39.0L482.2,39.1L479.8,40.9L478.2,42.3L473.3,42.9L471.7,45.3L469.3,46.3L467.9,48.1Z"/><path d="M335.2,148.7L336.0,151.5L338.8,152.2L340.3,150.1L340.3,148.5L342.3,147.2L343.8,149.1L345.5,149.8L346.5,151.2L348.7,149.7L349.9,146.4L350.3,143.2L350.4,140.5L348.9,138.4L347.4,139.2L346.7,140.3L345.3,141.2L342.5,141.5L339.6,142.3L338.3,142.9L337.9,140.8L338.3,139.0L338.7,136.8L339.5,134.6L341.6,131.0L342.3,130.2L343.9,131.5L346.8,132.5L350.1,135.5L352.3,135.7L355.4,133.5L355.1,135.6L353.7,142.1L354.0,143.9L353.7,149.5L354.4,155.3L355.6,159.8L357.4,162.2L360.3,163.9L361.2,164.6L358.9,165.9L357.9,167.6L356.0,167.0L354.2,167.6L352.8,168.5L351.3,167.8L348.9,169.2L346.4,170.1L345.8,171.0L343.3,172.0L342.7,171.1L343.1,168.3L343.5,166.4L343.5,165.4L341.1,165.5L340.8,162.7L339.0,163.5L337.8,164.6L335.9,165.4L334.9,166.2L333.5,165.1L330.6,164.6L329.6,163.8L328.3,163.5L327.0,165.0L324.9,164.9L323.1,164.9L321.2,165.1L320.2,164.1L318.5,165.2L316.9,165.3L317.0,161.4L315.2,160.4L316.0,158.4L318.0,156.6L320.1,154.5L322.1,155.0L324.3,154.1L325.3,152.5L326.6,147.1L326.6,144.1L325.8,143.3L327.0,141.3L327.2,139.1L328.8,140.1L330.9,141.1L332.6,139.9L334.5,141.0L334.5,143.8L335.2,148.7Z"/><path d="M368.7,184.5L368.5,188.6L368.5,189.9L369.9,190.3L370.1,192.7L371.0,193.6L369.5,195.0L368.1,195.8L370.1,195.6L370.2,196.7L368.0,198.2L368.1,199.6L367.7,200.5L368.5,201.0L367.3,201.9L367.0,203.3L367.9,203.7L367.2,205.2L365.2,206.1L366.1,208.1L364.4,207.8L364.6,209.4L363.6,210.1L362.7,211.1L362.2,212.2L360.8,211.6L360.1,210.8L359.9,212.0L358.2,211.2L356.3,211.0L356.3,212.0L355.3,215.0L354.9,217.0L354.3,218.4L352.8,217.0L350.7,217.6L349.3,219.1L348.4,217.9L347.1,217.0L347.6,215.6L346.2,214.6L343.5,215.0L341.6,213.3L339.4,212.2L338.1,212.4L338.4,210.4L338.8,208.6L338.0,207.1L338.1,205.7L337.9,204.7L338.5,203.4L336.7,202.3L336.1,201.4L335.1,198.6L335.7,196.7L336.7,195.7L337.2,194.3L337.6,192.8L338.7,191.7L339.4,189.0L338.7,187.3L340.0,185.7L338.4,184.7L338.8,182.8L339.9,183.2L340.5,181.9L340.0,180.3L339.9,176.7L340.5,174.9L340.3,173.6L341.5,171.9L342.7,171.1L343.3,172.0L345.8,171.0L346.4,170.1L348.9,169.2L351.3,167.8L352.8,168.5L354.2,167.6L356.0,167.0L357.9,167.6L358.9,165.9L361.2,164.6L362.2,166.3L363.5,168.8L364.6,170.4L364.3,172.2L365.7,173.8L365.2,174.9L365.0,176.7L366.1,177.5L367.6,178.7L368.2,180.7L368.2,182.6L368.7,184.5Z"/><path d="M332.8,230.9L333.4,228.9L334.2,228.4L333.0,227.2L333.2,224.8L332.1,222.7L333.5,222.7L334.3,220.9L334.6,218.6L333.7,216.6L332.4,214.6L332.7,215.1L334.8,214.6L335.9,213.6L337.1,212.6L338.1,212.4L339.4,212.2L341.6,213.3L343.5,215.0L346.2,214.6L347.6,215.6L347.1,217.0L348.4,217.9L349.3,219.1L350.7,217.6L352.8,217.0L354.3,218.4L354.9,217.0L355.3,215.0L356.3,212.0L356.3,211.0L358.2,211.2L359.9,212.0L359.2,214.9L359.0,216.5L356.9,218.4L358.2,219.4L357.3,220.1L356.3,220.9L355.1,222.4L357.3,222.8L356.2,224.3L357.4,225.7L356.2,226.9L356.6,228.8L355.9,229.8L356.6,230.8L357.6,232.9L356.3,233.1L354.6,231.9L354.1,230.2L352.9,229.8L348.3,231.0L347.2,231.5L346.1,230.8L345.4,231.8L345.2,232.4L345.8,232.8L345.0,234.1L344.6,234.2L344.6,234.0L342.8,237.4L341.9,241.5L341.9,245.8L342.1,246.3L340.2,246.5L340.1,249.5L338.1,249.2L337.2,249.8L335.7,248.2L336.0,246.5L334.4,246.2L333.7,245.9L330.9,246.2L330.4,245.6L328.9,244.2L325.6,243.7L325.8,242.8L325.5,241.2L328.0,241.2L329.1,239.7L329.8,238.4L330.4,238.0L330.4,235.7L330.5,234.3L331.0,233.3L332.0,232.6L332.8,230.9ZM358.7,234.2L358.3,233.1L358.7,234.2Z"/><path d="M320.0,191.9L320.0,188.0L319.7,186.3L319.0,184.5L316.6,182.3L314.0,183.6L312.4,183.5L311.8,182.1L310.7,179.2L312.5,179.8L314.6,180.0L316.5,177.7L317.8,175.0L318.1,173.2L318.9,170.6L318.8,167.2L316.9,165.3L318.5,165.2L320.2,164.1L321.2,165.1L323.1,164.9L324.9,164.9L327.0,165.0L328.3,163.5L329.6,163.8L330.6,164.6L333.5,165.1L334.9,166.2L335.9,165.4L337.8,164.6L339.0,163.5L340.8,162.7L341.1,165.5L343.5,165.4L343.5,166.4L343.1,168.3L342.7,171.1L342.4,171.7L341.1,172.9L340.9,174.1L340.7,175.9L340.2,177.6L340.2,181.5L340.8,183.1L339.5,182.7L338.3,183.3L339.8,185.3L339.3,186.3L338.6,188.3L339.3,190.2L338.3,191.7L337.0,192.9L336.6,195.1L336.2,196.1L335.8,197.6L336.3,200.0L336.7,201.5L338.0,203.0L337.9,204.3L339.0,205.3L337.5,206.5L337.6,208.3L338.9,209.4L337.9,211.0L338.1,212.4L337.1,212.6L335.9,213.6L334.8,214.6L332.7,215.1L332.4,214.6L331.0,214.3L330.2,213.6L329.9,211.9L328.0,211.2L326.8,209.9L325.1,209.9L323.6,209.9L322.3,209.5L320.1,208.0L318.7,207.1L317.2,207.3L315.2,207.2L316.1,205.2L316.3,203.1L316.7,201.8L318.0,201.0L319.0,198.0L320.0,191.9Z"/><path d="M315.3,232.9L313.2,231.8L311.0,230.0L311.2,227.9L310.7,226.8L308.2,226.2L307.0,225.3L310.9,219.6L312.1,218.2L312.8,216.4L314.4,211.5L315.4,207.9L315.2,207.2L318.3,207.6L320.1,206.7L321.1,208.4L323.6,209.1L324.3,210.2L326.4,210.6L327.6,210.2L329.4,211.3L329.9,212.8L331.0,214.1L332.1,214.2L332.4,214.6L333.7,216.6L334.6,218.6L334.3,220.9L333.5,222.7L332.1,222.7L333.2,224.8L333.0,227.2L334.2,228.4L333.4,228.9L332.8,230.9L331.7,231.8L331.7,233.1L331.1,233.9L330.5,234.9L330.7,237.2L329.8,238.4L329.8,238.8L329.1,240.4L327.2,241.3L325.5,242.1L325.6,243.7L325.4,244.1L325.3,245.6L325.1,248.3L325.6,249.4L322.8,250.8L321.7,251.5L320.7,250.7L318.3,250.7L317.4,248.9L316.6,248.9L314.8,248.6L313.0,248.4L311.7,248.4L311.3,247.6L310.4,247.9L309.1,246.4L309.3,245.1L309.7,243.1L310.7,241.2L310.7,239.4L310.4,237.6L312.3,236.8L314.9,235.6L315.9,234.2L315.3,232.9Z"/><path d="M325.6,243.7L328.9,244.2L330.4,245.6L330.9,246.2L333.7,245.9L334.4,246.2L336.0,246.5L335.7,248.2L337.2,249.8L338.1,249.2L340.1,249.5L340.2,246.5L342.1,246.3L342.4,247.4L343.5,248.6L344.1,251.0L344.1,253.0L344.4,255.3L344.8,260.1L344.8,263.0L344.2,267.3L343.8,271.4L343.2,274.2L343.0,275.9L339.5,277.8L338.6,279.5L334.9,278.1L333.3,276.7L332.8,277.6L332.9,279.3L331.9,280.0L330.2,281.6L328.1,280.2L326.7,278.4L325.7,277.0L325.2,277.1L324.9,276.2L324.9,274.7L323.5,274.1L322.9,272.7L321.1,271.1L319.1,270.4L317.5,270.1L314.2,270.7L314.0,272.2L312.2,272.7L310.3,273.2L309.2,273.9L307.8,274.8L304.8,275.9L303.1,277.8L302.1,277.7L300.9,277.3L299.0,276.9L299.5,276.2L299.3,274.5L299.2,272.1L299.5,269.8L298.1,268.4L297.6,266.8L299.1,264.0L298.1,261.8L299.5,260.5L301.4,260.2L303.2,260.3L304.7,258.4L305.7,258.6L307.5,258.9L307.6,257.7L307.0,255.5L308.4,253.6L309.0,252.3L309.8,250.8L311.9,248.8L311.1,247.6L310.4,247.9L311.0,247.6L311.3,247.9L311.9,248.7L313.5,249.2L315.5,249.1L316.9,248.5L317.5,249.5L319.4,250.4L321.1,251.4L322.2,250.9L324.5,251.1L326.1,249.1L325.3,247.0L325.6,245.1L325.6,243.7Z"/><path d="M336.7,284.8L336.1,286.3L334.5,290.7L334.0,293.3L333.6,296.2L332.7,297.6L333.1,301.3L335.2,307.2L336.1,309.1L335.1,309.2L335.7,309.7L337.3,311.2L340.1,315.1L339.2,315.2L336.8,312.9L334.9,311.6L333.7,310.0L331.5,308.3L330.1,309.3L328.1,310.0L326.7,311.2L324.7,311.6L322.7,311.9L321.7,311.1L319.3,310.1L317.3,309.0L316.8,307.9L315.6,307.3L313.9,305.1L312.8,304.0L312.5,304.4L311.6,303.5L311.0,302.3L310.6,300.5L311.6,300.4L314.0,299.3L314.7,297.0L316.0,297.4L317.6,295.7L318.8,294.9L320.1,294.7L321.3,294.2L322.5,294.2L323.6,293.1L324.3,290.9L324.7,288.2L324.4,287.0L324.1,285.4L325.9,284.2L325.1,283.0L325.2,281.7L324.9,279.7L324.8,277.9L325.2,277.1L326.7,277.9L327.8,278.7L329.6,280.7L331.6,280.5L332.1,279.5L333.5,279.0L332.9,277.0L334.1,278.0L338.6,279.5L338.8,280.1L337.1,283.0L336.7,284.8Z"/><path d="M306.7,297.9L304.9,298.3L303.7,296.8L302.5,295.2L303.4,292.7L303.7,291.1L305.4,288.5L304.0,287.7L302.1,287.3L301.7,284.8L302.5,283.1L302.6,281.9L303.4,280.5L302.2,279.1L303.1,277.8L304.8,275.9L307.8,274.8L309.2,273.9L310.3,273.2L312.2,272.7L314.0,272.2L314.2,270.7L317.5,270.1L319.1,270.4L321.1,271.1L322.9,272.7L323.5,274.1L324.9,274.7L324.9,276.2L325.2,277.1L324.8,277.9L324.9,279.7L325.2,281.7L325.1,283.0L325.9,284.2L324.1,285.4L324.4,287.0L324.7,288.2L324.3,290.9L323.6,293.1L322.5,294.2L321.3,294.2L320.1,294.7L318.8,294.9L317.6,295.7L316.0,297.4L314.7,297.0L314.0,299.3L311.6,300.4L310.6,300.5L310.0,300.3L309.8,299.5L308.1,298.4L306.7,297.9Z"/><path d="M296.4,297.9L295.6,299.3L294.7,302.1L293.5,302.7L292.1,303.0L291.4,304.1L289.2,304.8L288.8,305.7L286.9,305.8L285.8,307.4L285.2,307.2L284.1,305.4L284.1,303.1L283.0,302.6L283.9,301.4L283.3,299.6L284.3,297.3L284.1,293.8L282.2,293.5L280.9,293.9L280.2,294.1L279.3,293.5L277.8,291.2L278.6,289.2L279.0,287.4L281.1,286.1L280.9,284.8L284.0,283.8L285.4,283.3L286.2,282.5L288.5,282.6L290.1,280.6L291.0,279.1L292.6,278.4L292.4,275.6L295.4,274.3L296.2,273.5L297.7,275.3L299.0,276.9L299.9,276.9L301.8,277.3L303.1,277.8L302.2,279.1L303.4,280.5L302.6,281.9L302.5,283.1L301.7,284.8L302.1,287.3L304.0,287.7L305.4,288.5L303.7,291.1L303.4,292.7L302.5,295.2L303.7,296.8L304.9,298.3L306.7,297.9L307.4,298.4L308.8,298.2L310.0,300.3L308.8,300.9L308.0,300.2L305.7,300.8L304.4,300.6L302.8,299.3L301.4,299.3L299.3,299.1L297.4,298.1Z"/><path d="M296.4,297.9L297.5,298.2L300.0,299.0L302.2,298.8L303.7,300.0L305.6,300.8L306.7,300.8L308.6,300.6L310.0,300.3L310.6,300.5L311.0,302.3L311.6,303.5L312.5,304.4L312.8,304.0L313.6,305.6L314.3,307.9L315.3,309.7L315.7,312.4L315.8,313.9L314.6,313.4L313.2,313.2L311.8,314.0L310.8,313.4L309.0,314.0L308.2,314.0L306.9,314.8L306.9,314.0L305.7,314.0L303.1,314.5L302.8,314.2L301.5,313.5L300.3,312.1L297.3,311.7L295.7,311.2L293.7,310.2L292.0,311.0L291.7,311.6L290.4,312.1L289.2,311.2L287.8,310.4L286.2,309.8L285.8,307.9L285.8,307.4L286.9,305.8L288.8,305.7L289.2,304.8L291.4,304.1L292.1,303.0L293.5,302.7L294.7,302.1L295.6,299.3L296.4,297.9Z"/><path d="M321.4,321.3L321.0,319.5L319.0,318.1L317.6,317.1L317.0,318.4L315.3,318.5L315.6,317.4L316.4,316.3L315.7,314.9L315.4,314.4L315.8,313.9L315.9,311.2L314.7,308.9L313.8,307.0L313.2,305.0L312.8,304.0L313.9,305.1L315.6,307.3L316.8,307.9L317.3,309.0L319.3,310.1L321.7,311.1L322.7,311.9L324.7,311.6L326.7,311.2L328.1,310.0L330.1,309.3L331.5,308.3L333.7,310.0L334.9,311.6L336.8,312.9L339.2,315.2L340.1,315.1L340.4,316.6L337.8,316.6L335.4,316.8L332.7,318.8L330.4,321.4L329.0,323.8L328.4,326.7L329.0,329.2L328.8,331.3L327.3,333.3L326.0,334.1L325.0,334.5L323.3,334.8L321.9,335.0L321.0,336.4L319.5,337.3L317.5,340.0L317.0,341.5L314.6,342.0L313.8,340.8L313.3,339.7L314.8,339.2L314.2,337.9L314.3,335.7L313.9,334.0L315.1,331.9L314.8,329.8L314.0,327.9L314.6,326.9L316.1,326.5L316.5,324.8L317.6,323.9L319.1,324.0L320.0,321.5L321.4,321.3ZM317.4,317.4L317.8,317.5Z"/><path d="M313.2,317.9L312.2,318.9L312.4,320.9L313.6,321.7L312.6,321.7L311.0,321.8L309.7,320.0L308.3,319.1L307.4,318.7L306.2,318.9L304.9,318.9L304.9,319.4L305.4,320.6L305.5,321.8L305.0,322.8L304.8,322.0L303.5,320.5L299.9,319.4L298.7,318.9L297.7,318.3L296.5,317.4L295.8,316.8L293.7,315.8L293.4,315.3L292.2,312.4L291.7,311.6L293.1,310.7L294.4,310.8L296.6,311.2L298.0,312.0L301.1,312.7L302.5,313.6L302.7,314.3L304.3,314.4L306.9,313.1L306.2,314.4L307.4,314.6L308.3,314.0L309.5,313.4L310.8,313.4L312.6,312.8L314.0,312.9L314.9,313.5L315.8,313.9L315.7,314.9L315.9,315.8L316.2,317.0L315.3,318.5L314.7,318.4L313.2,317.9ZM312.6,318.9L312.7,319.1ZM313.6,319.8L313.6,320.2L313.6,319.8ZM302.3,345.3L304.1,346.2L304.5,348.6L303.2,349.0L302.0,345.8ZM306.6,366.9L307.4,368.7L305.4,369.2L305.6,367.1ZM308.4,374.0L308.9,375.6L307.8,374.6ZM300.2,357.1L300.2,358.4L299.5,360.0L299.6,358.1ZM296.8,363.1L297.1,364.3L296.4,363.8ZM312.4,397.8L313.8,399.0L314.9,399.7L312.9,400.4L312.3,399.6L312.4,397.8Z"/><path d="M311.2,323.2L309.2,324.0L310.1,324.5L310.1,326.0L309.1,326.6L309.8,328.0L309.4,329.3L310.6,330.4L311.5,332.1L310.0,332.7L310.1,334.4L308.7,332.8L307.8,330.8L307.1,329.3L304.2,328.7L301.5,328.9L299.1,329.8L296.9,331.3L296.6,334.2L296.0,334.4L293.8,333.3L293.2,332.8L292.5,331.4L293.0,329.8L293.6,328.4L293.2,326.2L291.0,326.1L292.8,323.8L294.3,322.6L295.3,322.5L296.0,321.3L296.5,319.2L296.5,317.4L297.2,317.6L298.6,318.3L299.5,319.7L302.3,319.8L303.7,320.9L304.7,322.3L305.4,322.8L305.0,320.7L306.0,320.5L304.5,319.4L305.7,319.2L306.4,318.4L308.1,319.1L309.4,319.8L310.4,321.0L311.5,321.5L312.6,321.7L311.2,323.2Z"/><path d="M296.5,244.2L298.6,243.2L298.8,243.3L301.1,241.4L303.5,238.2L304.0,236.7L304.5,234.3L306.0,227.5L307.0,225.3L308.2,226.2L310.7,226.8L311.2,227.9L311.0,230.0L313.2,231.8L315.3,232.9L315.9,233.6L315.4,234.6L312.9,236.8L311.2,236.4L310.5,237.9L310.2,240.5L309.8,241.8L309.3,243.5L309.0,245.6L310.4,247.9L310.4,247.9L311.4,248.1L311.6,249.0L309.8,251.3L309.1,252.8L307.1,254.2L307.6,256.4L308.0,258.6L306.9,258.6L305.2,258.9L303.6,258.7L302.5,260.1L299.7,260.7L298.8,260.6L299.0,262.6L298.5,265.8L297.3,267.5L299.2,269.0L299.1,271.3L299.7,273.6L299.6,275.3L299.0,276.9L297.7,276.1L296.5,274.1L295.6,273.1L293.9,275.5L292.2,276.5L291.4,278.4L291.3,280.3L288.8,281.5L287.8,283.1L285.8,283.3L285.4,283.3L284.7,282.2L285.0,280.6L285.2,279.4L283.5,278.0L282.6,277.1L282.1,274.3L280.9,274.1L277.7,275.1L277.0,276.7L275.8,277.4L275.3,279.5L274.6,279.4L272.7,279.6L270.7,279.7L269.5,281.2L267.8,280.5L268.2,279.4L268.1,278.0L264.6,277.7L264.7,279.0L263.2,281.4L261.7,282.4L261.5,281.5L261.0,279.0L260.7,277.3L259.8,276.8L258.5,275.6L263.0,274.0L265.5,273.0L269.0,270.9L270.3,269.4L273.6,269.4L276.8,266.8L280.1,263.9L282.7,261.5L284.5,258.2L286.2,256.5L287.2,254.4L288.5,249.8L290.4,247.7L294.8,244.8ZM280.5,232.4L280.6,234.6L279.2,238.3L278.8,240.4L282.2,240.3L280.5,244.8L279.7,246.3L276.9,248.4L274.1,249.3L273.2,248.2L275.1,246.7L275.5,244.9L276.4,243.7L274.7,242.9L273.7,243.5L273.7,241.0L274.6,239.1L276.0,236.8L278.0,235.0L279.2,233.1ZM299.6,227.3L298.8,228.3Z"/><path d="M260.2,290.1L258.9,291.3L258.5,293.4L257.3,294.5L256.1,294.4L254.4,293.3L252.8,293.4L251.6,292.5L250.5,293.4L249.4,292.1L247.8,292.9L245.2,293.7L243.9,295.0L242.9,297.1L241.8,298.2L241.7,296.8L240.0,295.4L238.3,295.8L238.0,297.3L237.1,297.4L237.5,295.6L236.8,293.2L237.4,291.4L237.8,289.3L237.1,287.6L237.7,285.9L237.6,284.5L238.2,283.2L238.6,281.8L239.2,279.2L239.5,277.7L242.0,276.1L243.7,276.3L243.1,276.9L242.0,279.1L244.1,281.6L245.0,282.3L247.0,282.7L250.4,282.7L252.4,281.1L253.0,278.8L253.2,277.5L256.2,276.2L258.5,275.6L259.8,276.8L260.7,277.3L261.0,279.0L261.5,281.5L261.7,282.4L261.4,284.4L261.3,287.0L260.8,288.2L259.8,289.7Z"/><path d="M243.7,276.3L242.0,276.1L239.5,277.7L239.2,279.2L238.6,281.8L238.2,283.2L237.6,284.5L237.7,285.9L237.1,287.6L237.8,289.3L237.4,291.4L236.8,293.2L237.5,295.6L237.1,297.4L237.7,298.4L238.4,299.4L236.5,301.8L236.4,303.6L236.2,304.2L234.1,304.8L233.3,303.8L232.3,302.9L230.0,302.3L228.8,302.5L227.4,301.4L225.8,301.4L225.5,299.6L223.8,298.3L223.3,297.5L224.6,295.7L226.5,294.7L228.8,291.9L231.9,287.5L234.0,284.5L236.3,279.3L236.0,277.3L236.5,275.0L235.3,273.1L235.5,270.6L234.3,268.3L234.9,267.1L235.3,264.7L238.5,262.1L240.5,262.3L244.6,260.1L246.1,259.0L247.9,258.7L250.7,258.0L251.0,259.4L251.2,260.8L248.9,261.2L248.4,263.0L248.7,265.1L246.3,265.3L244.5,267.0L243.1,268.5L242.2,268.6L241.0,267.7L239.2,270.5L239.7,271.4L238.8,272.6L240.6,272.2L241.7,273.5L242.9,271.7L243.8,272.6L243.7,276.3ZM243.3,269.6L243.7,271.0L242.2,271.2L240.7,271.1L242.2,270.5L243.3,269.6Z"/><path d="M216.1,307.0L217.9,303.7L219.4,302.0L220.4,300.1L221.7,298.7L223.3,297.5L224.7,298.7L225.4,300.5L226.9,301.6L228.2,302.5L229.5,301.9L231.0,302.0L232.6,303.5L233.7,304.7L235.2,304.3L236.2,304.2L235.7,305.4L236.0,307.2L237.0,308.6L237.7,309.8L237.4,311.9L236.2,313.0L235.0,313.6L233.6,313.4L232.2,313.4L230.3,313.7L228.7,314.0L226.6,313.5L225.3,314.1L225.3,315.5L224.1,317.9L223.0,317.1L221.7,316.4L220.4,317.5L221.5,319.9L219.9,320.6L219.1,321.6L217.7,322.0L216.1,322.9L214.9,323.9L214.2,326.0L213.3,325.8L211.7,326.5L211.2,327.5L209.4,327.9L205.2,326.8L204.0,324.6L203.3,323.9L203.1,322.3L204.0,321.1L204.8,321.3L205.3,323.3L206.9,322.5L207.6,323.2L207.0,323.5L208.4,323.2L210.4,323.1L209.2,321.4L210.3,320.6L211.7,321.9L212.3,320.6L213.4,320.3L212.3,318.4L213.7,319.5L214.8,319.4L216.2,317.8L216.0,316.5L216.5,315.5L217.8,314.8L217.7,317.2L218.8,317.8L219.5,315.7L219.6,314.0L217.3,311.0L216.9,309.0L216.1,307.0Z"/><path d="M283.5,311.1L285.7,309.8L286.2,309.8L288.4,311.3L289.6,311.5L290.9,311.6L291.7,311.6L292.7,314.3L293.4,315.3L295.0,316.7L296.5,317.4L296.1,318.0L296.4,320.9L296.0,321.7L294.8,322.6L293.8,323.5L291.5,324.6L291.0,326.1L289.6,326.4L288.0,326.9L286.3,327.3L284.8,326.3L283.2,326.3L282.5,324.7L281.2,326.8L280.7,328.9L280.8,330.5L281.0,332.5L279.5,333.2L277.9,332.5L277.1,330.3L276.3,328.5L275.0,329.2L274.1,327.3L274.3,325.9L274.0,324.4L274.3,321.2L273.5,318.9L273.3,318.3L272.7,317.4L273.6,314.8L272.5,313.3L275.0,311.4L276.9,308.3L278.5,308.3L279.3,310.0L280.4,309.8L282.8,309.6Z"/><path d="M261.7,282.4L263.2,281.4L264.7,279.0L264.6,277.7L268.1,278.0L268.2,279.4L267.8,280.5L269.5,281.2L270.7,279.7L272.7,279.6L274.6,279.4L275.3,279.5L275.8,277.4L277.0,276.7L277.7,275.1L280.9,274.1L282.1,274.3L282.6,277.1L283.5,278.0L285.2,279.4L285.0,280.6L284.7,282.2L285.4,283.3L284.0,283.8L280.9,284.8L281.1,286.1L279.0,287.4L278.6,289.2L277.8,291.2L279.3,293.5L280.2,294.1L280.9,293.9L282.2,293.5L284.1,293.8L284.3,297.3L283.3,299.6L283.9,301.4L283.0,302.6L284.1,303.1L284.1,305.4L285.2,307.2L285.8,307.4L286.5,308.9L286.2,309.8L284.5,311.0L283.5,311.1L281.8,309.5L280.2,310.3L279.3,308.9L277.1,307.9L276.0,310.1L274.1,310.6L272.8,313.9L272.3,316.2L273.3,318.3L272.9,318.7L272.4,320.6L271.8,321.5L271.3,322.9L271.7,324.2L270.8,325.2L271.3,327.1L270.0,328.1L268.4,328.7L267.6,329.3L266.0,330.1L265.1,330.7L263.6,332.1L262.7,332.3L260.3,331.5L259.0,331.9L257.1,331.9L256.6,329.7L257.0,328.8L257.6,326.8L258.1,326.4L258.0,325.1L258.4,323.7L257.8,321.9L256.9,320.4L255.4,319.5L255.3,317.1L254.0,314.6L252.3,313.4L250.7,312.9L251.4,312.0L253.5,310.0L254.7,309.7L256.2,307.5L257.6,306.1L257.8,304.4L256.4,303.4L257.4,301.7L257.2,299.9L258.8,297.7L258.1,295.3L257.3,294.5L257.8,293.6L259.0,292.3L259.4,290.6L260.2,290.1L259.8,289.0L261.5,288.0L261.7,285.7L261.5,282.8Z"/><path d="M230.4,330.7L228.8,331.3L227.6,331.9L226.7,331.2L227.0,329.7L227.7,327.8L228.3,326.5L227.8,324.6L226.9,323.0L226.5,321.0L225.2,320.7L224.4,319.1L224.1,317.9L225.3,315.5L225.3,314.1L226.6,313.5L228.7,314.0L230.3,313.7L232.2,313.4L233.6,313.4L235.0,313.6L236.2,313.0L237.4,311.9L237.7,309.8L237.0,308.6L236.0,307.2L235.7,305.4L236.2,304.2L236.4,303.6L236.5,301.8L238.4,299.4L237.7,298.4L237.1,297.4L238.4,296.3L239.6,295.9L241.3,296.1L241.3,298.1L242.5,297.8L243.7,296.4L244.8,294.7L246.4,292.3L248.9,292.5L250.4,292.2L251.5,293.0L252.4,292.4L254.1,293.8L255.4,293.4L257.3,294.5L257.3,295.0L258.8,296.0L258.3,298.0L257.5,300.9L256.8,302.0L256.9,304.1L258.0,305.0L257.4,306.7L255.6,308.9L254.5,310.3L252.1,310.4L250.8,312.0L251.5,313.5L252.5,314.1L254.8,316.0L256.2,318.1L256.0,320.2L257.0,321.5L258.4,322.6L257.4,324.6L258.5,326.2L257.0,326.1L257.7,328.3L256.6,329.7L255.4,330.3L253.2,331.7L252.2,331.2L251.1,330.7L250.2,329.6L248.1,330.7L246.9,330.3L244.8,329.6L243.6,328.0L242.4,326.7L242.2,325.3L241.4,326.1L239.7,326.8L237.2,327.2L236.1,327.9L234.9,330.1L234.3,331.6L234.1,332.9L234.1,334.6L232.6,334.1L231.3,332.3L230.4,330.7Z"/><path d="M273.3,318.3L273.5,318.9L274.3,321.2L274.0,324.4L274.3,325.9L274.1,327.3L275.0,329.2L276.3,328.5L277.1,330.3L277.9,332.5L279.5,333.2L281.0,332.5L280.8,330.5L280.7,328.9L281.2,326.8L282.5,324.7L283.2,326.3L284.8,326.3L286.3,327.3L288.0,326.9L289.6,326.4L291.0,326.1L293.2,326.2L293.6,328.4L293.0,329.8L292.5,331.4L293.2,332.8L293.8,333.3L296.0,334.4L295.1,335.8L295.6,337.9L295.8,339.9L296.9,341.0L295.2,343.6L294.6,345.8L293.2,346.9L292.0,349.3L290.7,350.8L289.2,351.7L287.4,350.4L286.5,348.5L287.4,346.5L287.3,343.8L286.9,342.6L287.4,340.9L287.6,338.1L290.4,337.9L289.2,335.9L286.8,334.7L283.9,335.2L281.9,335.7L280.4,338.0L281.3,338.5L279.8,340.1L276.8,341.6L276.1,343.2L275.2,346.3L273.4,347.8L272.7,350.3L272.6,351.7L267.0,349.6L262.7,350.2L257.5,349.2L254.7,349.3L254.9,348.4L254.5,346.1L254.7,344.9L255.7,344.0L257.3,343.7L258.7,342.3L259.5,340.7L260.3,338.4L262.1,336.4L262.7,335.5L263.2,334.2L263.6,332.1L264.5,331.9L265.7,330.8L266.9,329.8L268.2,329.3L269.3,327.8L270.7,327.2L271.6,326.2L270.8,324.4L271.8,323.1L271.3,322.2L271.6,320.7L273.0,319.5L273.3,318.3Z"/><path d="M239.4,336.8L238.5,336.3L238.1,337.3L237.2,338.4L236.6,338.2L236.0,336.3L234.8,335.1L234.1,334.6L234.4,332.5L234.2,331.2L235.5,329.3L236.7,327.1L238.2,327.5L240.4,326.8L241.4,325.7L241.8,325.9L243.6,327.2L244.5,329.6L245.7,329.5L247.2,330.8L249.4,329.6L251.1,330.2L252.2,330.6L253.0,331.2L254.1,331.2L256.6,329.7L256.4,331.1L257.1,332.6L259.2,331.6L260.7,331.5L263.6,332.1L262.9,333.3L262.6,334.8L262.1,335.7L261.2,337.1L260.2,339.9L259.1,340.7L257.5,343.0L256.7,343.6L255.0,344.5L254.9,345.7L254.4,346.9L254.7,349.3L251.0,350.2L246.0,352.0L243.4,352.4L243.9,350.0L245.0,350.5L246.0,350.0L247.6,349.2L248.3,348.5L250.0,347.6L250.2,347.7L250.5,346.2L249.9,345.0L248.0,344.8L244.6,346.1L243.0,346.0L241.7,344.6L241.6,343.0L242.0,340.3L241.6,342.1L240.4,344.9L240.9,347.0L241.7,348.5L239.6,347.8L238.4,346.5L239.0,344.1L237.9,342.6L237.8,340.0L239.1,338.7L239.4,336.8Z"/><path d="M231.5,345.2L230.2,348.6L231.0,350.6L232.3,351.7L233.8,352.8L235.2,353.5L237.5,354.6L239.0,355.5L240.2,356.4L240.1,358.2L239.9,359.5L239.5,361.4L238.3,362.8L236.4,362.5L238.1,362.2L237.0,361.6L234.3,359.9L233.6,361.7L231.5,361.6L229.8,363.5L228.0,363.9L226.0,364.2L224.7,365.1L224.7,367.7L223.5,368.1L223.2,369.7L223.9,370.7L223.1,371.9L222.1,373.4L220.5,374.5L218.7,376.0L217.3,379.7L216.6,379.3L215.5,379.2L214.3,377.2L213.4,374.9L213.8,375.3L214.5,374.5L214.0,373.8L214.7,373.5L216.3,373.1L217.4,371.7L217.1,370.6L217.6,369.7L219.6,370.1L219.7,367.2L219.9,365.5L220.0,364.1L220.4,362.8L220.3,360.8L219.3,359.3L219.5,357.0L222.3,356.5L222.3,354.0L221.1,353.4L219.7,353.1L218.3,352.3L218.6,351.1L219.2,349.3L218.4,348.4L218.4,347.3L217.8,346.7L217.6,345.6L220.1,343.0L219.6,342.2L221.6,342.6L223.4,343.5L226.3,341.9L227.1,340.4L227.7,338.9L227.6,337.3L228.2,336.1L228.1,334.7L227.4,332.9L227.6,331.9L228.8,331.3L230.4,330.7L230.6,330.9L232.1,333.1L233.4,334.2L234.1,334.6L235.1,335.6L236.1,337.2L236.6,338.2L234.8,338.2L233.6,339.1L233.0,342.8Z"/><path d="M215.6,342.8L214.5,343.0L213.9,340.6L213.4,339.5L212.8,338.2L212.8,337.1L213.1,333.7L213.1,330.6L212.8,330.2L211.8,328.6L211.2,327.5L212.2,325.8L213.6,326.3L214.9,325.1L215.7,322.3L217.2,323.2L218.8,322.1L219.7,322.0L221.2,320.3L220.8,317.7L220.8,316.6L222.1,316.9L224.1,317.9L224.4,319.1L225.2,320.7L226.5,321.0L226.9,323.0L227.8,324.6L228.3,326.5L227.7,327.8L227.0,329.7L226.7,331.2L227.6,331.9L228.6,333.7L228.4,335.0L228.2,336.8L227.6,338.3L227.6,339.4L226.5,340.8L224.2,343.1L222.1,343.1L220.4,342.6L219.2,342.9L218.9,345.2L217.6,345.6L217.2,343.9L215.7,343.6Z"/><path d="M211.2,327.5L212.2,328.9L213.5,329.9L212.7,331.8L213.4,333.8L212.4,337.4L212.5,338.5L213.6,340.2L213.6,342.4L215.4,342.4L215.6,342.8L216.3,344.1L217.7,344.7L217.6,345.6L218.4,347.3L217.7,348.3L216.3,347.2L215.0,346.8L214.2,348.2L211.4,347.8L210.3,346.9L210.1,346.0L210.2,344.6L209.9,344.3L208.9,342.7L208.6,342.0L207.6,341.0L207.2,339.8L206.4,340.9L205.0,341.2L203.9,339.1L201.3,338.6L201.1,337.5L201.2,336.8L201.6,335.8L200.4,334.6L199.1,334.4L197.5,333.2L196.9,333.8L196.3,332.0L195.7,330.6L193.4,331.3L191.9,330.3L190.1,329.1L189.7,326.4L190.3,325.7L192.9,325.9L192.7,323.5L191.5,321.8L189.9,322.6L188.6,320.9L188.5,319.1L188.3,317.9L190.7,317.7L192.4,316.8L193.8,315.3L196.6,314.4L198.6,315.3L199.5,316.7L198.1,318.2L197.1,319.8L196.9,320.9L197.7,321.3L200.7,322.8L201.6,321.1L203.1,319.9L204.0,321.1L203.3,321.4L203.7,323.3L203.6,324.4L205.0,325.5L208.0,327.2L209.9,327.6Z"/><path d="M202.5,349.9L202.0,348.6L203.0,347.9L203.3,347.4L202.8,345.6L202.3,343.7L203.0,342.3L203.5,341.2L202.3,341.0L200.7,338.1L200.2,337.6L201.1,337.5L201.3,338.6L203.9,339.1L205.0,341.2L206.4,340.9L207.2,339.8L207.6,341.0L208.6,342.0L208.9,342.7L209.9,344.3L210.2,344.6L210.1,346.0L209.7,345.9L209.5,347.8L208.7,348.5L208.5,350.3L208.2,351.5L208.7,352.6L208.4,353.6L208.8,354.7L209.0,356.0L208.5,357.3L208.5,358.2L208.2,358.6L205.1,359.7L204.0,359.3L202.9,359.8L202.0,359.9L200.3,360.2L198.8,360.7L198.1,360.8L196.9,361.0L195.0,362.2L194.0,360.9L194.2,360.7L197.4,359.7L198.8,358.2L200.0,357.0L201.1,354.9L202.3,354.3L203.2,352.8L203.0,350.9L202.5,349.9ZM201.9,353.4L202.5,353.4L202.3,354.1ZM197.8,356.9L197.8,357.4L197.5,357.1L197.5,356.6L197.8,356.9Z"/><path d="M199.4,347.9L198.1,348.5L196.3,349.5L195.2,350.3L192.8,350.9L191.0,350.3L189.3,349.3L187.8,348.0L186.8,347.5L185.6,346.5L183.9,346.3L181.1,346.3L179.6,346.0L178.3,346.7L177.3,346.4L176.1,347.7L174.9,347.3L174.5,347.8L174.7,346.1L173.8,344.7L172.7,343.5L173.8,341.9L173.3,340.1L173.0,338.4L174.3,337.5L175.2,336.0L176.7,334.2L176.0,332.7L176.5,331.2L177.3,331.6L179.4,330.0L179.0,327.2L178.5,325.8L177.5,324.8L176.8,322.4L176.6,320.7L175.7,319.3L177.8,318.8L180.0,317.5L181.5,317.9L182.7,317.8L184.9,317.9L186.5,317.5L188.3,317.9L188.5,319.1L188.6,320.9L189.9,322.6L191.5,321.8L192.7,323.5L192.9,325.9L190.3,325.7L189.7,326.4L190.1,329.1L191.9,330.3L193.4,331.3L195.7,330.6L196.3,332.0L196.9,333.8L197.5,333.2L199.1,334.4L200.4,334.6L201.6,335.8L201.2,336.8L201.1,337.5L200.3,338.1L200.4,340.0L202.9,340.8L202.3,341.8L202.8,342.8L202.4,345.2L202.9,346.3L203.0,347.6L202.0,348.6L201.1,348.7L199.4,347.9ZM197.2,349.1L197.2,350.1L197.2,349.1ZM178.7,349.4L178.0,350.1ZM189.0,358.1L189.5,360.1L190.2,361.4L188.4,363.2L186.6,364.5L184.9,364.9L184.0,363.8L183.3,362.9L183.4,360.7L185.1,359.6L187.1,355.9L188.8,353.9L191.3,351.6L192.3,352.5L191.5,354.2L189.2,357.5Z"/><path d="M218.4,347.3L218.4,348.4L219.2,349.3L218.6,351.1L218.3,352.3L219.7,353.1L221.1,353.4L222.3,354.0L222.3,356.5L219.5,357.0L219.3,359.3L220.3,360.8L220.4,362.8L220.0,364.1L219.9,365.5L219.7,367.2L219.6,370.1L217.6,369.7L217.1,370.6L214.9,371.8L214.7,373.5L214.0,373.8L213.4,374.0L213.8,375.3L213.4,374.9L213.4,374.5L212.0,374.2L210.0,374.0L208.1,374.8L207.3,372.3L207.8,371.2L206.8,370.5L206.4,369.1L205.6,368.7L206.3,367.2L207.0,366.0L207.9,365.0L208.1,363.9L209.7,364.2L209.9,362.5L208.4,360.4L208.2,358.6L208.5,358.2L208.5,357.3L209.0,356.0L208.8,354.7L208.4,353.6L208.7,352.6L208.2,351.5L208.5,350.3L208.7,348.5L209.5,347.8L209.7,345.9L210.1,346.0L210.8,347.6L213.6,348.3L214.4,347.5L215.3,347.3L216.7,348.0L218.4,347.3Z"/><path d="M194.0,360.9L195.0,362.2L196.9,361.0L198.1,360.8L198.8,360.7L200.3,360.2L202.0,359.9L202.9,359.8L204.0,359.3L205.1,359.7L208.2,358.6L208.5,359.5L208.9,362.2L210.1,363.8L208.8,363.7L207.8,364.3L207.4,365.8L206.5,366.4L205.5,367.7L205.6,368.7L206.9,369.9L207.4,370.6L207.8,372.5L207.0,374.1L209.0,374.0L210.8,374.6L212.4,373.9L213.4,374.9L213.4,376.6L214.5,377.9L216.1,379.7L217.3,379.7L216.3,381.4L215.5,382.2L215.2,383.4L215.5,384.4L214.5,385.4L211.3,387.8L210.1,387.6L208.8,387.3L206.3,386.6L204.0,385.3L202.9,384.8L201.5,383.7L201.3,382.0L200.4,380.8L201.6,380.0L199.6,378.3L197.7,377.9L196.7,376.9L195.5,374.9L193.1,374.7L193.6,373.0L193.7,372.3L195.1,370.9L196.0,369.9L194.3,368.6L194.5,367.3L195.0,366.5L196.5,365.8L195.2,364.7L194.7,363.7L193.9,362.5L193.5,361.1ZM212.3,387.5L212.7,388.3ZM214.0,373.8L213.8,375.3L214.1,374.8L214.0,373.8ZM217.1,370.6L217.4,371.7L216.3,373.1L214.7,373.5L214.3,372.5L216.6,371.2Z"/><path d="M175.7,319.3L176.6,320.7L176.8,322.4L177.5,324.8L178.5,325.8L179.0,327.2L179.4,330.0L177.3,331.6L176.5,331.2L175.8,331.3L174.5,332.4L172.9,332.2L170.5,333.4L170.5,331.6L170.1,330.7L169.4,329.9L167.7,329.4L166.3,328.9L165.5,327.8L164.4,329.1L162.9,330.2L161.7,330.8L160.3,329.0L158.1,328.7L156.1,327.9L155.3,330.7L153.8,331.5L153.8,332.7L151.3,333.0L151.4,335.0L149.9,335.7L148.3,336.6L147.7,337.1L145.5,336.8L144.4,336.5L144.9,334.1L145.5,332.4L145.5,331.4L148.4,328.7L149.2,327.0L148.8,325.1L146.7,323.7L146.0,322.1L147.1,321.3L147.6,322.9L150.4,324.3L151.8,323.9L152.9,323.0L155.9,321.9L158.0,322.7L161.2,322.9L164.6,322.5L166.3,322.1L170.6,321.9L173.2,321.0L173.8,320.0L175.7,319.3Z"/><path d="M147.1,321.3L146.0,322.1L146.7,323.7L148.8,325.1L149.2,327.0L148.4,328.7L145.5,331.4L145.5,332.4L144.9,334.1L144.4,336.5L144.0,336.2L141.8,336.7L139.6,336.5L138.2,335.6L136.6,336.9L135.0,339.2L132.9,340.5L131.6,342.0L133.6,343.7L132.5,344.3L130.3,344.8L127.4,345.3L125.7,345.8L125.0,345.3L123.6,345.3L122.6,345.4L121.7,345.8L119.9,347.5L119.6,348.9L118.5,351.3L118.4,352.9L116.9,353.9L117.3,355.9L117.0,355.9L116.0,356.9L115.9,358.7L114.5,361.1L112.5,361.0L110.4,360.7L109.8,359.5L110.1,358.1L108.3,357.2L108.1,353.8L108.6,352.6L107.8,351.0L107.7,349.1L109.0,349.3L111.7,348.1L112.1,346.7L114.2,345.5L115.3,344.4L118.4,340.5L120.4,339.1L122.4,337.7L123.5,336.9L125.4,334.7L126.2,332.9L127.4,332.0L129.0,330.8L131.2,329.9L132.4,328.3L132.6,326.1L132.9,324.5L134.7,324.6L135.9,323.5L137.6,322.6L140.0,322.4L141.6,321.6L143.3,320.4L144.5,321.0L148.4,320.5L147.1,321.3ZM143.8,303.1L143.4,305.4L143.8,303.1ZM142.7,302.4L142.0,303.4L142.2,304.8L141.1,304.0L140.8,305.1L139.6,304.4L141.2,303.2L142.3,302.8ZM141.0,305.9L142.0,306.7L141.0,305.9ZM148.0,295.8L150.5,298.1L150.3,300.3L149.5,301.5L146.9,301.5L145.6,300.1L145.4,299.0L146.9,296.4L148.0,295.8Z"/><path d="M166.2,351.3L167.0,351.7L167.0,353.1L165.3,354.2L164.6,356.5L162.9,355.9L161.4,356.1L160.7,356.6L158.8,355.6L157.9,354.7L155.5,356.0L153.3,356.8L152.3,355.5L152.5,355.1L151.7,352.2L150.7,351.2L150.7,349.2L150.3,347.1L150.5,345.0L149.3,343.5L148.5,340.3L149.1,338.8L147.7,337.1L148.2,335.8L150.5,335.2L150.9,333.2L152.3,333.4L154.3,333.1L155.0,331.2L155.6,328.9L157.4,328.2L158.9,328.5L161.5,330.1L162.3,330.8L162.8,329.6L164.6,328.3L166.7,327.7L167.1,329.1L168.5,329.1L169.8,330.0L169.8,331.3L170.2,332.7L171.8,332.8L173.4,332.6L174.8,331.9L176.0,331.0L176.5,331.2L176.0,332.7L176.7,334.2L175.2,336.0L174.3,337.5L173.0,338.4L173.3,340.1L173.8,341.9L172.7,343.5L173.8,344.7L174.7,346.1L174.5,347.8L173.4,347.4L172.1,348.0L171.1,350.1L170.7,351.1L169.1,352.1L167.7,352.1L166.2,351.3Z"/><path d="M126.6,359.6L125.2,359.3L124.4,359.6L123.7,360.3L121.6,362.5L121.8,364.2L120.5,364.3L119.5,363.6L118.7,361.1L117.4,359.5L117.3,357.6L117.3,355.9L116.8,354.5L117.7,353.7L118.8,352.2L119.1,350.0L118.9,348.2L121.2,346.9L121.7,345.1L123.1,346.0L124.0,345.6L125.3,345.5L126.6,344.6L129.2,345.5L131.3,343.9L132.7,343.8L133.4,342.8L132.7,341.1L134.6,340.2L136.1,338.0L137.4,336.0L138.6,336.2L140.9,335.8L142.4,336.3L144.4,336.5L145.5,336.8L147.7,337.1L149.1,338.8L148.5,340.3L149.3,343.5L150.5,345.0L150.3,347.1L150.7,349.2L150.7,351.2L151.7,352.2L152.5,355.1L152.3,355.5L151.9,357.3L150.2,359.1L148.2,358.5L147.1,357.3L144.2,358.6L143.0,359.7L141.2,360.4L139.2,360.5L137.2,361.4L135.9,361.0L134.9,363.2L132.8,364.1L130.8,363.8L129.0,363.8L128.1,360.8L128.7,359.4L128.7,359.2L128.4,359.5ZM137.1,364.6L136.3,366.1L137.1,364.6ZM129.1,364.5L128.8,365.8L129.4,366.8L129.7,368.2L128.2,368.0L126.9,367.5L128.3,365.0ZM132.7,364.4L132.5,365.4L132.7,364.4ZM133.6,364.4L135.0,365.2L133.0,365.1ZM144.3,360.8L143.0,362.7L143.4,361.1ZM144.8,359.4L145.8,361.3L144.9,361.3L144.8,359.4ZM146.4,357.8L146.3,359.3L145.2,358.5ZM124.0,360.9L124.2,362.1L122.5,363.4L122.9,361.7ZM125.3,365.2L125.4,366.1ZM127.7,361.4L128.0,364.4L128.0,365.9L126.8,366.5L126.2,364.6L125.4,362.5L126.9,363.8L126.8,362.5L127.7,361.4ZM139.2,361.8L138.8,363.4L137.9,364.3L138.1,362.5L139.2,361.8Z"/><path d="M88.0,372.3L87.7,373.6L88.0,372.3ZM91.9,369.6L90.1,371.2L87.9,372.2L88.1,370.3L87.2,368.5L86.8,366.5L88.3,365.5L88.2,363.2L87.4,360.9L87.7,359.4L89.7,359.3L90.5,358.0L89.1,357.8L90.3,357.6L92.1,357.3L93.5,357.7L95.0,358.7L97.1,358.4L99.1,357.7L100.9,356.8L101.9,355.3L102.0,353.9L104.3,352.3L104.4,351.1L105.7,349.6L107.7,349.1L107.9,350.1L108.4,351.5L108.1,352.9L107.1,354.8L110.3,356.9L109.6,358.7L109.8,360.1L111.3,361.2L113.7,360.2L115.1,359.7L115.3,357.7L115.9,356.4L117.3,355.9L117.6,356.7L117.5,358.4L118.8,360.4L118.9,362.2L120.7,363.8L121.8,364.2L121.6,364.6L121.8,366.6L121.1,369.6L120.6,371.5L118.8,372.3L119.6,375.4L118.5,376.2L118.6,374.9L117.0,373.4L114.5,372.5L113.5,371.9L112.0,370.7L111.0,371.1L109.8,371.6L111.0,369.8L108.2,369.0L106.0,369.6L105.0,370.1L103.3,370.8L102.3,369.7L101.3,371.3L100.2,370.1L99.0,372.0L97.0,373.3L95.2,372.7L94.2,372.3L93.3,370.8L91.9,369.6ZM93.5,345.4L93.7,346.6ZM96.4,356.9L94.6,357.8L95.7,357.3ZM120.9,376.7L121.0,377.9L120.9,376.7ZM121.5,371.9L122.8,372.7L124.6,373.7L125.6,373.3L127.1,373.0L125.1,373.6L124.9,375.1L122.9,374.0L121.1,374.9L120.0,374.0L120.9,372.2Z"/><path d="M181.7,367.7L181.5,370.3L182.8,371.3L183.9,372.4L183.9,374.0L182.7,375.7L184.1,376.1L183.5,377.1L182.0,377.7L180.7,379.2L178.3,381.1L176.1,382.9L174.4,384.3L174.1,385.3L172.3,385.2L171.3,384.9L170.3,383.3L170.6,381.8L169.5,380.6L167.9,379.8L167.8,378.0L167.1,376.4L166.0,376.1L164.8,377.3L163.1,377.1L161.7,376.1L159.9,376.1L158.1,375.4L157.7,374.7L158.1,373.0L158.1,371.1L158.2,370.5L159.7,369.3L161.7,368.5L163.6,367.4L164.3,367.2L166.3,368.5L167.6,367.1L169.8,366.6L170.2,365.5L171.6,365.3L175.0,365.4L176.8,365.9L177.4,364.8L177.5,364.2L178.9,363.7L180.8,363.3L181.2,364.4L182.6,365.1L181.6,367.1ZM182.6,363.2L181.3,364.4L182.6,363.2Z"/><path d="M177.5,364.2L177.3,365.5L175.8,365.4L172.9,365.0L170.7,365.3L169.7,366.0L169.4,367.1L166.8,368.2L165.7,368.5L163.8,367.7L161.8,367.9L160.9,368.3L159.2,370.2L158.2,370.5L156.5,369.9L156.1,369.5L157.3,365.6L156.7,363.4L158.9,363.2L159.5,362.0L160.3,361.3L162.0,360.5L161.8,360.1L162.7,359.5L163.6,359.5L164.5,358.4L166.3,359.5L168.3,359.7L170.4,358.8L170.5,360.5L172.8,359.8L172.5,361.2L174.1,362.0L176.2,362.7L177.5,364.2ZM159.0,358.1L158.9,359.6L159.0,358.1ZM171.4,355.5L170.0,355.6L172.1,354.0L174.0,353.3L175.3,353.7L175.0,355.3L174.7,356.6L173.1,355.9L172.2,355.6ZM168.5,354.9L168.4,356.2L168.1,355.0ZM165.5,355.6L165.7,356.5Z"/><path d="M131.9,370.3L130.5,372.4L131.3,371.1ZM133.0,377.1L133.6,375.5L133.6,373.9L135.0,372.5L136.1,370.3L138.8,368.8L139.0,367.2L140.2,367.2L141.5,368.9L143.5,372.8L145.7,372.7L148.0,371.5L150.0,371.6L151.3,371.2L153.4,371.9L156.1,369.5L156.5,369.9L158.2,370.5L158.1,371.1L158.1,373.0L157.7,374.7L156.8,375.0L155.7,375.1L153.9,375.7L153.3,376.3L151.1,376.1L150.0,376.2L148.0,376.3L146.5,377.9L145.6,378.3L145.0,379.5L143.9,380.8L142.8,382.1L142.5,384.9L141.9,386.0L140.7,387.7L137.1,387.5L136.5,388.6L137.2,390.5L138.0,391.3L138.4,392.8L136.3,393.8L135.5,394.5L135.2,396.2L134.0,397.5L131.7,397.0L131.6,398.1L132.4,399.4L132.2,401.0L132.7,402.5L132.8,404.7L132.2,405.2L130.1,404.6L128.6,405.0L127.4,404.8L128.7,404.1L127.9,401.5L126.2,401.0L125.5,402.2L125.6,401.9L126.3,400.7L127.7,401.1L127.8,399.0L126.6,397.8L127.9,397.6L128.3,396.4L129.2,395.3L127.8,394.1L127.4,392.7L125.3,392.6L125.2,390.6L125.4,389.4L125.8,388.2L123.3,387.7L121.6,389.3L118.7,391.2L117.7,390.1L119.4,389.8L119.9,388.6L121.3,388.6L122.3,387.9L125.5,385.9L127.2,383.8L129.0,382.5L132.3,380.4L133.0,377.1ZM141.9,364.6L143.1,365.9L141.4,366.4L141.9,364.6ZM143.7,363.2L142.9,364.6L143.7,363.2ZM141.2,361.3L142.2,362.6L140.9,364.2L139.6,364.2L140.7,363.7L140.4,361.7Z"/><path d="M156.2,386.2L153.1,388.2L151.9,388.9L152.2,389.4L149.7,390.0L148.3,390.6L147.6,392.0L147.3,393.0L147.5,394.5L146.9,396.5L145.1,398.5L143.9,400.1L142.0,401.6L140.9,403.5L141.2,405.7L139.9,407.2L140.0,409.3L141.5,411.5L140.3,411.4L139.4,410.0L137.5,409.6L135.5,410.6L133.8,409.3L132.0,410.0L132.4,408.2L133.4,406.4L133.5,405.2L132.2,405.2L132.8,404.7L132.7,402.5L132.2,401.0L132.4,399.4L131.6,398.1L131.7,397.0L134.0,397.5L135.2,396.2L135.5,394.5L136.3,393.8L138.4,392.8L138.0,391.3L137.2,390.5L136.5,388.6L137.1,387.5L140.7,387.7L141.9,386.0L142.5,384.9L142.8,382.1L143.9,380.8L145.0,379.5L145.6,378.3L146.5,377.9L148.0,376.3L150.0,376.2L151.1,376.1L153.3,376.3L153.9,375.7L155.7,375.1L156.8,375.0L157.7,374.7L159.4,375.6L160.6,375.9L162.2,375.8L164.1,377.6L165.3,376.2L166.2,376.6L167.1,377.0L167.7,378.8L167.8,380.8L170.5,380.9L170.1,382.7L170.7,383.4L171.8,384.7L173.6,385.0L174.1,385.3L172.4,388.0L171.7,390.0L171.0,393.5L169.7,393.4L169.0,392.5L167.1,390.8L166.6,389.4L165.2,388.6L164.3,387.1L161.7,386.4L159.6,385.7L156.2,386.2ZM129.4,410.7L130.0,412.0L129.4,410.7Z"/><path d="M88.0,374.2L88.8,372.9L90.7,372.7L90.3,374.4L89.6,375.9L89.7,376.9L90.3,378.9L92.4,382.6L93.3,382.8L94.9,383.1L94.6,384.0L94.4,385.9L93.2,386.8L91.1,386.3L89.7,386.6L88.3,388.2L87.5,389.1L86.6,390.9L86.4,392.1L86.5,394.5L85.8,395.3L86.0,396.1L87.1,398.0L86.1,399.5L84.8,398.9L83.5,398.2L82.2,397.4L81.5,399.4L79.5,399.1L79.2,400.1L77.4,401.3L77.1,402.8L75.3,402.8L75.4,400.6L74.9,399.4L73.9,398.4L73.4,396.3L74.3,395.0L75.4,394.8L76.1,394.4L77.0,392.3L78.6,390.2L77.8,388.5L76.5,389.2L75.6,390.1L74.9,389.2L73.4,388.6L71.2,387.8L69.1,387.9L65.8,387.8L66.1,387.0L68.7,385.7L67.2,384.2L68.8,382.8L70.1,382.0L72.3,384.3L73.5,383.8L74.9,383.6L75.1,382.0L75.0,380.9L76.2,379.7L76.8,378.1L77.0,376.4L78.1,375.3L80.2,374.8L81.7,374.0L82.6,372.8L85.3,373.1L84.0,374.8L83.8,374.9L85.3,374.6L86.4,373.9L87.7,374.4Z"/><path d="M65.8,387.8L69.1,387.9L71.2,387.8L73.4,388.6L74.9,389.2L75.6,390.1L76.5,389.2L77.8,388.5L78.6,390.2L77.0,392.3L76.1,394.4L75.4,394.8L74.3,395.0L73.4,396.3L73.9,398.4L72.2,398.2L71.2,396.8L70.5,397.6L68.6,399.3L68.6,400.7L69.2,401.7L70.0,404.2L68.6,404.0L66.8,403.2L65.9,402.7L64.4,401.0L62.9,400.0L63.6,399.3L62.4,397.8L60.2,397.0L60.1,395.3L58.7,393.6L59.5,392.0L60.5,393.1L61.4,390.3L59.9,387.3L61.1,388.6L60.5,386.7L61.2,385.8L63.5,386.0L63.4,387.1L64.1,388.3L65.8,388.4Z"/><path d="M64.5,410.6L63.7,411.1L62.7,412.5L60.6,414.6L59.9,415.9L59.5,415.2L60.8,412.5L59.7,410.4L59.1,408.7L58.2,409.0L56.6,407.1L56.0,405.1L55.4,403.5L55.9,402.2L58.8,401.4L59.7,402.6L59.9,404.1L59.4,405.1L59.7,407.0L61.1,407.3L63.2,407.4L64.3,408.0L63.9,406.8L63.1,405.2L63.5,403.2L62.4,401.6L60.8,401.1L59.5,399.6L59.7,398.7L59.4,398.3L57.8,398.5L57.3,397.6L56.2,399.3L56.5,397.5L55.9,396.2L55.7,396.3L53.8,395.5L54.3,393.6L54.1,393.0L54.1,390.7L56.4,390.5L57.4,391.8L59.5,391.0L59.5,392.0L58.7,393.6L60.1,395.3L60.2,397.0L62.4,397.8L63.6,399.3L62.9,400.0L64.4,401.0L65.9,402.7L66.8,403.2L68.6,404.0L70.0,404.2L68.8,405.9L69.8,407.7L71.5,407.0L72.9,407.1L74.4,409.6L73.6,412.2L73.7,413.3L71.8,413.9L70.4,415.5L69.1,415.0L68.1,413.9L69.9,411.9L69.4,409.4L68.0,409.6L65.4,410.6ZM44.7,360.3L45.1,361.4L47.9,361.4L46.9,364.8L46.6,365.9L45.3,367.9L43.8,367.3L44.0,365.0L44.4,362.3L44.7,360.3ZM50.9,348.3L51.9,349.7L51.4,353.2L48.8,356.4L49.4,358.3L49.4,359.4L48.5,361.3L48.5,360.0L47.1,359.0L46.3,357.3L47.2,354.3L46.7,352.7L47.6,350.2L49.1,350.3L50.9,348.3ZM57.3,375.3L59.1,375.9L58.9,377.8L59.4,379.1L57.6,380.3L55.9,378.8L56.6,375.8ZM38.0,406.5L38.3,408.2L37.4,407.9L38.0,406.5ZM36.0,407.8L37.0,409.6L35.3,409.4L36.0,407.8ZM39.3,409.5L39.6,410.8L39.3,409.5ZM34.6,409.3L35.5,410.8L35.6,412.6L36.2,414.3L34.6,413.9L33.6,415.1L33.7,416.5L32.8,415.4L30.1,415.5L30.2,414.5L30.6,412.6L30.7,409.9L32.0,411.2L34.6,409.3ZM39.2,405.0L40.3,406.2L39.1,407.1ZM42.3,397.6L42.5,399.4L41.8,401.6L42.6,403.3L43.9,402.6L43.2,404.3L42.5,404.8L41.8,406.4L41.4,407.3L40.7,407.1L40.5,405.0L39.4,403.9L40.5,403.2L41.5,401.8L42.2,399.6L42.3,397.6ZM58.9,398.3L59.6,399.3L59.6,400.2L58.4,398.9ZM42.7,393.2L42.6,395.0L41.2,394.2ZM53.5,389.8L53.3,391.7L52.3,393.3L52.2,394.6L49.5,397.1L50.0,394.9L50.8,393.4L50.6,391.8L53.3,390.8ZM50.5,388.8L50.5,390.2L49.6,391.4L50.5,388.8ZM53.6,386.5L53.0,387.7L53.6,386.5ZM58.6,387.8L58.4,389.8L58.5,388.7ZM54.9,400.8L54.9,402.1L54.9,400.8ZM40.9,395.8L40.2,396.4Z"/><path d="M80.2,410.7L80.4,409.5L79.3,407.7L78.1,406.7L76.0,405.4L75.7,403.3L75.3,402.8L77.9,402.5L78.6,400.2L79.1,399.5L80.4,399.4L81.8,397.8L82.7,398.0L84.4,398.9L86.1,399.5L86.3,399.9L87.7,400.8L89.4,402.1L90.5,401.5L89.7,398.3L90.6,397.2L92.3,396.8L93.2,397.4L94.6,399.5L95.1,400.4L95.7,401.2L96.9,403.6L96.6,405.8L98.6,408.2L96.9,408.4L96.1,410.7L94.7,412.1L94.0,413.1L93.2,415.7L91.5,416.0L90.7,417.3L90.4,418.4L90.6,420.5L91.9,421.8L92.9,424.2L92.0,425.9L91.4,427.0L92.3,428.2L93.0,429.7L91.7,429.8L90.3,429.4L89.0,431.1L87.1,431.0L84.0,431.5L83.1,431.6L81.4,430.5L80.6,429.8L79.8,428.9L79.0,429.9L77.3,430.5L76.0,431.2L74.6,430.1L74.0,429.4L74.8,427.6L75.8,426.4L76.8,425.2L77.2,423.1L79.4,420.7L78.3,418.2L79.8,416.4L80.8,414.9L77.8,415.3L76.3,414.8L78.5,413.6L80.2,411.9ZM73.7,422.0L72.7,422.2L71.1,422.1L70.0,420.4L72.8,418.3L74.7,418.4L75.4,418.1L75.9,419.8L75.4,421.3L73.6,422.1ZM76.1,414.8L76.2,416.9L75.1,417.2L74.8,416.1L76.1,414.8ZM73.8,423.6L73.6,424.8L73.8,423.6ZM67.8,417.5L70.1,419.7L70.4,422.3L69.5,424.8L68.6,425.2L65.8,428.2L64.9,428.6L65.1,427.3L65.1,425.3L64.2,423.4L65.0,421.1L66.0,419.1L66.5,418.3Z"/><path d="M103.3,394.4L105.8,394.5L108.8,394.6L110.6,395.1L111.7,396.8L110.7,398.4L111.7,399.2L113.3,398.8L113.7,400.7L115.1,401.4L113.5,402.0L113.7,403.7L115.8,405.0L115.7,406.4L115.1,408.4L113.9,409.7L112.2,410.1L112.7,411.0L111.6,410.0L110.7,408.5L108.9,408.3L108.3,410.1L105.2,410.1L103.8,410.6L103.3,409.2L101.3,408.3L99.4,409.1L98.6,408.2L96.9,406.7L96.4,404.1L95.9,402.3L95.2,400.6L94.6,400.2L94.3,398.4L93.0,397.0L91.2,396.7L90.1,397.0L90.7,399.8L90.2,401.9L89.1,401.3L87.4,400.2L86.1,399.5L86.5,399.4L86.7,396.7L86.6,395.5L85.7,394.8L86.8,393.5L86.0,391.9L87.3,390.7L87.7,388.5L88.9,387.3L89.9,386.6L91.9,386.6L94.3,386.6L95.0,385.0L94.9,383.1L95.8,383.5L97.3,384.3L100.9,384.5L100.9,383.9L103.3,381.5L105.1,380.7L107.0,381.4L108.8,384.3L108.7,386.8L108.4,388.5L107.0,389.4L106.5,390.9L105.4,391.0L104.0,391.5L102.8,391.8L103.3,394.4Z"/><path d="M103.1,433.4L101.8,438.3L101.7,440.7L102.1,442.9L101.8,444.5L100.9,447.3L99.9,451.0L99.7,452.9L98.7,454.1L96.2,453.8L95.4,452.5L94.3,452.0L95.2,450.5L95.4,448.3L95.0,446.9L93.4,446.8L91.6,446.6L90.9,444.5L90.6,442.9L89.9,441.9L88.1,441.1L87.1,440.7L88.0,438.5L87.7,438.5L86.7,436.9L84.7,435.5L83.5,433.3L82.7,432.4L83.1,431.6L86.6,431.6L88.0,430.7L90.0,429.8L91.2,429.4L92.6,430.0L92.8,428.4L92.0,427.3L91.5,425.7L92.8,424.9L92.2,423.5L91.3,421.8L90.6,420.0L90.8,418.2L91.2,417.1L92.9,416.3L93.1,414.3L94.6,413.4L96.2,411.0L96.2,410.0L98.6,408.2L99.0,408.4L100.9,408.9L102.2,408.1L103.1,410.1L104.6,410.7L107.4,410.3L108.7,409.3L110.2,408.2L112.0,408.6L111.7,411.3L112.7,411.0L109.6,413.8L109.0,415.9L107.5,417.5L108.7,418.9L106.9,419.4L107.5,421.0L106.6,421.7L106.1,423.6L104.8,426.2L104.0,429.8L103.4,432.0Z"/><path d="M82.5,449.0L79.8,448.2L82.4,446.8L82.8,449.0L84.8,448.1L85.7,445.7L83.4,444.1L82.2,443.3L81.6,443.5L80.3,445.3L80.1,446.6L79.3,448.6L78.5,449.7L77.9,451.1L79.2,456.5L80.6,458.0L81.3,459.0L80.7,461.0L79.7,461.7L78.3,461.6L77.7,460.0L76.5,458.8L74.2,458.7L72.0,458.3L70.5,458.7L70.6,457.0L69.3,455.1L68.3,453.5L69.6,453.7L71.7,453.2L73.3,448.8L72.8,445.7L71.4,443.7L69.2,441.2L70.2,438.9L70.4,437.1L69.4,434.8L70.0,433.6L69.2,432.3L70.2,430.8L71.2,430.7L73.8,430.5L74.0,429.4L75.0,431.0L76.9,430.9L78.5,430.4L79.6,429.9L80.3,428.9L81.4,430.0L82.6,431.4L83.1,431.6L82.7,433.0L84.5,434.3L85.5,436.7L87.1,437.3L88.0,438.5L87.5,438.7L87.3,441.1L88.4,441.7L89.6,442.5L90.5,444.0L90.8,445.3L92.2,445.7L94.5,446.6L94.9,447.3L95.2,449.1L94.6,450.7L94.3,452.0L92.6,452.2L90.7,454.2L92.7,456.2L92.1,457.9L91.9,459.5L90.3,460.7L89.2,462.4L87.1,463.6L85.1,464.1L83.0,465.4L81.5,466.6L82.0,464.8L82.9,463.1L84.3,461.0L84.3,459.6L84.9,457.4L84.6,454.9L83.3,452.4L82.4,451.2L82.5,449.0ZM72.5,472.9L71.6,473.9ZM63.3,471.5L63.2,472.8L63.3,471.5ZM91.0,480.0L90.2,481.3L89.2,483.5L89.7,485.9L88.6,486.8L87.2,487.8L86.8,485.4L87.2,483.4L89.0,479.8L88.7,478.1L89.7,475.6L90.3,473.8L92.3,473.7L91.9,476.6L91.6,479.4ZM71.4,425.0L70.2,426.8L70.7,425.2ZM69.2,427.5L69.5,429.1L69.4,430.4L68.8,432.0L67.8,430.0L67.5,428.0L69.2,427.5ZM59.4,441.5L59.0,444.0L58.3,444.8L58.2,445.9L56.4,446.3L59.1,443.1L59.4,441.5ZM61.1,438.6L62.6,439.9L61.6,440.9L61.1,439.6L61.1,438.6Z"/></g><circle class="pl" cx="127.5" cy="356.8" r="3.8"/><circle class="pl" cx="151.0" cy="354.9" r="3.8"/><circle class="pl" cx="164.0" cy="349.9" r="3.8"/><circle class="pl" cx="150.1" cy="325.3" r="3.8"/><circle class="pl" cx="100.3" cy="368.1" r="3.8"/><circle class="pl" cx="353.2" cy="80.8" r="3.8"/><circle class="pl" cx="399.8" cy="86.2" r="3.8"/><circle class="pl" cx="378.9" cy="58.8" r="3.8"/><circle class="pl" cx="337.2" cy="120.7" r="3.8"/><circle class="pl" cx="310.6" cy="316.7" r="3.8"/><circle class="pl" cx="313.7" cy="313.6" r="3.8"/><circle class="pl" cx="315.1" cy="317.6" r="3.8"/><circle class="pl" cx="309.0" cy="318.7" r="3.8"/><circle class="pl" cx="303.8" cy="316.0" r="3.8"/><circle class="pl" cx="309.1" cy="324.2" r="3.8"/><circle class="pl" cx="307.7" cy="321.4" r="3.8"/><circle class="pl" cx="303.6" cy="321.2" r="3.8"/><circle class="pl" cx="302.2" cy="324.9" r="3.8"/><circle class="pl" cx="304.6" cy="326.9" r="3.8"/><circle class="pl" cx="308.8" cy="308.6" r="3.8"/><circle class="pl" cx="302.9" cy="301.7" r="3.8"/><circle class="pl" cx="305.3" cy="310.0" r="3.8"/><circle class="pl" cx="321.3" cy="318.6" r="3.8"/><circle class="pl" cx="326.0" cy="314.5" r="3.8"/><circle class="pl" cx="317.0" cy="310.5" r="3.8"/><circle class="pl" cx="318.3" cy="316.3" r="3.8"/><circle class="pl" cx="330.5" cy="295.6" r="3.8"/><circle class="pl" cx="320.6" cy="304.2" r="3.8"/><circle class="pl" cx="316.1" cy="289.7" r="3.8"/><circle class="pl" cx="293.4" cy="295.8" r="3.8"/><circle class="pl" cx="204.2" cy="348.4" r="3.8"/><circle class="pl" cx="202.4" cy="350.4" r="3.8"/><circle class="pl" cx="204.0" cy="344.4" r="3.8"/><circle class="pl" cx="203.3" cy="353.6" r="3.8"/><circle class="pl" cx="196.2" cy="349.2" r="3.8"/><circle class="pl" cx="183.8" cy="344.9" r="3.8"/><circle class="pl" cx="210.9" cy="338.5" r="3.8"/><circle class="pl" cx="194.8" cy="329.2" r="3.8"/><circle class="pl" cx="215.8" cy="338.4" r="3.8"/><circle class="pl" cx="211.2" cy="351.1" r="3.8"/><circle class="pl" cx="196.3" cy="364.8" r="3.8"/><circle class="pl" cx="294.4" cy="246.3" r="3.8"/><circle class="pl" cx="288.6" cy="260.3" r="3.8"/><circle class="pl" cx="273.6" cy="286.2" r="3.8"/><circle class="pl" cx="266.9" cy="301.1" r="3.8"/><circle class="pl" cx="281.8" cy="318.0" r="3.8"/><circle class="pl" cx="76.0" cy="384.1" r="3.8"/><circle class="pl" cx="87.1" cy="374.8" r="3.8"/><circle class="pl" cx="78.8" cy="392.9" r="3.8"/><circle class="pl" cx="64.0" cy="408.6" r="3.8"/><circle class="pl" cx="106.3" cy="395.6" r="3.8"/><circle class="pl" cx="82.8" cy="410.0" r="3.8"/><circle class="pl" cx="101.5" cy="437.4" r="3.8"/><circle class="pl" cx="78.4" cy="449.6" r="3.8"/><circle class="pl" cx="167.7" cy="360.6" r="3.8"/><circle class="pl" cx="135.5" cy="377.4" r="3.8"/><circle class="pl" cx="181.2" cy="368.8" r="3.8"/><circle class="pl" cx="155.5" cy="384.8" r="3.8"/><circle class="pl" cx="340.8" cy="234.8" r="3.8"/><circle class="pl" cx="337.3" cy="153.4" r="3.8"/><circle class="pl" cx="356.8" cy="163.0" r="3.8"/><circle class="pl" cx="346.9" cy="188.9" r="3.8"/><circle class="pl" cx="322.6" cy="189.9" r="3.8"/><circle class="pl" cx="326.6" cy="234.6" r="3.8"/><circle class="pl" cx="327.9" cy="261.7" r="3.8"/><circle class="pl" cx="239.5" cy="333.7" r="3.8"/><circle class="pl" cx="246.8" cy="340.5" r="3.8"/><circle class="pl" cx="252.7" cy="347.1" r="3.8"/><circle class="pl" cx="235.6" cy="326.5" r="3.8"/><circle class="pl" cx="278.3" cy="340.4" r="3.8"/><circle class="pl" cx="289.6" cy="335.2" r="3.8"/><circle class="pl" cx="262.1" cy="347.8" r="3.8"/><circle class="pl" cx="230.1" cy="349.2" r="3.8"/><circle class="pl" cx="232.9" cy="287.8" r="3.8"/><circle class="pl" cx="247.6" cy="285.4" r="3.8"/><circle class="pl" cx="223.3" cy="303.8" r="3.8"/><circle class="pg" cx="353.0" cy="81.1" r="5.5"/><circle class="pg" cx="339.2" cy="232.0" r="5.5"/><circle class="pg" cx="327.7" cy="261.6" r="5.5"/><circle class="pg" cx="319.7" cy="305.7" r="5.5"/><circle class="pg" cx="294.2" cy="299.2" r="5.5"/><circle class="pg" cx="311.2" cy="316.6" r="5.5"/><circle class="pg" cx="309.4" cy="319.5" r="5.5"/><circle class="pg" cx="303.2" cy="316.8" r="5.5"/><circle class="pg" cx="310.0" cy="325.3" r="5.5"/><circle class="pg" cx="266.7" cy="300.5" r="5.5"/><circle class="pg" cx="242.0" cy="333.7" r="5.5"/><circle class="pg" cx="274.1" cy="343.4" r="5.5"/><circle class="pg" cx="232.7" cy="287.6" r="5.5"/><circle class="pg" cx="204.2" cy="348.3" r="5.5"/><circle class="pg" cx="196.4" cy="363.4" r="5.5"/><circle class="pg" cx="183.9" cy="344.3" r="5.5"/><circle class="pg" cx="163.5" cy="350.4" r="5.5"/><circle class="pg" cx="127.1" cy="358.2" r="5.5"/><circle class="pg" cx="149.4" cy="325.1" r="5.5"/><circle class="pg" cx="180.5" cy="370.3" r="5.5"/><circle class="pg" cx="151.1" cy="356.1" r="5.5"/><circle class="pg" cx="133.5" cy="378.2" r="5.5"/><circle class="pg" cx="76.3" cy="384.2" r="5.5"/><circle class="pk" cx="205.8" cy="348.0" r="5"/><circle class="pk" cx="205.9" cy="348.0" r="5"/><circle class="pk" cx="311.5" cy="318.8" r="5"/><circle class="pk" cx="203.8" cy="344.5" r="5"/><circle class="pk" cx="77.5" cy="394.5" r="5"/><circle class="pk" cx="78.1" cy="393.7" r="5"/><circle class="pk" cx="77.6" cy="391.3" r="5"/><circle class="pk" cx="148.7" cy="353.8" r="5"/><circle class="pk" cx="316.2" cy="289.4" r="5"/><circle class="pk" cx="327.5" cy="263.1" r="5"/><circle class="pk" cx="348.1" cy="189.5" r="5"/><circle class="pk" cx="346.8" cy="187.5" r="5"/><circle class="pk" cx="346.9" cy="189.1" r="5"/><circle class="pk" cx="211.9" cy="352.9" r="5"/><circle class="pk" cx="134.7" cy="327.4" r="5"/><circle class="pk" cx="142.9" cy="324.7" r="5"/><circle class="pk" cx="150.1" cy="325.3" r="5"/><circle class="pk" cx="171.5" cy="322.7" r="5"/><circle class="pk" cx="308.3" cy="310.2" r="5"/><circle class="pk" cx="126.7" cy="358.4" r="5"/><circle class="pk" cx="163.5" cy="350.3" r="5"/><circle class="pk" cx="135.0" cy="358.3" r="5"/><circle class="pk" cx="295.4" cy="244.7" r="5"/><circle class="pk" cx="292.0" cy="247.3" r="5"/><circle class="pk" cx="76.9" cy="379.1" r="5"/><circle class="pk" cx="212.4" cy="350.0" r="5"/><circle class="pk" cx="153.9" cy="385.3" r="5"/><circle class="pk" cx="201.7" cy="345.2" r="5"/><circle class="pk" cx="78.6" cy="448.4" r="5"/><circle class="pk" cx="78.0" cy="446.7" r="5"/><circle class="pk" cx="341.0" cy="235.0" r="5"/><circle class="pk" cx="244.0" cy="343.4" r="5"/><circle class="pk" cx="321.0" cy="187.8" r="5"/><circle class="pk" cx="74.0" cy="384.6" r="5"/><circle class="pk" cx="74.5" cy="383.9" r="5"/><circle class="pk" cx="75.0" cy="385.2" r="5"/></svg>
+      <div class="mr">
+        <div class="lg">
+          <div><i style="background:var(--navy)"></i>加盟店様（36拠点）</div>
+          <div><i style="background:var(--pop)"></i>GRAFTEKT（23か所）</div>
+          <div><i style="background:#2a9d8f"></i>LIXIL（キッチン展示あり 77か所）</div>
+        </div>
+        <div class="stat"><b>30<small>/36拠点</small></b><span>LIXILまで 車で約30分以内</span></div>
+        <div class="stat"><b>22<small>/36拠点</small></b><span>GRAFTEKTまで 車で約1時間以内</span></div>
+        <div class="cap">車の時間は直線距離からの目安です（計算方法は次のページ）。<br>リシェルの展示有無は、来館前に各ショールームへご確認ください。<br>LIXIL沖縄は地図の範囲外です。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 ショールーム一覧 -->
+<section class="sl">
+  <div class="top"><span class="chip">見に行こう</span><span class="pg">24</span></div>
+  <h2 class="tt">いちばん近い<span class="hi">ショールーム</span>まで、車で何分？</h2>
+  <div class="lst"><table><tr><th>加盟店様</th><th>GRAFTEKT</th><th>車で</th><th>LIXIL</th><th>車で</th></tr><tr class="first"><td class="co">Gハウス<small>本社</small></td><td>大阪</td><td class="km">約20分</td><td>大阪</td><td class="km">約20分</td></tr><tr class="first"><td class="co">いえプロ不動産<small>大阪</small></td><td>大阪</td><td class="km">約20分</td><td>大阪</td><td class="km">約20分</td></tr><tr><td class="co"><small>東京</small></td><td>新宿</td><td class="km">約20分</td><td>東京</td><td class="km">約20分</td></tr><tr><td class="co"><small>箕面モデルハウス※</small></td><td>大阪</td><td class="km">約30分</td><td>箕面</td><td class="km">10分以内</td></tr><tr class="first"><td class="co">久留米建設<small>本社</small></td><td>福岡</td><td class="km">約55分</td><td>久留米</td><td class="km">約25分</td></tr><tr><td class="co"><small>久留米店※</small></td><td>福岡</td><td class="km">約50分</td><td>久留米</td><td class="km">約15分</td></tr><tr><td class="co"><small>鳥栖モデルハウス</small></td><td>福岡</td><td class="km">約1時間</td><td>久留米</td><td class="km">約25分</td></tr><tr class="first"><td class="co">坂本建設工業<small></small></td><td>福山</td><td class="km">約30分</td><td>福山</td><td class="km">約25分</td></tr><tr class="first"><td class="co">トーモク<small>UTSUNOMIYA</small></td><td>つくば</td><td class="km far">約1時間半</td><td>宇都宮</td><td class="km">10分以内</td></tr><tr class="first"><td class="co">華楽舎<small>KORIYAMA</small></td><td>郡山</td><td class="km">約20分</td><td>郡山</td><td class="km">約20分</td></tr><tr class="first"><td class="co">シリウス<small>本社</small></td><td>仙台</td><td class="km far">約3時間半</td><td>盛岡</td><td class="km">約15分</td></tr><tr><td class="co"><small>盛岡西店</small></td><td>仙台</td><td class="km far">約3時間半</td><td>盛岡</td><td class="km">約20分</td></tr><tr><td class="co"><small>盛岡店</small></td><td>仙台</td><td class="km far">約3時間半</td><td>盛岡</td><td class="km">10分以内</td></tr><tr class="first"><td class="co">竹村工務店<small></small></td><td>大阪</td><td class="km">約50分</td><td>奈良</td><td class="km">約25分</td></tr><tr class="first"><td class="co">中央建設<small>出雲店</small></td><td>米子</td><td class="km far">約1時間半</td><td>米子</td><td class="km far">約1時間半</td></tr><tr><td class="co"><small>松江店</small></td><td>米子</td><td class="km">約55分</td><td>米子</td><td class="km">約1時間</td></tr><tr><td class="co"><small>米子店</small></td><td>米子</td><td class="km">10分以内</td><td>米子</td><td class="km">10分以内</td></tr><tr><td class="co"><small>鳥取店</small></td><td>米子</td><td class="km far">約2時間</td><td>米子</td><td class="km far">約2時間</td></tr></table><table><tr><th>加盟店様</th><th>GRAFTEKT</th><th>車で</th><th>LIXIL</th><th>車で</th></tr><tr class="first"><td class="co">YUNO HOME<small></small></td><td>新宿</td><td class="km">約55分</td><td>さいたま</td><td class="km">約20分</td></tr><tr class="first"><td class="co">フラワーホーム（BJC）<small>本社※</small></td><td>広島</td><td class="km">10分以内</td><td>広島</td><td class="km">約20分</td></tr><tr><td class="co"><small>岡山支店</small></td><td>岡山</td><td class="km">10分以内</td><td>岡山</td><td class="km">10分以内</td></tr><tr><td class="co"><small>下三永モデルハウス</small></td><td>広島</td><td class="km far">約1時間</td><td>広島</td><td class="km far">約1時間</td></tr><tr class="first"><td class="co">大建建設<small></small></td><td>郡山</td><td class="km far">約3時間</td><td>新潟</td><td class="km">約25分</td></tr><tr><td class="co"><small>坂井モデルハウス</small></td><td>郡山</td><td class="km far">約3時間</td><td>新潟</td><td class="km">約20分</td></tr><tr class="first"><td class="co">WITHDOM Group<small></small></td><td>福岡</td><td class="km">約40分</td><td>福岡</td><td class="km">約40分</td></tr><tr class="first"><td class="co">キノシタ<small></small></td><td>大阪</td><td class="km far">約1時間</td><td>奈良</td><td class="km">約20分</td></tr><tr class="first"><td class="co">建匠<small></small></td><td>愛媛</td><td class="km far">約2時間</td><td>高知</td><td class="km">約20分</td></tr><tr class="first"><td class="co">河原工務店<small></small></td><td>大阪</td><td class="km">約35分</td><td>箕面</td><td class="km">約20分</td></tr><tr class="first"><td class="co">南日本ハウス<small>本社</small></td><td>福岡</td><td class="km far">約5時間半</td><td>鹿児島</td><td class="km">約15分</td></tr><tr><td class="co"><small>伊敷モデルハウス</small></td><td>福岡</td><td class="km far">約5時間</td><td>鹿児島</td><td class="km">約25分</td></tr><tr class="first"><td class="co">永大ハウスビルド<small></small></td><td>仙台</td><td class="km">約30分</td><td>仙台</td><td class="km">10分以内</td></tr><tr class="first"><td class="co">アイコン<small>本社</small></td><td>名古屋</td><td class="km">約50分</td><td>岡崎</td><td class="km">約35分</td></tr><tr class="first"><td class="co">むつみワールド<small></small></td><td>仙台</td><td class="km far">約4時間</td><td>秋田</td><td class="km">約25分</td></tr><tr class="first"><td class="co">健康住宅<small>本社</small></td><td>福岡</td><td class="km">約20分</td><td>福岡</td><td class="km">約25分</td></tr><tr class="first"><td class="co">アパックスホーム<small></small></td><td>福岡</td><td class="km">約25分</td><td>福岡</td><td class="km">約20分</td></tr><tr><td class="co"><small>長住モデルハウス</small></td><td>福岡</td><td class="km">約20分</td><td>福岡</td><td class="km">約20分</td></tr></table></div>
+  <div class="cap">車の時間は目安です（住所間の直線距離×1.3を道のりとし、近距離25km/h・中距離35km/h・遠距離55km/hで計算）。お出かけ前に地図アプリでご確認ください。<br>LIXILはキッチン展示ありの拠点のみ。リシェル展示の有無・予約要否は来館前にご確認ください。※印は住所を確認中の拠点です。</div>
+</section>
+
+<!-- 15 言いすぎ注意 -->
+<section class="sl">
+  <div class="top"><span class="chip">言いすぎ注意</span><span class="pg">25</span></div>
+  <h2 class="tt">この3つだけ、<span class="hi">言い方を変えましょう</span></h2>
+  <div class="ngs">
+    <div class="ngr"><div class="x">キズがつきません</div><div class="ar">➜</div><div class="o">キズがつきにくいです</div></div>
+    <div class="ngr"><div class="x">熱い鍋をそのまま置いてOK</div><div class="ar">➜</div><div class="o">熱に強いです<small>鍋敷きのご使用がおすすめです</small></div></div>
+    <div class="ngr"><div class="x">Instagramで一番人気</div><div class="ar">➜</div><div class="o">インスタの投稿は5万件以上です<small>他社と比べた順位は言わない（調べたのは一部のキッチンだけ）</small></div></div>
+  </div>
+  <div class="cap">セラミックトップの注意書き：LIXIL公式 リシェル「セラミックトップ」ページ</div>
+</section>
+
+<!-- 16 出典 -->
+<section class="sl">
+  <div class="top"><span class="chip">出典</span><span class="pg">26</span></div>
+  <h2 class="tt">出典</h2>
+  <div class="src">
+    <b>オプション価格・約78万円（4枚目）</b>：GRAFTEKT 価格表 2026年8月仕様（税込）graftekt.jp/pdf/renewal_information_price_202608.pdf<br>
+    <b>LIFE Xの標準仕様</b>：LIFE X 水回りプレゼン（2026.03.31版）／lifex-house.jp/standard-spec/<br>
+    <b>洗い物が面倒 8割</b>：LIXIL「料理にまつわる家事に関する意識調査」2024年10月・840人<br>
+    <b>予算オーバー約半分・追加オプション3割近く</b>：NEXER×デックス 2026年3月・159人（prtimes.jp）<br>
+    <b>165時間</b>：パナソニック「手洗いVS食洗機 節約シミュレーション」panasonic.jp/dish/simulation.html<br>
+    <b>後悔1位 収納</b>：一般社団法人あんしん解体業者認定協会 2024年8〜9月・323人（prtimes.jp）<br>
+    <b>満足度約96%・6年連続1位</b>：LIXIL販促資料 RI_A4_leaf_20240613.pdf<br>
+    <b>GRAFTEKTのなぜ×3</b>：graftekt.jp（価格・FAQ）／kitchenhouse公式note 2026年8月24日／TJMデザイン PR TIMES 2026年10月15日<br>
+    <b>リシェルのなぜ×3</b>：LIXIL公式 リシェル「セラミックトップ」ページ（1200度近い高温で焼成・鍋敷き推奨）<br>
+    <b>ショールーム</b>：graftekt.jp/showroom／lixil.co.jp/showroom（2026年10月26日取得）、加盟店様の住所はlifex-house.com 各社ページ。座標は国土地理院 住所検索。車の時間は直線距離からの目安<br>
+    <b>月々の返済</b>：778,800円・金利1.2%・35年・元利均等で算出（月2,272円・総額954,147円）<br>
+    <b>格上げ表</b>：graftekt.jp・価格表2026年8月仕様／lixil.co.jp リシェル価格・ナビッシュ／LIFE X営業用カタログ（2026.04.13）<br>
+    <b>切り返し</b>：graftekt.jp/material／LIXIL セラミックトップ／Bosch公式・club-bs.jp／令和7年版消防白書／LIXIL a_ki24002<br>
+    <b>天板の深掘り</b>：kitchenhouse.jp/support/faq/11785.html・/semiorder/（フルオーダー450万円〜）・/history/、graftekt.jp/material・/color、graftekt-scene.com/scene01.html、lixil.co.jp/lineup/kitchen/richelle/parts/parts01/、lixil.co.jp/lineup/kitchen/s/richelle/ceramic-10th/（interview01〜03、開発者トーク）<br>
+    <b>作り手の思い</b>：kitchenhouse公式note「パッケージキッチン『グラフテクト』の先見性」2026年8月24日／lixil.co.jp/lineup/kitchen/richelle/／LIXILニュースリリース 2024年2月1日（リシェル新発売・水まわり事業100周年）<br>
+    <b>ネタ10</b>：内閣府「消費動向調査」2026年3月／Bosch公式 bosch-home.com.sg（Euromonitor）／Panasonic NP45EF1W仕様書／graftekt.jp／JILPT 図12（総務省「労働力調査」）／パナソニック ニュース 2024年2月／NEXER×リノメイド 2025年10月／ダスキン 2024年10月／kitchenhouse.jp/history／roomclip.jp/tag/106646／Instagramタグ検索（徳田さんのスマホで2026年10月26日19:29〜19:31に確認）<br>
+    <b>写真</b>：GRAFTEKT公式サイト（graftekt.jp）、LIXIL公式サイト（リシェル）、表紙はLIFE X水回りプレゼン
+  </div>
+</section>
+
+</div></body></html>
