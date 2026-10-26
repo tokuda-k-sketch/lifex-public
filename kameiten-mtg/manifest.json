@@ -11,18 +11,18 @@
   ],
   "mtgs": [
     {
-      "slug": "takemura",
-      "date": "2026-10-26",
-      "dateLabel": "2026年10月26日（月）",
-      "title": "ショートMTG",
-      "file": "takemura/2026-10-26.html"
-    },
-    {
       "slug": "chuo-kensetsu",
       "date": "2026-10-26",
       "dateLabel": "2026年10月26日（月）",
       "title": "ショートMTG",
       "file": "chuo-kensetsu/2026-10-26.html"
+    },
+    {
+      "slug": "takemura",
+      "date": "2026-10-26",
+      "dateLabel": "2026年10月26日（月）",
+      "title": "ショートMTG",
+      "file": "takemura/2026-10-26.html"
     }
   ]
 }
