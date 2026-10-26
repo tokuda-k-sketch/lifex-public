@@ -7,6 +7,10 @@
     {
       "slug": "chuo-kensetsu",
       "name": "中央建設様"
+    },
+    {
+      "slug": "withdom",
+      "name": "WITHDOM Group株式会社様"
     }
   ],
   "mtgs": [
@@ -23,6 +27,13 @@
       "dateLabel": "2026年10月26日（月）",
       "title": "ショートMTG",
       "file": "takemura/2026-10-26.html"
+    },
+    {
+      "slug": "withdom",
+      "date": "2026-10-27",
+      "dateLabel": "2026年10月27日（火）",
+      "title": "お打ち合わせ（販売ルール・11月広告予算・エリア拡充）",
+      "file": "withdom/2026-10-27.html"
     }
   ]
 }
