@@ -3,474 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LIFEX FC事業 資料一覧</title>
+<meta name="robots" content="noindex, nofollow">
+<title>LIFEX 資料一覧</title>
 <style>
+:root{--navy:#1f3a5f;--navy-l:#e9eef5;--ink:#1f2328;--sub:#5f6b7a;--line:#d5dbe3;--bg:#f5f7fa}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI","Meiryo",system-ui,sans-serif;background:#F3F6F9;color:#1F2328;line-height:1.7;font-size:15px;padding-bottom:60px}
-.header{background:#1a1f24;color:#fff;padding:28px 24px 24px;text-align:center}
-.header .label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8B949E;margin-bottom:8px}
-.header h1{font-size:20px;font-weight:700;color:#fff}
-.header p{font-size:13px;color:#8B949E;margin-top:5px}
-.content{max-width:700px;margin:0 auto;padding:0 16px}
-.section{margin-top:32px}
-.section-title{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#57606A;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #D0D7DE}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
-.card{background:#fff;border:1px solid #D0D7DE;border-radius:8px;padding:14px 16px;text-decoration:none;color:inherit;display:flex;align-items:flex-start;gap:12px;transition:border-color .15s,box-shadow .15s}
-.card:hover{border-color:#0969DA;box-shadow:0 2px 8px rgba(9,105,218,.12)}
-.card-icon{width:36px;height:36px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.card-icon.blue{background:#DDF4FF}
-.card-icon.green{background:#DAFBE1}
-.card-icon.orange{background:#FFF3CD}
-.card-icon.purple{background:#F3E8FF}
-.card-icon.red{background:#FFEBE9}
-.card-body{}
-.card-title{font-size:14px;font-weight:700;margin-bottom:2px}
-.card-desc{font-size:12px;color:#57606A;line-height:1.5}
+body{font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px;padding-bottom:56px}
+a{color:inherit}
+.header{background:#fff;border-bottom:3px solid var(--navy)}
+.header-in{max-width:760px;margin:0 auto;padding:26px 16px 18px}
+.header .label{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--sub)}
+.header h1{font-size:22px;font-weight:700;color:var(--navy);margin-top:2px}
+.header p{font-size:13px;color:var(--sub);margin-top:2px}
+.jump{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.jump a{font-size:12px;text-decoration:none;color:var(--navy);border:1px solid var(--line);border-radius:999px;padding:3px 12px;background:#fff}
+.jump a:hover{border-color:var(--navy)}
+.content{max-width:760px;margin:0 auto;padding:0 16px}
+.section{margin-top:30px;scroll-margin-top:12px}
+.section-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
+.section-title small{font-size:12px;font-weight:400;color:var(--sub)}
+
+/* 最新の研修 */
+.latest{background:#fff;border:2px solid var(--navy);border-radius:10px;padding:18px 20px}
+.latest .tag{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--navy);border-radius:4px;padding:1px 8px}
+.latest h2{font-size:18px;color:var(--navy);margin:6px 0 2px}
+.latest p{font-size:13px;color:var(--sub)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.btn{font-size:13px;font-weight:700;text-decoration:none;border-radius:6px;padding:7px 16px;border:1px solid var(--navy);color:var(--navy);background:#fff;white-space:nowrap}
+.btn.main{background:var(--navy);color:#fff}
+.btn:hover{opacity:.85}
+
+/* 研修の行 */
+.list{background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.row{display:grid;grid-template-columns:62px 1fr auto;gap:4px 14px;align-items:center;padding:11px 16px;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row .d{font-size:13px;font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.row .t{font-size:14px;font-weight:700}
+.row .s{font-size:12px;color:var(--sub);line-height:1.5}
+.row .links{display:flex;gap:6px}
+.row .links a{font-size:12px;font-weight:700;text-decoration:none;color:var(--navy);border:1px solid var(--line);border-radius:5px;padding:3px 10px;white-space:nowrap;background:#fff}
+.row .links a:hover{border-color:var(--navy)}
+details.more{margin-top:10px}
+details.more summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--navy);padding:6px 2px;list-style:none}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"▸ ";}
+details.more[open] summary::before{content:"▾ ";}
+details.more .list{margin-top:6px}
+
+/* カード */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:13px 16px;text-decoration:none;color:inherit;display:block;transition:border-color .15s}
+.card:hover{border-color:var(--navy)}
+.card-title{font-size:14px;font-weight:700;color:var(--navy)}
+.card-desc{font-size:12px;color:var(--sub);line-height:1.55;margin-top:2px}
+
+.foot{margin-top:40px;text-align:right;font-size:12px}
+.foot a{color:var(--sub)}
+@media (max-width:560px){
+  .row{grid-template-columns:52px 1fr}
+  .row .links{grid-column:2}
+}
 </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="label">LIFEX FC事業</div>
+<div class="header"><div class="header-in">
+  <div class="label">LIFEX 加盟店様向け</div>
   <h1>資料一覧</h1>
-  <p>Gハウス BtoB事業部</p>
-</div>
+  <p>株式会社Gハウス BtoB事業部 LIFEX本部</p>
+  <nav class="jump">
+    <a href="#kenshu">研修・MTG</a>
+    <a href="#tools">商談で使うツール</a>
+    <a href="#customer">お客様に送る・見せる資料</a>
+    <a href="#archive">録画・個別MTG資料</a>
+  </nav>
+</div></div>
 
 <div class="content">
 
   <div class="section">
-    <div class="section-title">KPIダッシュボード</div>
-    <div class="grid">
-      <a href="lifex-dashboard-deploy/index.html" class="card">
-        <div class="card-icon blue">📊</div>
-        <div class="card-body">
-          <div class="card-title">KPIダッシュボード（本番）</div>
-          <div class="card-desc">加盟店別KPI・週次データ</div>
-        </div>
-      </a>
-      <a href="lifex-dashboard-compare.html" class="card">
-        <div class="card-icon blue">📆</div>
-        <div class="card-body">
-          <div class="card-title">KPIダッシュボード（期間比較版）</div>
-          <div class="card-desc">加盟店別に1週間・1ヶ月・3ヶ月など期間を選んで推移を比較</div>
-        </div>
-      </a>
-      <a href="lifex-kpi-dashboard.html" class="card">
-        <div class="card-icon blue">📈</div>
-        <div class="card-body">
-          <div class="card-title">KPIダッシュボード（単体版）</div>
-          <div class="card-desc">シングルファイル版</div>
-        </div>
-      </a>
-      <a href="lifex-dashboard-handover/index.html" class="card">
-        <div class="card-icon blue">📋</div>
-        <div class="card-body">
-          <div class="card-title">ダッシュボード引き継ぎ版</div>
-          <div class="card-desc">引き継ぎ用資料</div>
-        </div>
-      </a>
-      <a href="karte.html" class="card">
-        <div class="card-icon green">🗂️</div>
-        <div class="card-body">
-          <div class="card-title">自店カルテ（加盟店別）<span style="font-size:10px;color:#B35C1F;font-weight:700;background:#FFF3CD;border-radius:4px;padding:1px 6px;margin-left:4px">本部用</span></div>
-          <div class="card-desc">1店1ページ自動生成。店を選んで印刷→各店へ個別送付</div>
-        </div>
-      </a>
-      <a href="insta-monitor/index.html" class="card">
-        <div class="card-icon green">📷</div>
-        <div class="card-body">
-          <div class="card-title">加盟店インスタ フォロワー推移<span style="font-size:10px;color:#B35C1F;font-weight:700;background:#FFF3CD;border-radius:4px;padding:1px 6px;margin-left:4px">本部用</span></div>
-          <div class="card-desc">本部と加盟店様のアカウントのフォロワー・投稿数。毎週金曜の朝に自動更新</div>
-        </div>
-      </a>
-      <a href="kameiten-mtg-kanri.html" class="card">
-        <div class="card-icon green">🔑</div>
-        <div class="card-body">
-          <div class="card-title">加盟店様MTG パスコード管理<span style="font-size:10px;color:#B35C1F;font-weight:700;background:#FFF3CD;border-radius:4px;padding:1px 6px;margin-left:4px">本部用</span></div>
-          <div class="card-desc">加盟店様ごとのMTG資料のパスコードと公開済み資料。管理用パスコードで開く</div>
-        </div>
-      </a>
+    <div class="latest">
+      <span class="tag">最新の研修</span>
+      <h2>10/23　アプローチブックの使い方</h2>
+      <p>勝負の6ページ・章ごとの使い方・言い返されたときに開くページ・渡し方とLINE文面例</p>
+      <div class="btns">
+        <a class="btn main" href="mtg-20261023.html">教科書を開く</a>
+        <a class="btn" href="kyaku-hosoku.html">補足資料（お客様向け）</a>
+        <a class="btn" href="lifex-mtg-archive.html">録画を見る</a>
+      </div>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-title">エリアマップ</div>
+  <div class="section" id="kenshu">
+    <div class="section-title">研修・MTG資料<small>新しい順。教科書＝当日の投影資料、参考書＝詳しい補足</small></div>
+    <div class="list">
+      <div class="row"><span class="d">10/16</span><div><div class="t">構造見学会 答え合わせ編</div><div class="s">気密シートが切れる5か所を、よくあるNG→本部の現場→実写で比較</div></div><div class="links"><a href="mtg-kozo-kengaku.html">教科書</a><a href="sanko-kozo-kengaku.html">参考書</a></div></div>
+      <div class="row"><span class="d">10/9</span><div><div class="t">壁体内結露編</div><div class="s">湿り空気線図で見る壁の中の結露と、防湿気密シート・乾燥工程で妥協しない理由</div></div><div class="links"><a href="mtg-20261009.html">教科書</a><a href="sanko-20261009.html">参考書</a></div></div>
+      <div class="row"><span class="d">9/25</span><div><div class="t">断熱×気密×換気</div><div class="s">「断熱等級7じゃないんですか？」に正直に答える。3点セットで成立する理由</div></div><div class="links"><a href="mtg-20260925.html">教科書</a><a href="sanko-20260925.html">参考書</a></div></div>
+      <div class="row"><span class="d">9/18</span><div><div class="t">耐震等級3×制振evoltz</div><div class="s">なぜ許容応力度計算の耐震等級3か／なぜevoltzを標準搭載するか</div></div><div class="links"><a href="mtg-20260918.html">教科書</a><a href="sanko-20260918.html">参考書</a></div></div>
+      <div class="row"><span class="d">9/11</span><div><div class="t">TorneoPlus紹介＋エコボロンPRO</div><div class="s">新導入TorneoPlusのご紹介と、標準仕様エコボロンPROの訴求トーク</div></div><div class="links"><a href="mtg-20260911.html">教科書</a></div></div>
+      <div class="row"><span class="d">9/4</span><div><div class="t">太陽光×トータルコスト訴求法</div><div class="s">21エリアの発電シミュレーション＋電力会社別の削減額試算</div></div><div class="links"><a href="taiyoko-total-cost-appeal-final.html">教科書</a></div></div>
+    </div>
+    <details class="more">
+      <summary>8月以前の研修・MTG（7回分）</summary>
+      <div class="list">
+        <div class="row"><span class="d">8/28</span><div><div class="t">間の取り方＋テストクロージング</div><div class="s">沈黙の使い方・テストクロージング</div></div><div class="links"><a href="mtg-20260828.html">教科書</a></div></div>
+        <div class="row"><span class="d">8/21</span><div><div class="t">答え合わせ＋聞く力</div><div class="s">共感・復唱・関連質問</div></div><div class="links"><a href="mtg-20260821.html">教科書</a></div></div>
+        <div class="row"><span class="d">8/7</span><div><div class="t">商談を磨く</div><div class="s">Gハウスの型・ふりかえりシート・鉄板トーク集の使い方</div></div><div class="links"><a href="lifex-kenshu-20260807.html">教科書</a></div></div>
+        <div class="row"><span class="d">7/31</span><div><div class="t">KPI診断・アポ率目標</div><div class="s">観る→診る→処方→決める→答え合わせ</div></div><div class="links"><a href="mtg-20260731.html">教科書</a></div></div>
+        <div class="row"><span class="d">7/24</span><div><div class="t">通電率UP</div><div class="s">上位3社の横展開・初動・回数・区切り</div></div><div class="links"><a href="LIFEX_MTG_20260724/01_投影資料_架電率UP.html">教科書</a></div></div>
+        <div class="row"><span class="d">7/17</span><div><div class="t">月2棟の型を公開</div><div class="s">対談・電話7項目・冒頭90秒・クロージング階段</div></div><div class="links"><a href="LIFEX研修_20260717/05_投影資料_対談形式.html">教科書</a><a href="LIFEX研修_20260717/03_投影スライド全15枚.html">スライド全15枚</a></div></div>
+        <div class="row"><span class="d">7/3</span><div><div class="t">不通対策・アポ術の型</div><div class="s">架電が繋がらない原因・アポ取得の型</div></div><div class="links"><a href="lifex-mtg-20260703.html">教科書</a></div></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="section" id="tools">
+    <div class="section-title">商談で使うツール</div>
     <div class="grid">
-      <a href="lifex-area-map-deploy/index.html" class="card">
-        <div class="card-icon green">🗾</div>
-        <div class="card-body">
-          <div class="card-title">LIFEX 加盟エリアマップ</div>
-          <div class="card-desc">施工エリア・都道府県別対応範囲</div>
-        </div>
-      </a>
+      <a href="LIFEX研修_20260717/電話メールの型_佐古社長実践資料.html" class="card"><div class="card-title">電話・メールの型（10月版・手元用）</div><div class="card-desc">つながるまでの動き方・7項目の言い回し・メールとSMS文面・記入シート</div></a>
+      <a href="seminar-wahou-manual.html" class="card"><div class="card-title">初回顧客セミナー 話法マニュアル</div><div class="card-desc">セミナー本番・個別相談で使うトーク台本（練習／本番モード切替）</div></a>
+      <a href="shodan-furikaeri.html" class="card"><div class="card-title">商談ふりかえりシート</div><div class="card-desc">自分の商談を人物金時敵で振り返り、次の一手を決める</div></a>
+      <a href="teppan-talk.html" class="card"><div class="card-title">鉄板トーク集</div><div class="card-desc">重視点・断り文句・競合・フェーズ別の深掘りトーク</div></a>
+      <a href="fushiki-aircon-cop-keisan.xls" class="card"><div class="card-title">Ｆ式エアコン容量・COP実測計算シート（Excel）</div><div class="card-desc">住宅性能値からエアコン必要容量を算出／現地でのCOP実測用</div></a>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-title">MTG・研修資料</div>
+  <div class="section" id="customer">
+    <div class="section-title">お客様に送る・見せる資料</div>
     <div class="grid">
-      <a href="mtg-20261023.html" class="card">
-        <div class="card-icon blue">📖</div>
-        <div class="card-body">
-          <div class="card-title">10/23 研修（アプローチブックの使い方）</div>
-          <div class="card-desc">勝負の6ページ・章ごとの使い方・言い返されたときに開くページ・渡し方とLINE文面例</div>
-        </div>
-      </a>
-      <a href="kyaku-hosoku.html" class="card">
-        <div class="card-icon blue">📄</div>
-        <div class="card-body">
-          <div class="card-title">LIFE X 補足資料（お客様向け）</div>
-          <div class="card-desc">アプローチブックに無い補足5枚。耐震の強さ・繰り返す地震・振動台実験・制振・壁の中の結露</div>
-        </div>
-      </a>
-      <a href="mtg-kozo-kengaku.html" class="card">
-        <div class="card-icon blue">🏗️</div>
-        <div class="card-body">
-          <div class="card-title">10/16 研修（構造見学会 答え合わせ編）</div>
-          <div class="card-desc">「丁寧な施工」の中身を現場で見る。気密シートが切れる5か所を、よくあるNG→本部の現場→実写で比較</div>
-        </div>
-      </a>
-      <a href="sanko-kozo-kengaku.html" class="card">
-        <div class="card-icon blue">📘</div>
-        <div class="card-body">
-          <div class="card-title">10/16 参考書（構造見学会 詳細版）</div>
-          <div class="card-desc">5か所の確認ポイント・断熱と構造・想定QA・現場監督の説明全文</div>
-        </div>
-      </a>
-      <a href="mtg-20261009.html" class="card">
-        <div class="card-icon blue">💧</div>
-        <div class="card-body">
-          <div class="card-title">10/9 研修（壁体内結露編）</div>
-          <div class="card-desc">性能の数字は建てた日の数字。湿り空気線図で見る壁の中の結露と、0.2mm防湿気密シート・仮張り床の乾燥工程で妥協しない理由</div>
-        </div>
-      </a>
-      <a href="sanko-20261009.html" class="card">
-        <div class="card-icon blue">📘</div>
-        <div class="card-body">
-          <div class="card-title">10/9 参考書（壁体内結露編 詳細版）</div>
-          <div class="card-desc">湿り空気線図の読み方・露点計算・加盟店エリア別の冬の外気条件・施工写真・想定QA集</div>
-        </div>
-      </a>
-      <a href="mtg-20260925.html" class="card">
-        <div class="card-icon blue">🌬️</div>
-        <div class="card-body">
-          <div class="card-title">9/25 研修（断熱×気密×換気）</div>
-          <div class="card-desc">「断熱等級7じゃないんですか？」に正直に答える。3点セットで初めて成立する理由と、施工現場のこだわり</div>
-        </div>
-      </a>
-      <a href="sanko-20260925.html" class="card">
-        <div class="card-icon blue">📘</div>
-        <div class="card-body">
-          <div class="card-title">9/25 参考書（断熱×気密×換気 詳細版）</div>
-          <div class="card-desc">投影資料の裏付けとなる一次資料・施工マニュアル・想定QA集。数値の出典と未確認事項も明記</div>
-        </div>
-      </a>
-      <a href="mtg-20260918.html" class="card">
-        <div class="card-icon blue">🏗️</div>
-        <div class="card-body">
-          <div class="card-title">9/18 研修（耐震等級3×制振evoltz）</div>
-          <div class="card-desc">なぜ許容応力度計算の耐震等級3か／なぜevoltzを標準搭載するか／他社比較・一条工務店との違い</div>
-        </div>
-      </a>
-      <a href="sanko-20260918.html" class="card">
-        <div class="card-icon blue">📘</div>
-        <div class="card-body">
-          <div class="card-title">9/18 参考書（耐震等級3×evoltz 詳細版）</div>
-          <div class="card-desc">投影資料の内容を一次資料・法令・専門家の発言まで掘り下げた補足資料。お客様からの深い質問への回答用</div>
-        </div>
-      </a>
-      <a href="kimitsu-sokutei-teian.html" class="card">
-        <div class="card-icon purple">📐</div>
-        <div class="card-body">
-          <div class="card-title">気密測定 標準化提案メモ<span style="font-size:10px;color:#B35C1F;font-weight:700;background:#FFF3CD;border-radius:4px;padding:1px 6px;margin-left:4px">本部用</span></div>
-          <div class="card-desc">C値実測を加盟店オプションからLIFEX標準工程へ。メリット・未検証論点・未達時リカバリー方針の整理</div>
-        </div>
-      </a>
-      <a href="mtg-20260911.html" class="card">
-        <div class="card-icon purple">🛡️</div>
-        <div class="card-body">
-          <div class="card-title">9/11 研修（TorneoPlus紹介＋エコボロンPRO標準仕様深掘り）</div>
-          <div class="card-desc">新導入TorneoPlus（オーブレットライフ様）のご紹介＋標準仕様エコボロンPROを訴求トークに落とし込む</div>
-        </div>
-      </a>
-      <a href="kagatsume-kabeuchi-20260911.html" class="card">
-        <div class="card-icon purple">🗣️</div>
-        <div class="card-body">
-          <div class="card-title">9/11 顧問壁打ち（商談準備自動化ツール）<span style="font-size:10px;color:#B35C1F;font-weight:700;background:#FFF3CD;border-radius:4px;padding:1px 6px;margin-left:4px">本部用</span></div>
-          <div class="card-desc">来店前アンケート→資金レンジ・おすすめプラン・商談トークの自動生成。5社実験との接続と論点整理</div>
-        </div>
-      </a>
-      <a href="taiyoko-total-cost-appeal-final.html" class="card">
-        <div class="card-icon orange">☀️</div>
-        <div class="card-body">
-          <div class="card-title">9/4 研修（太陽光×トータルコスト訴求法）</div>
-          <div class="card-desc">加盟店配布用・最終版。4タイプ共通の武器＋21エリア発電シミュレーション＋電力会社別削減額試算</div>
-        </div>
-      </a>
-      <a href="lifex-mtg-archive.html" class="card">
-        <div class="card-icon purple">🎬</div>
-        <div class="card-body">
-          <div class="card-title">目標達成MTGアーカイブ</div>
-          <div class="card-desc">2棟目標達成MTG 録画一覧（全7回・YouTube）</div>
-        </div>
-      </a>
-      <a href="mtg-20260828.html" class="card">
-        <div class="card-icon purple">🤝</div>
-        <div class="card-body">
-          <div class="card-title">8/28 MTG（間の取り方＋テスクロ）</div>
-          <div class="card-desc">沈黙の使い方・テストクロージング／Gハウス会話法2部作の第2回</div>
-        </div>
-      </a>
-      <a href="mtg-20260821.html" class="card">
-        <div class="card-icon purple">👂</div>
-        <div class="card-body">
-          <div class="card-title">8/21 MTG（答え合わせ＋聞く力）</div>
-          <div class="card-desc">共感・復唱・関連質問／Gハウス会話法をLIFEXへ翻案</div>
-        </div>
-      </a>
-      <a href="lifex-kenshu-20260807.html" class="card">
-        <div class="card-icon purple">🔍</div>
-        <div class="card-body">
-          <div class="card-title">8/7 研修（商談を磨く）</div>
-          <div class="card-desc">Gハウスの型・ふりかえりシート・鉄板トーク集の使い方</div>
-        </div>
-      </a>
-      <a href="mtg-20260731.html" class="card">
-        <div class="card-icon orange">🎯</div>
-        <div class="card-body">
-          <div class="card-title">7/31 MTG（KPI診断・アポ率目標）</div>
-          <div class="card-desc">観る→診る→処方→決める→答え合わせ</div>
-        </div>
-      </a>
-      <a href="LIFEX_MTG_20260724/01_投影資料_架電率UP.html" class="card">
-        <div class="card-icon orange">📢</div>
-        <div class="card-body">
-          <div class="card-title">7/24 MTG（通電率UP）</div>
-          <div class="card-desc">上位3社横展開・初動・回数・区切り</div>
-        </div>
-      </a>
-      <a href="LIFEX研修_20260717/05_投影資料_対談形式.html" class="card">
-        <div class="card-icon purple">🎤</div>
-        <div class="card-body">
-          <div class="card-title">7/17 研修（月2棟の型を公開）</div>
-          <div class="card-desc">佐古社長対談・電話7項目・冒頭90秒・クロージング階段</div>
-        </div>
-      </a>
-      <a href="lifex-mtg-20260703.html" class="card">
-        <div class="card-icon orange">📝</div>
-        <div class="card-body">
-          <div class="card-title">7/3 MTG（不通対策・アポ術の型）</div>
-          <div class="card-desc">架電が繋がらない原因・アポ取得の型</div>
-        </div>
-      </a>
-      <a href="LIFEX研修_20260717/03_投影スライド全15枚.html" class="card">
-        <div class="card-icon purple">🖼</div>
-        <div class="card-body">
-          <div class="card-title">7/17 投影スライド 全15枚</div>
-          <div class="card-desc">研修全スライド一式</div>
-        </div>
-      </a>
-      <a href="LIFEX研修_20260717/電話メールの型_佐古社長実践資料.html" class="card">
-        <div class="card-icon purple">📞</div>
-        <div class="card-body">
-          <div class="card-title">電話・メールの型（10月版・手元用）</div>
-          <div class="card-desc">つながるまでの動き方・7項目の言い回し・メールとSMS文面・記入シート</div>
-        </div>
-      </a>
-      <a href="LIFEX研修_20260717/01_進行設計書.html" class="card">
-        <div class="card-icon purple">📄</div>
-        <div class="card-body">
-          <div class="card-title">研修 進行設計書</div>
-          <div class="card-desc">当日の進行スケジュール・設計</div>
-        </div>
-      </a>
-      <a href="LIFEX研修_20260717/02_佐古社長向け事前資料.html" class="card">
-        <div class="card-icon purple">📑</div>
-        <div class="card-body">
-          <div class="card-title">佐古社長向け事前資料</div>
-          <div class="card-desc">研修前共有資料</div>
-        </div>
-      </a>
-      <a href="fujimoto-mtg-checklist.html" class="card">
-        <div class="card-icon orange">✅</div>
-        <div class="card-body">
-          <div class="card-title">藤本さん すり合わせ確認事項</div>
-          <div class="card-desc">来期計画すり合わせ 14項目チェックリスト</div>
-        </div>
-      </a>
-      <a href="desktop/lifex-mtg-20260724-deploy/index.html" class="card">
-        <div class="card-icon orange">🗂</div>
-        <div class="card-body">
-          <div class="card-title">7/24 MTG（デプロイ版）</div>
-          <div class="card-desc">架電率UP資料 配布用</div>
-        </div>
-      </a>
+      <a href="kyaku-hosoku.html" class="card"><div class="card-title">LIFE X 補足資料（お客様向け）</div><div class="card-desc">アプローチブックに無い補足5枚。耐震の強さ・繰り返す地震・振動台実験・制振・壁の中の結露</div></a>
+      <a href="lifex-waku-materials-customer-v2.html" class="card"><div class="card-title">これ、全部標準仕様です。（お客様向け）</div><div class="card-desc">標準仕様4設備とルームツアー動画。お客様にそのままURLを送れます</div></a>
+      <a href="lifex-waku-materials.html" class="card"><div class="card-title">ワクワク素材一覧（メールフォロー用）</div><div class="card-desc">電話がつながらないお客様へのメールに貼れる動画・公式サイトのURL集</div></a>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-title">商談支援ツール</div>
+  <div class="section" id="archive">
+    <div class="section-title">録画・個別MTG資料</div>
     <div class="grid">
-      <a href="kamei-shodan-shiryou.html" class="card">
-        <div class="card-icon blue">🧭</div>
-        <div class="card-body">
-          <div class="card-title">加盟検討商談で使う資料集<span style="font-size:10px;color:#B35C1F;font-weight:700;background:#FFF3CD;border-radius:4px;padding:1px 6px;margin-left:4px">本部用</span></div>
-          <div class="card-desc">加盟検討中の工務店様に「加盟店が実際にどう売っているか」を見せる資料を、電話→準備→初回面談→テストクロージング→加盟後支援の順に一覧化</div>
-        </div>
-      </a>
-      <a href="shodan-furikaeri.html" class="card">
-        <div class="card-icon green">🔎</div>
-        <div class="card-body">
-          <div class="card-title">商談ふりかえりシート（人物金時敵）</div>
-          <div class="card-desc">自分の商談を"解剖"して次の一手を決める（叩き台）</div>
-        </div>
-      </a>
-      <a href="teppan-talk.html" class="card">
-        <div class="card-icon orange">🗣️</div>
-        <div class="card-body">
-          <div class="card-title">鉄板トーク集</div>
-          <div class="card-desc">重視点・断り文句・競合・フェーズ別の深掘りトーク（叩き台）</div>
-        </div>
-      </a>
-      <a href="seminar-wahou-manual.html" class="card">
-        <div class="card-icon green">🎤</div>
-        <div class="card-body">
-          <div class="card-title">初回顧客セミナー 話法マニュアル</div>
-          <div class="card-desc">セミナー本番・個別相談で使うトーク台本（練習／本番モード切替）</div>
-        </div>
-      </a>
-      <a href="fushiki-aircon-cop-keisan.xls" class="card">
-        <div class="card-icon green">🧮</div>
-        <div class="card-body">
-          <div class="card-title">Ｆ式エアコン容量・COP実測計算シート（Excel）</div>
-          <div class="card-desc">住宅性能値からエアコン必要容量を算出／現地でのCOP実測用（通称フエッピー）</div>
-        </div>
-      </a>
-      <a href="approach-book-page-mockup.html" class="card">
-        <div class="card-icon orange">📘</div>
-        <div class="card-body">
-          <div class="card-title">アプローチブック ページ見本（叩き台）</div>
-          <div class="card-desc">佐古顧問FB反映の8トピック4段構成＋研修資料の深掘り情報を統合したページ見本</div>
-        </div>
-      </a>
+      <a href="lifex-mtg-archive.html" class="card"><div class="card-title">目標達成MTGアーカイブ</div><div class="card-desc">毎週の目標達成MTGの録画一覧（YouTube）と各回の投影資料</div></a>
+      <a href="kameiten-mtg/" class="card"><div class="card-title">加盟店様 MTG資料</div><div class="card-desc">本部との個別MTGの資料。加盟店様ごとのパスコードで開きます</div></a>
     </div>
+    <details class="more">
+      <summary>過去の版</summary>
+      <div class="grid" style="margin-top:6px">
+        <a href="desktop/lifex-mtg-20260724-deploy/index.html" class="card"><div class="card-title">7/24 MTG（配布用の旧版）</div><div class="card-desc">通電率UP資料の配布版</div></a>
+        <a href="lifex-waku-materials-customer.html" class="card"><div class="card-title">これ、全部標準仕様です。（旧版）</div><div class="card-desc">お客様向けの修正前の版</div></a>
+      </div>
+    </details>
   </div>
 
-  <div class="section">
-    <div class="section-title">上司提出用資料</div>
-    <div class="grid">
-      <a href="shodan-saiten-cost/index.html" class="card">
-        <div class="card-icon orange">💰</div>
-        <div class="card-body">
-          <div class="card-title">商談AI採点ツール 費用感プレゼン(A4)</div>
-          <div class="card-desc">Gemini API実測ベースのコストシミュレーション・決裁用</div>
-        </div>
-      </a>
-      <a href="withdom-ad-mtg-20260819.html" class="card">
-        <div class="card-icon red">📢</div>
-        <div class="card-body">
-          <div class="card-title">8/19 ウィズダムグループ様 広告運用ご相談</div>
-          <div class="card-desc">自社運用移行後の反響推移・本部再委託のご提案</div>
-        </div>
-      </a>
-      <a href="taiyoko-total-cost-appeal.html" class="card">
-        <div class="card-icon orange">☀️</div>
-        <div class="card-body">
-          <div class="card-title">太陽光×トータルコスト訴求法（内部作業版）<span style="font-size:10px;color:#B35C1F;font-weight:700;background:#FFF3CD;border-radius:4px;padding:1px 6px;margin-left:4px">本部用</span></div>
-          <div class="card-desc">佐古顧問MTGの壁打ちメモ入り・4タイプ共通の武器＋21エリア発電シミュレーション</div>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">目標・戦略資料</div>
-    <div class="grid">
-      <a href="raiki-mokuhyo.html" class="card">
-        <div class="card-icon" style="background:#FFF3E0;">🎯</div>
-        <div class="card-body">
-          <div class="card-title">来期目標設定 ― 月2棟への逆算ロードマップ</div>
-          <div class="card-desc">加盟後12ヶ月・KPI逆算＋事業部合計・藤本プラン接続</div>
-        </div>
-      </a>
-      <a href="3sha-chukan-20260821.html" class="card">
-        <div class="card-icon" style="background:#FFF3E0;">📊</div>
-        <div class="card-body">
-          <div class="card-title">注力3社スプリント ― 8月中間報告</div>
-          <div class="card-desc">中央建設様(米子)・竹村工務店様・WITHDOM Group様のKPI実績と診断</div>
-        </div>
-      </a>
-      <a href="5sha-jikken-sekkei-20260826.html" class="card">
-        <div class="card-icon" style="background:#FFF3E0;">🧪</div>
-        <div class="card-body">
-          <div class="card-title">5社実験設計 ― 10月答え合わせへの設計図</div>
-          <div class="card-desc">3社→5社に拡大。現状→施策→到達ラインの1行サマリーと加盟店支援モデルの原型</div>
-        </div>
-      </a>
-      <a href="lifex-aicon-deploy/index.html" class="card">
-        <div class="card-icon" style="background:#F3E8FF;">💡</div>
-        <div class="card-body">
-          <div class="card-title">アイコン様 広告投資シミュレーション</div>
-          <div class="card-desc">愛知エリア・加盟翻意用提案資料</div>
-        </div>
-      </a>
-      <a href="lifex-proposal-gen.html" class="card">
-        <div class="card-icon" style="background:#E8F0FB;">📋</div>
-        <div class="card-body">
-          <div class="card-title">LIFEX 広告投資提案資料ジェネレーター</div>
-          <div class="card-desc">会社名・実績を入力 → A4資料が自動生成・PDF出力</div>
-        </div>
-      </a>
-      <a href="graftect-kyogyo.html" class="card">
-        <div class="card-icon" style="background:#E8EFE9;">🤝</div>
-        <div class="card-body">
-          <div class="card-title">グラフテクト × LIFEX 協業提案書</div>
-          <div class="card-desc">グラフテクト向け 協業スキーム提案</div>
-        </div>
-      </a>
-      <a href="graftect-kobo-annai.html" class="card">
-        <div class="card-icon" style="background:#E8EFE9;">📄</div>
-        <div class="card-body">
-          <div class="card-title">LIFEX 工務店様向けご案内</div>
-          <div class="card-desc">グラフテクト営業様が工務店にお渡しする配布資料</div>
-        </div>
-      </a>
-      <a href="graftect-talk-script.html" class="card">
-        <div class="card-icon" style="background:#E8EFE9;">🗣️</div>
-        <div class="card-body">
-          <div class="card-title">LIFEXご紹介トークスクリプト</div>
-          <div class="card-desc">グラフテクト営業様専用・社内メモ</div>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">ワクワク資料</div>
-    <div class="grid">
-      <a href="lifex-waku-materials.html" class="card">
-        <div class="card-icon red">🏠</div>
-        <div class="card-body">
-          <div class="card-title">LIFEX ワクワク資料</div>
-          <div class="card-desc">FC向け</div>
-        </div>
-      </a>
-      <a href="lifex-waku-materials-customer.html" class="card">
-        <div class="card-icon red">👥</div>
-        <div class="card-body">
-          <div class="card-title">LIFEX ワクワク資料（顧客向け）</div>
-          <div class="card-desc">エンドユーザー向け版</div>
-        </div>
-      </a>
-      <a href="lifex-waku-materials-customer-v2.html" class="card">
-        <div class="card-icon red">👥</div>
-        <div class="card-body">
-          <div class="card-title">LIFEX ワクワク資料（修正版）</div>
-          <div class="card-desc">エンドユーザー向け・標準仕様4設備とルームツアー動画</div>
-        </div>
-      </a>
-    </div>
-  </div>
+  <div class="foot"><a href="honbu.html">本部用ページ →</a></div>
 
 </div>
 </body>
