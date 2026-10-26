@@ -195,6 +195,11 @@ details ul{padding-left:18px}
 .pp{font-size:14px;margin:0}
 .pur{background:var(--greige);border-radius:10px;padding:14px 16px;font-size:13.5px}.pur h4,.goal h4{margin:0 0 6px;font-size:13px;color:var(--navy);letter-spacing:.06em}.pur p{margin:0 0 8px}.pur ul{margin:0 0 8px;padding-left:1.2em}.pur b{color:var(--ink)}.pur .st th,.pur .st td{white-space:normal}
 .goal{border:1.5px solid var(--navy);border-radius:10px;padding:14px 18px;margin-top:14px;font-size:14px}.goal ol{margin:0;padding-left:1.3em}.goal li{margin-bottom:4px}.goal b{color:var(--navy)}.goal .mid{font-size:12.5px;color:var(--ink2);margin:8px 0 0}
+.flow.f3 .fh,.flow.f3 .fr{grid-template-columns:1.2fr 1fr 1fr 1fr}
+.tw{overflow-x:auto;margin-top:10px}
+.st.rt th,.st.rt td{padding:5px 7px;font-size:12.5px}
+.st.rt .gh{text-align:center;color:var(--navy)}
+.st.rt td.z{color:#c3c8cf}
 </style>
 </head>
 <body>
@@ -214,16 +219,16 @@ details ul{padding-left:18px}
 <div class="grid2">
   <div class="card">
     <h3>契約　10月の実績（ステータスを契約に変えた日で数える）</h3>
-    <div class="big"><b>8<small>件</small></b><span>10月の目標8件（重点5社 各1件＋他の加盟店様3件）</span></div>
+    <div class="big"><b>7<small>件</small></b><span>10月の目標8件（重点5社 各1件＋他の加盟店様3件）に1件届かず</span></div>
     <table class="st" style="margin-top:12px">
       <thead><tr><th></th><th>10月目標</th><th>10月実績</th><th>内訳</th></tr></thead>
       <tbody>
         <tr><th>重点5社</th><td>5</td><td class="now">4</td><td style="text-align:left;white-space:normal">WITHDOM Group様2・中央建設様米子店1・河原工務店様1</td></tr>
-        <tr><th>他の加盟店様</th><td>3</td><td class="now">4</td><td style="text-align:left;white-space:normal">YUNO HOME様3・久留米建設様1</td></tr>
+        <tr><th>他の加盟店様</th><td>3</td><td class="now">3</td><td style="text-align:left;white-space:normal">YUNO HOME様2・久留米建設様1</td></tr>
       </tbody>
-      <tfoot><tr><th>合計</th><td>8</td><td>8</td><td></td></tr></tfoot>
+      <tfoot><tr><th>合計</th><td>8</td><td>7</td><td style="text-align:left;white-space:normal">うちLIFE X 3件（WITHDOM 2・久留米1）、自社商品4件</td></tr></tfoot>
     </table>
-    <div class="note">年内32件まで残り24件（11月13・12月13の目標）。重点5社で10月0件は竹村工務店様とキノシタ様。数え方は自社商品の契約も含み、契約日ではなくポータルに入力された日が基準です。</div>
+    <div class="note">年内32件まで残り25件（11月13・12月13の目標）。重点5社で10月0件は竹村工務店様とキノシタ様。数え方は自社商品の契約も含み、契約日ではなくポータルでステータスを契約に変えた日が基準です。ポータルの集計対象外の契約1件（YUNO HOME様）は含めていません。</div>
   </div>
   <div class="card">
     <h3>率の目標に対する現在地</h3>
@@ -319,20 +324,51 @@ details ul{padding-left:18px}
 <h2><span class="no">5</span>流入元別の数字から見えたこと</h2>
 <div class="card">
   <table class="st">
-    <thead><tr><th>10/1〜25に登録</th><th>登録</th><th>未着手</th><th>通話接続率（着手済み分母）</th><th>同（登録全員分母）</th><th>アポ→面談</th><th>契約（内定）</th></tr></thead>
+    <thead><tr><th>10/1〜25に登録</th><th>登録</th><th>未着手</th><th>通話接続率（着手済み分母）</th><th>同（登録全員分母）</th><th>アポ→面談</th><th>内定・契約</th></tr></thead>
     <tbody>
-      <tr><th>本部の資料請求フォーム</th><td>52</td><td class="lo">14</td><td class="now">57.9%</td><td>42.3%</td><td class="lo">15→8</td><td>1</td></tr>
-      <tr><th>加盟店様LP</th><td>90</td><td>7</td><td>48.2%</td><td>44.4%</td><td>32→25</td><td>6</td></tr>
+      <tr><th>本部の資料請求フォーム</th><td>52</td><td class="lo">14</td><td class="now">57.9%</td><td>42.3%</td><td>15→8</td><td>1</td></tr>
+      <tr><th>LIFEX経由（本部フォーム以外）</th><td>48</td><td>7</td><td>41.5%</td><td>35.4%</td><td>10→6</td><td>0</td></tr>
+      <tr><th>加盟店様の自社登録</th><td>42</td><td>0</td><td>54.8%</td><td>54.8%</td><td>22→19</td><td>6</td></tr>
     </tbody>
   </table>
-  <div class="note">本部経由は電話がつながりやすいが、4人に1人が未着手で、アポから面談にも来られにくい。判定方法と加盟店様別は今朝の資料の2を参照。本部経由の未着手14人は8社に分かれ、フラワーホーム様4・アイコン様3・永大ハウスビルド様2が多い（重点5社では河原工務店様1）。</div>
+  <div class="note">LIFEX経由どうしで比べると、本部フォーム経由のほうが電話はつながる（57.9%と41.5%）。アポから面談へ進む割合はほぼ同じ（53%と60%）で、差が出ているのは着手。本部経由の未着手14人は8社に分かれ、フラワーホーム様4・アイコン様3・永大ハウスビルド様2が多い（重点5社では河原工務店様1）。10月に登録して内定・契約まで進んだ7人のうち6人は加盟店様の自社登録で、自社登録はすでに話が進んでいる方の登録が多いため、通話接続率の比較からは外しています。</div>
+  <h3 style="margin-top:16px">加盟店様別</h3>
+  <div class="tw"><table class="st rt">
+    <thead><tr><th></th><th colspan="4" class="sep gh">本部の資料請求フォーム</th><th colspan="4" class="sep gh">LIFEX経由（本部フォーム以外）</th><th colspan="4" class="sep gh">加盟店様の自社登録</th><th class="sep gh">10月に</th></tr>
+    <tr><th>加盟店様</th><th class="sep">登録</th><th>未着手</th><th>通話</th><th>内定<br>以上</th><th class="sep">登録</th><th>未着手</th><th>通話</th><th>内定<br>以上</th><th class="sep">登録</th><th>未着手</th><th>通話</th><th>内定<br>以上</th><th class="sep">契約へ<br>変更</th></tr></thead>
+    <tbody>
+<tr><th>WITHDOM Group様</th><td class="sep">4</td><td>0</td><td>4</td><td>0</td><td class="sep">5</td><td>0</td><td>3</td><td>0</td><td class="sep">19</td><td>0</td><td>9</td><td>0</td><td class="sep">2</td></tr>
+<tr><th>いえプロ不動産様</th><td class="sep">14</td><td class="lo">1</td><td>7</td><td>0</td><td class="sep">7</td><td>0</td><td>3</td><td>0</td><td class="sep">5</td><td>0</td><td>3</td><td>0</td><td class="sep">0</td></tr>
+<tr><th>YUNO HOME様</th><td class="sep">6</td><td>0</td><td>3</td><td>1</td><td class="sep">2</td><td>0</td><td>0</td><td>0</td><td class="sep">2</td><td>0</td><td>2</td><td>2</td><td class="sep">2</td></tr>
+<tr><th>河原工務店様</th><td class="sep">1</td><td class="lo">1</td><td>0</td><td>0</td><td class="sep">2</td><td>0</td><td>0</td><td>0</td><td class="sep">6</td><td>0</td><td>6</td><td>3</td><td class="sep">1</td></tr>
+<tr><th>アパックスホーム様</th><td class="sep">2</td><td>0</td><td>2</td><td>0</td><td class="sep">6</td><td class="lo">1</td><td>3</td><td>0</td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">0</td></tr>
+<tr><th>健康住宅様</th><td class="sep">2</td><td class="lo">1</td><td>1</td><td>0</td><td class="sep">5</td><td class="lo">2</td><td>1</td><td>0</td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">0</td></tr>
+<tr><th>LIFE X UTSUNOMIYA（トーモク様）</th><td class="sep">2</td><td class="lo">1</td><td>0</td><td>0</td><td class="sep">4</td><td class="lo">1</td><td>1</td><td>0</td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">0</td></tr>
+<tr><th>アイコン様</th><td class="sep">4</td><td class="lo">3</td><td>0</td><td>0</td><td class="sep">2</td><td class="lo">2</td><td>0</td><td>0</td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">0</td></tr>
+<tr><th>フラワーホーム様</th><td class="sep">5</td><td class="lo">4</td><td>0</td><td>0</td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">1</td><td>0</td><td>0</td><td>0</td><td class="sep">0</td></tr>
+<tr><th>南日本ハウス様</th><td class="sep">3</td><td>0</td><td>2</td><td>0</td><td class="sep">2</td><td>0</td><td>1</td><td>0</td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">0</td></tr>
+<tr><th>中央建設様 出雲店</th><td class="sep">1</td><td>0</td><td>0</td><td>0</td><td class="sep">3</td><td>0</td><td>0</td><td>0</td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">0</td></tr>
+<tr><th>坂本建設工業様</th><td class="sep">1</td><td>0</td><td>0</td><td>0</td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">3</td><td>0</td><td>0</td><td>0</td><td class="sep">0</td></tr>
+<tr><th>竹村工務店様</th><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">2</td><td>0</td><td>2</td><td>0</td><td class="sep">2</td><td>0</td><td>0</td><td>0</td><td class="sep">0</td></tr>
+<tr><th>ダイケンアーキテクツ様</th><td class="sep">1</td><td>0</td><td>1</td><td>0</td><td class="sep">1</td><td>0</td><td>0</td><td>0</td><td class="sep">1</td><td>0</td><td>1</td><td>0</td><td class="sep">0</td></tr>
+<tr><th>中央建設様 米子店</th><td class="sep">1</td><td>0</td><td>1</td><td>0</td><td class="sep">1</td><td>0</td><td>1</td><td>0</td><td class="sep">1</td><td>0</td><td>1</td><td>1</td><td class="sep">1</td></tr>
+<tr><th>久留米建設様</th><td class="sep">1</td><td>0</td><td>0</td><td>0</td><td class="sep">2</td><td>0</td><td>2</td><td>0</td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">1</td></tr>
+<tr><th>永大ハウスビルド様</th><td class="sep">2</td><td class="lo">2</td><td>0</td><td>0</td><td class="sep">1</td><td class="lo">1</td><td>0</td><td>0</td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">0</td></tr>
+<tr><th>キノシタ様</th><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">2</td><td>0</td><td>1</td><td>0</td><td class="sep">0</td></tr>
+<tr><th>シリウス様</th><td class="sep">1</td><td class="lo">1</td><td>0</td><td>0</td><td class="sep">1</td><td>0</td><td>0</td><td>0</td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">0</td></tr>
+<tr><th>中央建設様 鳥取店</th><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">2</td><td>0</td><td>0</td><td>0</td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">0</td></tr>
+<tr><th>むつみワールド様</th><td class="sep">1</td><td>0</td><td>1</td><td>0</td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="z sep">－</td><td class="z"></td><td class="z"></td><td class="z"></td><td class="sep">0</td></tr>
+    </tbody>
+    <tfoot><tr><th>合計</th><td class="sep">52</td><td>14</td><td>22</td><td>1</td><td class="sep">48</td><td>7</td><td>17</td><td>0</td><td class="sep">42</td><td>0</td><td>23</td><td>6</td><td class="sep">7</td></tr></tfoot>
+  </table></div>
+  <div class="note">通話＝通話接続まで進んだ人数、内定以上＝内定・契約まで進んだ人数。赤字は未着手。中央建設様は支店ごと（出雲店・鳥取店は重点5社の対象外）。右端は登録月を問わず、10月にステータスを契約へ変えた件数です。</div>
 </div>
 
 <h2><span class="no">6</span>分析と判断（案）</h2>
 <div class="ka">
-  <div class="hd"><b>年内の24件をどこで取るか</b></div>
+  <div class="hd"><b>年内の残り25件をどこで取るか</b></div>
   <div class="g">
-    <div><h4>観察</h4>10月は目標どおり8件。ただし重点5社は4件で、他の加盟店様（YUNO HOME様3件）に助けられた形。重点5社の年内目標25件（各5件）に対し、シートの見込みは10月の契約済みを含めて合計18.5件（竹村3・キノシタ2・河原3・WITHDOM9・米子1.5）。</div>
+    <div><h4>観察</h4>10月は7件で、目標8件に1件届かず。重点5社は4件（目標5件）、他の加盟店様は3件（YUNO HOME様2件・久留米建設様1件）。7件のうちLIFE Xの契約は3件で、残り4件は自社商品。重点5社の年内目標25件（各5件）に対し、シートの見込みは10月の契約済みを含めて合計18.5件（竹村3・キノシタ2・河原3・WITHDOM9・米子1.5）。</div>
     <div><h4>分析</h4>見込みの半分はWITHDOM Group様の9件で、契約率30%が前提。一方、キノシタ様は集客の不足が埋まらないと見込みが動かない。徳田の11〜12月の週末はイベントで埋まりつつあり（11/8米子・11/29キノシタ様ほか）、重点5社の集客を徳田のセミナーだけで埋めるのは無理がある。</div>
     <div class="j"><h4>判断（案）</h4>①WITHDOM Group様は11/5のロープレで契約率に集中し、面談済み26人を松尾様と棚卸し。②キノシタ様は週1の定例で通話接続の型（竹村様方式）を先に入れ、集客は11/29に全力。③米子店は11/8のセミナーとロゴ入りバナーで集客の入口を立て直す。④本部送客の未着手をなくす約束（今朝の提案1）を、重点5社以外も含めた全社の底上げとして進める。</div>
   </div>
@@ -350,12 +386,12 @@ details ul{padding-left:18px}
 <details open>
   <summary>数字の出典</summary>
   <ul>
-    <li>10月の契約8件と内訳：本部用API members.json（2026/10/25 21:53取得）のステータスが契約で、最後の手動変更日が10/1以降の件数。米子店は支店情報（tenants.json）で確認</li>
+    <li>10月の契約7件と内訳：本部用API changes.json（2026/10/25 21:53取得）のステータス変更のうち、変更先が契約で日時が10月（日本時間）のもの。members.json の集計対象（counted）のお客様に限る。商品は members.json の契約商品欄、米子店は支店情報（tenants.json）で確認</li>
     <li>10月の目標8件（重点5社各1件＋他3件）・年内32件・11月13・12月13：BtoB事業部ダッシュボードへの入力内容（10/22 徳田決定）</li>
     <li>直近3ヶ月の通話接続率41.7%・未達6社：members.json を登録日7/26〜10/25で集計（未登録を除く・到達段階4以上）</li>
     <li>契約率21.2%：digest.md「今月（2026-10-01〜2026-10-25）」の全体（契約7÷面談33）</li>
     <li>重点5社のKPI：KPI設定シート「LIFEX KPI設定（12月末）」の保存内容（竹村10/22・河原10/22・WITHDOM 10/23・キノシタ10/25・米子10/19更新）</li>
-    <li>流入元別：今朝の資料 mtg-agenda/20261026.html の2と同じ集計</li>
+    <li>流入元別・加盟店様別：今朝の資料 mtg-agenda/20261026.html の2と同じ集計（本部フォームはメール99通と登録時刻の照合、それ以外は members.json の流入欄で区分）</li>
     <li>11/5ロープレ・面談済み26人：文字起こし「ウィズダム様個別 - 2026/10/23」とKPI設定シート</li>
     <li>11/29セミナー・週1定例・11/8米子セミナー・竹村様のイベントとセミナー・河原様の野立て看板とポスティング・新潟訪問：文字起こし「キノシタ様社内会議出席 - 2026/10/24」「ウィズダム様個別 - 2026/10/23」での徳田の発言とKPI設定シートの打ち手欄</li>
     <li>連絡記録の試行（期間・対象・フォーム・2社の了承）：Chatwork「株式会社キノシタ様×Gハウス」10/22、「Gハウス様×WG」10/22〜23。ボタンを作る前に試す進め方は古西さんとのやり取り（10/20〜22）。未接続・最初のステータス変更までの時間：本部用API members.json・changes.json（10/25 21:53取得）から集計</li>
