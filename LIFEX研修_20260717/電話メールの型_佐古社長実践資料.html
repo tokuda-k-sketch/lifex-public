@@ -1,214 +1,468 @@
-<title>LIFEX研修 電話・メールの型〈佐古社長実践資料〉</title>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>電話・メールの型（手元用）</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
-    --navy:#1e4e79; --navy-soft:#e8eff6; --blue:#3b82c4;
-    --green:#2e7d6e; --green-bg:#e7f2ef;
-    --orange:#b05c1f; --orange-bg:#f9efe4;
-  }
-  *{box-sizing:border-box}
-  body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif; color:var(--ink);
-    background:#e9edf1; margin:0; line-height:1.75; font-feature-settings:"palt"}
-  .sheet{width:min(880px,94vw); margin:28px auto 60px; background:#fff; border-radius:8px;
-    box-shadow:0 2px 16px rgba(20,40,60,.09); padding:52px 58px 46px}
-  .num{font-variant-numeric:tabular-nums}
+:root{--navy:#2b3a67;--navy-l:#eaedf5;--greige:#f3f1ec;--ink:#1b1f24;--ink2:#4a525c;--mute:#8a929c;--line:#e3e6ea;--red:#a1462a}
+*{box-sizing:border-box}
+html,body{margin:0;background:#e9ebef}
+body{font-family:"Noto Sans JP","Hiragino Sans",sans-serif;color:var(--ink);line-height:1.75;font-feature-settings:"palt"}
+.sheet{width:min(900px,100%);margin:24px auto 60px;background:#fff;border-radius:8px;box-shadow:0 2px 16px rgba(20,40,60,.08);padding:48px 56px 40px}
+.num{font-variant-numeric:tabular-nums}
+.eyebrow{font-size:12.5px;letter-spacing:.18em;color:var(--ink2);font-weight:700}
+h1{font-size:34px;font-weight:900;line-height:1.4;margin:8px 0 6px;color:var(--navy)}
+.lead{font-size:14.5px;color:var(--ink2);margin:0}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+.toc a{font-size:13px;font-weight:700;color:var(--navy);text-decoration:none;border:1.5px solid var(--navy);border-radius:999px;padding:3px 14px}
+.toc a:hover{background:var(--navy-l)}
+section{margin-top:52px}
+.chip{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.1em;padding:3px 12px;border-radius:99px;background:var(--navy-l);color:var(--navy)}
+h2{font-size:23px;font-weight:900;line-height:1.45;margin:10px 0 4px}
+h3{font-size:16px;margin:28px 0 8px;color:var(--navy)}
+.ms{font-size:14px;color:var(--ink2);margin:0 0 18px}
+.src{font-size:11.5px;color:var(--mute);margin-top:8px}
 
-  /* ヘッダー */
-  .eyebrow{font-size:12.5px; letter-spacing:.22em; color:var(--sub); font-weight:700}
-  h1{font-size:33px; font-weight:800; line-height:1.4; margin:10px 0 6px; text-wrap:balance}
-  .lead{font-size:14.5px; color:var(--sub); margin:0}
-  .src{display:inline-block; font-size:11px; color:var(--green); background:var(--green-bg);
-    border:1px solid #bfdcd5; border-radius:3px; padding:2px 10px; font-weight:700; margin-top:14px}
+/* 数字 */
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.kpi>div{padding:16px 18px;position:relative}
+.kpi>div+div{border-left:1px solid var(--line)}
+.kpi>div:last-child{background:var(--navy-l)}
+.kpi span{display:block;font-size:12.5px;color:var(--ink2)}
+.kpi b{display:block;font-size:34px;font-weight:900;color:var(--navy);line-height:1.2}
+.kpi small{font-size:11.5px;color:var(--mute)}
+.bars{margin-top:16px}
+.bars .row{display:grid;grid-template-columns:120px 1fr 96px;gap:12px;align-items:center;margin:6px 0}
+.bars .lb{font-size:13px;color:var(--ink2)}
+.bars .tr{height:16px;background:var(--greige);border-radius:3px;overflow:hidden}
+.bars .tr i{display:block;height:100%;background:var(--navy)}
+.bars .v{font-size:14px;font-weight:700;color:var(--navy);text-align:right}
+.bars .v small{font-size:11px;color:var(--mute);font-weight:400;margin-left:4px}
+.after{margin-top:14px;background:var(--navy-l);border-radius:10px;padding:14px 20px;font-size:14px}
+.after b{color:var(--navy)}
 
-  /* セクション */
-  section{margin-top:46px}
-  .chip{display:inline-block; font-size:11.5px; font-weight:700; letter-spacing:.1em;
-    padding:3px 12px; border-radius:99px; background:var(--navy-soft); color:var(--navy)}
-  h2{font-size:22px; font-weight:800; line-height:1.45; margin:10px 0 4px; text-wrap:balance}
-  .ms{font-size:14px; color:var(--sub); margin:0 0 18px}
+/* 動き方 */
+.step{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.step:last-of-type{border-bottom:0}
+.step i{font-style:normal;width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center}
+.step b{display:block;font-size:16px}
+.step p{margin:2px 0 0;font-size:13.5px;color:var(--ink2)}
+.step .ex{margin-top:8px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.step .ex div{background:var(--greige);border-radius:6px;padding:8px 12px;font-size:12.5px;color:var(--ink2)}
+.step .ex div b{font-size:12px;color:var(--navy);display:block}
+.callout{margin-top:18px;border:1.5px solid var(--navy);border-radius:10px;padding:16px 20px}
+.callout b.t{display:block;color:var(--navy);font-size:15.5px;margin-bottom:4px}
+.callout p{margin:0;font-size:13.5px}
+table.cmp{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px}
+table.cmp th,table.cmp td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+table.cmp thead th{color:var(--navy);font-size:12.5px;background:var(--navy-l)}
+table.cmp tbody th{white-space:nowrap;color:var(--ink2);font-weight:700}
+details.more{margin-top:14px;border:1px solid var(--line);border-radius:8px;padding:10px 16px}
+details.more summary{cursor:pointer;font-weight:700;font-size:13.5px;color:var(--navy)}
 
-  /* 目的カード */
-  .aim{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-  .aim>div{border:1px solid var(--line); border-top:3px solid var(--navy); border-radius:6px;
-    padding:16px 20px; background:#fff}
-  .aim b{display:block; font-size:16px; color:var(--navy); margin-bottom:4px}
-  .aim p{margin:0; font-size:13.5px; color:var(--sub)}
-  .payoff{margin-top:12px; background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:10px;
-    padding:16px 22px; font-size:14.5px}
-  .payoff b{color:var(--navy)}
+/* 電話 */
+.aim{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.aim>div{border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:6px;padding:14px 18px}
+.aim b{display:block;font-size:15.5px;color:var(--navy);margin-bottom:2px}
+.aim p{margin:0;font-size:13.5px;color:var(--ink2)}
+.payoff{margin-top:12px;background:var(--navy-l);border-radius:10px;padding:14px 20px;font-size:14px}
+.payoff b{color:var(--navy)}
+.rule{border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:4px;padding:12px 18px;margin-bottom:8px}
+.rule b{font-size:15px}
+.rule p{margin:2px 0 0;font-size:13.5px;color:var(--ink2)}
+.q{border:1px solid var(--line);border-radius:8px;margin-bottom:12px;overflow:hidden}
+.q .qh{display:flex;align-items:center;gap:12px;padding:10px 18px;background:var(--navy-l)}
+.q .qh i{font-style:normal;flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font-weight:900;font-size:13.5px;display:flex;align-items:center;justify-content:center}
+.q .qh b{font-size:15.5px}
+.q .qb{padding:12px 18px 14px;font-size:13.5px}
+.q .qb p{margin:0 0 8px}
+.lbl{display:inline-block;font-size:10.5px;letter-spacing:.1em;font-weight:700;color:var(--navy);background:var(--navy-l);border-radius:3px;padding:1px 8px;margin-right:8px;vertical-align:1px}
+.lbl.g{background:var(--greige);color:var(--ink2)}
+.say{background:#fff;border-left:3px solid var(--navy);padding:4px 0 4px 12px;margin:6px 0 8px;font-size:14px}
+.fork{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.fork>div{background:var(--greige);border-radius:6px;padding:8px 12px}
+.fork b{display:block;font-size:12.5px;color:var(--navy)}
+.fork p{margin:0;font-size:12.5px;color:var(--ink2)}
+.note-ex{font-size:12px;color:var(--mute);margin:-6px 0 14px}
 
-  /* 原則 */
-  .rule{border:1px solid var(--line); border-left:4px solid var(--navy); border-radius:4px;
-    background:#fbfcfd; padding:14px 20px; margin-bottom:10px}
-  .rule b{font-size:15.5px}
-  .rule p{margin:2px 0 0; font-size:13.5px; color:var(--sub)}
+/* 文面 */
+.tpl{border:1px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:16px}
+.tpl .th{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--navy-l);padding:10px 18px}
+.tpl .th b{font-size:14.5px;color:var(--navy)}
+.tpl .th span{display:block;font-size:12px;color:var(--ink2);font-weight:400}
+.tpl button{flex-shrink:0;font:inherit;font-size:12.5px;font-weight:700;color:var(--navy);background:#fff;border:1.5px solid var(--navy);border-radius:999px;padding:3px 14px;cursor:pointer}
+.tpl button.done{background:var(--navy);color:#fff}
+.tpl pre{margin:0;padding:16px 20px;font-family:inherit;font-size:13.5px;line-height:1.95;white-space:pre-wrap;word-break:break-word}
+.tpl .cnt{font-size:11.5px;color:var(--mute);padding:0 20px 10px}
+.ngok{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:4px 0 22px}
+.ngok>div{border-radius:6px;padding:12px 16px;font-size:13.5px}
+.ng{border:1.5px solid var(--red)}
+.ng b{color:var(--red)}
+.ok{border:1.5px solid var(--navy);background:var(--navy-l)}
+.ok b{color:var(--navy)}
+.ngok p{margin:4px 0 0;color:var(--ink2);font-size:13px}
 
-  /* 7項目 */
-  .q{border:1px solid var(--line); border-radius:6px; margin-bottom:12px; overflow:hidden}
-  .q .qh{display:flex; align-items:center; gap:14px; padding:12px 20px; background:var(--panel)}
-  .q .qh i{font-style:normal; flex-shrink:0; width:30px; height:30px; border-radius:50%;
-    background:var(--navy); color:#fff; font-weight:800; font-size:14px;
-    display:flex; align-items:center; justify-content:center}
-  .q .qh b{font-size:16px}
-  .q .qb{padding:12px 20px 14px; font-size:13.5px}
-  .lbl{display:inline-block; font-size:10.5px; letter-spacing:.12em; font-weight:700;
-    color:var(--navy); background:var(--navy-soft); border-radius:3px; padding:1px 8px;
-    margin-right:8px; vertical-align:1px}
-  .qb p{margin:0 0 6px}
-  .qb p:last-child{margin-bottom:0}
-  .fork{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px}
-  .fork>div{border:1px solid var(--line); border-radius:4px; padding:10px 14px; background:#fff}
-  .fork b{display:block; font-size:12.5px; color:var(--navy); margin-bottom:2px}
-  .fork p{margin:0; font-size:13px; color:var(--sub)}
 
-  /* メール実物 */
-  .mail{border:1px solid var(--line); border-radius:6px; overflow:hidden; margin-top:6px}
-  .mail .mh{background:var(--panel); border-bottom:1px solid var(--line); padding:10px 22px;
-    font-size:12px; color:var(--sub)}
-  .mail .mh b{color:var(--ink)}
-  .mail .mb{padding:20px 24px; font-size:13.5px; line-height:2.0}
-  .mail .mb p{margin:0 0 14px}
-  .mail .mb p:last-child{margin-bottom:0}
-  .slots{background:var(--navy-soft); border:1px solid #c6d6e6; border-radius:6px;
-    padding:10px 18px; margin:0 0 14px; font-weight:700; color:var(--navy)}
-  .slots span{display:block}
-  .ngok{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px}
-  .ngok>div{border-radius:6px; padding:14px 18px; font-size:13.5px}
-  .ng{background:var(--orange-bg); border:1px solid #e3c9a8}
-  .ng b{color:var(--orange)}
-  .ok{background:var(--green-bg); border:1px solid #bfdcd5}
-  .ok b{color:var(--green)}
-  .ngok p{margin:4px 0 0; color:var(--sub); font-size:13px}
+/* 会社紹介資料 */
+.ys{border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:0 0 22px}
+.ys h3{margin:0 0 4px}
+.ys .pages{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 4px}
+.ys figure{margin:0}
+.ys img{width:100%;display:block;border:1px solid var(--line);border-radius:3px}
+.ys figcaption{font-size:12px;color:var(--ink2);margin-top:6px;line-height:1.55}
+.ys figcaption b{display:block;color:var(--navy);font-size:12.5px}
+.ys .why{margin-top:12px;background:var(--navy-l);border-radius:8px;padding:12px 16px;font-size:13.5px}
+.ys .why b{color:var(--navy)}
+@media (max-width:680px){.ys .pages{grid-template-columns:1fr 1fr}}
 
-  /* まとめ */
-  .close{margin-top:46px; text-align:center; font-size:17px; font-weight:800; color:var(--navy)}
-  .foot{margin-top:30px; padding-top:16px; border-top:1px solid var(--line);
-    font-size:11.5px; color:var(--sub); display:flex; gap:14px; flex-wrap:wrap}
+/* 記入シート */
+.sheetbox{border:1.5px solid var(--navy);border-radius:8px;padding:18px 20px}
+.sheetbox h4{margin:0 0 10px;font-size:15px;color:var(--navy)}
+.fill{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--line);border-radius:4px;margin-bottom:12px}
+.fill>div{padding:6px 10px;min-height:44px;font-size:11.5px;color:var(--ink2);border-right:1px solid var(--line)}
+.fill>div:last-child{border-right:0}
+table.log,table.hear{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:12px}
+table.log th,table.log td,table.hear th,table.hear td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+table.log th,table.hear th{background:var(--navy-l);color:var(--navy);font-weight:700}
+table.log td{height:30px}
+table.hear td{height:44px}
+table.hear th{width:34%}
+.close{margin-top:46px;text-align:center;font-size:18px;font-weight:900;color:var(--navy)}
+.foot{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);font-size:11.5px;color:var(--ink2)}
+.foot p{margin:2px 0}
+.printbtn{font:inherit;font-size:12.5px;font-weight:700;color:#fff;background:var(--navy);border:0;border-radius:999px;padding:5px 16px;cursor:pointer;margin-top:10px}
 
-  @media (max-width:640px){
-    .sheet{padding:32px 22px}
-    .aim,.fork,.ngok{grid-template-columns:1fr}
-    h1{font-size:26px}
-  }
-  @media print{
-    body{background:#fff}
-    .sheet{box-shadow:none; width:100%; margin:0; padding:24px 8mm}
-    section{break-inside:avoid-page}
-  }
+@media (max-width:680px){
+  .sheet{padding:28px 16px;margin:0;border-radius:0}
+  h1{font-size:26px}
+  .kpi{grid-template-columns:1fr}.kpi>div+div{border-left:0;border-top:1px solid var(--line)}
+  .aim,.fork,.ngok,.step .ex,.fill{grid-template-columns:1fr}
+  .bars .row{grid-template-columns:84px 1fr 80px}
+  table.cmp{display:block;overflow-x:auto}
+}
+@media print{
+  html,body{background:#fff}
+  .sheet{box-shadow:none;margin:0;width:100%;padding:10mm 8mm}
+  .toc,.tpl button,.printbtn{display:none}
+  section{break-inside:auto}
+  .q,.tpl,.step,.sheetbox,.kpi{break-inside:avoid}
+  details.more{display:block}
+  details.more>*{display:block}
+  #sheet{break-before:page}
+  @page{size:A4;margin:8mm}
+}
 </style>
-
+</head>
+<body>
 <div class="sheet">
 
-  <div class="eyebrow">2026.7.17　LIFEX 加盟店研修</div>
+  <div class="eyebrow">LIFEX 加盟店様向け｜手元用（2026年10月版）</div>
   <h1>商談は、電話から始まっている。</h1>
-  <p class="lead">着電後の電話ヒアリング7項目と、電話に出ない方への追いメール。YUNO HOME 佐古社長が実際に使っている型を、そのまま公開します。</p>
-  <span class="src">佐古社長の実際の電話トーク・メール文面より</span>
+  <p class="lead">電話の横に置いて使う手元用の資料です。7/17の研修でYUNO HOME 佐古社長に公開いただいた「電話・メールの型」に、つながるまでの動き方、7項目の言い回し、メールとSMSの文面、記入用のシートを足しました。</p>
+  <nav class="toc">
+    <a href="#s1">1 数字</a><a href="#s2">2 つながるまで</a><a href="#s3">3 電話の型</a><a href="#s4">4 メール・SMS</a><a href="#sheet">5 記入シート</a>
+  </nav>
 
-  <!-- ============ 電話の目的 ============ -->
-  <section>
-    <span class="chip">電話の型</span>
+  <!-- ============ 1 数字 ============ -->
+  <section id="s1">
+    <span class="chip">1 数字</span>
+    <h2>7月から、つながる電話が増えています。</h2>
+    <p class="ms">全加盟店様の合計です。通話接続率＝電話がつながったお客様 ÷ 加盟店様が対応を始めたお客様。</p>
+    <div class="kpi num">
+      <div><span>研修前（1/1〜7/23）</span><b>23.9%</b><small>83 / 348人</small></div>
+      <div><span>研修後（7/24〜10/5）</span><b>34.7%</b><small>118 / 340人</small></div>
+      <div><span>直近3か月（7/26〜10/25）</span><b>41.7%</b><small>180 / 432人</small></div>
+    </div>
+    <h3>登録した月ごとの通話接続率</h3>
+    <div class="bars num">
+      <div class="row"><span class="lb">5月登録</span><span class="tr"><i style="width:23.9%"></i></span><span class="v">23.9%<small>27/113</small></span></div>
+      <div class="row"><span class="lb">6月登録</span><span class="tr"><i style="width:23.4%"></i></span><span class="v">23.4%<small>34/145</small></span></div>
+      <div class="row"><span class="lb">7月登録</span><span class="tr"><i style="width:27.1%"></i></span><span class="v">27.1%<small>32/118</small></span></div>
+      <div class="row"><span class="lb">8月登録</span><span class="tr"><i style="width:31.9%"></i></span><span class="v">31.9%<small>37/116</small></span></div>
+      <div class="row"><span class="lb">9月登録</span><span class="tr"><i style="width:44.5%"></i></span><span class="v">44.5%<small>77/173</small></span></div>
+      <div class="row"><span class="lb">10月登録</span><span class="tr"><i style="width:51.2%"></i></span><span class="v">51.2%<small>62/121</small></span></div>
+    </div>
+    <p class="ms" style="margin-top:8px">10月に登録したお客様は、まだ1か月たっていないのに半分以上とつながっています。登録から早いうちに電話がつながるようになってきた、ということです。</p>
+    <div class="after">つながった後は、型があります。佐古社長は電話がつながったお客様の<b>90%とお会いする約束</b>まで進めています。差がつくのは、その手前の「つながるまで」です。</div>
+    <p class="src">研修前・研修後はKPIダッシュボードの画面（10/5時点）、直近3か月と登録月ごとは本部の集計（10/25時点）。10月は25日までの登録。</p>
+  </section>
+
+  <!-- ============ 2 つながるまで ============ -->
+  <section id="s2">
+    <span class="chip">2 つながるまでの動き方</span>
+    <h2>何回、いつ掛けるかを先に決めておく。</h2>
+    <p class="ms">7/24の研修で伺った、接続率の高い3社（大建建設様・竹村工務店様・坂本建設工業様）の進め方から共通する部分を抜き出しました。やり方は店ごとに違っていて構いません。決めてあるかどうかで差がつきます。</p>
+
+    <div class="step"><i>1</i><div><b>登録に気づいたら、その日のうちに1本目</b><p>遅くとも翌日。登録の通知メールを誰が見て、誰が掛けるかを名前で決めておくと、「誰かが掛けるだろう」がなくなります。</p></div></div>
+    <div class="step"><i>2</i><div><b>出なければ、時間帯を変えて掛け直す</b><p>同じ時間に掛け続けても、お客様の生活の時間とずれたままです。</p>
+      <div class="ex"><div><b>竹村工務店様</b>11〜13時と15〜17時の2本。翌日は前日と違う時間帯に</div><div><b>坂本建設工業様</b>1本目のすぐ後にメールとSMS。同じ日の18時以降に2本目</div><div><b>大建建設様</b>朝と夕方に30分ずつ集中して掛ける。週末が近ければ週末に</div></div></div></div>
+    <div class="step"><i>3</i><div><b>電話以外の接点をひとつ添える</b><p>1本目に出なかったら、SMSかメールを送っておきます（文面は4章）。メールには会社の紹介資料を添えると、電話の前に「どんな会社の、どんな人か」を知ってもらえます。留守電は残す店と残さない店があります。残すなら、1回目はお礼、2回目は動画のご案内のように中身を変えます（大建建設様）。</p></div></div>
+    <div class="step"><i>4</i><div><b>回数と期間で区切る</b><p>区切りがあるから、掛けるべきお客様に時間を使えます。掛けた日時と結果はその都度メモに残しておくと、次に掛ける時間帯を選べます。</p>
+      <div class="ex"><div><b>竹村工務店様</b>最低1週間・最大7回。7回目でつながった方もいる</div><div><b>坂本建設工業様</b>3回つながらなければ、別の担当者に交代</div><div><b>大建建設様</b>電話は3回まで。その後は定期的なご案内へ</div></div></div></div>
+    <div class="step"><i>5</i><div><b>区切った後も、接点は切らない</b><p>月に一度のイベント案内や動画で、お客様の手元に名前を残しておきます。7月・8月に登録したお客様とも、10月の後半に入ってからまだ電話がつながっています。</p></div></div>
+
+    <div class="callout">
+      <b class="t">本部の資料請求フォームから届いたお客様は、すぐ掛けてください</b>
+      <p>本部フォームのお客様はLIFE Xの資料を請求しただけで、まだ御社の名前を知りません。そのぶん、最初の電話は「LIFE Xの資料のご請求ありがとうございます」を先に言い、会社名は後から伝えます。10月に本部フォームから登録したお客様は、対応を始めた方の<b>57.9%</b>と電話がつながっています（それ以外のLIFE X経由は41.5%）。つながりやすいお客様なので、後回しにしないことがいちばん効きます。</p>
+    </div>
+
+    <details class="more">
+      <summary>3社の進め方を並べて見る（7/24研修のヒアリングより）</summary>
+      <table class="cmp">
+        <thead><tr><th></th><th>大建建設様</th><th>竹村工務店様</th><th>坂本建設工業様</th></tr></thead>
+        <tbody>
+          <tr><th>誰が掛けるか</th><td>アシスタントの方が登録通知を直接確認して掛ける</td><td>営業ご本人がすべて掛ける</td><td>最初の3本は営業ご本人、その後は別の担当者</td></tr>
+          <tr><th>最初の1本</th><td>登録があった時点ですぐ</td><td>9〜17時、気づいたらすぐ（遅くとも翌日）</td><td>登録時すぐ。同じ日の18時以降に2本目</td></tr>
+          <tr><th>つながらない時</th><td>夕方・週末に掛け直し。動画のメールを送る</td><td>11〜13時と15〜17時。翌日は別の時間帯</td><td>メールの開封通知が来たらすぐ掛ける</td></tr>
+          <tr><th>留守電・SMS</th><td>留守電は必ず残す（1回目お礼、2回目動画案内）</td><td>どちらもなし。出なかった記録はメモで管理</td><td>留守電は残さない。メール・SMSを送る</td></tr>
+          <tr><th>区切り</th><td>電話は3回まで、以後は定期配信</td><td>1週間で判断して次へ</td><td>3回で担当交代</td></tr>
+          <tr><th>つながった後</th><td>7項目を聞いて、その場で日程を決める</td><td>通話中にSMSでLINEのQRを送り、LINE交換まで済ませる</td><td>LINE公式アカウントへご案内</td></tr>
+        </tbody>
+      </table>
+      <p class="src">7/24 LIFEX MTG（架電率UP）で各社から伺った内容（2026年7月時点）。竹村工務店様の通話接続率は、直近3か月（7/26〜10/25）で76.2%です。</p>
+    </details>
+  </section>
+
+  <!-- ============ 3 電話の型 ============ -->
+  <section id="s3">
+    <span class="chip">3 電話の型</span>
     <h2>電話する目的は、アポ取りだけではない。</h2>
-    <p class="ms">この電話が何のための時間かを、先に決めておく。</p>
+    <p class="ms">この電話が何のための時間かを、先に決めておく。ここから7項目までは佐古社長の型です。</p>
     <div class="aim">
       <div><b>① アポ取得のため</b><p>まずは会う約束を取り付ける。ここは当然の目的。</p></div>
       <div><b>② 初回面談の質を上げるため</b><p>電話で聞き切った情報が、初回商談の準備になる。契約までのスピードが変わる。</p></div>
     </div>
     <div class="payoff">初回でここまで調べてくる営業は、他にいない。だから他の営業マンより信頼度が格段に上がり、<b>「この人に聞けば解決してくれそう」</b>と思ってもらえる。アポ率90%の正体は、トークのうまさではなくこの準備量。</div>
-  </section>
 
-  <!-- ============ 3原則 ============ -->
-  <section>
-    <span class="chip">電話の型</span>
-    <h2>話し方の3原則</h2>
-    <p class="ms">7項目を聞く前に、電話全体を貫くルールが3つある。</p>
+    <h3>話し方の3原則</h3>
     <div class="rule"><b>① 建物のこと、性能のことは一切聞かない・話さない</b><p>お客様が電話ですべてを把握することは不可能。答えは面談に取っておく。</p></div>
     <div class="rule"><b>② 言われた内容は、すぐその場で話す</b><p>持ち帰らず即答するから、お客様の本音が聞ける。</p></div>
     <div class="rule"><b>③ 単体ではなく、ストーリーで話す</b><p>質問を7つ並べて尋問しない。会話の流れの中で自然に聞いていく。</p></div>
+
+    <h3>最初の30秒</h3>
+    <div class="say">「お忙しいところ失礼します。LIFE Xの資料をご請求いただいた〇〇様のお電話でよろしいでしょうか。ご請求ありがとうございました。〇〇県でLIFE Xを建てております、株式会社〇〇の〇〇と申します。2〜3分だけ、お時間よろしいですか？」</div>
+    <div class="fork">
+      <div><b>「今ちょっと…」と言われたら</b><p>「では、何時ごろでしたらお電話しやすいですか？」と、その場で次の時間を決めて切る。決めた時間は必ず守る。</p></div>
+      <div><b>話せる場合</b><p>1のきっかけから入る。7項目の順番どおりでなくてよい。話の流れで出てきたものから聞く。</p></div>
+    </div>
+    <p class="note-ex" style="margin-top:8px">言い回しは本部で作った例です。</p>
+
+    <h3>聞く内容は7項目。すべてに狙いがある。</h3>
+    <p class="ms">「狙い」は佐古社長の型、「言い回しの例」と「答えで分かれる」は佐古社長の狙いに沿って本部で作った例です。自分の言葉に直して使ってください。</p>
+
+    <div class="q"><div class="qh"><i>1</i><b>なぜ今回、規格住宅で問い合わせたのか</b></div><div class="qb">
+      <p><span class="lbl">狙い</span>お客様が重視している部分の把握。建売も見ているのか、注文しか見ていないのか。価格重視なのか、デザイン・間取り重視なのか。ここが初回提案の軸になる。</p>
+      <div class="say">「たくさんある住宅会社の中で、LIFE Xを見てくださったのは、何かきっかけがあったんですか？」</div>
+      <div class="fork"><div><b>価格・総額が気になっている</b><p>「総額がいくらになるかは、土地も含めて面談で一緒に出しましょう」と、面談の中身として予告する</p></div><div><b>デザイン・間取りが気になっている</b><p>気になったプランを聞いておく。面談でそのプランを用意できる</p></div></div>
+    </div></div>
+
+    <div class="q"><div class="qh"><i>2</i><b>家づくりを始めたタイミング</b></div><div class="qb">
+      <p><span class="lbl">狙い</span>お客様の知識レベルの把握。性能などの数値で、あえて専門用語を使ってジャブを打つ。反応で「どこまで勉強しているか」が見える。</p>
+      <div class="say">「家づくりは、いつごろから考え始めたんですか？　もう展示場や見学会には行かれました？　他の会社さんで、UA値やC値の話は出ました？」</div>
+      <div class="fork"><div><b>用語が通じる</b><p>勉強されている方。面談では数字を並べて比べる準備をしておく</p></div><div><b>用語が通じない</b><p>電話では説明しない（3原則の①）。「そのあたりも面談で分かりやすくお話しします」で止める</p></div></div>
+    </div></div>
+
+    <div class="q"><div class="qh"><i>3</i><b>土地を持っているか、持っていないか</b></div><div class="qb">
+      <p><span class="lbl">狙い</span>契約時期の把握。土地の有無で、その後の動き方が分かれる。</p>
+      <div class="say">「土地はもうお持ちですか？　それともこれから探される感じですか？」</div>
+      <div class="fork"><div><b>土地ありの場合</b><p>土地資料を事前に全部もらう。初回商談までに調べ切っておく。「面談までに調べておきますので、住所か図面を送っていただけますか」</p></div><div><b>土地なしの場合</b><p>探している媒体を確認。良い土地はあったか、相場が分かっているかを把握し、「その土地は高い」ということをこちらから言ってあげる。</p></div></div>
+    </div></div>
+
+    <div class="q"><div class="qh"><i>4</i><b>引越ししたい時期</b></div><div class="qb">
+      <p><span class="lbl">狙い</span>親御様がお子様のこと（入学・進級など）を重視しているかどうかの把握。ここが分かれば初回商談の準備ができる。ただし電話では答えを出し切らず、あえて余白を残す。</p>
+      <div class="say">「いつごろまでに住み始めたい、というのはありますか？　お子さんの入学に合わせて、とか」</div>
+      <div class="fork"><div><b>時期が決まっている</b><p>「間に合うかどうかは、面談で工程を組んでお見せします」。電話で可否を答えない</p></div><div><b>決まっていない</b><p>無理に決めさせない。家賃や更新の時期を聞いておくと、面談の話題になる</p></div></div>
+    </div></div>
+
+    <div class="q"><div class="qh"><i>5</i><b>ローンを通しているか。事前審査中なのか</b></div><div class="qb">
+      <p><span class="lbl">狙い</span>予算感の把握。すでに通していれば他社で言われている内容があるはずなので、それを踏まえて対策できる。</p>
+      <div class="say">「住宅ローンの事前審査は、もうどこかで出されました？」</div>
+      <div class="fork"><div><b>出している</b><p>「差し支えなければ、どのくらいで通ったか教えていただけますか」。他社で言われた金額を把握しておく</p></div><div><b>まだ</b><p>「面談で、月々の返済から逆算した資金計画を一緒に作れます」と、来る理由にする</p></div></div>
+    </div></div>
+
+    <div class="q"><div class="qh"><i>6</i><b>希望エリア</b></div><div class="qb">
+      <p><span class="lbl">狙い</span>提案の幅を広げるため。予算・契約時期・お客様の属性と掛け合わせて、出せる提案が変わる。</p>
+      <div class="say">「このあたりで、というご希望はありますか？　学校区とか、ご実家の近くとか」</div>
+    </div></div>
+
+    <div class="q"><div class="qh"><i>7</i><b>他社とどこまで進んでいるか。どこの会社を見ているか</b></div><div class="qb">
+      <p><span class="lbl">狙い</span>競合他社の強みを把握し、初回商談のアプローチを修正するため。相手が分かっていれば、初回から刺さる話ができる。</p>
+      <div class="say">「ほかに見ている会社さんはありますか？　差し支えなければ、どこまでお話が進んでいるかも」</div>
+      <div class="fork"><div><b>他社と話が進んでいる</b><p>電話で他社の悪口は言わない。「比べるポイントを面談でお伝えします」で止める</p></div><div><b>まだどこも</b><p>最初の1社になれる。日程の打診を早めに</p></div></div>
+    </div></div>
+
+    <h3>最後に日程とLINEを決める</h3>
+    <div class="say">「今のお話をもとに、資金計画とプランを用意してお待ちします。〇日の〇時か、〇日の〇時、ご都合いかがですか？」</div>
+    <div class="fork">
+      <div><b>日程は候補を出して選んでもらう</b><p>「いつがいいですか？」と聞くと決まらない。メールと同じで、こちらから候補を出す。</p></div>
+      <div><b>通話中にLINEまで済ませる（竹村工務店様）</b><p>「資料をお送りしたいので、今SMSでLINEのQRコードをお送りしますね」。SMSが届かない設定の方もいるので、QRコードも必ず送る。</p></div>
+    </div>
+    <p class="note-ex" style="margin-top:8px">言い回しは本部で作った例です。LINEの進め方は7/24研修で竹村工務店様から伺った内容です。</p>
   </section>
 
-  <!-- ============ 聞く内容7項目 ============ -->
-  <section>
-    <span class="chip">電話の型</span>
-    <h2>聞く内容は7項目。すべてに狙いがある。</h2>
-    <p class="ms">「何を聞くか」より「なぜ聞くか」をセットで覚える。狙いが分かれば、自分の言葉で聞ける。</p>
-
-    <div class="q">
-      <div class="qh"><i>1</i><b>なぜ今回、規格住宅で問い合わせたのか</b></div>
-      <div class="qb"><p><span class="lbl">狙い</span>お客様が重視している部分の把握。建売も見ているのか、注文しか見ていないのか。価格重視なのか、デザイン・間取り重視なのか。ここが初回提案の軸になる。</p></div>
-    </div>
-
-    <div class="q">
-      <div class="qh"><i>2</i><b>家づくりを始めたタイミング</b></div>
-      <div class="qb"><p><span class="lbl">狙い</span>お客様の知識レベルの把握。性能などの数値で、あえて専門用語を使ってジャブを打つ。反応で「どこまで勉強しているか」が見える。</p></div>
-    </div>
-
-    <div class="q">
-      <div class="qh"><i>3</i><b>土地を持っているか、持っていないか</b></div>
-      <div class="qb">
-        <p><span class="lbl">狙い</span>契約時期の把握。土地の有無で、その後の動き方が分かれる。</p>
-        <div class="fork">
-          <div><b>土地ありの場合</b><p>土地資料を事前に全部もらう。初回商談までに調べ切っておく。</p></div>
-          <div><b>土地なしの場合</b><p>探している媒体を確認。良い土地はあったか、相場が分かっているかを把握し、「その土地は高い」ということをこちらから言ってあげる。</p></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="q">
-      <div class="qh"><i>4</i><b>引越ししたい時期</b></div>
-      <div class="qb"><p><span class="lbl">狙い</span>親御様がお子様のこと（入学・進級など）を重視しているかどうかの把握。ここが分かれば初回商談の準備ができる。ただし電話では答えを出し切らず、あえて余白を残す。</p></div>
-    </div>
-
-    <div class="q">
-      <div class="qh"><i>5</i><b>ローンを通しているか。事前審査中なのか</b></div>
-      <div class="qb"><p><span class="lbl">狙い</span>予算感の把握。すでに通していれば他社で言われている内容があるはずなので、それを踏まえて対策できる。</p></div>
-    </div>
-
-    <div class="q">
-      <div class="qh"><i>6</i><b>希望エリア</b></div>
-      <div class="qb"><p><span class="lbl">狙い</span>提案の幅を広げるため。予算・契約時期・お客様の属性と掛け合わせて、出せる提案が変わる。</p></div>
-    </div>
-
-    <div class="q">
-      <div class="qh"><i>7</i><b>他社とどこまで進んでいるか。どこの会社を見ているか</b></div>
-      <div class="qb"><p><span class="lbl">狙い</span>競合他社の強みを把握し、初回商談のアプローチを修正するため。相手が分かっていれば、初回から刺さる話ができる。</p></div>
-    </div>
-  </section>
-
-  <!-- ============ メールの型 ============ -->
-  <section>
-    <span class="chip">メールの型</span>
+  <!-- ============ 4 メール・SMS ============ -->
+  <section id="s4">
+    <span class="chip">4 メール・SMS</span>
     <h2>電話に出ない人を、あきらめない。</h2>
-    <p class="ms">メールの目的は2つ。①電話に応対いただけない方へのアポ促進、②来店スケジュールを相手に委ねないこと。以下、実際に送っている文面。</p>
-
-    <div class="mail">
-      <div class="mh">追いメール実物　<b>件名：LIFEXお打ち合わせ日程のご案内</b></div>
-      <div class="mb">
-        <p>〇〇さま<br>お世話になっております。</p>
-        <p>この度はGハウス規格住宅のLIFE Xのサイトにて会員登録のほどありがとうございました。</p>
-        <p>埼玉県の施工店（埼玉エリア）の株式会社YUNO HOME　佐古祐太と申します。<br>LIFEX総額の資金計画や内装について、是非一度お打ち合わせにてご案内させていただければ幸いでございます。</p>
-        <p>もし、ご興味がある場合は以下の日時にてご検討のほどよろしくお願いいたします。</p>
-        <div class="slots num">
-          <span>6/20　10時〜</span>
-          <span>6/27　13時以降</span>
-          <span>6/28　13時以降</span>
-        </div>
-        <p>上記日時でご都合いかがでしょうか？</p>
-        <p>土地探しからトータルの費用まで初回からご提案可能でございます。<br>ぜひご検討のほどよろしくお願いいたします。</p>
-      </div>
-    </div>
+    <p class="ms">メールの目的は2つ。①電話に応対いただけない方へのアポ促進、②来店スケジュールを相手に委ねないこと。【 】の中を自社の内容に置き換えて使ってください。「コピー」で本文をコピーできます。</p>
 
     <div class="ngok">
       <div class="ng"><b>✕ 相手に委ねる</b>　「一度お打ち合わせはいかがでしょうか？」<p>スケジュールを相手に委ねると、返事を考えるのが面倒になり、返信率が落ちる。</p></div>
       <div class="ok"><b>〇 3つ提示する</b>　日時候補を必ず3つ、こちらから出す<p>相手は選ぶだけでいい。「土地探しから総額まで初回から提案できる」と明記し、来店する理由も一緒に渡す。</p></div>
     </div>
+
+    <div class="ys">
+      <h3>メールには、会社の紹介資料を添える</h3>
+      <p class="ms" style="margin:0">例として、YUNO HOME様の会社紹介資料（A4・4ページ）です。電話では建物や性能の話をしない（3原則の①）ぶん、資料が代わりに語ってくれます。</p>
+      <div class="pages">
+        <figure><img src="yuno-shoukai/p-1.jpg" alt="表紙"><figcaption><b>1 表紙</b>家の写真と、会社の思いを一言で</figcaption></figure>
+        <figure><img src="yuno-shoukai/p-2.jpg" alt="代表のメッセージ"><figcaption><b>2 代表の顔と思い</b>社名の由来と「お客様と同じ温度感で語り合うこと」</figcaption></figure>
+        <figure><img src="yuno-shoukai/p-3.jpg" alt="事業内容"><figcaption><b>3 できること</b>注文住宅・外構・リフォームの3つ</figcaption></figure>
+        <figure><img src="yuno-shoukai/p-4.jpg" alt="特長と会社概要"><figcaption><b>4 性能・事例・会社概要</b>耐震・断熱・省エネ・気密の数字と、施工事例の写真</figcaption></figure>
+      </div>
+      <div class="why">自社で作るなら、この4ページの順番がそのまま使えます。いちばん大事なのは2ページ目の<b>顔と思い</b>です。本部の資料請求フォームから届いたお客様は、御社の名前も担当者の顔も知りません。電話がつながる前に一度顔を見てもらえていると、知らない番号からの着信が「資料の人」からの電話に変わります。</div>
+    </div>
+
+    <div class="tpl"><div class="th"><b>A　1本目に出なかった直後のSMS<span>電話のすぐ後に。誰からの着信かを伝えるだけで、折り返しが来やすくなる</span></b><button type="button">コピー</button></div>
+<pre>【お名前】様
+LIFE Xの資料請求ありがとうございます。【会社名】の【名前】です。先ほどお電話しました。ご都合のよい時間をお知らせください。</pre><div class="cnt"></div></div>
+
+    <div class="tpl"><div class="th"><b>B　2回目以降もつながらない方へのSMS<span>LINE公式アカウントなど、電話以外の入口を渡す</span></b><button type="button">コピー</button></div>
+<pre>【お名前】様
+株式会社【会社名】の【名前】です。お電話が難しければ、こちらのLINEからもご相談いただけます。【LINEのURL】</pre><div class="cnt"></div></div>
+
+    <div class="tpl"><div class="th"><b>C　日程のご案内メール（佐古社長の実物）<span>電話に出ない方へ。日時候補を3つ出す</span></b><button type="button">コピー</button></div>
+<pre>件名：LIFEXお打ち合わせ日程のご案内
+
+〇〇さま
+お世話になっております。
+
+この度はGハウス規格住宅のLIFE Xのサイトにて会員登録のほどありがとうございました。
+
+埼玉県の施工店（埼玉エリア）の株式会社YUNO HOME　佐古祐太と申します。
+LIFEX総額の資金計画や内装について、是非一度お打ち合わせにてご案内させていただければ幸いでございます。
+
+もし、ご興味がある場合は以下の日時にてご検討のほどよろしくお願いいたします。
+
+6/20　10時〜
+6/27　13時以降
+6/28　13時以降
+
+上記日時でご都合いかがでしょうか？
+
+土地探しからトータルの費用まで初回からご提案可能でございます。
+ぜひご検討のほどよろしくお願いいたします。</pre></div>
+
+    <div class="tpl"><div class="th"><b>D　本部の資料請求フォームから届いたお客様への初回メール<span>御社の名前をまだ知らない方へ。誰が、なぜ連絡しているのかを最初に伝える</span></b><button type="button">コピー</button></div>
+<pre>件名：LIFE Xの資料のご請求ありがとうございます（【都道府県】の施工店　株式会社【会社名】）
+
+【お名前】様
+
+はじめまして。【都道府県】でLIFE Xを建てております、株式会社【会社名】の【名前】です。
+このたびはLIFE Xの資料をご請求いただき、ありがとうございます。【都道府県】での家づくりは、私どもがお手伝いいたします。
+
+注文住宅は予算が心配、建売は間取りがしっくりこない。そんな迷いはありませんか。
+私どもの会社の紹介資料を添付しました。どんな会社がお手伝いするのか、先にご覧いただけると幸いです。
+資料だけでは分かりにくい総額や、土地探しを含めた進め方は、一度お会いしてご説明させてください。
+
+以下の日時でご都合はいかがでしょうか。
+・【月/日（曜）】10時〜
+・【月/日（曜）】13時以降
+・【月/日（曜）】13時以降
+
+ご都合が合わなければ、ご希望の日時をお知らせください。このメールへのご返信でも、お電話でも大丈夫です。
+
+株式会社【会社名】　【名前】
+【電話番号】</pre></div>
+
+    <div class="tpl"><div class="th"><b>E　1週間つながらない方へ（イベント・動画のご案内）<span>電話より先に、実物や動画を見たい方もいる</span></b><button type="button">コピー</button></div>
+<pre>件名：LIFE Xの【見学会／モデルハウス】のご案内
+
+【お名前】様
+
+先日はLIFE Xの資料をご請求いただき、ありがとうございました。株式会社【会社名】の【名前】です。
+何度かお電話しましたが、お忙しい時間だったようで失礼いたしました。
+
+話を聞く前に、まずは実物を見てみたい。そんな方のために、ご案内をお送りします。
+
+【イベント名】
+日時：【月/日（曜）　時間】
+場所：【場所】
+【ルームツアー動画があればURL】
+
+ご予約は、このメールにご希望の日時を書いてご返信いただくだけで大丈夫です。
+
+株式会社【会社名】　【名前】
+【電話番号】</pre></div>
+
+    <div class="tpl"><div class="th"><b>F　区切った後のお客様へ（1か月以上たった方）<span>売り込まず、名前を思い出してもらう</span></b><button type="button">コピー</button></div>
+<pre>件名：その後、家づくりはいかがですか（株式会社【会社名】）
+
+【お名前】様
+
+以前、LIFE Xの資料をご請求いただいた際にご連絡した、株式会社【会社名】の【名前】です。
+その後、家づくりはいかがでしょうか。
+
+土地がなかなか見つからない、総額が見えなくて止まっている。そんなところで一度お休みされる方も少なくありません。
+【今月のイベントや相談会のご案内】
+
+今は時期ではない、ということでしたら、このメールは読み流してください。気になったときに、いつでもご連絡ください。
+
+株式会社【会社名】　【名前】
+【電話番号】</pre></div>
+    <p class="note-ex">C以外は本部で作った例です。お客様に届く文章なので、「商談」「アポ」などの言葉は使っていません。</p>
   </section>
 
-  <div class="close">電話で7項目、メールで3候補。次の1件から、このまま使えます。</div>
+  <!-- ============ 5 記入シート ============ -->
+  <section id="sheet">
+    <span class="chip">5 記入シート</span>
+    <h2>電話の横に置いて、書きながら聞く。</h2>
+    <p class="ms">1人につき1枚。印刷するとこのシートだけが新しいページから始まります。</p>
+    <div class="sheetbox">
+      <h4>電話ヒアリングシート</h4>
+      <div class="fill"><div>お客様のお名前</div><div>登録日・登録の経路（本部フォーム／LP など）</div><div>担当</div></div>
+      <table class="log">
+        <thead><tr><th style="width:9%">回</th><th style="width:25%">日時（曜日）</th><th style="width:24%">結果（通話／不在／留守電）</th><th>送ったもの・メモ</th></tr></thead>
+        <tbody><tr><td>1</td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td></td><td></td></tr><tr><td>3</td><td></td><td></td><td></td></tr><tr><td>4</td><td></td><td></td><td></td></tr><tr><td>5</td><td></td><td></td><td></td></tr><tr><td>6</td><td></td><td></td><td></td></tr><tr><td>7</td><td></td><td></td><td></td></tr></tbody>
+      </table>
+      <table class="hear">
+        <tbody>
+          <tr><th>1 規格住宅（LIFE X）を見たきっかけ</th><td></td></tr>
+          <tr><th>2 家づくりを始めた時期・知識の程度</th><td></td></tr>
+          <tr><th>3 土地（あり：住所・資料／なし：探し方・相場感）</th><td></td></tr>
+          <tr><th>4 住み始めたい時期（お子様の入学など）</th><td></td></tr>
+          <tr><th>5 ローンの事前審査（済み：金額／まだ）</th><td></td></tr>
+          <tr><th>6 希望エリア</th><td></td></tr>
+          <tr><th>7 見ている他社・進み具合</th><td></td></tr>
+          <tr><th>面談の日時／LINE交換</th><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <button type="button" class="printbtn" onclick="window.print()">印刷する</button>
+  </section>
+
+  <div class="close">気づいたらその日に1本。つながったら7項目。出なければ3候補。</div>
 
   <div class="foot">
-    <span>2026.7.17 LIFEX加盟店研修</span>
-    <span>出典：株式会社YUNO HOME 佐古社長の実践資料</span>
-    <span>日時・担当者名は文面例です。自社の候補日・担当者に置き換えて使用してください。</span>
+    <p>電話の目的・3原則・7項目の狙い・メールCは、YUNO HOME 佐古社長の実践資料（7/17 LIFEX加盟店研修）から。3社の進め方は7/24 LIFEX MTGで大建建設様・竹村工務店様・坂本建設工業様から伺った内容（2026年7月時点）。</p>
+    <p>数字はLIFE X加盟店ポータルの集計（研修前・研修後は10/5時点のダッシュボード、それ以外は10/25時点の本部集計）。</p>
+    <p>会社紹介資料の例は、株式会社YUNO HOME様の会社紹介資料（A4・4ページ）。</p>
+    <p>文面の日時・担当者名は例です。自社の候補日・担当者に置き換えて使用してください。</p>
   </div>
-
 </div>
+<script>
+document.querySelectorAll('.tpl').forEach(function(t){
+  var pre=t.querySelector('pre'),btn=t.querySelector('button'),cnt=t.querySelector('.cnt');
+  if(cnt){var n=pre.textContent.replace(/\n/g,'').length;cnt.textContent='約'+n+'文字（【 】を置き換える前）。SMSは70文字前後までに収めると、分割されずに届きます';}
+  btn.addEventListener('click',function(){
+    var done=function(){btn.textContent='コピーしました';btn.classList.add('done');setTimeout(function(){btn.textContent='コピー';btn.classList.remove('done')},1600)};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(pre.textContent).then(done,function(){fallback()})}else{fallback()}
+    function fallback(){var r=document.createRange();r.selectNodeContents(pre);var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');done()}catch(e){}}
+  });
+});
+</script>
+</body>
+</html>
