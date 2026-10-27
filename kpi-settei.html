@@ -90,7 +90,30 @@
   #listTable tfoot td{font-weight:700;border-top:2px solid var(--navy)}
   .plans{font-size:12px;color:var(--text);white-space:pre-line}
 
+  /* 自動取得バッジ */
+  .head-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+  .live{display:none;align-items:center;gap:8px;font-size:12px;color:var(--navy);background:var(--navy-soft);
+    border-radius:999px;padding:4px 12px;font-variant-numeric:tabular-nums}
+  .live.on{display:inline-flex}
+  .live .dot{width:8px;height:8px;border-radius:50%;background:var(--navy);position:relative}
+  .live .dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--navy);animation:pulse 2s ease-out infinite}
+  @keyframes pulse{from{transform:scale(1);opacity:.6}to{transform:scale(2.6);opacity:0}}
+  /* 読み込み中のスケルトン */
+  .sk{display:block;height:12px;border-radius:4px;background:linear-gradient(90deg,#eef1f6 0%,#f7f9fc 50%,#eef1f6 100%);
+    background-size:200% 100%;animation:shimmer 1.2s linear infinite}
+  .sk.w60{width:60%} .sk.w40{width:40%}
+  @keyframes shimmer{from{background-position:200% 0}to{background-position:-200% 0}}
+  #listTable tbody tr.sk-row{cursor:default}
+  #listTable tbody tr.sk-row:hover{background:none}
+  /* トースト */
+  .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,16px);opacity:0;pointer-events:none;
+    background:var(--navy);color:#fff;padding:10px 18px;border-radius:8px;font-size:14px;
+    box-shadow:0 6px 20px rgba(0,0,0,.15);transition:opacity .25s,transform .25s;z-index:10}
+  .toast.err{background:var(--alert)}
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+  @media (prefers-reduced-motion:reduce){.live .dot::after,.sk{animation:none}.toast{transition:none}}
   @media print{
+    .live,.toast{display:none!important}
     @page{size:A4 landscape;margin:10mm}
     body{font-size:12px}
     .wrap{padding:0;max-width:none}
@@ -107,10 +130,13 @@
 <div class="wrap">
   <header>
     <h1>12月末までのKPI設定シート</h1>
-    <nav class="tabs">
-      <a href="#input" id="tabInput">入力</a>
-      <a href="#list" id="tabList">一覧</a>
-    </nav>
+    <div class="head-right">
+      <span class="live" id="live"><span class="dot"></span><span id="liveText"></span></span>
+      <nav class="tabs">
+        <a href="#input" id="tabInput">入力</a>
+        <a href="#list" id="tabList">一覧</a>
+      </nav>
+    </div>
   </header>
 
   <!-- ========== 入力 ========== -->
@@ -247,6 +273,7 @@
     </div>
   </div>
 </div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
   // 保存先（GASウェブアプリのURL）。デプロイ後に貼り付ける
@@ -466,10 +493,11 @@
       if (j.error === 'auth') { getKey(true); throw new Error('パスコードが違います。もう一度保存を押してください'); }
       if (!j.ok) throw new Error(j.error || '保存できませんでした');
       $('saveStatus').textContent = `保存しました（${new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})}）`;
+      toast(`${store} を保存しました`);
       listCache = null;
     } catch (e) {
       $('saveStatus').textContent = '';
-      alert(e.message);
+      toast(e.message, true);
     } finally { $('save').disabled = false; }
   }
 
@@ -488,6 +516,7 @@
     if (!API_URL) { $('listStatus').textContent = '保存先がまだ設定されていません（GASのデプロイ待ち）'; return; }
     const key = getKey(false); if (!key) { $('listStatus').textContent = 'パスコードが必要です'; return; }
     $('listStatus').textContent = '読み込み中…';
+    showSkeleton();
     try {
       const res = await fetch(`${API_URL}?action=list&key=${encodeURIComponent(key)}&t=${Date.now()}`);
       const j = await res.json();
@@ -497,8 +526,46 @@
       actuals = j.actuals;
       populateStores();
       renderList();
+      showLive();
       $('listStatus').textContent = `${new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})} 時点`;
-    } catch (e) { $('listStatus').textContent = '読み込めませんでした：' + e.message; }
+    } catch (e) {
+      document.querySelector('#listTable tbody').innerHTML = '';
+      $('listStatus').textContent = '読み込めませんでした：' + e.message;
+    }
+  }
+
+  // 読み込み中は表の形だけ先に見せる
+  function showSkeleton(){
+    const cols = document.querySelectorAll('#listTable thead th').length;
+    const row = '<tr class="sk-row">' + Array.from({length: cols}, (_, i) =>
+      `<td><span class="sk ${i === 0 ? 'w60' : i === cols - 1 ? '' : 'w40'}"></span></td>`).join('') + '</tr>';
+    document.querySelector('#listTable tbody').innerHTML = row.repeat(6);
+    document.querySelector('#listTable tfoot').innerHTML = '';
+  }
+
+  // 実績の自動取得時刻をヘッダーに出す（例：今朝 7:02）
+  function showLive(){
+    if (!actuals || !actuals.updatedAt) return;
+    const m = String(actuals.updatedAt).match(/(\d{4})-(\d{2})-(\d{2})\s+(\d{1,2}):(\d{2})/);
+    if (!m) return;
+    const d = new Date(+m[1], m[2] - 1, +m[3], +m[4], +m[5]);
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const days = Math.round((today - new Date(d.getFullYear(), d.getMonth(), d.getDate())) / 864e5);
+    const hm = `${d.getHours()}:${String(d.getMinutes()).padStart(2, '0')}`;
+    const when = days === 0 ? (d.getHours() < 11 ? `今朝 ${hm}` : `今日 ${hm}`)
+      : days === 1 ? `昨日 ${hm}` : `${d.getMonth() + 1}/${d.getDate()} ${hm}`;
+    $('liveText').textContent = `LIFEXポータルから自動取得　最終更新：${when}`;
+    $('live').classList.add('on');
+  }
+
+  let toastTimer = null;
+  function toast(msg, isErr){
+    const t = $('toast');
+    t.textContent = msg;
+    t.classList.toggle('err', !!isErr);
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), isErr ? 5000 : 2800);
   }
 
   const val = v => (v === '' || v === null || v === undefined) ? null : Number(v);
