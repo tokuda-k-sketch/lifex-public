@@ -11,6 +11,14 @@
     {
       "slug": "withdom",
       "name": "WITHDOM Group株式会社様"
+    },
+    {
+      "slug": "apax-home",
+      "name": "アパックスホーム様"
+    },
+    {
+      "slug": "mutsumi-world",
+      "name": "むつみワールド様"
     }
   ],
   "mtgs": [
@@ -34,6 +42,20 @@
       "dateLabel": "2026年10月27日（火）",
       "title": "お打ち合わせ（販売ルール・11月広告予算・エリア拡充）",
       "file": "withdom/2026-10-27.html"
+    },
+    {
+      "slug": "apax-home",
+      "date": "2026-10-30",
+      "dateLabel": "2026年10月30日（金）",
+      "title": "営業会議",
+      "file": "apax-home/2026-10-30.html"
+    },
+    {
+      "slug": "mutsumi-world",
+      "date": "2026-10-30",
+      "dateLabel": "2026年10月30日（金）",
+      "title": "打合せ",
+      "file": "mutsumi-world/2026-10-30.html"
     }
   ]
 }
