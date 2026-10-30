@@ -216,6 +216,13 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 .up td.lx{font-weight:800; color:var(--navy); background:var(--navy-soft)}
 .up td.lx small{display:block; font-size:11px; color:var(--pop-ink); font-weight:800}
 /* 切り返し */
+.cks{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; flex:1; min-height:0; margin-top:16px}
+.ck{border-radius:16px; border:2px solid var(--line); background:#fff; padding:16px; display:flex; flex-direction:column; gap:12px}
+.ck .k{font-size:20px; font-weight:900; color:var(--navy)}
+.ck .v{font-size:18px; font-weight:800; line-height:1.5; background:var(--navy-soft); border-radius:12px; padding:10px 14px}
+.ck .v small{display:block; font-size:12px; color:var(--sub)}
+.ck .q{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; font-size:20px; font-weight:800; line-height:1.6; background:var(--panel); border-radius:12px; padding:10px}
+.ck .q:before{content:"🔍"; font-size:18px}
 .qa{display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:1fr; gap:14px; flex:1; min-height:0}
 .qc{border-radius:14px; border:2px solid var(--line); padding:12px 14px; display:flex; flex-direction:column; gap:8px; background:#fff}
 .qc .q{font-size:15px; font-weight:800; background:var(--panel); border-radius:12px; padding:7px 12px; width:max-content; max-width:100%}
@@ -336,31 +343,9 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
   <div class="cap" style="text-align:center">GRAFTEKT公式価格表 2026年8月仕様のオプション価格。BOSCHはW450大容量・余熱乾燥、水栓はKVKタッチレス・クロム。カップボードはGRAFTEKT価格表の「カップボードなし」の差額（220,000円）を相当額としています</div>
 </section>
 
-<!-- 月々 -->
-<section class="sl">
-  <div class="top"><span class="chip pop">ここが山場②</span><span class="pg">05</span></div>
-  <h2 class="tt">約78万円を、<span class="hi">月々の返済</span>で考えると</h2>
-  <div class="loan">
-    <div class="lb1">
-      <div class="h">オプションでふつうに付けたら</div>
-      <div class="m">2,272<small>円</small></div>
-      <div class="y">毎月 × 35年</div>
-      <table>
-        <tr><td>オプション合計（税込）</td><td class="v">778,800円</td></tr>
-        <tr><td>35年の返済総額</td><td class="v">約95.4万円</td></tr>
-        <tr><td>うち利息</td><td class="v">約17.5万円</td></tr>
-      </table>
-    </div>
-    <div class="arr">➜</div>
-    <div class="now"><span>LIFE Xなら</span><b>0円</b><em>最初から標準</em></div>
-  </div>
-  <div class="talk" style="margin-top:14px">オプションで足すと、毎月約2,300円を35年。LIFE Xなら、その分はかかりません。</div>
-  <div class="cap">試算：借入778,800円・金利1.2%（全期間固定と仮定）・35年・元利均等・ボーナス返済なし。実際の返済額は金融機関・金利タイプで変わります。</div>
-</section>
-
 <!-- 5 タッチレス -->
 <section class="sl">
-  <div class="top"><span class="chip">便利① タッチレス水栓</span><span class="pg">06</span></div>
+  <div class="top"><span class="chip">便利① タッチレス水栓</span><span class="pg">05</span></div>
   <h2 class="tt">手をかざすだけで、<span class="hi">水が出る</span></h2>
   <div class="eq">
     <div class="ph"><img src="assets/mtg-20261030/gt-faucet.jpg" alt="" style="object-position:62% 50%"><span class="lb">GRAFTEKT 公式写真</span><span class="std"><s>メーカー価格 +84,700円</s><b>LIFE Xは標準</b></span></div>
@@ -380,7 +365,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 6 食洗機 -->
 <section class="sl">
-  <div class="top"><span class="chip">便利② 食洗機</span><span class="pg">07</span></div>
+  <div class="top"><span class="chip">便利② 食洗機</span><span class="pg">06</span></div>
   <h2 class="tt">洗い物の時間が、<span class="hi">家族の時間</span>に変わる</h2>
   <div class="eq">
     <div class="ph"><img src="assets/mtg-20261030/gt-bosch.jpg" alt="" style="object-position:50% 50%"><span class="lb">GRAFTEKT×BOSCH（リシェルはPanasonic）</span><span class="std"><s>メーカー価格 +217,800円</s><b>LIFE Xは標準</b></span></div>
@@ -400,7 +385,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 7 カップボード -->
 <section class="sl">
-  <div class="top"><span class="chip">便利③ カップボード（バックセット）</span><span class="pg">08</span></div>
+  <div class="top"><span class="chip">便利③ カップボード（バックセット）</span><span class="pg">07</span></div>
   <h2 class="tt">入居日から、<span class="hi">すっきり片付く</span></h2>
   <div class="eq">
     <div class="ph"><img src="assets/mtg-20261030/gt-cupboard.jpg" alt="" style="object-position:50% 50%"><span class="lb">GRAFTEKT 公式写真</span><span class="std"><s>メーカー価格 220,000円相当</s><b>LIFE Xは標準</b></span></div>
@@ -420,7 +405,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 8 リビング側収納 -->
 <section class="sl">
-  <div class="top"><span class="chip">便利④ リビング側収納</span><span class="pg">09</span></div>
+  <div class="top"><span class="chip">便利④ リビング側収納</span><span class="pg">08</span></div>
   <h2 class="tt">ダイニングテーブルが、<span class="hi">いつも片付く</span></h2>
   <div class="eq">
     <div class="ph"><img src="assets/mtg-20261030/gt-dining.jpg" alt="" style="object-position:72% 50%"><span class="lb">リビング側から開く収納</span><span class="std"><s>メーカー価格 +256,300円</s><b>LIFE Xは標準</b></span></div>
@@ -440,7 +425,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 9 セラミック -->
 <section class="sl">
-  <div class="top"><span class="chip">便利⑤ セラミックトップ（リシェル）</span><span class="pg">10</span></div>
+  <div class="top"><span class="chip">便利⑤ セラミックトップ（リシェル）</span><span class="pg">09</span></div>
   <h2 class="tt">焼き物の天板だから、<span class="hi">熱・キズ・汚れに強い</span></h2>
   <div class="eq">
     <div class="ph"><img src="assets/mtg-20261030/ri-ceramic.jpg" alt="" style="object-position:40% 50%"><span class="lb">LIXIL公式写真</span></div>
@@ -460,7 +445,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- キッチンの1日 -->
 <section class="sl">
-  <div class="top"><span class="chip">暮らしを想像</span><span class="pg">11</span></div>
+  <div class="top"><span class="chip">暮らしを想像</span><span class="pg">10</span></div>
   <h2 class="tt">LIFE Xのキッチンで過ごす、<span class="hi">ある家族の1日</span></h2>
   <div class="day">
     <div class="dc"><div class="tm">朝 6:30</div><div class="ic">🍱</div><div class="sn">お弁当のハンバーグ。こねた手のまま、手をかざして水を出す</div><div class="eqp">タッチレス水栓</div></div>
@@ -479,7 +464,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 作り手の思い -->
 <section class="sl">
-  <div class="top"><span class="chip">作り手の思い</span><span class="pg">12</span></div>
+  <div class="top"><span class="chip">作り手の思い</span><span class="pg">11</span></div>
   <h2 class="tt">2つのキッチンに込められた<span class="hi">思い</span></h2>
   <div class="omoi">
     <div class="om">
@@ -506,7 +491,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 10 GRAFTEKT なぜ×3 -->
 <section class="sl">
-  <div class="top"><span class="chip">GRAFTEKTってどんなキッチン？</span><span class="pg">13</span></div>
+  <div class="top"><span class="chip">GRAFTEKTってどんなキッチン？</span><span class="pg">12</span></div>
   <h2 class="tt">オーダーキッチンの品質が、<span class="hi">なぜこの価格で？</span></h2>
   <div class="why">
     <div class="ph"><img src="assets/mtg-20261030/gt-plan04.jpg" alt="" style="object-position:40% 50%"><span class="lb">GRAFTEKT 公式写真</span></div>
@@ -526,7 +511,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- GRAFTEKT 天板 深掘り -->
 <section class="sl">
-  <div class="top"><span class="chip">GRAFTEKTをもっと深く</span><span class="pg">14</span></div>
+  <div class="top"><span class="chip">GRAFTEKTをもっと深く</span><span class="pg">13</span></div>
   <h2 class="tt">「キッチンハウスの弟分」だから、<span class="hi">何がいいの？</span></h2>
   <div class="tb">
     <div class="cmp">
@@ -553,7 +538,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 11 リシェル なぜ×3 -->
 <section class="sl">
-  <div class="top"><span class="chip">リシェルってどんなキッチン？</span><span class="pg">15</span></div>
+  <div class="top"><span class="chip">リシェルってどんなキッチン？</span><span class="pg">14</span></div>
   <h2 class="tt">熱い鍋に強いのは、<span class="hi">なぜ？</span></h2>
   <div class="why">
     <div class="ph"><img src="assets/mtg-20261030/ri-island.jpg" alt="" style="object-position:50% 55%"><span class="lb">LIXIL公式写真</span></div>
@@ -573,7 +558,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- リシェル 天板 深掘り -->
 <section class="sl">
-  <div class="top"><span class="chip">リシェルをもっと深く</span><span class="pg">16</span></div>
+  <div class="top"><span class="chip">リシェルをもっと深く</span><span class="pg">15</span></div>
   <h2 class="tt">セラミックって、<span class="hi">暮らしの中で何がいいの？</span></h2>
   <div class="tb" style="grid-template-columns:1.15fr 1fr">
     <div class="mer">
@@ -597,7 +582,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- メーカー標準 vs LIFE X -->
 <section class="sl">
-  <div class="top"><span class="chip">ここまでのまとめ</span><span class="pg">17</span></div>
+  <div class="top"><span class="chip">ここまでのまとめ</span><span class="pg">16</span></div>
   <h2 class="tt">メーカーの標準から、<span class="hi">LIFE Xはここを格上げ</span></h2>
   <div class="up">
     <table>
@@ -625,7 +610,7 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 12 一言カード -->
 <section class="sl">
-  <div class="top"><span class="chip pop">今日から使える</span><span class="pg">18</span></div>
+  <div class="top"><span class="chip pop">今日から使える</span><span class="pg">17</span></div>
   <h2 class="tt">迷ったら、<span class="hi">この3つ</span></h2>
   <div class="cards3">
     <div class="cd"><div class="n">1</div><div class="w">安心してもらう</div><div class="s">「このキッチン、<br>オプションを足さなくても、<br>これで完成です」</div></div>
@@ -636,21 +621,21 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
 
 <!-- 12-2 ネタ① -->
 <section class="sl">
-  <div class="top"><span class="chip pop">まだある！</span><span class="pg">19</span></div>
+  <div class="top"><span class="chip pop">まだある！</span><span class="pg">18</span></div>
   <h2 class="tt">思わず言いたくなる<span class="hi">ネタ10</span>　①食洗機・設備</h2>
   <div class="neta"><div class="nt"><div class="i">食洗機</div><div class="b">3軒に<small>1軒</small></div><div class="t">「食洗機があるご家庭は、まだ3軒に1軒ほどです」</div><div class="s">内閣府「消費動向調査」2026年3月 普及率36.6%（二人以上の世帯）</div></div><div class="nt"><div class="i">BOSCH</div><div class="b">世界<small>No.1</small></div><div class="t">「BOSCHは、食洗機の販売台数で世界一のブランドです」</div><div class="s">Bosch公式（Euromonitor、小売販売台数2016〜2025年）</div></div><div class="nt"><div class="i">お金（リシェル）</div><div class="b">年約<small>3万円</small></div><div class="t">「食洗機を毎日2回使うと、手洗いより年約3万円浮く試算です」</div><div class="s">Panasonic NP-45EF1W仕様書（1日2回・都市ガス等の条件つき）</div></div><div class="nt"><div class="i">格上げ</div><div class="b">BOSCH<small>＋タッチレス</small></div><div class="t">「グラフテクトのメーカー標準から、LIFE Xは食洗機と水栓を格上げしています」</div><div class="s">graftekt.jp（メーカー標準はリンナイ食洗機・KVK混合水栓）</div></div><div class="nt"><div class="i">共働き</div><div class="b"><small>約</small>2.8<small>倍</small></div><div class="t">「今は共働きのご家庭が、専業主婦のご家庭の約2.8倍です」</div><div class="s">JILPT（総務省「労働力調査」）2025年 1,333万世帯／476万世帯</div></div></div>
 </section>
 
 <!-- 12-3 ネタ② -->
 <section class="sl">
-  <div class="top"><span class="chip pop">まだある！</span><span class="pg">20</span></div>
+  <div class="top"><span class="chip pop">まだある！</span><span class="pg">19</span></div>
   <h2 class="tt">思わず言いたくなる<span class="hi">ネタ10</span>　②暮らし・信頼</h2>
   <div class="neta"><div class="nt"><div class="i">動線</div><div class="b">8<small>往復</small></div><div class="t">「食事の前後でキッチンとダイニングを平均8往復。近いと家族が手伝いやすくなります」</div><div class="s">パナソニック 2024年2月・対面キッチン利用の女性300人</div></div><div class="nt"><div class="i">人気</div><div class="b"><small>理想の</small>2<small>位</small></div><div class="t">「理想のキッチンを聞くと、2位がペニンシュラです」</div><div class="s">NEXER×リノメイド 2025年10月・持ち家500人（1位アイランド）</div></div><div class="nt"><div class="i">お掃除</div><div class="b">15<small>年連続1位</small></div><div class="t">「大掃除でいちばん苦戦する場所は、15年連続でレンジフードです」</div><div class="s">ダスキン 2024年10月・2,080人</div></div><div class="nt"><div class="i">信頼</div><div class="b">50<small>年</small></div><div class="t">「グラフテクトは、50年続くオーダーキッチン「キッチンハウス」の弟分です」</div><div class="s">kitchenhouse.jp/history（1976年設立）</div></div><div class="nt"><div class="i">SNS</div><div class="b">5<small>万件超</small></div><div class="t">「インスタの投稿は、#グラフテクトも#リシェルsiも5万件以上。住んだ方が見せたくなるキッチンです」</div><div class="s">Instagramタグ検索 2026年10月26日：#グラフテクト5.1万・#リシェルsi5.2万（参考：#ラクシーナ4.4万・#ステディア2万）。RoomClip #リシェル4,650枚</div></div></div>
 </section>
 
 <!-- 切り返し -->
 <section class="sl">
-  <div class="top"><span class="chip pop">打ち合わせで使える</span><span class="pg">21</span></div>
+  <div class="top"><span class="chip pop">打ち合わせで使える</span><span class="pg">20</span></div>
   <h2 class="tt">お客様の「でも…」に、<span class="hi">こう返す</span></h2>
   <div class="qa">
     <div class="qc"><div class="q">グラフテクトの天板、キズつかない？</div><div class="a">樹脂の天板なので、包丁はまな板の上で、熱い鍋は鍋敷きに。そのかわり、色柄は30色から選べます。</div><div class="s">graftekt.jp/material（公式の注意書き）</div></div>
@@ -660,6 +645,21 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
     <div class="qc"><div class="q">レンジフードの掃除が心配</div><div class="a">リシェルのよごれんフードは、フード内部の汚れが従来の約1/10。ファン掃除の手間がぐっと減ります。</div><div class="s">LIXIL資料 a_ki24002（年1回掃除のブーツ型と比べた社内試験）</div></div>
     <div class="qc"><div class="q">食洗機、結局使わなくなりそう</div><div class="a">入れてボタンを押すだけで、1日約27分浮きます。持っているご家庭はまだ3軒に1軒。最初から付いているのは大きいです。</div><div class="s">パナソニック試算（年165時間）／内閣府 消費動向調査2026年3月</div></div>
   </div>
+</section>
+
+<!-- 他社リシェル標準の切り返し -->
+<section class="sl">
+  <div class="top"><span class="chip pop">打ち合わせで使える</span><span class="pg">21</span></div>
+  <h2 class="tt">他社でも「リシェルが標準」と言われたら</h2>
+  <div class="talk">「同じリシェルでも、中身はいろいろ選べるんです。<br>お手元の仕様書と、この4つを並べてみてください」</div>
+  <div class="cks">
+    <div class="ck"><div class="k">天板</div><div class="v"><small>LIFE X</small>セラミックトップ</div><div class="q">人造大理石？<br>セラミック？</div></div>
+    <div class="ck"><div class="k">食洗機</div><div class="v"><small>LIFE X</small>Panasonic<br>前開き・約9人分</div><div class="q">付いている？<br>大きさは？</div></div>
+    <div class="ck"><div class="k">水栓</div><div class="v"><small>LIFE X</small>タッチレス<br>ナビッシュ</div><div class="q">手をかざすと<br>水が出る？</div></div>
+    <div class="ck"><div class="k">コンロ</div><div class="v"><small>LIFE X</small>IH（日立）</div><div class="q">IH？<br>ガス？</div></div>
+  </div>
+  <div class="extra">他社のことは「付いていない」と決めつけず、お客様の仕様書で一緒に確かめましょう</div>
+  <div class="cap">LIFE X仕様：水回りプレゼン（2026.03.31）・営業用カタログ（2026.04.13）。メーカー基本プランとの違いは16枚目</div>
 </section>
 
 <!-- 診断 -->
@@ -750,7 +750,6 @@ body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
     <b>GRAFTEKTのなぜ×3</b>：graftekt.jp（価格・FAQ）／kitchenhouse公式note 2026年8月24日／TJMデザイン PR TIMES 2026年10月15日<br>
     <b>リシェルのなぜ×3</b>：LIXIL公式 リシェル「セラミックトップ」ページ（1200度近い高温で焼成・鍋敷き推奨）<br>
     <b>ショールーム</b>：graftekt.jp/showroom／lixil.co.jp/showroom（2026年10月26日取得）、加盟店様の住所はlifex-house.com 各社ページ。座標は国土地理院 住所検索。車の時間は直線距離からの目安<br>
-    <b>月々の返済</b>：778,800円・金利1.2%・35年・元利均等で算出（月2,272円・総額954,147円）<br>
     <b>格上げ表</b>：graftekt.jp・価格表2026年8月仕様／lixil.co.jp リシェル価格・ナビッシュ／LIFE X営業用カタログ（2026.04.13）<br>
     <b>切り返し</b>：graftekt.jp/material／LIXIL セラミックトップ／Bosch公式・club-bs.jp／令和7年版消防白書／LIXIL a_ki24002<br>
     <b>天板の深掘り</b>：kitchenhouse.jp/support/faq/11785.html・/semiorder/（フルオーダー450万円〜）・/history/、graftekt.jp/material・/color、graftekt-scene.com/scene01.html、lixil.co.jp/lineup/kitchen/richelle/parts/parts01/、lixil.co.jp/lineup/kitchen/s/richelle/ceramic-10th/（interview01〜03、開発者トーク）<br>
