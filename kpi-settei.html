@@ -69,6 +69,12 @@
   .verdict.ng{color:var(--alert)}
 
   #plan td input.name, #plan td input.who{width:100%}
+  .plan-wrap{overflow-x:auto}
+  #plan{min-width:860px}
+  #plan th.res{background:#f3f5f8}
+  #plan input.res{width:56px;text-align:right}
+  #plan input.pdate{width:92px}
+  .plan-note{font-size:12.5px;color:var(--muted);margin:6px 0 0}
   .sum{display:flex;justify-content:flex-end;gap:18px;margin-top:10px;font-weight:600;flex-wrap:wrap}
   .ng{color:var(--alert)}
   .actions{display:flex;gap:10px;justify-content:flex-end;align-items:center;flex-wrap:wrap}
@@ -226,11 +232,15 @@
 
     <section>
       <h2><span class="no">5</span>足りない集客をどう埋めるか</h2>
-      <table id="plan">
-        <thead><tr><th style="width:46%">打ち手</th><th style="width:18%">見込み件数</th><th>担当</th></tr></thead>
+      <div class="plan-wrap"><table id="plan">
+        <thead>
+          <tr><th rowspan="2" style="width:30%">打ち手</th><th rowspan="2">見込み件数</th><th rowspan="2">担当</th><th colspan="6" class="res" style="text-align:center">やった結果（実施後に記入）</th></tr>
+          <tr><th class="res">実施日</th><th class="res">対象数</th><th class="res">開封</th><th class="res">反応</th><th class="res">アポ</th><th class="res">面談</th></tr>
+        </thead>
         <tbody></tbody>
-      </table>
-      <div class="sum"><span>打ち手の合計 <span id="planSum">0</span> 件</span><span id="planGap"></span></div>
+      </table></div>
+      <p class="plan-note">対象数＝送った数・来場者数など。開封はメール配信で分かる場合だけ。反応＝返信・予約・アンケート（名簿）の数。</p>
+      <div class="sum"><span>打ち手の合計 <span id="planSum">0</span> 件</span><span id="planGap"></span><span id="planRes"></span></div>
     </section>
 
     <div class="actions">
@@ -302,12 +312,20 @@
   }
 
   // ---------- 入力 ----------
+  const RES_KEYS = ['tgt','open','resp','apo','men'];
+  const RES_NAMES = {tgt:'対象', open:'開封', resp:'反応', apo:'アポ', men:'面談'};
+  const planResText = p => {
+    const parts = RES_KEYS.filter(k => !isNaN(p[k]) && p[k] != null).map(k => `${RES_NAMES[k]}${p[k]}`);
+    return (p.date || parts.length) ? ` → ${p.date ? p.date + ' ' : ''}${parts.join('・')}` : '';
+  };
   const planBody = document.querySelector('#plan tbody');
   for (let i = 0; i < 5; i++) {
     planBody.insertAdjacentHTML('beforeend',
       `<tr><td><input class="name" placeholder="${i===0?'例）見学会の開催、広告の追加、過去客への再架電':''}"></td>
        <td><input class="num plan-n" inputmode="decimal"><span class="unit">件</span></td>
-       <td><input class="who"></td></tr>`);
+       <td><input class="who"></td>
+       <td><input class="pdate" placeholder="11/1"></td>
+       ${['tgt','open','resp','apo','men'].map(k => `<td><input class="res ${k}" inputmode="numeric"></td>`).join('')}</tr>`);
   }
 
   const steps = ['集客','通話','アポ','面談','契約'];
@@ -385,7 +403,9 @@
     return [...planBody.rows].map(tr => ({
       name: tr.querySelector('.name').value.trim(),
       n: parseFloat(tr.querySelector('.plan-n').value),
-      who: tr.querySelector('.who').value.trim()
+      who: tr.querySelector('.who').value.trim(),
+      date: tr.querySelector('.pdate').value.trim(),
+      ...Object.fromEntries(RES_KEYS.map(k => [k, parseFloat(tr.querySelector('.' + k).value)]))
     })).filter(p => p.name || !isNaN(p.n));
   }
 
@@ -460,6 +480,9 @@
     if (short == null || short === 0) { pg.textContent = ''; pg.className = ''; }
     else if (planSum >= short) { pg.textContent = `不足 ${short} 件を埋められます`; pg.className = ''; }
     else { pg.textContent = `あと ${fmt(short - planSum)} 件の打ち手が必要`; pg.className = 'ng'; }
+    const rs = k => plans.reduce((s,p) => s + (isNaN(p[k]) ? 0 : p[k]), 0);
+    $('planRes').textContent = plans.some(p => RES_KEYS.some(k => !isNaN(p[k])))
+      ? `結果の合計　反応 ${fmt(rs('resp'))}・アポ ${fmt(rs('apo'))}・面談 ${fmt(rs('men'))}` : '';
 
     last = { rates, actual, perMonth, months, leads, target, exp, gap, need, short, plans, planSum, signed, pipe, existExp, newTarget };
   }
@@ -480,7 +503,7 @@
       '月あたり集客': L.perMonth, '集客期間_月': L.months, '見込み集客': r1d(L.leads), '目標契約': L.target,
       '見込み契約': r1d(L.exp), '目標との差': r1d(L.gap), '必要集客': L.need, '不足集客': L.short,
       '打ち手合計': L.planSum,
-      '打ち手': L.plans.map(p => `${p.name}${isNaN(p.n)?'':`：${p.n}件`}${p.who?`（${p.who}）`:''}`).join('\n'),
+      '打ち手': L.plans.map(p => `${p.name}${isNaN(p.n)?'':`：${p.n}件`}${p.who?`（${p.who}）`:''}${planResText(p)}`).join('\n'),
       '打ち手JSON': JSON.stringify(L.plans),
       '実績の期間': $('src').textContent ? periodLabel() : '',
       '10月以降契約': num('signed'), '既存_未接続': L.pipe[0], '既存_通話済': L.pipe[1], '既存_アポ済': L.pipe[2], '既存_面談済': L.pipe[3],
@@ -630,6 +653,8 @@
       tr2.querySelector('.name').value = p.name || '';
       tr2.querySelector('.plan-n').value = isNaN(p.n) || p.n == null ? '' : p.n;
       tr2.querySelector('.who').value = p.who || '';
+      tr2.querySelector('.pdate').value = p.date || '';
+      RES_KEYS.forEach(k => { tr2.querySelector('.' + k).value = isNaN(p[k]) || p[k] == null ? '' : p[k]; });
     });
     location.hash = '#input';
     calc();
