@@ -1,0 +1,812 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LIFEX MTG｜電話に出ないお客様へのメール 投影資料</title>
+<meta name="robots" content="noindex">
+<style>
+:root{color-scheme:light}
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6; --navy-mid:#b9cde0;
+  --ng:#a1462a; --ngbg:#fbeee9;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.6; font-feature-settings:"palt"}
+.wrap{width:min(1100px,96vw); margin:26px auto}
+.draft{width:1100px; margin:0 auto 14px; font-size:12px; color:#8a5a00; background:#fdf3dd;
+  border:1px solid #ecd9a8; border-radius:4px; padding:6px 14px; font-weight:700; line-height:1.8}
+.sl{width:1100px; height:619px; background:#fff; border-radius:8px;
+  box-shadow:0 2px 16px rgba(20,40,60,.09); padding:32px 50px 24px;
+  display:flex; flex-direction:column; position:relative; overflow:hidden; margin:0 auto 22px}
+.top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+.chip{font-size:11.5px; font-weight:700; letter-spacing:.08em; padding:3px 12px; border-radius:99px; background:var(--navy-soft); color:var(--navy)}
+.chip.dark{background:var(--navy); color:#fff}
+.pg{margin-left:auto; font-size:12px; color:#b6c0ca; font-variant-numeric:tabular-nums}
+.tt{font-size:28px; font-weight:800; line-height:1.35; margin:2px 0 14px; text-wrap:balance}
+.tt .hi{color:var(--navy)}
+.body{flex:1; display:flex; gap:24px; min-height:0}
+.cap{font-size:11.5px; color:var(--sub); line-height:1.6; margin-top:8px}
+.mark{background:linear-gradient(transparent 62%, #ffe0a6 62%)}
+.lead{font-size:16px; font-weight:700; color:var(--sub); margin:-6px 0 14px}
+
+/* 表紙 */
+.cover{padding:0; background:var(--navy)}
+.cover .in{position:relative; padding:70px 70px; display:flex; flex-direction:column; gap:18px; height:100%; justify-content:center; color:#fff; max-width:640px}
+.cover .k{font-size:14px; font-weight:800; letter-spacing:.1em; color:var(--navy-mid)}
+.cover h1{margin:0; font-size:46px; line-height:1.32; font-weight:800}
+.cover .sub{font-size:18px; font-weight:700; color:#dbe6f0}
+.cover .date{font-size:13px; color:var(--navy-mid)}
+.cover .art{position:absolute; right:60px; top:50%; transform:translateY(-50%); display:flex; gap:18px; align-items:center}
+
+/* スマホ */
+.phone{width:200px; height:400px; border-radius:30px; background:#0f1a24; padding:10px; box-shadow:0 14px 30px rgba(0,0,0,.25); flex:none}
+.phone .scr{width:100%; height:100%; border-radius:22px; background:#f4f6f8; position:relative; overflow:hidden; display:flex; flex-direction:column; align-items:center; padding:34px 12px 16px; gap:8px}
+.phone .scr:before{content:""; position:absolute; top:8px; left:50%; transform:translateX(-50%); width:60px; height:16px; background:#0f1a24; border-radius:99px}
+.phone .scr.call{background:linear-gradient(#36495c,#1b2733); color:#fff; justify-content:flex-start; padding-top:62px}
+.phone .num{font-size:16px; white-space:nowrap; font-weight:800; letter-spacing:.02em}
+.phone .who2{font-size:12px; color:#c9d4de}
+.phone .btns{margin-top:auto; display:flex; gap:36px; padding-bottom:18px}
+.phone .btns i{width:46px; height:46px; border-radius:50%; display:block}
+.phone .btns i.r{background:#e0533d} .phone .btns i.g{background:#3cbf6a}
+.phone .bub{align-self:flex-start; background:#fff; border-radius:14px; padding:9px 11px; font-size:12.5px; line-height:1.55; font-weight:600; box-shadow:0 2px 6px rgba(0,0,0,.08); margin-top:6px}
+.phone .bub b{color:var(--navy)}
+.phone .from{align-self:stretch; text-align:center; font-size:11px; color:var(--sub); font-weight:700; border-bottom:1px solid var(--line); padding-bottom:6px}
+.phone .mailhd{align-self:stretch; background:#fff; border-radius:12px; padding:10px; font-size:11px; line-height:1.5; box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.phone .mailhd b{display:block; font-size:12px}
+.phone .mailhd span{color:var(--sub)}
+.phones{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; flex:1; align-items:start}
+.pcol{display:flex; flex-direction:column; align-items:center; gap:14px}
+.pcol .say{font-size:18px; font-weight:800; text-align:center; line-height:1.5; background:var(--panel); border-radius:14px; padding:10px 14px; width:100%}
+.pcol .say.ok{background:var(--navy-soft); color:var(--navy)}
+.pcol .say.ngs2{background:var(--ngbg); color:var(--ng)}
+.phones .phone{width:210px; height:380px}
+
+/* 進め方 */
+.agenda{display:flex; flex-direction:column; gap:8px; flex:1; justify-content:center}
+.ag{display:grid; grid-template-columns:96px 1fr 120px; align-items:center; gap:16px; background:var(--panel); border-radius:14px; padding:8px 22px}
+.ag .t{font-size:14px; font-weight:900; color:var(--navy); font-variant-numeric:tabular-nums}
+.ag b{font-size:20px}
+.ag b small{display:block; font-size:13px; color:var(--sub); font-weight:700}
+.ag .m{text-align:right; font-size:14px; font-weight:800; color:var(--sub)}
+.ag.main{background:var(--navy-soft)}
+.ag.wk2{background:#fff; border:2px solid var(--navy)}
+
+/* お知らせ */
+.info{display:grid; grid-template-columns:1.1fr 1fr; gap:28px; flex:1}
+.bigprice{background:var(--navy); color:#fff; border-radius:20px; padding:30px 34px; display:flex; flex-direction:column; justify-content:center; gap:10px}
+.bigprice span{font-size:17px; font-weight:800; color:var(--navy-mid)}
+.bigprice b{font-size:92px; font-weight:900; line-height:1}
+.bigprice b small{font-size:30px; margin-left:6px}
+.bigprice em{font-style:normal; font-size:16px; font-weight:700; color:#dbe6f0}
+.steps{display:flex; flex-direction:column; gap:14px; justify-content:center}
+.stp{display:grid; grid-template-columns:42px 1fr; gap:14px; align-items:center; background:var(--panel); border-radius:14px; padding:16px 18px}
+.stp .n{width:42px; height:42px; border-radius:50%; background:var(--navy); color:#fff; font-weight:900; font-size:18px; display:flex; align-items:center; justify-content:center}
+.stp b{font-size:18px; line-height:1.45}
+.stp b small{display:block; font-size:13px; color:var(--sub); font-weight:700}
+
+/* 数字 */
+.trend{display:grid; grid-template-columns:330px 1fr; gap:34px; flex:1}
+.hero{display:flex; flex-direction:column; gap:12px; justify-content:center}
+.hv{background:var(--panel); border-radius:16px; padding:16px 22px}
+.hv span{display:block; font-size:13px; font-weight:800; color:var(--sub)}
+.hv b{font-size:46px; font-weight:900; color:var(--navy); line-height:1.1}
+.hv b small{font-size:20px}
+.hv.dim b{color:#8aa0b5}
+.bars{display:flex; align-items:flex-end; gap:22px; height:100%; padding:10px 6px 0; border-bottom:2px solid var(--line); position:relative}
+.bar{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; height:100%; gap:6px}
+.bar i{display:block; width:100%; background:var(--navy-mid); border-radius:8px 8px 0 0}
+.bar.on i{background:var(--navy)}
+.bar b{font-size:20px; font-weight:900; color:var(--navy)}
+.bar span{font-size:13px; font-weight:800; color:var(--sub); position:absolute; bottom:-26px}
+.bar{position:relative}
+.goal{position:absolute; left:0; right:0; border-top:2px dashed var(--ng)}
+.goal span{position:absolute; left:4px; top:-22px; font-size:12px; font-weight:800; color:var(--ng)}
+
+/* みんなの数字 */
+.good{display:grid; grid-template-columns:repeat(3,1fr); gap:22px; flex:1; min-height:0}
+.gm{background:var(--panel); border-radius:16px; padding:14px 18px 34px; display:flex; flex-direction:column}
+.gm .h{font-size:17px; font-weight:900}
+.gm .h small{display:block; font-size:12px; color:var(--sub); font-weight:700}
+.gm .x{font-size:14px; font-weight:800; color:var(--navy); margin:4px 0 8px}
+.gm .x b{font-size:30px; font-weight:900}
+.gm .bars{gap:10px; flex:1}
+.gm .bar b{font-size:15px}
+.gm .bar span{font-size:12px}
+.gm .bar i{border-radius:6px 6px 0 0}
+.gnote{margin-top:12px; background:var(--navy-soft); border-radius:12px; padding:10px 18px; font-size:15px; font-weight:800}
+.gnote b{color:var(--navy)}
+
+.stuck{display:grid; grid-template-columns:1fr 1fr; gap:30px; flex:1}
+.big1{border-radius:20px; background:var(--panel); padding:28px 32px; display:flex; flex-direction:column; justify-content:center; gap:8px}
+.big1 span{font-size:16px; font-weight:800; color:var(--sub)}
+.big1 b{font-size:110px; font-weight:900; color:var(--navy); line-height:1; letter-spacing:-.02em}
+.big1 b small{font-size:34px; margin-left:4px}
+.dots{display:flex; flex-wrap:wrap; gap:4px; align-content:flex-start}
+.dots i{width:13px; height:13px; border-radius:3px; background:var(--navy-mid)}
+.dots i.d{background:var(--navy)}
+.stk-r{display:flex; flex-direction:column; gap:14px; justify-content:center}
+.lg2{display:flex; gap:18px; font-size:13.5px; font-weight:800; color:var(--sub)}
+.lg2 i{display:inline-block; width:13px; height:13px; border-radius:3px; vertical-align:-2px; margin-right:6px}
+.q2{font-size:20px; font-weight:800; background:var(--navy-soft); color:var(--navy); border-radius:14px; padding:14px 18px; line-height:1.5}
+
+.funnel{display:grid; grid-template-columns:repeat(3,1fr); gap:0; align-items:stretch; flex:1}
+.fn{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; padding:20px 14px; text-align:center; position:relative}
+.fn b{font-size:76px; font-weight:900; line-height:1; color:var(--navy)}
+.fn b small{font-size:24px; margin-left:2px}
+.fn span{font-size:16px; font-weight:800; color:var(--sub)}
+.fn.a{background:var(--panel); border-radius:20px 0 0 20px}
+.fn.b{background:var(--navy-soft)}
+.fn.c{background:var(--navy); border-radius:0 20px 20px 0}
+.fn.c b,.fn.c span{color:#fff}
+.fn+.fn:before{content:""; position:absolute; left:-14px; top:50%; transform:translateY(-50%); border:14px solid transparent; border-left-color:var(--panel); border-right:0}
+.fn.c:before{border-left-color:var(--navy-soft)}
+.wk{display:flex; gap:10px; margin-top:16px; align-items:center}
+.wk .lbl{font-size:14px; font-weight:800; color:var(--sub); width:170px; flex:none}
+.wk .seg{height:34px; border-radius:8px; display:flex; align-items:center; padding:0 12px; font-size:14px; font-weight:800; color:#fff; white-space:nowrap}
+
+/* 比較 */
+.cmp{display:grid; grid-template-columns:1fr 1fr; gap:26px; flex:1}
+.cc{border-radius:18px; padding:22px 26px; display:flex; flex-direction:column; gap:12px}
+.cc.tel{background:var(--panel)}
+.cc.mail{background:var(--navy-soft)}
+.cc h3{margin:0; font-size:22px; display:flex; align-items:center; gap:10px}
+.cc h3 i{font-style:normal; font-size:30px}
+.cc .r{display:flex; gap:12px; align-items:center; background:#fff; border-radius:12px; padding:12px 16px; font-size:17px; font-weight:700}
+.cc .r small{font-size:12.5px; color:var(--sub); display:block; font-weight:600}
+.cc .r b{font-size:20px; flex:none; width:28px; text-align:center}
+.cc.mail .r b{color:var(--navy)}
+.cc.tel .r b{color:var(--sub)}
+.foot1{margin-top:14px; text-align:center; font-size:18px; font-weight:800; color:var(--navy)}
+
+/* 目的 */
+.cards2{display:grid; grid-template-columns:1fr 1fr; gap:26px; flex:1}
+.cd{border-radius:18px; background:var(--navy-soft); padding:28px 30px; display:flex; flex-direction:column; gap:14px}
+.cd .n{width:46px; height:46px; border-radius:50%; background:var(--navy); color:#fff; font-weight:900; font-size:20px; display:flex; align-items:center; justify-content:center}
+.cd .s{font-size:34px; font-weight:800; line-height:1.45}
+.cd .w{font-size:18px; font-weight:700; color:var(--sub); line-height:1.8; margin-top:auto}
+.who3{margin-top:14px; font-size:13px; font-weight:800; color:var(--sub); text-align:right}
+
+/* NG→OK */
+.ngok{display:grid; grid-template-columns:1fr 60px 1fr; align-items:stretch; flex:1; gap:0}
+.box{border-radius:18px; padding:24px 26px; display:flex; flex-direction:column; gap:14px}
+.box.x{background:var(--ngbg)}
+.box.o{background:var(--navy-soft)}
+.box .h{font-size:15px; font-weight:900}
+.box.x .h{color:var(--ng)} .box.o .h{color:var(--navy)}
+.box .ml{background:#fff; border-radius:12px; padding:16px 18px; font-size:16.5px; font-weight:700; line-height:1.75}
+.box .ml .d{display:block; padding-left:10px; border-left:3px solid var(--navy); margin:4px 0; color:var(--navy); font-weight:800}
+.box .res{font-size:17px; font-weight:800; margin-top:auto}
+.box.x .res{color:var(--ng)} .box.o .res{color:var(--navy)}
+.ngok .ar{display:flex; align-items:center; justify-content:center; font-size:34px; font-weight:900; color:var(--sub)}
+
+/* メール分解 */
+.anat{display:grid; grid-template-columns:560px 1fr; gap:26px; flex:1; min-height:0}
+.mailbox{background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:0 6px 18px rgba(20,40,60,.08); padding:16px 20px; font-size:13.6px; line-height:1.7; position:relative}
+.mailbox .subj{font-weight:800; font-size:13.5px; border-bottom:1px solid var(--line); padding-bottom:6px; margin-bottom:6px}
+.mailbox p{margin:0 0 4px}
+.mailbox .hl{position:relative; border-radius:6px; padding:1px 4px; margin-left:-4px; background:var(--navy-soft)}
+.mailbox .tag{position:absolute; left:-30px; width:22px; height:22px; border-radius:50%; background:var(--navy); color:#fff; font-size:12px; font-weight:900; display:flex; align-items:center; justify-content:center; margin-top:1px}
+.mailbox .hl .tag{left:-34px; top:0}
+.callouts{display:flex; flex-direction:column; gap:10px; justify-content:center}
+.co{display:grid; grid-template-columns:34px 1fr; gap:12px; align-items:center; background:var(--panel); border-radius:12px; padding:10px 14px}
+.co .n{width:34px; height:34px; border-radius:50%; background:var(--navy); color:#fff; font-weight:900; font-size:16px; display:flex; align-items:center; justify-content:center}
+.co b{font-size:16.5px; line-height:1.4}
+.co b small{display:block; font-size:12.5px; color:var(--sub); font-weight:600}
+
+/* 名乗り */
+.name{display:flex; flex-direction:column; gap:20px; flex:1; justify-content:center}
+.struct{display:flex; align-items:center; justify-content:center; gap:14px}
+.nd{border-radius:16px; padding:24px 28px; text-align:center; min-width:220px}
+.nd span{display:block; font-size:13px; font-weight:800; color:var(--sub)}
+.nd b{font-size:30px; font-weight:900}
+.nd.h{background:var(--panel)}
+.nd.k{background:var(--navy); color:#fff} .nd.k span{color:var(--navy-mid)}
+.nd.c{background:var(--ngbg)} .nd.c b{color:var(--ng)}
+.struct .ar2{font-size:28px; font-weight:900; color:var(--sub)}
+.say1{background:var(--navy-soft); border-radius:18px; padding:26px 26px; font-size:30px; font-weight:800; text-align:center; line-height:1.5}
+.say1 u{text-decoration:none; background:linear-gradient(transparent 60%, #ffe0a6 60%)}
+.say1 small{display:block; font-size:13px; color:var(--sub); font-weight:700; margin-bottom:4px}
+
+/* 迷い→見せるもの */
+.rows{display:flex; flex-direction:column; gap:14px; flex:1; justify-content:center}
+.rw{display:grid; grid-template-columns:1fr 50px 1.25fr; align-items:center}
+.rw .l{background:var(--panel); border-radius:14px; padding:26px 22px; font-size:22px; font-weight:800}
+.rw .l small{display:block; font-size:12.5px; color:var(--sub); font-weight:700}
+.rw .a{text-align:center; font-size:24px; font-weight:900; color:var(--navy)}
+.rw .r{background:var(--navy-soft); border-radius:14px; padding:26px 22px; font-size:22px; font-weight:800; color:var(--navy)}
+.rw .r small{display:block; font-size:12.5px; color:var(--sub); font-weight:700}
+.hd3{display:grid; grid-template-columns:1fr 50px 1.25fr; font-size:13px; font-weight:900; color:var(--sub); letter-spacing:.06em}
+
+/* 3枚カード */
+.cards3{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; flex:1}
+.c3{border-radius:18px; background:var(--panel); padding:24px 24px; display:flex; flex-direction:column; gap:12px}
+.c3 i{font-style:normal; font-size:38px}
+.c3 .k{font-size:13px; font-weight:900; color:var(--navy); letter-spacing:.06em}
+.c3 b{font-size:21px; line-height:1.45}
+.c3 .e{margin-top:auto; background:#fff; border-radius:12px; padding:12px 14px; font-size:14.5px; font-weight:700; line-height:1.6}
+.c3 .e small{display:block; font-size:11.5px; color:var(--sub); font-weight:800}
+
+/* メール例 */
+.ex2{display:grid; grid-template-columns:600px 1fr; gap:26px; flex:1; min-height:0}
+.ex2 .mailbox{font-size:15.5px; line-height:1.85}
+.pts{display:flex; flex-direction:column; gap:12px; justify-content:center}
+.pt{background:var(--panel); border-radius:12px; padding:12px 16px; font-size:16px; font-weight:800; line-height:1.5}
+.pt small{display:block; font-size:12.5px; color:var(--sub); font-weight:600}
+.pt.k{background:var(--navy); color:#fff} .pt.k small{color:var(--navy-mid)}
+.ph-{color:var(--navy); font-weight:800}
+
+/* 件名 */
+.subjs{display:flex; flex-direction:column; gap:14px; flex:1; justify-content:center}
+.sj{display:grid; grid-template-columns:70px 1fr 280px; align-items:center; gap:16px; border-radius:14px; padding:14px 20px}
+.sj .m{font-size:26px; font-weight:900; text-align:center}
+.sj .s{background:#fff; border-radius:10px; padding:10px 14px; font-size:17px; font-weight:800; font-family:inherit}
+.sj .w{font-size:14px; font-weight:700; color:var(--sub); line-height:1.5}
+.sj.x{background:var(--ngbg)} .sj.x .m{color:var(--ng)}
+.sj.o{background:var(--navy-soft)} .sj.o .m{color:var(--navy)}
+
+/* 紹介資料 */
+.yuno{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; flex:1; min-height:0}
+.yp{display:flex; flex-direction:column; gap:8px}
+.yp .im{flex:1; border-radius:10px; overflow:hidden; box-shadow:0 6px 16px rgba(20,40,60,.14); background:var(--panel); min-height:0}
+.yp img{width:100%; height:100%; object-fit:cover; object-position:top; display:block}
+.yp b{font-size:15px}
+.yp span{font-size:12.5px; color:var(--sub); font-weight:700; line-height:1.45}
+.yp.key .im{outline:4px solid var(--navy); outline-offset:3px}
+
+/* タイムライン */
+.tl{position:relative; display:grid; grid-template-columns:repeat(5,1fr); gap:14px; flex:1; padding-top:36px; align-content:start}
+.tl:before{content:""; position:absolute; left:6px; right:6px; top:16px; height:4px; background:var(--navy-mid); border-radius:99px}
+.td{position:relative; display:flex; flex-direction:column; gap:8px}
+.td:before{content:""; position:absolute; top:-27px; left:14px; width:18px; height:18px; border-radius:50%; background:var(--navy); border:4px solid #fff; box-shadow:0 0 0 2px var(--navy)}
+.td .d{font-size:14px; font-weight:900; color:var(--navy)}
+.ac{border-radius:12px; padding:14px 14px; font-size:17px; font-weight:800; line-height:1.45}
+.ac small{display:block; font-size:13px; font-weight:700; color:var(--sub)}
+.ac.t{background:var(--panel)}
+.ac.s{background:#fff; border:2px solid var(--navy-mid)}
+.ac.m{background:var(--navy-soft); color:var(--navy)}
+.lgd{display:flex; gap:20px; font-size:13px; font-weight:800; color:var(--sub); margin-top:12px}
+.lgd i{display:inline-block; width:14px; height:14px; border-radius:4px; vertical-align:-2px; margin-right:6px}
+
+/* SMS */
+.sms{display:grid; grid-template-columns:1fr 1fr; gap:30px; flex:1}
+.smsc{display:grid; grid-template-columns:200px 1fr; gap:22px; align-items:center}
+.smsc .phone{width:200px; height:380px}
+.smsc .tx{display:flex; flex-direction:column; gap:10px}
+.smsc .tx .k{font-size:13px; font-weight:900; color:var(--navy)}
+.smsc .tx b{font-size:20px; line-height:1.45}
+.smsc .tx span{font-size:14px; font-weight:700; color:var(--sub); line-height:1.6}
+
+/* 返信後 */
+.after{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; flex:1}
+.af{border-radius:16px; background:var(--panel); padding:20px 18px; display:flex; flex-direction:column; gap:10px; position:relative}
+.af .w{font-size:13px; font-weight:900; color:#fff; background:var(--navy); border-radius:99px; padding:3px 12px; width:max-content}
+.af b{font-size:19px; line-height:1.45}
+.af span{font-size:14px; font-weight:700; color:var(--sub); line-height:1.6}
+.af i{font-style:normal; font-size:36px; margin-top:auto}
+.af+.af:before{content:"›"; position:absolute; left:-14px; top:42%; font-size:28px; font-weight:900; color:var(--navy-mid)}
+
+/* Q&A */
+.qa{display:grid; grid-template-columns:1fr 1fr; gap:18px; flex:1}
+.qq{border-radius:16px; background:var(--panel); padding:18px 22px; display:flex; flex-direction:column; gap:10px}
+.qq .q{font-size:21px; font-weight:800; display:flex; gap:10px}
+.qq .q:before{content:"Q"; flex:none; width:28px; height:28px; border-radius:50%; background:var(--ng); color:#fff; font-size:14px; font-weight:900; display:flex; align-items:center; justify-content:center}
+.qq .a{font-size:17px; font-weight:700; line-height:1.7; flex:1; align-items:flex-start; display:flex; gap:10px; background:#fff; border-radius:12px; padding:10px 14px}
+.qq .a:before{content:"A"; flex:none; width:24px; height:24px; border-radius:50%; background:var(--navy); color:#fff; font-size:12.5px; font-weight:900; display:flex; align-items:center; justify-content:center; margin-top:2px}
+.qq .a small{display:block; font-size:13.5px; margin-top:6px; color:var(--sub); font-weight:600}
+
+/* ワーク */
+.wrk{display:grid; grid-template-columns:1fr 290px; gap:26px; flex:1; min-height:0}
+.form{display:flex; flex-direction:column; gap:9px}
+.fl{display:grid; grid-template-columns:150px 1fr; align-items:center; gap:12px}
+.fl .k{font-size:14px; font-weight:900; color:var(--navy); display:flex; align-items:center; gap:8px}
+.fl .k i{font-style:normal; width:24px; height:24px; border-radius:50%; background:var(--navy); color:#fff; font-size:12px; display:flex; align-items:center; justify-content:center; flex:none}
+.fl .v{border:2px dashed var(--navy-mid); border-radius:10px; padding:10px 14px; font-size:15px; font-weight:700; color:#8aa0b5; background:#fbfcfd}
+.timer{background:var(--navy); color:#fff; border-radius:20px; padding:22px 24px; display:flex; flex-direction:column; gap:12px; justify-content:center}
+.timer b{font-size:80px; font-weight:900; line-height:1}
+.timer b small{font-size:26px}
+.timer span{font-size:15px; font-weight:700; color:#dbe6f0; line-height:1.6}
+.timer .ol{font-size:14px; font-weight:800; background:rgba(255,255,255,.12); border-radius:10px; padding:10px 12px; line-height:1.7; color:#fff}
+
+/* チェック */
+.chk{display:flex; flex-direction:column; gap:12px; flex:1; justify-content:center}
+.ck{display:grid; grid-template-columns:44px 1fr 330px; align-items:center; gap:16px; background:var(--panel); border-radius:14px; padding:13px 20px}
+.ck .bx{width:34px; height:34px; border:3px solid var(--navy); border-radius:8px}
+.ck b{font-size:19px}
+.ck span{font-size:14px; font-weight:700; color:var(--sub); line-height:1.5}
+
+/* 今週 */
+.todo3{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; flex:1}
+.td3{border-radius:18px; background:var(--navy-soft); padding:26px 24px; display:flex; flex-direction:column; gap:12px}
+.td3 .n{font-size:13px; font-weight:900; color:#fff; background:var(--navy); border-radius:99px; padding:4px 14px; width:max-content}
+.td3 b{font-size:23px; line-height:1.45}
+.td3 span{font-size:14.5px; font-weight:700; color:var(--sub); line-height:1.65}
+.td3 i{font-style:normal; font-size:44px; margin-top:auto}
+.close{margin-top:16px; text-align:center; font-size:20px; font-weight:800; color:#fff; background:var(--navy); border-radius:99px; padding:12px 18px; width:max-content; margin-left:auto; margin-right:auto}
+
+/* 次回 */
+.next{display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; flex:1; align-items:stretch}
+.nx{display:flex; flex-direction:column; gap:10px; justify-content:center; padding:24px 26px; position:relative}
+.nx .k{font-size:13px; font-weight:900; color:var(--sub)}
+.nx b{font-size:26px; line-height:1.4}
+.nx span{font-size:14.5px; font-weight:700; color:var(--sub); line-height:1.6}
+.nx.a{background:var(--navy); color:#fff; border-radius:20px 0 0 20px} .nx.a .k,.nx.a span{color:var(--navy-mid)}
+.nx.b{background:var(--navy-soft)}
+.nx.c{background:var(--panel); border-radius:0 20px 20px 0}
+
+/* 出典 */
+.src{font-size:12.5px; line-height:1.85; color:var(--ink)}
+.src li{margin-bottom:4px}
+.src b{color:var(--navy)}
+</style></head><body><div class="wrap">
+
+
+<!-- 1 表紙 -->
+<section class="sl cover">
+  <div class="in">
+    <div class="k">LIFE X 月2棟目標達成ミーティング｜2026.11.06</div>
+    <h1>電話に出ないお客様を、<br>会える日に変える。</h1>
+    <div class="sub">つながらない時の、メールとSMSの送り方</div>
+    <div class="date">株式会社Gハウス BtoB事業部　LIFEX本部</div>
+  </div>
+  <div class="art">
+    <div class="phone" style="transform:rotate(-4deg)"><div class="scr">
+      <div class="from">株式会社〇〇　〇〇</div>
+      <div class="mailhd"><b>LIFE Xの資料のご請求ありがとうございます</b><span>〇〇県の施工店　株式会社〇〇</span></div>
+      <div class="bub">以下の日時でご都合はいかがでしょうか。<br><b>・11/14（土）10時〜<br>・11/15（日）13時〜<br>・11/21（土）13時〜</b></div>
+      <div class="bub" style="align-self:flex-end;background:var(--navy);color:#fff">15日の13時でお願いします！</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- 2 今日の流れ -->
+<section class="sl">
+  <div class="top"><span class="chip">今日の流れ</span><span class="pg">2</span></div>
+  <div class="tt">今日は<span class="hi">最後に1通、書いて帰る</span>回です。</div>
+  <div class="agenda">
+    <div class="ag"><span class="t">0:00</span><b>お知らせ<small>11/1の価格改定について</small></b><span class="m">3分</span></div>
+    <div class="ag"><span class="t">0:03</span><b>みんなの数字<small>9月から増えたこと／まだ止まっているお客様</small></b><span class="m">10分</span></div>
+    <div class="ag main"><span class="t">0:13</span><b>メールの型<small>名乗り・会う理由・日時3つ・土地あり／なし</small></b><span class="m">20分</span></div>
+    <div class="ag main"><span class="t">0:33</span><b>送る順番と、返信の後<small>1週間の地図・SMS・よくある迷い</small></b><span class="m">10分</span></div>
+    <div class="ag wk2"><span class="t">0:43</span><b>ワーク：不通のお客様に1通<small>その場で書いて、読んでもいい方に読んでいただきます</small></b><span class="m">12分</span></div>
+    <div class="ag"><span class="t">0:55</span><b>今週やること・質疑</b><span class="m">5分</span></div>
+  </div>
+</section>
+
+<!-- 3 お知らせ -->
+<section class="sl">
+  <div class="top"><span class="chip">お知らせ</span><span class="pg">3</span></div>
+  <div class="tt">11/1から、ポータルの表示価格が変わりました。</div>
+  <div class="info">
+    <div class="bigprice"><span>ポータル（LP）の表示価格</span><b>+50<small>万円</small></b><em>11/1改定。37坪のプランも順次反映中です。</em></div>
+    <div class="steps">
+      <div class="stp"><span class="n">1</span><b>検討中のお客様には、御社から先に<small>お客様が画面で気づく前にお伝えください</small></b></div>
+      <div class="stp"><span class="n">2</span><b>お知らせ文は本部で用意しています<small>ダウンロードページからお使いください</small></b></div>
+      <div class="stp"><span class="n">3</span><b>連絡のきっかけにもなります<small>止まっていたお客様へ、近況を伺う1通に</small></b></div>
+    </div>
+  </div>
+  <div class="cap">10/26・11/2 LIFEX本部MTGの決定事項より。</div>
+</section>
+
+<!-- 3b みんなの数字 -->
+<section class="sl">
+  <div class="top"><span class="chip">みんなの数字</span><span class="pg">4</span></div>
+  <div class="tt">9月から、<span class="hi">話せる・会える・決まる</span>が増えています。</div>
+  <div class="good">
+    <div class="gm"><div class="h">話せたお客様<small>電話がつながった人数</small></div><div class="x">5〜8月の平均の <b>2.4</b>倍</div><div class="bars"><div class="bar"><b>26</b><i style="height:calc(26/90*100%)"></i><span>5月</span></div><div class="bar"><b>34</b><i style="height:calc(34/90*100%)"></i><span>6月</span></div><div class="bar"><b>32</b><i style="height:calc(32/90*100%)"></i><span>7月</span></div><div class="bar"><b>37</b><i style="height:calc(37/90*100%)"></i><span>8月</span></div><div class="bar on"><b>80</b><i style="height:calc(80/90*100%)"></i><span>9月</span></div><div class="bar on"><b>76</b><i style="height:calc(76/90*100%)"></i><span>10月</span></div></div></div>
+    <div class="gm"><div class="h">お会いする約束<small>アポが取れた人数</small></div><div class="x">5〜8月の平均の <b>2.3</b>倍</div><div class="bars"><div class="bar"><b>21</b><i style="height:calc(21/90*100%)"></i><span>5月</span></div><div class="bar"><b>26</b><i style="height:calc(26/90*100%)"></i><span>6月</span></div><div class="bar"><b>25</b><i style="height:calc(25/90*100%)"></i><span>7月</span></div><div class="bar"><b>24</b><i style="height:calc(24/90*100%)"></i><span>8月</span></div><div class="bar on"><b>52</b><i style="height:calc(52/90*100%)"></i><span>9月</span></div><div class="bar on"><b>59</b><i style="height:calc(59/90*100%)"></i><span>10月</span></div></div></div>
+    <div class="gm"><div class="h">ご契約<small>その月に登録した方から</small></div><div class="x">9月登録の方で <b>11</b>棟</div><div class="bars"><div class="bar"><b>8</b><i style="height:calc(8/13*100%)"></i><span>5月</span></div><div class="bar"><b>4</b><i style="height:calc(4/13*100%)"></i><span>6月</span></div><div class="bar"><b>5</b><i style="height:calc(5/13*100%)"></i><span>7月</span></div><div class="bar"><b>5</b><i style="height:calc(5/13*100%)"></i><span>8月</span></div><div class="bar on"><b>11</b><i style="height:calc(11/13*100%)"></i><span>9月</span></div><div class="bar on"><b>7</b><i style="height:calc(7/13*100%)"></i><span>10月</span></div></div></div>
+  </div>
+  <div class="gnote">契約は、登録から時間がたつほど増えます。<b>9・10月の方は、まだ途中でこの数字です。</b></div>
+  <div class="cap">登録した月ごとに、そのお客様がどこまで進んだかの人数。全加盟店様の合計。LIFE X加盟店ポータル 本部用データ（2026/11/1取得）。9/16に新しいポータルへ切り替え。</div>
+</section>
+
+<!-- 4 接続率は伸びた -->
+<section class="sl">
+  <div class="top"><span class="chip">数字で見る</span><span class="pg">5</span></div>
+  <div class="tt">登録が増えただけではなく、<span class="hi">つながる割合も上がっています。</span></div>
+  <div class="trend">
+    <div class="hero">
+      <div class="hv dim"><span>研修前（1/1〜7/23）</span><b>23.9<small>%</small></b></div>
+      <div class="hv dim"><span>研修後（7/24〜10/5）</span><b>34.7<small>%</small></b></div>
+      <div class="hv"><span>直近3か月（7/26〜10/25）</span><b>41.7<small>%</small></b></div>
+    </div>
+    <div style="display:flex;flex-direction:column;padding-bottom:30px">
+      <div style="font-size:14px;font-weight:800;color:var(--sub);margin-bottom:6px">登録した月ごとの通話接続率</div>
+      <div class="bars">
+        <div class="goal" style="bottom:calc(40/60*100%)"><span>12月の目標 全社40%</span></div>
+        <div class="bar"><b>23.2%</b><i style="height:calc(23.2/60*100%)"></i><span>5月</span></div>
+        <div class="bar"><b>23.4%</b><i style="height:calc(23.4/60*100%)"></i><span>6月</span></div>
+        <div class="bar"><b>27.1%</b><i style="height:calc(27.1/60*100%)"></i><span>7月</span></div>
+        <div class="bar"><b>31.9%</b><i style="height:calc(31.9/60*100%)"></i><span>8月</span></div>
+        <div class="bar on"><b>45.5%</b><i style="height:calc(45.5/60*100%)"></i><span>9月</span></div>
+        <div class="bar on"><b>51.4%</b><i style="height:calc(51.4/60*100%)"></i><span>10月</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="cap">通話接続率＝電話がつながったお客様 ÷ 対応を始めたお客様。全加盟店様の合計。研修前・後はKPIダッシュボード（10/5時点）、直近3か月は本部集計（10/25時点）、登録月別は本部用データ（11/1時点）。</div>
+</section>
+
+<!-- 5 止まっている -->
+<section class="sl">
+  <div class="top"><span class="chip">数字で見る</span><span class="pg">6</span></div>
+  <div class="tt">それでも今、<span class="hi">「不通」のまま</span>のお客様がいます。</div>
+  <div class="stuck">
+    <div class="big1">
+      <span>ステータスが「不通」のお客様（全加盟店様の合計）</span>
+      <b>241<small>人</small></b>
+      <div class="dots" id="dots241" style="margin-top:12px"></div>
+      <div class="lg2" style="margin-top:8px"><span><i style="background:var(--navy)"></i>30日以上 動きなし 192人</span><span><i style="background:var(--navy-mid)"></i>30日未満 49人</span></div>
+    </div>
+    <div class="stk-r">
+      <div class="q2">本当につながらないのか。<br>つながったのに、更新が止まっているだけか。</div>
+      <div class="cc mail" style="padding:18px 22px;gap:10px">
+        <div class="r"><b>①</b>本当に不通 → 今日の<span class="mark">メールの出番</span></div>
+        <div class="r"><b>②</b>話せている → <span class="mark">ステータスを更新</span></div>
+      </div>
+      <div style="font-size:15px;font-weight:800;color:var(--sub)">どちらでも、今日から動かせるお客様です。</div>
+    </div>
+  </div>
+  <div class="cap">LIFE X加盟店ポータル 本部用データ（11/1 21:38取得）。対象外を除いた集計対象のお客様。「動きなし」は最後にステータスが変わった日（変更がない方は割り当て日）からの日数。</div>
+</section>
+
+<!-- 6 不通から戻った -->
+<section class="sl">
+  <div class="top"><span class="chip">数字で見る</span><span class="pg">7</span></div>
+  <div class="tt">不通から話せた方は、<span class="hi">契約まで進んでいます。</span></div>
+  <div class="funnel">
+    <div class="fn a"><span>一度「不通」になった方</span><b>282<small>人</small></b></div>
+    <div class="fn b"><span>その後、話せた方</span><b>25<small>人</small></b></div>
+    <div class="fn c"><span>来場・面談以上に進んだ方</span><b>8<small>人</small></b><span style="font-size:14px">うち契約 2人</span></div>
+  </div>
+  <div class="wk">
+    <div class="lbl">話せた25人は<br>不通からいつ？</div>
+    <div class="seg" style="width:62%;background:var(--navy)">1週間以内 19人</div>
+    <div class="seg" style="width:20%;background:var(--navy-mid);color:var(--navy)">それ以降 6人</div>
+  </div>
+  <div class="cap">LIFE X加盟店ポータル 本部用データ（11/1取得）。ステータスの手動変更が記録されている9/16以降の分。「来場・面談以上」は現在のステータスが来場・面談・契約の方。</div>
+</section>
+
+<!-- 7 お客様の画面 -->
+<section class="sl">
+  <div class="top"><span class="chip">なぜ出ないのか</span><span class="pg">8</span></div>
+  <div class="tt">お客様の手元では、<span class="hi">こう見えています。</span></div>
+  <div class="phones">
+    <div class="pcol">
+      <div class="phone"><div class="scr call"><div class="num">0X0-XXXX-XXXX</div><div class="who2">携帯電話</div><div class="btns"><i class="r"></i><i class="g"></i></div></div></div>
+      <div class="say ngs2">知らない番号。<br>仕事中だし、出ないでおこう。</div>
+    </div>
+    <div class="pcol">
+      <div class="phone"><div class="scr"><div class="from">SMS</div><div class="bub">LIFE Xの資料請求ありがとうございます。<b>株式会社〇〇の〇〇</b>です。先ほどお電話しました。</div></div></div>
+      <div class="say">あ、資料の会社か。</div>
+    </div>
+    <div class="pcol">
+      <div class="phone"><div class="scr"><div class="from">メール</div><div class="mailhd"><b>LIFE Xの資料のご請求ありがとうございます</b><span>〇〇県の施工店 株式会社〇〇</span></div><div class="bub">・11/14（土）10時〜<br>・11/15（日）13時〜<br>・11/21（土）13時〜</div></div></div>
+      <div class="say ok">夜に家族と見て、<br>選んで返そう。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 電話とメール -->
+<section class="sl">
+  <div class="top"><span class="chip">考え方</span><span class="pg">9</span></div>
+  <div class="tt">電話は<span class="hi">こちらの時間</span>、メールは<span class="hi">お客様の時間</span>で届く。</div>
+  <div class="cmp">
+    <div class="cc tel"><h3><i>📞</i>電話</h3>
+      <div class="r"><b>−</b><span>お客様の手を止める<small>仕事中・運転中・子育て中は出られない</small></span></div>
+      <div class="r"><b>−</b><span>その場で返事を求める<small>家族と相談できない</small></span></div>
+      <div class="r"><b>−</b><span>出なければ何も残らない<small>着信履歴は「知らない番号」のまま</small></span></div>
+    </div>
+    <div class="cc mail"><h3><i>✉️</i>メール</h3>
+      <div class="r"><b>＋</b><span>好きな時に読める<small>夜・休憩中・週末</small></span></div>
+      <div class="r"><b>＋</b><span>家族と相談して返せる<small>家づくりは一人で決めない</small></span></div>
+      <div class="r"><b>＋</b><span>名前と顔が残る<small>次の着信が「資料の人」に変わる</small></span></div>
+    </div>
+  </div>
+  <div class="foot1">電話をやめるのではなく、電話に出ない時間を埋めるのがメール。</div>
+</section>
+
+<!-- 9 目的 -->
+<section class="sl">
+  <div class="top"><span class="chip">メールの型</span><span class="pg">10</span></div>
+  <div class="tt">メールの目的は、<span class="hi">2つだけ</span>です。</div>
+  <div class="cards2">
+    <div class="cd"><span class="n">1</span><div class="s">電話に出られない方と、<br>お会いする約束をする</div><div class="w">電話がつながらないことを、終わりにしない。メールで日程まで決まれば、電話を待たずに進めます。</div></div>
+    <div class="cd"><span class="n">2</span><div class="s">日程を、お客様に<br>ゆだねない</div><div class="w">「いつがいいですか」と聞くと、返事を考えるのが面倒になります。候補をこちらから出して、選んでもらう。</div></div>
+  </div>
+  <div class="who3">YUNO HOME様の「電話・メールの型」（7/17 LIFEX研修）より</div>
+</section>
+
+<!-- 10 NG→OK -->
+<section class="sl">
+  <div class="top"><span class="chip">メールの型</span><span class="pg">11</span></div>
+  <div class="tt">「いかがですか」で終わらず、<span class="hi">日時を3つ出す。</span></div>
+  <div class="ngok">
+    <div class="box x"><div class="h">✕ 相手にゆだねる</div>
+      <div class="ml">一度、お打ち合わせはいかがでしょうか？<br>ご都合のよい日時をお知らせください。</div>
+      <div class="res">「いつにしよう…」と考えて、<br>そのまま返信が止まる</div></div>
+    <div class="ar">→</div>
+    <div class="box o"><div class="h">○ こちらから3つ出す</div>
+      <div class="ml">以下の日時でご都合はいかがでしょうか。<span class="d">・11/14（土）10時〜<br>・11/15（日）13時〜<br>・11/21（土）13時〜</span>合わなければ、ご希望をお知らせください。</div>
+      <div class="res">選んで返すだけ。<br>返信の手間が一番小さい</div></div>
+  </div>
+</section>
+
+<!-- 11 分解 -->
+<section class="sl">
+  <div class="top"><span class="chip">メールの型</span><span class="pg">12</span></div>
+  <div class="tt">加盟店様の実物を、<span class="hi">5つの部品</span>に分けて見る。</div>
+  <div class="anat">
+    <div class="mailbox" style="margin-left:34px">
+      <div class="subj">件名：LIFEXお打ち合わせ日程のご案内</div>
+      <p>〇〇さま</p>
+      <p>お世話になっております。この度はGハウス規格住宅のLIFE Xのサイトにて会員登録のほどありがとうございました。</p>
+      <p><span class="hl"><span class="tag">1</span>埼玉県の施工店（埼玉エリア）の株式会社YUNO HOME　〇〇と申します。</span></p>
+      <p><span class="hl"><span class="tag">2</span>LIFEX総額の資金計画や内装について</span>、是非一度お打ち合わせにてご案内させていただければ幸いでございます。</p>
+      <p>もし、ご興味がある場合は以下の日時にてご検討のほどよろしくお願いいたします。</p>
+      <p><span class="hl"><span class="tag">3</span>6/20　10時〜<br>6/27　13時以降<br>6/28　13時以降</span></p>
+      <p>上記日時でご都合いかがでしょうか？</p>
+      <p><span class="hl"><span class="tag">4</span>土地探しからトータルの費用まで初回からご提案可能でございます。</span></p>
+      <p>ぜひご検討のほどよろしくお願いいたします。</p>
+    </div>
+    <div class="callouts">
+      <div class="co"><span class="n">1</span><b>誰が、どこの会社か<small>「〇〇県の施工店」で、LIFE Xとの関係が伝わる</small></b></div>
+      <div class="co"><span class="n">2</span><b>何をする時間か<small>総額の資金計画。お客様が一番知りたいこと</small></b></div>
+      <div class="co"><span class="n">3</span><b>日時を3つ<small>こちらから出す。お客様は選ぶだけ</small></b></div>
+      <div class="co"><span class="n">4</span><b>来る理由<small>土地探しから総額まで、初回でわかる</small></b></div>
+      <div class="co"><span class="n">5</span><b>短い<small>スマホ1画面に収まる長さ</small></b></div>
+    </div>
+  </div>
+  <div class="cap">メール本文はYUNO HOME様の実際のメール（7/17 LIFEX研修で公開）。名前は伏せ、日付は当時のもの。</div>
+</section>
+
+<!-- 12 名乗り -->
+<section class="sl">
+  <div class="top"><span class="chip">部品1 名乗り</span><span class="pg">13</span></div>
+  <div class="tt">お客様は、<span class="hi">LIFE Xと御社の関係を知りません。</span></div>
+  <div class="name">
+    <div class="struct">
+      <div class="nd h"><span>お客様が見たもの</span><b>LIFE X</b></div>
+      <div class="ar2">→</div>
+      <div class="nd c"><span>電話・メールの相手</span><b>株式会社〇〇？</b></div>
+      <div class="ar2">→</div>
+      <div class="nd h"><span>お客様の気持ち</span><b>どこの誰？</b></div>
+    </div>
+    <div class="say1"><small>メールの1行目・電話の第一声で、必ずこう名乗る</small><u>〇〇市の施工店</u>、株式会社〇〇の〇〇です。</div>
+    <div class="cards3" style="flex:none">
+      <div class="c3" style="padding:18px 22px;gap:6px"><span class="k">本部フォームのお客様</span><b style="font-size:18px">「LIFE Xの資料のご請求ありがとうございます」を先に</b></div>
+      <div class="c3" style="padding:18px 22px;gap:6px"><span class="k">市町村まで言う</span><b style="font-size:18px">「近くの会社」とわかると、来場の距離感が伝わる</b></div>
+      <div class="c3" style="padding:18px 22px;gap:6px"><span class="k">件名にも会社名</span><b style="font-size:18px">開く前から、誰からのメールかわかる</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 会う理由 -->
+<section class="sl">
+  <div class="top"><span class="chip">部品2・4 会う理由</span><span class="pg">14</span></div>
+  <div class="tt">会う理由は、<span class="hi">お客様の迷い</span>から書く。</div>
+  <div class="rows">
+    <div class="hd3"><span>お客様の迷い</span><span></span><span>初回でお見せできるもの</span></div>
+    <div class="rw"><div class="l">総額がいくらになるか見えない<small>本体価格だけでは決められない</small></div><div class="a">→</div><div class="r">土地・諸費用まで入れた総額と、月々の返済<small>資金計画を初回にお持ちします</small></div></div>
+    <div class="rw"><div class="l">土地がまだ決まっていない<small>どこで、いくらの土地が要るのか</small></div><div class="a">→</div><div class="r">ご希望エリアの土地の相場と、土地込みの総額<small>土地探しから一緒に進められます</small></div></div>
+    <div class="rw"><div class="l">気になるプランが入るか不安<small>敷地の形・広さに合うのか</small></div><div class="a">→</div><div class="r">お持ちの土地に入るプランと、配置の案<small>住所か図面があれば、事前に調べておきます</small></div></div>
+  </div>
+  <div class="cap">「〇〇について、ご案内させてください」の〇〇に、この右側を入れます。</div>
+</section>
+
+<!-- 14 読んでから書く -->
+<section class="sl">
+  <div class="top"><span class="chip">書く前に</span><span class="pg">15</span></div>
+  <div class="tt">1通書く前に、<span class="hi">3つだけ見る。</span></div>
+  <div class="cards3">
+    <div class="c3"><i>🧭</i><span class="k">どこから来たか</span><b>本部の資料請求か、<br>御社のLPか</b><div class="e"><small>本部フォームなら</small>御社の名前をまだ知らない。名乗りを丁寧に。</div></div>
+    <div class="c3"><i>📍</i><span class="k">どこに建てたいか</span><b>建築予定地の<br>市町村</b><div class="e"><small>わかっていれば</small>「〇〇市でしたら」と、その地域の話から入れる。</div></div>
+    <div class="c3"><i>📅</i><span class="k">いつ登録したか</span><b>登録日と、<br>最後の連絡の日</b><div class="e"><small>日が浅ければ</small>「ご登録ありがとうございます」から。間が空いていれば「その後いかがですか」から入る。</div></div>
+  </div>
+  <div class="cap">電話がつながらない時は、そのお客様に合う解決策をメールで送る。（10/26 本部の打ち合わせより）</div>
+</section>
+
+<!-- 15 土地あり -->
+<section class="sl">
+  <div class="top"><span class="chip">文面の例</span><span class="pg">16</span></div>
+  <div class="tt"><span class="hi">土地をお持ちの方</span>には、「調べてお持ちします」。</div>
+  <div class="ex2">
+    <div class="mailbox">
+      <div class="subj">件名：お持ちの土地に建てられるプランのご案内（〇〇市の施工店 株式会社〇〇）</div>
+      <p>〇〇様</p>
+      <p>LIFE Xの資料をご請求いただいた、<span class="ph-">〇〇市の施工店 株式会社〇〇の〇〇</span>です。先ほどはお電話がつながらず、失礼いたしました。</p>
+      <p>お持ちの土地に、どのプランが入るか。総額はいくらになるか。<br>住所か図面をお送りいただければ、お会いするまでに調べてお持ちします。</p>
+      <p>以下の日時でご都合はいかがでしょうか。<br><span class="ph-">・11/14（土）10時〜<br>・11/15（日）13時〜<br>・11/21（土）13時〜</span></p>
+      <p>このメールへのご返信だけで大丈夫です。</p>
+    </div>
+    <div class="pts">
+      <div class="pt k">先に調べるから、会う価値がある<small>電話で聞く7項目の「土地あり」と同じ考え方</small></div>
+      <div class="pt">住所・図面をもらう口実になる<small>返信が日程でなくても、次につながる</small></div>
+      <div class="pt">性能や建物の説明はしない<small>答えは会った時に取っておく</small></div>
+    </div>
+  </div>
+  <div class="cap">本部で作った例です。日付・名前は置き換えてお使いください。</div>
+</section>
+
+<!-- 16 土地なし -->
+<section class="sl">
+  <div class="top"><span class="chip">文面の例</span><span class="pg">17</span></div>
+  <div class="tt"><span class="hi">土地がまだの方</span>には、「相場と総額をまとめて」。</div>
+  <div class="ex2">
+    <div class="mailbox">
+      <div class="subj">件名：土地探しからのご相談もお受けしています（〇〇市の施工店 株式会社〇〇）</div>
+      <p>〇〇様</p>
+      <p>LIFE Xの資料をご請求いただいた、<span class="ph-">〇〇市の施工店 株式会社〇〇の〇〇</span>です。先ほどはお電話がつながらず、失礼いたしました。</p>
+      <p>土地と建物を別々に考えると、総額がなかなか見えてきません。<br><span class="ph-">〇〇エリア</span>の土地の相場と、建物を合わせた総額を、初回にまとめてお見せします。</p>
+      <p>以下の日時でご都合はいかがでしょうか。<br><span class="ph-">・11/14（土）10時〜<br>・11/15（日）13時〜<br>・11/21（土）13時〜</span></p>
+      <p>このメールへのご返信だけで大丈夫です。</p>
+    </div>
+    <div class="pts">
+      <div class="pt k">土地の話が、会う理由になる<small>土地探しは一人で進めにくい</small></div>
+      <div class="pt">エリアがわかれば地名を入れる<small>「〇〇エリア」が具体的なほど、読まれる</small></div>
+      <div class="pt">わからなければ、土地あり・なし両方に効く一文に<small>「土地探しから総額まで、初回からご提案できます」</small></div>
+    </div>
+  </div>
+  <div class="cap">本部で作った例です。日付・名前は置き換えてお使いください。</div>
+</section>
+
+<!-- 17 件名 -->
+<section class="sl">
+  <div class="top"><span class="chip">件名</span><span class="pg">18</span></div>
+  <div class="tt">開いてもらえるかは、<span class="hi">件名で決まる。</span></div>
+  <div class="subjs">
+    <div class="sj x"><span class="m">✕</span><span class="s">お打ち合わせのご案内</span><span class="w">誰からかわからない。<br>広告メールに埋もれる</span></div>
+    <div class="sj x"><span class="m">✕</span><span class="s">【重要】【期間限定】特別相談会のお知らせ</span><span class="w">売り込みに見えて、<br>開く前に閉じられる</span></div>
+    <div class="sj o"><span class="m">○</span><span class="s">LIFE Xの資料のご請求ありがとうございます（〇〇市の施工店 株式会社〇〇）</span><span class="w">何のメールで、<br>誰からかが一目でわかる</span></div>
+    <div class="sj o"><span class="m">○</span><span class="s">お持ちの土地に建てられるプランのご案内（株式会社〇〇）</span><span class="w">自分のための<br>メールだとわかる</span></div>
+  </div>
+  <div class="cap">件名＝何のメールか＋会社名。迷ったら1つ目の形に。</div>
+</section>
+
+<!-- 18 紹介資料 -->
+<section class="sl">
+  <div class="top"><span class="chip">添えるもの</span><span class="pg">19</span></div>
+  <div class="tt">メールには、<span class="hi">会社の紹介資料</span>を1つ添える。</div>
+  <div class="yuno">
+    <div class="yp"><div class="im"><img src="LIFEX研修_20260717/yuno-shoukai/p-1.jpg" alt="表紙"></div><b>1 表紙</b><span>家の写真と、会社の思いを一言</span></div>
+    <div class="yp key"><div class="im"><img src="LIFEX研修_20260717/yuno-shoukai/p-2.jpg" alt="代表の顔と思い"></div><b>2 代表の顔と思い</b><span>ここがいちばん大事。<br>知らない会社が「人」に変わる</span></div>
+    <div class="yp"><div class="im"><img src="LIFEX研修_20260717/yuno-shoukai/p-3.jpg" alt="できること"></div><b>3 できること</b><span>事業と商品</span></div>
+    <div class="yp"><div class="im"><img src="LIFEX研修_20260717/yuno-shoukai/p-4.jpg" alt="性能・事例"></div><b>4 性能・事例・概要</b><span>数字と施工写真</span></div>
+  </div>
+  <div class="cap">例：株式会社YUNO HOME様の会社紹介資料（A4・4ページ）。お持ちでない・作り直したい場合は本部にご相談ください。</div>
+</section>
+
+<!-- 19 1週間の地図 -->
+<section class="sl">
+  <div class="top"><span class="chip">送る順番</span><span class="pg">20</span></div>
+  <div class="tt">不通になってからの<span class="hi">1週間が勝負。</span></div>
+  <div class="tl">
+    <div class="td"><span class="d">当日</span><div class="ac t">1本目の電話<small>登録に気づいたらすぐ</small></div><div class="ac s">出なければSMS<small>誰からの着信かを伝える</small></div><div class="ac t">夕方以降に2本目</div></div>
+    <div class="td"><span class="d">翌日</span><div class="ac m">日時3つのメール<small>会社紹介資料を添えて</small></div><div class="ac t">朝と違う時間帯に電話</div></div>
+    <div class="td"><span class="d">2〜6日目</span><div class="ac t">時間帯を変えて電話<small>昼・夕方・週末</small></div><div class="ac s">2回目のSMS<small>LINEなど別の入口を</small></div></div>
+    <div class="td"><span class="d">7日目</span><div class="ac m">見学会・動画のご案内<small>話す前に、実物を見たい方へ</small></div></div>
+    <div class="td"><span class="d">1か月後〜</span><div class="ac m">近況を伺う1通<small>売り込まず、名前を残す</small></div><div class="ac m">イベントのご案内<small>月に1回</small></div></div>
+  </div>
+  <div class="cards3" style="flex:none;margin-top:6px">
+    <div class="c3" style="padding:14px 18px;gap:4px;background:var(--navy-soft)"><span class="k">時間帯を変える</span><b style="font-size:17px">同じ時間に掛け続けない</b></div>
+    <div class="c3" style="padding:14px 18px;gap:4px;background:var(--navy-soft)"><span class="k">中身を変える</span><b style="font-size:17px">お礼→日時3つ→実物のご案内</b></div>
+    <div class="c3" style="padding:14px 18px;gap:4px;background:var(--navy-soft)"><span class="k">区切りを決める</span><b style="font-size:17px">回数と期間を店で決めておく</b></div>
+  </div>
+  <div class="lgd"><span><i style="background:var(--panel);border:1px solid var(--line)"></i>電話</span><span><i style="background:#fff;border:2px solid var(--navy-mid)"></i>SMS</span><span><i style="background:var(--navy-soft)"></i>メール</span></div>
+  <div class="cap">7/24研修で大建建設様・竹村工務店様・坂本建設工業様から伺った進め方を、本部で1本にまとめた例。回数と期間は店ごとに決めて構いません。不通から話せた方の多くは1週間以内（7枚目）。</div>
+</section>
+
+<!-- 20 SMS -->
+<section class="sl">
+  <div class="top"><span class="chip">SMS</span><span class="pg">21</span></div>
+  <div class="tt">SMSは、<span class="hi">誰からかを伝えるだけ</span>でいい。</div>
+  <div class="sms">
+    <div class="smsc">
+      <div class="phone"><div class="scr"><div class="from">SMS</div><div class="bub">〇〇様<br>LIFE Xの資料請求ありがとうございます。<b>株式会社〇〇の〇〇</b>です。先ほどお電話しました。ご都合のよい時間をお知らせください。</div></div></div>
+      <div class="tx"><span class="k">1本目に出なかった直後</span><b>折り返しのきっかけを渡す</b><span>知らない番号が「資料の会社」に変わる。長く書かない。</span></div>
+    </div>
+    <div class="smsc">
+      <div class="phone"><div class="scr"><div class="from">SMS</div><div class="bub">〇〇様<br><b>株式会社〇〇の〇〇</b>です。お電話が難しければ、こちらのLINEからもご相談いただけます。<br><b>【LINEのURL】</b></div></div></div>
+      <div class="tx"><span class="k">2回目以降もつながらない</span><b>電話以外の入口を渡す</b><span>電話が苦手な方は、LINEなら返してくれることもある。</span></div>
+    </div>
+  </div>
+  <div class="cap">文面は「電話・メールの型（手元用・10月版）」のA・Bと同じです。コピーして使えます。</div>
+</section>
+
+<!-- 21 返信の後 -->
+<section class="sl">
+  <div class="top"><span class="chip">返信が来たら</span><span class="pg">22</span></div>
+  <div class="tt">返信が来てからが、<span class="hi">いちばん差がつく。</span></div>
+  <div class="after">
+    <div class="af"><span class="w">その日のうちに</span><b>お礼と日程の確定</b><span>「〇日〇時でお待ちしています」。返信が早いほど、気持ちが冷めない。</span><i>⏱️</i></div>
+    <div class="af"><span class="w">確定のメールで</span><b>場所・駐車場・持ち物</b><span>土地の資料、ローンの事前審査の結果があればご持参を。</span><i>🗺️</i></div>
+    <div class="af"><span class="w">前日</span><b>確認の連絡</b><span>SMSかメールで一言。当日のキャンセルを防ぐ。</span><i>📩</i></div>
+    <div class="af"><span class="w">すぐに</span><b>ステータスを更新</b><span>「不通」のままにしない。本部の数字にも反映されます。</span><i>✅</i></div>
+  </div>
+  <div class="cap">本部で作った進め方の例です。</div>
+</section>
+
+<!-- 22 Q&A -->
+<section class="sl">
+  <div class="top"><span class="chip">よくある迷い</span><span class="pg">23</span></div>
+  <div class="tt">送る前に、<span class="hi">よく出る4つの迷い。</span></div>
+  <div class="qa">
+    <div class="qq"><div class="q">しつこいと思われませんか？</div><div class="a"><span>回数と期間を先に決め、毎回中身を変える。<small>竹村工務店様は最低1週間・最大7回。大建建設様は電話3回まで、その後は定期のご案内</small></span></div></div>
+    <div class="qq"><div class="q">メールに返信が来ません。</div><div class="a"><span>1週間で見学会・動画のご案内へ切り替え。1か月後に近況を伺う1通を。<small>手元用の文面E・F</small></span></div></div>
+    <div class="qq"><div class="q">メールだけで日程まで決まりますか？</div><div class="a"><span>決まります。加盟店様の中には、メールでお会いする約束を取ることが多いところもあります。<small>10/26 本部の打ち合わせで伺った話</small></span></div></div>
+    <div class="qq"><div class="q">本部フォームのお客様には？</div><div class="a"><span>「LIFE Xの資料のお礼」を先に、会社名は後から。紹介資料を必ず添える。<small>手元用の文面D</small></span></div></div>
+  </div>
+</section>
+
+<!-- 23 ワーク -->
+<section class="sl">
+  <div class="top"><span class="chip dark">ワーク</span><span class="pg">24</span></div>
+  <div class="tt">不通のお客様を1人選んで、<span class="hi">今ここで1通。</span></div>
+  <div class="wrk">
+    <div class="form">
+      <div class="fl"><span class="k"><i>1</i>件名</span><div class="v">何のメールか＋（〇〇市の施工店 株式会社〇〇）</div></div>
+      <div class="fl"><span class="k"><i>2</i>名乗り</span><div class="v">〇〇市の施工店、株式会社〇〇の〇〇です。</div></div>
+      <div class="fl"><span class="k"><i>3</i>その方の迷い</span><div class="v">総額？　土地？　プラン？　（エリア・これまでのやりとりから1つ）</div></div>
+      <div class="fl"><span class="k"><i>4</i>会う理由</span><div class="v">初回で〇〇をお見せします／調べてお持ちします</div></div>
+      <div class="fl"><span class="k"><i>5</i>日時3つ</span><div class="v">・〇/〇（〇）〇時〜　・〇/〇（〇）〇時〜　・〇/〇（〇）〇時〜</div></div>
+      <div class="fl"><span class="k"><i>6</i>返し方</span><div class="v">このメールへのご返信だけで大丈夫です。</div></div>
+    </div>
+    <div class="timer"><b>10<small>分</small></b><span>ポータルで「不通」のお客様を開いて、そのまま書いてください。</span><div class="ol">書けたら、読んでもいい方に<br>読み上げていただきます。<br>送るのは、見直してから。</div></div>
+  </div>
+</section>
+
+<!-- 24 見直し -->
+<section class="sl">
+  <div class="top"><span class="chip dark">ワーク</span><span class="pg">25</span></div>
+  <div class="tt">送る前に、<span class="hi">5つだけ見直す。</span></div>
+  <div class="chk">
+    <div class="ck"><span class="bx"></span><b>1行目で、誰からかわかる</b><span>〇〇市の施工店・会社名・名前</span></div>
+    <div class="ck"><span class="bx"></span><b>日時が3つある</b><span>選んで返すだけで済む形</span></div>
+    <div class="ck"><span class="bx"></span><b>会う理由が、その方の迷いになっている</b><span>総額・土地・プランのどれか</span></div>
+    <div class="ck"><span class="bx"></span><b>社内の言葉を使っていない</b><span>商談・アポ・反響・追客 → 打ち合わせ・ご相談</span></div>
+    <div class="ck"><span class="bx"></span><b>スマホ1画面に収まる</b><span>性能や建物の説明は会った時に</span></div>
+  </div>
+</section>
+
+<!-- 25 今週 -->
+<section class="sl">
+  <div class="top"><span class="chip">今週やること</span><span class="pg">26</span></div>
+  <div class="tt">来週の金曜までに、<span class="hi">この3つ。</span></div>
+  <div class="todo3">
+    <div class="td3"><span class="n">1</span><b>今日書いた1通を送る</b><span>まずは不通になって1週間以内の方から。返信が来たら、その日のうちに日程を確定。</span><i>✉️</i></div>
+    <div class="td3"><span class="n">2</span><b>紹介資料を添えられるようにする</b><span>PDFでメールに添付できる形に。ない・古い場合は本部にご相談ください。</span><i>📎</i></div>
+    <div class="td3"><span class="n">3</span><b>話せた方のステータスを更新</b><span>「不通」のまま止まっている方を見直す。話せていれば、今日のうちに更新を。</span><i>✅</i></div>
+  </div>
+  <div class="close">気づいたらその日に1本。出なければ、日時3つの1通。</div>
+</section>
+
+<!-- 26 次回 -->
+<section class="sl">
+  <div class="top"><span class="chip">次回予告</span><span class="pg">27</span></div>
+  <div class="tt">11/13は、<span class="hi">会えた後</span>の話です。</div>
+  <div class="next">
+    <div class="nx a"><span class="k">今日 11/6</span><b>電話に出ない方と、会う約束をする</b><span>メール・SMS</span></div>
+    <div class="nx b"><span class="k">次回 11/13</span><b>性能の話し方・総まとめ</b><span>目的（快適さと光熱費）→ 数字は最低限 → 設計・間取り・空調。耐震・断熱・結露・キッチンの回を、1回の打ち合わせの流れにつなぎます。</span></div>
+    <div class="nx c"><span class="k">その先</span><b>12月末の目標へ</b><span>会う約束 → 打ち合わせ → ご契約を、1つずつ太くしていく。</span></div>
+  </div>
+</section>
+
+<!-- 27 出典 -->
+<section class="sl">
+  <div class="top"><span class="chip">出典</span><span class="pg">28</span></div>
+  <div class="tt">出典・参考</div>
+  <ul class="src">
+    <li><b>電話・メールの型、メールの目的2つ、メールCの実物</b>：YUNO HOME様の実践資料（2026/7/17 LIFEX加盟店研修）</li>
+    <li><b>つながるまでの進め方（回数・時間帯・SMS）</b>：2026/7/24 LIFEX MTGで大建建設様・竹村工務店様・坂本建設工業様から伺った内容（2026年7月時点）</li>
+    <li><b>月別の話せた・約束・契約の人数（4枚目）</b>：LIFE X加盟店ポータル 本部用データ（2026/11/1取得）。登録した月ごとの集計</li>
+    <li><b>通話接続率の推移（5枚目）</b>：研修前・研修後はKPIダッシュボード（10/5時点）、直近3か月はLIFE X加盟店ポータルの本部集計（10/25時点）、登録月別は本部用データ（11/1取得）</li>
+    <li><b>不通241人・不通から話せた25人（6・7枚目）</b>：LIFE X加盟店ポータル 本部用データ（2026/11/1 21:38取得）。対象外を除く集計対象。ステータスの手動変更の記録は9/16以降</li>
+    <li><b>価格改定（3枚目）</b>：2026/10/26・11/2 LIFEX本部MTG</li>
+    <li><b>不通の時はメールで解決策を送る、メールで約束を取る（15・23枚目）</b>：2026/10/26 本部の打ち合わせ</li>
+    <li><b>会社紹介資料の例（19枚目）</b>：株式会社YUNO HOME様の会社紹介資料（A4・4ページ）</li>
+    <li><b>文面の全文</b>：「電話・メールの型（手元用・2026年10月版）」 LIFEX加盟店様ページの研修資料一覧から開けます</li>
+  </ul>
+</section>
+
+</div>
+<script>
+(function(){var el=document.getElementById('dots241');if(!el)return;var h='';for(var i=0;i<241;i++){h+='<i'+(i<192?' class="d"':'')+'></i>';}el.innerHTML=h;})();
+</script>
+</body></html>
