@@ -1,0 +1,985 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LIFEX MTG｜月2棟への地図 投影資料</title>
+<meta name="robots" content="noindex">
+<style>
+:root{color-scheme:light}
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6; --navy-mid:#b9cde0;
+  --ng:#a1462a; --ngbg:#fbeee9;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.6; font-feature-settings:"palt"}
+.wrap{width:min(1100px,96vw); margin:26px auto}
+.draft{width:1100px; margin:0 auto 14px; font-size:12px; color:#8a5a00; background:#fdf3dd;
+  border:1px solid #ecd9a8; border-radius:4px; padding:6px 14px; font-weight:700; line-height:1.8}
+.sl{width:1100px; height:619px; background:#fff; border-radius:8px;
+  box-shadow:0 2px 16px rgba(20,40,60,.09); padding:32px 50px 24px;
+  display:flex; flex-direction:column; position:relative; overflow:hidden; margin:0 auto 22px}
+.top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+.chip{font-size:11.5px; font-weight:700; letter-spacing:.08em; padding:3px 12px; border-radius:99px; background:var(--navy-soft); color:var(--navy)}
+.chip.dark{background:var(--navy); color:#fff}
+.pg{margin-left:auto; font-size:12px; color:#b6c0ca; font-variant-numeric:tabular-nums}
+.tt{font-size:28px; font-weight:800; line-height:1.35; margin:2px 0 14px; text-wrap:balance}
+.tt .hi{color:var(--navy)}
+.cap{font-size:11.5px; color:var(--sub); line-height:1.6; margin-top:auto; padding-top:8px}
+.lead{font-size:16px; font-weight:700; color:var(--sub); margin:-6px 0 14px}
+.fill{flex:1; min-height:0}
+
+/* 表紙 */
+.cover{padding:0; background:var(--navy)}
+.cover .ph{position:absolute; inset:0 0 0 52%; background:url(assets/photo-minoh-model.jpg) center/cover}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg,var(--navy) 0%,rgba(30,78,121,0) 40%)}
+.cover .in{position:relative; padding:70px 66px; display:flex; flex-direction:column; gap:18px; height:100%; justify-content:center; color:#fff; max-width:640px}
+.cover .kk{font-size:14px; font-weight:800; letter-spacing:.1em; color:var(--navy-mid)}
+.cover h1{margin:0; font-size:54px; line-height:1.25; font-weight:800}
+.cover .sub{font-size:20px; font-weight:700; color:#dbe6f0}
+.cover .date{font-size:13px; color:var(--navy-mid)}
+
+/* 章扉 */
+.door{background:var(--navy); color:#fff; justify-content:center; padding:50px 80px}
+.door .no{font-size:15px; font-weight:800; letter-spacing:.14em; color:var(--navy-mid)}
+.door h2{font-size:46px; margin:8px 0 18px; line-height:1.3}
+.door .q{font-size:20px; font-weight:700; color:#dbe6f0; line-height:1.7}
+.door .from{position:absolute; left:80px; bottom:40px; font-size:13px; color:var(--navy-mid); font-weight:700}
+.door .pg{position:absolute; right:50px; top:32px; color:#6f8fae}
+
+/* 流れ */
+.agenda{display:flex; flex-direction:column; gap:7px; flex:1}
+.ag{display:grid; grid-template-columns:70px 64px 1fr 80px; align-items:center; gap:14px; background:var(--panel); border-radius:12px; padding:6px 20px}
+.ag .t{font-size:13px; font-weight:900; color:var(--navy); font-variant-numeric:tabular-nums}
+.ag .c{font-size:12px; font-weight:900; color:#fff; background:var(--navy); border-radius:99px; text-align:center; padding:2px 0}
+.ag b{font-size:18px}
+.ag b small{font-size:13px; color:var(--sub); font-weight:700; margin-left:10px}
+.ag .m{text-align:right; font-size:14px; font-weight:800; color:var(--sub)}
+.ag.big{background:var(--navy-soft)}
+
+/* 年表 */
+.tl{position:relative; flex:1; display:grid; grid-template-columns:repeat(5,1fr); gap:14px}
+.tl .col{background:var(--panel); border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:6px}
+.tl .col h4{margin:0 0 4px; font-size:15px; color:var(--navy)}
+.tl .col h4 small{display:block; font-size:12px; color:var(--sub)}
+.tl .it{font-size:13px; line-height:1.45; padding-left:10px; border-left:3px solid var(--navy-mid)}
+.tl .it i{font-style:normal; font-weight:800; color:var(--navy); font-size:12px; display:block}
+.arrowbar{margin-top:12px; background:var(--navy); color:#fff; border-radius:12px; padding:12px 20px; font-size:18px; font-weight:800; text-align:center}
+
+/* 地図 */
+.map{display:flex; align-items:stretch; gap:6px; flex:1}
+.st{flex:1; display:flex; flex-direction:column; gap:8px}
+.st .box{background:var(--navy); color:#fff; border-radius:12px; padding:12px 8px; text-align:center; font-weight:800; font-size:16px; line-height:1.35; position:relative}
+.st .box small{display:block; font-size:11.5px; color:var(--navy-mid); font-weight:700}
+.st .box.lt{background:var(--navy-soft); color:var(--navy)}
+.st .box.lt small{color:var(--sub)}
+.st .ch{text-align:center; font-size:13px; font-weight:900; color:var(--navy)}
+.st .ks{background:var(--panel); border-radius:10px; padding:10px; font-size:13px; line-height:1.5; flex:1}
+.st .ks b{display:block; color:var(--navy); font-size:12px}
+.st .ks span{display:block; font-size:11.5px; color:var(--sub); margin-top:6px}
+.mapar{align-self:center; color:var(--navy-mid); font-size:20px; font-weight:900; margin-top:-120px}
+
+/* 漏斗 */
+.fun{display:flex; align-items:flex-end; gap:12px; flex:1; padding:0 10px 30px; border-bottom:2px solid var(--line); position:relative}
+.fb{flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; height:100%; gap:6px; position:relative}
+.fb i{display:block; width:100%; background:var(--navy); border-radius:8px 8px 0 0}
+.fb b{font-size:26px; font-weight:900; color:var(--navy)}
+.fb b small{font-size:14px}
+.fb span{position:absolute; bottom:-28px; font-size:14px; font-weight:800; color:var(--sub)}
+.rate{flex:none; width:86px; align-self:center; text-align:center; font-size:13px; font-weight:800; color:var(--sub); margin-bottom:60px}
+.rate b{display:block; font-size:22px; color:var(--navy)}
+
+/* 100人の計算 */
+.calc{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; flex:1}
+.cc{border-radius:16px; background:var(--panel); padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.cc.on{background:var(--navy); color:#fff}
+.cc .h{font-size:15px; font-weight:800; color:var(--sub)}
+.cc.on .h{color:var(--navy-mid)}
+.cc .r{font-size:14px; line-height:1.9; font-variant-numeric:tabular-nums}
+.cc .r em{font-style:normal; font-weight:900; color:var(--navy)}
+.cc.on .r em{color:#fff; text-decoration:underline; text-underline-offset:4px}
+.cc .res{margin-top:auto; font-size:16px; font-weight:800}
+.cc .res b{font-size:54px; font-weight:900; color:var(--navy); line-height:1}
+.cc.on .res b{color:#fff}
+.note{margin-top:12px; background:var(--navy-soft); border-radius:12px; padding:10px 18px; font-size:16px; font-weight:800}
+.note b{color:var(--navy)}
+
+/* 核の教え3つ */
+.k3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; flex:1}
+.k{background:var(--panel); border-radius:16px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.k .n{width:34px; height:34px; border-radius:50%; background:var(--navy); color:#fff; font-weight:900; display:grid; place-items:center; font-size:17px}
+.k h3{margin:0; font-size:21px; line-height:1.4}
+.k p{margin:0; font-size:14.5px; line-height:1.65; color:#33414f}
+.k .say{margin-top:auto; background:#fff; border-left:4px solid var(--navy); border-radius:6px; padding:8px 12px; font-size:14px; font-weight:700}
+.k .from{font-size:11.5px; color:var(--sub); font-weight:700}
+
+/* NG→OK */
+.ngok{display:grid; grid-template-columns:1fr 44px 1fr; gap:10px; flex:1; align-items:stretch}
+.ngok .bx{border-radius:16px; padding:18px 22px; display:flex; flex-direction:column; gap:10px}
+.ngok .bx.x{background:#fff; border:2px solid var(--ng)}
+.ngok .bx.o{background:var(--navy-soft); border:2px solid var(--navy)}
+.ngok .h{font-size:16px; font-weight:900}
+.ngok .x .h{color:var(--ng)}
+.ngok .o .h{color:var(--navy)}
+.ngok .line{font-size:15.5px; line-height:1.6; padding:8px 12px; border-radius:8px; background:var(--panel)}
+.ngok .o .line{background:#fff}
+.ngok .why{margin-top:auto; font-size:13.5px; color:var(--sub); font-weight:700}
+.ngok .ar{align-self:center; text-align:center; font-size:30px; color:var(--navy); font-weight:900}
+
+/* 表 */
+.tbl{width:100%; border-collapse:separate; border-spacing:0 6px; font-size:14.5px}
+.tbl th{font-size:12.5px; color:var(--sub); text-align:left; padding:0 12px; font-weight:800}
+.tbl td{background:var(--panel); padding:9px 12px; line-height:1.5; vertical-align:middle}
+.tbl td:first-child{border-radius:10px 0 0 10px; font-weight:900; color:var(--navy); white-space:nowrap}
+.tbl td:last-child{border-radius:0 10px 10px 0}
+.tbl td.say{font-weight:700}
+.tbl small{color:var(--sub); font-size:12px; display:block}
+
+/* 型の全体図 */
+.kata{display:grid; grid-template-columns:1.55fr 1fr; gap:20px; flex:1; min-height:0}
+.kata .day{background:var(--panel); border-radius:16px; padding:14px 18px; display:flex; flex-direction:column; gap:6px}
+.kata .day h4{margin:0 0 4px; font-size:15px; color:var(--navy)}
+.kata .stp{display:grid; grid-template-columns:28px 1fr; gap:10px; align-items:center; background:#fff; border-radius:10px; padding:6px 10px}
+.kata .stp .n{width:26px; height:26px; border-radius:50%; background:var(--navy); color:#fff; font-weight:900; display:grid; place-items:center; font-size:13px}
+.kata .stp b{font-size:15.5px}
+.kata .stp b small{font-size:12px; color:var(--sub); font-weight:700; margin-left:8px}
+.kata .rt{display:flex; flex-direction:column; gap:14px}
+.kata .rt .day{flex:none}
+.kata .rt p{margin:0; font-size:14.5px; line-height:1.6; background:#fff; border-radius:10px; padding:8px 12px}
+
+/* 2列 */
+.two{display:grid; grid-template-columns:1fr 1fr; gap:22px; flex:1; min-height:0}
+.pan{background:var(--panel); border-radius:16px; padding:18px 22px; display:flex; flex-direction:column; gap:10px}
+.pan h4{margin:0; font-size:17px; color:var(--navy)}
+.pan p{margin:0; font-size:15px; line-height:1.65}
+.pan .say{background:#fff; border-left:4px solid var(--navy); border-radius:6px; padding:10px 14px; font-size:15.5px; font-weight:700; line-height:1.65}
+.pan ol,.pan ul{margin:0; padding-left:1.3em; font-size:15px; line-height:1.75}
+.photo{border-radius:16px; overflow:hidden; position:relative; background:#ccd}
+.photo img{width:100%; height:100%; object-fit:cover; display:block}
+.photo figcaption{position:absolute; left:0; right:0; bottom:0; background:linear-gradient(transparent,rgba(0,0,0,.65)); color:#fff; font-size:12.5px; font-weight:700; padding:22px 14px 10px}
+
+/* 循環 */
+.cyc{display:flex; align-items:center; justify-content:center; gap:16px}
+.cyc .c{width:150px; height:150px; border-radius:50%; background:var(--navy-soft); border:3px solid var(--navy); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; font-weight:900; color:var(--navy); font-size:20px}
+.cyc .c small{font-size:12px; color:var(--sub); font-weight:700; margin-top:4px; line-height:1.4}
+.cyc .a{font-size:26px; color:var(--navy); font-weight:900}
+
+/* 5軸 */
+.ax{display:grid; grid-template-columns:repeat(5,1fr); gap:10px}
+.ax div{background:#fff; border-radius:12px; padding:10px; text-align:center}
+.ax b{display:block; font-size:28px; color:var(--navy); line-height:1.2}
+.ax span{font-size:12.5px; color:var(--sub); font-weight:700}
+
+/* 性能の3段 */
+.three{display:flex; align-items:stretch; gap:10px; flex:1}
+.three .s{flex:1; border-radius:16px; padding:20px; display:flex; flex-direction:column; gap:10px}
+.three .s1{background:var(--navy); color:#fff}
+.three .s2{background:var(--navy-soft)}
+.three .s3{background:var(--panel)}
+.three .s .n{font-size:13px; font-weight:900; letter-spacing:.1em; opacity:.75}
+.three .s h3{margin:0; font-size:26px}
+.three .s p{margin:0; font-size:15px; line-height:1.7}
+.three .s .say{margin-top:auto; border-radius:8px; padding:10px 12px; font-size:14.5px; font-weight:700; background:rgba(255,255,255,.14)}
+.three .s2 .say,.three .s3 .say{background:#fff}
+.three .ar{align-self:center; font-size:26px; color:var(--navy); font-weight:900}
+
+/* テーマ別（性能） */
+.th{display:grid; grid-template-columns:1.05fr 1fr; gap:22px; flex:1; min-height:0}
+.th .l{display:flex; flex-direction:column; gap:10px}
+.th .obj{background:var(--navy); color:#fff; border-radius:14px; padding:14px 18px}
+.th .obj span{font-size:12px; font-weight:800; color:var(--navy-mid); letter-spacing:.08em}
+.th .obj b{display:block; font-size:21px; line-height:1.45}
+.th .num{background:var(--panel); border-radius:14px; padding:12px 18px}
+.th .num span{font-size:12px; font-weight:800; color:var(--sub)}
+.th .num ul{margin:4px 0 0; padding-left:1.2em; font-size:14.5px; line-height:1.65}
+.th .num ul small{color:var(--sub)}
+.th .ret{background:#fff; border:2px solid var(--navy-mid); border-radius:14px; padding:12px 18px; font-size:14.5px; line-height:1.6}
+.th .ret span{font-size:12px; font-weight:800; color:var(--sub); display:block}
+.th .ret b{color:var(--navy)}
+
+/* NG一覧 */
+.ngl{display:grid; grid-template-columns:1fr 1fr; gap:8px 18px; flex:1; align-content:start}
+.ngl div{display:grid; grid-template-columns:1fr 1.15fr; gap:10px; align-items:center; background:var(--panel); border-radius:10px; padding:8px 14px; font-size:13.5px; line-height:1.45}
+.ngl s{color:var(--ng); font-weight:800; text-decoration:line-through; text-decoration-thickness:1.5px}
+.ngl b{color:var(--navy)}
+
+/* 確認の階段 */
+.stairs{display:flex; align-items:flex-end; gap:12px; flex:1; padding-bottom:4px}
+.stairs .sp{flex:1; background:var(--navy-soft); border-radius:14px 14px 0 0; padding:14px 16px; display:flex; flex-direction:column; gap:6px}
+.stairs .sp b{font-size:18px; color:var(--navy)}
+.stairs .sp p{margin:0; font-size:14px; line-height:1.6}
+.stairs .sp.goal{background:var(--navy); color:#fff}
+.stairs .sp.goal b{color:#fff; font-size:22px}
+
+/* チェック */
+.chk{display:flex; flex-direction:column; gap:12px; flex:1}
+.chk .row{display:grid; grid-template-columns:54px 1fr 220px; gap:16px; align-items:center; background:var(--panel); border-radius:14px; padding:14px 20px}
+.chk .row .n{width:44px; height:44px; border-radius:50%; background:var(--navy); color:#fff; display:grid; place-items:center; font-size:20px; font-weight:900}
+.chk .row b{font-size:20px; line-height:1.4}
+.chk .row b small{display:block; font-size:13.5px; color:var(--sub); font-weight:700; margin-top:2px}
+.chk .row .w{font-size:13px; color:var(--sub); font-weight:700; border-left:2px solid var(--line); padding-left:14px}
+
+.src{font-size:12px; line-height:1.75; margin:0; padding-left:1.2em}
+.src li{margin-bottom:2px}
+.src b{color:var(--navy)}
+
+/* 文字の拡大（投影用） */
+.k h3{font-size:25px}
+.k p{font-size:17px; line-height:1.7}
+.k .say{font-size:16.5px; padding:10px 14px}
+.k .from{font-size:12.5px}
+.st .box{font-size:18px}
+.st .ks{font-size:15.5px; padding:12px}
+.st .ks b{font-size:15px; margin-bottom:4px}
+.st .ks span{font-size:12.5px}
+.tbl{font-size:17px}
+.tbl td{padding:11px 14px}
+.ngok .line{font-size:18.5px; padding:11px 14px}
+.ngok .why{font-size:15px}
+.ngok .h{font-size:18px}
+.pan h4{font-size:19px}
+.pan p,.pan ol,.pan ul{font-size:17.5px; line-height:1.75}
+.pan .say{font-size:18px}
+.th .obj b{font-size:24px}
+.th .num ul{font-size:17px; line-height:1.7}
+.th .ret{font-size:17px; line-height:1.7}
+.th .l{gap:12px}
+.three .s p{font-size:17.5px}
+.three .s .say{font-size:17px}
+.kata .stp{padding:8px 12px}
+.kata .stp b{font-size:19px}
+.kata .stp b small{font-size:13.5px}
+.kata .rt p{font-size:17px}
+.cc .r{font-size:20px; line-height:1.85}
+.cc .h{font-size:17px}
+.cyc .c{width:170px; height:170px; font-size:23px}
+.cyc .c small{font-size:13.5px}
+.ax b{font-size:34px}
+.ax span{font-size:14px}
+.ngl{gap:10px 18px}
+.ngl div{font-size:16px; padding:11px 14px}
+.stairs .sp p{font-size:17px}
+.stairs .sp b{font-size:21px}
+.chk .row{flex:1}
+.chk .row b{font-size:23px}
+.chk .row b small{font-size:15px}
+.chk .row .w{font-size:15px}
+.tl .it{font-size:15px}
+.tl .col h4{font-size:17px}
+.src{font-size:14.5px; line-height:1.9}
+.ag b{font-size:20px}
+.fb b{font-size:30px}
+.rate b{font-size:26px}
+.map.big .box{font-size:22px; padding:16px 10px}
+.map.big .ks{font-size:18px; line-height:1.65; padding:16px}
+.map.big .ks b{font-size:19px; margin-bottom:8px}
+.map.big .ks span{font-size:14px; margin-top:10px}
+.top .go{margin-left:auto; display:flex; gap:6px; align-items:center; font-size:11.5px; font-weight:700; color:var(--sub)}
+.top .go a{color:var(--navy); text-decoration:none; border:1px solid var(--navy-mid); border-radius:99px; padding:1px 10px; background:#fff}
+.top .go a:hover{background:var(--navy-soft)}
+.top .go + .pg{margin-left:12px}
+.door .from{display:flex; flex-wrap:wrap; gap:8px; align-items:center; right:80px}
+.door .from a{color:#fff; text-decoration:none; border:1px solid #6f8fae; border-radius:99px; padding:2px 12px; font-size:12.5px}
+.door .from a:hover{background:rgba(255,255,255,.12)}
+</style></head><body>
+<div class="wrap">
+<div class="draft">叩き台（2026-11-03）｜顧問ご確認前。商談の型は過去5通りを1本に統合した本部案。数字の読み方・言い回し例は確認待ち。全44枚・約60分。</div>
+
+<!-- 1 表紙 -->
+<section class="sl cover">
+  <div class="ph"></div>
+  <div class="in">
+    <div class="kk">LIFE X 月2棟目標達成MTG</div>
+    <h1>月2棟への<br>地図</h1>
+    <div class="sub">17回の研修を、お客様の順番に<br>1本の道として並べ直す回です。</div>
+    <div class="date">2026年11月13日（金）</div>
+  </div>
+</section>
+
+<!-- 2 今日の流れ -->
+<section class="sl">
+  <div class="top"><span class="chip">今日の流れ</span><span class="pg">2</span></div>
+  <div class="tt">登録から契約まで、<span class="hi">全部を1時間で通します。</span></div>
+  <div class="agenda">
+    <div class="ag big"><span class="t">0:00</span><span class="c">地図</span><b>月2棟への地図と、全社の数字<small>どこを上げると何棟になるか</small></b><span class="m">8分</span></div>
+    <div class="ag"><span class="t">0:08</span><span class="c">1章</span><b>つながる<small>当日・時間帯・電話以外の接点</small></b><span class="m">4分</span></div>
+    <div class="ag"><span class="t">0:12</span><span class="c">2章</span><b>会う約束をする<small>7項目・日程はこちらから</small></b><span class="m">4分</span></div>
+    <div class="ag"><span class="t">0:16</span><span class="c">3章</span><b>初回面談の準備<small>聞いた答えを、準備に変える</small></b><span class="m">3分</span></div>
+    <div class="ag big"><span class="t">0:19</span><span class="c">4章</span><b>初回面談<small>本部の型・聞く・間</small></b><span class="m">10分</span></div>
+    <div class="ag big"><span class="t">0:29</span><span class="c">5章</span><b>性能の話し方<small>目的→数値は最低限→設計・間取り・空調</small></b><span class="m">15分</span></div>
+    <div class="ag"><span class="t">0:44</span><span class="c">6章</span><b>お金<small>月々・総額・トータルコスト</small></b><span class="m">5分</span></div>
+    <div class="ag"><span class="t">0:49</span><span class="c">7章</span><b>2回目から契約まで<small>確認・テストクロージング・迷い</small></b><span class="m">7分</span></div>
+    <div class="ag"><span class="t">0:56</span><span class="c">8章</span><b>自分の数字と、今週から<small>参考書の使い方</small></b><span class="m">4分</span></div>
+  </div>
+</section>
+
+<!-- 3 17回 -->
+<section class="sl">
+  <div class="top"><span class="chip">地図</span><span class="go">詳しく：<a href="sanko-20261113.html#a3" target="_blank" rel="noopener">参考書</a></span><span class="pg">3</span></div>
+  <div class="tt">4月から17回。<span class="hi">別々に教わったことを、1本につなげます。</span></div>
+  <div class="tl">
+    <div class="col"><h4>LIFE Xを知る<small>4〜6月</small></h4>
+      <div class="it"><i>4/27</i>LIFE Xを知る</div><div class="it"><i>5/11</i>商品力</div><div class="it"><i>5/25</i>購買心理</div><div class="it"><i>6/8</i>標準仕様</div><div class="it"><i>6/22</i>クロージング</div></div>
+    <div class="col"><h4>つながる・会う<small>7月・11月</small></h4>
+      <div class="it"><i>7/17</i>月2棟の型</div><div class="it"><i>7/24</i>接続率を上げる</div><div class="it"><i>7/31</i>数字で見る</div><div class="it"><i>11/6</i>メールで会う約束</div></div>
+    <div class="col"><h4>面談を磨く<small>8月</small></h4>
+      <div class="it"><i>8/7</i>商談を磨く</div><div class="it"><i>8/21</i>聞く力</div><div class="it"><i>8/28</i>間とテストクロージング</div></div>
+    <div class="col"><h4>性能を語る<small>9〜10月</small></h4>
+      <div class="it"><i>9/4</i>太陽光とトータルコスト</div><div class="it"><i>9/11</i>防蟻</div><div class="it"><i>9/18</i>耐震×制振</div><div class="it"><i>10/2</i>断熱×気密×換気</div><div class="it"><i>10/9</i>壁の中の結露</div><div class="it"><i>10/16</i>構造見学会</div></div>
+    <div class="col"><h4>渡す・選ばせる<small>10月</small></h4>
+      <div class="it"><i>10/23</i>アプローチブック</div><div class="it"><i>10/30</i>キッチン</div></div>
+  </div>
+  <div class="arrowbar">今日は、これを「お客様が進む順番」に並べ直します</div>
+</section>
+
+<!-- 4 地図 -->
+<section class="sl">
+  <div class="top"><span class="chip">地図</span><span class="go">詳しく：<a href="sanko-20261113.html#c0" target="_blank" rel="noopener">参考書</a></span><span class="pg">4</span></div>
+  <div class="tt">お客様の道のりは、<span class="hi">8つの段でできています。</span></div>
+  <div class="map">
+    <div class="st"><div class="ch">0</div><div class="box lt">登録<small>資料請求・来場予約</small></div><div class="ks"><b>集客</b>自社リストへの案内も<span>11/2 案内ページ</span></div></div>
+    <div class="st"><div class="ch">1章</div><div class="box">話せる<small>電話がつながる</small></div><div class="ks"><b>当日に1本目</b>時間帯を変える<span>7/24・11/6</span></div></div>
+    <div class="st"><div class="ch">2章</div><div class="box">会う約束<small>アポ</small></div><div class="ks"><b>7項目</b>日程はこちらから<span>7/17・11/6</span></div></div>
+    <div class="st"><div class="ch">3章</div><div class="box">準備<small>面談の前日まで</small></div><div class="ks"><b>答えを準備に</b>土地・ローン・他社<span>7/17</span></div></div>
+    <div class="st"><div class="ch">4・5・6章</div><div class="box">初回面談<small>聞く・性能・お金</small></div><div class="ks"><b>今日の山場</b>型・聞く・性能の話し方<span>8月・9〜10月</span></div></div>
+    <div class="st"><div class="ch">7章</div><div class="box">2回目<small>1週間以内</small></div><div class="ks"><b>ブックの感想</b>プラン・土地・資金<span>10/23</span></div></div>
+    <div class="st"><div class="ch">7章</div><div class="box">申込<small>進めていいですか</small></div><div class="ks"><b>確認するだけ</b>テストクロージング<span>8/28</span></div></div>
+    <div class="st"><div class="ch">7章</div><div class="box lt">契約<small>土地・事前審査の後</small></div><div class="ks"><b>申込はスタート</b>土地付け→総額確定<span>7/17</span></div></div>
+  </div>
+  <div class="cap">下の小さな日付は、その段を詳しく扱った研修の回です。詳しい中身と元の資料へのリンクは参考書にまとめています。</div>
+</section>
+
+<!-- 5 全社の数字 -->
+<section class="sl">
+  <div class="top"><span class="chip">地図</span><span class="go">詳しく：<a href="sanko-20261113.html#c0" target="_blank" rel="noopener">参考書</a></span><span class="pg">5</span></div>
+  <div class="tt">全社の今の数字。<span class="hi">815人の登録から、40棟。</span></div>
+  <div class="fun">
+    <div class="fb"><b>815<small>人</small></b><i style="height:78%"></i><span>登録</span></div>
+    <div class="rate">話せた<b>35.1%</b></div>
+    <div class="fb"><b>286<small>人</small></b><i style="height:27.4%"></i><span>話せた</span></div>
+    <div class="rate">約束<b>72.7%</b></div>
+    <div class="fb"><b>208<small>人</small></b><i style="height:19.9%"></i><span>会う約束</span></div>
+    <div class="rate">面談<b>88.0%</b></div>
+    <div class="fb"><b>183<small>人</small></b><i style="height:17.5%"></i><span>面談</span></div>
+    <div class="rate">契約<b>21.9%</b></div>
+    <div class="fb"><b>40<small>棟</small></b><i style="height:3.8%"></i><span>契約</span></div>
+  </div>
+  <div class="note" style="margin-top:40px">一番大きく減るのは<b>「登録→話せた」</b>、次が<b>「面談→契約」</b>。今日の1章と、4〜7章がそこに当たります。</div>
+  <div class="cap">全加盟店様の累計。LIFE X加盟店ポータル 本部用データ（2026/11/1取得）。率はひとつ前の段に対する割合。</div>
+</section>
+
+<!-- 6 100人の計算 -->
+<section class="sl">
+  <div class="top"><span class="chip">地図</span><span class="go">詳しく：<a href="sanko-20261113.html#c0" target="_blank" rel="noopener">参考書</a></span><span class="pg">6</span></div>
+  <div class="tt">登録100人あたりで考えると、<span class="hi">1か所より、全部を少しずつ。</span></div>
+  <div class="calc">
+    <div class="cc"><div class="h">今の率のまま</div>
+      <div class="r">話せた 35.1%<br>約束 72.7%<br>面談 88.0%<br>契約 21.9%</div>
+      <div class="res"><b>4.9</b> 棟</div></div>
+    <div class="cc"><div class="h">12月の目標の率</div>
+      <div class="r">話せた <em>40%</em><br>約束 72.7%<br>面談 88.0%<br>契約 <em>30%</em></div>
+      <div class="res"><b>7.7</b> 棟</div></div>
+    <div class="cc on"><div class="h">4つの段を、少しずつ上げると（例）</div>
+      <div class="r">話せた <em>40%</em><br>約束 <em>80%</em><br>面談 <em>90%</em><br>契約 <em>30%</em></div>
+      <div class="res"><b>8.6</b> 棟</div></div>
+  </div>
+  <div class="note">率はかけ算でつながっています。<b>どこか1つが穴だと、ほかを頑張っても棟数は伸びません。</b></div>
+  <div class="cap">今の率は前の枚の全社累計（11/1）。12月の目標は「接続率 全社40%以上・契約率30%」（10/12 本部共有）。右の列は計算の例で、目標ではありません。</div>
+</section>
+
+<!-- 7 9月からの伸び -->
+<section class="sl">
+  <div class="top"><span class="chip">地図</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX_MTG_20260724/01_投影資料_架電率UP.html" target="_blank" rel="noopener">7/24 接続率</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20261106.html" target="_blank" rel="noopener">11/6 メール</a><a href="sanko-20261113.html#c0" target="_blank" rel="noopener">参考書</a></span><span class="pg">7</span></div>
+  <div class="tt">変われることは、<span class="hi">もう数字に出ています。</span></div>
+  <div class="two">
+    <div class="pan" style="justify-content:center">
+      <h4>9・10月に登録したお客様</h4>
+      <p style="font-size:22px; line-height:1.5"><b style="font-size:68px; color:var(--navy)">2.4</b> 倍　話せたお客様<br><b style="font-size:68px; color:var(--navy)">2.3</b> 倍　お会いする約束</p>
+      <p style="color:var(--sub); font-size:13.5px">5〜8月の月平均との比較。9月登録のお客様からは、すでに11棟の契約。</p>
+    </div>
+    <div class="pan" style="justify-content:center">
+      <h4>7月から取り組んできた決めごと</h4>
+      <ul><li>誰が掛けるか、名前で決めた</li><li>登録の当日に1本目</li><li>出ない方にはSMSとメール</li></ul>
+      <p style="font-size:16px; font-weight:800; color:var(--navy); margin-top:6px">同じことを、面談から契約までの段にも。<br>それが今日の後半です。</p>
+    </div>
+  </div>
+  <div class="cap">登録した月ごとの人数。全加盟店様の合計。LIFE X加盟店ポータル 本部用データ（2026/11/1取得）。右の3つは7/24研修「決めるのは3つ」、11/6研修より。</div>
+</section>
+
+<!-- 8 1章扉 -->
+<section class="sl door">
+  <span class="pg">8</span>
+  <div class="no">第1章</div>
+  <h2>つながる</h2>
+  <div class="q">差がつくのは、トークのうまさではなく<br>「決めごとがあるか」。</div>
+  <div class="from">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX_MTG_20260724/01_投影資料_架電率UP.html" target="_blank" rel="noopener">7/24 接続率</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20261106.html" target="_blank" rel="noopener">11/6 メール</a><a href="sanko-20261113.html#c1" target="_blank" rel="noopener">参考書</a></div>
+</section>
+
+<!-- 9 1章 核 -->
+<section class="sl">
+  <div class="top"><span class="chip">1章 つながる</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX_MTG_20260724/01_投影資料_架電率UP.html" target="_blank" rel="noopener">7/24 接続率</a><a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX研修_20260717/電話メールの型_佐古社長実践資料.html" target="_blank" rel="noopener">電話・メールの型</a><a href="sanko-20261113.html#c1" target="_blank" rel="noopener">参考書</a></span><span class="pg">9</span></div>
+  <div class="tt">つながる店が決めている<span class="hi">3つのこと。</span></div>
+  <div class="k3">
+    <div class="k"><span class="n">1</span><h3>登録の当日に、<br>1本目</h3><p>気づいたその日に掛ける。遅くとも翌日。誰が掛けるかは、名前で決めておく。</p><div class="say">「LIFE Xの資料のご請求、ありがとうございます」から。会社名は後で。</div><div class="from">7/24・電話メールの型 2章</div></div>
+    <div class="k"><span class="n">2</span><h3>時間帯を<br>変えて掛け直す</h3><p>同じ時間に掛け続けない。昼に出なければ夕方、翌日は別の時間帯に。</p><div class="say">昼休み・夕方・18時以降。店ごとに「回数と時間帯」を決める。</div><div class="from">7/24 3社の進め方</div></div>
+    <div class="k"><span class="n">3</span><h3>電話以外の<br>接点を添える</h3><p>電話はこちらの時間、メールとSMSはお客様の時間で届く。出ない時間をメールで埋める。</p><div class="say">区切った後も、月1のイベント案内で接点は切らない。</div><div class="from">11/6 メール研修</div></div>
+  </div>
+</section>
+
+<!-- 10 1章 1週間 -->
+<section class="sl">
+  <div class="top"><span class="chip">1章 つながる</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20261106.html" target="_blank" rel="noopener">11/6 メール</a><a href="sanko-20261113.html#c1" target="_blank" rel="noopener">参考書</a></span><span class="pg">10</span></div>
+  <div class="tt">出なかった方は、<span class="hi">最初の1週間が勝負です。</span></div>
+  <div class="map big" style="gap:10px">
+    <div class="st"><div class="box">当日<small>1本目に出ない</small></div><div class="ks"><b>SMS</b>名乗りと、折り返し不要の一言。<span>知らない番号の着信が「誰だったか」分かるだけで、次の電話に出てもらえる。</span></div></div>
+    <div class="st"><div class="box">翌日<small>2〜3本目</small></div><div class="ks"><b>メール</b>会う理由と、日時を3つ。<span>お客様の空いた時間に読まれる。選んで返すだけで済む形に。</span></div></div>
+    <div class="st"><div class="box">3〜7日目<small>時間帯を変えて</small></div><div class="ks"><b>電話＋見学会の案内</b>動画のURLも添える。<span>同じ時間に掛け続けない。昼に出なければ夕方、翌日は別の時間帯に。</span></div></div>
+    <div class="st"><div class="box lt">1か月後<small>区切った後</small></div><div class="ks"><b>近況伺い</b>売り込まず、名前を思い出してもらう。<span>月1のイベント案内で、接点は切らない。</span></div></div>
+  </div>
+  <div class="note">一度「不通」になって、その後話せた方の<b>4人に3人は、1週間以内</b>に話せています（25人中19人）。</div>
+  <div class="cap">流れは11/6研修「不通になってからの1週間」。数字はLIFE X加盟店ポータル 本部用データ（2026/11/1取得、ステータスの手動変更が記録された9/16以降）。</div>
+</section>
+
+<!-- 11 2章扉 -->
+<section class="sl door">
+  <span class="pg">11</span>
+  <div class="no">第2章</div>
+  <h2>会う約束をする</h2>
+  <div class="q">電話の目的は2つ。<br>会う約束を取ることと、初回面談の質を上げること。</div>
+  <div class="from">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX研修_20260717/03_投影スライド全15枚.html" target="_blank" rel="noopener">7/17 月2棟の型</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260731.html" target="_blank" rel="noopener">7/31 数字で見る</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20261106.html" target="_blank" rel="noopener">11/6 メール</a><a href="sanko-20261113.html#c2" target="_blank" rel="noopener">参考書</a></div>
+</section>
+
+<!-- 12 2章 核 -->
+<section class="sl">
+  <div class="top"><span class="chip">2章 会う約束</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX研修_20260717/電話メールの型_佐古社長実践資料.html" target="_blank" rel="noopener">電話・メールの型</a><a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX研修_20260717/03_投影スライド全15枚.html" target="_blank" rel="noopener">7/17 月2棟の型</a><a href="sanko-20261113.html#c2" target="_blank" rel="noopener">参考書</a></span><span class="pg">12</span></div>
+  <div class="tt">約束が取れる電話の<span class="hi">3原則。</span></div>
+  <div class="k3">
+    <div class="k"><span class="n">1</span><h3>建物・性能の話は<br>電話でしない</h3><p>電話で説明すると、お客様は「もう分かった」になって会う理由が消える。</p><div class="say">「そのあたりも、お会いした時に図でお見せしますね」</div><div class="from">電話メールの型 3章</div></div>
+    <div class="k"><span class="n">2</span><h3>質問を並べず、<br>ストーリーで聞く</h3><p>7項目を順番に聞くと尋問になる。お客様の話に乗って、自然に埋めていく。</p><div class="say">答えにはその場で返す。「〇〇なんですね、それなら…」</div><div class="from">7/17・電話メールの型 3章</div></div>
+    <div class="k"><span class="n">3</span><h3>日程は<br>こちらから出す</h3><p>「いつがいいですか」は返事の手間を増やす。電話は二択、メールは日時3つ。</p><div class="say">「〇日の〇時か、〇日の〇時、ご都合いかがですか」</div><div class="from">7/31・11/6</div></div>
+  </div>
+</section>
+
+<!-- 13 7項目 -->
+<section class="sl">
+  <div class="top"><span class="chip">2章 会う約束</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX研修_20260717/電話メールの型_佐古社長実践資料.html" target="_blank" rel="noopener">電話・メールの型</a><a href="sanko-20261113.html#c2" target="_blank" rel="noopener">参考書</a></span><span class="pg">13</span></div>
+  <div class="tt">電話で埋めたい<span class="hi">7項目</span>と、その答えの使い道。</div>
+  <table class="tbl">
+    <tr><th>聞くこと</th><th>なぜ聞くか（面談で何に使うか）</th></tr>
+    <tr><td>① 規格住宅を選んだきっかけ</td><td>面談の最初に話す話題が決まる。デザインか、価格か、性能か。</td></tr>
+    <tr><td>② 家づくりを始めた時期</td><td>どれくらい調べているか。他社の説明を聞いた後かどうか。</td></tr>
+    <tr><td>③ 土地の有無</td><td>ありなら住所か図面をもらって事前に調べる。なしなら探し方と相場感。</td></tr>
+    <tr><td>④ 引越ししたい時期</td><td>スケジュールの逆算。あえて余白を残して聞く。</td></tr>
+    <tr><td>⑤ ローンの事前審査</td><td>他社で言われた金額があれば聞いておく。資金の話の入り方が変わる。</td></tr>
+    <tr><td>⑥ 希望エリア</td><td>土地の相場と、総額の目安を準備できる。</td></tr>
+    <tr><td>⑦ 他社の検討状況</td><td>初回の入り方を変える。他社の悪口は言わない。「比べるポイントを、お会いした時に」。</td></tr>
+  </table>
+  <div class="cap">7/17研修・電話メールの型 3章。順番どおりに聞かなくてよい。全部埋まらなくても、会う約束を優先する。</div>
+</section>
+
+<!-- 14 2章 NGOK -->
+<section class="sl">
+  <div class="top"><span class="chip">2章 会う約束</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260731.html" target="_blank" rel="noopener">7/31 数字で見る</a><a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX_MTG_20260724/01_投影資料_架電率UP.html" target="_blank" rel="noopener">7/24 接続率</a><a href="sanko-20261113.html#c2" target="_blank" rel="noopener">参考書</a></span><span class="pg">14</span></div>
+  <div class="tt">「考えておきます」で、<span class="hi">電話を切らない。</span></div>
+  <div class="ngok">
+    <div class="bx x"><div class="h">✕ よくある終わり方</div>
+      <div class="line">「では、ご検討ください。また連絡します」</div>
+      <div class="line">電話を切ってから「LINEを交換しませんか」とSMS</div>
+      <div class="line">「一度お打ち合わせはいかがでしょうか」</div>
+      <div class="why">次の連絡手段も日時もないまま切ると、そこから先は「不通」と同じ。</div></div>
+    <div class="ar">→</div>
+    <div class="bx o"><div class="h">○ 何かを持って切る</div>
+      <div class="line">日時が決まらなければ、<b>次の連絡手段</b>を決めて切る</div>
+      <div class="line">通話中にSMSとQRを送り、<b>LINE交換まで</b>済ませる</div>
+      <div class="line">「〇日の〇時か、〇日の〇時」と<b>こちらから</b>出す</div>
+      <div class="why">「日時」か「次の連絡手段」。どちらかを必ず持って電話を切る。</div></div>
+  </div>
+  <div class="cap">7/31研修、7/24研修（通話中のSMS・QR）、11/6研修。</div>
+</section>
+
+<!-- 15 3章扉 -->
+<section class="sl door">
+  <span class="pg">15</span>
+  <div class="no">第3章</div>
+  <h2>初回面談の準備</h2>
+  <div class="q">約束が取れた時点で、面談はもう始まっています。<br>電話で聞いた答えを、準備に変える。</div>
+  <div class="from">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX研修_20260717/03_投影スライド全15枚.html" target="_blank" rel="noopener">7/17 月2棟の型</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20261106.html" target="_blank" rel="noopener">11/6 メール</a><a href="sanko-20261113.html#c3" target="_blank" rel="noopener">参考書</a></div>
+</section>
+
+<!-- 16 3章 答え→準備 -->
+<section class="sl">
+  <div class="top"><span class="chip">3章 準備</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX研修_20260717/電話メールの型_佐古社長実践資料.html" target="_blank" rel="noopener">電話・メールの型</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20261106.html" target="_blank" rel="noopener">11/6 メール</a><a href="sanko-20261113.html#c3" target="_blank" rel="noopener">参考書</a></span><span class="pg">16</span></div>
+  <div class="tt">聞いた答えごとに、<span class="hi">前日までにやること。</span></div>
+  <div class="two">
+    <table class="tbl">
+      <tr><th>電話で分かったこと</th><th>面談までに用意するもの</th></tr>
+      <tr><td>土地あり</td><td>住所か図面をもらい、入るプランと配置を調べ切る</td></tr>
+      <tr><td>土地なし</td><td>希望エリアの土地相場と、土地込みの総額の目安</td></tr>
+      <tr><td>他社で金額を聞いた</td><td>その金額に何が含まれていそうか、比べ方の資料</td></tr>
+      <tr><td>他社を検討中</td><td>家選びの判断の軸（ブック）を最初に出す準備</td></tr>
+      <tr><td>デザイン重視</td><td>好みに近いプランを2〜3案</td></tr>
+    </table>
+    <div class="pan">
+      <h4>約束が取れてから、前日まで</h4>
+      <ol><li><b>その日のうちに</b>お礼と日程の確定</li><li>確定の連絡で<b>場所・駐車場・持ち物</b>（土地の資料、事前審査の結果があれば）</li><li><b>前日</b>に確認の連絡</li><li>ポータルのステータスを<b>すぐ更新</b></li></ol>
+      <p style="font-size:14px; color:var(--sub); margin-top:auto">準備が多いほど、お客様は「この会社は自分のことを分かっている」と感じます。</p>
+    </div>
+  </div>
+  <div class="cap">左：電話メールの型 3章（7項目の答えの使い方）。右：11/6研修「返信が来てから」（本部作成の例）。</div>
+</section>
+
+<!-- 17 4章扉 -->
+<section class="sl door">
+  <span class="pg">17</span>
+  <div class="no">第4章</div>
+  <h2>初回面談</h2>
+  <div class="q">ここまでの研修で、商談の順番は5通り出てきました。<br>今日、本部の型を<b>1本</b>に決めます。</div>
+  <div class="from">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX研修_20260717/03_投影スライド全15枚.html" target="_blank" rel="noopener">7/17 月2棟の型</a><a href="https://tokuda-k-sketch.github.io/lifex-public/lifex-kenshu-20260807.html" target="_blank" rel="noopener">8/7 商談を磨く</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260821.html" target="_blank" rel="noopener">8/21 聞く力</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260828.html" target="_blank" rel="noopener">8/28 間・テスクロ</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20261023.html" target="_blank" rel="noopener">10/23 ブック</a><a href="sanko-20261113.html#c4" target="_blank" rel="noopener">参考書</a></div>
+</section>
+
+<!-- 18 型 -->
+<section class="sl">
+  <div class="top"><span class="chip dark">本部の型</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX研修_20260717/03_投影スライド全15枚.html" target="_blank" rel="noopener">7/17 月2棟の型</a><a href="https://tokuda-k-sketch.github.io/lifex-public/lifex-kenshu-20260807.html" target="_blank" rel="noopener">8/7 商談を磨く</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20261023.html" target="_blank" rel="noopener">10/23 ブック</a><a href="sanko-20261113.html#c4" target="_blank" rel="noopener">参考書</a></span><span class="pg">18</span></div>
+  <div class="tt">初回から契約まで、<span class="hi">この順番で進めます。</span></div>
+  <div class="kata">
+    <div class="day"><h4>初回面談</h4>
+      <div class="stp"><span class="n">1</span><b>許可を取る<small>時間・手に入るもの・止めてもいい</small></b></div>
+      <div class="stp"><span class="n">2</span><b>聞く<small>今の住まいの不満 → 理想の暮らし</small></b></div>
+      <div class="stp"><span class="n">3</span><b>セミナー<small>響くところだけ厚く／性能は目的から</small></b></div>
+      <div class="stp"><span class="n">4</span><b>お金<small>月々いくらなら安心か → 総額の目安 → 光熱費込み</small></b></div>
+      <div class="stp"><span class="n">5</span><b>テストクロージング<small>4つの確認</small></b></div>
+      <div class="stp"><span class="n">6</span><b>ブックで締める<small>ページを絞って渡す</small></b></div>
+      <div class="stp"><span class="n">7</span><b>次回を日付で決める<small>その場で</small></b></div>
+    </div>
+    <div class="rt">
+      <div class="day"><h4>2回目（1週間以内）</h4><p>ブックの感想から入る → プラン・土地・資金のすり合わせ → 申込は「進めていいですか」の確認だけ</p></div>
+      <div class="day"><h4>申込の後</h4><p>土地付け → 事前審査・総額の確定 → 契約</p></div>
+      <div class="day" style="background:var(--navy); color:#fff"><p style="background:transparent; color:#fff; padding:0; font-weight:800">感情が先、理屈が後。<br>性能とお金は「決める理由」として後半に。</p></div>
+    </div>
+  </div>
+  <div class="cap">7/17（許可取り・総額・スケジュール）、8/7（Gハウスの型）、第3回・第4回研修（不満から入る・感情が先）、10/23（ブックで締める）を本部で1本にまとめたもの。</div>
+</section>
+
+<!-- 19 許可取り -->
+<section class="sl">
+  <div class="top"><span class="chip">4章 初回面談</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX研修_20260717/03_投影スライド全15枚.html" target="_blank" rel="noopener">7/17 月2棟の型</a><a href="sanko-20261113.html#c4" target="_blank" rel="noopener">参考書</a></span><span class="pg">19</span></div>
+  <div class="tt">最初の90秒で、<span class="hi">聞いてもらえる状態を先に作る。</span></div>
+  <div class="two">
+    <div class="pan">
+      <h4>言い方の例</h4>
+      <div class="say">「最初にお約束だけさせてください。お話は<u>60分</u>で、家づくりとお金の話を全部お見せします。<br>聞いていただくと、<u>〇〇様の総予算と月々のお支払いがその場で見える</u>ようになります。<br>途中で『合わないな』と思ったら、<u>遠慮なく止めてください</u>。無理にお勧めすることはありません。」</div>
+    </div>
+    <div class="pan" style="justify-content:center; gap:14px">
+      <div class="k" style="background:#fff; padding:12px 16px"><h3 style="font-size:18px">① 時間を約束する</h3><p>終わりが見えない話は、聞く気になれない。</p></div>
+      <div class="k" style="background:#fff; padding:12px 16px"><h3 style="font-size:18px">② 手に入るものを約束する</h3><p>聞き終えたら何が分かるのか。</p></div>
+      <div class="k" style="background:#fff; padding:12px 16px"><h3 style="font-size:18px">③ 止めていいと伝える</h3><p>断る自由があるから、安心して聞ける。</p></div>
+    </div>
+  </div>
+  <div class="cap">7/17研修 第2章「冒頭90秒の許可取り」。言い回しは例なので、御社の言葉に直してお使いください。</div>
+</section>
+
+<!-- 20 聞く -->
+<section class="sl">
+  <div class="top"><span class="chip">4章 初回面談</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260821.html" target="_blank" rel="noopener">8/21 聞く力</a><a href="sanko-20261113.html#c4" target="_blank" rel="noopener">参考書</a></span><span class="pg">20</span></div>
+  <div class="tt">人は「今の家が嫌だ」で動く。<span class="hi">不満から聞く。</span></div>
+  <div class="map" style="flex:none; margin-bottom:16px">
+    <div class="st"><div class="box lt">今の住まい<small>まず事実</small></div></div><div class="mapar" style="margin:0">›</div>
+    <div class="st"><div class="box lt">不満<small>困っていること</small></div></div><div class="mapar" style="margin:0">›</div>
+    <div class="st"><div class="box">気持ち<small>それでどう感じるか</small></div></div><div class="mapar" style="margin:0">›</div>
+    <div class="st"><div class="box lt">理想<small>どう暮らしたいか</small></div></div><div class="mapar" style="margin:0">›</div>
+    <div class="st"><div class="box lt">LIFE X<small>ここで初めて結ぶ</small></div></div>
+  </div>
+  <div class="two" style="grid-template-columns:1.1fr 1fr">
+    <div class="pan"><h4>聞き方は、この1セットを回すだけ</h4>
+      <div class="cyc"><div class="c">共感<small>「それは大変<br>でしたね」</small></div><div class="a">→</div><div class="c">復唱<small>相手の言葉を<br>そのまま返す</small></div><div class="a">→</div><div class="c">関連質問<small>「それって<br>例えば？」</small></div></div></div>
+    <div class="pan" style="justify-content:center"><h4>話す量は</h4><p style="font-size:44px; font-weight:900; color:var(--navy); line-height:1.1">7 : 3</p><p>お客様が7、営業が3。<br>説明したくなったら、1回飲み込んで聞く。</p></div>
+  </div>
+  <div class="cap">第3回研修（5/25 購買心理）の黄金フロー、8/21研修「聞く力」、8/7研修。</div>
+</section>
+
+<!-- 21 人物金時敵 -->
+<section class="sl">
+  <div class="top"><span class="chip">4章 初回面談</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/lifex-kenshu-20260807.html" target="_blank" rel="noopener">8/7 商談を磨く</a><a href="https://tokuda-k-sketch.github.io/lifex-public/shodan-furikaeri.html" target="_blank" rel="noopener">ふりかえりシート</a><a href="sanko-20261113.html#c4" target="_blank" rel="noopener">参考書</a></span><span class="pg">21</span></div>
+  <div class="tt">何を聞いたかは、<span class="hi">5つの軸で◯△×をつける。</span></div>
+  <div class="pan" style="flex:none">
+    <div class="ax">
+      <div><b>人</b><span>誰が決めるか<br>家族の思い</span></div>
+      <div><b>物</b><span>どんな家・<br>土地が欲しいか</span></div>
+      <div><b>金</b><span>予算・月々・<br>事前審査</span></div>
+      <div><b>時</b><span>いつまでに<br>住みたいか</span></div>
+      <div><b>敵</b><span>他社・<br>迷っている理由</span></div>
+    </div>
+  </div>
+  <div class="two" style="margin-top:16px">
+    <div class="pan"><h4>面談の後に、必ずこれを問う</h4><div class="say" style="font-size:22px">「あと何をすれば、契約か？」</div><p>答えられないなら、5つのどこかに×か△が残っています。次の面談は、そこを埋めるために使う。</p></div>
+    <div class="pan"><h4>ふりかえりシートの使い方</h4><ul><li>面談の<b>前5分</b>：5軸の仮説を書く</li><li>面談の<b>後10分</b>：答え合わせ</li><li>面談中には出さない</li></ul></div>
+  </div>
+  <div class="cap">8/7研修「商談を磨く」（5軸の◯△×・あと何をすれば契約か）、商談ふりかえりシートの使い方。</div>
+</section>
+
+<!-- 22 聞く NGOK -->
+<section class="sl">
+  <div class="top"><span class="chip">4章 初回面談</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260821.html" target="_blank" rel="noopener">8/21 聞く力</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260828.html" target="_blank" rel="noopener">8/28 間・テスクロ</a><a href="sanko-20261113.html#c4" target="_blank" rel="noopener">参考書</a></span><span class="pg">22</span></div>
+  <div class="tt">説明したくなった時が、<span class="hi">一番聞くべき時。</span></div>
+  <div class="ngok">
+    <div class="bx x"><div class="h">✕ 聞いているつもりの営業</div>
+      <div class="line">「耐震は気になりますか？ うちは等級3で…」と、聞かれる前に説明</div>
+      <div class="line">「でも」「しかし」から入る</div>
+      <div class="line">「つまり〇〇ですよね」と先回りして決めつける</div>
+      <div class="line">「うーん…」にかぶせて説明を足す</div></div>
+    <div class="ar">→</div>
+    <div class="bx o"><div class="h">○ 聞ける営業</div>
+      <div class="line">「そこ、気になりますよね。もう少し聞かせてください」</div>
+      <div class="line">共感 → 復唱 → 一呼吸</div>
+      <div class="line">質問のあとは<b>1.5秒</b>待つ</div>
+      <div class="line">「うーん…」には、うなずいて<b>5秒</b>待つ</div></div>
+  </div>
+  <div class="cap">8/21研修「聞く力」、8/28研修「間の取り方」。</div>
+</section>
+
+<!-- 23 5章扉 -->
+<section class="sl door">
+  <span class="pg">23</span>
+  <div class="no">第5章</div>
+  <h2>性能の話し方</h2>
+  <div class="q">9月から6回、性能を学んできました。<br>今日は、それをお客様にどう話すかを1本にします。</div>
+  <div class="from">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/taiyoko-total-cost-appeal-final.html" target="_blank" rel="noopener">9/4 太陽光</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260911.html" target="_blank" rel="noopener">9/11 防蟻</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260918.html" target="_blank" rel="noopener">9/18 教科書</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260925.html" target="_blank" rel="noopener">10/2 教科書</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20261009.html" target="_blank" rel="noopener">10/9 教科書</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-kozo-kengaku.html" target="_blank" rel="noopener">10/16 教科書</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20261030.html" target="_blank" rel="noopener">10/30 キッチン</a><a href="sanko-20261113.html#c5" target="_blank" rel="noopener">参考書</a></div>
+</section>
+
+<!-- 24 3段 -->
+<section class="sl">
+  <div class="top"><span class="chip">5章 性能</span><span class="go">詳しく：<a href="sanko-20261113.html#c5" target="_blank" rel="noopener">参考書</a></span><span class="pg">24</span></div>
+  <div class="tt">性能は、<span class="hi">この3段で話します。</span></div>
+  <div class="three">
+    <div class="s s1"><span class="n">1　目的</span><h3>何がうれしいか</h3><p>快適に暮らせること。光熱費を抑えられること。建てた日の性能が、長く続くこと。</p><div class="say">「冬も薄着で過ごせて、光熱費も抑えられる家です」</div></div>
+    <div class="ar">›</div>
+    <div class="s s2"><span class="n">2　数値は最低限</span><h3>根拠を1つだけ</h3><p>1つのテーマで出す数字は1〜2個まで。数字を並べるほど、お客様は比べ始める。</p><div class="say">「断熱の数字はUA値0.46。大阪や東京なら等級6相当です」</div></div>
+    <div class="ar">›</div>
+    <div class="s s3"><span class="n">3　設計・間取り・空調</span><h3>暮らしの話で終える</h3><p>性能があるから、窓を大きくできる。エアコンの台数と容量を決められる。最後は間取りの話に戻す。</p><div class="say">「だから、このリビングはこの1台で足ります」</div></div>
+  </div>
+  <div class="cap">10/26 本部の打ち合わせで顧問から示された方針「目的（快適＋ランニングコスト）→数値は最低限→設計・間取り・空調計画」。</div>
+</section>
+
+<!-- 25 NGOK -->
+<section class="sl">
+  <div class="top"><span class="chip">5章 性能</span><span class="go">詳しく：<a href="sanko-20261113.html#c5" target="_blank" rel="noopener">参考書</a></span><span class="pg">25</span></div>
+  <div class="tt">同じ断熱の話でも、<span class="hi">入り口で結果が変わる。</span></div>
+  <div class="ngok">
+    <div class="bx x"><div class="h">✕ 数字から入る</div>
+      <div class="line">「UA値は0.46で、C値は0.5以下、第一種換気で、窓は樹脂のAPW330で…」</div>
+      <div class="why">お客様の頭の中：「他社は0.4って言ってたな」「等級7じゃないんだ」。<br>数字は比べられる。比べられた瞬間、説明が負けになる。</div></div>
+    <div class="ar">→</div>
+    <div class="bx o"><div class="h">○ 目的から入る</div>
+      <div class="line">「今のお住まい、冬の朝はリビングが寒くないですか？」</div>
+      <div class="line">「LIFE Xは、冬も薄着で過ごせて、光熱費も抑えられるように作っています。断熱の数字で言うとUA値0.46です」</div>
+      <div class="line">「だから窓を大きくしても寒くならない。このプランのリビングも…」</div>
+      <div class="why">不満 → 目的 → 数字1つ → 間取り。4章で聞いた不満に、性能をつなげる。</div></div>
+  </div>
+  <div class="cap">言い回しは本部作成の例。目的の言葉は第2回研修「標準仕様」（仕様→なぜ→メリット）。</div>
+</section>
+
+<!-- 26 早見表 -->
+<section class="sl">
+  <div class="top"><span class="chip">5章 性能</span><span class="go">詳しく：<a href="sanko-20261113.html#c5" target="_blank" rel="noopener">参考書</a></span><span class="pg">26</span></div>
+  <div class="tt">テーマ別の<span class="hi">「目的の一言」と「数字1つ」。</span></div>
+  <table class="tbl" style="font-size:14px">
+    <tr><th>テーマ</th><th>目的の一言（これだけ覚える）</th><th>数字は1つ</th></tr>
+    <tr><td>耐震×制振</td><td class="say">「1回耐えるだけでなく、2回目・3回目も建てた日の強さを保つ家です」</td><td>全棟、許容応力度計算で耐震等級3</td></tr>
+    <tr><td>断熱・気密</td><td class="say">「冬も薄着で過ごせて、光熱費も抑えられます」</td><td>UA値0.46<small>5〜7地域で等級6相当</small></td></tr>
+    <tr><td>換気</td><td class="say">「家の中の空気を、きれいなまま入れ替えます」</td><td>第一種換気</td></tr>
+    <tr><td>結露</td><td class="say">「性能が長く続くように、壁の中に湿気をためません」</td><td>0.2mmの防湿気密シート</td></tr>
+    <tr><td>施工</td><td class="say">「気密の数字は、図面ではなく現場の手間で決まります」</td><td>シートが切れやすい5か所を処理</td></tr>
+    <tr><td>キッチン</td><td class="say">「オプションを足さなくても、これで完成です」</td><td>約78万円分が標準</td></tr>
+    <tr><td>太陽光</td><td class="say">「建てた金額だけでなく、住んでからの支払いで比べてください」</td><td>光熱費込みのトータルコスト</td></tr>
+  </table>
+  <div class="cap">9/18・10/2・10/9・10/16・10/30・9/4の各研修の内容から、本部で一言にまとめた例。次の枚から、テーマごとに「目的→数字→設計」と切り返しを見ます。</div>
+</section>
+
+<!-- 27 耐震 -->
+<section class="sl">
+  <div class="top"><span class="chip">5章 性能</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260918.html" target="_blank" rel="noopener">9/18 教科書</a><a href="https://tokuda-k-sketch.github.io/lifex-public/sanko-20260918.html" target="_blank" rel="noopener">9/18 参考書</a></span><span class="pg">27</span></div>
+  <div class="tt">耐震×制振：<span class="hi">「揺れている最中、家族は無事か」</span>まで話す。</div>
+  <div class="th">
+    <div class="l">
+      <div class="obj"><span>目的</span><b>倒れないだけでなく、2回目・3回目の揺れでも、建てた日の強さが続く。</b></div>
+      <div class="num"><span>数値は最低限</span><ul><li>全棟、許容応力度計算で耐震等級3</li><li>制振ダンパーevoltzを標準搭載<small>（振動台実験で計8回の加振に耐えた：evoltz Times Vol.2）</small></li></ul></div>
+      <div class="ret"><span>よくある質問</span>「制振があるなら、等級は下げてもいい？」<br>→ <b>evoltzは強さを足す部材ではなく、強さを長持ちさせる部材です。</b>だから等級3と両方そろえています。</div>
+    </div>
+    <figure class="photo" style="margin:0"><img src="assets/kozo-kengaku/evoltz.jpg" alt="evoltzの施工"><figcaption>構造見学会（8/30）で見たevoltz</figcaption></figure>
+  </div>
+  <div class="cap">9/18研修 教科書・参考書、10/16構造見学会。地震のケガの30〜50%は家具の転倒などが原因（東京消防庁）で、間取りでは家具の置き場の話につなげられる（参考書）。</div>
+</section>
+
+<!-- 28 断熱 -->
+<section class="sl">
+  <div class="top"><span class="chip">5章 性能</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260925.html" target="_blank" rel="noopener">10/2 教科書</a><a href="https://tokuda-k-sketch.github.io/lifex-public/sanko-20260925.html" target="_blank" rel="noopener">10/2 参考書</a></span><span class="pg">28</span></div>
+  <div class="tt">断熱・気密・換気：<span class="hi">「等級7じゃないの？」</span>にも目的で返す。</div>
+  <div class="th">
+    <div class="l">
+      <div class="obj"><span>目的</span><b>冬も薄着で過ごせる。光熱費を抑えられる。家の中の空気がきれい。</b></div>
+      <div class="num"><span>数値は最低限</span><ul><li>UA値0.46<small>（「等級6」と言い切らず、「大阪・東京などの5〜7地域で等級6相当」）</small></li><li>C値0.5以下は推奨値<small>（測定はオプション。測っていないのに「C値0.5です」とは言わない）</small></li><li>第一種換気</li></ul></div>
+    </div>
+    <div class="l">
+      <div class="ret" style="flex:1"><span>「等級7じゃないんですか？」</span><b>「等級7もいい家だと思います。ただ、断熱の数字は建てた日の数字です。」</b><br><br>その先は、目的と設計に戻す。<br>・この広さなら、エアコンは6畳用より小さくならない<br>・その分の費用を、太陽光と窓の大きさに回している<br>・「何年続くか」も比べてください（→結露の話へ）</div>
+    </div>
+  </div>
+  <div class="cap">10/2研修（断熱×気密×換気）教科書・参考書、10/23研修「言い返されたら」。具体的な差額はその場で数字を作らず、確認して後日お答えする。</div>
+</section>
+
+<!-- 29 結露 -->
+<section class="sl">
+  <div class="top"><span class="chip">5章 性能</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20261009.html" target="_blank" rel="noopener">10/9 教科書</a><a href="https://tokuda-k-sketch.github.io/lifex-public/sanko-20261009.html" target="_blank" rel="noopener">10/9 参考書</a></span><span class="pg">29</span></div>
+  <div class="tt">結露：<span class="hi">「建てた日の性能が、長く続くか」</span>の話。</div>
+  <div class="two">
+    <div class="pan">
+      <h4>目的</h4>
+      <div class="say">「断熱等級も耐震等級も、建てた日の数字です。壁の中に湿気がたまると、その性能が少しずつ落ちていきます。LIFE Xは、そこで妥協しません。」</div>
+      <h4 style="margin-top:6px">お客様にはコップで十分</h4>
+      <p>冷たい飲み物のコップに水滴がつくのと同じことが、壁の中で起きる。湿り空気線図は営業の頭の中に置いておく。</p>
+    </div>
+    <div class="pan">
+      <h4>数値は最低限</h4>
+      <p>0.2mmの防湿気密シートを全棟で使用</p>
+      <h4 style="margin-top:6px">言ってはいけない</h4>
+      <p><s style="color:var(--ng); font-weight:800">「結露しません」</s><br>→「結露させない作り方をしています」</p>
+      <p><s style="color:var(--ng); font-weight:800">シロアリの話で終わる</s><br>→ 最後は「性能がずっと続く」に戻す</p>
+    </div>
+  </div>
+  <div class="cap">10/9研修（壁体内結露）教科書・参考書。</div>
+</section>
+
+<!-- 30 施工 -->
+<section class="sl">
+  <div class="top"><span class="chip">5章 性能</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-kozo-kengaku.html" target="_blank" rel="noopener">10/16 教科書</a><a href="https://tokuda-k-sketch.github.io/lifex-public/sanko-kozo-kengaku.html" target="_blank" rel="noopener">10/16 参考書</a></span><span class="pg">30</span></div>
+  <div class="tt">施工：<span class="hi">見えなくなる所にかけた手間</span>が、性能を本物にする。</div>
+  <div class="th">
+    <div class="l">
+      <div class="obj"><span>目的</span><b>図面の数字ではなく、現場の手間で、性能を本物にしている。</b></div>
+      <div class="num"><span>話し方</span><ul><li>シートが切れやすい5か所：コンセント・梁・床際・窓・配管</li><li>「見えなくなる所にかけたお金は、住んでからの光熱費と快適さで返ってきます」</li></ul></div>
+      <div class="ret"><span>大事な約束</span><b>自社の現場で実際にやっていることだけを話す。</b>見学会で見たのは本部（Gハウス）の現場です。「全棟測定」とも言わない。</div>
+    </div>
+    <figure class="photo" style="margin:0"><img src="assets/kozo-kengaku/consent_zoom.jpg" alt="コンセントまわりの気密処理"><figcaption>コンセントまわりの気密処理（構造見学会）</figcaption></figure>
+  </div>
+  <div class="cap">10/16研修（構造見学会 答え合わせ編）教科書・参考書。</div>
+</section>
+
+<!-- 31 キッチン -->
+<section class="sl">
+  <div class="top"><span class="chip">5章 性能</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20261030.html" target="_blank" rel="noopener">10/30 キッチン</a></span><span class="pg">31</span></div>
+  <div class="tt">キッチン：<span class="hi">「足さなくても完成」</span>を、暮らしの時間で話す。</div>
+  <div class="th">
+    <div class="l">
+      <div class="obj"><span>目的</span><b>オプションを足さなくても完成。追加費用の心配がない。家事の時間が減る。</b></div>
+      <div class="num"><span>数値は最低限</span><ul><li>メーカー価格で約78万円分の設備が標準<small>（778,800円・税込、GRAFTEKT価格表2026年8月）</small></li><li>食洗機で、洗い物の時間が年約165時間浮く<small>（パナソニックのシミュレーション）</small></li></ul></div>
+      <div class="ret"><span>「他社でもリシェルが標準ですよ」</span>→ 天板・食洗機・水栓・コンロの<b>4点を仕様書で並べて</b>比べてもらう。</div>
+    </div>
+    <figure class="photo" style="margin:0"><img src="assets/mtg-20261030/lifex-kitchen-cover.jpg" alt="LIFE Xのキッチン"><figcaption>LIFE Xのキッチン（GRAFTEKT）</figcaption></figure>
+  </div>
+  <div class="cap">10/30研修（キッチン GRAFTEKT×リシェル）。カップボードは「外すと−22万円」ではなく「22万円相当」。LIFE Xでは外せません。</div>
+</section>
+
+<!-- 32 太陽光 -->
+<section class="sl">
+  <div class="top"><span class="chip">5章 性能</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/taiyoko-total-cost-appeal-final.html" target="_blank" rel="noopener">9/4 太陽光</a></span><span class="pg">32</span></div>
+  <div class="tt">太陽光：<span class="hi">本体価格ではなく、トータルで比べてもらう。</span></div>
+  <div class="two">
+    <div class="pan">
+      <h4>目的の一言</h4>
+      <div class="say">「家って、建てた金額だけじゃなく、住んでからの毎月の光熱費まで含めた『トータルの支払い』で比べた方が正確なんです。」</div>
+      <h4 style="margin-top:6px">数値は最低限</h4>
+      <p>実例：太陽光9.3kWの家で、実質の電気代は<b>月1,481円</b>。オール電化の平均は月18,000円。</p>
+    </div>
+    <div class="pan">
+      <h4>「坪単価が3万円安い会社がある」</h4>
+      <p>すぐに反論しない。まず聞く。</p>
+      <div class="say">「家づくりで、一番譲れないポイントはどこですか？」</div>
+      <p>価格なら → トータルの支払いの比べ方へ<br>性能なら → 何が標準で入っているかの比べ方へ<br>デザインなら → プランの話へ</p>
+    </div>
+  </div>
+  <div class="cap">9/4研修「太陽光×トータルコスト訴求法」（実例はLIFE X公式セミナー資料）。エリア別の削減額は試算で、確定値ではありません。</div>
+</section>
+
+<!-- 33 設計・空調 -->
+<section class="sl">
+  <div class="top"><span class="chip">5章 性能</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/taiyoko-total-cost-appeal-final.html" target="_blank" rel="noopener">9/4 太陽光</a><a href="sanko-20261113.html#c5" target="_blank" rel="noopener">参考書</a></span><span class="pg">33</span></div>
+  <div class="tt">最後は、<span class="hi">設計・間取り・空調の話</span>で終える。</div>
+  <div class="k3">
+    <div class="k"><span class="n">空</span><h3>エアコンの容量を、<br>計算で決める</h3><p>UA値・C値・床面積と地域の気温から、必要なエアコン容量を出せる（Ｆ式の計算シート）。「なんとなく高性能」ではなく「この家にはこの容量」。</p><div class="say">理論値なので、間取りと気流が悪いとムラが出ることも正直に。</div></div>
+    <div class="k"><span class="n">窓</span><h3>性能があるから、<br>窓を大きくできる</h3><p>断熱等級を上げる費用を、太陽光と窓の大きさ・開放感に回す。性能の話が、リビングの明るさの話に変わる。</p><div class="say">「このプランの大きな窓も、寒くならないから選べます」</div></div>
+    <div class="k"><span class="n">動</span><h3>家事の動きで、<br>キッチンを選ぶ</h3><p>食事の前後、キッチンとダイニングを平均8往復。だからペニンシュラ・アイランドが標準。</p><div class="say">「この配置だと、配膳も片付けも短く済みます」</div></div>
+  </div>
+  <div class="cap">9/4研修 02③（Ｆ式・空調効率）、10/2研修 参考書1-2、10/30研修。BELSの計算書を3分見せるだけでも「この会社はちゃんとしている」という信頼になる（9/4研修）。</div>
+</section>
+
+<!-- 34 言ってはいけない -->
+<section class="sl">
+  <div class="top"><span class="chip">5章 性能</span><span class="go">詳しく：<a href="sanko-20261113.html#a1" target="_blank" rel="noopener">参考書</a></span><span class="pg">34</span></div>
+  <div class="tt">これは言わない。<span class="hi">過去の資料と違う時は、この一覧が正です。</span></div>
+  <div class="ngl">
+    <div><s>「断熱等級6です」</s><span>→ <b>UA値0.46。5〜7地域で等級6相当</b></span></div>
+    <div><s>「C値0.24です」「C値0.5です」</s><span>→ <b>0.5以下は推奨値。測定はオプション</b></span></div>
+    <div><s>「evoltzは1mmから効く」</s><span>→ <b>公式の図は約3mm</b>。言うなら「小さな揺れから」</span></div>
+    <div><s>「一般的な家の2.4〜2.7倍の強さ」</s><span>→ <b>使わない</b>（出典を確認できていない）</span></div>
+    <div><s>「結露しません」</s><span>→ <b>「結露させない作り方」</b></span></div>
+    <div><s>「全棟で気密測定しています」</s><span>→ <b>自社で実際にやっていることだけ</b></span></div>
+    <div><s>「防蟻は半永久」「キッズデザイン賞」</s><span>→ <b>「通常の環境なら再施工は不要」</b></span></div>
+    <div><s>「電気代の差は月数百円〜千円」</s><span>→ <b>使わない</b>。その場で数字を作らない</span></div>
+    <div><s>他社の名前を出して否定する</s><span>→ <b>「比べるポイント」を渡す</b></span></div>
+    <div><s>「20年後も続く」</s><span>→ <b>「長く続く」「ずっと続く」</b></span></div>
+    <div><s>「厚労省のデータでは」（健康の話）</s><span>→ <b>出典は研究者名（伊香賀研究室）</b></span></div>
+  </div>
+  <div class="cap">各研修の教科書・参考書と、その後の確認で直した点をまとめたもの。過去の資料に古い表記が残っている所は、本部で順に直します。</div>
+</section>
+
+<!-- 35 6章扉 -->
+<section class="sl door">
+  <span class="pg">35</span>
+  <div class="no">第6章</div>
+  <h2>お金</h2>
+  <div class="q">「いくらが良いですか？」と聞かない。<br>月々と、住んでからの支払いで話す。</div>
+  <div class="from">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX研修_20260717/03_投影スライド全15枚.html" target="_blank" rel="noopener">7/17 月2棟の型</a><a href="https://tokuda-k-sketch.github.io/lifex-public/lifex-kenshu-20260807.html" target="_blank" rel="noopener">8/7 商談を磨く</a><a href="https://tokuda-k-sketch.github.io/lifex-public/taiyoko-total-cost-appeal-final.html" target="_blank" rel="noopener">9/4 太陽光</a><a href="sanko-20261113.html#c6" target="_blank" rel="noopener">参考書</a></div>
+</section>
+
+<!-- 36 お金の順番 -->
+<section class="sl">
+  <div class="top"><span class="chip">6章 お金</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/lifex-kenshu-20260807.html" target="_blank" rel="noopener">8/7 商談を磨く</a><a href="https://tokuda-k-sketch.github.io/lifex-public/taiyoko-total-cost-appeal-final.html" target="_blank" rel="noopener">9/4 太陽光</a><a href="https://tokuda-k-sketch.github.io/lifex-public/seminar-wahou-manual.html" target="_blank" rel="noopener">セミナー話法</a><a href="sanko-20261113.html#c6" target="_blank" rel="noopener">参考書</a></span><span class="pg">36</span></div>
+  <div class="tt">お金の話は、<span class="hi">この順番で。</span></div>
+  <div class="map big" style="gap:10px">
+    <div class="st"><div class="box">① 月々</div><div class="ks"><b>「月々いくらまでなら、安心して払えますか？」</b>今の家賃が手がかり。<span>8/7</span></div></div>
+    <div class="st"><div class="box">② 総額の目安</div><div class="ks"><b>本体を軸に、付帯・諸費用は幅で</b>「本体のほかに、ここまで掛かります」をこちらから先に。合計を断定しない。<span>7/17・鉄板トーク集</span></div></div>
+    <div class="st"><div class="box">③ 反応を見る</div><div class="ks"><b>「この金額を見て、どう思いますか？」</b>見せたら、数秒黙る。<span>8/7・8/28</span></div></div>
+    <div class="st"><div class="box">④ トータル</div><div class="ks"><b>光熱費・保険・メンテナンス込み</b>ランニングコストはローンに入れられない。だからトータルで比べる。<span>9/4・セミナー話法</span></div></div>
+  </div>
+  <div class="note">土地なしのお客様は、<b>総予算 → 土地予算を逆算 → 予算内で探す</b>。土地から探させない。</div>
+  <div class="cap">7/17研修 第2章、8/7研修 Gハウスの型 STEP2〜4、9/4研修、初回顧客セミナー話法マニュアル PART6。11/1からポータルの表示価格が変わっているので、金額の資料は最新のものを使ってください。</div>
+</section>
+
+<!-- 37 予算が厳しい -->
+<section class="sl">
+  <div class="top"><span class="chip">6章 お金</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/lifex-kenshu-20260807.html" target="_blank" rel="noopener">8/7 商談を磨く</a><a href="https://tokuda-k-sketch.github.io/lifex-public/teppan-talk.html" target="_blank" rel="noopener">鉄板トーク集</a><a href="sanko-20261113.html#c6" target="_blank" rel="noopener">参考書</a></span><span class="pg">37</span></div>
+  <div class="tt">予算が合わない時は、<span class="hi">値引きではなく整理する。</span></div>
+  <div class="two">
+    <div class="pan">
+      <h4>整理する4つ</h4>
+      <div class="ax" style="grid-template-columns:repeat(2,1fr)">
+        <div><b style="font-size:22px">エリア</b><span>土地の場所を広げる</span></div>
+        <div><b style="font-size:22px">坪数</b><span>プランを見直す</span></div>
+        <div><b style="font-size:22px">頭金</b><span>自己資金の入れ方</span></div>
+        <div><b style="font-size:22px">援助</b><span>ご両親などからの</span></div>
+      </div>
+      <p style="font-size:14px; color:var(--sub)">全部譲れない方は、無理に追わない。</p>
+    </div>
+    <div class="pan">
+      <h4>「もう少し安くなりませんか」</h4>
+      <div class="say">「この価格は、性能や標準装備を削らないための価格です。ここは正直にお伝えします。」</div>
+      <p>値引きの代わりに、何が最初から入っているかを見せる。キッチン・太陽光・制振ダンパーが入っているか、他社と並べてもらう。</p>
+    </div>
+  </div>
+  <div class="cap">8/7研修 STEP6、7/17研修 第3章、鉄板トーク集、10/23研修「言い返されたら」。</div>
+</section>
+
+<!-- 38 7章扉 -->
+<section class="sl door">
+  <span class="pg">38</span>
+  <div class="no">第7章</div>
+  <h2>2回目から契約まで</h2>
+  <div class="q">クロージングは説得ではなく、確認。<br>申込はゴールではなく、スタート。</div>
+  <div class="from">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX研修_20260717/03_投影スライド全15枚.html" target="_blank" rel="noopener">7/17 月2棟の型</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260828.html" target="_blank" rel="noopener">8/28 間・テスクロ</a><a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20261023.html" target="_blank" rel="noopener">10/23 ブック</a><a href="sanko-20261113.html#c7" target="_blank" rel="noopener">参考書</a></div>
+</section>
+
+<!-- 39 確認の階段 -->
+<section class="sl">
+  <div class="top"><span class="chip">7章 契約まで</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/LIFEX研修_20260717/03_投影スライド全15枚.html" target="_blank" rel="noopener">7/17 月2棟の型</a><a href="sanko-20261113.html#c7" target="_blank" rel="noopener">参考書</a></span><span class="pg">39</span></div>
+  <div class="tt">途中で3つの合意を積めば、<span class="hi">最後は確認するだけ。</span></div>
+  <div class="stairs">
+    <div class="sp" style="height:40%"><b>① 予算の合意</b><p>総額の目安と月々を、初回で先に見せる</p></div>
+    <div class="sp" style="height:56%"><b>② 基準の合意</b><p>家選びの判断の軸を、他社に会う前に渡す</p></div>
+    <div class="sp" style="height:72%"><b>③ 計画の合意</b><p>2回目・申込・土地・事前審査の日程を、こちらが決める</p></div>
+    <div class="sp goal" style="height:90%"><b>申込</b><p>「このまま進めていいですか」<br>それだけ。</p></div>
+  </div>
+  <div class="cap">7/17研修 第3章「クロージング＝確認」、7/31研修。</div>
+</section>
+
+<!-- 40 テスクロ -->
+<section class="sl">
+  <div class="top"><span class="chip">7章 契約まで</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260828.html" target="_blank" rel="noopener">8/28 間・テスクロ</a><a href="sanko-20261113.html#c7" target="_blank" rel="noopener">参考書</a></span><span class="pg">40</span></div>
+  <div class="tt">テストクロージングは、押すためではなく<span class="hi">診断のため。</span></div>
+  <table class="tbl">
+    <tr><th>確かめること</th><th>言い方</th></tr>
+    <tr><td>理解</td><td class="say">「ここまでで、気になるところはありますか？」</td></tr>
+    <tr><td>気持ち</td><td class="say">「もし金額が許容範囲なら、申し込みは前向きに考えられますか？」</td></tr>
+    <tr><td>優先順位</td><td class="say">「この条件は"絶対条件"ですか？ それとも"できれば"ですか？」</td></tr>
+    <tr><td>奥様の気持ち</td><td class="say">「奥様はいかがですか？ 率直にお聞きしたいです」</td></tr>
+  </table>
+  <div class="note">断られても前に進めます。<b>迷っている本当の理由が分かるから。</b>聞く前のクッションは「一度、整理させてください」。</div>
+  <div class="cap">8/28研修「テストクロージング」。</div>
+</section>
+
+<!-- 41 迷い -->
+<section class="sl">
+  <div class="top"><span class="chip">7章 契約まで</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20260828.html" target="_blank" rel="noopener">8/28 間・テスクロ</a><a href="https://tokuda-k-sketch.github.io/lifex-public/teppan-talk.html" target="_blank" rel="noopener">鉄板トーク集</a><a href="sanko-20261113.html#c7" target="_blank" rel="noopener">参考書</a></span><span class="pg">41</span></div>
+  <div class="tt">迷いは3種類。<span class="hi">種類で対応を変える。</span></div>
+  <div class="k3" style="flex:none">
+    <div class="k"><span class="n">1</span><h3>情報が足りない</h3><p>図や比較表で見えるようにする。</p></div>
+    <div class="k"><span class="n">2</span><h3>気持ちが追いつかない</h3><p>説明を足さない。共感・復唱と間で受け止める。</p></div>
+    <div class="k"><span class="n">3</span><h3>外の事情</h3><p>優先順位を整理して、待つ。持ち帰りも促してよい。</p></div>
+  </div>
+  <div class="two" style="margin-top:14px">
+    <div class="pan"><h4>「どう思いますか？」と聞かれたら</h4><div class="say" style="font-size:14px">「皆様は、〇〇という理由でご決断される方が多いです。お客様も同じように感じられるなら、進められて良いと思います。そう感じられないなら、無理に進めず一度止めておかれる方が良いと思います。」</div></div>
+    <div class="pan"><h4>「一度持ち帰ります」</h4><div class="say" style="font-size:14px">「ぜひ。差し支えなければ、一番引っかかっているのは、お金・間取り・時期のどれですか？」<br>→「次回、そこがスッキリする資料をご用意します」と、日付を押さえる。</div></div>
+  </div>
+  <div class="cap">8/28研修（迷いの3分類・第三者話法）、鉄板トーク集②。</div>
+</section>
+
+<!-- 42 2回目と申込後 -->
+<section class="sl">
+  <div class="top"><span class="chip">7章 契約まで</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/mtg-20261023.html" target="_blank" rel="noopener">10/23 ブック</a><a href="https://tokuda-k-sketch.github.io/lifex-public/kyaku-hosoku.html" target="_blank" rel="noopener">お客様向け補足資料</a><a href="sanko-20261113.html#c7" target="_blank" rel="noopener">参考書</a></span><span class="pg">42</span></div>
+  <div class="tt">2回目はブックの感想から。<span class="hi">申込の後も、日付で進める。</span></div>
+  <div class="two">
+    <div class="pan">
+      <h4>2回目の入り方（3つの質問）</h4>
+      <ol><li>「どのページが気になりましたか？」</li><li>「ご家族で話題になったところはありますか？」</li><li>「他社さんの資料と比べて、どうでしたか？」</li></ol>
+      <p>反応したページをもう一度開く → お客様向けの補足資料 → 言い返されたときの返し方へ。</p>
+      <p style="font-size:14px; color:var(--sub)">ブックを渡す時は「全部読まなくて大丈夫です。今日気にされていた〇ページだけ」とページを絞る。</p>
+    </div>
+    <div class="pan">
+      <h4>申込から契約まで</h4>
+      <div class="map" style="flex-direction:column; gap:8px; flex:none">
+        <div class="box" style="background:var(--navy); color:#fff; border-radius:10px; padding:8px 14px; font-weight:800">申込（土地が未定でもできる）</div>
+        <div class="box" style="background:var(--navy-soft); color:var(--navy); border-radius:10px; padding:8px 14px; font-weight:800">土地付け</div>
+        <div class="box" style="background:var(--navy-soft); color:var(--navy); border-radius:10px; padding:8px 14px; font-weight:800">事前審査・総額の確定</div>
+        <div class="box" style="background:var(--navy); color:#fff; border-radius:10px; padding:8px 14px; font-weight:800">契約</div>
+      </div>
+      <p style="font-size:14px">「考えます」に合わせて伸ばすのではなく、次の予定を先に置く。</p>
+    </div>
+  </div>
+  <div class="cap">10/23研修（ブックの渡し方・2回目）、7/17研修 第3章（申込はスタート）。</div>
+</section>
+
+<!-- 43 今週から -->
+<section class="sl">
+  <div class="top"><span class="chip">8章 今週から</span><span class="go">詳しく：<a href="https://tokuda-k-sketch.github.io/lifex-public/kpi-settei.html" target="_blank" rel="noopener">KPI設定シート</a><a href="https://tokuda-k-sketch.github.io/lifex-public/shodan-furikaeri.html" target="_blank" rel="noopener">ふりかえりシート</a><a href="sanko-20261113.html#c8" target="_blank" rel="noopener">参考書</a></span><span class="pg">43</span></div>
+  <div class="tt">全部は無理でも、<span class="hi">今週はこの3つ。</span></div>
+  <div class="chk">
+    <div class="row"><span class="n">1</span><b>自社の「一番低い段」を1つ決める<small>ポータルで4つの率を見る。KPI設定シートの率と並べる</small></b><span class="w">一番低い段が穴。そこが今日のどの章かを見る</span></div>
+    <div class="row"><span class="n">2</span><b>次の初回面談で、性能を「目的から」話す<small>26枚目の早見表を1テーマだけ使う</small></b><span class="w">数字は1つまで。最後は間取りの話に戻す</span></div>
+    <div class="row"><span class="n">3</span><b>面談のたびに「あと何をすれば契約か」を書く<small>ふりかえりシートの5軸で、×と△を探す</small></b><span class="w">次の面談は、そこを埋めるために使う</span></div>
+  </div>
+  <div class="cap">詳しいトーク・理由・元の研修資料は、参考書「月2棟への地図」にすべてまとめています。</div>
+</section>
+
+<!-- 44 出典 -->
+<section class="sl">
+  <div class="top"><span class="chip">出典</span><span class="pg">44</span></div>
+  <div class="tt" style="font-size:22px">この資料の数字と出典</div>
+  <ul class="src">
+    <li><b>全社の数字・100人あたりの計算（5・6枚目）</b>：LIFE X加盟店ポータル 本部用データ（2026/11/1取得）。登録815・話せた286・約束208・面談183・契約40</li>
+    <li><b>12月の目標（6枚目）</b>：接続率 全社40%以上・契約率30%（2026/10/12 本部共有）</li>
+    <li><b>9・10月の伸び（7枚目）</b>：同データの登録月別集計。5〜8月の月平均との比較</li>
+    <li><b>不通から1週間以内（10枚目）</b>：同データ。一度不通になった282人のうち、その後話せた25人中19人。ステータスの手動変更は9/16以降の記録</li>
+    <li><b>電話・メール・約束（9〜16枚目）</b>：7/17研修、7/24研修、7/31研修、電話・メールの型（手元用・10月版）、11/6研修</li>
+    <li><b>初回面談の型（18〜22枚目）</b>：7/17研修、8/7研修「商談を磨く」、8/21研修「聞く力」、8/28研修「間の取り方」、第3回研修（5/25）、10/23研修</li>
+    <li><b>性能（24〜34枚目）</b>：9/4・9/11・9/18・10/2・10/9・10/16・10/30の各研修の教科書と参考書。evoltz振動台実験：evoltz Times Vol.2（2023年5月）。キッチン：GRAFTEKT価格表（2026年8月）、パナソニックのシミュレーション。光熱費の実例：LIFE X公式セミナー資料</li>
+    <li><b>お金・契約まで（36〜42枚目）</b>：7/17研修、8/7研修、8/28研修、9/4研修、10/23研修、初回顧客セミナー話法マニュアル、鉄板トーク集</li>
+  </ul>
+</section>
+
+</div>
+</body></html>
