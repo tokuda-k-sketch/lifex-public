@@ -517,7 +517,7 @@
       if (!j.ok) throw new Error(j.error || '保存できませんでした');
       $('saveStatus').textContent = `保存しました（${new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})}）`;
       toast(`${store} を保存しました`);
-      listCache = null;
+      loadList(); // 保存した内容を、一覧と店舗選択の読み込みに反映
     } catch (e) {
       $('saveStatus').textContent = '';
       toast(e.message, true);
@@ -631,7 +631,22 @@
   // 一覧の行 → 入力タブで開く
   document.querySelector('#listTable tbody').addEventListener('click', e => {
     const tr = e.target.closest('tr[data-i]'); if (!tr) return;
-    const r = listCache[tr.dataset.i];
+    openRow(listCache[tr.dataset.i]);
+  });
+
+  // 店舗を選んだら、保存済みならその内容（率・目標・打ち手）を開く。未保存ならポータルの実績だけ入れる
+  // （前の店舗の入力が残ったまま別の店舗で保存されないよう、いったん空にする）
+  const storeKey = s => (s || '').replace(/[\s　]/g, '');
+  $('store').addEventListener('change', () => {
+    const name = $('store').value;
+    const r = (listCache || []).find(x => storeKey(x['店舗名']) === storeKey(name));
+    if (r) { openRow(r); return; }
+    clearInput();
+    $('store').value = name;
+    fillActuals();
+  });
+
+  function openRow(r){
     clearInput();
     ensureOption(r['店舗名']);
     $('src').textContent = r['実績の期間'] ? `保存時の実績：${r['実績の期間']}（期間を切り替えると最新の数字に入れ替わります）` : '';
@@ -658,7 +673,7 @@
     });
     location.hash = '#input';
     calc();
-  });
+  }
 
   // ---------- タブ ----------
   function route(){
@@ -672,7 +687,6 @@
   window.addEventListener('hashchange', route);
 
   $('viewInput').addEventListener('input', calc);
-  $('store').addEventListener('change', fillActuals);
   document.querySelectorAll('input[name=period]').forEach(el => el.addEventListener('change', fillActuals));
   $('save').addEventListener('click', save);
   $('reload').addEventListener('click', loadList);
