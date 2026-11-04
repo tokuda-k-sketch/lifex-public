@@ -10,7 +10,7 @@
     },
     {
       "slug": "withdom",
-      "name": "WITHDOM Group株式会社様"
+      "name": "WITHDOM Group様"
     },
     {
       "slug": "apax-home",
@@ -56,6 +56,13 @@
       "dateLabel": "2026年10月30日（金）",
       "title": "打合せ",
       "file": "mutsumi-world/2026-10-30.html"
+    },
+    {
+      "slug": "withdom",
+      "date": "2026-11-05",
+      "dateLabel": "2026年11月5日（木）",
+      "title": "営業研修",
+      "file": "withdom/2026-11-05.html"
     }
   ]
 }
