@@ -19,6 +19,10 @@
     {
       "slug": "mutsumi-world",
       "name": "むつみワールド様"
+    },
+    {
+      "slug": "kenko-jutaku",
+      "name": "健康住宅様"
     }
   ],
   "mtgs": [
@@ -63,6 +67,13 @@
       "dateLabel": "2026年11月5日（木）",
       "title": "営業研修",
       "file": "withdom/2026-11-05.html"
+    },
+    {
+      "slug": "kenko-jutaku",
+      "date": "2026-11-06",
+      "dateLabel": "2026年11月6日（金）",
+      "title": "訪問研修 ご予約の4組を、ご契約へ",
+      "file": "kenko-jutaku/2026-11-06.html"
     }
   ]
 }
