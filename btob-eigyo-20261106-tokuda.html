@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BtoB営業MTG 11/6 徳田報告</title>
+<style>
+:root{--navy:#1f3a5f;--navy2:#5b7393;--pale:#eef2f7;--ink:#222;--sub:#666;--line:#d6dce4;--warn:#a5482b}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.6;font-size:14px}
+.page{max-width:880px;margin:0 auto;padding:26px 24px 40px}
+header{border-bottom:3px solid var(--navy);padding-bottom:10px;margin-bottom:18px}
+header .meta{font-size:12px;color:var(--sub)}
+h1{font-size:20px;margin:2px 0 0;color:var(--navy)}
+h2{font-size:15.5px;color:var(--navy);margin:26px 0 10px;display:flex;gap:8px;align-items:baseline}
+h2 .n{background:var(--navy);color:#fff;border-radius:3px;padding:0 7px;font-size:13px}
+h2 .t{font-size:12px;color:var(--sub);font-weight:400}
+.note{font-size:11.5px;color:var(--sub);margin:6px 0 0}
+/* 1 結果 */
+.result{display:grid;grid-template-columns:230px 1fr;gap:16px;align-items:stretch}
+.big{border:2px solid var(--navy);border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;justify-content:center}
+.big .l{font-size:12px;color:var(--sub)}
+.big .v{font-size:40px;font-weight:700;color:var(--navy);line-height:1.1}
+.big .v span{font-size:15px;color:var(--sub);font-weight:400}
+.big .ok{display:inline-block;margin-top:6px;background:var(--navy);color:#fff;font-size:12.5px;font-weight:600;border-radius:3px;padding:1px 8px;align-self:flex-start}
+.big .c{font-size:12px;margin-top:6px}
+.co{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.cc{border:1px solid var(--line);border-radius:6px;padding:10px 8px 8px;text-align:center}
+.cc .nm{font-size:12.5px;font-weight:600;color:var(--navy)}
+.dots{margin:8px 0 4px;min-height:26px;display:flex;justify-content:center;gap:5px;flex-wrap:wrap}
+.d{width:20px;height:20px;border-radius:50%;border:2px solid var(--navy)}
+.d.k{background:var(--navy)}
+.d.x{border:2px dashed var(--warn)}
+.cc .s{font-size:11.5px;color:var(--sub)}
+.cc.zero .nm,.cc.zero .s{color:var(--warn)}
+.legend{font-size:11.5px;color:var(--sub);margin-top:8px;display:flex;gap:14px;align-items:center}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;border:2px solid var(--navy);vertical-align:-2px;margin-right:4px}
+.legend i.k{background:var(--navy)}
+.whole{margin-top:10px;background:var(--pale);border-radius:6px;padding:8px 12px;font-size:12.5px}
+/* 2 観察 */
+.obs{width:100%;border-collapse:separate;border-spacing:0 6px}
+.obs th{font-size:11.5px;color:var(--sub);font-weight:400;text-align:left;padding:0 6px}
+.obs td{padding:6px 6px;vertical-align:middle;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.obs td:first-child{border-left:1px solid var(--line);border-radius:6px 0 0 6px;font-weight:600;color:var(--navy);white-space:nowrap;font-size:13px}
+.obs td:last-child{border-right:1px solid var(--line);border-radius:0 6px 6px 0;font-size:12.5px}
+.bar{position:relative;height:16px;background:var(--pale);border-radius:3px;min-width:70px}
+.bar b{position:absolute;left:0;top:0;bottom:0;background:var(--navy2);border-radius:3px}
+.bar .g{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--navy)}
+.bar em{position:absolute;right:2px;top:0;font-style:normal;font-size:11.5px;font-weight:600;background:#fff;border-radius:2px;padding:0 3px;line-height:16px}
+.bar.low b{background:var(--warn)}
+.bar.low em{color:var(--warn)}
+.sm{font-size:10.5px;color:var(--sub);font-weight:400}
+.pipe{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.pp{border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.pp .l{font-size:12px;color:var(--sub)}
+.pp .v{font-size:24px;font-weight:700;color:var(--navy)}
+.pp .v span{font-size:12.5px;color:var(--sub);font-weight:400}
+.pp .c{font-size:11.5px;color:var(--sub)}
+.pp.w .v{color:var(--warn)}
+/* 3 分析判断 */
+.flow{display:grid;grid-template-columns:1fr 24px 1fr;gap:0;align-items:stretch}
+.box{border:1px solid var(--line);border-radius:6px;padding:12px 14px}
+.box .h{font-size:12px;font-weight:700;color:#fff;background:var(--navy);display:inline-block;border-radius:3px;padding:0 8px;margin-bottom:6px}
+.box p{margin:4px 0;font-size:13.5px}
+.arr{display:flex;align-items:center;justify-content:center;color:var(--navy);font-size:18px}
+/* 4 アクション */
+.goal11{display:flex;gap:14px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.goal11 .meter{flex:1;min-width:260px}
+.track{display:flex;height:22px;border-radius:4px;overflow:hidden;border:1px solid var(--navy)}
+.track span{border-right:1px solid #fff}
+.track .k{background:var(--navy)}
+.track .n{background:repeating-linear-gradient(45deg,#c9d4e2 0 5px,#e7edf4 5px 10px)}
+.track .e{background:#fff;flex:1}
+.goal11 .lab{font-size:12px;color:var(--sub);margin-top:4px}
+.goal11 .num{font-size:13px}
+.goal11 .num b{font-size:22px;color:var(--navy)}
+.tl{list-style:none;margin:0;padding:0;border-left:2px solid var(--navy);margin-left:8px}
+.tl li{position:relative;padding:4px 0 8px 18px}
+.tl li::before{content:"";position:absolute;left:-7px;top:10px;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--navy)}
+.tl li.key::before{background:var(--navy)}
+.tl .dt{display:inline-block;min-width:92px;font-weight:700;color:var(--navy)}
+.tl .who{font-size:11.5px;color:var(--sub)}
+.tl .tag{font-size:11px;border:1px solid var(--navy);color:var(--navy);border-radius:3px;padding:0 5px;margin-left:6px}
+footer{margin-top:26px;border-top:1px solid var(--line);padding-top:8px;font-size:11px;color:var(--sub)}
+@media (max-width:640px){.result{grid-template-columns:1fr}.co{grid-template-columns:repeat(3,1fr)}.flow{grid-template-columns:1fr}.arr{transform:rotate(90deg);height:24px}.pipe{grid-template-columns:1fr}.page{padding:16px}}
+@media print{@page{size:A4;margin:11mm}.page{padding:0;max-width:none}body{font-size:12.5px}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}h2{margin-top:16px}}
+</style>
+</head>
+<body>
+<div class="page">
+<header>
+  <div class="meta">2026年11月6日（金）13:00 BtoB営業MTG｜LIFEX加盟店支援　徳田（健康住宅様 訪問のため資料で報告します）</div>
+  <h1>10月度の結果と、11月の観察・分析・判断・行動</h1>
+</header>
+
+<h2><span class="n">1</span>10月度の結果<span class="t">個人目標＝重点5社で1社1棟（計5件）</span></h2>
+<div class="result">
+  <div class="big">
+    <div class="l">重点5社　10月に契約・内定した人数</div>
+    <div class="v">9<span>人／目標5</span></div>
+    <span class="ok">内定込みで達成</span>
+    <div class="c">契約4人＋内定5人。<br>契約だけで数えると4件で、1件足りません。</div>
+  </div>
+  <div>
+    <div class="co">
+      <div class="cc"><div class="nm">WITHDOM</div><div class="dots"><span class="d k"></span><span class="d k"></span></div><div class="s">契約2</div></div>
+      <div class="cc"><div class="nm">中央建設 米子</div><div class="dots"><span class="d k"></span><span class="d"></span><span class="d"></span></div><div class="s">契約1・内定2</div></div>
+      <div class="cc"><div class="nm">河原工務店</div><div class="dots"><span class="d k"></span><span class="d"></span><span class="d"></span></div><div class="s">契約1・内定2</div></div>
+      <div class="cc"><div class="nm">竹村工務店</div><div class="dots"><span class="d"></span></div><div class="s">内定1</div></div>
+      <div class="cc zero"><div class="nm">キノシタ</div><div class="dots"><span class="d x"></span></div><div class="s">0</div></div>
+    </div>
+    <div class="legend"><span><i class="k"></i>契約</span><span><i></i>内定</span><span style="color:var(--warn)">点線＝0件</span></div>
+    <div class="whole">LIFEX全体の10月：契約7件（事業部ダッシュボードの10月目標8件に対して1件不足）、内定へ進んだ人11人。<br>重点5社で、全体の契約7件のうち4件を占めました。</div>
+  </div>
+</div>
+<p class="note">ステータスが10月中に「内定」「契約」へ変わった人を数えています（1人は1回だけ数え、内定→契約と進んだ人は契約で数えます）。自社商品の契約も含みます（10/22決定）。</p>
+
+<h2><span class="n">2</span>観察<span class="t">重点5社の直近3ヶ月（8〜10月に登録したお客様）</span></h2>
+<table class="obs">
+  <tr><th></th><th>通話接続率<br><span class="sm">目標40%</span></th><th>アポ率</th><th>契約率（面談→内定以上）<br><span class="sm">目標30%</span></th><th>見えること</th></tr>
+  <tr><td>竹村工務店</td>
+    <td><div class="bar"><b style="width:76%"></b><i class="g" style="left:40%"></i><em>76%</em></div></td>
+    <td><div class="bar"><b style="width:94%"></b><em>94%</em></div></td>
+    <td><div class="bar low"><b style="width:20%"></b><i class="g" style="left:30%"></i><em>20%</em></div></td>
+    <td>面談15人まで来ている。決めきる所で止まる</td></tr>
+  <tr><td>WITHDOM</td>
+    <td><div class="bar"><b style="width:55%"></b><i class="g" style="left:40%"></i><em>55%</em></div></td>
+    <td><div class="bar"><b style="width:61%"></b><em>61%</em></div></td>
+    <td><div class="bar low"><b style="width:12%"></b><i class="g" style="left:30%"></i><em>12%</em></div></td>
+    <td>お客様の数は5社で一番（84人）。面談後に止まっている人が多い</td></tr>
+  <tr><td>キノシタ</td>
+    <td><div class="bar low"><b style="width:38%"></b><i class="g" style="left:40%"></i><em>38%</em></div></td>
+    <td><div class="bar low"><b style="width:50%"></b><em>50%</em></div></td>
+    <td><div class="bar low"><b style="width:0%"></b><i class="g" style="left:30%"></i><em>0%</em></div></td>
+    <td>電話がつながらない人が15人。入口で止まっている</td></tr>
+  <tr><td>河原工務店</td>
+    <td><div class="bar low"><b style="width:24%"></b><i class="g" style="left:40%"></i><em>24%</em></div></td>
+    <td><div class="bar"><b style="width:100%"></b><em>100%</em></div></td>
+    <td><div class="bar"><b style="width:43%"></b><i class="g" style="left:30%"></i><em>43%</em></div></td>
+    <td>会えれば決まる。10月だけなら接続率78%まで上がった</td></tr>
+  <tr><td>中央建設 米子<br><span class="sm">お客様10人</span></td>
+    <td><div class="bar"><b style="width:70%"></b><i class="g" style="left:40%"></i><em>70%</em></div></td>
+    <td><div class="bar"><b style="width:71%"></b><em>71%</em></div></td>
+    <td><div class="bar"><b style="width:50%"></b><i class="g" style="left:30%"></i><em>50%</em></div></td>
+    <td>率はいい。お客様の数が少ない</td></tr>
+</table>
+<div class="pipe">
+  <div class="pp"><div class="l">いま内定中（重点5社）</div><div class="v">6<span>人</span></div><div class="c">米子2・河原2・竹村1・WITHDOM1</div></div>
+  <div class="pp"><div class="l">面談〜土地探し・ローン審査の段階</div><div class="v">49<span>人</span></div><div class="c">うちWITHDOM 31・竹村 9</div></div>
+  <div class="pp w"><div class="l">ステータスが14日以上動いていない</div><div class="v">135<span>人</span></div><div class="c">うちWITHDOM 78・竹村 22・キノシタ 21</div></div>
+</div>
+<p class="note">細い線＝目標。赤茶＝目標や他社より低い所。「14日以上動いていない」は加盟店様がステータスを変えていない日数で、実際に連絡していないとは限りません。</p>
+
+<h2><span class="n">3</span>分析と判断</h2>
+<div class="flow">
+  <div class="box"><span class="h">分析</span>
+    <p>11月の目標は重点5社で10件（1社2棟）。今月はまだ0件です。</p>
+    <p>新しいお客様を集めて11月中に契約までは間に合いません。<b>契約になるのは、今の内定6人と、面談まで進んだ49人</b>です。</p>
+    <p>止まっている所は会社ごとに違います。竹村・WITHDOMは面談のあと、キノシタは最初の電話です。</p>
+  </div>
+  <div class="arr">▶</div>
+  <div class="box"><span class="h">判断</span>
+    <p>① <b>内定6人を11月中に契約にする</b>。一番確実な6件です。</p>
+    <p>② 残りの4件は<b>竹村とWITHDOMの面談済みのお客様</b>から取ります。人数が一番多いところです。</p>
+    <p>③ キノシタは11月の契約は追わず、<b>電話がつながる状態をつくって12月に</b>つなげます。</p>
+  </div>
+</div>
+
+<h2><span class="n">4</span>11月の行動</h2>
+<div class="goal11">
+  <div class="meter">
+    <div class="track"><span class="n" style="width:60%"></span><span class="e"></span></div>
+    <div class="lab">重点5社 11月目標10件：内定中6人（斜線）を契約にできると残り4件</div>
+  </div>
+  <div class="num">11/5時点 <b>0</b>／10件</div>
+</div>
+<ul class="tl">
+  <li class="key"><span class="dt">11/5（木）</span>WITHDOM様 営業研修（数字の低い所の改善・アプローチブックを使ったロープレ）<span class="tag">判断②</span></li>
+  <li><span class="dt">11/6（金）</span>全加盟店研修「メールでアポを取る」<span class="tag">判断③</span></li>
+  <li class="key"><span class="dt">11/7・8</span>竹村工務店様 夢祭りに入る。面談済みのお客様に、次の打ち合わせ日をその場で決めてもらう<span class="tag">判断②</span></li>
+  <li class="key"><span class="dt">11/8（日）</span>中央建設 米子店様 セミナーに入る。内定2人の契約日を確認<span class="tag">判断①</span></li>
+  <li class="key"><span class="dt">11/10（月）まで</span>内定6人の契約予定日を各社から聞き、一覧にする。11月に入らない人は理由を聞く<span class="tag">判断①</span></li>
+  <li><span class="dt">11/13（金）</span>全加盟店研修（これまでの17回分を、お問い合わせ→契約の1本の流れにまとめた集大成）<span class="tag">判断②</span></li>
+  <li><span class="dt">毎週</span>竹村・中央建設・WITHDOMのショートMTGで、面談済みのお客様の次の約束を1人ずつ確認<span class="tag">判断②</span></li>
+  <li><span class="dt">11/29（日）</span>キノシタ様 セミナーに入る<span class="tag">判断③</span></li>
+</ul>
+
+<footer>
+数字の出典：LIFEXポータル本部用API（11/5 22:06取得。10月・11月の件数＝ステータス変更履歴、内定中・14日以上＝顧客一覧、率＝期間指定レポート8/1〜10/31）。中央建設は米子店のみ。目標：重点5社は10月1棟・11月2棟・12月2棟（10/22決定）、全体の10月目標8件は事業部ダッシュボードの入力値。
+</footer>
+</div>
+</body>
+</html>
