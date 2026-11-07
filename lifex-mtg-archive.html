@@ -172,6 +172,21 @@
     .session:hover .thumb-watch{ transform: scale(1.04); background: #ffb84d; }
   }
 
+  .thumb.is-novideo{ cursor: default; }
+  .thumb.is-novideo .thumb-card{ background: linear-gradient(135deg, #4a5059 0%, #2e333b 100%); }
+  .thumb-novideo{
+    align-self: flex-start;
+    font-size: 13px;
+    font-weight: 700;
+    color: #d5dae0;
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 100px;
+    padding: 7px 16px;
+  }
+  @media (hover: hover){
+    .session:hover .thumb.is-novideo .thumb-card{ filter: none; }
+  }
+
   .content{ min-width: 0; }
   .session-label{ font-size: 11.5px; font-weight: 700; color: #94a1ad; letter-spacing: 0.08em; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
   .new-badge{
@@ -289,13 +304,42 @@
 
 <div class="page">
   <div class="meta-row">
-    <span class="meta-chip"><strong class="num">16</strong>&nbsp;回分を収録</span>
-    <span class="meta-chip">期間　<strong class="num">2026.07.03</strong> 〜 <strong class="num">2026.10.30</strong></span>
+    <span class="meta-chip"><strong class="num">17</strong>&nbsp;回分を収録</span>
+    <span class="meta-chip">期間　<strong class="num">2026.07.03</strong> 〜 <strong class="num">2026.11.06</strong></span>
   </div>
 
   <div class="list">
 
     <div class="session is-latest">
+      <div class="session-inner">
+        <div class="datebar"><span class="month num">2026 / 11</span><span class="day num">06</span><span class="year">Fri</span></div>
+        <div class="body">
+          <div class="thumb is-novideo">
+            <div class="thumb-card">
+              <div class="thumb-text">
+              <span class="thumb-num">第17回</span>
+              <span class="thumb-ttl">電話に出ないお客様を、会える日に変える</span>
+              <span class="thumb-sub">メール・SMSでアポ</span>
+            </div>
+            <div class="thumb-novideo">この回は録画がありません</div>
+          </div>
+          </div>
+          <div class="content">
+            <p class="session-label">第17回<span class="new-badge">NEW</span></p>
+            <p class="session-title">電話に出ないお客様を、会える日に変える<span class="title-sub">メール・SMSでアポ</span></p>
+            <p class="session-sub">録画なし<span class="dot"></span>資料のみ</p>
+            <div class="material-links">
+              <a class="material-link" href="mtg-20261106.html" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M15 3v5h5"/></svg>
+                教科書
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="session">
       <div class="session-inner">
         <div class="datebar"><span class="month num">2026 / 10</span><span class="day num">30</span><span class="year">Fri</span></div>
         <div class="body">
@@ -310,7 +354,7 @@
             <div class="thumb-watch"><svg viewBox="0 0 24 24"><path d="M4 2 L22 12 L4 22 Z"/></svg>動画を見る</div>
           </a>
           <div class="content">
-            <p class="session-label">第16回<span class="new-badge">NEW</span></p>
+            <p class="session-label">第16回</p>
             <a class="session-title" href="https://youtu.be/CiFuq8-0P7k" target="_blank" rel="noopener noreferrer" data-session="16" data-video="CiFuq8-0P7k">キッチン<span class="title-sub">GRAFTEKT×リシェル</span></a>
             <p class="session-sub">G-ハウス営業用<span class="dot"></span>YouTube</p>
             <div class="material-links">
