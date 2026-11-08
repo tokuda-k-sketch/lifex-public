@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>佐古顧問MTG 11/9</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#2b3a67; --navy-l:#eaedf5; --navy-m:#8d98bd; --greige:#f3f1ec;
+  --ink:#1b1f24; --ink2:#4a525c; --mute:#8a929c; --line:#e3e6ea; --warn:#a1462a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font-family:"Noto Sans JP",sans-serif;line-height:1.7;font-size:15px}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 16px 64px}
+header{border-bottom:2px solid var(--navy);padding-bottom:12px;margin-bottom:8px}
+h1{font-size:24px;margin:0;line-height:1.4;color:var(--navy)}
+.sub{color:var(--ink2);font-size:13px;margin-top:4px}
+h2{font-size:18px;margin:40px 0 14px;color:var(--navy);display:flex;align-items:center;gap:10px}
+h2 .no{background:var(--navy);color:#fff;font-size:13px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:#fff}
+.card h3{font-size:14px;margin:0 0 12px;color:var(--ink2);font-weight:500}
+.bars{display:grid;grid-template-columns:auto 1fr auto;gap:8px 10px;align-items:center}
+.bars .lb{font-size:13px;color:var(--ink2);white-space:nowrap}
+.bars .tr{height:22px;background:var(--greige);border-radius:4px;overflow:hidden;position:relative}
+.bars .tr i{display:block;height:100%;background:var(--navy);border-radius:0 4px 4px 0}
+.bars .tr i.tent{background:var(--navy-m)}
+.bars .tr .goal{position:absolute;top:-2px;bottom:-2px;left:40%;border-left:2px dashed var(--warn)}
+.bars .v{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.bars .v small{font-weight:400;color:var(--mute);font-size:12px;margin-left:4px}
+.bars .row{display:contents}
+.note{font-size:12.5px;color:var(--ink2);margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+.note b{color:var(--warn);font-weight:700}
+.st td,.st th{white-space:nowrap}.st thead th:first-child{text-align:left}.st tr.z th,.st tr.z td{color:var(--mute)}
+.st td.lo{color:var(--warn);font-weight:700}.st tr.z td.lo{color:var(--mute);font-weight:400}
+.st td small{color:var(--mute);font-size:11.5px;margin-left:3px;font-weight:400}
+.st thead th.sep,.st td.sep{border-left:1px solid var(--line)}
+.st tfoot th,.st tfoot td{font-weight:700;border-top:2px solid var(--navy);border-bottom:0}
+table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right}
+thead th{color:var(--ink2);font-weight:500;font-size:12.5px}
+tbody th{text-align:left;font-weight:500}
+td.now{font-weight:700;color:var(--navy)}
+.diff td.up{color:var(--navy);font-weight:700}
+.obs{display:grid;gap:10px}
+.obs .it{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.obs .k{font-size:26px;font-weight:900;color:var(--navy);line-height:1.2}
+.obs .k small{font-size:13px;font-weight:500;color:var(--ink2);display:block;margin-top:2px}
+.obs .t b{display:block;font-size:15px;margin-bottom:2px}
+.obs .t span{font-size:13.5px;color:var(--ink2)}
+.prop{display:grid;gap:14px}
+.prop .p{border:1.5px solid var(--navy);border-radius:12px;padding:18px 20px}
+.prop .h{display:flex;gap:12px;align-items:baseline;margin-bottom:6px}
+.prop .h .n{font-size:13px;font-weight:700;color:#fff;background:var(--navy);border-radius:4px;padding:1px 8px;flex:none}
+.prop .h b{font-size:16.5px;color:var(--navy)}
+.prop p{margin:4px 0;font-size:14px}
+.prop .why{color:var(--ink2);font-size:13.5px}
+.prop .risk{font-size:13px;color:var(--ink2);background:var(--greige);border-radius:6px;padding:8px 12px;margin-top:8px}
+.prop .risk b{color:var(--ink)}
+.skip{font-size:13px;color:var(--ink2);background:var(--greige);border-radius:10px;padding:12px 16px;margin-top:14px}
+.skip b{color:var(--ink)}
+details{margin-top:40px;font-size:12.5px;color:var(--ink2)}
+summary{cursor:pointer}
+details ul{padding-left:18px}
+.detail{margin-top:14px}.detail summary{cursor:pointer;font-size:13.5px;font-weight:700;color:var(--navy)}.detail table{margin-top:10px}
+.ka{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px;break-inside:avoid}
+.ka .hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin-bottom:10px}
+.ka .hd b{font-size:16px;color:var(--navy)}
+.ka .hd .neck,.ka .hd .good{font-size:12px;font-weight:700;border-radius:4px;padding:1px 8px}
+.ka .hd .neck{color:var(--warn);border:1px solid var(--warn)}
+.ka .hd .good{color:var(--navy);border:1px solid var(--navy)}
+.ka .hd small{font-size:12.5px;color:var(--ink2)}
+.ka .g{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:14px;font-size:13px;color:var(--ink2);line-height:1.75}
+.ka h4{margin:0 0 4px;font-size:12px;color:var(--navy-m);letter-spacing:.08em}
+.ka .j{background:var(--navy-l);border-radius:8px;padding:10px 12px;color:var(--ink)}
+.ka .j h4{color:var(--navy)}
+.ka em{font-style:normal;font-size:11.5px;color:var(--mute);display:block;margin-top:8px}
+.ka .detail{margin-top:12px}
+.st.ph th,.st.ph td{white-space:normal;text-align:left;vertical-align:top;font-size:13px}.st.ph tbody th{white-space:nowrap;color:var(--navy)}
+.tw{overflow-x:auto;margin-top:10px}
+.st.rt th,.st.rt td{padding:5px 7px;font-size:12.5px}
+.st.rt .gh{text-align:center;color:var(--navy)}
+@media (max-width:760px){.ka .g{grid-template-columns:1fr}}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}.obs .it{grid-template-columns:1fr;gap:4px}}
+@media print{h2{break-after:avoid}.card,.it,.p{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>佐古顧問MTG｜11/6からの動きと相談</h1>
+  <div class="sub">2026/11/9 9:00｜数字は本部用API（11/8 15:07取得）｜前回資料：<a href="../sako-20261106.html" style="color:var(--navy)">11/6</a>｜今朝のLIFEX MTG資料：<a href="20261109.html" style="color:var(--navy)">11/9</a></div>
+</header>
+
+<h2><span class="no">1</span>11月の数字（11/1〜8）</h2>
+<div class="grid2">
+  <div class="card">
+    <table class="diff">
+      <thead><tr><th style="text-align:left">指標</th><th>11/1〜8</th></tr></thead>
+      <tbody>
+        <tr><th>母数</th><td class="now">22人</td></tr>
+        <tr><th>通話接続</th><td class="now">12人（54.5%）</td></tr>
+        <tr><th>アポ／面談</th><td class="now">10人／7人</td></tr>
+        <tr><th>11月の契約／内定</th><td class="now">1件／1件</td></tr>
+      </tbody>
+    </table>
+    <div class="note">契約は坂本建設工業様（11/2）、内定はダイケンアーキテクツ様（11/5）。11/6以降の内定・契約は0件。母数22人のうち12人がWITHDOM Group様。</div>
+  </div>
+  <div class="card">
+    <h3>通話接続率</h3>
+    <table class="diff">
+      <tbody>
+        <tr><th>直近3ヶ月（8/9〜11/8）</th><td class="now">43.9%</td><td>192/437</td></tr>
+        <tr><th>会社ごとの中央値（母数10人以上の15社）</th><td class="now">44.4%</td><td></td></tr>
+        <tr><th>40%未満の会社</th><td class="now">5社</td><td></td></tr>
+      </tbody>
+    </table>
+    <div class="note">40%未満は いえプロ不動産様33.3%・河原工務店様29.2%・久留米建設様27.3%・坂本建設工業様20.0%・フラワーホーム様0.0%。上がった会社と止まったままの会社の差がはっきりしてきた（11/6のご指摘のとおり）。</div>
+  </div>
+</div>
+
+<h2><span class="no">2</span>11/6以降の動き</h2>
+<div class="obs">
+  <div class="it"><div class="k">14件<small>健康住宅様 11/6のステータス変更</small></div><div class="t"><b>訪問の場で一緒に画面を見て更新したら、その日のうちに数字が正しくなった</b><span>10月登録の未着手4人→1人、面談0人→4人。面談済み4組はどれも次の約束が決まっていないことが見えた。1日限定のモデルハウス見学説明会（11月第3週以降）・面談当日のお礼＋アプローチブック軽量版・商談の録音・Instagram開設を決めた。</span></div></div>
+  <div class="it"><div class="k">18人<small>10月登録の未着手</small></div><div class="t"><b>チャット・電話で依頼した会社は1週間で1人も減っていない</b><span>フラワーホーム様6・アイコン様3・永大ハウスビルド様3・LIFE X UTSUNOMIYA 2（社員の方の登録と確認済み）ほか。→ 今朝のMTGで「30分の画面共有で一緒に更新する」を提案。</span></div></div>
+  <div class="it"><div class="k">2件<small>ダイケンアーキテクツ様 11月末の契約見込み</small></div><div class="t"><b>率は全段階で高く、弱いのは母数だけ</b><span>注文住宅で止まっているお客様 約100件にLIFE Xの案内チラシを送り、1月のイベントで2回目を送る。新しく入った営業の方がLIFE X担当に。12/10午後に訪問し社長説明と研修。</span></div></div>
+</div>
+
+<h2><span class="no">3</span>11/6にいただいた助言への対応</h2>
+<div class="card" style="overflow-x:auto">
+  <table class="st ph">
+    <thead><tr><th>#</th><th>助言</th><th>対応</th></tr></thead>
+    <tbody>
+      <tr><th>1</th><td>研修は2週に1回。数字の基準を決めて、届いていない会社に「この回は出てくれ」と声をかける</td><td>今朝のLIFEX MTGに提案として出した（11/13の集大成研修のあと、2週に1回・基準に届かない会社には個別にお願い・全社に案内して参加は自由・本部が不足と見た会社にも個別にお願い）。基準の数字は下の相談1</td></tr>
+      <tr><th>2</th><td>20坪台の平屋・4LDKは、声が上がっているならやった方がいい</td><td>11/6のLIFEX MTGで森山さんも了承。23坪前後・3LDKの平屋と4LDKを作る方向。120プランは11月末で一区切り、その後も追加</td></tr>
+      <tr><th>3</th><td>アプローチブックの別パターンはまだ作らず、まず数字を見る</td><td>新しい資料は作らない。送り方（面談当日・話に出た2枚程度・軽量版）をそろえ、送付数・返信数・アポ数を各社のショートMTGで数える案を今朝提案。WITHDOM Group様で返信4件ほど</td></tr>
+      <tr><th>4</th><td>吉田さんは、1社を契約前まで深く見る競合調査に使う</td><td>相談2</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2><span class="no">4</span>相談</h2>
+<div class="prop">
+  <div class="p">
+    <div class="h"><span class="n">相談1</span><b>隔週研修の「出てください」の基準の数字（案）</b></div>
+    <table class="st" style="margin-top:8px">
+      <thead><tr><th>回のテーマ</th><th>見る率</th><th>基準（案）</th><th>全社の直近3ヶ月</th></tr></thead>
+      <tbody>
+        <tr><th>電話がつながる</th><td>通話接続÷母数</td><td class="now">40%未満</td><td>43.9%</td></tr>
+        <tr><th>アポを取る</th><td>アポ÷通話接続</td><td class="now">70%未満</td><td>70.8%</td></tr>
+        <tr><th>面談</th><td>面談÷アポ</td><td class="now">85%未満</td><td>86.0%</td></tr>
+        <tr><th>クロージング</th><td>契約÷面談</td><td class="now">20%未満</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <p class="why">電話は12月の最低ライン40%に合わせた。アポと面談は全社の今の水準を下回る会社を対象にする考え方。契約率は12月末の目標30%に対して直近16.5%（10/12時点）なので、まず20%を線にする案。母数10人未満の会社は率でなく個別に判断。<br>聞きたいこと：この線の引き方でよいか。テーマを回す順番（案：電話→アポ→面談→クロージング、初回11/27）。</p>
+  </div>
+  <div class="p">
+    <div class="h"><span class="n">相談2</span><b>吉田さんの競合調査の進め方</b></div>
+    <p>一条工務店で1回見て終わりにせず、契約の手前まで提案を受けて、資料・言い回し・値引きの出し方・お客様にどう見えるかをまとめてもらう。対象を一条工務店から始めるか、地域でよく当たる会社（アイ工務店など）も並行するか。まとめた結果を研修のクロージングの回で使う想定。</p>
+  </div>
+  <div class="p">
+    <div class="h"><span class="n">相談3</span><b>動けていない会社への向き合い方</b></div>
+    <p>11/6に「動けていない会社には、何がしたくて加盟したのかを聞く」と助言をいただいた。フラワーホーム様は藤本さんと社長面談、永大ハウスビルド様はモデル完成後に本格化のご意向。面談の場で何を約束してもらうか（例：本部経由のお客様は割り当て当日に1本電話し、その日にステータスを変える、だけは守ってもらう）を決めたい。</p>
+  </div>
+</div>
+
+<details open>
+  <summary>数字の出典</summary>
+  <ul>
+    <li>11/1〜8の数値・直近3ヶ月・中央値・40%未満5社・未着手18人・健康住宅様の変更14件：本部用API（11/8 15:07取得）lifex-hq-data/20261109 の digest.md・members.json・changes.json（集計方法は11/9 LIFEX MTG資料の出典欄と同じ）</li>
+    <li>アポ÷通話70.8%（136/192）・面談÷アポ86.0%（117/136）：同 members.json の直近3ヶ月（8/9〜11/8登録）</li>
+    <li>契約率30%目標・直近16.5%：12月末の目標（10/12 佐古顧問と決定）</li>
+    <li>健康住宅様・ダイケンアーキテクツ様：「『福岡』健康住宅様訪問 - 2026/11/06」「大建建設様営業会議 - 2026/11/05」の記録</li>
+    <li>助言1〜4：「佐古顧問 MTG - 2026/11/06 06:57」文字起こし。プランの了承：「LIFEX MTG - 2026/11/06」</li>
+  </ul>
+</details>
+</div>
+</body>
+</html>
