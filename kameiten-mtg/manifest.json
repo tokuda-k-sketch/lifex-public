@@ -23,6 +23,10 @@
     {
       "slug": "kenko-jutaku",
       "name": "健康住宅様"
+    },
+    {
+      "slug": "kurume-kensetsu",
+      "name": "久留米建設様"
     }
   ],
   "mtgs": [
@@ -74,6 +78,13 @@
       "dateLabel": "2026年11月6日（金）",
       "title": "訪問研修 ご予約の4組を、ご契約へ",
       "file": "kenko-jutaku/2026-11-06.html"
+    },
+    {
+      "slug": "kurume-kensetsu",
+      "date": "2026-11-13",
+      "dateLabel": "2026年11月13日（金）",
+      "title": "営業会議",
+      "file": "kurume-kensetsu/2026-11-13.html"
     }
   ]
 }
