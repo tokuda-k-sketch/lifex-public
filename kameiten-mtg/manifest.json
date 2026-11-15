@@ -27,6 +27,10 @@
     {
       "slug": "kurume-kensetsu",
       "name": "久留米建設様"
+    },
+    {
+      "slug": "minaminihon",
+      "name": "南日本ハウス様"
     }
   ],
   "mtgs": [
@@ -85,6 +89,13 @@
       "dateLabel": "2026年11月13日（金）",
       "title": "営業会議",
       "file": "kurume-kensetsu/2026-11-13.html"
+    },
+    {
+      "slug": "minaminihon",
+      "date": "2026-11-15",
+      "dateLabel": "2026年11月15日（日）",
+      "title": "営業作戦会議",
+      "file": "minaminihon/2026-11-15.html"
     }
   ]
 }
