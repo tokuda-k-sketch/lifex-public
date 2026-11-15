@@ -96,6 +96,27 @@
       "dateLabel": "2026年11月15日（日）",
       "title": "営業作戦会議",
       "file": "minaminihon/2026-11-15.html"
+    },
+    {
+      "slug": "mutsumi-world",
+      "date": "2026-11-16",
+      "dateLabel": "2026年11月16日（月）",
+      "title": "営業作戦会議",
+      "file": "mutsumi-world/2026-11-16.html"
+    },
+    {
+      "slug": "takemura",
+      "date": "2026-11-16",
+      "dateLabel": "2026年11月16日（月）",
+      "title": "ショートMTG",
+      "file": "takemura/2026-11-16.html"
+    },
+    {
+      "slug": "chuo-kensetsu",
+      "date": "2026-11-16",
+      "dateLabel": "2026年11月16日（月）",
+      "title": "ショートMTG",
+      "file": "chuo-kensetsu/2026-11-16.html"
     }
   ]
 }
