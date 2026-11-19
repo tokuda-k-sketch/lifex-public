@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ウェビナー構成 スライド対応表</title>
+<style>
+  :root{--ink:#1c1f22;--sub:#5f666c;--line:#dde2e0;--ac:#0e6b63;--ac3:#9cc7c1;--tint:#e7f2f0;--new:#fff6e0;--newb:#c99a2e;--cut:#efefef;--paper:#f3f1ec}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Hiragino Sans","Noto Sans JP",sans-serif;word-break:auto-phrase;line-break:strict}
+  header{padding:18px 20px 12px;max-width:1500px;margin:0 auto}
+  h1{font-family:"Hiragino Mincho ProN",serif;font-size:24px;margin:0 0 4px}
+  .sub{color:var(--sub);font-size:13px}
+  .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+  .stat{background:#fff;padding:6px 12px;font-size:13px;border-top:3px solid var(--ink)}
+  .stat b{font-family:"Hiragino Mincho ProN",serif;font-size:20px;color:var(--ac);margin-right:4px}
+  .tabs{margin-left:auto;display:flex;gap:0}
+  .tabs button{font:inherit;font-size:13px;border:1px solid var(--ink);background:#fff;padding:7px 14px;cursor:pointer}
+  .tabs button+button{border-left:0}
+  .tabs button.on{background:var(--ink);color:#fff}
+  .wrap{max-width:1500px;margin:0 auto;padding:0 20px 40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,46%);gap:20px;align-items:start}
+  /* 左：章 */
+  .ch{background:#fff;margin-bottom:10px;display:grid;grid-template-columns:118px 1fr}
+  .ch .hd{background:var(--ac);color:#fff;padding:12px 12px}
+  .ch .hd .no{font-family:"Hiragino Mincho ProN",serif;font-size:22px;line-height:1}
+  .ch .hd .nm{font-weight:700;font-size:14px;margin:6px 0 2px;line-height:1.4}
+  .ch .hd .mn{font-size:12px;opacity:.9}
+  .ch .bd{padding:8px 12px}
+  .lane{display:grid;grid-template-columns:52px 1fr;gap:6px;padding:5px 0;border-bottom:1px solid var(--line)}
+  .lane:last-child{border-bottom:0}
+  .lane .k{font-size:11.5px;color:var(--sub);padding-top:5px}
+  .chips{display:flex;flex-wrap:wrap;gap:5px}
+  .c{font:inherit;font-size:12px;padding:3px 7px;border:1px solid var(--ac3);background:var(--tint);line-height:1.5;cursor:pointer;text-align:left;color:var(--ink)}
+  .c i{font-style:normal;font-weight:700;color:var(--ac);margin-right:3px}
+  .c.n{background:var(--new);border-color:var(--newb)} .c.n i{color:#8a6510}
+  .c.x{background:var(--cut);border-color:#d8d8d8;color:#80868b} .c.x i{color:#80868b}
+  .c.x span{text-decoration:line-through}
+  .c.warn{box-shadow:inset 0 -2px 0 #c99a2e}
+  .c:hover{outline:2px solid var(--ac3)}
+  .c.sel{outline:2px solid var(--ink);outline-offset:1px}
+  .mid{background:var(--new);border:1px dashed var(--newb);padding:8px 12px;margin-bottom:10px;font-size:13px;display:flex;gap:8px;align-items:center}
+  .note{font-size:12px;color:var(--sub);margin-top:4px;line-height:1.7}
+  /* 右：プレビュー */
+  .pv{position:sticky;top:12px;background:#fff;padding:14px 16px 16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  .pv .meta{display:flex;align-items:center;gap:8px;margin-bottom:8px;min-height:28px}
+  .badge{font-size:12px;padding:2px 8px;color:#fff;background:var(--ac)}
+  .badge.n{background:#b5851c} .badge.x{background:#8a8f94}
+  .pv .tt{font-weight:700;font-size:15px}
+  .pv .chap{font-size:12px;color:var(--sub);margin-left:auto}
+  .frame{aspect-ratio:16/9;background:#f6f6f4;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .frame img{width:100%;height:100%;object-fit:contain;display:block}
+  .ph{width:100%;height:100%;background:var(--new);border:2px dashed var(--newb);display:flex;flex-direction:column;justify-content:center;padding:6% 8%}
+  .ph .l{font-size:12px;color:#8a6510;letter-spacing:.1em;margin-bottom:10px}
+  .ph .h{font-family:"Hiragino Mincho ProN",serif;font-size:24px;font-weight:600;line-height:1.5;margin-bottom:12px}
+  .ph .p{font-size:14px;color:var(--ink);line-height:1.8}
+  .pv .memo2{font-size:13px;line-height:1.7;margin-top:10px;color:var(--ink);min-height:22px}
+  .pv .memo2 b{color:#8a6510}
+  .nav{display:flex;gap:8px;margin-top:12px;align-items:center}
+  .nav button{font:inherit;font-size:13px;border:1px solid var(--ink);background:#fff;padding:6px 12px;cursor:pointer}
+  .nav .pos{font-size:12px;color:var(--sub);margin-left:auto}
+  /* 一覧 */
+  .grid{display:none;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .th{background:#fff;padding:5px;cursor:pointer;position:relative;border:2px solid transparent}
+  .th img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#eee}
+  .th .cap{font-size:11.5px;line-height:1.4;margin-top:4px;display:flex;gap:4px;align-items:flex-start}
+  .th .cap i{font-style:normal;font-weight:700}
+  .th .tag{position:absolute;top:8px;left:8px;font-size:11px;padding:1px 6px;color:#fff;background:var(--ac)}
+  .th.x img{opacity:.35;filter:grayscale(1)} .th.x .tag{background:#8a8f94}
+  .th.sel{border-color:var(--ink)}
+  .th .hid{width:100%;aspect-ratio:16/9;background:#e9e9e9;display:flex;align-items:center;justify-content:center;font-size:12px;color:#888}
+  body.list .left{display:none} body.list .grid{display:grid}
+  .kbd{font-size:12px;color:var(--sub)}
+  @media(max-width:900px){.wrap{grid-template-columns:1fr}.pv{position:sticky;top:0;z-index:5}}
+</style>
+</head>
+<body>
+<header>
+  <h1>ウェビナー構成 叩き台：今のスライドとの対応表</h1>
+  <div class="sub">提案の90分構成に、今の初回セミナー（79枚）を当てはめた案／2026年11月19日 徳田／ページ名をクリックすると右にスライドが出ます</div>
+  <div class="bar">
+    <span class="stat"><b id="nUse">0</b>今のスライドから使う</span>
+    <span class="stat"><b id="nNew">0</b>新しく作る</span>
+    <span class="stat"><b id="nCut">0</b>使わない</span>
+    <span class="stat"><b id="nAll">0</b>ウェビナーの合計</span>
+    <div class="tabs"><button id="tMap" class="on">章ごとに見る</button><button id="tList">79枚を一覧で見る</button></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div>
+    <div class="left" id="left"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+  <aside class="pv">
+    <div class="meta"><span class="badge" id="pBadge">使う</span><span class="tt" id="pTitle"></span><span class="chap" id="pChap"></span></div>
+    <div class="frame" id="pFrame"></div>
+    <div class="memo2" id="pNote"></div>
+    <div class="nav"><button id="prev">← 前</button><button id="next">次 →</button><span class="kbd">キーボードの←→でも送れます</span><span class="pos" id="pos"></span></div>
+  </aside>
+</div>
+
+<script>
+var T={1:"表紙（Brand new BASIC）",2:"何かを諦めていませんか？",3:"「すべてを叶える」規格住宅",4:"唯一無二のデザイン",5:"間取りは誰が描く？",6:"設計が変われば暮らしが変わる",7:"敷地とプランの例",8:"洗練された空間",9:"誇りとなるデザイン",10:"衛生・帰宅動線",11:"2階水回り・就寝動線",12:"回遊・家事動線",13:"家で過ごす16時間",14:"ヨーロッパの街並みと感性",15:"住環境が育む人間力",16:"扉：命と健康を守る高性能",17:"耐震性のまとめ",18:"耐震等級とは",19:"3種類ある耐震等級3",20:"地震のこわさ",21:"前震〜本震〜繰り返す余震",22:"家の倒壊危険性",23:"耐震＋制振",24:"制振装置の方式比較",25:"制振ダンパーを全商品標準",26:"evoltz × BILSTEIN",27:"地震後も住み続けられる家",28:"扉：健康・快適な家づくり",29:"健康に暮らす3大要素",30:"ヒートショック・熱中症",31:"暖かい家と病気",32:"室温23℃以上",33:"UA値・C値",34:"窓の選び方",35:"断熱の基準",36:"C値とは",37:"気密が悪いと何がダメ？",38:"気密が悪いと夏暑く冬寒い",39:"計画換気ができない",40:"すきま風と換気",41:"花粉・PM2.5をシャットアウト",42:"第一種換気",43:"換気のお掃除",44:"お手入れもラク",45:"全館空調の落とし穴",46:"エアコン1台の空調計画",47:"壁体内結露とは",48:"100%起きる壁体内結露",49:"結露を起こしてはいけない理由",50:"水蒸気の大きさ",51:"結露の仕組み",52:"防湿気密シート（図）",53:"防湿気密シート（施工写真）",54:"健康住宅のまとめ",55:"扉：標準装備",56:"標準装備のまとめ",57:"オプションが最初から標準",58:"生涯コストを見据えた価格",59:"見えないコストの氷山",60:"家の価格の四大要素",61:"同じグレードの注文住宅と比べて",62:"この価格が実現できた理由",63:"光熱費の考え方",64:"電気料金のしくみ",65:"電力会社別の電気料金一覧",66:"家がエネルギーを創り出す",67:"枚方モデルの省エネ評価書",68:"実際の電気代（例1）",69:"実際の電気代（例2）",70:"V2H",71:"メンテナンスコスト",72:"防蟻・防腐",73:"火災保険・地震保険",74:"トータルコストで考える",75:"住宅選びの新しいスタンダード",76:"工期を約3か月短縮",77:"ご清聴ありがとうございました",78:"GハウスのSNS（非表示）",79:"（非表示）"};
+var NOTE={2:"冒頭のつかみに。草案の「家づくりは何かを諦めるものだった」と同じ問いかけ。",13:"感性の3枚（13〜15）は13だけ残す。",34:"「関西はペアガラスで十分」は全国向けの言い方に直す。",62:"<b>要更新</b>：「70以上の実績プラン」を120プランに直す。",65:"全国の電力会社の料金一覧。関西だけの数字の代わりに使える。",68:"関西電力の単価での例。「地域の電気代は近くの加盟店様でお出しします」と添える。",75:"LIFE Xと一般的な注文住宅の比べ方。「比べ方」の章に前倒し。",76:"工期の短さ。次の一歩の章で、相談から入居までの見通しとして。",53:"施工写真があるので、52の図と並べて使う。",59:"お金の章の入口に。建てる時の費用は氷山の一角。",17:"地震の章の入口に。",41:"一般の方に伝わりやすい空気の話。",64:"65の料金一覧があれば省ける。",67:"枚方のモデルハウスの評価書。全国向けには外す。",69:"電気代の例は1つで足りる。",24:"方式の比較は一般の方には細かい。25で足りる。",78:"元のファイルで非表示。Gハウスの案内なので、加盟店様へのご案内に差し替える。"};
+var NEW={
+ N1:["今日持ち帰る「物差し」","比べ方・地震・暑さ寒さ・土地・お金。家づくりを自分で判断できる物差しを、今日お渡しする約束。（草案の「6つの物差し」）"],
+ N2:["最後に、近くの加盟店様で答え合わせ","今日の話を、あなたの土地・予算で確かめる場所がある、と最初に伝えておく。"],
+ N3:["決めることは500〜700項目","注文住宅は決めることが多すぎる。だから比べる軸が要る。（草案の数字。出典確認中）"],
+ N4:["言葉ではなく、数字で比べる","「高性能」「暖かい」ではなく、等級・UA値・総額で比べる。"],
+ N5:["住まいの買い方は6種類","建売・規格住宅・注文住宅など、買い方ごとの違い。（草案）"],
+ N6:["坪単価では比べられない","坪単価70万と80万でも、見積もりの中身で総額は逆転する。（草案の例）"],
+ N7:["120プランから、気になる3つを選んでおいてください","最後のアンケートで選んでいただく予告。選んだ3プランで、加盟店様が準備してお迎えする。"],
+ N8:["多くの方は、土地探しから始まる","土地なしで家づくりを始める方が多い。（草案「約8割」。出典確認中）"],
+ N9:["先に住宅会社を決める理由","土地を先に買うと、建てたいプランがはまらない・予算が足りないが起きる。"],
+ N10:["100点の土地はない。70点で選ぶ","全部を満たす土地は出てこない。譲れない条件を決めて70点で選ぶ。（草案）"],
+ N11:["土地で失敗する例","見えない費用がかかる土地の例。（草案「擁壁のやり直しで約2,000万円」。出典確認中）"],
+ N12:["選んだプランがはまる土地の見方","120プランの間口・奥行きから、合う土地の大きさがわかる。"],
+ N13:["ご相談のご案内①：ここまでの話を、あなたの家で確かめる","お金の章の前に一度。最後まで見ない方もここで拾う。"],
+ N14:["予算は「借りられる額」ではなく「返せる額」","借りられる上限で組むと、暮らしが苦しくなる。（草案）"],
+ N15:["1家族の実演①：家計","例：夫700万円・妻100万円・子ども3歳のご家族。（草案の設定）"],
+ N16:["1家族の実演②：返済","このご家族が無理なく返せる月々の額。"],
+ N17:["1家族の実演③：総額","返せる額から逆算した、建物と土地にかけられる総額。"],
+ N18:["総額の内訳","建物本体・付帯工事・土地・諸費用。付帯工事と地域の仕様は、近くの加盟店様でお出しする。"],
+ N19:["ご相談でわかる3つのこと","①選んだプランが土地・エリアにはまるか　②ご家族ごとの総額と月々の返済　③はまる土地の探し方"],
+ N20:["お近くの加盟店様におつなぎします","話しているのはGハウス、ご相談は地元の加盟店様。社名が違うことを先に伝える。"],
+ N21:["アンケートのお願い","気になるプランを最大3つと、ご相談の希望を伺う。"],
+ N22:["ご相談までの流れ","今夜：予約枠をメール・SMSでお送り → 翌日：お電話でご都合を伺う → 近くの加盟店様でご相談。"]
+};
+var CH=[
+ {no:"00",nm:"はじめに",mn:"3分",use:[1,2,3],nw:["N1","N2"]},
+ {no:"01",nm:"家づくりの出発点",mn:"6分",nw:["N3","N4"]},
+ {no:"02",nm:"住まいの種類と比べ方",mn:"7分",use:[75,60],nw:["N5","N6"]},
+ {no:"03",nm:"120プラン",mn:"8分",use:[4,5,6,7,8,9,10,11,12,13],nw:["N7"],cut:[14,15]},
+ {no:"04",nm:"地震",mn:"10分",use:[16,17,18,19,20,21,22,23,25,26,27],cut:[24]},
+ {no:"05",nm:"暑さ寒さと健康",mn:"14分",use:[28,29,30,31,32,33,34,38,40,41,42,46,47,48,50,51,52,53,54],cut:[35,36,37,39,43,44,45,49],note:"27枚を19枚に絞る。結露は47→48→50→51→52→53の順で、仕組みから対策まで通して見せる。"},
+ {no:"06",nm:"土地",mn:"9分",nw:["N8","N9","N10","N11","N12"],note:"今のセミナーに土地の章はないため、すべて新しく作る。"},
+ {mid:"N13"},
+ {no:"07",nm:"お金",mn:"23分",nw:["N14","N15","N16","N17","N18"],use:[59,55,56,57,58,60.5,61,62,63,65,66,68,70,71,72,73,74],cut:[64,67,69]},
+ {no:"08",nm:"LIFE Xと次の一歩",mn:"10分",use:[76,77],nw:["N19","N20","N21","N22"],cut:[78,79]}
+];
+// 60は02で使うため07からは除く（60.5は使わない印）
+CH[8].use=CH[8].use.filter(function(x){return x===Math.floor(x)});
+
+var seq=[],ST={},chapOf={};
+CH.forEach(function(c){
+  if(c.mid){seq.push(c.mid);chapOf[c.mid]="06と07の間";return;}
+  var name=c.no+" "+c.nm;
+  (c.nw||[]).forEach(function(n){chapOf[n]=name;});
+  (c.use||[]).forEach(function(n){ST[n]="use";chapOf[n]=name;});
+  (c.cut||[]).forEach(function(n){ST[n]="cut";chapOf[n]=name;});
+  // 提案の並び：新規の導入→使う
+  var order=[];
+  if(c.no==="00") order=[1,2,"N1",3,"N2"];
+  else if(c.no==="07") order=["N14","N15","N16","N17","N18",59,58,55,56,57,61,62,63,65,66,68,70,71,72,73,74];
+  else if(c.no==="08") order=["N19","N20",76,"N21","N22",77];
+  else if(c.no==="02") order=["N5",75,"N6",60];
+  else if(c.no==="03") order=[5,6,7,4,8,9,10,11,12,13,"N7"];
+  else order=(c.nw||[]).concat(c.use||[]);
+  order.forEach(function(x){seq.push(x);});
+});
+for(var i=1;i<=79;i++){if(!ST[i]){ST[i]="cut";chapOf[i]=chapOf[i]||"";}}
+
+function img(n){return n<=77?'webinar-kousei-slides/s-'+String(n).padStart(2,'0')+'.jpg':null;}
+function chip(x,kind){
+  var b=document.createElement('button');b.className='c'+(kind==='n'?' n':kind==='x'?' x':'')+((NOTE[x]&&/要更新/.test(NOTE[x]))?' warn':'');
+  b.dataset.id=x;
+  b.innerHTML=(kind==='n'?'<i>新</i>':'<i>'+x+'</i>')+'<span>'+(kind==='n'?NEW[x][0]:T[x])+'</span>';
+  b.onclick=function(){show(x);};
+  return b;
+}
+function lane(label,arr,kind){
+  if(!arr||!arr.length)return '';
+  var d=document.createElement('div');d.className='lane';
+  d.innerHTML='<span class="k">'+label+'</span>';var w=document.createElement('div');w.className='chips';
+  arr.forEach(function(x){w.appendChild(chip(x,kind));});d.appendChild(w);return d;
+}
+var left=document.getElementById('left');
+CH.forEach(function(c){
+  if(c.mid){var m=document.createElement('div');m.className='mid';m.innerHTML='<b>ご相談のご案内 1</b>';m.appendChild(chip(c.mid,'n'));left.appendChild(m);return;}
+  var s=document.createElement('section');s.className='ch';
+  s.innerHTML='<div class="hd"><div class="no">'+c.no+'</div><div class="nm">'+c.nm+'</div><div class="mn">'+c.mn+'</div></div>';
+  var bd=document.createElement('div');bd.className='bd';
+  [lane('使う',c.use,'u'),lane('新しく',c.nw,'n'),lane('使わない',c.cut,'x')].forEach(function(l){if(l)bd.appendChild(l);});
+  if(c.note){var p=document.createElement('p');p.className='note';p.textContent=c.note;bd.appendChild(p);}
+  s.appendChild(bd);left.appendChild(s);
+});
+// 一覧
+var grid=document.getElementById('grid');
+for(var n=1;n<=79;n++){(function(n){
+  var d=document.createElement('div');d.className='th'+(ST[n]==='cut'?' x':'');d.dataset.id=n;
+  d.innerHTML=(img(n)?'<img loading="lazy" src="'+img(n)+'" alt="">':'<div class="hid">非表示スライド</div>')+'<span class="tag">'+(ST[n]==='cut'?'使わない':'使う')+'</span><div class="cap"><i>'+n+'</i><span>'+T[n]+'</span></div>';
+  d.onclick=function(){show(n);};grid.appendChild(d);
+})(n);}
+// 数
+var nUse=0,nCut=0;for(var k=1;k<=79;k++){ST[k]==='use'?nUse++:nCut++;}
+document.getElementById('nUse').textContent=nUse;document.getElementById('nCut').textContent=nCut;
+document.getElementById('nNew').textContent=Object.keys(NEW).length;document.getElementById('nAll').textContent=nUse+Object.keys(NEW).length;
+// プレビュー
+var cur=null;
+function show(x){
+  cur=x;var isNew=typeof x==='string';var st=isNew?'new':ST[x];
+  var b=document.getElementById('pBadge');b.className='badge'+(st==='new'?' n':st==='cut'?' x':'');b.textContent=st==='new'?'新しく作る':st==='cut'?'使わない':'使う';
+  document.getElementById('pTitle').textContent=isNew?NEW[x][0]:(x+'枚目　'+T[x]);
+  document.getElementById('pChap').textContent=chapOf[x]||'';
+  var f=document.getElementById('pFrame');
+  if(isNew){f.innerHTML='<div class="ph"><div class="l">新しく作るページ（仮）</div><div class="h"></div><div class="p"></div></div>';f.querySelector('.h').textContent=NEW[x][0];f.querySelector('.p').textContent=NEW[x][1];}
+  else if(img(x)){f.innerHTML='<img src="'+img(x)+'" alt="">';}
+  else{f.innerHTML='<div class="hid" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#888">元のファイルで非表示のスライド</div>';}
+  document.getElementById('pNote').innerHTML=NOTE[x]||'';
+  document.querySelectorAll('.c.sel,.th.sel').forEach(function(e){e.classList.remove('sel');});
+  document.querySelectorAll('[data-id="'+x+'"]').forEach(function(e){e.classList.add('sel');});
+  var i=seq.indexOf(x);document.getElementById('pos').textContent=i>=0?('提案の順で '+(i+1)+' / '+seq.length+' 枚目'):'ウェビナーでは使わない';
+}
+function step(d){var i=seq.indexOf(cur);if(i<0)i=d>0?-1:seq.length;i=Math.max(0,Math.min(seq.length-1,i+d));show(seq[i]);
+  var el=document.querySelector('.left [data-id="'+seq[i]+'"]');if(el&&!document.body.classList.contains('list'))el.scrollIntoView({block:'nearest'});}
+document.getElementById('prev').onclick=function(){step(-1);};
+document.getElementById('next').onclick=function(){step(1);};
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1);});
+var tM=document.getElementById('tMap'),tL=document.getElementById('tList');
+tM.onclick=function(){document.body.classList.remove('list');tM.classList.add('on');tL.classList.remove('on');};
+tL.onclick=function(){document.body.classList.add('list');tL.classList.add('on');tM.classList.remove('on');};
+show(seq[0]);
+</script>
+</body>
+</html>
