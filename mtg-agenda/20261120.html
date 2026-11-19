@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>11月第3週（金） KPI観察</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#2b3a67; --navy-l:#eaedf5; --navy-m:#8d98bd; --greige:#f3f1ec;
+  --ink:#1b1f24; --ink2:#4a525c; --mute:#8a929c; --line:#e3e6ea; --warn:#a1462a;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font-family:"Noto Sans JP",sans-serif;line-height:1.7;font-size:15px}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 16px 64px}
+header{border-bottom:2px solid var(--navy);padding-bottom:12px;margin-bottom:8px}
+h1{font-size:24px;margin:0;line-height:1.4;color:var(--navy)}
+.sub{color:var(--ink2);font-size:13px;margin-top:4px}
+h2{font-size:18px;margin:40px 0 14px;color:var(--navy);display:flex;align-items:center;gap:10px}
+h2 .no{background:var(--navy);color:#fff;font-size:13px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex:none}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:#fff}
+.card h3{font-size:14px;margin:0 0 12px;color:var(--ink2);font-weight:500}
+.bars{display:grid;grid-template-columns:auto 1fr auto;gap:8px 10px;align-items:center}
+.bars .lb{font-size:13px;color:var(--ink2);white-space:nowrap}
+.bars .tr{height:22px;background:var(--greige);border-radius:4px;overflow:hidden;position:relative}
+.bars .tr i{display:block;height:100%;background:var(--navy);border-radius:0 4px 4px 0}
+.bars .tr i.tent{background:var(--navy-m)}
+.bars .tr .goal{position:absolute;top:-2px;bottom:-2px;left:40%;border-left:2px dashed var(--warn)}
+.bars .v{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.bars .v small{font-weight:400;color:var(--mute);font-size:12px;margin-left:4px}
+.bars .row{display:contents}
+.note{font-size:12.5px;color:var(--ink2);margin-top:12px;padding-top:10px;border-top:1px dashed var(--line)}
+.note b{color:var(--warn);font-weight:700}
+.st td,.st th{white-space:nowrap}.st thead th:first-child{text-align:left}.st tr.z th,.st tr.z td{color:var(--mute)}
+.st td.lo{color:var(--warn);font-weight:700}.st tr.z td.lo{color:var(--mute);font-weight:400}
+.st td small{color:var(--mute);font-size:11.5px;margin-left:3px;font-weight:400}
+.st thead th.sep,.st td.sep{border-left:1px solid var(--line)}
+.st tfoot th,.st tfoot td{font-weight:700;border-top:2px solid var(--navy);border-bottom:0}
+table{width:100%;border-collapse:collapse;font-size:13.5px;font-variant-numeric:tabular-nums}
+th,td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:right}
+thead th{color:var(--ink2);font-weight:500;font-size:12.5px}
+tbody th{text-align:left;font-weight:500}
+td.now{font-weight:700;color:var(--navy)}
+.diff td.up{color:var(--navy);font-weight:700}
+.obs{display:grid;gap:10px}
+.obs .it{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.obs .k{font-size:26px;font-weight:900;color:var(--navy);line-height:1.2}
+.obs .k small{font-size:13px;font-weight:500;color:var(--ink2);display:block;margin-top:2px}
+.obs .t b{display:block;font-size:15px;margin-bottom:2px}
+.obs .t span{font-size:13.5px;color:var(--ink2)}
+.prop{display:grid;gap:14px}
+.prop .p{border:1.5px solid var(--navy);border-radius:12px;padding:18px 20px}
+.prop .h{display:flex;gap:12px;align-items:baseline;margin-bottom:6px}
+.prop .h .n{font-size:13px;font-weight:700;color:#fff;background:var(--navy);border-radius:4px;padding:1px 8px;flex:none}
+.prop .h b{font-size:16.5px;color:var(--navy)}
+.prop p{margin:4px 0;font-size:14px}
+.prop .why{color:var(--ink2);font-size:13.5px}
+.prop .risk{font-size:13px;color:var(--ink2);background:var(--greige);border-radius:6px;padding:8px 12px;margin-top:8px}
+.prop .risk b{color:var(--ink)}
+.skip{font-size:13px;color:var(--ink2);background:var(--greige);border-radius:10px;padding:12px 16px;margin-top:14px}
+.skip b{color:var(--ink)}
+details{margin-top:40px;font-size:12.5px;color:var(--ink2)}
+summary{cursor:pointer}
+details ul{padding-left:18px}
+.detail{margin-top:14px}.detail summary{cursor:pointer;font-size:13.5px;font-weight:700;color:var(--navy)}.detail table{margin-top:10px}
+.ka{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px;break-inside:avoid}
+.ka .hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin-bottom:10px}
+.ka .hd b{font-size:16px;color:var(--navy)}
+.ka .hd .neck,.ka .hd .good{font-size:12px;font-weight:700;border-radius:4px;padding:1px 8px}
+.ka .hd .neck{color:var(--warn);border:1px solid var(--warn)}
+.ka .hd .good{color:var(--navy);border:1px solid var(--navy)}
+.ka .hd small{font-size:12.5px;color:var(--ink2)}
+.ka .g{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:14px;font-size:13px;color:var(--ink2);line-height:1.75}
+.ka h4{margin:0 0 4px;font-size:12px;color:var(--navy-m);letter-spacing:.08em}
+.ka .j{background:var(--navy-l);border-radius:8px;padding:10px 12px;color:var(--ink)}
+.ka .j h4{color:var(--navy)}
+.ka em{font-style:normal;font-size:11.5px;color:var(--mute);display:block;margin-top:8px}
+.ka .detail{margin-top:12px}
+.st.ph th,.st.ph td{white-space:normal;text-align:left;vertical-align:top;font-size:13px}.st.ph tbody th{white-space:nowrap;color:var(--navy)}
+.tw{overflow-x:auto;margin-top:10px}
+.st.rt th,.st.rt td{padding:5px 7px;font-size:12.5px}
+.st.rt .gh{text-align:center;color:var(--navy)}
+@media (max-width:760px){.ka .g{grid-template-columns:1fr}}
+@media (max-width:760px){.grid2{grid-template-columns:1fr}.obs .it{grid-template-columns:1fr;gap:4px}}
+@media print{h2{break-after:avoid}.card,.it,.p{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<p style="margin:0 0 12px;font-size:13px"><a href="index.html" style="color:var(--navy)">← 議題資料の一覧へ</a></p>
+<header>
+  <h1>11月第3週（金） KPI観察・分析・判断</h1>
+  <div class="sub">2026/11/20 LIFEX MTG｜対象期間 11/1〜19（本部用API 11/19 18:25取得）＋11/16以降の会議</div>
+</header>
+<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 0;font-size:13.5px">
+  <span style="color:var(--ink2)">このMTGで一緒に開く：</span>
+  <a href="https://tokuda-k-sketch.github.io/lifex-public/kpi-settei.html?v=1792115139#list" target="_blank" rel="noopener" style="border:1.5px solid var(--navy);color:var(--navy);border-radius:999px;padding:4px 14px;text-decoration:none;font-weight:700">12月末KPI 目標数値の一覧</a>
+  <a href="../insta-monitor/index.html" target="_blank" rel="noopener" style="border:1.5px solid var(--navy);color:var(--navy);border-radius:999px;padding:4px 14px;text-decoration:none;font-weight:700">Instagram フォロワー数の一覧</a>
+</div>
+
+<h2><span class="no">1</span>数値の推移</h2>
+<div class="grid2">
+  <div class="card">
+    <h3>11月1〜19日（11/19 18:25時点）と、そのうち前回MTG以降（11/16〜19）</h3>
+    <table class="diff">
+      <thead><tr><th style="text-align:left">指標</th><th>11/1〜19</th><th>うち11/16〜19</th></tr></thead>
+      <tbody>
+        <tr><th>新規登録（未割当を含む）</th><td class="now">84人</td><td>18人</td></tr>
+        <tr><th>母数</th><td class="now">54人</td><td>11人</td></tr>
+        <tr><th>通話接続</th><td class="now">27人</td><td>4人</td></tr>
+        <tr><th>アポ</th><td class="now">22人</td><td>3人</td></tr>
+        <tr><th>面談</th><td class="now">17人</td><td>1人</td></tr>
+        <tr><th>内定に変わった件数</th><td class="now">3件</td><td>2件</td></tr>
+        <tr><th>契約に変わった件数</th><td class="now">2件</td><td>1件</td></tr>
+      </tbody>
+    </table>
+    <div class="note">母数〜面談は11月に登録したお客様。11/16〜19に登録した11人のうち6人がWITHDOM Group様です。11/16以降の内定は中央建設様（11/17、面談済みの方）と竹村工務店様（11/19）、契約は建匠様（11/16）。竹村工務店様と建匠様の2件は、自社で集客したお客様をポータルに登録し、その段階で入力したものです。LIFEX経由のお客様で11/16以降に内定・契約へ進んだのは、中央建設様の1件です。</div>
+  </div>
+  <div class="card">
+    <h3>通話接続率（通話接続÷母数）　点線＝12月の目標40%</h3>
+    <div class="bars">
+      <div class="row"><span class="lb">研修前 1/1〜7/23</span><span class="tr"><i style="width:23.9%"></i><span class="goal"></span></span><span class="v">23.9%<small>83/348</small></span></div>
+      <div class="row"><span class="lb">研修後 7/24〜10/5</span><span class="tr"><i style="width:34.7%"></i><span class="goal"></span></span><span class="v">34.7%<small>118/340</small></span></div>
+      <div class="row"><span class="lb">直近3ヶ月 8/20〜11/19</span><span class="tr"><i style="width:45.7%"></i><span class="goal"></span></span><span class="v">45.7%<small>197/431</small></span></div>
+      <div class="row"><span class="lb">10月登録 10/1〜31</span><span class="tr"><i style="width:51.3%"></i><span class="goal"></span></span><span class="v">51.3%<small>79/154</small></span></div>
+      <div class="row"><span class="lb">11月登録 11/1〜19</span><span class="tr"><i class="tent" style="width:50.0%"></i><span class="goal"></span></span><span class="v">27人<small>/54人</small></span></div>
+    </div>
+    <div class="note">11月は月の途中なので人数で書いています（率にすると50.0%）。直近3ヶ月は前回の8/16〜11/15（45.2%・194/429）から集計期間が4日ずれています。母数10人以上の14社で見た会社ごとの中央値は<b>45.6%</b>（前回44.5%）、40%未満は前回と同じ4社（2の表の赤字）。研修前・研修後は別資料の数字です。</div>
+  </div>
+</div>
+<div class="card" style="margin-top:16px">
+  <h3>登録した月ごとの通話接続率（今日時点で、各月に登録したお客様がどこまで進んだか）</h3>
+  <div class="bars">
+    <div class="row"><span class="lb">5月登録</span><span class="tr"><i style="width:25.0%"></i><span class="goal"></span></span><span class="v">25.0%<small>28/112</small></span></div>
+    <div class="row"><span class="lb">6月登録</span><span class="tr"><i style="width:23.4%"></i><span class="goal"></span></span><span class="v">23.4%<small>34/145</small></span></div>
+    <div class="row"><span class="lb">7月登録</span><span class="tr"><i style="width:27.1%"></i><span class="goal"></span></span><span class="v">27.1%<small>32/118</small></span></div>
+    <div class="row"><span class="lb">8月登録</span><span class="tr"><i style="width:32.8%"></i><span class="goal"></span></span><span class="v">32.8%<small>38/116</small></span></div>
+    <div class="row"><span class="lb">9月登録</span><span class="tr"><i style="width:45.5%"></i><span class="goal"></span></span><span class="v">45.5%<small>80/176</small></span></div>
+    <div class="row"><span class="lb">10月登録</span><span class="tr"><i style="width:51.3%"></i><span class="goal"></span></span><span class="v">51.3%<small>79/154</small></span></div>
+  </div>
+  <div class="note">5〜10月登録は、前回（11/15取得）から1人も動いていません（5〜9月登録は前々回の11/12取得から）。過去に登録したお客様で、この4日間に新しく電話がつながった方はいません。</div>
+</div>
+
+<h2><span class="no">2</span>観察</h2>
+<div class="card" style="overflow-x:auto">
+  <h3>加盟店様別（稼働開始が早い順）</h3>
+  <table class="st">
+    <thead>
+      <tr><th></th><th></th><th colspan="4" style="text-align:center">11月1〜19日に登録</th><th style="text-align:center">11月</th><th colspan="3" class="sep" style="text-align:center">通話接続率</th><th colspan="2" class="sep" style="text-align:center">未着手</th></tr>
+      <tr><th>加盟店様</th><th>稼働開始</th><th>母数</th><th>通話</th><th>アポ</th><th>面談</th><th>内定・契約</th><th class="sep">10月登録</th><th>直近3ヶ月</th><th>12月目標</th><th class="sep">10月登録</th><th>11月登録</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>いえプロ不動産様</th><td>2月</td><td>1</td><td>0</td><td>0</td><td>0</td><td>—</td><td class="sep">52.0%</td><td class="lo">37.5%<small>27/72</small></td><td>—</td><td class="sep">1</td><td>0</td></tr>
+      <tr><th>坂本建設工業様</th><td>2月</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="now">契約1</td><td class="sep">0/5</td><td>1/8</td><td>45%</td><td class="sep">1</td><td>0</td></tr>
+      <tr><th>久留米建設様</th><td>4月</td><td>2</td><td>0</td><td>0</td><td>0</td><td>—</td><td class="sep">3/5</td><td class="lo">26.3%<small>5/19</small></td><td class="lo">37%</td><td class="sep">0</td><td>1</td></tr>
+      <tr><th>中央建設様</th><td>4月</td><td class="now">4</td><td class="now">3</td><td class="now">3</td><td class="now">3</td><td class="now">内定1</td><td class="sep">50.0%</td><td>50.0%<small>19/38</small></td><td>支店別</td><td class="sep">0</td><td>1</td></tr>
+      <tr class="z"><th>フラワーホーム様</th><td>4月</td><td>1</td><td>0</td><td>0</td><td>0</td><td>—</td><td class="sep">0/2</td><td class="lo">0.0%<small>0/12</small></td><td>—</td><td class="sep lo">6</td><td>0</td></tr>
+      <tr><th>竹村工務店様</th><td>5月</td><td>1</td><td>1</td><td>1</td><td>1</td><td class="now">内定1</td><td class="sep">2/4</td><td>75.0%<small>15/20</small></td><td>75%</td><td class="sep">0</td><td>0</td></tr>
+      <tr><th>YUNO HOME様</th><td>5月</td><td>1</td><td>0</td><td>0</td><td>0</td><td>—</td><td class="sep">54.5%</td><td>40.0%<small>10/25</small></td><td>—</td><td class="sep">0</td><td>2</td></tr>
+      <tr><th>ダイケンアーキテクツ様</th><td>5月</td><td class="now">3</td><td class="now">2</td><td class="now">2</td><td class="now">2</td><td class="now">内定1</td><td class="sep">2/3</td><td>58.3%<small>7/12</small></td><td>70%</td><td class="sep">0</td><td>0</td></tr>
+      <tr><th>WITHDOM Group様</th><td>5月</td><td class="now">22</td><td class="now">11</td><td class="now">9</td><td class="now">8</td><td>—</td><td class="sep">51.4%</td><td>55.3%<small>57/103</small></td><td>50%</td><td class="sep">0</td><td>1</td></tr>
+      <tr><th>キノシタ様</th><td>5月</td><td class="now">3</td><td class="now">3</td><td class="now">2</td><td class="now">1</td><td>—</td><td class="sep">1/3</td><td>45.8%<small>11/24</small></td><td>75%</td><td class="sep">0</td><td>0</td></tr>
+      <tr><th>建匠様</th><td>6月</td><td class="now">3</td><td class="now">1</td><td class="now">1</td><td class="now">1</td><td class="now">契約1</td><td class="sep">1/1</td><td>4/7</td><td>70%</td><td class="sep">0</td><td>0</td></tr>
+      <tr class="z"><th>シリウス様</th><td>7月</td><td>0</td><td>0</td><td>0</td><td>0</td><td>—</td><td class="sep">0/1</td><td>0/2</td><td>40%</td><td class="sep">1</td><td>0</td></tr>
+      <tr><th>河原工務店様</th><td>7月</td><td>2</td><td>0</td><td>0</td><td>0</td><td>—</td><td class="sep">7/9</td><td class="lo">35.0%<small>7/20</small></td><td>40%</td><td class="sep">0</td><td>1</td></tr>
+      <tr><th>永大ハウスビルド様</th><td>7月</td><td>0</td><td>0</td><td>0</td><td>0</td><td>—</td><td class="sep">1/2</td><td>40.0%<small>4/10</small></td><td>50%</td><td class="sep lo">3</td><td>2</td></tr>
+      <tr><th>南日本ハウス様</th><td>7月</td><td>0</td><td>0</td><td>0</td><td>0</td><td>—</td><td class="sep">4/6</td><td>63.6%<small>7/11</small></td><td>—</td><td class="sep">0</td><td>1</td></tr>
+      <tr><th>むつみワールド様</th><td>8月</td><td class="now">3</td><td class="now">2</td><td class="now">1</td><td>0</td><td>—</td><td class="sep">2/2</td><td>4/5</td><td>60%</td><td class="sep">0</td><td>0</td></tr>
+      <tr><th>LIFE X UTSUNOMIYA（トーモク様）</th><td>9月</td><td>1</td><td>0</td><td>0</td><td>0</td><td>—</td><td class="sep">1/5</td><td>1/6</td><td>50%</td><td class="sep">1</td><td>3</td></tr>
+      <tr><th>健康住宅様</th><td>9月</td><td>1</td><td>0</td><td>0</td><td>0</td><td>—</td><td class="sep">50.0%</td><td>45.5%<small>5/11</small></td><td>50%</td><td class="sep">1</td><td>0</td></tr>
+      <tr><th>アパックスホーム様</th><td>9月</td><td class="now">5</td><td class="now">4</td><td class="now">3</td><td class="now">1</td><td>—</td><td class="sep">6/9</td><td>58.8%<small>10/17</small></td><td>55%</td><td class="sep">0</td><td>0</td></tr>
+      <tr><th>LIFE X KORIYAMA（華楽舎様）</th><td>10月</td><td>0</td><td>0</td><td>0</td><td>0</td><td>—</td><td class="sep">1/2</td><td>2/4</td><td>50%</td><td class="sep">0</td><td>0</td></tr>
+      <tr><th>アイコン様</th><td>—</td><td>1</td><td>0</td><td>0</td><td>0</td><td>—</td><td class="sep">1/4</td><td>1/5</td><td>50%</td><td class="sep">1</td><td>1</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><th>合計</th><td></td><td class="now">54</td><td class="now">27</td><td class="now">22</td><td class="now">17</td><td class="now">内定3・契約2</td><td class="sep">51.3%</td><td>45.7%<small>197/431</small></td><td></td><td class="sep">15</td><td>13</td></tr>
+    </tfoot>
+  </table>
+  <div class="note">稼働開始月は2026年。母数〜面談は11/1〜19に登録したお客様、内定・契約は11月にステータスがその段階に変わった件数（登録月は問わない）。灰色の行は直近3ヶ月の通話接続が0人。接続率は母数10人以上だけ率で、10人未満は人数で書いています。直近3ヶ月は登録日 8/20〜11/19 で集計し、赤字は母数10人以上で40%未満。12月目標は12月末KPI設定シートに保存された通話接続率の目標（11/1時点。中央建設様は支店ごと）で、赤字は全社の最低ライン40%を下回る設定。未着手は登録してステータスが「未登録」のままの人数で、10月登録（赤字は3人以上）と11月登録に分けています。</div>
+</div>
+<div class="obs" style="margin-top:14px">
+  <div class="it"><div class="k">1件<small>11/16以降、LIFEX経由で内定・契約へ</small></div><div class="t"><b>11/16〜19の内定・契約3件のうち、ポータルで面談から進んだのは中央建設様の1件</b><span>竹村工務店様の内定と建匠様の契約は、自社で集客したお客様を登録した日にその段階で入力したものです。自社のお客様をポータルに入れていただくこと自体は、これまでお願いしてきた形どおりです。一方で、前回の時点で内定だった11人からは、この4日間に契約へ進んだ方はいません。</span></div></div>
+  <div class="it"><div class="k">19件<small>11/16〜19のステータス変更</small></div><div class="t"><b>4日間で8社が手でステータスを動かした（前回の3日間は10社・20件）</b><span>WITHDOM Group様6件、中央建設様4件、建匠様・河原工務店様・竹村工務店様が2件ずつ、YUNO HOME様・むつみワールド様・アパックスホーム様が1件ずつ。11/16のLIFEX MTGで、動きが鈍かった10社とショートMTGで画面を見ながら一緒に動かす取り組みを続けると報告しています。</span></div></div>
+  <div class="it"><div class="k">416人<small>追客中638人のうち</small></div><div class="t"><b>手で最後にステータスを変えてから14日以上の方は、392人から416人に</b><span>割り当て後に一度も手で変えていない方は154人から163人。加盟店様が手で変えた日を基準にした数え方で、自動で進んだ分と9/16（新システム切替）より前の変更は入っていません。11/13に決まった「2週間動いていない方を目立たせる」改修は、システムの引き継ぎが済み次第の対応です。</span></div></div>
+</div>
+
+<h2><span class="no">3</span>全社の観察・分析・判断（流れ・転換・面談後・初動）</h2>
+<p class="lead" style="font-size:14px;color:var(--ink2);margin:-4px 0 14px">前回の判断がどうなったかを含めて、4つの切り口で並べました。今回の詰まりの本体は②の転換だと見ています。今日決めたいことは各段の右側です。</p>
+
+<div class="ka">
+  <div class="hd"><b>① 入口の量（前回の判断「LP切替の前後比較を11/20に」の結果）</b><span class="neck">LPを切り替えた後の4週は、前の4週の87%。大きく落ちたのは、その次の4週</span><small>割り当て済みの新規登録のうちLIFEX経由（集計対象のお客様）</small></div>
+  <div class="g">
+    <div><h4>観察</h4>
+      <table class="st rt"><thead><tr><th>期間（各4週）</th><th>LIFEX経由</th><th>切替前比</th></tr></thead><tbody>
+      <tr><th>8/20〜9/16（切替前）</th><td>144</td><td>—</td></tr>
+      <tr><th>9/17〜10/14（切替後）</th><td>125</td><td>87%</td></tr>
+      <tr><th>10/15〜11/11</th><td class="lo">74</td><td class="lo">51%</td></tr></tbody></table>
+      週ごとに見ると、切替後の4週は30〜38人で、10/19の週に19人へ一段下がっています。11/2の週は13人。本部広告の運用を切り替えた11/12からは、11/12〜15で14人、11/16〜19で11人と、1日あたり3人強に戻ってきました（11/2の週は1日2人弱、10/5の週は1日4.6人）。LPの切替日は11/16のLIFEX MTGで9/17と確認しています。</div>
+    <div><h4>分析</h4>ポータル側の数字では、LPの切替だけで今の落ち込みは説明できません。落ちたのは切替から1ヶ月あとです。加盟店様から「LPが変わってから落ちた」と感じるのは、10月後半の段差と時期が近いからだと読めます。反対の読み方もあります。切替前の4週には9/7の週の56人という山が入っていて、それを除けば前後の差はもっと小さくなります。逆に、LPの影響が「人数」でなく「訪問から資料請求への率」に出ていて、同じ時期に広告で訪問が増えていたなら、人数だけでは見えません。そこは時位さんのアクセスの数字が要ります。11/12以降の戻りは、時位さんが報告したオーディエンス設定の変更（11/16）と時期が合っています。</div>
+    <div class="j"><h4>判断（案）</h4>LPはすぐには戻さない（11/16に決めた「現状把握を優先」のまま）。探すのは10/19の週の前後に変わったことで、加盟店様別の広告の運用や予算を変えた日を、この週別の表に重ねます。今日決めたいのは、その日付を誰が集めるか（案は時位さん。アクセス数・資料請求率とあわせて次回MTGで）。週別のポータルの数字は毎回この表で追う（徳田）。</div>
+  </div>
+</div>
+
+<div class="ka">
+  <div class="hd"><b>② 転換（面談→内定→契約）</b><span class="neck">12月末までに契約55件の目標に対し、11月の契約は19日までで2件</span><small>内定・契約は、ステータスがその段階に変わった月で数える</small></div>
+  <div class="g">
+    <div><h4>観察</h4>
+      <table class="st rt"><thead><tr><th>月</th><th>内定</th><th>契約</th></tr></thead><tbody>
+      <tr><th>9月</th><td>3</td><td>14</td></tr>
+      <tr><th>10月</th><td>12</td><td>8</td></tr>
+      <tr><th>11月（19日まで）</th><td>3</td><td class="lo">2</td></tr></tbody></table>
+      11/16のLIFEX MTGで、12月末までに全加盟店様で契約55件という目標を確認しました（11月・12月の合計）。残りは53件で、12月末まで6週間です。契約に一番近いのは、内定13人と、土地探し・ローン事前審査の29人の、合わせて42人です。登録時期ごとの面談→内定以上は、5〜7月登録26%、8〜9月登録22%、10月登録14%。</div>
+    <div><h4>分析</h4>今いる42人が全員契約しても53件に届きません。55件に近づくには、①この42人を落とさないこと、②ここから6週間で面談した方を年内に内定・契約まで運ぶこと、の両方が要ります。10月の契約8件のペースのままだと、11月の2件と合わせて12月末で13件前後の計算です。反対の読み方として、各社の目標の中に、ポータルにまだ入っていない自社のお客様（注文住宅で追っている方をLIFE Xへ切り替える案件など）が含まれている可能性があります。11/16以降の3件のうち2件が「登録した日に内定・契約で入力」だったのは、その表れとも読めます。もしそうなら、ポータルの在庫だけ見ていても55件への距離は測れません。</div>
+    <div class="j"><h4>判断（案）</h4>各社の12月末の契約目標と、ポータルにいる42人（内定・土地・ローン）を社別に並べた表を、次回MTGで出す（徳田）。差がある会社は、ポータルに入っていない案件があるのかをショートMTGで伺い、あれば登録をお願いする。今日決めたいのは、55件を「LIFEX経由＋自社で集客したお客様」の両方で数えることの確認です。</div>
+  </div>
+</div>
+
+<div class="ka">
+  <div class="hd"><b>③ 面談のあと（前回の判断「内定中の方の契約予定日を確認」の結果）</b><span class="neck">止まっている場所は土地。内定の方でも土地が決まっていないケースがある</span><small>来場・面談済み／土地探し／ローン事前審査／内定で、追客中の方</small></div>
+  <div class="g">
+    <div><h4>観察</h4>面談以降で追客中のお客様は136人（前回133人）、そのうち30日以上動いていない方は88人（前回87人）。内訳は来場・面談済み94人、土地探し・ローン事前審査29人、内定13人。内定13人のうち8人は内定から30日を超えています。竹村工務店様とのショートMTG（11/16）では、10/26に内定へ進んだ方は土地がまだ決まっておらず、契約はその後になることが分かりました。徳田は同じ日の中央建設様・竹村工務店様とのMTGで「土地探しで止まっているお客様が全加盟店様で多い」と伝え、11/27（金）16時に、土地を決め切るためのロープレ形式の研修を行うと案内しています。</div>
+    <div><h4>分析</h4>前回は「内定の11人を今月中に契約へ」と書きましたが、内定が土地より先に立っている会社があるなら、内定は「契約の直前」を意味しません。お客様が100点の土地を待ち続ける間、営業側からは次の約束が取りにくく、ステータスも動かなくなります。11/27の研修は、ちょうどこの層に当たります。反対の読み方として、30日以上動いていない88人の中には、実際には打合せが進んでいて入力が追いついていないだけの方もいるはずです。</div>
+    <div class="j"><h4>判断（案）</h4>11/27の研修には、各社から「土地探し中」か「内定だが土地が未決」のお客様を1人ずつ実例として持ち込んでいただき、その場で70点の土地で決めるトークを練習する。案内は今日のMTG後に全社へ（徳田）。内定13人の契約予定日の確認は、研修の前日11/26までにショートMTGで済ませる。</div>
+  </div>
+</div>
+
+<div class="ka">
+  <div class="hd"><b>④ 最初の一手の速さ（前回と同じ切り口。判断のその後）</b><span class="neck">24時間以内の更新は72%がつながり、3日を超えると43%。差は前回と同じ</span><small>9/17〜11/12に割り当てたお客様（対象外を除く）</small></div>
+  <div class="g">
+    <div><h4>観察</h4>
+      <table class="st rt"><thead><tr><th>最初の更新まで</th><th>人数</th><th>通話接続</th></tr></thead><tbody>
+      <tr><th>24時間以内</th><td>127</td><td class="now">72.4%</td></tr>
+      <tr><th>1〜3日</th><td>29</td><td>65.5%</td></tr>
+      <tr><th>3日超</th><td>53</td><td class="lo">43.4%</td></tr>
+      <tr><th>更新なし</th><td>53</td><td>3.8%</td></tr></tbody></table>
+      11/16のLIFEX MTGでこの差（前回の数字で73.6%と42.3%）を報告し、担当の方だけでなく上長の方にも伝えていく方針にしました。あわせて、会員登録から24時間たっても更新がない方を画面で知らせる改修を古西さんに依頼。システムの引き継ぎが済み次第の対応で、まだ入っていません。</div>
+    <div><h4>分析</h4>仕組みが入るまでは、各社の担当の方の習慣に頼る状態が続きます。11月に登録してまだ「未登録」のままの方が13人（前回8人）に増えているのは、この間の初動がそろっていないことの表れです。ここで測っているのは入力の速さで、電話をかけた時刻ではありません。電話は早く、入力をまとめてしている会社もあります。</div>
+    <div class="j"><h4>判断（案）</h4>改修が入るまでのつなぎとして、割り当てから24時間たって更新がない方を、徳田が毎朝確認して各社のチャットに1行で知らせる（来週月曜から、改修が入るまで）。改修の見込み日は、次回MTGで古西さんに伺う。</div>
+  </div>
+  <em>①〜④の数字は本部用API（11/19 18:25取得）の members.json・changes.json から集計（基準時刻は最後の変更記録 11/19 14:04）。「更新」は加盟店様が手でステータスを変えた記録で、9/16（新システム切替）より前と自動で進んだ分は入っていません。</em>
+</div>
+
+<h2><span class="no">4</span>加盟店様別の観察・分析・判断（個別MTGから）</h2>
+<div class="ka">
+  <div class="hd"><b>竹村工務店様</b><span class="good">電話・アポ・面談は目標どおり</span><span class="neck">詰まり：土地（内定の前後）と入口の量</span><small>直近3ヶ月 通話接続75.0%（15/20）｜面談以降11人（内定2・土地/ローン5）｜面談→内定以上 4/22</small></div>
+  <div class="g">
+    <div><h4>観察</h4>11/16のショートMTG（知花さん・後藤さん同席）。新規の登録がほとんど入っておらず、動いているお客様は限られている、と知花さん。FPまで済んで購入の意思が固い方は、土地がないため11/21に不動産会社と一緒に土地探しを始めます。ローン事前審査の段階の方は、ご家庭の事情でいったん止まっていて、12/3に年末のカレンダーを届ける訪問で様子を伺う予定。10/26に内定へ進んだ方は土地が未決です。11/15の見学会・セミナーは予約につながらず、「勉強会・セミナー」という呼び方が自社のお客様に合っていないかもしれない、次は打ち出し方を変えたい、とのこと。年明けに第2弾を行い、日付を竹村工務店様で押さえていただきます。ポータルに未登録のお客様が1組あり、登録とステータス変更をお願いしました。11/19に自社のお客様1人を内定で登録。</div>
+    <div><h4>分析</h4>通話接続75%は全社でいちばん高く、電話から面談までは崩れていません。11月の契約を左右するのは、面談のあとの7人（土地・ローン5人と内定2人）で、内定の方のうち少なくとも1人は、土地が決まらないと先へ進みません。新規が少ない今は、この7人の土地をどう決め切るかがそのまま契約数になります。反対の読み方として、土地探しはもともと時間がかかる段階で、30日以上動いていない7人の中には、入力が追いついていないだけの方もいる可能性があります。</div>
+    <div class="j"><h4>判断（案）</h4>11/27の研修に、土地探し中の方を実例として持ち込んでいただく（知花さん・徳田。案件は11/26までに共有）。11/21の土地探しの結果は次のショートMTGで伺う。年明けのイベントは12月中に日付を決める。11/29のキノシタ様のイベント（徳田登壇・勉強会の打ち出し）の反応をお伝えし、呼び方を決める材料にしていただく。</div>
+  </div>
+  <em>文字起こし「竹村工務店様ショートミーティング - 2026/11/16 14:54」／数字は本部用API</em>
+</div>
+<div class="ka">
+  <div class="hd"><b>中央建設様</b><span class="good">11月登録は4人中3人が面談まで</span><span class="neck">詰まり：入口の量（前回から継続）と、登録しても先に進まない方</span><small>直近3ヶ月 通話接続50.0%（19/38）｜面談以降16人（内定3・土地/ローン4）｜11/17 内定1</small></div>
+  <div class="g">
+    <div><h4>観察</h4>11/16のショートMTG（鳥取店・松江店・米子店の吉良さん・佐貫さん）。過去にニコニコ住宅へ来場された方が日程調整中で、LIFE X寄りで進める予定。松江店ではニコニコ住宅のお客様がLIFE Xの会員登録をされました。松江店の11/14のイベントは予約が入らず、個別に声をかけた1組のみ。11/21〜23の3連休にはLIFE Xモデルの先行販売を含むイベントを行います。鳥取店からは「1890万円からを見て会員登録はするが、外構などどこまで含まれるのかという質問が多い。思ったより高いと受け止めて先に進まない方がいるのではないか」という見立てをいただきました。佐貫さんからは、LIFEXのホームページで一部のプランが旧価格のまま表示されているとご指摘があり、その場で誤りを確認しています。モデルハウスは松江店が12月上旬上棟・3月末オープン予定、米子店が4/19の週のオープン予定。会社案内を各店舗へ展開し、つながっていないお客様へ今週中にDMを送っていただきます。</div>
+    <div><h4>分析</h4>11月に登録した4人のうち3人が面談まで進んでいて、電話から面談までの力は落ちていません。数を作れていないのは入口です。鳥取店の見立ては、価格の見せ方が「登録はするが次に進まない」原因になっている可能性を指していて、直近3ヶ月で通話につながらなかった19人の中に、価格で迷っている方がどれだけいるかは今のデータでは分かりません。ホームページとポータルで価格が違って見えるのは、迷っている方の不安を強める側に働きます。反対の読み方として、会員登録だけで止まる方の多くは、まだ情報を集めている段階で、価格以外の理由で止まっているとも読めます。</div>
+    <div class="j"><h4>判断（案）</h4>ホームページの価格表示の修正が済んだかを今日確認する（徳田）。「どこまで含むか」は提案2で全社の形にする。DMの送付数と反応は次のショートMTGで伺う。松江店のオープン後のイベントは、春休みの土日（4月上旬）で12月中に日付を決めていただく。米子店の外部委託先へのLIFE Xの説明は、徳田がオンラインで同席する。</div>
+  </div>
+  <em>文字起こし「中央建設様ショート MTG - 2026/11/16 15:29」／数字は本部用API</em>
+</div>
+
+<h2><span class="no">5</span>取り組みの進み具合</h2>
+<div class="card" style="overflow-x:auto">
+  <table class="st ph">
+    <thead><tr><th>#</th><th>やること</th><th>今回の状況</th></tr></thead>
+    <tbody>
+      <tr><th>1</th><td>LPを新しくする前と後の4週ずつで反響を比べる（前回の提案1）</td><td>11/16のLIFEX MTGで、すぐにLPを戻さず現状把握を優先すると決定。ポータル側の比較は3の①のとおり（切替後4週は切替前の87%、その次の4週は51%）。アクセス数などLP側の数字は時位さんが用意</td></tr>
+      <tr><th>2</th><td>本部送客の「ご要望」をポータルのお客様画面に表示（前回の提案2）</td><td>11/16のLIFEX MTGで古西さんが了承。表示の設定を確認して対応する</td></tr>
+      <tr><th>3</th><td>つながらなかった方へ、その日のうちに会社紹介をメールで送る（前回の提案3）</td><td>中央建設様は会社案内を各店舗へ展開し、つながっていない方へ今週中にDM（11/16）。送付数と反応は次のショートMTGで伺う</td></tr>
+      <tr><th>4</th><td>資料請求フォームの簡略化</td><td>11/16のLIFEX MTGで、新しいフォームが表示されていないことが分かり、北原さんに確認。本部側の設定で短い版に一本化する切り替えが入った（古西さん）。表示されているかは次回確認。短い版のお客様は住所がないので、初回の面談で確認するよう中央建設様に案内（11/16）</td></tr>
+      <tr><th>5</th><td>面談済みのお客様で聞けていないことを整理し、ショートMTGで次の一手を決める</td><td>11/16のLIFEX MTGで、営業担当の方と人物・金・時・敵のどこが足りないかを確認していると報告。竹村工務店様では、内定の方の土地が未決、ローンの方は12/3に訪問と確認（11/16）</td></tr>
+      <tr><th>6</th><td>割り当てから24時間たって更新がない方を画面で知らせる（11/16新規）</td><td>古西さんに依頼。システムの引き継ぎが済み次第の対応</td></tr>
+      <tr><th>7</th><td>本部主催のお客様向けWeb相談会（11/16新規）</td><td>本部で集客してLIFE Xの説明をWebで行い、関心の高まった方を加盟店様へつなぐ方針に合意。開催時間を確認して打合せを設定する（時位さん）。他社の例では金曜21時がいちばん集まる</td></tr>
+      <tr><th>8</th><td>土地を決め切るロープレ研修（11/16新規）</td><td>11/27（金）16時。中央建設様・竹村工務店様に参加を依頼済み。12月第1週の木曜ごろに、ヒアリングのトークスクリプトの回も予定</td></tr>
+      <tr><th>9</th><td>年末年始の稼働と広告</td><td>各社の休業日程を集計して時位さんへ共有する（徳田）。広告は年末年始も回す方向。中央建設様は1/8始業</td></tr>
+      <tr><th>10</th><td>本部広告の運用</td><td>Meta広告のオーディエンス設定（新築へのこだわり・土地探し・ローンシミュレーション利用など）を変えてから、本部送客が前週比で改善（11/16 時位さん）。Google広告はこれから</td></tr>
+      <tr><th>11</th><td>イベント・セミナーの日付入り告知</td><td>竹村工務店様 11/15は予約につながらず、年明けに第2弾。中央建設様 松江店 11/14は予約0、11/21〜23に先行販売イベント。キノシタ様 11/29に徳田が登壇、告知広告は11/17ごろから。アパックスホーム様 11/14セミナーの結果は次の定例で伺う</td></tr>
+      <tr><th>12</th><td>LIFEXホームページの価格表示（11/16新規）</td><td>一部プランが旧価格のまま表示されていると中央建設様からご指摘。修正を依頼</td></tr>
+      <tr><th>13</th><td>平屋・コンパクトプラン</td><td>今の1890万円を下回るコンパクトなプランを作成中（11/16 藤本さん）。12月上旬に出せる見込みと中央建設様へ案内</td></tr>
+      <tr><th>14</th><td>本部でのInstagram運用</td><td>竹村工務店様にも事前に案内（11/16）。アカウント名はLIFEXで統一し、各社で新しく作っていただく形。投稿の承認は各社、リールやイベント告知はこれまでどおり各社で。委託先は決定前</td></tr>
+      <tr><th>15</th><td>契約されたお客様のアンケート・インタビュー</td><td>アンケート案を11/16に加盟店様へ発信し、11/20を目処に意見をいただく。インタビューは11/29（吉田さん）。質問項目は事前に共有いただく</td></tr>
+      <tr><th>16</th><td>軒の出がない納まりの雨仕舞い資料</td><td>中央建設様へまだ届いていなかったため、11/16に送付を手配</td></tr>
+      <tr><th>17</th><td>太陽光パネルの切り替え</td><td>全国で施工できる仕入れ先をLIFEXでも使えるよう調整中（11/16 藤本さん）</td></tr>
+      <tr><th>18</th><td>個別要望の線引き・連絡記録の2週間試行（WITHDOM Group様 11/16〜29）・パナソニックの衣類乾燥機</td><td>11/16以降の会議では話題に出ていない</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<h2><span class="no">6</span>徳田からの提案（3件）</h2>
+<div class="prop">
+  <div class="p">
+    <div class="h"><span class="n">提案1</span><b>契約に近い42人を「次に会う日」と「土地が決まっているか」の2つだけで一覧にし、毎回のMTGの最初に見る</b></div>
+    <p>12月末の契約55件に対し、11月の契約は19日までで2件です。契約に一番近いのは内定13人と土地探し・ローン事前審査29人の42人ですが、この42人がいつ次に会うのか、土地のめどが立っているのかは、今は会社ごとの頭の中にしかありません。竹村工務店様のように、内定でも土地が未決の方がいることも分かりました。</p>
+    <p>ステータスの入力を増やすのではなく、ショートMTGで徳田が聞き取って一覧にします。MTGでは「次に会う日が決まっていない方」の人数だけを毎回見ます。</p>
+    <p class="why">決めたいこと：この一覧を毎回の議題資料の先頭に置くか。各社の12月末の目標と並べて出すか（3の②）。</p>
+    <div class="risk"><b>懸念：</b>聞き取りが徳田に集中し、ショートMTGの時間が足りなくなるおそれがあります。最初は42人のうち、30日以上動いていない方だけに絞ります。また「内定」の意味が会社ごとに違う（土地より先に内定にする会社がある）ままだと、一覧の数字がそろいません。今回は定義をそろえず、土地の有無を別の列で持つことで吸収します。</div>
+  </div>
+  <div class="p">
+    <div class="h"><span class="n">提案2</span><b>会員登録したお客様に、「1890万円からに何が含まれて、何が別か」を1枚で渡す</b></div>
+    <p>中央建設様から、本体価格を見て会員登録はするが「外構などどこまで含まれるのか」で止まっている方がいるのでは、という見立てをいただきました。ホームページで旧価格のまま表示されたプランがあったことも重なり、価格で迷っているお客様にとって分かりにくい状態です。</p>
+    <p>広告やLPの価格の出し方は変えず、会員登録の後、最初の電話かメールで渡す1枚にします。本体に含まれるもの、別にかかるもの（外構・地盤・諸費用など）と、総額の考え方だけを載せます。電話がつながらない方への会社紹介メールにも添えられます。</p>
+    <p class="why">決めたいこと：誰が作るか（案は藤本さんが中身、徳田が形）。いつまでに出すか（案は12月第1週。平屋プランと同じ時期）。</p>
+    <div class="risk"><b>懸念：</b>総額の考え方を見せると、他社の本体価格と並べたときに高く見える、という本部の表示の考え方とぶつかります。だから広告には出さず、すでに会員登録した方だけに渡す形に限ります。地盤や外構は敷地ごとに金額の幅が出るので、「目安の幅」にとどめ、確定額は面談で出すと明記します。</div>
+  </div>
+  <div class="p">
+    <div class="h"><span class="n">提案3</span><b>本部のWeb相談会を始めるとき、新しいお客様だけでなく、電話がつながらないまま「不通」になっている方にも案内を送る</b></div>
+    <p>ポータルで今ステータスが「不通」の方は265人います。8/20以降に登録した方だけでも124人、10月以降でも50人です。5〜10月登録の通話接続は、前回から1人も増えていません。電話に出ない方でも、夜にWebで話だけ聞くなら参加できる方はいるはずです。11/16のLIFEX MTGでも、つながっていない方へ相談会のアーカイブを送る案が出ています。</p>
+    <p>相談会に参加した方、アーカイブを見た方は、担当の加盟店様に翌朝までにお知らせし、そこから電話していただきます。</p>
+    <p class="why">決めたいこと：最初の対象を10月以降に登録した50人から始めるか。案内を本部から送るか、各社から送るか。</p>
+    <div class="risk"><b>懸念：</b>加盟店様がまだ追っている方に本部からも案内が届くと、お客様から見て連絡が二重になります。送る前に各社に対象の一覧を見ていただき、外したい方を除いてから送ります。また相談会のあと加盟店様からの電話が遅れると、温まった方を冷ますことになるので、翌日中に電話できる会社のお客様から始めます。</div>
+  </div>
+</div>
+
+<div class="skip"><b>今回は議題にしないもの：</b>未割当17人（11月）／動画視聴率（本部用APIに項目がないため）／流入元別の集計（本部フォームの受信メールとの突き合わせを今回は行っていないため）。</div>
+<details open>
+  <summary>数字の出典</summary>
+  <ul>
+    <li>11/1〜19・11/16〜19の数値（新規登録84・母数54・通話27・アポ22・面談17、11/16以降は18・11・4・3・1）：本部用API（取得 2026/11/19 18:25）。lifex-hq-data/20261120/digest.md「今月」「前回MTG以降」。11/16〜19の母数のうちWITHDOM Group様6人は digest.md「前回MTG以降」</li>
+    <li>加盟店様別の11月・10月登録・直近3ヶ月（8/20〜11/19）、登録月別の接続率、中央値45.6%・40%未満4社、未着手（10月15人・11月13人）：lifex-hq-data/20261120/members.json（集計対象・ステータス「未登録」を除いて母数・登録日（日本時間）で集計、到達段階4以上を通話接続、5以上をアポ、6以上を面談）。11月分が digest.md の54・27・22・17と一致</li>
+    <li>11月の内定3件・契約2件と各社・日付、自社登録の2件：changes.json（変更先が内定・契約、変更前が同じ段階以外、日時が11月（日本時間）を1人1件）と members.json の流入元・登録日時</li>
+    <li>11/16〜19のステータス変更19件と加盟店様別の内訳：changes.json のうち 11/16〜19（日本時間）の status_change</li>
+    <li>追客中638人・14日以上416人・手動変更なし163人：digest.md「追客中のお客様の更新状況」の加盟店様別を合計。前回の619人・392人・154人は前回資料 mtg-agenda/20261116.html</li>
+    <li>前回との比較（直近3ヶ月45.2%・中央値44.5%・面談以降133人・30日以上87人・内定11人・11月未着手8人・11/13〜15のステータス変更20件など）：前回資料 mtg-agenda/20261116.html</li>
+    <li>3の①入口（4週ごと・週別のLIFEX経由、11/12〜15の14人・11/16〜19の11人）：members.json の集計対象のお客様を、流入元LIFEX・登録日（日本時間）で集計。週別は deep.md「A 入口の量」と一致</li>
+    <li>3の②内定・契約の月別、③面談以降136人・30日以上88人・内訳・内定13人の経過日数、②の登録時期ごとの面談→内定以上、④初動の時間別の通話接続率：deep.md「B」「C」「D」（members.json・changes.json を集計、基準時刻 11/19 14:04）</li>
+    <li>12月末までに契約55件、LPの切替日9/17、オーディエンス設定の変更、24時間の改修依頼、ご要望表示、フォームの切り替え、Web相談会、年末年始、契約アンケート、インタビュー11/29、太陽光パネル、コンパクトプラン：Geminiメモ・文字起こし「LIFEX MTG - 2026/11/16 07:54」</li>
+    <li>研修前・研修後の通話接続率：lifex-kenshu-0724-effect.html</li>
+    <li>12月の目標（全社40%以上）：2026/10/12 佐古顧問とのチャット</li>
+    <li>稼働開始月・各社の12月目標：前回資料 mtg-agenda/20261116.html の値（加盟店リスト シート1、KPI設定シート 11/1時点）</li>
+    <li>個別MTG：文字起こし「竹村工務店様ショートミーティング - 2026/11/16 14:54」、文字起こし「中央建設様ショート MTG - 2026/11/16 15:29」（11/27研修の案内、キノシタ様11/29のイベント、ホームページの価格表示、雨仕舞い資料、Instagram運用の案内もこの2件）</li>
+  </ul>
+</details>
+</div>
+</body>
+</html>
