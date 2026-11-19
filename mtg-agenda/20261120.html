@@ -90,6 +90,18 @@ tfoot th,tfoot td{font-weight:700;border-top:2px solid var(--navy);border-bottom
 .src{font-size:12px;color:var(--ink2);line-height:1.8;padding-left:1.2em}
 @media(max-width:820px){.hero{grid-template-columns:repeat(2,1fr)}.cal{grid-template-columns:1fr 1fr}.srow{grid-template-columns:96px 1fr 50px}}
 @media print{h2{break-after:avoid}.tw,.stack,.dec .it,.wk{break-inside:avoid}}
+.grid2{display:grid;grid-template-columns:1.25fr 1fr;gap:16px}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px 20px}
+.card h3{font-size:15px;margin:0 0 10px;color:var(--navy)}
+.ul{margin:0;padding-left:1.1em;font-size:13.5px;line-height:1.7}.ul li{margin-bottom:6px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vc{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fafbfc}
+.vc.ok{border:2px solid var(--navy);background:var(--navy-l)}
+.vc .t{font-size:12.5px;font-weight:700;color:var(--ink2);line-height:1.5}
+.vc .big{font-size:30px;font-weight:900;color:var(--mute);line-height:1.3}
+.vc.ok .big{color:var(--navy)}
+.vc .s{font-size:12px;color:var(--ink2);line-height:1.6}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
 </style></head>
 <body><div class="wrap">
 <a class="back" href="index.html">← 議題資料の一覧へ</a>
@@ -124,10 +136,10 @@ tfoot th,tfoot td{font-weight:700;border-top:2px solid var(--navy);border-bottom
   <div class="legend">
     <span style="--c:var(--navy)">契約済み</span><span style="--c:#46588f">内定から</span><span style="--c:#6577ad">土地/ローンから</span><span style="--c:#b3bbd6">面談済（動いている）から</span><span style="--c:#d2d7e8">面談済（止まっている）の掘り起こしから</span><span style="--c:#8d98bd">自社で追っている注文住宅のお客様から</span><span style="--c:#e7c9bd">新規（イベント・Webセミナー）から</span>
   </div>
-  <div class="note">打ち手を全部積み上げると44件です。<b>32件は、内定と土地/ローンの方を落とさなければ届く距離</b>（契約済み9＋内定11＋土地/ローン8＝28件、残り4件を掘り起こしと自社のお客様で取る）。55件にはさらに11件足りないため、5章の「年内の特典」と「本部が同席する面談」で、内定・土地の方の決断を前に進められるかを今日決めたいと考えています。「30日以上止まっている」は、加盟店様が最後にステータスを手で変えてから30日以上の方です（入力が遅れているだけの方も含まれます）。</div>
+  <div class="note">打ち手を全部積み上げると44件です。<b>32件は、内定と土地/ローンの方を落とさなければ届く距離</b>（契約済み9＋内定11＋土地/ローン8＝28件、残り4件を掘り起こしと自社のお客様で取る）。55件にはさらに11件足りないため、6章の「年内の特典」と「本部が同席する面談」で、内定・土地の方の決断を前に進められるかを今日決めたいと考えています。「30日以上止まっている」は、加盟店様が最後にステータスを手で変えてから30日以上の方です（入力が遅れているだけの方も含まれます）。</div>
 </div>
 
-<h2><span class="no">3</span>打ち手の一覧（18個・同時に動かす）</h2>
+<h2><span class="no">3</span>打ち手の一覧（19個・同時に動かす）</h2>
 <p class="lead">年内の契約に効くものから順に並べています。<span class="new" style="display:inline-block;font-size:10.5px;font-weight:700;color:#fff;background:var(--warn);border-radius:3px;padding:0 5px">新</span>は今回新しく始めるもの、それ以外は動いているものを強めるものです。</p>
 
 <div class="lever"><b>A　内定13人を、年内の契約へ</b><span class="tag">狙う契約 11件</span><span class="s">内定のまま30日以上の方が8人（最長155日）</span></div>
@@ -158,10 +170,11 @@ tfoot th,tfoot td{font-weight:700;border-top:2px solid var(--navy);border-bottom
 
 <div class="lever"><b>E　新規のお客様（年内の契約は少数、1月以降の契約の仕込み）</b><span class="tag">狙う契約 3件</span><span class="tag w">1月以降の在庫づくり</span></div>
 <div class="tw"><table class="act"><thead><tr><th>#</th><th>やること</th><th>誰が</th><th>いつまでに</th><th>測るもの</th><th style="text-align:right">狙う契約</th></tr></thead><tbody>
-<tr><td class="no">11</td><td><span class="new">新</span><b>本部主催のWebセミナー→加盟店様へ送客</b>（SHO-SAN様の型）。初回の日程と送客の流れは本日9:00からの打合せで決める。電話がつながっていない方にもご案内する</td><td class="wh">時位さん・徳田・SHO-SAN様</td><td class="dt">12月上旬に初回</td><td class="k">参加数・相談希望数・アポ数</td><td class="n" rowspan="4">3</td></tr>
+<tr><td class="no">11</td><td><span class="new">新</span><b>本部主催のWebセミナー→加盟店様へ送客</b>（SHO-SAN様の型）。初回の日程と送客の流れは本日9:00からの打合せで決める。電話がつながっていない方にもご案内する</td><td class="wh">時位さん・徳田・SHO-SAN様</td><td class="dt">12月上旬に初回</td><td class="k">参加数・相談希望数・アポ数</td><td class="n" rowspan="5">3</td></tr>
 <tr><td class="no">12</td><td><b>中央建設様のモデル先行販売イベント（3連休）の結果を全社へ。</b>12月中に各社でイベントを1回（完成見学・構造・勉強会）</td><td class="wh">徳田・各加盟店様</td><td class="dt">11/27共有</td><td class="k">イベント予定がある社数</td></tr>
 <tr><td class="no">13</td><td><b>本部広告のオーディエンス設定の変更を、加盟店様の広告へ横展開</b>（本部送客で反応が上がった設定）</td><td class="wh">時位さん</td><td class="dt">11/30</td><td class="k">資料請求の獲得単価1万円以下</td></tr>
 <tr><td class="no">14</td><td><b>年末年始も広告は止めない。</b>自動返信と1/4以降の初動の当番を各社で決める（年末年始の稼働状況を集計中）</td><td class="wh">徳田・時位さん</td><td class="dt">12/12</td><td class="k">年始の初動24時間以内の割合</td></tr>
+<tr><td class="no">19</td><td><span class="new">新</span><b>加盟店様のイベント・セミナー広告は、人の顔が見える形に。</b>キノシタ様（顔あり）は告知から数日で予約1件、近いエリアの竹村工務店様（顔なし）は予約0件（4章）。12月のイベント告知から顔あり版を基本にし、写真の撮り方と文面の型を本部が配る</td><td class="wh">時位さん・徳田・各加盟店様</td><td class="dt">12/5</td><td class="k">イベント広告ごとの来場予約数</td></tr>
 </tbody></table></div>
 
 <div class="lever"><b>F　取りこぼしを減らす仕組み</b><span class="tag w">率を上げる</span></div>
@@ -182,7 +195,28 @@ tfoot th,tfoot td{font-weight:700;border-top:2px solid var(--navy);border-bottom
   <span class="t">合計（必達32件・挑戦55件）</span><span class="r t">44</span>
 </div>
 
-<h2><span class="no">4</span>加盟店様ごとの目標と、手元のお客様</h2>
+<h2><span class="no">4</span>集客の近況：資料請求フォームの切り替えと、顔写真ありのセミナー広告</h2>
+<div class="grid2">
+  <div class="card"><h3>資料請求フォーム・LPの前後比較（ABテスト）</h3>
+    <ul class="ul">
+      <li><b>フォームは短い版に一本化。</b>ランダムに出し分けていた形をやめ、本部側の設定で全員に短い版を出す切り替えを11/16に実施（古西さん）。切り替え後の資料請求の数字は、まだ比べられる期間がたまっていない段階です</li>
+      <li><b>LPそのものは「見られ方」が改善。</b>9月中旬の切り替え後、LPのエンゲージメント率・離脱率は良くなった。一方で、予約フォームの完了率は新旧とも低い（11/18 広告MTG・時位さん）</li>
+      <li><b>きれいなABテストにはならない。</b>同じ時期に広告の予算・運用・フォームの指標（会員登録→資料請求）も変わっているため、反響の件数だけで新旧を比べると新しい方が悪く見える</li>
+      <li><b>ポータルの登録数では</b>、切り替え後4週は前の4週の87%、落ちたのはその次の4週（10/19の週から）。11/12の本部広告の運用切り替え後は1日3人強に戻りつつある</li>
+      <li><b>次の手（11/18決定）：</b>プラン一覧ページを大きく作り直す。来場予約・資料請求ボタンを画面上部に固定して大きくし、価格帯・間取り（1〜4LDK）で絞り込めるようにする。「家づくりのお金の相談」のような、来る理由がわかるボタンも検討</li>
+    </ul>
+    <div class="note">今日確認したいこと：短い版が全員に表示されているか（11/16時点では表示されていなかった）と、切り替え後の資料請求の数を次回MTGで出す担当と日付。</div>
+  </div>
+  <div class="card"><h3>顔写真ありのセミナー広告で、予約1件</h3>
+    <div class="vs">
+      <div class="vc ok"><div class="t">キノシタ様　11/29 イベント</div><div class="big">予約 1件</div><div class="s">広告に顔写真あり／告知広告は11/17ごろから／徳田が登壇、「勉強会」として打ち出し</div></div>
+      <div class="vc"><div class="t">竹村工務店様　11/15 見学会・セミナー</div><div class="big">予約 0件</div><div class="s">近いエリアで同じように広告／顔写真なし</div></div>
+    </div>
+    <div class="note">工務店のイベントは「誰に会えるか」が見えると申し込みのハードルが下がる、と読めます。打ち手19として、12月のイベント告知から顔写真ありを基本にします。反対の読み方として、件数は1件と0件で、日程・会場・打ち出し方（勉強会かセミナーか）も違います。12月の告知で顔あり・顔なしの予約数を並べて確かめます。</div>
+  </div>
+</div>
+
+<h2><span class="no">5</span>加盟店様ごとの目標と、手元のお客様</h2>
 <p class="lead">「差」は目標から10/1以降の契約を引いた数です。内定と土地/ローンの方が全員契約したら目標に届くかを、右の列で見ます。並びは目標の多い順です。</p>
 <div class="tw"><table>
 <thead><tr><th style="text-align:left">加盟店様</th><th>12月末の目標</th><th>契約<br>10/1〜</th><th class="sep">差</th><th class="sep">内定</th><th>土地/<br>ローン</th><th>面談済<small>（うち30日以上）</small></th><th class="sep">内定＋土地で<br>差を埋められるか</th></tr></thead>
@@ -212,7 +246,7 @@ tfoot th,tfoot td{font-weight:700;border-top:2px solid var(--navy);border-bottom
 </table></div>
 <div class="note">目標は「12月末KPI設定シート」に各社が保存した12月末までの契約数（10/1からの累計）。灰色の3社は目標の保存がない会社で、契約・お客様は全体の数には含めています。<b>内定と土地/ローンの方だけで届くのは3社</b>。残りの会社は、掘り起こし（C）と自社のお客様（D）がないと目標に届きません。どの方を・いつ・誰が追うかは、各社のショートMTGで打ち手1・5・7・10の一覧として埋めます。</div>
 
-<h2><span class="no">5</span>今日決めたいこと</h2>
+<h2><span class="no">6</span>今日決めたいこと</h2>
 <div class="dec">
   <div class="it"><span class="n">1</span><div><div class="q">年内に申し込まれた方への特典を出すか。出すなら中身と、本部・加盟店様の負担の分け方</div><p>内定13人・土地/ローン29人の決断を12月に寄せるための打ち手です。値引きではなく、仕様やオプションで出す形も考えられます。出すなら、掘り起こし週間（12/1〜）の文面に入れたいので11/27までに決めたいです。</p></div></div>
   <div class="it"><span class="n">2</span><div><div class="q">本部が加盟店様の面談に同席する体制（徳田・藤本さんで週あたり何枠持つか）</div><p>内定のまま30日以上の8人と、土地が決まりかけている方の面談に入ります。週6枠なら12月末までに約30枠です。</p></div></div>
@@ -220,7 +254,7 @@ tfoot th,tfoot td{font-weight:700;border-top:2px solid var(--navy);border-bottom
   <div class="it"><span class="n">4</span><div><div class="q">本部の必達32件と加盟店様の挑戦55件を、毎回この議題の先頭で追うこと</div><p>月曜・金曜のMTGで、1章の5つの数字と3章の打ち手の進み具合（測るもの）を毎回更新して出します。</p></div></div>
 </div>
 
-<h2><span class="no">6</span>12月末までの動き</h2>
+<h2><span class="no">7</span>12月末までの動き</h2>
 <div class="cal">
   <div class="wk on"><h4>11/20〜11/27</h4><ul><li>今日：1〜4を決める</li><li>内定13人の契約日を決める（#1）</li><li>自社のお客様の洗い出し（#10）</li><li>11/27 土地決め研修（#4）</li></ul></div>
   <div class="wk"><h4>11/28〜12/5</h4><ul><li>掘り起こし文面を配る（11/28）</li><li>土地24人へ当て込み送付（#5）</li><li>内定の方の事前審査（#3）</li></ul></div>
@@ -230,12 +264,12 @@ tfoot th,tfoot td{font-weight:700;border-top:2px solid var(--navy);border-bottom
   <div class="wk"><h4>12/22〜12/31</h4><ul><li>年内の契約の最終確認</li><li>広告は継続・自動返信</li><li>1月の面談予定を日付で</li></ul></div>
 </div>
 
-<h2><span class="no">7</span>前回（11/16）の宿題</h2>
+<h2><span class="no">8</span>前回（11/16）の宿題</h2>
 <div class="tw"><table class="act"><thead><tr><th>担当</th><th>宿題</th><th>今日の報告</th></tr></thead><tbody>
-<tr><td class="wh">徳田</td><td>12月末の目標に向けた追加の打ち手をまとめる</td><td>この資料の3章（18個）</td></tr>
+<tr><td class="wh">徳田</td><td>12月末の目標に向けた追加の打ち手をまとめる</td><td>この資料の3章（19個）</td></tr>
 <tr><td class="wh">徳田</td><td>加盟店様の年末年始の稼働状況を集計し、時位さんへ共有</td><td>口頭で報告</td></tr>
-<tr><td class="wh">徳田</td><td>新しいフォームの公開状況を北原さんに確認</td><td>口頭で報告</td></tr>
-<tr><td class="wh">時位さん</td><td>LPリニューアル前後のアクセス数の比較</td><td>ご報告をお願いします</td></tr>
+<tr><td class="wh">徳田</td><td>新しいフォームの公開状況を北原さんに確認</td><td>短い版に一本化済み（4章）。表示の確認は本日</td></tr>
+<tr><td class="wh">時位さん</td><td>LPリニューアル前後のアクセス数の比較</td><td>11/18 広告MTGで報告済み（4章）</td></tr>
 <tr><td class="wh">時位さん</td><td>Webセミナーの開催時間を確認し、打合せを設定</td><td>本日9:00 SHO-SAN様と打合せ</td></tr>
 <tr><td class="wh">古西さん</td><td>会員登録24時間のポップアップ／自由記入欄の表示</td><td>ご報告をお願いします</td></tr>
 <tr><td class="wh">藤本さん</td><td>太陽光パネルの仕入れ切替の打合せ／お客様インタビュー（11/29）の質問の共有</td><td>ご報告をお願いします</td></tr>
@@ -248,6 +282,8 @@ tfoot th,tfoot td{font-weight:700;border-top:2px solid var(--navy);border-bottom
 <li>本部の目標32件：2026/10/12 佐古顧問と決定した12月末の目標</li>
 <li>初動と通話接続（24時間以内72.4%・3日超43.4%）：同データ。割り当て9/17以降のお客様で、割り当てから最初の手動更新までの時間</li>
 <li>前回の宿題・55件の確認・アポ率70%超・中央建設様のイベント・Webセミナー・オーディエンス設定・太陽光：Geminiメモ・文字起こし「LIFEX MTG - 2026/11/16 07:54」</li>
+<li>フォームの一本化：「LIFEX MTG - 2026/11/16 07:54」（古西さん）。LPの前後比較・フォーム完了率・ABテストにならない理由・プラン一覧の作り直し：Geminiメモ・文字起こし「LIFE X 広告MTG - 2026/11/18 13:57」。ポータル登録数の87%・週別の推移：11/20自動集計（本部用データ11/19取得）</li>
+<li>キノシタ様の予約1件（顔写真あり）・竹村工務店様の予約0件（顔写真なし）：徳田の確認（11/19）。キノシタ様の告知時期・登壇・竹村工務店様11/15の結果：前回までの個別MTGの記録</li>
 <li>今のペースの着地19件前後：10月の契約7件を月あたりとして、11/20〜12/31（約1.4か月）に当てはめた計算</li>
 <li>打ち手ごとの「狙う契約」：各打ち手で目指す件数として置いた数（内定13人のうち11人、土地/ローン29人のうち8人など）</li>
 </ul>
