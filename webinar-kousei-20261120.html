@@ -76,7 +76,7 @@
 <body>
 <header>
   <h1>ウェビナー構成 叩き台：今のスライドとの対応表</h1>
-  <div class="sub">提案の90分構成に、今の初回セミナー（79枚）を当てはめた案／2026年11月19日 徳田／ページ名をクリックすると右にスライドが出ます</div>
+  <div class="sub">提案の90分構成に、今の初回セミナー（79枚）を当てはめた案／2026年11月19日 徳田／ページ名をクリックすると右にスライドが出ます（黄色＝新しく作った草案）</div>
   <div class="bar">
     <span class="stat"><b id="nUse">0</b>今のスライドから使う</span>
     <span class="stat"><b id="nNew">0</b>新しく作る</span>
@@ -203,10 +203,10 @@ function show(x){
   document.getElementById('pTitle').textContent=isNew?NEW[x][0]:(x+'枚目　'+T[x]);
   document.getElementById('pChap').textContent=chapOf[x]||'';
   var f=document.getElementById('pFrame');
-  if(isNew){f.innerHTML='<div class="ph"><div class="l">新しく作るページ（仮）</div><div class="h"></div><div class="p"></div></div>';f.querySelector('.h').textContent=NEW[x][0];f.querySelector('.p').textContent=NEW[x][1];}
+  if(isNew){f.innerHTML='<img src="webinar-kousei-slides/n-'+String(parseInt(x.slice(1))).padStart(2,'0')+'.jpg" alt="">';}
   else if(img(x)){f.innerHTML='<img src="'+img(x)+'" alt="">';}
   else{f.innerHTML='<div class="hid" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#888">元のファイルで非表示のスライド</div>';}
-  document.getElementById('pNote').innerHTML=NOTE[x]||'';
+  document.getElementById('pNote').innerHTML=isNew?('<b>草案</b>：'+NEW[x][1]):(NOTE[x]||'');
   document.querySelectorAll('.c.sel,.th.sel').forEach(function(e){e.classList.remove('sel');});
   document.querySelectorAll('[data-id="'+x+'"]').forEach(function(e){e.classList.add('sel');});
   var i=seq.indexOf(x);document.getElementById('pos').textContent=i>=0?('提案の順で '+(i+1)+' / '+seq.length+' 枚目'):'ウェビナーでは使わない';
