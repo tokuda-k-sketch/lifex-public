@@ -1,0 +1,800 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LIFEX MTG｜土地で止まっている方を決める日まで</title>
+<meta name="robots" content="noindex">
+<style>
+<style>
+:root{color-scheme:light}
+:root{
+  --ink:#1b2530; --sub:#5c6c7d; --line:#dbe3ea; --panel:#f3f6f9;
+  --navy:#1e4e79; --navy-soft:#e8eff6; --navy-mid:#b9cde0;
+  --ng:#a1462a; --ngbg:#fbeee9;
+}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+  color:var(--ink); background:#e9edf1; margin:0; line-height:1.6; font-feature-settings:"palt"}
+.wrap{width:min(1100px,96vw); margin:26px auto}
+.draft{width:1100px; margin:0 auto 14px; font-size:12px; color:#8a5a00; background:#fdf3dd;
+  border:1px solid #ecd9a8; border-radius:4px; padding:6px 14px; font-weight:700; line-height:1.8}
+.sl{width:1100px; height:619px; background:#fff; border-radius:8px;
+  box-shadow:0 2px 16px rgba(20,40,60,.09); padding:32px 50px 24px;
+  display:flex; flex-direction:column; position:relative; overflow:hidden; margin:0 auto 22px}
+.top{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+.chip{font-size:11.5px; font-weight:700; letter-spacing:.08em; padding:3px 12px; border-radius:99px; background:var(--navy-soft); color:var(--navy)}
+.chip.dark{background:var(--navy); color:#fff}
+.pg{margin-left:auto; font-size:12px; color:#b6c0ca; font-variant-numeric:tabular-nums}
+.tt{font-size:28px; font-weight:800; line-height:1.35; margin:2px 0 14px; text-wrap:balance}
+.tt .hi{color:var(--navy)}
+.cap{font-size:11.5px; color:var(--sub); line-height:1.6; margin-top:auto; padding-top:8px}
+.lead{font-size:16px; font-weight:700; color:var(--sub); margin:-6px 0 14px}
+.fill{flex:1; min-height:0}
+
+/* 表紙 */
+.cover{padding:0; background:var(--navy)}
+.cover .ph{position:absolute; inset:0 0 0 52%; background:url(assets/photo-minoh-model.jpg) center/cover}
+.cover .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(90deg,var(--navy) 0%,rgba(30,78,121,0) 40%)}
+.cover .in{position:relative; padding:70px 66px; display:flex; flex-direction:column; gap:18px; height:100%; justify-content:center; color:#fff; max-width:640px}
+.cover .kk{font-size:14px; font-weight:800; letter-spacing:.1em; color:var(--navy-mid)}
+.cover h1{margin:0; font-size:54px; line-height:1.25; font-weight:800}
+.cover .sub{font-size:20px; font-weight:700; color:#dbe6f0}
+.cover .date{font-size:13px; color:var(--navy-mid)}
+
+/* 章扉 */
+.door{background:var(--navy); color:#fff; justify-content:center; padding:50px 80px}
+.door .no{font-size:15px; font-weight:800; letter-spacing:.14em; color:var(--navy-mid)}
+.door h2{font-size:46px; margin:8px 0 18px; line-height:1.3}
+.door .q{font-size:20px; font-weight:700; color:#dbe6f0; line-height:1.7}
+.door .from{position:absolute; left:80px; bottom:40px; font-size:13px; color:var(--navy-mid); font-weight:700}
+.door .pg{position:absolute; right:50px; top:32px; color:#6f8fae}
+
+/* 流れ */
+.agenda{display:flex; flex-direction:column; gap:7px; flex:1}
+.ag{display:grid; grid-template-columns:70px 64px 1fr 80px; align-items:center; gap:14px; background:var(--panel); border-radius:12px; padding:6px 20px}
+.ag .t{font-size:13px; font-weight:900; color:var(--navy); font-variant-numeric:tabular-nums}
+.ag .c{font-size:12px; font-weight:900; color:#fff; background:var(--navy); border-radius:99px; text-align:center; padding:2px 0}
+.ag b{font-size:18px}
+.ag b small{font-size:13px; color:var(--sub); font-weight:700; margin-left:10px}
+.ag .m{text-align:right; font-size:14px; font-weight:800; color:var(--sub)}
+.ag.big{background:var(--navy-soft)}
+
+/* 年表 */
+.tl{position:relative; flex:1; display:grid; grid-template-columns:repeat(5,1fr); gap:14px}
+.tl .col{background:var(--panel); border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:6px}
+.tl .col h4{margin:0 0 4px; font-size:15px; color:var(--navy)}
+.tl .col h4 small{display:block; font-size:12px; color:var(--sub)}
+.tl .it{font-size:13px; line-height:1.45; padding-left:10px; border-left:3px solid var(--navy-mid)}
+.tl .it i{font-style:normal; font-weight:800; color:var(--navy); font-size:12px; display:block}
+.arrowbar{margin-top:12px; background:var(--navy); color:#fff; border-radius:12px; padding:12px 20px; font-size:18px; font-weight:800; text-align:center}
+
+/* 地図 */
+.map{display:flex; align-items:stretch; gap:6px; flex:1}
+.st{flex:1; display:flex; flex-direction:column; gap:8px}
+.st .box{background:var(--navy); color:#fff; border-radius:12px; padding:12px 8px; text-align:center; font-weight:800; font-size:16px; line-height:1.35; position:relative}
+.st .box small{display:block; font-size:11.5px; color:var(--navy-mid); font-weight:700}
+.st .box.lt{background:var(--navy-soft); color:var(--navy)}
+.st .box.lt small{color:var(--sub)}
+.st .ch{text-align:center; font-size:13px; font-weight:900; color:var(--navy)}
+.st .ks{background:var(--panel); border-radius:10px; padding:10px; font-size:13px; line-height:1.5; flex:1}
+.st .ks b{display:block; color:var(--navy); font-size:12px}
+.st .ks span{display:block; font-size:11.5px; color:var(--sub); margin-top:6px}
+.mapar{align-self:center; color:var(--navy-mid); font-size:20px; font-weight:900; margin-top:-120px}
+
+/* 漏斗 */
+.fun{display:flex; align-items:flex-end; gap:12px; flex:1; padding:0 10px 30px; border-bottom:2px solid var(--line); position:relative}
+.fb{flex:1; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; height:100%; gap:6px; position:relative}
+.fb i{display:block; width:100%; background:var(--navy); border-radius:8px 8px 0 0}
+.fb b{font-size:26px; font-weight:900; color:var(--navy)}
+.fb b small{font-size:14px}
+.fb span{position:absolute; bottom:-28px; font-size:14px; font-weight:800; color:var(--sub)}
+.rate{flex:none; width:86px; align-self:center; text-align:center; font-size:13px; font-weight:800; color:var(--sub); margin-bottom:60px}
+.rate b{display:block; font-size:22px; color:var(--navy)}
+
+/* 100人の計算 */
+.calc{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; flex:1}
+.cc{border-radius:16px; background:var(--panel); padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.cc.on{background:var(--navy); color:#fff}
+.cc .h{font-size:15px; font-weight:800; color:var(--sub)}
+.cc.on .h{color:var(--navy-mid)}
+.cc .r{font-size:14px; line-height:1.9; font-variant-numeric:tabular-nums}
+.cc .r em{font-style:normal; font-weight:900; color:var(--navy)}
+.cc.on .r em{color:#fff; text-decoration:underline; text-underline-offset:4px}
+.cc .res{margin-top:auto; font-size:16px; font-weight:800}
+.cc .res b{font-size:54px; font-weight:900; color:var(--navy); line-height:1}
+.cc.on .res b{color:#fff}
+.note{margin-top:12px; background:var(--navy-soft); border-radius:12px; padding:10px 18px; font-size:16px; font-weight:800}
+.note b{color:var(--navy)}
+
+/* 核の教え3つ */
+.k3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; flex:1}
+.k{background:var(--panel); border-radius:16px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.k .n{width:34px; height:34px; border-radius:50%; background:var(--navy); color:#fff; font-weight:900; display:grid; place-items:center; font-size:17px}
+.k h3{margin:0; font-size:21px; line-height:1.4}
+.k p{margin:0; font-size:14.5px; line-height:1.65; color:#33414f}
+.k .say{margin-top:auto; background:#fff; border-left:4px solid var(--navy); border-radius:6px; padding:8px 12px; font-size:14px; font-weight:700}
+.k .from{font-size:11.5px; color:var(--sub); font-weight:700}
+
+/* NG→OK */
+.ngok{display:grid; grid-template-columns:1fr 44px 1fr; gap:10px; flex:1; align-items:stretch}
+.ngok .bx{border-radius:16px; padding:18px 22px; display:flex; flex-direction:column; gap:10px}
+.ngok .bx.x{background:#fff; border:2px solid var(--ng)}
+.ngok .bx.o{background:var(--navy-soft); border:2px solid var(--navy)}
+.ngok .h{font-size:16px; font-weight:900}
+.ngok .x .h{color:var(--ng)}
+.ngok .o .h{color:var(--navy)}
+.ngok .line{font-size:15.5px; line-height:1.6; padding:8px 12px; border-radius:8px; background:var(--panel)}
+.ngok .o .line{background:#fff}
+.ngok .why{margin-top:auto; font-size:13.5px; color:var(--sub); font-weight:700}
+.ngok .ar{align-self:center; text-align:center; font-size:30px; color:var(--navy); font-weight:900}
+
+/* 表 */
+.tbl{width:100%; border-collapse:separate; border-spacing:0 6px; font-size:14.5px}
+.tbl th{font-size:12.5px; color:var(--sub); text-align:left; padding:0 12px; font-weight:800}
+.tbl td{background:var(--panel); padding:9px 12px; line-height:1.5; vertical-align:middle}
+.tbl td:first-child{border-radius:10px 0 0 10px; font-weight:900; color:var(--navy); white-space:nowrap}
+.tbl td:last-child{border-radius:0 10px 10px 0}
+.tbl td.say{font-weight:700}
+.tbl small{color:var(--sub); font-size:12px; display:block}
+
+/* 型の全体図 */
+.kata{display:grid; grid-template-columns:1.55fr 1fr; gap:20px; flex:1; min-height:0}
+.kata .day{background:var(--panel); border-radius:16px; padding:14px 18px; display:flex; flex-direction:column; gap:6px}
+.kata .day h4{margin:0 0 4px; font-size:15px; color:var(--navy)}
+.kata .stp{display:grid; grid-template-columns:28px 1fr; gap:10px; align-items:center; background:#fff; border-radius:10px; padding:6px 10px}
+.kata .stp .n{width:26px; height:26px; border-radius:50%; background:var(--navy); color:#fff; font-weight:900; display:grid; place-items:center; font-size:13px}
+.kata .stp b{font-size:15.5px}
+.kata .stp b small{font-size:12px; color:var(--sub); font-weight:700; margin-left:8px}
+.kata .rt{display:flex; flex-direction:column; gap:14px}
+.kata .rt .day{flex:none}
+.kata .rt p{margin:0; font-size:14.5px; line-height:1.6; background:#fff; border-radius:10px; padding:8px 12px}
+
+/* 2列 */
+.two{display:grid; grid-template-columns:1fr 1fr; gap:22px; flex:1; min-height:0}
+.pan{background:var(--panel); border-radius:16px; padding:18px 22px; display:flex; flex-direction:column; gap:10px}
+.pan h4{margin:0; font-size:17px; color:var(--navy)}
+.pan p{margin:0; font-size:15px; line-height:1.65}
+.pan .say{background:#fff; border-left:4px solid var(--navy); border-radius:6px; padding:10px 14px; font-size:15.5px; font-weight:700; line-height:1.65}
+.pan ol,.pan ul{margin:0; padding-left:1.3em; font-size:15px; line-height:1.75}
+.photo{border-radius:16px; overflow:hidden; position:relative; background:#ccd}
+.photo img{width:100%; height:100%; object-fit:cover; display:block}
+.photo figcaption{position:absolute; left:0; right:0; bottom:0; background:linear-gradient(transparent,rgba(0,0,0,.65)); color:#fff; font-size:12.5px; font-weight:700; padding:22px 14px 10px}
+
+/* 循環 */
+.cyc{display:flex; align-items:center; justify-content:center; gap:16px}
+.cyc .c{width:150px; height:150px; border-radius:50%; background:var(--navy-soft); border:3px solid var(--navy); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; font-weight:900; color:var(--navy); font-size:20px}
+.cyc .c small{font-size:12px; color:var(--sub); font-weight:700; margin-top:4px; line-height:1.4}
+.cyc .a{font-size:26px; color:var(--navy); font-weight:900}
+
+/* 5軸 */
+.ax{display:grid; grid-template-columns:repeat(5,1fr); gap:10px}
+.ax div{background:#fff; border-radius:12px; padding:10px; text-align:center}
+.ax b{display:block; font-size:28px; color:var(--navy); line-height:1.2}
+.ax span{font-size:12.5px; color:var(--sub); font-weight:700}
+
+/* 性能の3段 */
+.three{display:flex; align-items:stretch; gap:10px; flex:1}
+.three .s{flex:1; border-radius:16px; padding:20px; display:flex; flex-direction:column; gap:10px}
+.three .s1{background:var(--navy); color:#fff}
+.three .s2{background:var(--navy-soft)}
+.three .s3{background:var(--panel)}
+.three .s .n{font-size:13px; font-weight:900; letter-spacing:.1em; opacity:.75}
+.three .s h3{margin:0; font-size:26px}
+.three .s p{margin:0; font-size:15px; line-height:1.7}
+.three .s .say{margin-top:auto; border-radius:8px; padding:10px 12px; font-size:14.5px; font-weight:700; background:rgba(255,255,255,.14)}
+.three .s2 .say,.three .s3 .say{background:#fff}
+.three .ar{align-self:center; font-size:26px; color:var(--navy); font-weight:900}
+
+/* テーマ別（性能） */
+.th{display:grid; grid-template-columns:1.05fr 1fr; gap:22px; flex:1; min-height:0}
+.th .l{display:flex; flex-direction:column; gap:10px}
+.th .obj{background:var(--navy); color:#fff; border-radius:14px; padding:14px 18px}
+.th .obj span{font-size:12px; font-weight:800; color:var(--navy-mid); letter-spacing:.08em}
+.th .obj b{display:block; font-size:21px; line-height:1.45}
+.th .num{background:var(--panel); border-radius:14px; padding:12px 18px}
+.th .num span{font-size:12px; font-weight:800; color:var(--sub)}
+.th .num ul{margin:4px 0 0; padding-left:1.2em; font-size:14.5px; line-height:1.65}
+.th .num ul small{color:var(--sub)}
+.th .ret{background:#fff; border:2px solid var(--navy-mid); border-radius:14px; padding:12px 18px; font-size:14.5px; line-height:1.6}
+.th .ret span{font-size:12px; font-weight:800; color:var(--sub); display:block}
+.th .ret b{color:var(--navy)}
+
+/* NG一覧 */
+.ngl{display:grid; grid-template-columns:1fr 1fr; gap:8px 18px; flex:1; align-content:start}
+.ngl div{display:grid; grid-template-columns:1fr 1.15fr; gap:10px; align-items:center; background:var(--panel); border-radius:10px; padding:8px 14px; font-size:13.5px; line-height:1.45}
+.ngl s{color:var(--ng); font-weight:800; text-decoration:line-through; text-decoration-thickness:1.5px}
+.ngl b{color:var(--navy)}
+
+/* 確認の階段 */
+.stairs{display:flex; align-items:flex-end; gap:12px; flex:1; padding-bottom:4px}
+.stairs .sp{flex:1; background:var(--navy-soft); border-radius:14px 14px 0 0; padding:14px 16px; display:flex; flex-direction:column; gap:6px}
+.stairs .sp b{font-size:18px; color:var(--navy)}
+.stairs .sp p{margin:0; font-size:14px; line-height:1.6}
+.stairs .sp.goal{background:var(--navy); color:#fff}
+.stairs .sp.goal b{color:#fff; font-size:22px}
+
+/* チェック */
+.chk{display:flex; flex-direction:column; gap:12px; flex:1}
+.chk .row{display:grid; grid-template-columns:54px 1fr 220px; gap:16px; align-items:center; background:var(--panel); border-radius:14px; padding:14px 20px}
+.chk .row .n{width:44px; height:44px; border-radius:50%; background:var(--navy); color:#fff; display:grid; place-items:center; font-size:20px; font-weight:900}
+.chk .row b{font-size:20px; line-height:1.4}
+.chk .row b small{display:block; font-size:13.5px; color:var(--sub); font-weight:700; margin-top:2px}
+.chk .row .w{font-size:13px; color:var(--sub); font-weight:700; border-left:2px solid var(--line); padding-left:14px}
+
+.src{font-size:12px; line-height:1.75; margin:0; padding-left:1.2em}
+.src li{margin-bottom:2px}
+.src b{color:var(--navy)}
+
+/* 文字の拡大（投影用） */
+.k h3{font-size:25px}
+.k p{font-size:17px; line-height:1.7}
+.k .say{font-size:16.5px; padding:10px 14px}
+.k .from{font-size:12.5px}
+.st .box{font-size:18px}
+.st .ks{font-size:15.5px; padding:12px}
+.st .ks b{font-size:15px; margin-bottom:4px}
+.st .ks span{font-size:12.5px}
+.tbl{font-size:17px}
+.tbl td{padding:11px 14px}
+.ngok .line{font-size:18.5px; padding:11px 14px}
+.ngok .why{font-size:15px}
+.ngok .h{font-size:18px}
+.pan h4{font-size:19px}
+.pan p,.pan ol,.pan ul{font-size:17.5px; line-height:1.75}
+.pan .say{font-size:18px}
+.th .obj b{font-size:24px}
+.th .num ul{font-size:17px; line-height:1.7}
+.th .ret{font-size:17px; line-height:1.7}
+.th .l{gap:12px}
+.three .s p{font-size:17.5px}
+.three .s .say{font-size:17px}
+.kata .stp{padding:8px 12px}
+.kata .stp b{font-size:19px}
+.kata .stp b small{font-size:13.5px}
+.kata .rt p{font-size:17px}
+.cc .r{font-size:20px; line-height:1.85}
+.cc .h{font-size:17px}
+.cyc .c{width:170px; height:170px; font-size:23px}
+.cyc .c small{font-size:13.5px}
+.ax b{font-size:34px}
+.ax span{font-size:14px}
+.ngl{gap:10px 18px}
+.ngl div{font-size:16px; padding:11px 14px}
+.stairs .sp p{font-size:17px}
+.stairs .sp b{font-size:21px}
+.chk .row{flex:1}
+.chk .row b{font-size:23px}
+.chk .row b small{font-size:15px}
+.chk .row .w{font-size:15px}
+.tl .it{font-size:15px}
+.tl .col h4{font-size:17px}
+.src{font-size:14.5px; line-height:1.9}
+.ag b{font-size:20px}
+.fb b{font-size:30px}
+.rate b{font-size:26px}
+.map.big .box{font-size:22px; padding:16px 10px}
+.map.big .ks{font-size:18px; line-height:1.65; padding:16px}
+.map.big .ks b{font-size:19px; margin-bottom:8px}
+.map.big .ks span{font-size:14px; margin-top:10px}
+.top .go{margin-left:auto; display:flex; gap:6px; align-items:center; font-size:11.5px; font-weight:700; color:var(--sub)}
+.top .go a{color:var(--navy); text-decoration:none; border:1px solid var(--navy-mid); border-radius:99px; padding:1px 10px; background:#fff}
+.top .go a:hover{background:var(--navy-soft)}
+.top .go + .pg{margin-left:12px}
+.door .from{display:flex; flex-wrap:wrap; gap:8px; align-items:center; right:80px}
+.door .from a{color:#fff; text-decoration:none; border:1px solid #6f8fae; border-radius:99px; padding:2px 12px; font-size:12.5px}
+.door .from a:hover{background:rgba(255,255,255,.12)}
+.skipb{font-size:11px; font-weight:800; color:var(--sub); border:1px dashed var(--navy-mid); border-radius:99px; padding:1px 10px}
+.skipd{position:absolute; right:50px; top:56px; font-size:11px; font-weight:800; color:var(--navy-mid); border:1px dashed #6f8fae; border-radius:99px; padding:1px 10px}
+.ag.lite{background:#fff; border:1px dashed var(--navy-mid)}
+
+
+/* 場面ページ */
+.q{display:flex; gap:14px; align-items:flex-start; margin:0 0 10px}
+.q .who{flex:none; font-size:12px; font-weight:800; color:#fff; background:var(--ink); border-radius:99px; padding:4px 12px; margin-top:6px}
+.q .say{font-size:23px; font-weight:800; line-height:1.4; background:var(--panel); border-radius:4px 18px 18px 18px; padding:10px 18px}
+.q .hon{font-size:12.5px; color:var(--sub); margin-top:4px; padding-left:4px}
+.q .hon b{color:var(--ink)}
+.sg{display:grid; grid-template-columns:1fr 1.75fr; gap:16px; flex:1; min-height:0}
+.ngp{background:var(--ngbg); border-radius:12px; padding:12px 16px; display:flex; flex-direction:column; gap:6px}
+.ngp h5,.okp h5{margin:0; font-size:12px; letter-spacing:.06em}
+.ngp h5{color:var(--ng)}
+.ngp .line{font-size:17px; font-weight:800; color:var(--ng); line-height:1.5}
+.ngp p{margin:0; font-size:14px; line-height:1.6}
+.okp{border:2px solid var(--navy); border-radius:12px; padding:12px 16px; display:flex; flex-direction:column; gap:5px}
+.okp h5{color:var(--navy)}
+.d{display:grid; grid-template-columns:50px 1fr; gap:8px; font-size:15px; line-height:1.55}
+.d .r{font-size:11px; font-weight:800; text-align:center; border-radius:4px; padding:2px 0; align-self:start; margin-top:2px}
+.d.s .r{background:var(--navy); color:#fff}
+.d.c .r{background:var(--panel); color:var(--sub)}
+.d.s .t{font-weight:700}
+.d .t i{font-style:normal; color:var(--sub); font-weight:400; font-size:12.5px}
+.ft{display:grid; grid-template-columns:1.25fr 1fr 1fr; gap:12px; margin-top:10px}
+.ft div{border-radius:10px; padding:8px 12px; font-size:13px; line-height:1.55; background:var(--panel)}
+.ft div b{display:block; font-size:11px; letter-spacing:.06em; color:var(--navy); margin-bottom:2px}
+.ft .one{background:var(--navy); color:#fff; font-weight:800; font-size:14px}
+.ft .one b{color:var(--navy-mid)}
+.memo{border:2px dashed var(--navy-mid); border-radius:10px; padding:6px 12px; font-size:13.5px; color:var(--navy); font-weight:700}
+/* 設定 */
+.prof{display:grid; grid-template-columns:1fr 1fr; gap:18px; flex:1}
+.prof .pan p{margin:0; font-size:15px}
+.tag{display:inline-block; font-size:12px; font-weight:800; padding:2px 10px; border-radius:99px; background:var(--navy-soft); color:var(--navy); margin-right:6px}
+.tag.ng{background:var(--ngbg); color:var(--ng)}
+/* 算数 */
+.calc{display:flex; align-items:center; justify-content:center; gap:22px; flex:1}
+.calc .b{background:var(--panel); border-radius:16px; padding:18px 26px; text-align:center; min-width:190px}
+.calc .b .n{font-size:46px; font-weight:900; color:var(--navy); line-height:1.1}
+.calc .b .l{font-size:14px; font-weight:700; color:var(--sub)}
+.calc .op{font-size:30px; font-weight:900; color:var(--navy-mid)}
+.calc .b.hl{background:var(--navy)}
+.calc .b.hl .n,.calc .b.hl .l{color:#fff}
+/* 4軸 */
+table.mx{width:100%; border-collapse:collapse; font-size:15px}
+table.mx th,table.mx td{border-bottom:1px solid var(--line); padding:9px 12px; text-align:left}
+table.mx th{font-size:12px; color:var(--sub); background:var(--panel)}
+table.mx td:first-child{font-weight:800; color:var(--navy); white-space:nowrap}
+/* 7文 */
+.seven{display:flex; flex-direction:column; gap:7px; flex:1}
+.seven div{display:grid; grid-template-columns:34px 1fr 230px; gap:12px; align-items:center; background:var(--panel); border-radius:10px; padding:10px 14px}
+.seven .n{width:28px; height:28px; border-radius:50%; background:var(--navy); color:#fff; display:grid; place-items:center; font-weight:900; font-size:14px}
+.seven .s{font-size:18px; font-weight:800}
+.seven .w{font-size:13px; color:var(--sub)}
+.d .t .tg,.ma .tg,.note .tg{display:inline-block; font-style:normal; font-size:10.5px; font-weight:800; color:var(--navy); background:var(--navy-soft); border:1px solid var(--navy-mid); border-radius:4px; padding:0 5px; margin-left:5px; vertical-align:2px; line-height:1.5}
+.ma{margin:0 0 0 58px; font-size:12.5px; color:var(--sub); border-top:1px dotted var(--navy-mid); border-bottom:1px dotted var(--navy-mid); padding:2px 8px; text-align:center}
+.nv{margin-top:auto; border-top:1px dashed var(--navy-mid); padding-top:7px; font-size:13.5px; line-height:1.6}
+.nv b{display:inline-block; font-size:11px; letter-spacing:.06em; border-radius:99px; padding:1px 9px; margin-right:6px; background:var(--navy-soft); color:var(--navy)}
+.ngp .nv{border-top-color:#e2b9aa}
+.ngp .nv b{background:#fff; color:var(--ng)}
+/* ここから11/27用 */
+.cover .in{max-width:680px}
+.cover h1{font-size:50px}
+.sheet{background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 18px; box-shadow:0 2px 10px rgba(20,40,60,.06)}
+.sheet h5{margin:0 0 6px; font-size:12px; color:var(--sub); letter-spacing:.06em}
+.sheet dl{margin:0; display:grid; grid-template-columns:96px 1fr; gap:4px 10px; font-size:16px}
+.sheet dt{color:var(--sub); font-weight:700}
+.sheet dd{margin:0; font-weight:800}
+.site{display:grid; grid-template-columns:330px 1fr; gap:26px; flex:1; min-height:0; align-items:center}
+.site svg{width:100%; height:auto; display:block}
+.p3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; flex:1; min-height:0}
+.pc{background:var(--panel); border-radius:14px; padding:10px 12px; display:flex; flex-direction:column; gap:6px; min-height:0}
+.pc .hd{display:flex; align-items:baseline; gap:8px}
+.pc .hd b{font-size:15px; color:var(--navy)}
+.pc .hd span{font-size:11.5px; color:var(--sub); font-weight:700}
+.pc .vis{display:grid; grid-template-columns:128px 1fr; gap:8px; align-items:center; flex:1; min-height:0}
+.pc .vis svg{width:128px; height:auto}
+.pc .vis img{width:100%; height:300px; object-fit:contain; background:#fff; border-radius:6px}
+.pc .kurashi{background:#fff; border-left:4px solid var(--navy); border-radius:6px; padding:6px 10px; font-size:14.5px; font-weight:700; line-height:1.55}
+.steps{display:grid; grid-template-columns:repeat(5,1fr); gap:10px}
+.steps .s{background:var(--panel); border-radius:12px; padding:10px 12px; display:flex; flex-direction:column; gap:4px}
+.steps .s .n{width:26px; height:26px; border-radius:50%; background:var(--navy); color:#fff; font-weight:900; display:grid; place-items:center; font-size:13px}
+.steps .s b{font-size:16px; line-height:1.4}
+.steps .s p{margin:0; font-size:13px; line-height:1.55; color:#33414f}
+.line-msg{margin-top:12px; display:grid; grid-template-columns:1fr 1fr; gap:14px; flex:1; min-height:0}
+.bubble{background:#e9f6e5; border-radius:4px 16px 16px 16px; padding:10px 14px; font-size:14.5px; line-height:1.7}
+.bubble.x{background:var(--ngbg)}
+.bubble small{display:block; font-size:11px; font-weight:800; color:var(--sub); margin-bottom:2px}
+.why3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; flex:1}
+.why3 .k .tagq{font-size:12px; font-weight:800; color:var(--sub)}
+.rp{display:grid; grid-template-columns:1fr 1fr; gap:16px; flex:1; min-height:0}
+.card{border:2px dashed var(--navy-mid); border-radius:12px; padding:16px 20px; font-size:17.5px; line-height:1.95; background:#fff}
+.card h5{font-size:15px !important; margin-bottom:8px !important}
+.prof .pan p{font-size:16.5px !important; line-height:1.75}
+.two .pan p{font-size:18px}
+.card h5{margin:0 0 4px; font-size:13px; color:var(--navy)}
+.card ol{margin:0; padding-left:1.3em}
+.card p{font-size:14.5px !important; line-height:1.7}
+.yen{display:flex; align-items:center; justify-content:center; gap:18px; margin:6px 0 12px}
+.yen .b{background:var(--panel); border-radius:14px; padding:12px 22px; text-align:center}
+.yen .b .n{font-size:40px; font-weight:900; color:var(--navy); line-height:1.1}
+.yen .b .l{font-size:13px; font-weight:700; color:var(--sub)}
+.yen .b.hl{background:var(--navy)} .yen .b.hl .n,.yen .b.hl .l{color:#fff}
+.yen .op{font-size:28px; font-weight:900; color:var(--navy-mid)}
+</style></head><body>
+<div class="wrap">
+<div class="draft">叩き台（11/19 徳田作成・佐古顧問確認前）｜お客様・土地は架空の設定です。プランは実在のLIFE Xプラン（Gプラン）の1階図面、配置は目安です。</div>
+
+<!-- 1 表紙 -->
+<section class="sl cover">
+  <div class="ph"></div>
+  <div class="in">
+    <div class="kk">LIFE X 月2棟目標達成MTG　このお客様なら、どう返すか　#2</div>
+    <h1>「いい土地が<br>出たら」で<br>止まっている方を、<br>決める日まで</h1>
+    <div class="sub">土地を送るときに、間取りも送る。<br>暮らしが見えた土地は、決まります。</div>
+    <div class="date">2026年11月27日（金）16:00</div>
+  </div>
+</section>
+
+<!-- 2 算数 -->
+<section class="sl">
+  <div class="top"><span class="chip">今日の60分の意味</span><span class="pg">2</span></div>
+  <div class="tt">いま一番近い契約は、<span class="hi">「土地探し中」で止まっているお客様です。</span></div>
+  <div class="calc">
+    <div class="b"><div class="n">26組</div><div class="l">全加盟店で<br>「土地探し中」のお客様</div></div>
+    <div class="op">×½</div>
+    <div class="b hl"><div class="n">13棟</div><div class="l">12月までに半分が<br>土地を決めたら</div></div>
+  </div>
+  <div class="note">この方たちは、もう面談を終えて<b>「LIFE Xで建てたい」</b>まで来ています。足りないのは集客でも説明でもなく、<b>土地を決めてもらう提案の仕方</b>です。</div>
+  <div class="cap">土地探し中の件数：LIFE X加盟店ポータル 本部用データ（2026/11/19取得・ステータス「土地探し」）。半分を12月までにという考え方：11/16 本部と佐古顧問のMTG。</div>
+</section>
+
+<!-- 3 なぜ止まるか -->
+<section class="sl">
+  <div class="top"><span class="chip">なぜ止まるのか</span><span class="pg">3</span></div>
+  <div class="tt">土地で止まる理由は、<span class="hi">土地そのものより、提案の仕方にあります。</span></div>
+  <div class="why3">
+    <div class="k"><div class="n">1</div><span class="tagq">お客様の側</span><h3>エリアが学区で決まっていて、出てくる土地が少ない</h3><p>地方ほど「この小学校の学区だけ」が強い。そこは動かさなくていい。問題は、出てきた土地をどう見せているか。</p></div>
+    <div class="k"><div class="n">2</div><span class="tagq">営業の側</span><h3>土地情報を「総額と学区」だけで送っている</h3><p>図面1枚では、お客様はそこでの暮らしを想像できない。想像できない土地は、比べる理由も決める理由もない。</p><div class="say">土地を送るときは、LIFE Xの間取りを当て込んで一緒に送る。</div></div>
+    <div class="k"><div class="n">3</div><span class="tagq">営業の口ぐせ</span><h3>「この土地だと、選べるプランが少ないですね」</h3><p>営業がそう思っていると、お客様にも伝わる。入るプランの数は、土地の幅・奥行・道路の向きで変わる。1つしか入らなくても、その1つがご家族に合えば提案できる。</p></div>
+  </div>
+  <div class="cap">11/16 本部と佐古顧問のMTG。土地で止まっている理由の内訳は数字では取れていません（加盟店様からの聞き取りでは、エリア・学区の条件が最も多い）。</div>
+</section>
+
+<!-- 4 契約の瞬間 -->
+<section class="sl">
+  <div class="top"><span class="chip">お客様が決めるとき</span><span class="pg">4</span></div>
+  <div class="tt">エリア・予算・土地がそろっても、まだ決まらない。<br><span class="hi">決めるのは「ここで暮らす自分たち」が見えたときです。</span></div>
+  <div class="stairs">
+    <div class="sp" style="height:34%"><b>① エリアがはまる</b><p>学区・実家との距離。ここは動かさない</p></div>
+    <div class="sp" style="height:50%"><b>② 予算がはまる</b><p>月々でいくらなら暮らせるか</p></div>
+    <div class="sp" style="height:66%"><b>③ 土地がはまる</b><p>その土地に、家と車と庭が入る</p></div>
+    <div class="sp goal" style="height:88%"><b>④ 暮らしが見える</b><p>「この間取りなら、私たちの思いが叶う」と思えた瞬間に、契約へ進む</p></div>
+  </div>
+  <div class="note">多くの提案は③で止まっています。土地の話（総額・学区）だけでは④に届きません。<b>土地と一緒に間取りを見せて、引っ越したあとの毎日を想像してもらう。</b></div>
+  <div class="cap">11/16 佐古顧問「お客様がどういう状態になったら契約するか」より。</div>
+</section>
+
+<!-- 5 お客様の設定 -->
+<section class="sl">
+  <div class="top"><span class="chip">今日のお客様（架空）</span><span class="pg">5</span></div>
+  <div class="tt">学区の中で探して5か月。<span class="hi">届いた土地情報は4件、どれも決めきれない。</span></div>
+  <div class="prof">
+    <div class="pan">
+      <h4>ご家族と今の状況</h4>
+      <p>ご主人 35歳・会社員（月に数日は在宅）／奥様 33歳・時短勤務／お子さま 6歳と3歳</p>
+      <p>上の子が来春から小学校。「今の○○小の学区から出たくない」</p>
+      <p>車は2台。実家の近くで、親の手も借りたい</p>
+      <p><span class="tag">ご主人</span>在宅のときに集中できる場所がほしい</p>
+      <p><span class="tag">奥様</span>洗濯と片付けを短くしたい。子どもを見ながら家事をしたい</p>
+    </div>
+    <div class="pan">
+      <h4>ここまでの面談で</h4>
+      <p><span class="tag">できた</span>初回面談で月々の目安と総額の幅を見せ、LIFE Xで建てたいと言っていただいた</p>
+      <p><span class="tag">できた</span>ご主人・奥様それぞれの「一番」を聞けている</p>
+      <p><span class="tag ng">できていない</span>土地情報を送るとき、間取りを付けていない</p>
+      <p><span class="tag ng">できていない</span>「どうなったらこの土地に決めるか」を一緒に決めていない</p>
+      <p style="font-size:14px; color:var(--sub)">そこへ5件目の土地が出ました。北側道路、予算より300万円高い土地です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 土地情報だけ -->
+<section class="sl">
+  <div class="top"><span class="chip">5件目の土地</span><span class="pg">6</span></div>
+  <div class="tt">お客様に届いている土地情報は、<span class="hi">たいていこれだけです。</span></div>
+  <div class="site">
+    <svg viewBox="0 0 330 420" aria-label="想定土地の配置図">
+      <rect x="0" y="0" width="330" height="56" fill="#cfd6dd"/>
+      <text x="165" y="34" text-anchor="middle" font-size="15" font-weight="700" fill="#4b5966">北側道路（幅6m）</text>
+      <rect x="45" y="70" width="240" height="340" fill="#f3f6f9" stroke="#1e4e79" stroke-width="2.5"/>
+      <text x="165" y="245" text-anchor="middle" font-size="22" font-weight="800" fill="#1e4e79">約61.7坪</text>
+      <text x="165" y="270" text-anchor="middle" font-size="13" fill="#5c6c7d">204.0㎡</text>
+      <line x1="45" y1="62" x2="285" y2="62" stroke="#5c6c7d"/>
+      <text x="165" y="100" text-anchor="middle" font-size="13" font-weight="700" fill="#5c6c7d">間口 12.0m</text>
+      <text x="300" y="245" font-size="13" font-weight="700" fill="#5c6c7d" transform="rotate(90 300 245)" text-anchor="middle">奥行 17.0m</text>
+      <g transform="translate(22,88)"><path d="M0 18 L7 0 L14 18 L7 13Z" fill="#1e4e79"/><text x="7" y="32" text-anchor="middle" font-size="12" font-weight="800" fill="#1e4e79">N</text></g>
+    </svg>
+    <div style="display:flex; flex-direction:column; gap:14px">
+      <div class="sheet">
+        <h5>販売図面より（架空）</h5>
+        <dl>
+          <dt>所在</dt><dd>○○市△△町</dd>
+          <dt>土地面積</dt><dd>204.0㎡（約61.7坪）</dd>
+          <dt>接道</dt><dd>北側 公道 幅6m</dd>
+          <dt>学区</dt><dd>○○小学校 徒歩12分</dd>
+          <dt>価格</dt><dd>予算より300万円高い</dd>
+        </dl>
+      </div>
+      <div class="pan" style="flex:none">
+        <p style="font-size:16px"><b>これを見たご夫婦の頭の中</b></p>
+        <p style="font-size:15.5px">「学区はいい。でも北道路って暗いんじゃない？」<br>「300万高いのか…」<br>「家と車2台、ちゃんと入るのかな」</p>
+      </div>
+    </div>
+  </div>
+  <div class="cap">分からないことは、お客様は聞いてくれません。「もう少しほかも見てみます」で終わります。</div>
+</section>
+
+<!-- 7 当て込み -->
+<section class="sl">
+  <div class="top"><span class="chip dark">本部の送り方</span><span class="pg">7</span></div>
+  <div class="tt">同じ土地に、<span class="hi">このご家族に合うプランを置いて送る。</span></div>
+  <div class="p3">
+    <div class="pc">
+      <div class="hd"><b>A 30-68-N-12-018</b><span>30.37坪・3LDK</span></div>
+      <div class="vis">
+        <svg viewBox="0 0 170 215"><rect x="0" y="0" width="170" height="24" fill="#cfd6dd"/><rect x="25" y="30" width="120" height="170" fill="#fff" stroke="#1e4e79" stroke-width="1.5"/><rect x="70.75" y="50" width="68.25" height="84.2" fill="#1e4e79"/><rect x="38.9" y="34" width="18" height="46" rx="3" fill="#9fb3c6"/><rect x="38.9" y="86" width="18" height="46" rx="3" fill="#9fb3c6"/><rect x="70.75" y="134.2" width="68.25" height="65.8" fill="#dcebd3"/><text x="105" y="172" text-anchor="middle" font-size="11" font-weight="800" fill="#3f6b2f">南の庭 6.6m</text></svg>
+        <img src="mtg-20261127-assets/plans/30-68-N-12-018_1F.png" alt="30-68-N-12-018 1階">
+      </div>
+      <div class="kurashi">キッチン横にパントリーと家族の衣類置き場。洗濯→しまうが1階で終わる。<small style="display:block; color:var(--sub); font-weight:700">奥様の「家事を短く」に</small></div>
+    </div>
+    <div class="pc">
+      <div class="hd"><b>B 30-72-N-12-033</b><span>30.81坪・3LDK</span></div>
+      <div class="vis">
+        <svg viewBox="0 0 170 215"><rect x="0" y="0" width="170" height="24" fill="#cfd6dd"/><rect x="25" y="30" width="120" height="170" fill="#fff" stroke="#1e4e79" stroke-width="1.5"/><rect x="66.2" y="50" width="72.8" height="100.1" fill="#1e4e79"/><rect x="36.6" y="34" width="18" height="46" rx="3" fill="#9fb3c6"/><rect x="36.6" y="86" width="18" height="46" rx="3" fill="#9fb3c6"/><rect x="66.2" y="150.1" width="72.8" height="49.9" fill="#dcebd3"/><text x="102" y="180" text-anchor="middle" font-size="11" font-weight="800" fill="#3f6b2f">南の庭 5.0m</text></svg>
+        <img src="mtg-20261127-assets/plans/30-72-N-12-033_1F.png" alt="30-72-N-12-033 1階">
+      </div>
+      <div class="kurashi">22帖のLDKが南の庭に向く。階段下にデスク。キッチンから宿題が見える。<small style="display:block; color:var(--sub); font-weight:700">「子どもを見ながら家事」に</small></div>
+    </div>
+    <div class="pc">
+      <div class="hd"><b>C 35-77-N-11-040</b><span>35.13坪・3LDK</span></div>
+      <div class="vis">
+        <svg viewBox="0 0 170 215"><rect x="0" y="0" width="170" height="24" fill="#cfd6dd"/><rect x="25" y="30" width="120" height="170" fill="#fff" stroke="#1e4e79" stroke-width="1.5"/><rect x="61.65" y="50" width="77.35" height="100.1" fill="#1e4e79"/><rect x="34.3" y="34" width="18" height="46" rx="3" fill="#9fb3c6"/><rect x="34.3" y="86" width="18" height="46" rx="3" fill="#9fb3c6"/><rect x="61.65" y="150.1" width="77.35" height="49.9" fill="#dcebd3"/><text x="100" y="180" text-anchor="middle" font-size="11" font-weight="800" fill="#3f6b2f">南の庭 5.0m</text></svg>
+        <img src="mtg-20261127-assets/plans/35-77-N-11-040_1F.png" alt="35-77-N-11-040 1階">
+      </div>
+      <div class="kurashi">吹抜けのあるLDKと書斎。在宅の日も、家族の気配の中で仕事に集中できる。<small style="display:block; color:var(--sub); font-weight:700">ご主人の「集中できる場所」に</small></div>
+    </div>
+  </div>
+  <div class="cap">この土地に入るプランの中から、例として3つ置いています。入る数は土地ごとに変わります。配置は目安（北の道路から2.0m・東の境界から0.6m、西側に車2台を縦に）。建物は1階の外枠を四角で表示。建ぺい率・斜線・条例・建築協定は各社で必ず確認してください。図面：LIFE X会員ページ Gプラン。</div>
+</section>
+
+<!-- 8 手順 -->
+<section class="sl">
+  <div class="top"><span class="chip">提案の手順</span><span class="pg">8</span></div>
+  <div class="tt">土地が出たら、<span class="hi">送る前の15分でこの5つ。</span></div>
+  <div class="steps">
+    <div class="s"><span class="n">1</span><b>ご家族の「一番」を見返す</b><p>面談メモから、ご主人・奥様それぞれの一番を1行ずつ。</p></div>
+    <div class="s"><span class="n">2</span><b>家を置ける幅を出す</b><p>間口から、駐車の幅と両側の空き（目安で各1m）を引く。</p></div>
+    <div class="s"><span class="n">3</span><b>道路の向きと幅でプランを引く</b><p>プラン番号「30-<u>72</u>-<u>N</u>」の2つ目が道路側の建物の幅（7.28m）、3つ目が道路の向き。</p></div>
+    <div class="s"><span class="n">4</span><b>入るプランから「一番」に合うものを選ぶ</b><p>数は決めない。1つしか入らなくても送る。奥行と南の庭は図面で確かめる。</p></div>
+    <div class="s"><span class="n">5</span><b>土地＋プランを1通で送る</b><p>プランごとに「この家での暮らし」を1行。説明の日程は、こちらから3つ出す。</p></div>
+  </div>
+  <div class="line-msg">
+    <div><div class="bubble x"><small>よくある送り方</small>新しい土地が出ました！○○小学区で61.7坪、北道路です。価格は図面のとおりです。ご検討ください。</div></div>
+    <div><div class="bubble"><small>本部の送り方</small>○○小学区で、新しい土地が出ました。先日伺った「洗濯と片付けを短く」「在宅で集中できる場所」をもとに、この土地に入るLIFE Xのプランを置いてみました。車2台と南の庭が取れます。北道路ですが、リビングが南の庭に向くのがこの土地のいいところです。一度、図面を広げてご説明させてください。<br>① ○/○（土）10:00〜<br>② ○/○（日）14:00〜<br>③ ○/○（水）18:00〜<br>ご都合が合わなければ、別の日もお出しします。</div></div>
+  </div>
+  <div class="cap">3の読み方は図面2枚（27-109＝幅10.92m、30-63＝幅6.37m）で一致を確認。本部の公式な定義としては未確認〔要確認〕。道路の向きが違うプランを使えるかは〔要確認〕。佐古顧問「いつも土地を送るときにLIFE Xの間取りも送っている」（11/16）。</div>
+</section>
+
+<!-- 8b これまでの型 -->
+<section class="sl">
+  <div class="top"><span class="chip">返し方の土台</span><span class="pg">9</span></div>
+  <div class="tt">土地の場面の返し方は、新しく覚えなくていい。<br><span class="hi">これまでの研修の3つの型を、土地の話で使うだけです。</span></div>
+  <div class="k3">
+    <div class="k"><div class="n">1</div><span class="from">8/21 聞く力</span><h3>説明する前に、聞く</h3><p>共感 → 復唱 → 関連質問を1セットで。話す量はお客様が7、営業が3。「でも」から入らない。「つまり○○ですよね」と先回りしない。</p><div class="say">「北道路、気になりますよね。昼間お家にいらっしゃるのは、奥様が多いですか？」</div></div>
+    <div class="k"><div class="n">2</div><span class="from">8/28 間の取り方</span><h3>図や金額を見せたら、黙る</h3><p>質問のあとは1.5秒待つ。「うーん…」と考え始めたら、うなずいて5秒待つ。金額は指でさして数秒黙る。ご夫婦なら、奥様の話を待つ。</p><div class="say">「月々に直すと、こちらです」<br>（電卓を指して、黙る）</div></div>
+    <div class="k"><div class="n">3</div><span class="from">8/28 テストクロージング・11/13 本部の型</span><h3>押さずに、確かめる</h3><p>テストクロージングは押すためではなく、今どこで迷っているかの診断。理解・気持ち・優先順位・奥様の気持ちの4つを確かめる。申込みは「進めていいですか」と確認するだけ。</p><div class="say">「一度、整理させてください。この条件は『絶対条件』ですか？ それとも『できれば』ですか？」</div></div>
+  </div>
+  <div class="note">土地の話は、営業が説明したくなる話題ばかり。<b>説明する前に1回聞く。図を見せたら1回黙る。</b>（場面1〜7に型のタグ付き）</div>
+</section>
+
+<!-- 9 場面1 -->
+<section class="sl">
+  <div class="top"><span class="chip dark">場面1</span><span class="chip">土地情報への返事</span><span class="pg">10</span></div>
+  <div class="q"><span class="who">ご主人</span><div><div class="say">「土地ありがとうございます。…で、これって家はちゃんと入るんですか？」</div><div class="hon"><b>本音：</b>図面を見ても、ここで暮らす姿が浮かばない。入らないなら早く次へ行きたい。</div></div></div>
+  <div class="sg">
+    <div class="ngp"><h5>よくある返し方</h5><div class="line">「はい、入ると思います。総額はこちらです」</div><p>「入ると思う」は確かめていない言葉。お客様の頭には家も車も庭も描かれないまま、総額だけが残る。</p><div class="nv"><b>表情・しぐさ</b>図面をさっと見せて、すぐ資金計画の紙に移る。</div></div>
+    <div class="okp"><h5>本部の返し方</h5>
+      <div class="d s"><span class="r">営業</span><span class="t">「そこ、一番気になりますよね。<em class="tg">共感</em>実は、先日伺ったことをもとに、この土地に置いてみたんです」<i>（配置図を出す）</i></span></div>
+      <div class="d s"><span class="r">営業</span><span class="t">「奥様の『家事を短く』と、ご主人の『集中できる場所』に合いそうなプランを選んでいます」<em class="tg">復唱</em></span></div>
+      <div class="ma">図をお客様に向けて、目で追い終わるまで待つ<em class="tg">間</em></div>
+      <div class="d c"><span class="r">ご主人</span><span class="t">「へえ…車も2台、ちゃんと入るんですね」</span></div>
+      <div class="d s"><span class="r">営業</span><span class="t">「入ります。ご覧になって、気になるところはありますか？」<em class="tg">確かめる：理解</em></span></div>
+      <div class="nv"><b>表情・しぐさ</b>図を置いたら説明を始めない。最初に口を開くのはお客様。</div>
+    </div>
+  </div>
+  <div class="ft">
+    <div><b>なぜ</b>「入るか」への答えは、入った図を見せること。説明を足すより、図を見てもらう時間をつくる方が、そこでの暮らしを想像してもらえる。</div>
+    <div><b>初回でやっておけば</b>ご主人・奥様それぞれの「一番」を、ひと言で書き取っておく。これがないと、どのプランを置くか選べない。</div>
+    <div class="one"><b>明日から使う1文</b>「先日伺ったことをもとに、置いてみました」</div>
+  </div>
+</section>
+
+<!-- 10 場面2 -->
+<section class="sl">
+  <div class="top"><span class="chip dark">場面2</span><span class="chip">選べるプランが少ない？</span><span class="pg">11</span></div>
+  <div class="q"><span class="who">奥様</span><div><div class="say">「この土地だと、LIFE Xで選べるプランって少ないんですよね？」</div><div class="hon"><b>本音：</b>規格住宅だから、どこかで我慢することになるのでは。注文住宅の友だちの話が頭にある。</div></div></div>
+  <div class="sg">
+    <div class="ngp"><h5>よくある返し方</h5><div class="line">「そうなんです。この幅だと、どうしても限られてしまって…」</div><p>営業が「少ない」と思っていると、そのまま伝わる。数の話をした時点で「選べない家」になり、注文住宅へ気持ちが動く。</p><div class="nv"><b>表情・しぐさ</b>申し訳なさそうに眉を下げ、声が小さくなる。</div></div>
+    <div class="okp"><h5>本部の返し方</h5>
+      <div class="d s"><span class="r">営業</span><span class="t">「少ない、と感じられたんですね。<em class="tg">復唱</em>どのあたりで、そう思われました？」<em class="tg">関連質問</em></span></div>
+      <div class="d c"><span class="r">奥様</span><span class="t">「友だちが注文で全部決めたって聞いて。規格だと我慢するところが出るのかなって」</span></div>
+      <div class="d s"><span class="r">営業</span><span class="t">「我慢するところが出ないか、ですね。大事なところです。<em class="tg">共感</em>我慢したくないのは、どこですか？」</span></div>
+      <div class="d c"><span class="r">奥様</span><span class="t">「洗濯は、1階で終わらせたい」</span></div>
+      <div class="d s"><span class="r">営業</span><span class="t">「でしたら、この図を。洗濯機からここ、ここでしまって終わりです」<i>（指を止めて黙る）</i><em class="tg">間</em></span></div>
+      <div class="nv"><b>表情・しぐさ</b>プランの数を数えない。言い訳もしない。奥様が「我慢したくないこと」を言うまで待つ。</div>
+    </div>
+  </div>
+  <div class="ft">
+    <div><b>なぜ</b>「少ない」の裏にあるのは数ではなく「我慢させられるのでは」という不安。数で答えると負ける。我慢したくないことを聞いて、それが叶う図を見せる。</div>
+    <div><b>初回でやっておけば</b>「LIFE Xは、設計士が描いたプランの中から、ご家族に合うものを選ぶ家です」と、選び方そのものを先に伝えておく。</div>
+    <div class="one"><b>明日から使う1文</b>「我慢したくないのは、どこですか？」</div>
+  </div>
+</section>
+
+<!-- 11 場面3 -->
+<section class="sl">
+  <div class="top"><span class="chip dark">場面3</span><span class="chip">北道路</span><span class="pg">12</span></div>
+  <div class="q"><span class="who">奥様</span><div><div class="say">「北道路って、日当たりが悪いって聞くんですけど…」</div><div class="hon"><b>本音：</b>昼間に家にいるのは私。暗いリビングで子どもと過ごすのはいや。</div></div></div>
+  <div class="sg">
+    <div class="ngp"><h5>よくある返し方</h5><div class="line">「北道路は安いので、お得なんですよ」<br>「そこまで気にならないと思います」</div><p>「安い」は心配を残したまま。「気にならない」は奥様の不安を軽く扱っている。どちらも日当たりの質問に答えていない。</p><div class="nv"><b>表情・しぐさ</b>笑ってごまかし、話を価格に移す。</div></div>
+    <div class="okp"><h5>本部の返し方</h5>
+      <div class="d s"><span class="r">営業</span><span class="t">「日当たり、気になりますよね。<em class="tg">共感</em>昼間お家にいらっしゃるのは、奥様が多いですか？」<em class="tg">関連質問</em></span></div>
+      <div class="d c"><span class="r">奥様</span><span class="t">「そうですね。下の子と、ほとんど家にいるので」</span></div>
+      <div class="d s"><span class="r">営業</span><span class="t">「下の子と過ごすリビングが明るいかどうか、ですね。<em class="tg">復唱</em>この図で見てみましょう」<i>（Bの配置図を出す）</i></span></div>
+      <div class="d s"><span class="r">営業</span><span class="t">「北道路は家を道路側に寄せられるので、南に約5mの庭が残ります。リビングはその庭に向いています」<i>（南側を指して黙る）</i><em class="tg">間</em></span></div>
+      <div class="d c"><span class="r">奥様</span><span class="t">「…キッチンから、庭は見える？」</span></div>
+      <div class="nv"><b>表情・しぐさ</b>キッチンの位置は営業が言わず、奥様に図面で指してもらう。</div>
+    </div>
+  </div>
+  <div class="ft">
+    <div><b>なぜ</b>先に「誰が、いつ、そこで過ごすか」を聞くと、説明が奥様の暮らしの話になる。そのうえで、不安には言葉より図で答える。</div>
+    <div><b>初回でやっておけば</b>「土地は向きより、家を置いたときの庭と光で見ましょう」と、土地の見方を先に渡しておく。</div>
+    <div class="one"><b>明日から使う1文</b>「昼間そこで過ごすのは、どなたですか？」</div>
+  </div>
+</section>
+
+<!-- 12 場面4 -->
+<section class="sl">
+  <div class="top"><span class="chip dark">場面4</span><span class="chip">予算オーバー</span><span class="pg">13</span></div>
+  <div class="q"><span class="who">ご主人</span><div><div class="say">「でも、この土地は予算より300万高いんですよね…」</div><div class="hon"><b>本音：</b>気に入り始めている。でも最初に決めた予算を超えるのが怖い。妻がどう思っているかも気になる。</div></div></div>
+  <div class="sg">
+    <div class="ngp"><h5>よくある返し方</h5><div class="line">「値下げ交渉してみましょうか」<br>「土地はこれから上がりますよ」</div><p>交渉は約束できない期待を生む。「上がるから早く」は急かしているだけで、地方では通じない所も多い。どちらも300万の意味に答えていない。</p><div class="nv"><b>表情・しぐさ</b>焦って早口になり、電卓をたたく。</div></div>
+    <div class="okp"><h5>本部の返し方</h5>
+      <div class="d s"><span class="r">営業</span><span class="t">「300万、大きいですよね」<em class="tg">共感</em><i>（うなずいて待つ）</i><em class="tg">間</em></span></div>
+      <div class="d c"><span class="r">ご主人</span><span class="t">「最初に決めた予算は、守りたいんですよ」</span></div>
+      <div class="d s"><span class="r">営業</span><span class="t">「最初の予算は守りたい。<em class="tg">復唱</em>一度、整理させてください。300万は、35年だと月8千円台です」<i>（電卓をお客様に向けて指し、黙る）</i><em class="tg">間</em></span></div>
+      <div class="d s"><span class="r">営業</span><span class="t">「この土地の学区と南の庭は、ご家族にとって『絶対条件』ですか？ それとも『できれば』ですか？」<em class="tg">確かめる：優先順位</em></span></div>
+      <div class="d c"><span class="r">ご主人</span><span class="t">「学区は絶対です。庭は…できれば、かな」</span></div>
+      <div class="d s"><span class="r">営業</span><span class="t">「奥様はいかがですか？ 率直にお聞きしたいです」<em class="tg">確かめる：奥様</em></span></div>
+      <div class="nv"><b>表情・しぐさ</b>1つ聞いたら、答えが出るまで次を聞かない。「お得ですよ」とは言わない。</div>
+    </div>
+  </div>
+  <div class="ft">
+    <div><b>なぜ</b>300万は大きく、月8千円台は小さい。月々に直すと毎月の暮らしと比べられる。それでも上げるかは、ご家族の優先順位で決まる。営業が決めない。</div>
+    <div><b>初回でやっておけば</b>お金はいつも「月々」で話しておく。総額だけで話してきたお客様に、ここで急に月々を出すと不自然になる。</div>
+    <div class="one"><b>明日から使う1文</b>「『絶対条件』ですか？ それとも『できれば』ですか？」</div>
+  </div>
+  <div class="cap" style="padding-top:4px">300万円を35年・元利均等で借りた場合の月々：金利0.8%で約8,190円、1.0%で約8,470円、1.5%で約9,190円（本部計算）。実際の金利は各社の提携銀行の数字で。</div>
+</section>
+
+<!-- 13 場面5 -->
+<section class="sl">
+  <div class="top"><span class="chip dark">場面5</span><span class="chip">ほかも見たい</span><span class="pg">14</span></div>
+  <div class="q"><span class="who">奥様</span><div><div class="say">「もう少し、ほかの土地も見てから決めたいです」</div><div class="hon"><b>本音：</b>決めたあとに、もっといい土地が出たら後悔しそう。何を基準に決めればいいか分からない。</div></div></div>
+  <div class="sg">
+    <div class="ngp"><h5>よくある返し方</h5><div class="line">「分かりました。また新しいのが出たら送りますね」<br>「この土地、すぐ売れちゃいますよ」</div><p>前者は、基準がないまま次を待つだけ。5件目が6件目になる。後者は急かしているだけで、迷いの理由が分からないまま。</p><div class="nv"><b>表情・しぐさ</b>あっさり図面をしまう。または身を乗り出す。</div></div>
+    <div class="okp"><h5>本部の返し方</h5>
+      <div class="d s"><span class="r">営業</span><span class="t">「ぜひ、見てください。差し支えなければ、この土地で一番引っかかっているのは、お金・間取り・場所のどれですか？」<em class="tg">確かめる：理解</em></span></div>
+      <div class="d c"><span class="r">奥様</span><span class="t">「…お金、かな。あと、決めたあとにもっといい土地が出たらって」</span></div>
+      <div class="d s"><span class="r">営業</span><span class="t">「お金と、あとで後悔しないか、ですね。<em class="tg">復唱</em>そう思われるのは当然です」<em class="tg">共感</em></span></div>
+      <div class="d s"><span class="r">営業</span><span class="t">「次の土地と同じ物差しで比べられるように、ご家族が大事にしたいことを書いておきませんか」<i>（白い紙を出し、ペンはお客様に）</i></span></div>
+      <div class="d s"><span class="r">営業</span><span class="t">「次の土地も、この紙で一緒に見ましょう。○日・○日・○日でしたら、どこがご都合よいですか？」</span></div>
+      <div class="nv"><b>表情・しぐさ</b>引き止めない。物差しはお客様の字で書いてもらう。</div>
+    </div>
+  </div>
+  <div class="ft">
+    <div><b>なぜ</b>迷いは3種類（情報が足りない／気持ちが追いつかない／外の事情）。「ほかも見たい」の多くは、後悔しないための物差しがないこと。持ち帰りは止めない。</div>
+    <div><b>初回でやっておけば</b>土地探しに入る前に、学区・月々・暮らしの物差しを一緒に書いておく。土地を見るたびに同じ紙を出す。</div>
+    <div class="one"><b>明日から使う1文</b>「一番引っかかっているのは、お金・間取り・場所のどれですか？」</div>
+  </div>
+</section>
+
+<!-- 14 場面6 -->
+<section class="sl">
+  <div class="top"><span class="chip dark">場面6</span><span class="chip">注文住宅の方がいい？</span><span class="pg">15</span></div>
+  <div class="q"><span class="who">ご主人</span><div><div class="say">「土地に合わせるなら、注文で自由に建てたほうがいいのかなって」</div><div class="hon"><b>本音：</b>本当に注文がいいのか、間取りの何かが気に入らないのか、自分でもはっきりしていない。</div></div></div>
+  <div class="sg">
+    <div class="ngp"><h5>よくある返し方</h5><div class="line">「注文だと高くなりますよ」<br>「うちでも注文はできますけど…」</div><p>理由を聞かずに引き止めるか、すぐ乗り換えを勧める。本当の理由が分からないまま、LIFE Xで決める道を自分で閉じる。</p><div class="nv"><b>表情・しぐさ</b>腕を組む、または慌てて別のパンフレットを探す。</div></div>
+    <div class="okp"><h5>本部の返し方</h5>
+      <div class="d s"><span class="r">営業</span><span class="t">「注文で自由に、ですね。<em class="tg">復唱</em>自由にしたいのは、どこですか？」<em class="tg">関連質問</em></span></div>
+      <div class="ma">うなずいて待つ。答えを先回りしない<em class="tg">間</em></div>
+      <div class="d c"><span class="r">ご主人</span><span class="t">「書斎が、もう少し広いといいなと…」</span></div>
+      <div class="d s"><span class="r">営業</span><span class="t">「書斎の広さですね。ほかにも、ここは違う、というところはありますか？」</span></div>
+      <div class="d c"><span class="r">ご主人</span><span class="t">「いや、そこくらいかな」</span></div>
+      <div class="d s"><span class="r">営業</span><span class="t">「書斎が広めのプランも、この土地に入ります。<i>（Cの図面を出す）</i>見比べて、どう感じられますか？」<em class="tg">確かめる：気持ち</em></span></div>
+    </div>
+  </div>
+  <div class="ft">
+    <div><b>なぜ</b>「注文がいい」の中身は3つ：①土地に本当に入らない ②間取りの一部が気に入らない ③そもそも自由設計がしたい。①②はLIFE Xの中で答えられる。③の方には無理に勧めない。</div>
+    <div><b>初回でやっておけば</b>「なぜ今回、規格住宅のLIFE Xを見に来られたんですか？」と最初に聞いておく。③の方は初回で分かる。</div>
+    <div class="one"><b>明日から使う1文</b>「自由にしたいのは、どこですか？」</div>
+  </div>
+</section>
+
+<!-- 15 場面7 -->
+<section class="sl">
+  <div class="top"><span class="chip dark">場面7</span><span class="chip">申込みの前に確かめる</span><span class="pg">16</span></div>
+  <div class="q"><span class="who">営業</span><div><div class="say">「一度、整理させてください。ここまでで、気になるところはありますか？」</div><div class="hon"><b>狙い：</b>押すためではなく、今どこにいるかを一緒に確かめる。返事で次の一手が決まる。</div></div></div>
+  <div class="sg" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="okp"><h5>「ないです。いいと思います」</h5><p style="margin:0; font-size:15.5px; line-height:1.7"><b>決められる状態</b><br>ここで初めて「この土地で、このプランで、進めていいですか？」と確認する。決まったら、申込みと事前審査の日付をその場で一緒に決める。</p><div class="nv"><b>表情・しぐさ</b>まず「ありがとうございます」と頭を下げる。そのあと手帳を開く。</div></div>
+    <div class="okp"><h5>ご主人「いいと思う」奥様は黙っている</h5><p style="margin:0; font-size:15.5px; line-height:1.7"><b>奥様が追いついていない</b><br>「奥様はいかがですか？ 率直にお聞きしたいです」。出てきた迷いが「お金」なら場面4、「ほかも見たい」なら場面5の紙に戻る。</p><div class="nv"><b>表情・しぐさ</b>ご主人とだけ話を進めない。目線を奥様に置いて5秒待つ。</div></div>
+    <div class="okp"><h5>「どう思いますか？」と聞かれる</h5><p style="margin:0; font-size:15.5px; line-height:1.7"><b>判断をお客様に返す</b><br>「皆様は、○○という理由でご決断される方が多いです。同じように感じられるなら進められて良いと思います。そう感じられないなら、無理に進めず一度止めておかれる方が良いと思います」</p><div class="nv"><b>○○には</b>御社のお客様が実際に決めた理由を入れる。</div></div>
+  </div>
+  <div class="ft">
+    <div><b>なぜ</b>クロージングは説得ではなく確認。予算・物差し・段取りの3つがそろっていれば、最後は「進めていいですか」と聞くだけになる。</div>
+    <div><b>やらないこと</b>「今日決めちゃいましょうか」「この土地、悪くないですよね？」「ほかの方に先に決まるかも」。どれも、お客様には圧でしかない。</div>
+    <div class="one"><b>明日から使う1文</b>「一度、整理させてください。気になるところはありますか？」</div>
+  </div>
+</section>
+
+<!-- 16 ゴール -->
+<section class="sl">
+  <div class="top"><span class="chip">土地を決める面談のゴール</span><span class="pg">17</span></div>
+  <div class="tt">土地の面談は、<span class="hi">「決められる状態」に整えて終える。</span></div>
+  <div class="two">
+    <div class="pan">
+      <h4>帰りぎわに、この3つがそろっているか</h4>
+      <p><b>① 土地に、プランが置かれている</b><br>家・車・庭が1枚の図で見えている</p>
+      <p><b>② ご家族の物差しが、紙に書いてある</b><br>学区・月々・暮らし。お客様の字で</p>
+      <p><b>③ 次の段取りが、日付で決まっている</b><br>申込み・事前審査、またはご家族で現地へ</p>
+    </div>
+    <div class="pan">
+      <h4>今日から、土地を送るたびに</h4>
+      <div class="map" style="flex-direction:column; gap:8px; flex:none">
+        <div class="box" style="background:var(--navy-soft); color:var(--navy); border-radius:10px; padding:8px 14px; font-weight:800">土地情報＋入るプラン＋暮らしの1行を、1通で送る</div>
+        <div class="box" style="background:var(--navy-soft); color:var(--navy); border-radius:10px; padding:8px 14px; font-weight:800">図を見せたら、説明する前に聞く・待つ</div>
+        <div class="box" style="background:var(--navy); color:#fff; border-radius:10px; padding:8px 14px; font-weight:800">「気になるところはありますか？」で確かめてから、「進めていいですか」</div>
+      </div>
+      <p style="font-size:15px">営業は決める人ではなく、決められる状態に整える人（8/28研修）。いま土地探し中のお客様全員に、まず1回これを送ってみてください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 17 ロープレ -->
+<section class="sl">
+  <div class="top"><span class="chip dark">ロープレ</span><span class="pg">18</span></div>
+  <div class="tt">2人1組で10分。<span class="hi">お客様役は、このカードどおりに返してください。</span></div>
+  <div class="rp">
+    <div class="card">
+      <h5>お客様役カード（ご主人・奥様どちらか1人でOK）</h5>
+      <ol>
+        <li>土地の図面を受け取ったら「家はちゃんと入るんですか？」</li>
+        <li>プランを見せられたら「この土地だと、選べるのは少ないんですよね？」</li>
+        <li>配置図を見たら「北道路って暗くない？」</li>
+        <li>説明に納得したら「でも300万高いんですよね」</li>
+        <li>月々を聞いたら「もう少しほかも見たい」</li>
+      </ol>
+      <p style="margin:6px 0 0; font-size:12.5px; color:var(--sub)">営業役が気持ちを聞かずに説明を始めたら「うーん」と黙る。聞いてくれたら、各場面の「本音」を1つ話してください。</p>
+    </div>
+    <div class="card">
+      <h5>営業役のチェック（終わったらお客様役が○をつける）</h5>
+      <ol>
+        <li>説明の前に、共感か復唱を入れた</li>
+        <li>質問や図のあと、かぶせずに待てた</li>
+        <li>プランの数でなく「我慢したくないこと」を聞けた</li>
+        <li>300万を月々に直し、指して黙れた</li>
+        <li>「絶対条件」か「できれば」かを聞けた</li>
+        <li>もう1人（奥様）の気持ちを聞けた</li>
+        <li>次の日程を、こちらから3つ出して決めた</li>
+      </ol>
+      <p style="margin:6px 0 0; font-size:12.5px; color:var(--sub)">使う資料：7枚目の配置図、電卓、白い紙1枚。対面できない場合は、画面共有でも、車内でもできます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 18 7文 -->
+<section class="sl">
+  <div class="top"><span class="chip">持ち帰り</span><span class="pg">19</span></div>
+  <div class="tt">明日の土地提案で使う、<span class="hi">7つの1文。</span></div>
+  <div class="seven">
+    <div><span class="n">1</span><span class="s">「先日伺ったことをもとに、置いてみました」</span><span class="w">家は入るのかと聞かれたら</span></div>
+    <div><span class="n">2</span><span class="s">「我慢したくないのは、どこですか？」</span><span class="w">選べるプランが少ないと言われたら</span></div>
+    <div><span class="n">3</span><span class="s">「昼間そこで過ごすのは、どなたですか？」</span><span class="w">北道路・日当たりを気にされたら</span></div>
+    <div><span class="n">4</span><span class="s">「『絶対条件』ですか？ それとも『できれば』ですか？」</span><span class="w">予算を超えると言われたら</span></div>
+    <div><span class="n">5</span><span class="s">「一番引っかかっているのは、お金・間取り・場所のどれですか？」</span><span class="w">ほかも見たいと言われたら</span></div>
+    <div><span class="n">6</span><span class="s">「自由にしたいのは、どこですか？」</span><span class="w">注文住宅の方がいいかもと言われたら</span></div>
+    <div><span class="n">7</span><span class="s">「一度、整理させてください。気になるところはありますか？」</span><span class="w">申込みの前に、確かめる</span></div>
+  </div>
+</section>
+
+<!-- 19 出典 -->
+<section class="sl">
+  <div class="top"><span class="chip">出典・確認事項</span><span class="pg">20</span></div>
+  <div class="tt">この資料の根拠</div>
+  <ul class="src">
+    <li><b>土地探し中 26組</b>：LIFE X加盟店ポータル 本部用データ（members・ステータス「土地探し」、2026/11/19取得）。11/16のMTG時点では29組</li>
+    <li><b>止まる理由・提案の考え方・300万＝月約1万円・契約するときの状態</b>：2026/11/16 本部と佐古顧問のMTG（Geminiメモ・文字起こし 00:38〜00:48）</li>
+    <li><b>プラン図面・坪数・特徴</b>：LIFE X会員ページ Gプラン（2026/9/9取得の印刷PDFより）。30-68-N-12-018＝1階6,825×8,417.5mm／30-72-N-12-033＝7,280×10,010mm／35-77-N-11-040＝7,735×10,010mm</li>
+    <li><b>月々の金額</b>：300万円・35年・元利均等返済で本部計算（金利0.8%：8,192円／1.0%：8,469円／1.5%：9,186円）</li>
+    <li><b>申込みは土地が決まる前でもできる</b>：11/13研修（月2棟への地図）39〜42枚目</li>
+    <li><b>聞き方（共感・復唱・関連質問／7対3）・間の取り方・テストクロージング（4つの確認）・迷いの3種類・第三者話法</b>：8/21研修「聞く力」教科書、8/28研修「間の取り方＋テストクロージング」教科書（Gハウス新人営業向け教育資料 第6章をLIFE X向けに直したもの）、11/13研修 参考書4章・7章</li>
+    <li><b>〔要確認〕</b>プラン番号の2つ目の数字＝道路側の建物の幅、という読み方の公式な定義／道路の向きが違うプランを使えるか</li>
+  </ul>
+</section>
+
+</div>
+</body></html>
