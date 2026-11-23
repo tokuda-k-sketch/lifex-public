@@ -6,7 +6,7 @@
     },
     {
       "slug": "chuo-kensetsu",
-      "name": "中央建設様"
+      "name": "中央建設株式会社様"
     },
     {
       "slug": "withdom",
@@ -31,6 +31,38 @@
     {
       "slug": "minaminihon",
       "name": "南日本ハウス様"
+    },
+    {
+      "slug": "flowerhome",
+      "name": "フラワーホーム様"
+    },
+    {
+      "slug": "karakusha",
+      "name": "華楽舎様"
+    },
+    {
+      "slug": "kenshow",
+      "name": "建匠様"
+    },
+    {
+      "slug": "daiken",
+      "name": "大建建設様"
+    },
+    {
+      "slug": "sakamoto",
+      "name": "坂本建設工業様"
+    },
+    {
+      "slug": "tomoku",
+      "name": "トーモク様"
+    },
+    {
+      "slug": "sirius",
+      "name": "シリウス様"
+    },
+    {
+      "slug": "kinoshita",
+      "name": "キノシタ様"
     }
   ],
   "mtgs": [
@@ -117,6 +149,90 @@
       "dateLabel": "2026年11月16日（月）",
       "title": "ショートMTG",
       "file": "chuo-kensetsu/2026-11-16.html"
+    },
+    {
+      "slug": "chuo-kensetsu",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "ショートMTG",
+      "file": "chuo-kensetsu/2026-11-23.html"
+    },
+    {
+      "slug": "chuo-kensetsu",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "chuo-kensetsu/2026-11-23-mh.html"
+    },
+    {
+      "slug": "flowerhome",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "flowerhome/2026-11-23-mh.html"
+    },
+    {
+      "slug": "karakusha",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "karakusha/2026-11-23-mh.html"
+    },
+    {
+      "slug": "kenshow",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "kenshow/2026-11-23-mh.html"
+    },
+    {
+      "slug": "daiken",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "daiken/2026-11-23-mh.html"
+    },
+    {
+      "slug": "kurume-kensetsu",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "kurume-kensetsu/2026-11-23-mh.html"
+    },
+    {
+      "slug": "sakamoto",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "sakamoto/2026-11-23-mh.html"
+    },
+    {
+      "slug": "tomoku",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "tomoku/2026-11-23-mh.html"
+    },
+    {
+      "slug": "sirius",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "sirius/2026-11-23-mh.html"
+    },
+    {
+      "slug": "kinoshita",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "kinoshita/2026-11-23-mh.html"
+    },
+    {
+      "slug": "minaminihon",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "minaminihon/2026-11-23-mh.html"
     }
   ]
 }
