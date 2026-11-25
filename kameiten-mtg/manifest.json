@@ -186,13 +186,6 @@
       "file": "kenshow/2026-11-23-mh.html"
     },
     {
-      "slug": "kurume-kensetsu",
-      "date": "2026-11-23",
-      "dateLabel": "2026年11月23日（月）",
-      "title": "モデルハウスの進み具合",
-      "file": "kurume-kensetsu/2026-11-23-mh.html"
-    },
-    {
       "slug": "sakamoto",
       "date": "2026-11-23",
       "dateLabel": "2026年11月23日（月）",
@@ -233,6 +226,13 @@
       "dateLabel": "2026年11月23日（月）",
       "title": "モデルハウスの進み具合",
       "file": "daiken/2026-11-23-mh.html"
+    },
+    {
+      "slug": "kurume-kensetsu",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "kurume-kensetsu/2026-11-23-mh.html"
     }
   ]
 }
