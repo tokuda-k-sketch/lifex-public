@@ -221,18 +221,18 @@
       "file": "kurume-kensetsu/2026-11-23-mh.html"
     },
     {
-      "slug": "chuo-kensetsu",
-      "date": "2026-11-23",
-      "dateLabel": "2026年11月23日（月）",
-      "title": "モデルハウスの進み具合",
-      "file": "chuo-kensetsu/2026-11-23-mh.html"
-    },
-    {
       "slug": "minaminihon",
       "date": "2026-11-23",
       "dateLabel": "2026年11月23日（月）",
       "title": "モデルハウスの進み具合",
       "file": "minaminihon/2026-11-23-mh.html"
+    },
+    {
+      "slug": "chuo-kensetsu",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "chuo-kensetsu/2026-11-23-mh.html"
     }
   ]
 }
