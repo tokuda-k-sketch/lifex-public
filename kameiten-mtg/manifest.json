@@ -165,13 +165,6 @@
       "file": "flowerhome/2026-11-23-mh.html"
     },
     {
-      "slug": "karakusha",
-      "date": "2026-11-23",
-      "dateLabel": "2026年11月23日（月）",
-      "title": "モデルハウスの進み具合",
-      "file": "karakusha/2026-11-23-mh.html"
-    },
-    {
       "slug": "kenshow",
       "date": "2026-11-23",
       "dateLabel": "2026年11月23日（月）",
@@ -233,6 +226,13 @@
       "dateLabel": "2026年11月23日（月）",
       "title": "モデルハウスの進み具合",
       "file": "chuo-kensetsu/2026-11-23-mh.html"
+    },
+    {
+      "slug": "karakusha",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "karakusha/2026-11-23-mh.html"
     }
   ]
 }
