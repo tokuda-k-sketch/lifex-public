@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LIFEX加盟店支援 現状報告</title>
+<style>
+:root{
+  --navy:#1f3a5f; --navy-2:#2f4f7a; --pale:#eef2f7; --line:#c9d3e0; --ink:#222; --sub:#555; --mute:#888;
+}
+*{box-sizing:border-box}
+html{background:#fff}
+body{margin:0;background:#fff;color:var(--ink);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",sans-serif;font-size:10pt;line-height:1.7;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{max-width:190mm;margin:0 auto;padding:12mm 0 20mm}
+@media screen{.page{padding:24px 16px 60px}}
+h1{font-size:19pt;line-height:1.35;margin:0 0 4px;color:var(--navy);letter-spacing:.02em}
+h2{font-size:14pt;color:#fff;background:var(--navy);padding:6px 10px;margin:0 0 12px;break-before:page;page-break-before:always;letter-spacing:.03em}
+h2.first{break-before:auto;page-break-before:auto}
+h3{font-size:11.5pt;color:var(--navy);border-left:4px solid var(--navy);padding-left:8px;margin:18px 0 8px;break-after:avoid}
+h4{font-size:10.5pt;margin:12px 0 4px;color:var(--navy-2);break-after:avoid}
+p{margin:0 0 8px}
+.meta{color:var(--sub);font-size:9pt;margin-bottom:12px}
+.tag{display:inline-block;border:1px solid var(--navy);color:var(--navy);font-size:8.5pt;padding:0 6px;margin-right:6px;border-radius:2px}
+table{width:100%;border-collapse:collapse;margin:6px 0 12px;font-size:8.8pt;line-height:1.5}
+th,td{border:1px solid var(--line);padding:4px 6px;vertical-align:top;text-align:left}
+th{background:var(--pale);color:var(--navy);font-weight:600}
+td.n,th.n{text-align:right;white-space:nowrap}
+tr{break-inside:avoid;page-break-inside:avoid}
+.small{font-size:8.5pt;color:var(--sub)}
+.note{font-size:8.5pt;color:var(--sub);margin-top:-6px}
+.box{border:1.5px solid var(--navy);padding:10px 12px;margin:10px 0;break-inside:avoid}
+.box.pale{border:none;background:var(--pale)}
+table.goal td,table.goal th{font-size:9.5pt;padding:6px 8px}
+table.goal .big{font-size:15pt;font-weight:700;color:var(--navy);white-space:nowrap}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0}
+.kpi{border:1px solid var(--line);padding:8px 10px;break-inside:avoid}
+.kpi .l{font-size:8.5pt;color:var(--sub)}
+.kpi .v{font-size:18pt;font-weight:700;color:var(--navy);line-height:1.2}
+.kpi .s{font-size:8.5pt;color:var(--sub)}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+.pillar{border-top:4px solid var(--navy);background:var(--pale);padding:8px 10px;break-inside:avoid}
+.pillar b{display:block;color:var(--navy);font-size:10.5pt;margin-bottom:2px}
+.toc{columns:2;column-gap:20px;font-size:9.5pt;margin:8px 0 0;padding-left:1.4em}
+.toc li{margin-bottom:2px}
+.toc a{color:var(--ink);text-decoration:none}
+.bars{margin:6px 0 12px}
+.bar{display:grid;grid-template-columns:60px 1fr 120px;align-items:center;gap:8px;font-size:9pt;margin:3px 0}
+.bar .track{height:14px;background:var(--pale);position:relative}
+.bar .fill{height:14px;background:var(--navy)}
+.bar .tgt{position:absolute;top:-3px;width:2px;height:20px;background:#9aa7b8}
+.oad{display:grid;grid-template-columns:72px 1fr;gap:4px 10px;margin:6px 0 12px;break-inside:avoid}
+.oad dt{font-weight:700;color:var(--navy);font-size:9pt}
+.oad dd{margin:0}
+.unconf{color:var(--navy-2);font-weight:600}
+.qa dt{font-weight:700;color:var(--navy);margin-top:8px}
+.qa dd{margin:2px 0 6px 0;padding-left:1em;border-left:2px solid var(--line)}
+ul{margin:4px 0 8px;padding-left:1.3em}
+li{margin-bottom:2px}
+.src li{font-size:8.5pt;color:var(--sub)}
+a{color:var(--navy-2)}
+.url{font-size:8pt;word-break:break-all;color:var(--sub)}
+@page{size:A4 portrait;margin:12mm 11mm 14mm}
+@media print{
+  .page{max-width:none;padding:0}
+  a{text-decoration:none;color:inherit}
+}
+@media (max-width:640px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .pillars{grid-template-columns:1fr}
+  .toc{columns:1}
+  table{font-size:8pt}
+}
+.back { float:right; font-size:8.5pt; font-weight:bold; color:#fff; background:#2f5583; padding:.5mm 3mm; border-radius:1mm; text-decoration:none; margin-top:1mm; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<p class="meta"><span class="tag">社内限定</span>2026年11月27日（金）9:00 LIFEX MTG 準備資料｜作成：徳田（BtoB事業部 LIFEX加盟店支援）｜数字は2026/11/26 朝の取得分</p>
+<h1>LIFEX加盟店支援　現状報告<br><span style="font-size:13pt">目標・打ち手・結果・課題・これから</span></h1>
+<p class="small">加盟店様の契約を増やす支援（研修・個社支援・ツール・仕組み・広告の受け皿）の範囲です。広告運用そのものは時位さん、商品・価格・キャンペーンの企画は藤本さんの担当で、ここでは関わる部分だけ書いています。加盟店様の広告費・社内事情を含むため社外への転送は不可。</p>
+
+<ol class="toc">
+<li><a href="#s1">結論（1枚）</a></li>
+<li><a href="#s2">目標と達成度</a></li>
+<li><a href="#s3">現状の課題（観察・分析・判断）</a></li>
+<li><a href="#s4">これまでの打ち手と結果</a></li>
+<li><a href="#s5">今やっている打ち手・これからの打ち手</a></li>
+<li><a href="#s6">本部（徳田）の問題と、変えること</a></li>
+<li><a href="#s7">加盟店様別の状況</a></li>
+<li><a href="#s8">想定問答</a></li>
+<li><a href="#s9">出典</a></li>
+</ol>
+
+<!-- ============ 1 ============ -->
+<h2 class="first" id="s1" style="margin-top:14px"><a class="back" href="shachou-mtg-20261127-visual.html#p1">◀ 要約へ</a>1　結論</h2>
+
+<table class="goal">
+<tr><th style="width:22%">目標</th><th style="width:30%">決め方・対象・期間</th><th class="n">目標</th><th class="n">実績（11/26）</th><th class="n">達成度</th><th class="n">残り</th></tr>
+<tr><td><b>本部が設定した必達目標</b></td><td>本部で決定（10/12）。稼働中の加盟店全体。2026年10月〜12月の契約</td><td class="n big">32棟</td><td class="n big">10棟</td><td class="n big">31%</td><td class="n big">22棟</td></tr>
+<tr><td><b>加盟店様と一緒に決めた目標</b></td><td>12月末KPI再設定シートで各社と決めた数の積み上げ（20拠点）。期間は同じ10/1〜12/31の累計</td><td class="n big">55棟</td><td class="n big">10棟</td><td class="n big">18%</td><td class="n big">45棟</td></tr>
+</table>
+<p class="note">実績はどちらも10/1以降にステータスが契約に変わった件数。55棟の実績10棟には、目標を保存していないYUNO HOME様の2棟を含みます（保存した会社だけで数えると8棟・15%・残り47棟）。</p>
+<div class="kpis">
+  <div class="kpi"><div class="l">今のペースの着地（12/31）</div><div class="v">14〜18棟</div><div class="s">11月ペースで14・10月ペースで18</div></div>
+  <div class="kpi"><div class="l">必達32棟に要るペース</div><div class="v">週4.4棟</div><div class="s">残り35日で22棟。11月実績は週約0.8棟</div></div>
+  <div class="kpi"><div class="l">Q2（11月〜1月）の目標</div><div class="v">3 / 31棟</div><div class="s">11月11・12月13・1月7</div></div>
+  <div class="kpi"><div class="l">重点5社（32棟のうち25棟）</div><div class="v">5 / 25棟</div><div class="s">11月は1棟（目標10棟）</div></div>
+</div>
+
+<p><b>このままでは必達の32棟に届きません。</b>残り35日で22件、1週あたり4.4件が要りますが、11月の実績は1週あたり約0.8件です。11/23以降の契約は0件、新しい内定は1人（中央建設様 出雲店）だけでした。</p>
+
+<div class="box">
+<b>一番の課題：お客様は手元にいるのに、前へ進んでいない。</b><br>
+内定14人のうち10人が内定から30日を超えています（契約できた方は内定から4〜25日で決まっている）。土地探し・ローン事前審査の30人のうち14人は30日以上動きがなく、10/1以降に土地/ローンから内定へ進んだ方は1人だけです。止まっている理由は「LIFE Xで建てたいが土地が決まらない」が大半でした（11/20 LIFEX MTG・11/23 会議の記録）。<br>
+同時に入口も細っています。割り当て済みの新規登録は11/1〜26で83人、10月の同じ期間149人の56%。ここは年内より1〜2月の契約に効きます。
+</div>
+
+<h3>これからの柱（3つ）</h3>
+<div class="pillars">
+  <div class="pillar"><b>① 内定・土地の44人を動かす</b>内定は4つ（契約日決定／土地待ち／資金待ち／気持ちが止まっている）に分けて全員の行き先を決め、30日超の方には徳田が同席。土地の方は11/27の土地決め研修→12/5までに「土地候補＋入るプラン＋暮らしの1行」を送る。</div>
+  <div class="pillar"><b>② 自社のお客様をLIFE Xへ</b>10/1以降の契約10件のうち4件が自社登録のお客様で、登録から契約まで0〜33日と最短。11/2から、自社リスト（過去の資料請求・OB様）向けのLIFE X案内ページと文面の型を配布しています（実施社数は未確認）。</div>
+  <div class="pillar"><b>③ 1〜2月の入口をつくる</b>全国ウェビナー（撮影12/11・初回1/15）、年末年始も広告を止めない、12月の加盟店様イベントを顔写真入り告知で各社1回。年内の契約には数えず、1〜2月の契約の仕込みとして動かす。</div>
+</div>
+
+<p class="small">年内に32件へ近づけるには、①の内定・土地の進み方を今の3〜5倍にする必要があります。②③はその不足を一部埋めるもので、①なしでは届きません。今日、社長に決めていただきたいのは「年内は①に人と時間を寄せてよいか」と「年内の特典（藤本さん企画中）をいつ出すか」の2点です。</p>
+
+<!-- ============ 2 ============ -->
+<h2 id="s2"><a class="back" href="shachou-mtg-20261127-visual.html#p2">◀ 要約へ</a>2　目標と達成度</h2>
+
+<h3>12月末の目標は2本立てです</h3>
+<table class="goal">
+<tr><th style="width:20%"></th><th style="width:40%">本部が設定した必達目標</th><th>加盟店様と一緒に決めた目標</th></tr>
+<tr><th>数字</th><td class="big">32棟</td><td class="big">55棟</td></tr>
+<tr><th>期間</th><td>2026年10月〜12月（3か月）</td><td>10/1〜12/31の累計（シートの目標契約は「10/1からの累計」で設計）</td></tr>
+<tr><th>対象</th><td>稼働中の加盟店全体</td><td>目標を保存した20拠点（中央建設様は4店別）。YUNO HOME様・いえプロ不動産様・南日本ハウス様・フラワーホーム様は未保存</td></tr>
+<tr><th>決め方</th><td>10/12 本部で決定。あわせて契約率30%・接続率は全社40%以上</td><td>各社と4つの率・見込み集客から積み上げ、「頑張って叶える数」として保存していただいた合計（11/19時点）</td></tr>
+<tr><th>実績（11/26）</th><td>10棟（10月7・11月3）</td><td>10棟（うち目標未保存のYUNO HOME様2棟）</td></tr>
+<tr><th>達成度</th><td class="big">31%</td><td class="big">18%</td></tr>
+<tr><th>残り</th><td>22棟（週4.4棟）</td><td>45棟（週9.0棟）</td></tr>
+<tr><th>使い方</th><td>本部として必ず守る線。年内の打ち手はここに合わせて組む</td><td>加盟店様ごとの挑戦の線。各社の打ち手・集客の積み上げに使う</td></tr>
+</table>
+<p class="note">11/16の会議で「加盟店様が掲げている目標が55、元々の目標は全店舗で32」とすり合わせています。なお同会議では内定込みの15件（契約9・内定6）で話しており、本資料は契約のみで数えています。</p>
+
+<h3>必達32棟の内訳と、事業部ダッシュボードとの関係</h3>
+<table>
+<tr><th>月</th><th class="n">重点5社<br>（1社あたり）</th><th class="n">重点5社<br>（5社計）</th><th class="n">他の加盟店様</th><th class="n">ダッシュボードの<br>月別目標</th><th class="n">実績<br>重点5社</th><th class="n">実績<br>他の加盟店様</th><th class="n">実績<br>計</th></tr>
+<tr><td>10月</td><td class="n">1</td><td class="n">5</td><td class="n">3</td><td class="n">8</td><td class="n">4</td><td class="n">3</td><td class="n">7</td></tr>
+<tr><td>11月</td><td class="n">2</td><td class="n">10</td><td class="n">1</td><td class="n">11</td><td class="n">1</td><td class="n">2</td><td class="n">3</td></tr>
+<tr><td>12月</td><td class="n">2</td><td class="n">10</td><td class="n">3</td><td class="n">13</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+<tr><th>計</th><th class="n">5</th><th class="n">25</th><th class="n">7</th><th class="n">32</th><th class="n">5</th><th class="n">5</th><th class="n">10</th></tr>
+</table>
+<p class="note">重点5社＝竹村工務店様・キノシタ様・河原工務店様・WITHDOM Group様・中央建設様 米子店。月別の目標は10月8・11月11・12月13＝32棟。重点5社が25棟（10月5・11月10・12月10）、他の加盟店様が7棟（10月3・11月1・12月3）です。他の加盟店様の実績は10月 久留米建設様1・YUNO HOME様2、11月 坂本建設工業様1・建匠様1。</p>
+
+<h3>年度の目標（参考）</h3>
+<p>事業部ダッシュボードの「LIFEX既存」の月別目標は、8月5・9月3・10月8・11月11・12月13・1月7・2月8・3月8・4月9・5月9・6月10・7月10で年度合計101棟です。1月は10月実績（7棟）の水準とし、そこから2か月ごとに+1で置いています。8・9月の目標欄には実績と同じ値が入っています。Q2（11月〜1月）の目標は11＋13＋7＝31棟、11/26時点の実績は3棟です。</p>
+
+<h3>月別の契約（ステータスが契約に変わった月で数える）</h3>
+<div class="bars">
+  <div class="bar"><span>8月</span><div class="track"><div class="fill" style="width:38%"></div><div class="tgt" style="left:38%"></div></div><span>5 / 目標5</span></div>
+  <div class="bar"><span>9月</span><div class="track"><div class="fill" style="width:23%"></div><div class="tgt" style="left:23%"></div></div><span>3 / 目標3</span></div>
+  <div class="bar"><span>10月</span><div class="track"><div class="fill" style="width:54%"></div><div class="tgt" style="left:61.5%"></div></div><span>7 / 目標8</span></div>
+  <div class="bar"><span>11月</span><div class="track"><div class="fill" style="width:23%"></div><div class="tgt" style="left:84.6%"></div></div><span>3 / 目標11（26日時点）</span></div>
+  <div class="bar"><span>12月</span><div class="track"><div class="fill" style="width:0"></div><div class="tgt" style="left:100%"></div></div><span>— / 目標13</span></div>
+  <div class="bar"><span>1月</span><div class="track"><div class="fill" style="width:0"></div><div class="tgt" style="left:54%"></div></div><span>— / 目標7</span></div>
+</div>
+<p class="note">棒の灰色の線が目標。年度の累計は実績18棟／8〜11月の目標27棟（67%）。8・9月はダッシュボードの値。ポータルの変更記録は9/16の新システム切替以降しかなく、9月は後からの一括入力（9/18など）が14件含まれるため、9月の検証には使えません。ダッシュボードの11月実績欄は「11（契約1＋内定10・11/10入力）」のままで、内定込み・古い値です。</p>
+
+<h3>10/1以降の契約10件の中身</h3>
+<table>
+<tr><th>月</th><th>加盟店様</th><th class="n">件数</th><th>流入（登録の仕方）</th><th>契約した商品（加盟店様の入力）</th></tr>
+<tr><td>10月</td><td>WITHDOM Group様2・YUNO HOME様2・河原工務店様1・中央建設様 米子店1・久留米建設様1</td><td class="n">7</td><td>LIFEX経由5・自社登録2</td><td>LIFE X 3・自社商品4</td></tr>
+<tr><td>11月</td><td>坂本建設工業様1（11/2）・建匠様1（11/16）・竹村工務店様1（11/20）</td><td class="n">3</td><td>LIFEX経由1・自社登録2</td><td>LIFE X 2・自社商品1</td></tr>
+</table>
+<p class="note">10件のうち5件が「自社商品」で契約と入力されています。LIFE X経由のお客様が加盟店様の自社商品で契約するケースも含まれます（10/22に、自社商品の契約も棟数に数えると決定済み）。現在「契約」のお客様28人のうち13人は商品区分が未入力で、LIFE Xか自社商品か判別できません。</p>
+
+<h3>重点5社の進み具合（12月末目標 各5件）</h3>
+<table style="break-inside:avoid;page-break-inside:avoid">
+<tr><th>加盟店様</th><th class="n">目標</th><th class="n">10月</th><th class="n">11月</th><th class="n">計</th><th class="n">内定</th><th class="n">土地/ローン</th><th class="n">面談済</th><th>メモ</th></tr>
+<tr><td>WITHDOM Group様</td><td class="n">5</td><td class="n">2</td><td class="n">0</td><td class="n">2</td><td class="n">1</td><td class="n">14</td><td class="n">21</td><td>内定の1人は162日。面談→内定以上が11%と低い</td></tr>
+<tr><td>中央建設様 米子店</td><td class="n">5</td><td class="n">1</td><td class="n">0</td><td class="n">1</td><td class="n">2</td><td class="n" rowspan="1">—</td><td class="n">—</td><td>内定2人（30日・40日）。中央建設様4店の合計は内定4・土地4・面談9</td></tr>
+<tr><td>河原工務店様</td><td class="n">5</td><td class="n">1</td><td class="n">0</td><td class="n">1</td><td class="n">2</td><td class="n">0</td><td class="n">2</td><td>契約・内定とも自社登録。内定2人は41日</td></tr>
+<tr><td>竹村工務店様</td><td class="n">5</td><td class="n">0</td><td class="n">1</td><td class="n">1</td><td class="n">2</td><td class="n">5</td><td class="n">3</td><td>11/20契約（面談から52日）。11月の来場2件（平均約7件）</td></tr>
+<tr><td>キノシタ様</td><td class="n">5</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">4</td><td>面談到達6人・内定以上0</td></tr>
+<tr><th>合計</th><th class="n">25</th><th class="n">4</th><th class="n">1</th><th class="n">5</th><th class="n">7</th><th></th><th></th><th>11月は目標10件に対し1件</th></tr>
+</table>
+<p class="note">米子店の土地/ローン・面談済の内訳は支店別に集計していないため「—」。KPI設定シートでは河原工務店様5・竹村工務店様3・キノシタ様4が各社の申告目標で、重点5社の目標（各5）とは別です。</p>
+
+<h3>率の推移（登録した月で区切った数字）</h3>
+<table>
+<tr><th>登録した月</th><th class="n">登録</th><th class="n">通話接続率</th><th class="n">アポ率</th><th class="n">面談→契約（内定込み）</th></tr>
+<tr><td>8月</td><td class="n">116</td><td class="n">33.6%</td><td class="n">61.5%</td><td class="n">22.7%</td></tr>
+<tr><td>9月</td><td class="n">177</td><td class="n">45.8%</td><td class="n">64.2%</td><td class="n">24.0%</td></tr>
+<tr><td>10月</td><td class="n">159</td><td class="n">50.9%</td><td class="n">80.2%</td><td class="n">14.0%</td></tr>
+<tr><td>11月（26日まで）</td><td class="n">71</td><td class="n">56.3%</td><td class="n">75.0%</td><td class="n">17.4%</td></tr>
+<tr><th>直近3ヶ月（8/27〜11/26）</th><th class="n">422</th><th class="n">48.3%</th><th class="n">72.5%</th><th class="n">18.5%</th></tr>
+<tr><td>目標</td><td></td><td class="n">全社40%以上</td><td></td><td class="n">30%</td></tr>
+</table>
+<p class="note">ポータルのレポートは「契約」列が内定を含む定義なので、ここの契約率は内定込みです。登録の新しい月ほど面談→契約が低く出るのは、まだ途中の数字だからでもあります。7/24の接続率UP研修の前後では全体の接続率が23.9%→34.7%（効果検証資料・研修前1/1〜7/23、研修後7/24〜10/5推定）。</p>
+
+<div class="oad">
+<dt>接続率</dt><dd>全体では目標を超えています。直近3ヶ月の会社別中央値は47.1%（登録10人以上の14社）。ただし「全社40%以上」の条件では、登録10人以上で3社（河原工務店様36.8%・久留米建設様23.5%・フラワーホーム様18.8%）、10人未満も含めると21社中7社（坂本建設工業様11.1%・LIFE X UTSUNOMIYA様16.7%・アイコン様33.3%・シリウス様0%）が未達です。</dd>
+<dt>契約率</dt><dd>18.5%で目標30%との差が大きいままです。ここが年内の勝負どころで、3章の「内定・土地が進まない」問題と同じものです。</dd>
+</div>
+
+<!-- ============ 3 ============ -->
+<h2 id="s3"><a class="back" href="shachou-mtg-20261127-visual.html#p3">◀ 要約へ</a>3　現状の課題（観察・分析・判断）</h2>
+<p class="small">流れ（入口の量）・在庫（面談後に止まっている人）・速さ（初動）・転換（面談→内定→契約）で見ています。数字は11/26 朝の取得分。</p>
+
+<h3>課題1　内定は「契約の手前」ではなく、止まっている方が大半</h3>
+<div class="oad">
+<dt>観察</dt><dd>内定14人のうち10人が内定から30日超（最長162日）。変更記録で追える契約は内定から4・4・13・25日で決まっている。10/1以降に内定になった15人のうち、契約まで進んだのは3人。内定14人のうち6人は自社登録のお客様。</dd>
+<dt>分析</dt><dd>決まる方は1か月以内に決まる。それを過ぎた方は「段取り中」ではなく何かが足りない。11/20・11/23の会議で、理由の大半は「LIFE Xに決めたが土地が見つからない」だった。契約日を聞くだけでは動かない。</dd>
+<dt>反対の読み</dt><dd>自社登録の内定は各社の段取りで契約日が決まっていて、ポータル入力が追いついていないだけの可能性もある。</dd>
+<dt>判断</dt><dd>内定14人を4つに分けて行き先を決める（11/27まで）。30日超の方は徳田が同席（12/12まで）。自社登録の内定は契約日の確認だけにして、本部は手を入れない。</dd>
+</div>
+
+<h3>課題2　土地/ローンの30人がほとんど前へ進んでいない</h3>
+<div class="oad">
+<dt>観察</dt><dd>土地探し25人・ローン事前審査5人。30日以上動きなしが14人。WITHDOM Group様14人・竹村工務店様5人・中央建設様4人に集中。10/1以降、土地/ローンから内定へ進んだのは1人、土地/ローンから直接契約は0件。</dd>
+<dt>分析</dt><dd>土地探しに入るとお客様が自分で探す形になり、営業が次の一手を持てなくなる。LIFE Xは建物価格が先に決まるので、返せる額から土地予算を逆算し、候補地にプランを当て込んで見せれば決めてもらえるはずだが、その型が現場で回っていない。会議では「北側道路・東南角地の思い込みに営業が縛られている」「初回ヒアリングで暮らしの本質を聞き切れていない」との指摘（11/23）。</dd>
+<dt>反対の読み</dt><dd>土地契約まで内定に変えずに置く会社もありうる。ただし10/1以降の契約10件に、土地/ローンから直接契約になった方はいない。</dd>
+<dt>判断</dt><dd>11/27の研修「土地を決めにかかる」を全社必須に。12/5までに30日超の方から順に「土地候補＋入るプラン＋暮らしの1行」を送り、説明日はこちらから3つ出す。測るのは土地/ローン→内定の人数（今は1人）。</dd>
+</div>
+
+<h3>課題3　面談済97人のうち71人は30日以上動きがない</h3>
+<div class="oad">
+<dt>観察</dt><dd>面談から契約までは記録で追える5件で4〜52日、5件中4件は3週間以上。面談済97人のうち最後の更新から30日以内は26人。面談→内定以上の率は登録時期で5〜7月26%・8〜9月24%・10月14%・11月17%。会社別ではYUNO HOME様50%に対し、WITHDOM Group様11%・久留米建設様10%。</dd>
+<dt>分析</dt><dd>12月に再面談できても契約は年末〜1月になる。71人は1月の契約の仕込みと見るのが正確。年内に人と時間を寄せる先は、動いている26人と課題1・2の方。</dd>
+<dt>反対の読み</dt><dd>商談は進んでいるのにポータル入力が止まっている方が混ざっている可能性。画面を一緒に見て更新すると26人は増えうる。</dd>
+<dt>判断</dt><dd>掘り起こしを2つに分ける。動いている26人は11/28〜12/6に2回目の面談を日付で決める。止まっている71人は12/1〜7に連絡し、1月の面談予約を取る週と位置づける。</dd>
+</div>
+
+<h3>課題4　入口が細り、ウェビナーが始まるまで1〜2月が空く</h3>
+<div class="oad">
+<dt>観察</dt><dd>割り当て済みの新規登録（各月1〜26日）：8月101・9月162・10月149・11月83人。LIFEX経由に限ると99・139・103・56人。週別でも10月前半の43〜44人から11月は24〜26人。11月の面談に至った数は10月の約4割（11/23 LIFEX MTG報告）。竹村工務店様は11月の来場2件で、平均約7件の半分以下（11/24 広告MTG）。</dd>
+<dt>分析</dt><dd>今の入口の細さは年内より1〜2月の契約に効く。ウェビナーは1/15開始なので、面談は1月下旬、契約は早くて2月下旬。12月〜1月前半の入口は加盟店様イベントと12月中旬公開予定の新ホームページで埋めるしかない。広告側では「予算を急に増やすとMetaの学習が崩れるので段階的に増額中」「クリエイティブが刺さっていない可能性。誰に・何を・どう伝えるかの設計し直しが必要」と時位さんの見立て（11/23）。</dd>
+<dt>反対の読み</dt><dd>11/16の週は26人と前の2週よりやや多く、持ち直しの兆しもある。ただ11/23の週は26日朝時点で6人。</dd>
+<dt>判断</dt><dd>年末年始も広告は止めない（11/23の会議で決定）。加盟店様イベントは顔写真入りの告知を基本に各社1回（アパックスホーム様の顔出しセミナー広告で3連休に2組来場、キノシタ様でも予約）。資料請求→来場が弱い原因を時位さんと一緒に分析する（宿題）。</dd>
+</div>
+
+<h3>課題5　初動の差と、ポータルを使えていない会社</h3>
+<div class="oad">
+<dt>観察</dt><dd>割り当てから最初の手動更新までが24時間以内の方は通話接続73.8%（141人）、1〜3日64.5%、3日超43.3%、更新なしは5.3%（57人）。会社別の中央値はWITHDOM Group様4.6時間・竹村工務店様2.1時間に対し、健康住宅様314時間・アイコン様449時間・フラワーホーム様934時間。LIFE X UTSUNOMIYA様は割り当て14人すべて更新なし（最終ステータス変更9/17）、永大ハウスビルド様は最終変更10/1。</dd>
+<dt>分析</dt><dd>測っているのは入力の速さで電話した時刻ではない（10/26の指摘）。それでも「更新なし」の接続5.3%は、電話していないかポータルを使っていないかのどちらか。率の議論の前に、使ってもらう段階の会社が数社ある。</dd>
+<dt>判断</dt><dd>ポータルに「登録から24時間・2週間動きなしで警告」が入った（11/23の会議の記録）。効いたかを12月に24時間以内の割合で確認する。使えていない3社（UTSUNOMIYA様・永大様・フラワーホーム様）は個別に画面共有で一緒に更新する。</dd>
+</div>
+
+<!-- ============ 4 ============ -->
+<h2 id="s4"><a class="back" href="shachou-mtg-20261127-visual.html#p4">◀ 要約へ</a>4　これまでの打ち手と結果</h2>
+<p class="small">「結果」はわかっている数字・反応だけ。加盟店様や会議での反応をまだ受け取っていないものは「結果未確認」と書いています。効いたかの判定：◎効いた／△一部／×効かなかった／—未検証。4月からの取り組み73件の一覧は<a href="shachou-mtg-20261127-torikumi.html">別紙「これまでの取り組み一覧」</a>にあります。この章の表は、そのうち主なものです。</p>
+
+<h3>振り返り：取り組み73件と、いま止まっている所</h3>
+<p>別紙の73件（実施済み70件）を、お客様の流れのどの段階を良くするためのものだったかで分け、いまの数字と並べました。</p>
+<table>
+<tr><th style="width:16%">段階</th><th class="n" style="width:14%">打った件数<br>（実施済み）</th><th class="n" style="width:10%">うち研修</th><th>いまの数字</th></tr>
+<tr><td>入口（集客）</td><td class="n">12</td><td class="n">0</td><td>割り当て済みの新規登録 10月149人→11月83人（各月1〜26日）</td></tr>
+<tr><td>接続・アポ</td><td class="n">8</td><td class="n">3</td><td>接続率 8月登録33.6%→11月登録56.3%、アポ率61.5%→75.0%。<b>目標超え</b></td></tr>
+<tr><td>面談・商談</td><td class="n">18</td><td class="n">5</td><td>面談→内定以上 5〜7月登録26%→10月14%・11月17%</td></tr>
+<tr><td>土地・資金</td><td class="n"><b>0</b></td><td class="n"><b>0</b></td><td>土地/ローンの30人のうち、10/1以降に内定へ進んだのは<b>1人</b></td></tr>
+<tr><td>内定→契約</td><td class="n">1</td><td class="n">1</td><td>内定14人のうち10人が30日超（研修は6/22の1回）</td></tr>
+<tr><td>商品理解</td><td class="n">10</td><td class="n">10</td><td>契約への効果は測っていない</td></tr>
+</table>
+<p class="note">ほかに全工程8件・本部の管理8件・加盟/取引先5件。「土地・資金」の研修は11/27が初めてで、実施前のため0件に数えています。面談・商談は11/20の中止分、入口は準備中のウェビナーを除いています。</p>
+
+<h4>振り返り1　打ち手が、止まっている段階より手前に寄っていた</h4>
+<dl class="oad">
+<dt>観察</dt><dd>実施済み70件のうち、面談・商談18件・入口12件・商品理解10件・接続/アポ8件に対し、土地・資金は0件、内定→契約は1件。研修21回では商品理解が10回で最多、9〜10月の8回のうち7回が商品。その間に、手前の数字は良くなり（接続率33.6%→56.3%）、奥の数字は悪くなった（面談→内定以上26%→14〜17%、土地/ローン→内定は1人）。</dd>
+<dt>分析</dt><dd>接続率は7/24の研修が効いて目標を超えたが、そのあと詰まりが面談の後ろ（土地・内定）へ移ったことに、打ち手の選び方が追いついていなかった。9〜10月のテーマは9/17の会議で決めた優先順位（商品を「なぜそうなのか」まで話せるように）に沿って選んでおり、「数字でいちばん止まっている段階から選ぶ」手順になっていなかった。土地で止まっているとはっきりしたのは11/20・11/23の会議で、内定・土地の方を人数と経過日数で一人ずつ見たのは今回（11/26）が初めて。</dd>
+<dt>反対の読み</dt><dd>商品理解は面談の中身を良くするためのもので、面談→内定以上の率に遅れて効いてくる可能性はある（ただし確かめる数字を取っていない）。また11月の落ち込みには入口の減少（新規登録が10月の56%）も効いており、打ち手の偏りだけが原因ではない。</dd>
+<dt>判断</dt><dd>打ち手は「いま一番止まっている段階」から選ぶ。毎回の議題資料の冒頭に、段階ごとの人数と経過日数を出す。そこに当たらない新しい研修・ツールは年内は始めず、12月は土地・資金と内定→契約の44人に寄せる。</dd>
+</dl>
+
+<h4>振り返り2　作って渡すところで止まり、効いたかを確かめていない</h4>
+<dl class="oad">
+<dt>観察</dt><dd>実施済み70件のうち54件（77%）が未検証で、◎は2件（7/24の接続率研修・本部用APIでの数字の取得）。加盟店様に渡したツール・資料14件のうち、使われているかを数字で確かめられたのは3件（KPI設定シート20拠点・接触記録12件・モデルハウス6社回答）だけ。商談ふりかえりシート・アプローチブックv2・話法マニュアル・来店前アンケートは使用状況を見ていない。接触記録の試行は途中確認をせず、結論が出なかった。</dd>
+<dt>分析</dt><dd>◎の2件は、始める前から何で測るかが決まっていた（接続率／数字を手で集めずに済むか）。未検証のものは、作る時点で測るものと確認日を決めていない。そのため何をやめて何を続けるかを数字で決められず、新しいものを足す方へ時間が流れた（10月下旬からの1か月で打合せ資料・手元メモ約30本）。</dd>
+<dt>反対の読み</dt><dd>研修や資料の効果が契約に出るまでは数か月かかるので、1〜2か月で判定するのは早い面もある。</dd>
+<dt>判断</dt><dd>新しい打ち手は、始める前に「測るもの・確認日」を書く。書けないものはやらない。既存のツールは12/12までに使用状況を一度確かめ（ふりかえりシート・アプローチブックv2・自社リスト案内）、使われていないものは改良をやめる。</dd>
+</dl>
+
+<h4>振り返り3　支援の単位が「会社」で、「お客様」になっていなかった</h4>
+<dl class="oad">
+<dt>観察</dt><dd>個社支援は18件で、10月下旬から定例・訪問が週3〜4本に増えた。それでも重点5社の契約は10月4件→11月1件。打合せ資料の中心は会社の率（接続・アポ・面談→契約）と型の説明で、内定・土地のお客様を一人ずつ「いつ・何で前へ進めるか」決め始めたのは11/23（竹村工務店様・中央建設様）と11/24（WITHDOM Group様）から。</dd>
+<dt>分析</dt><dd>接続率のように会社のやり方を変えれば上がる率には、会社単位の支援が効いた。内定→契約・土地→内定は、お客様一人ずつの事情（土地・資金・気持ち）で止まるので、会社単位の打合せでは手が届かない。</dd>
+<dt>反対の読み</dt><dd>お客様一人ずつに入るのは加盟店様の営業の領分で、本部が入りすぎると加盟店様が自分で回せなくなる心配がある。</dd>
+<dt>判断</dt><dd>年内はショートMTGを「名簿の更新」から始める（内定・土地の方を一人ずつ、次の一手と日付）。内定30日超の方には徳田が同席する。年明けに、加盟店様が自分で回せる名簿の型にして渡す。</dd>
+</dl>
+
+<h3>研修（毎週金曜16:00、11/20から隔週）</h3>
+<table>
+<tr><th style="width:12%">時期</th><th style="width:32%">何をしたか</th><th>結果</th><th style="width:6%">判定</th></tr>
+<tr><td>4〜6月</td><td>LIFEX営業研修 全5回（LIFEXを知る／商品力／購買心理／標準仕様／クロージング）</td><td>結果未確認</td><td>—</td></tr>
+<tr><td>7/17</td><td>月2棟の型（対談）</td><td>結果未確認</td><td>—</td></tr>
+<tr><td>7/24</td><td>接続率UP（上位3社の横展開）</td><td>全体の接続率23.9%→34.7%。9社中7社上昇、YUNO HOME様・久留米建設様は低下（研修後期間は推定）</td><td>◎</td></tr>
+<tr><td>7/31〜8/28</td><td>KPI観察分析判断／商談を磨く（ツール2点）／答え合わせ／間とテストクロージング</td><td>結果未確認</td><td>—</td></tr>
+<tr><td>9/4〜10/30</td><td>商品研修：太陽光×トータルコスト、エコボロンPRO、耐震＋evoltz、断熱気密換気、壁体内結露、構造見学会、アプローチブックの使い方、キッチン</td><td>9/11エコボロン単体は「影響度が低い。資料を送るだけでよい」とNG。以後は教科書＋参考書の2点体制・月曜提出→木曜チェック。各回の契約への効果は結果未確認</td><td>△</td></tr>
+<tr><td>11/6</td><td>電話に出ないお客様を会える日に（メール・SMSでアポ）</td><td>録画なし。結果未確認</td><td>—</td></tr>
+<tr><td>11/13</td><td>集大成「月2棟への地図」（教科書44枚＋参考書。商談の型を1本に統合）</td><td>当日の反応は結果未確認</td><td>—</td></tr>
+<tr><td>11/20〜</td><td>隔週研修「このお客様ならどう返すか」（架空のお客様×場面）。11/20分は中止→翌週へ</td><td>—</td><td>—</td></tr>
+<tr><td>11/27</td><td>土地を決めにかかる（5パターン×図面提案・ロープレ）</td><td>実施前</td><td>—</td></tr>
+</table>
+
+<h3>個社支援（加盟店様ごとの打ち合わせ・訪問。資料は徳田作成）</h3>
+<table>
+<tr><th style="width:12%">日付</th><th style="width:26%">加盟店様・内容</th><th>結果</th><th style="width:6%">判定</th></tr>
+<tr><td>8/21〜</td><td>注力3社（中央建設様 米子店・竹村工務店様・WITHDOM Group様）を選びスプリント。WITHDOM様と週1ショートMTG</td><td>10/12に重点5社（＋河原工務店様・キノシタ様）へ拡大。重点5社の10月契約4件（目標5）</td><td>△</td></tr>
+<tr><td>10/22</td><td>河原工務店様 訪問（10〜12月で4棟のお願い）</td><td>10/15に自社登録の契約1・内定2。訪問の反応は結果未確認</td><td>—</td></tr>
+<tr><td>10/26〜11/23</td><td>竹村工務店様・中央建設様 定例ショートMTG（10/26・11/9・11/16・11/23）</td><td>竹村様11/20契約1。中央建設様11/17・11/24に内定（松江店・出雲店）。米子店は10月契約1のあと新たな契約なし</td><td>△</td></tr>
+<tr><td>10/27・11/5・11/12</td><td>WITHDOM Group様 打合せ・営業研修（初回面談のロープレ）・10月広告費の内訳対応</td><td>11月の契約0。面談→内定以上11%のまま</td><td>×</td></tr>
+<tr><td>10/30・11/12</td><td>アパックスホーム様 営業会議・定例</td><td>顔出しセミナー広告で3連休に2組来場。11/20〜22に予約→土地探しへ1人</td><td>△</td></tr>
+<tr><td>10/30・11/16</td><td>むつみワールド様 打合せ・営業作戦会議</td><td>11/20前後に面談2組</td><td>△</td></tr>
+<tr><td>11/5</td><td>大建建設様（ダイケンアーキテクツ）営業会議</td><td>同日11/5に内定1。11月イベントの開催・結果は未確認</td><td>—</td></tr>
+<tr><td>11/6</td><td>健康住宅様 訪問研修（ご予約4組を契約へ）</td><td>面談済2人・契約0。結果未確認</td><td>—</td></tr>
+<tr><td>11/9</td><td>アイコン様 KPI打合せ／トーモク様（UTSUNOMIYA）広告会議</td><td>アイコン様は10/15開始から約1.5か月で問い合わせ7件（西尾3・名古屋周辺4）。UTSUNOMIYA様は割り当て後の更新ゼロのまま</td><td>×</td></tr>
+<tr><td>11/13・11/24</td><td>久留米建設様 営業会議・定例</td><td>10月契約1。3ヶ月の接続率23.5%。モデルハウス2027/9/11オープン確定</td><td>—</td></tr>
+<tr><td>11/15</td><td>南日本ハウス様 営業作戦会議（面談済5人が10/28以降停滞）＋社内MG研修提案（2027/1/18-19）</td><td>結果未確認</td><td>—</td></tr>
+<tr><td>11/19</td><td>キノシタ様 訪問</td><td>11/23以降に登録の1人がアポまで進んだ。内定以上はまだ0</td><td>—</td></tr>
+<tr><td>11/24</td><td>中央建設様 松江店 セミナーのロープレ</td><td>結果未確認</td><td>—</td></tr>
+</table>
+
+<h3>ツール・仕組み</h3>
+<table>
+<tr><th style="width:12%">時期</th><th style="width:30%">何をしたか</th><th>結果</th><th style="width:6%">判定</th></tr>
+<tr><td>8/9</td><td>商談ふりかえりシート 全店リリース</td><td>運用中。使用率は未確認</td><td>—</td></tr>
+<tr><td>10/8〜</td><td>月・金MTGの議題資料（観察・分析・判断）を毎回作成・自動化</td><td>11/20版は「今までで一番良い」（徳田判断）。一方11/23の会議で「数字の報告だけで具体的なアクションがない」と指摘。自動作成は10/15〜11/22で7回失敗し手作業で代替（6章）</td><td>△</td></tr>
+<tr><td>10/16〜</td><td>12月末KPI設定シート（加盟店様別の4つの率＋集客の積み上げ、実績は毎朝自動取得）</td><td>20拠点が目標保存・合計55件。未返信：いえプロ不動産様・YUNO HOME様・フラワーホーム様・南日本ハウス様・アイコン様（10/30時点。アイコン様は11/9の打合せ以降の保存状況未確認）</td><td>△</td></tr>
+<tr><td>10/19〜</td><td>ポータル本部用APIで数字を直接取得（スクショ不要に）</td><td>毎回の資料・本資料の数字の元。運用中</td><td>◎</td></tr>
+<tr><td>10/22〜</td><td>加盟店支援 実施報告（社内限定GASダッシュボード）</td><td>運用中。手書き欄が古くなりやすい</td><td>△</td></tr>
+<tr><td>10/26〜11/8</td><td>接触記録の2週間試行（キノシタ様・WITHDOM Group様）</td><td>回答12件（キノシタ様11・WITHDOM様1）。キノシタ様は割り当てから約1時間の初回電話で2人つながった。「遅さが原因か」の結論は出せていない</td><td>×</td></tr>
+<tr><td>11/2〜</td><td>自社リスト（過去資料請求・OB様）へのLIFE X案内ページ＋文面の型＋大建建設様チラシ</td><td>実施社数・反応は未確認。11/23「自社のお客様が最短」を受けて改めて依頼中</td><td>—</td></tr>
+<tr><td>11/23〜</td><td>モデルハウス進捗ガント（11社）</td><td>11/24各社へ確認チャット送信、大建建設様・久留米建設様は回答反映済み。ブラウザ保存のため本部内で共有できず、共有版を作成中</td><td>△</td></tr>
+</table>
+
+<h3>広告・集客の受け皿（徳田が関わった部分）</h3>
+<table>
+<tr><th style="width:12%">時期</th><th style="width:30%">何をしたか</th><th>結果</th><th style="width:6%">判定</th></tr>
+<tr><td>10/5〜</td><td>加盟店LPのイベント掲載依頼（17店）</td><td>掲載状況の最新集計は未確認</td><td>—</td></tr>
+<tr><td>10/23</td><td>会社ロゴ入りバナーへの切替提案（本部代行の11社）</td><td>8社が実施希望、3社（健康住宅様・河原工務店様・南日本ハウス様）は返事なし。配信開始と反響の変化は未確認</td><td>—</td></tr>
+<tr><td>10/23〜</td><td>流入別の通話接続率（本部フォーム／LIFEX経由／自社登録）</td><td>10月：本部フォーム52人中14人が加盟店様未着手、着手後の接続57.9%。指示を受けて「加盟店別・中央値・アポ基準」で見ることに</td><td>△</td></tr>
+<tr><td>11/12〜</td><td>広告ディレクション担当（開始日・継続MTG・請求書確認）</td><td>WITHDOM様の請求の件を解決。共有版の管理ページ運用中。加盟店リストのM〜R列の日程は更新されておらず当てにならない</td><td>△</td></tr>
+<tr><td>11/19〜</td><td>全国ウェビナー（SHO-SAN様の型）の構成叩き台88枚</td><td>「90分に88枚は多すぎる」。撮影12/11・初回1/15で決定</td><td>—</td></tr>
+</table>
+
+<!-- ============ 5 ============ -->
+<h2 id="s5"><a class="back" href="shachou-mtg-20261127-visual.html#p5">◀ 要約へ</a>5　今やっている打ち手・これからの打ち手</h2>
+<p class="small">11/23のMTGで15個に絞ったものを土台に、その後の会議（11/23・11/24広告MTG）で決まったことを足しています。狙う件数は打ち手1つずつではなく、お客様の群ごとに置いています。</p>
+
+<h3>あと22件を、どこから生むか</h3>
+<table>
+<tr><th>どこから</th><th class="n">人数</th><th class="n">必要な契約</th><th>10/1〜11/26の実績</th><th>必要な速さ</th></tr>
+<tr><td>内定</td><td class="n">14</td><td class="n">10</td><td>内定→契約 3人（10/1以降に内定になった15人のうち）</td><td>約3倍</td></tr>
+<tr><td>土地／ローン事前審査</td><td class="n">30</td><td class="n">5</td><td>土地/ローン→内定 1人、直接契約 0件</td><td>5倍以上</td></tr>
+<tr><td>面談済（30日以内に動きあり）</td><td class="n">26</td><td class="n">3</td><td>面談・予約から直接契約 3件</td><td>今のペースで届く</td></tr>
+<tr><td>自社のお客様（新しく登録）</td><td class="n">—</td><td class="n">4</td><td>自社登録で契約4件</td><td>今のペースより少し上</td></tr>
+<tr><td>新規（ウェビナー等）</td><td class="n">—</td><td class="n">0</td><td>ウェビナーは1/15開始</td><td>年内は見込まない</td></tr>
+<tr><th>合計</th><th></th><th class="n">22</th><th></th><th></th></tr>
+</table>
+
+<h3>打ち手一覧</h3>
+<table>
+<tr><th style="width:4%">#</th><th style="width:36%">やること</th><th style="width:13%">誰が</th><th style="width:10%">期限</th><th style="width:17%">測るもの</th><th>今の状況</th></tr>
+<tr><th colspan="6">A　内定14人を年内の契約へ（必要10件）</th></tr>
+<tr><td>1</td><td>内定を4つ（契約日決定／土地待ち／資金・審査待ち／気持ちが止まっている）に分け、全員の行き先を決める</td><td>徳田・各加盟店様</td><td>11/27</td><td>行き先が決まった人数</td><td>竹村様・中央建設様（11/23）、WITHDOM様（11/24）で確認。残り7人（いえプロ様1・YUNO様2・河原様2・ダイケン様2）の確認日は未確認</td></tr>
+<tr><td>2</td><td>内定30日超の方の打合せに徳田が同席。土地待ちの方には次の一手と日付を、資金の方には事前審査の提出日をその場で決める</td><td>徳田</td><td>12/12</td><td>同席件数／10人</td><td>11/23から開始</td></tr>
+<tr><td>3</td><td>自社登録の内定は契約日が決まっているかだけ確認</td><td>徳田</td><td>11/27</td><td>契約日が入った人数</td><td>結果未確認</td></tr>
+<tr><td>4</td><td>年内の特典（実質負担・原価をふまえた企画）</td><td>藤本さん・森山さん</td><td>11/26</td><td>決定・発表日</td><td>決定したかは未確認。宿題として徳田が「注文住宅営業のニーズを聞いた上でのキャンペーン案3つ」も持っている（例として食洗機を60cmに）が、案はまだ出していない</td></tr>
+<tr><th colspan="6">B　土地/ローンの30人を内定へ（必要5件）</th></tr>
+<tr><td>5</td><td>「土地候補＋入るプラン＋暮らしの1行」を30日超の14人から順に送る。説明日はこちらから3つ</td><td>各加盟店様</td><td>12/5</td><td>送った人数・内定へ進んだ人数（今1人）</td><td>11/27の研修後に開始</td></tr>
+<tr><td>6</td><td>研修「土地を決めにかかる」全社必須。返せる額→建物→付帯・諸費用→残りが土地予算の順で話すロープレ</td><td>徳田（相手役 吉田さん）</td><td>11/27 16:00</td><td>参加社数・ロープレ人数</td><td>資料はPDF23枚。北側道路のページは「大げさにせず対策ポイントで」と修正指示（11/23）</td></tr>
+<tr><td>7</td><td>土地が決まる前に申込みをいただく形（会社とプランを先に決め、土地は一緒に探す）</td><td>各加盟店様</td><td>12/12</td><td>土地未決での申込み数</td><td>結果未確認</td></tr>
+<tr><th colspan="6">C　面談済で動いている26人に2回目の面談（必要3件）</th></tr>
+<tr><td>8</td><td>掘り起こし2本立て。26人は11/28〜12/6に次回面談を日付で。止まっている71人は12/1〜7に軽量版アプローチブック＋年内案内を送り1月の予約を取る</td><td>徳田（文面）・各加盟店様</td><td>11/28配布</td><td>次回面談の日付・再面談予約数</td><td>文面は作成中（季節に合わせたメール文面も11/23に宿題）</td></tr>
+<tr><td>9</td><td>ショートMTGで画面を見ながらステータスをその場で更新</td><td>徳田・各加盟店様</td><td>12/5</td><td>更新記録のない人数</td><td>中央建設様・竹村様で実施中</td></tr>
+<tr><th colspan="6">D　自社のお客様をLIFE Xへ（必要4件）</th></tr>
+<tr><td>10</td><td>自社リスト（過去の資料請求・OB様）へのLIFE X案内ページ・文面の型（大建建設様はチラシも作成）</td><td>各加盟店様・徳田</td><td>継続</td><td>実施社数・反応</td><td>11/2から配布。実施社数・反応は未確認</td></tr>
+<tr><th colspan="6">E　1〜2月の入口（年内の契約には入れない）</th></tr>
+<tr><td>11</td><td>全国ウェビナー。撮影12/11、初回1/15・2回目1/29（金21時・録画）。翌土曜に本部全員で電話しアポ確定、加盟店様は1/17以降の枠を確保。広告予算は約120万円の計画</td><td>徳田・時位さん（SHO-SAN様）</td><td>撮影12/11</td><td>予約数・相談アポ数</td><td>目標「2週に1回で40組（各社2組）」に「地方と都市で一律は無理。都市2組・他1組など地域別に」と指摘。目標と予算は時位さんと個別に詰める宿題。LIFE Xの打ち出しの強さはSHO-SAN様と意見が分かれている</td></tr>
+<tr><td>12</td><td>12月の加盟店様イベントを顔写真入り告知で各社1回。写真の撮り方・文面の型は本部が配る</td><td>時位さん・徳田・各加盟店様</td><td>12/5</td><td>イベント予定社数・告知ごとの予約数</td><td>型は未配布</td></tr>
+<tr><td>13</td><td>年末年始も広告を止めない。自動返信・割り振り・加盟店様休業中の対応ルール、年始の初動当番</td><td>古西さん・時位さん・徳田</td><td>12/12</td><td>年始の初動24時間以内の割合</td><td>広告継続は11/23決定。年末年始の稼働状況の集計は徳田の宿題で、最終確認が取れていない</td></tr>
+<tr><td>14</td><td>アイコン様の配信エリア見直し（西尾市のみ→岡崎・豊橋など）。人口・着工数を見てから判断</td><td>時位さん・徳田</td><td>次回広告MTG</td><td>問い合わせ数</td><td>西尾市は人口約17万人・新築着工794件で月15〜20件の目標は非現実的と森山さん指摘（11/23）</td></tr>
+<tr><th colspan="6">F　取りこぼしを減らす</th></tr>
+<tr><td>15</td><td>初動24時間。ポータルの「24時間・2週間動きなし」警告の効果確認</td><td>古西さん・徳田</td><td>12月</td><td>24時間以内の割合</td><td>機能は入った（11/23記録）。効果は未検証</td></tr>
+<tr><td>16</td><td>資料請求フォームの簡易版テスト。本部フォームは住所を残し「どこで知ったか」を削除</td><td>時位さん</td><td>継続</td><td>フォーム完了率</td><td>完了率9.4%→15%。送信6件と母数が小さく、営業に支障がないかのヒアリングが要る</td></tr>
+</table>
+
+<h3>これからの日程</h3>
+<table>
+<tr><th style="width:16%">日付</th><th>予定</th></tr>
+<tr><td>11/27（金）</td><td>9:00 本MTG／アパックスホーム様 定例／16:00 研修「土地を決めにかかる」／モデルハウス確認チャットの返信目安</td></tr>
+<tr><td>11/28（土）</td><td>掘り起こし文面の配布・動いている26人の次回面談の日付決め開始</td></tr>
+<tr><td>11/29（日）</td><td>キノシタ様イベント（リノベモデル）</td></tr>
+<tr><td>12/1〜7</td><td>止まっている71人への連絡週</td></tr>
+<tr><td>12/5</td><td>土地の方へ土地候補＋プランの送付・12月イベント日程一覧</td></tr>
+<tr><td>12/11</td><td>ウェビナー撮影</td></tr>
+<tr><td>12/12</td><td>内定30日超の同席・年末年始の初動体制</td></tr>
+<tr><td>12月中旬</td><td>新ホームページ公開予定</td></tr>
+<tr><td>2027/1/15・1/29</td><td>ウェビナー初回・2回目</td></tr>
+<tr><td>2027/1/18-19</td><td>南日本ハウス様 社内MG研修（提案中）</td></tr>
+</table>
+
+<!-- ============ 6 ============ -->
+<h2 id="s6"><a class="back" href="shachou-mtg-20261127-visual.html#p6">◀ 要約へ</a>6　本部（徳田）の問題と、変えること</h2>
+
+<div class="box">
+<b style="color:var(--navy);font-size:11pt">根っこ：本部の物差しが「作った数」だった</b><br>
+本部は棟数の責任者としてではなく、研修・資料・ツールの作り手として動いていました。4月からの取り組みは73件、研修は21回、10月下旬からの1か月だけで打合せ資料・手元メモが約30本。作る量は増えましたが、11月の契約は目標11棟に対して3棟です。作ることが仕事の中心になったため、止まっている所を自分の数字で選び直すことも、渡したものが効いたかを確かめることも、お客様を一人ずつ見ることも後回しになりました。4章の振り返り1〜3は、この1つの根から出た症状です。
+</div>
+
+<h3>根っこから出ていた3つの症状と、変えること</h3>
+<table>
+<tr><th style="width:17%">症状</th><th style="width:37%">起きていたこと</th><th style="width:23%">やめる</th><th>始める</th></tr>
+<tr><td><b>決まった順に、作れるものを打った</b></td><td>9〜10月の研修8回のうち7回が商品で、9/17の会議で決めた優先順位どおりに作っていた。止まっている土地・資金を扱った回は0回（11/27が初）。</td><td>年内、新しい研修資料・ツールを作ること</td><td>テーマは内定・土地44人の止まり所から選ぶ</td></tr>
+<tr><td><b>渡して、確かめずに次を作った</b></td><td>実施済み70件のうち54件（77%）が未検証。渡したツール・資料14件のうち使われているかを確かめられたのは3件。作ることに追われ、研修資料は「いつもギリギリ」（9/17）、モデルハウスの一覧化も遅れて「3月オープンならイベントも今押さえないと間に合わない」と指摘された。ポータルも渡したままで、一度も更新されていない方が多い会社がある（下の8番）。</td><td>使われているか分からないツールの改良（12/12に使用状況を見て、続けるか決める）</td><td>作っていた時間を同席に回す。内定30日超10人の打合せに徳田が入る（〜12/12）。新しい打ち手は始める前に「測るもの・確認日」を書き、書けないものはやらない</td></tr>
+<tr><td><b>率を見て、名前を見ていなかった</b></td><td>会議は会社ごとの率の報告で終わり、11/23に「森山さんが突っ込まなかったら何のアクションもないまま1週間過ごしていた。加盟店様も意味がないと感じて入らなくなる」と指摘された。率からは決めることが出てこない。徳田と時位さんが互いに待ちになっていたのも同じ根。内定・土地の方を一人ずつ人数と経過日数で見たのは11/26が初めて。</td><td>率の報告から会議を始めること</td><td>会議・ショートMTGは44人の名簿から始め、「誰を・いつ・何で」前へ進めるかを決める。率は根拠の欄に下げる。時位さんとは資料請求→来場の原因の深掘りを週1で一緒にやる場を固定する</td></tr>
+</table>
+<div class="box pale"><b style="color:var(--navy)">本部の物差しを変える</b>　「作った数」から、<b>「内定・土地44人のうち、次の一手と日付が決まった人数」</b>へ。毎週のLIFEX MTGで報告します。</div>
+<p class="note">44人＝内定14人＋土地/ローン30人、内定30日超10人：本部用データ（11/26取得）。件数：別紙「これまでの取り組み一覧」（段階の振り分けは徳田）。</p>
+
+<h3>そのほかに直すこと</h3>
+<table>
+<tr><th style="width:4%">#</th><th style="width:30%">問題点</th><th style="width:33%">起きていること・影響</th><th>解決方法（案）</th></tr>
+<tr><th colspan="4">本部（徳田）の進め方</th></tr>
+<tr><td>1</td><td>資料の形式</td><td>「HTMLでなくPDFで」と指摘（11/22・11/23、繰り返し）</td><td>社外に送る資料はPDFを正本にする</td></tr>
+<tr><td>2</td><td>モデルハウスの段取り</td><td>オープン日が決まっていても、そこから逆算したイベント計画がない</td><td>一覧（11/23作成）を本部共有版にし、オープン日から逆算したイベント計画を各社と決める。山陰×広島の合同イベントも検討</td></tr>
+<tr><th colspan="4">データ・仕組み</th></tr>
+<tr><td>3</td><td>議題資料の自動作成が何度も失敗</td><td>10/15・10/19〜20・10/22・10/25・10/29・11/1・11/22に失敗し手作業で作成。原因はMacのスリープ・ネット接続・認証切れ・Drive連携の未接続など。失敗の通知自体が届かなかった回もある</td><td>Mac任せの実行をやめ、サーバー側（GAS等）で取得・作成する形に移す。当面は前日夕方に手で確認</td></tr>
+<tr><td>4</td><td>会議メモの自動取り込みが10/19から止まっている</td><td>Gemini会議メモが別アカウント宛てに変わったため。毎回Driveを手で探して読んでいる</td><td>AXシステム開発へ相談中（10/26）。担当替えの際は「Driveで『Gemini によるメモ』を検索」が手順</td></tr>
+<tr><td>5</td><td>ポータルのデータの欠け</td><td>変更記録は9/16以降・加盟店様の手動変更のみ。「最後の更新から◯日」は入力日で、架電時刻ではない。レポートの「契約」列は内定込み。契約28人中13人が商品区分未入力。登録時アンケート（土地あり/なし）は未実装（10/26に依頼）</td><td>商品区分の入力をショートMTGでその場で依頼。土地あり/なしの項目追加を古西さん経由で優先度を上げて依頼</td></tr>
+<tr><td>6</td><td>目標の数字が揃っていない</td><td>月別目標は8・11・13＝32件に統一済み（11/26）。ダッシュボードの11月実績が内定込み・11/10の値のまま</td><td>ダッシュボードの11月実績を契約3件に直す</td></tr>
+<tr><td>7</td><td>モデルハウス進捗がブラウザ保存</td><td>書き込みが本部内で共有されない</td><td>GAS＋スプシの共有版を作成中（Googleの再ログイン待ち）</td></tr>
+<tr><th colspan="4">加盟店様のところで止まっていること（本部が最後まで見届ける）</th></tr>
+<tr><td>8</td><td>ポータルの入力漏れ・未使用</td><td>追客中なのに一度も手で変えていない方：フラワーホーム様33/47人・UTSUNOMIYA様18/19人・シリウス様9/14人・中央建設様17/54人など。入力が止まると本部から状況が見えない</td><td>使えていない会社は画面共有で一緒に更新。警告機能の効果を12月に確認</td></tr>
+<tr><td>9</td><td>土地で止まる・初回ヒアリングが浅い</td><td>2章の課題2のとおり。「マニュアル通りの質問で、暮らしの本質を聞けていない」</td><td>初回ヒアリングシート（不満→叶えたいこと→暮らし方の順、全員に聞く項目とエリア重視の方だけの項目を分ける）を完成させて全店へ。11/16の宿題で未完成</td></tr>
+<tr><td>10</td><td>FC構造がお客様に伝わらない</td><td>「LIFE X」と「施工する会社」の関係が分からず不安になる（10/26 河原工務店様同席時）</td><td>会社紹介資料を各社に持っていただく（10/26宿題。聞き取り状況は未確認、華楽舎様は雛形作成済み）</td></tr>
+</table>
+
+<!-- ============ 7 ============ -->
+<h2 id="s7"><a class="back" href="shachou-mtg-20261127-visual.html#p7">◀ 要約へ</a>7　加盟店様別の状況（目標の多い順）</h2>
+
+<table style="font-size:8.2pt">
+<tr><th style="width:15%">加盟店様</th><th class="n">目標</th><th class="n">契約<br>10/1〜</th><th class="n">内定</th><th class="n">土地<br>ローン</th><th class="n">面談済</th><th class="n">接続率<br>3ヶ月</th><th>状況・次の一手</th></tr>
+<tr><td>中央建設様（4店）★米子店</td><td class="n">11</td><td class="n">1</td><td class="n">4</td><td class="n">4</td><td class="n">9</td><td class="n">52.5%</td><td>週1ショートMTG。内定は米子2（30・40日）・松江1・出雲1。モデルハウス5棟（松江3月末〜米子2棟目6月）。自社でニコニコ住宅も扱う</td></tr>
+<tr><td>WITHDOM Group様★</td><td class="n">5</td><td class="n">2</td><td class="n">1</td><td class="n">14</td><td class="n">21</td><td class="n">58.4%</td><td>入口・初動は最速だが面談→内定以上11%。土地14人が最優先。自社商品TARIL・JAMと並売</td></tr>
+<tr><td>河原工務店様★</td><td class="n">5</td><td class="n">1</td><td class="n">2</td><td class="n">0</td><td class="n">2</td><td class="n">36.8%</td><td>内定2人は自社登録で41日。11月登録4人の通話0。事前アンケート必須。ロゴバナー未回答</td></tr>
+<tr><td>キノシタ様★</td><td class="n">4</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">4</td><td class="n">48.0%</td><td>11/29イベント。顔写真告知で予約あり。面談→内定以上まだ0</td></tr>
+<tr><td>久留米建設様</td><td class="n">4</td><td class="n">1</td><td class="n">0</td><td class="n">0</td><td class="n">5</td><td class="n">23.5%</td><td>接続率が低い。モデルハウス2027/9/11オープン確定</td></tr>
+<tr><td>健康住宅様</td><td class="n">4</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">2</td><td class="n">46.2%</td><td>初動の中央値314時間。11/6訪問研修の結果未確認</td></tr>
+<tr><td>竹村工務店様★</td><td class="n">3</td><td class="n">1</td><td class="n">2</td><td class="n">5</td><td class="n">3</td><td class="n">75.0%</td><td>11/20契約。11月来場が半減→バナー見直し。土地5人</td></tr>
+<tr><td>ダイケンアーキテクツ様</td><td class="n">3</td><td class="n">0</td><td class="n">2</td><td class="n">0</td><td class="n">11</td><td class="n">58.3%</td><td>内定2人（20・44日）。率は良く量が課題。モデルハウス5月後半</td></tr>
+<tr><td>坂本建設工業様</td><td class="n">3</td><td class="n">1</td><td class="n">0</td><td class="n">0</td><td class="n">3</td><td class="n">11.1%</td><td>11/2契約。更新なし6/11人</td></tr>
+<tr><td>建匠様</td><td class="n">2</td><td class="n">1</td><td class="n">0</td><td class="n">0</td><td class="n">1</td><td class="n">66.7%</td><td>11/16契約（自社登録）。モデルハウス2棟GW明け。12/6(仮)高知セミナー</td></tr>
+<tr><td>むつみワールド様</td><td class="n">2</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">2</td><td class="n">80.0%</td><td>11/16作戦会議後に面談2組</td></tr>
+<tr><td>永大ハウスビルド様</td><td class="n">2</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">40.0%</td><td>最終ステータス変更10/1。更新なし6/9人</td></tr>
+<tr><td>LIFE X UTSUNOMIYA様（トーモク様）</td><td class="n">2</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">16.7%</td><td>割り当て14人すべて更新なし。会社名を出さない型で本部負担の広告テスト中</td></tr>
+<tr><td>アイコン様</td><td class="n">2</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">1</td><td class="n">33.3%</td><td>10/15加盟。配信エリア見直し（#14）</td></tr>
+<tr><td>アパックスホーム様</td><td class="n">1</td><td class="n">0</td><td class="n">0</td><td class="n">2</td><td class="n">1</td><td class="n">64.7%</td><td>顔出しセミナー広告で来場2組。横展開のお手本</td></tr>
+<tr><td>シリウス様</td><td class="n">1</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0.0%</td><td>3ヶ月の登録2人。広告成果が出ていない（11/23時位さん）</td></tr>
+<tr><td>LIFE X KORIYAMA様（華楽舎様）</td><td class="n">1</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">1</td><td class="n">60.0%</td><td>10月にスピークス様から移管。モデルハウス7月末</td></tr>
+<tr><td>YUNO HOME様</td><td class="n">—</td><td class="n">2</td><td class="n">2</td><td class="n">1</td><td class="n">6</td><td class="n">44.0%</td><td>面談→内定以上50%と最も高い。内定2人は自社登録で43・50日</td></tr>
+<tr><td>いえプロ不動産様</td><td class="n">—</td><td class="n">0</td><td class="n">1</td><td class="n">3</td><td class="n">22</td><td class="n">41.9%</td><td>面談22人のほぼ全員が30日以上動きなし。内定1人66日。関東の施工体制が課題</td></tr>
+<tr><td>南日本ハウス様</td><td class="n">—</td><td class="n">0</td><td class="n">0</td><td class="n">1</td><td class="n">3</td><td class="n">60.0%</td><td>LIFE X鹿児島名義で11月から自社運用。社内MG研修を提案中</td></tr>
+<tr><td>フラワーホーム様</td><td class="n">—</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">0</td><td class="n">18.8%</td><td>東広島モデルハウス12月頭オープン（ルームツアー撮影予定）。追客中47人中33人が一度も更新なし。KPI目標は未保存</td></tr>
+</table>
+<p class="note">★は重点5社。目標は12月末KPI設定シートの各社申告（11/19時点）、「—」は未保存。面談済は来場/面談のステータスの方（30日以上動きなしを含む）。中央建設様の接続率は4店合計。</p>
+
+<!-- ============ 8 ============ -->
+<h2 id="s8"><a class="back" href="shachou-mtg-20261127-visual.html#p8">◀ 要約へ</a>8　想定問答</h2>
+<dl class="qa">
+<dt>Q1　12月末に何件いくのか。</dt>
+<dd>今のペースだと14〜18件で、本部の必達32件には届きません。加盟店様と一緒に決めた55件に対しては18%です。内定14人のうち10件、土地の30人から5件を年内に決められれば、面談中・自社のお客様と合わせて32件に届く計算です。ただ内定・土地の進み方を今の3〜5倍にする必要があり、正直に言えば相当厳しい数字です。</dd>
+<dt>Q2　なぜ11月はこんなに落ちたのか。</dt>
+<dd>2つあります。1つは内定・土地の方が止まっていて、10月に契約になった方の後が続いていないこと（11月の新しい内定は4人、10月は11人）。もう1つは入口の減少で、割り当て済みの新規登録が10月の56%です。後者は年内より1〜2月に効いてきます。</dd>
+<dt>Q3　一番の問題は何か。</dt>
+<dd>土地です。「LIFE Xに決めたが土地が決まらない」お客様が内定にも土地探しにも溜まっていて、営業が次の一手を持てていません。返せる額から土地予算を逆算して、候補地にプランを当て込んで見せる型を11/27の研修で入れます。</dd>
+<dt>Q4　研修をずっとやってきたが効いているのか。</dt>
+<dd>数字で効果が言えるのは7/24の接続率研修（23.9%→34.7%）で、接続率は今も全体48.3%と目標の40%を超えています。商品研修は契約への効果を測れておらず、9月に「影響度の低いテーマは資料送付で十分」と言われ、11月から契約率に効くテーマ（メールでアポ・集大成・土地）に切り替えました。ただ、研修を作ることが本部の仕事の中心になり、効いたかを確かめずに次を作っていました。実施済み70件のうち54件が未検証です。年内は新しい研修を作らず、作っていた時間を内定・土地のお客様の打合せへの同席に回します（6章）。</dd>
+<dt>Q5　契約率30%は届くのか。</dt>
+<dd>直近3ヶ月で18.5%（内定込み）です。会社差が大きく、YUNO HOME様は面談→内定以上50%、WITHDOM Group様は11%。WITHDOM様は面談後の人数が最も多いので、ここが動けば全体の率が変わります。</dd>
+<dt>Q6　重点5社はどうなっているのか。</dt>
+<dd>12月末25件に対し5件（WITHDOM様2・河原様1・米子店1・竹村様1）、11月は目標10件に対し1件です。内定は7人いて、うち4人が30日超です。キノシタ様はまだ内定以上が0です。</dd>
+<dt>Q7　入口（集客）はどうするのか。</dt>
+<dd>年内は加盟店様イベント（顔写真入り告知）と年末年始の広告継続、1月からは全国ウェビナー（1/15・1/29）です。ウェビナーの目標は「2週に1回40組」で出しましたが、地域別に分けるべきと指摘があり、時位さんと詰め直します。</dd>
+<dt>Q8　本部広告の予算をかけているのに成果が出ないのはなぜか。</dt>
+<dd>時位さんの見立てでは、予算を急に増やすとMetaの学習が崩れるため段階的に増やしていること、クリエイティブが刺さっていない可能性があることの2点です。こちらから見えているのは、資料請求のあと来場に至らないお客様が多いことで、その原因を時位さんと一緒に分析するのが徳田の宿題です。</dd>
+<dt>Q9　自社のお客様をLIFE Xに振り替えるのは本筋なのか。</dt>
+<dd>10/1以降の契約10件のうち4件が自社登録のお客様で、登録から契約まで0〜33日と一番早い道です。年内の残り日数を考えると外せない打ち手です。一方で、LIFE X経由のお客様が自社商品で契約するケースもあり（10件中5件が自社商品で入力）、LIFE X商品の棟数として見ると見え方が変わる点は押さえておく必要があります。</dd>
+<dt>Q10　ポータルを使っていない加盟店はどうするのか。</dt>
+<dd>UTSUNOMIYA様（割り当て14人すべて未更新）・永大ハウスビルド様（最終変更10/1）・フラワーホーム様（47人中33人が未更新）は、率の議論の前に使っていただく段階です。画面共有で一緒に更新するところから入ります。24時間・2週間の警告機能も入ったので、12月に効果を確認します。</dd>
+<dt>Q11　モデルハウスはいつ揃うのか。</dt>
+<dd>最短がフラワーホーム様の東広島で12月頭、次が中央建設様 松江店の3月末。4〜5月に米子・鳥取・高知・新潟・出雲、6月に米子2棟目、7月末に郡山、9/11に久留米です。岡山・トーモク様・シリウス様・キノシタ様・南日本ハウス様は時期が未確認で、11/24に確認チャットを送っています。</dd>
+<dt>Q12　会議のやり方を変えると言っていたが、どう変えるのか。</dt>
+<dd>会社ごとの率の報告から始めるのをやめ、内定・土地44人の名簿から始めて「誰を・いつ・何で」前へ進めるかを決めます。率は根拠の欄に下げ、打ち手は誰が・いつまでに・何で測るかを書いて次回の冒頭で答え合わせします。時位さんとは待ちにならないよう、原因の深掘りを一緒にやる時間を固定します。</dd>
+<dt>Q13　徳田1人で回るのか。</dt>
+<dd>10月下旬からの1か月で、個社支援の打合せ資料・手元メモを約30本作り、ショートMTGを週3〜4本回しています。内定30日超の同席（10人）が加わる12月前半に向けて、年内は新しい資料・ツールを作らず、その時間を同席に回します。</dd>
+<dt>Q14　1月の7棟は根拠があるのか。</dt>
+<dd>8〜10月で最高だった10月実績（7棟）を1月の水準として置いています。年末年始で動きが鈍いことと、入口が細っていることを考えた水準です。12月の着地とウェビナーの予約数を見て見直します。</dd>
+</dl>
+
+<!-- ============ 9 ============ -->
+<h2 id="s9"><a class="back" href="shachou-mtg-20261127-visual.html#p8">◀ 要約へ</a>9　出典</h2>
+<ul class="src">
+<li>契約・内定の件数（月別・加盟店様別・10/1以降10件の内訳・流入・商品区分）、内定14・土地/ローン30・面談済97と経過日数、内定→契約の日数、初動と通話接続：LIFE X加盟店ポータル 本部用API（members・changes、2026/11/26 09:09取得、最後の変更記録 11/26 08:16）。契約・内定はステータスがその段階に変わった日（日本時間）で数え、集計対象（counted）のお客様を1人1件、変更前が同じ段階のものと本部アカウントは除外。「30日以上」は加盟店様が最後に手でステータスを変えた日から（9/16以降に手動変更のない方を含む）</li>
+<li>登録月別・直近3ヶ月の率、会社別の接続率・中央値：同API summary（期間指定 8/1〜8/31、9/1〜9/30、10/1〜10/31、11/1〜11/26、8/27〜11/26、2026/11/26取得）。「契約」列は内定を含む定義</li>
+<li>割り当て済み新規登録（各月1〜26日・週別）、登録時期別の到達、会社別の面談→内定以上、初動の中央値：同データの深掘り集計（~/auto/lifex-hq-data/20261126/deep.md）</li>
+<li>年度の月別目標・8〜10月実績・11月の入力値：BtoB事業部ダッシュボード「LIFEX既存」（monthly/LX_RES_2026-08〜2027-07、2026/11/26読み取り）</li>
+<li>12月末の必達（32件・契約率30%・接続率全社40%以上）と重点5社の内訳：作業記録 project_lifex_mokuhyou_202612（2026/10/12 決定、10/22の重点5社ベース）。重点5社の顔ぶれ：project_lifex_juten5sha_kyogo</li>
+<li>加盟店様と一緒に決めた目標55棟・各社の目標：12月末KPI設定シートの一覧（2026/11/19取得、11/23議題資料 6章）。期間（10/1からの累計・12月末まで）：作業記録 project_lifex_kpi_settei_sheet（10/20 v6「目標契約＝10/1からの累計」）</li>
+<li>「加盟店様が掲げている目標55、元々の目標は全店舗で32」のすり合わせ・内定込み15件：Gemini メモ「定例MTG 2026/11/16」文字起こし（01:03〜01:04付近）</li>
+<li>32棟の内訳（重点5社 各10月1・11月2・12月2、他社10月3・11月1・12月3）、月別目標8・11・13（11/26 徳田決定）：作業記録 project_lifex_mokuhyou_202612（10/22）、ダッシュボード monthly/LX_RES_2026-10〜12 のメモ欄</li>
+<li>11/23時点の分析・打ち手15個・必要な契約の内訳：~/auto/lifex-public/mtg-agenda/20261123.html（11/22 19:49取得の数字）</li>
+<li>11月の面談数が10月の約4割・本部広告の増額とMetaの学習・アイコン様の西尾市（人口約17万人・着工794件）・会議運営への指摘・モデルハウス見える化の指示：Gemini メモ「LIFEX MTG - 2026/11/23 07:54」</li>
+<li>ウェビナー（月2回・金21時録画・翌土曜に本部でアポ取り・88枚は多い・広告約120万円・地域別目標の指摘）、撮影12/11、年末年始も広告継続、ヒアリング構成の変更、北側道路、ポータルの警告機能、キャンペーン案3つの宿題、資料はPDFで、アパックスホーム様の来場2組、竹村工務店様の箕面モデル案内での契約：Gemini メモ「定例MTG 2026/11/23 08:53」。なお同メモでは2回目を「1月30日の金曜日」としているが、2027/1/30は土曜で、11/23 LIFEX MTGでは1/29と報告しているため本資料は1/29で記載</li>
+<li>フォーム完了率9.4%→15%（送信6件）・本部フォームの住所維持・久留米建設様の説明・竹村工務店様の11月来場2件（平均約7件）・広告MTGの11時変更：Gemini メモ「LIFE X 広告MTG - 2026/11/24 14:10」</li>
+<li>7/24研修の効果（23.9%→34.7%）：lifex-kenshu-0724-effect.html（project_lifex_kenshu_0724_effect）</li>
+<li>研修の履歴：project_lifex_kenshu_schedule／project_lifex_mail_apo_kenshu／project_lifex_shuutaisei_kenshu_1113／project_lifex_kakushuu_kenshu／project_lifex_tochi_kimekiri_kenshu</li>
+<li>個社支援の日付・内容：デスクトップ「01_LIFEX本部/加盟店様/」の各打合せ資料（ファイル名の日付）と各作業記録（project_daiken_eigyo_kaigi_1105・project_kenko_jutaku_visit_1106・project_minaminihon_eigyo_kaigi_1115・project_minaminihon_shanai_mg）</li>
+<li>接触記録の試行：project_lifex_sesshoku_kiroku_trial（11/12 結果取り出し）</li>
+<li>流入別の通話接続率（10月）：project_lifex_ryunyu_betsu_tsuwa（10/26訂正版）</li>
+<li>会社ロゴ入りバナー：project_lifex_banner_shamei_teian（10/25返信状況）</li>
+<li>モデルハウスのオープン見込み：デスクトップ「加盟店様/モデルハウス進捗_20261123/data.json」（11/26更新分）</li>
+<li>議題資料の自動作成の失敗履歴・会議メモ取り込み停止：project_lifex_mtg_agenda／project_meeting_notes_sync</li>
+<li>KPI設定シートの未返信社：project_lifex_kpi_settei_sheet（10/30時点）</li>
+<li>本部インスタ（参考）：insta-monitor/history.csv 1,742人（10/9）→2,911人（11/20）。目標5,000人（10/26 LIFEX MTG）</li>
+<li>取り組み73件・段階別の件数・判定の内訳：別紙「これまでの取り組み一覧」（shachou-mtg-20261127-torikumi.html。研修スケジュールの記録と各案件の作業記録から作成、11/26時点）。段階の振り分けは徳田による</li>
+</ul>
+
+</div>
+</body>
+</html>
