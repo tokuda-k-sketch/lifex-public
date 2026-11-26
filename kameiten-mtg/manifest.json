@@ -200,13 +200,6 @@
       "file": "sirius/2026-11-23-mh.html"
     },
     {
-      "slug": "kinoshita",
-      "date": "2026-11-23",
-      "dateLabel": "2026年11月23日（月）",
-      "title": "モデルハウスの進み具合",
-      "file": "kinoshita/2026-11-23-mh.html"
-    },
-    {
       "slug": "kurume-kensetsu",
       "date": "2026-11-23",
       "dateLabel": "2026年11月23日（月）",
@@ -233,6 +226,13 @@
       "dateLabel": "2026年11月23日（月）",
       "title": "モデルハウスの進み具合",
       "file": "karakusha/2026-11-23-mh.html"
+    },
+    {
+      "slug": "kinoshita",
+      "date": "2026-11-23",
+      "dateLabel": "2026年11月23日（月）",
+      "title": "モデルハウスの進み具合",
+      "file": "kinoshita/2026-11-23-mh.html"
     }
   ]
 }
