@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>年末年始休暇一覧</title>
+<style>
+  :root{
+    --navy:#1f3a5f; --navy-soft:#8fa6c4; --line:#d9dee5; --bg:#fff;
+    --text:#1d2430; --muted:#6b7480; --weekend:#f3f5f8; --unk:#eceff3; --accent:#b5651d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:"Hiragino Sans","Noto Sans JP",sans-serif;font-size:14px;line-height:1.5}
+  .wrap{max-width:1400px;margin:0 auto;padding:24px 16px 40px}
+  h1{font-size:22px;margin:0 0 4px;color:var(--navy)}
+  .sub{color:var(--muted);margin:0 0 16px;font-size:13px}
+  .summary{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+  .chip{border:1px solid var(--line);border-radius:8px;padding:8px 14px;background:#fff}
+  .chip b{font-size:20px;color:var(--navy);margin-right:4px}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-bottom:10px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:22px;height:12px;border-radius:3px;display:inline-block}
+  .scroll{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+  table{border-collapse:collapse;width:100%;min-width:1300px}
+  th,td{border-bottom:1px solid var(--line);padding:0;text-align:center}
+  thead th{background:#fff;font-weight:600;font-size:12px;padding:6px 4px}
+  thead th.sat{color:#2f5d9a} thead th.sun,thead th.hol{color:#b03a2e}
+  th.name,td.name{text-align:left;padding:8px 10px;white-space:nowrap;min-width:180px;
+    position:sticky;left:0;background:#fff;z-index:1;border-right:1px solid var(--line)}
+  td.name .no{color:var(--muted);font-size:11px;margin-right:6px}
+  td.day{height:40px;position:relative;min-width:36px}
+  td.wk{background:var(--weekend)}
+  td.off::after{content:"";position:absolute;left:0;right:0;top:10px;bottom:10px;background:var(--navy)}
+  td.off.tentative::after{background:repeating-linear-gradient(135deg,var(--navy-soft) 0 5px,#b8c7da 5px 10px)}
+  td.off.first::after{left:4px;border-radius:5px 0 0 5px}
+  td.off.last::after{right:4px;border-radius:0 5px 5px 0}
+  td.start::before{content:"始業";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    font-size:11px;color:var(--accent);font-weight:700}
+  tr.unknown td.day{background:var(--unk)}
+  tr.unknown td.day.wk{background:#e3e7ec}
+  td.in{padding:4px 6px;white-space:nowrap;border-left:1px solid var(--line)}
+  td.in input[type=date]{font:inherit;font-size:13px;padding:3px 4px;border:1px solid var(--line);border-radius:4px;width:128px}
+  td.in select{font:inherit;font-size:13px;padding:3px 4px;border:1px solid var(--line);border-radius:4px}
+  td.txt{text-align:left;padding:4px 6px;min-width:110px;font-size:13px}
+  td.memo{text-align:left;padding:4px 6px;min-width:260px;font-size:12px;color:var(--muted)}
+  td.txt textarea,td.memo textarea{width:100%;font:inherit;font-size:12px;border:1px solid transparent;
+    border-radius:4px;padding:3px 4px;resize:vertical;min-height:30px;background:transparent;color:var(--text)}
+  td.txt textarea:hover,td.memo textarea:hover,td.txt textarea:focus,td.memo textarea:focus{border-color:var(--line);background:#fff}
+  .bar{display:flex;gap:10px;align-items:center;margin-top:12px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+  .bar button{font:inherit;font-size:12px;padding:5px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer}
+  .saved{color:var(--navy)}
+  @media print{
+    @page{size:A4 landscape;margin:8mm}
+    .wrap{max-width:none;padding:0}
+    .scroll{overflow:visible;border:none}
+    table{min-width:0;font-size:10px}
+    td.memo,th.memo,.bar{display:none}
+    td.in input,td.in select,textarea{border:none!important;-webkit-appearance:none;appearance:none;background:transparent}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>加盟店様 年末年始休暇一覧</h1>
+  <p class="sub" id="asof"></p>
+
+  <div class="summary" id="summary"></div>
+
+  <div class="legend">
+    <span><i class="sw" style="background:var(--navy)"></i>休み（確定）</span>
+    <span><i class="sw" style="background:repeating-linear-gradient(135deg,var(--navy-soft) 0 5px,#b8c7da 5px 10px)"></i>休み（見込み）</span>
+    <span><i class="sw" style="background:var(--unk)"></i>未確認</span>
+    <span><i class="sw" style="background:var(--weekend);border:1px solid var(--line)"></i>土日・祝日</span>
+  </div>
+
+  <div class="scroll"><table id="tbl"></table></div>
+
+  <div class="bar">
+    <span id="savestate">入力するとこのブラウザに自動で保存されます。</span>
+    <button id="reset" type="button">最初の状態に戻す</button>
+  </div>
+</div>
+
+<script>
+// 初期値（11/27時点でクロが集めた分）。入力するとブラウザ側の保存が優先されます
+// from=休みの初日 / start=仕事始めの日（休みの最終日は start の前日として表示）
+// status: "ok"=確定 / "tentative"=見込み / ""=未確認
+const DEFAULTS = [
+  {no:"002", name:"いえプロ不動産", teikyu:"火・水"},
+  {no:"003", name:"久留米建設", teikyu:"水"},
+  {no:"004", name:"坂本建設工業", teikyu:"水"},
+  {no:"005", name:"トーモク", teikyu:"水"},
+  {no:"006", name:"華楽舎（旧スピークス）", teikyu:"水"},
+  {no:"007", name:"シリウス", teikyu:"火・水"},
+  {no:"008", name:"竹村工務店", teikyu:"なし（年末年始・お盆・GWのみ）"},
+  {no:"009", name:"中央建設（4店）", status:"tentative", start:"2027-01-08", teikyu:"水・木",
+    memo:"11/13・11/16の打合せで1/8仕事始めと確認。休みに入る日・米子店以外も同じかは未確認"},
+  {no:"011", name:"YUNO HOME", teikyu:"記載なし"},
+  {no:"014", name:"フラワーホーム（BJC）", status:"ok", from:"2026-12-29", start:"2027-01-07", teikyu:"水",
+    memo:"自社HP 11/26掲載の年末年始休業のお知らせ。広島支店の記事で、岡山店も同じかは未確認"},
+  {no:"015", name:"大建建設", status:"tentative", from:"2026-12-27", start:"2027-01-05", teikyu:"水",
+    memo:"11/26の打合せで「12/27〜1/4」の見込みと確認。1/4が最終日か仕事始めかは未確認"},
+  {no:"016", name:"WITHDOM Group", teikyu:"水・木"},
+  {no:"017", name:"キノシタ", teikyu:"祝日のみ"},
+  {no:"018", name:"建匠", teikyu:"水"},
+  {no:"019", name:"河原工務店", teikyu:"なし（年末年始・お盆のみ）"},
+  {no:"020", name:"南日本ハウス", teikyu:"なし（年末年始のみ）"},
+  {no:"021", name:"永大ハウスビルド", teikyu:"水"},
+  {no:"023", name:"むつみワールド", teikyu:"水"},
+  {no:"024", name:"健康住宅", teikyu:"水"},
+  {no:"025", name:"アパックスホーム", status:"ok", from:"2026-12-26", start:"2027-01-04", teikyu:"火・水",
+    memo:"11/27の打合せで確認"},
+];
+const RANGE_FROM = "2026-12-24", RANGE_TO = "2027-01-10";
+const HOLIDAYS = ["2027-01-01","2027-01-02","2027-01-03"];
+const KEY = "lifex-nenmatsu-kyuka-2026";
+
+const W = "日月火水木金土";
+const d = s => new Date(s+"T00:00:00");
+const iso = x => `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,"0")}-${String(x.getDate()).padStart(2,"0")}`;
+const fmt = s => { const x=d(s); return `${x.getMonth()+1}/${x.getDate()}(${W[x.getDay()]})`; };
+const prev = s => { const x=d(s); x.setDate(x.getDate()-1); return iso(x); };
+const days = []; for (let x=d(RANGE_FROM); x<=d(RANGE_TO); x.setDate(x.getDate()+1)) days.push(iso(x));
+const esc = s => String(s||"").replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+let rows = JSON.parse(JSON.stringify(DEFAULTS));
+let updated = "";
+try {
+  const saved = JSON.parse(localStorage.getItem(KEY) || "null");
+  if (saved && saved.rows) {
+    rows = DEFAULTS.map(def => Object.assign({}, def, saved.rows.find(r => r.no === def.no) || {}));
+    updated = saved.updated || "";
+  }
+} catch(e) {}
+
+function save(){
+  updated = new Date().toLocaleString("ja-JP",{month:"numeric",day:"numeric",hour:"2-digit",minute:"2-digit"});
+  try {
+    localStorage.setItem(KEY, JSON.stringify({updated, rows}));
+    document.getElementById("savestate").innerHTML = `<span class="saved">保存しました（${updated}）</span>`;
+  } catch(e) {
+    document.getElementById("savestate").textContent = "このブラウザでは保存できません。閉じると入力内容が消えます。";
+  }
+  renderHead();
+}
+
+function renderHead(){
+  document.getElementById("asof").textContent =
+    `表示期間 ${fmt(RANGE_FROM)}〜${fmt(RANGE_TO)}` + (updated ? `　最終更新 ${updated}` : "　初期値は11/27時点");
+  const n = {ok:0,tentative:0,"":0}; rows.forEach(r=>n[r.status||""]++);
+  document.getElementById("summary").innerHTML =
+    `<div class="chip"><b>${rows.length}</b>社</div>
+     <div class="chip"><b>${n.ok}</b>確定</div>
+     <div class="chip"><b>${n.tentative}</b>見込み</div>
+     <div class="chip"><b>${n[""]}</b>未確認</div>`;
+}
+
+function dayCells(r){
+  const to = r.start ? prev(r.start) : "";
+  let h = "";
+  days.forEach(day=>{
+    const w=d(day).getDay(); const cls=["day"];
+    if (w===0||w===6||HOLIDAYS.includes(day)) cls.push("wk");
+    if (r.from && to && day>=r.from && day<=to){
+      cls.push("off"); if(r.status!=="ok") cls.push("tentative");
+      if(day===r.from) cls.push("first"); if(day===to) cls.push("last");
+    }
+    if (r.start && day===r.start) cls.push("start");
+    h += `<td class="${cls.join(" ")}"></td>`;
+  });
+  return h;
+}
+
+function render(){
+  let h = `<thead><tr><th class="name">番号・会社名</th>`;
+  days.forEach(s=>{ const x=d(s), w=x.getDay();
+    const c = HOLIDAYS.includes(s)?"hol":w===0?"sun":w===6?"sat":"";
+    h+=`<th class="${c}">${x.getMonth()+1}/${x.getDate()}<br>${W[w]}</th>`; });
+  h += `<th>休みの初日</th><th>仕事始めの日</th><th>状態</th><th>定休日</th><th class="memo">出典・メモ</th></tr></thead><tbody>`;
+  rows.forEach((r,i)=>{
+    h += `<tr data-i="${i}" class="${r.status?"":"unknown"}">
+      <td class="name"><span class="no">${r.no}</span>${esc(r.name)}</td>${dayCells(r)}
+      <td class="in"><input type="date" data-k="from" value="${r.from||""}"></td>
+      <td class="in"><input type="date" data-k="start" value="${r.start||""}"></td>
+      <td class="in"><select data-k="status">
+        <option value=""${!r.status?" selected":""}>未確認</option>
+        <option value="tentative"${r.status==="tentative"?" selected":""}>見込み</option>
+        <option value="ok"${r.status==="ok"?" selected":""}>確定</option></select></td>
+      <td class="txt"><textarea data-k="teikyu" rows="1">${esc(r.teikyu)}</textarea></td>
+      <td class="memo"><textarea data-k="memo" rows="2">${esc(r.memo)}</textarea></td></tr>`;
+  });
+  document.getElementById("tbl").innerHTML = h + "</tbody>";
+  renderHead();
+}
+
+document.getElementById("tbl").addEventListener("input", e=>{
+  const k = e.target.dataset.k; if(!k) return;
+  const tr = e.target.closest("tr"); const i = +tr.dataset.i;
+  rows[i][k] = e.target.value;
+  if (k==="from"||k==="start"||k==="status"){
+    if ((k==="from"||k==="start") && e.target.value && !rows[i].status){
+      rows[i].status = "tentative"; tr.querySelector('select').value = "tentative";
+    }
+    tr.className = rows[i].status ? "" : "unknown";
+    tr.querySelectorAll("td.day").forEach(td=>td.remove());
+    tr.querySelector("td.name").insertAdjacentHTML("afterend", dayCells(rows[i]));
+  }
+  save();
+});
+
+document.getElementById("reset").addEventListener("click", ()=>{
+  if(!confirm("入力した内容を消して、11/27時点の初期値に戻します。よろしいですか？")) return;
+  try{ localStorage.removeItem(KEY); }catch(e){}
+  rows = JSON.parse(JSON.stringify(DEFAULTS)); updated = ""; render();
+  document.getElementById("savestate").textContent = "初期値に戻しました。";
+});
+
+render();
+</script>
+</body>
+</html>
