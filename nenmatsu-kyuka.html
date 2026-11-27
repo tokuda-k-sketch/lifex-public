@@ -91,7 +91,8 @@
 const DEFAULTS = [
   {no:"本部", name:"LIFEX本部（Gハウス）", status:"ok", from:"2026-12-26", start:"2027-01-04", teikyu:"",
     memo:"休み中も電話・チャットはできる限り対応（11/27）", rev:"1127b"},
-  {no:"002", name:"いえプロ不動産", teikyu:"火・水"},
+  {no:"002", name:"いえプロ不動産", status:"ok", from:"2026-12-26", start:"2027-01-04", teikyu:"火・水",
+    memo:"11/27 13:29 徳田さんがページに直接入力（出典の記載なし）", rev:"1127f"},
   {no:"003", name:"久留米建設", teikyu:"水"},
   {no:"004", name:"坂本建設工業", teikyu:"水"},
   {no:"005", name:"トーモク", teikyu:"水"},
@@ -100,12 +101,12 @@ const DEFAULTS = [
   {no:"008", name:"竹村工務店", status:"ok", from:"2026-12-29", start:"2027-01-06", teikyu:"なし（年末年始・お盆・GWのみ）",
     memo:"11/27 知花様LINE WORKS：「12/29(火)、1/6(水)」（休み初日・仕事始めの順と読んだ）", rev:"1127d"},
   {no:"009", name:"中央建設（4店）", status:"tentative", start:"2027-01-08", teikyu:"水・木",
-    memo:"11/13・11/16の打合せで1/8仕事始めと確認。休みに入る日・米子店以外も同じかは未確認"},
+    memo:"11/13 吉良さん個別（文字起こし00:20〜）吉良様「7日まで休み」「8日仕事始め」。休みに入る日・米子店以外も同じかは未確認", rev:"1127f"},
   {no:"011", name:"YUNO HOME", teikyu:"記載なし"},
   {no:"014", name:"フラワーホーム（BJC）", status:"ok", from:"2026-12-29", start:"2027-01-06", teikyu:"水",
-    memo:"11/27 村上様チャット：12/29(火)〜、仕事始め1/6(水)。休み中も反響対応あり。※自社HP(広島支店)は1/7始業の記載で1日ずれ。岡山店も同じかは未確認", rev:"1127b"},
+    memo:"11/27 村上様チャット：12/29(火)〜、仕事始め1/6(水)。休み中も反響対応あり。※自社HP 11/26掲載「年末年始休業日のお知らせ」は12/29〜1/6休業・1/7より通常営業で1日ずれ（広島支店の記事。岡山店は未確認）", rev:"1127f"},
   {no:"015", name:"大建建設", status:"ok", from:"2026-12-27", start:"2027-01-05", teikyu:"水",
-    memo:"11/27 高橋様チャット：休み初日12/27・仕事始め1/5", rev:"1127c"},
+    memo:"11/27 高橋様チャット：休み初日12/27・仕事始め1/5で確定。（11/26 広告MTGのGeminiメモでは「12月27日から1月4日までとなる見込み」）", rev:"1127f"},
   {no:"016", name:"WITHDOM Group", teikyu:"水・木"},
   {no:"017", name:"キノシタ", teikyu:"祝日のみ"},
   {no:"018", name:"建匠", teikyu:"水"},
@@ -119,7 +120,7 @@ const DEFAULTS = [
     memo:"11/27 渡部様チャット：休業開始12/28(月)・仕事始め1/7(木)", rev:"1127b"},
   {no:"024", name:"健康住宅", teikyu:"水"},
   {no:"025", name:"アパックスホーム", status:"ok", from:"2026-12-26", start:"2027-01-04", teikyu:"火・水",
-    memo:"11/27の打合せで確認"},
+    memo:"11/27 定例MTG（文字起こし00:17〜00:18）杉藤様「26から」「3日まで休み」。同日の資料PDFの手書きは「12/26~1/4」で1日ずれ", rev:"1127f"},
   {no:"—", name:"アイコン", status:"ok", from:"2026-12-29", start:"2027-01-05", teikyu:"",
     memo:"11/27 石川様LINE WORKS：休み初日12/29・仕事始め1/5(火)。※「12/29(月)」と書かれているが12/29は火曜。日付を採用", rev:"1127b"},
 ];
@@ -161,7 +162,7 @@ function save(){
 
 function renderHead(){
   document.getElementById("asof").textContent =
-    `表示期間 ${fmt(RANGE_FROM)}〜${fmt(RANGE_TO)}` + (updated ? `　最終更新 ${updated}` : "　初期値は11/27 14:00時点");
+    `表示期間 ${fmt(RANGE_FROM)}〜${fmt(RANGE_TO)}` + (updated ? `　最終更新 ${updated}` : "　初期値は11/27 14:10時点");
   const ks = rows.filter(r=>r.no!=="本部");
   const n = {ok:0,tentative:0,"":0}; ks.forEach(r=>n[r.status||""]++);
   document.getElementById("summary").innerHTML =
