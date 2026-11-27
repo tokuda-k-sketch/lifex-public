@@ -113,7 +113,8 @@ const DEFAULTS = [
     memo:"11/27 郡山様LINE WORKS：「12/29-1/4」。仕事始め1/5は最終日の翌日として置いた", rev:"1127b"},
   {no:"020", name:"南日本ハウス", status:"ok", from:"2026-12-29", start:"2027-01-04", teikyu:"なし（年末年始のみ）",
     memo:"11/27 宮之脇様LINE WORKS：「12/29-1/3」。仕事始め1/4は最終日の翌日として置いた", rev:"1127b"},
-  {no:"021", name:"永大ハウスビルド", teikyu:"水"},
+  {no:"021", name:"永大ハウスビルド", status:"ok", from:"2026-12-29", start:"2027-01-06", teikyu:"水",
+    memo:"11/27 鎌田様LINE WORKS：「12/29から1/5まで」。仕事始め1/6は最終日の翌日として置いた", rev:"1127e"},
   {no:"023", name:"むつみワールド", status:"ok", from:"2026-12-28", start:"2027-01-07", teikyu:"水",
     memo:"11/27 渡部様チャット：休業開始12/28(月)・仕事始め1/7(木)", rev:"1127b"},
   {no:"024", name:"健康住宅", teikyu:"水"},
@@ -160,7 +161,7 @@ function save(){
 
 function renderHead(){
   document.getElementById("asof").textContent =
-    `表示期間 ${fmt(RANGE_FROM)}〜${fmt(RANGE_TO)}` + (updated ? `　最終更新 ${updated}` : "　初期値は11/27 13:50時点");
+    `表示期間 ${fmt(RANGE_FROM)}〜${fmt(RANGE_TO)}` + (updated ? `　最終更新 ${updated}` : "　初期値は11/27 14:00時点");
   const ks = rows.filter(r=>r.no!=="本部");
   const n = {ok:0,tentative:0,"":0}; ks.forEach(r=>n[r.status||""]++);
   document.getElementById("summary").innerHTML =
